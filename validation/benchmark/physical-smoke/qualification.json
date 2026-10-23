@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T14:32:22.952685+00:00",
+  "status": "protocol_and_numerical_smoke_passed",
+  "rows": [
+    {
+      "id": "ggh-f64-hybrid-batch1",
+      "status": "measured",
+      "correctness_passed": true,
+      "lanes": 1,
+      "moments_per_lane": 15,
+      "laurent_slots_per_moment": 4,
+      "reference_modes": [
+        0,
+        1,
+        2
+      ],
+      "maximum_normalized_tensor_error": 3.540129055639618e-15,
+      "maximum_normalized_madloop_error": 8.014058084304107e-15
+    },
+    {
+      "id": "ggh-f64-hybrid-batch3",
+      "status": "measured",
+      "correctness_passed": true,
+      "lanes": 3,
+      "moments_per_lane": 15,
+      "laurent_slots_per_moment": 4,
+      "reference_modes": [
+        0,
+        1,
+        2
+      ],
+      "maximum_normalized_tensor_error": 3.540129055639618e-15,
+      "maximum_normalized_madloop_error": 8.014058084304107e-15
+    }
+  ],
+  "scope": "Identified frozen debug executable; seven pipeline stages, separate profiling, three short blocks, batch widths1 and3. No optimized performance qualification.",
+  "provenance_qualified": false,
+  "source_scope": "The retained binary hash identifies the execution. The live capture is at5c9e3dd with ongoing source changes; neither the debug build nor live-source snapshot is promoted into a qualified committed-release build.",
+  "raw_provenance_checks": {
+    "successful_stable_build": false,
+    "binary_matches_manifest": true,
+    "sources_match_manifest": true,
+    "assets_match_manifest": true
+  },
+  "workspace_source_changed_during_run": true,
+  "qualification_limits": [
+    "Debug application build; short intervals, no performance gate.",
+    "Live source changes are explicitly retained in raw output.",
+    "Only the ggH fixture; batches repeat one physical point.",
+    "Protocol/numerical evidence does not qualify later ordinary-master stack-adoption changes."
+  ],
+  "sha256": {
+    "validation/benchmark/physical-smoke/results.json": "f7674255044446f4d08dd373c5c5b320306a68b16e8f33d9de5a406f24a0708a",
+    "validation/benchmark/physical-smoke/results-inputs.json": "d878216817b61b2f62dc58fd5b9e94e477e482d1f18e25d885cb2ad49112d406",
+    "validation/benchmark/physical-smoke/runner-result.json": "b03a1b13209eb295c3cbf530f148bb16861253846e2ee5dba1620e90b72c2d15",
+    "validation/benchmark/physical-smoke/runner.log": "b8d5af9964301c9a3fe77e04917ff7fdd9c3bf0272a4b85110ec6eecaaeea8a2",
+    "validation/benchmark/physical-smoke/physical-rust.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/physical-smoke/debug-rust-build.json": "0aae167801eff97cc3284e53ddfa5d36df6ac1ad1007ec68f7c15abfb1db8f2e"
+  }
+}

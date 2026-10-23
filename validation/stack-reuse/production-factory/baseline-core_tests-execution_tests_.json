@@ -1,0 +1,28 @@
+{
+  "variant": "baseline",
+  "stage": "core_tests",
+  "filter": "execution::tests::",
+  "command": [
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-production/baseline/core_tests",
+    "execution::tests::",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "timeout_seconds": 180.0,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 32.86014953395352,
+  "max_rss_kib": 695628,
+  "user_seconds": 26.915722,
+  "system_seconds": 5.552643,
+  "binary_sha256": "507c85cad573ee7364bf35b1822cd84748390a5777c6150017a124dd5017fa0f",
+  "diagnostic_only": true,
+  "performance_gate": "Not a controlled statistical benchmark; elapsed time and peak RSS are diagnostic observations.",
+  "invalid_resource_fields": [
+    "max_rss_kib",
+    "user_seconds",
+    "system_seconds"
+  ],
+  "resource_correction": "Global RUSAGE_CHILDREN can retain previous shell-child usage across exec; use later per-child wait4 reports for resource diagnostics.",
+  "runner_sha256": "69f3e0e23fb98caf95917891256d71a7bfa22e19cf6f4c475a66523dca68e27b"
+}

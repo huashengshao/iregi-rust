@@ -1,0 +1,86 @@
+E6 comparison: working=256, requested=128; preparing plan
+E6 comparison: plan complete in 0.087947s; preparing workspace
+E6 comparison: workspace complete in 1.568210s; reducing original inputs
+E6 comparison: reduction complete in 148.881324s; status=[Unstable("E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)")]
+{
+  "algorithm": "Ibp",
+  "comparison": {
+    "performed": false,
+    "reason": "Unstable(\"E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)\")",
+    "values": null
+  },
+  "components": 1,
+  "convention": "OneLoop",
+  "diagnostic_seconds": {
+    "arguments": 0.001712767,
+    "plan": 0.087946579,
+    "reduction_call": 148.881323787,
+    "reduction_kernel": 0.0,
+    "scalar_masters": 148.099140561,
+    "total_process_work": 150.538527184,
+    "workspace": 1.568210135
+  },
+  "diagnostics": [
+    [
+      "E6 leaf 0: quadrature order 128, box rows 1240, error estimate 6.346e21",
+      "E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)",
+      "exact-zero profile evaluation failed; ordinary reduction retained: Unstable(\"E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)\")",
+      "E6 leaf 0: quadrature order 128, box rows 1240, error estimate 6.346e21",
+      "E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)"
+    ]
+  ],
+  "dimension_shift": 1,
+  "execution": {
+    "analytic_rows": 1,
+    "argument_rows": 2,
+    "fallback_rows": 0,
+    "input_rows": 1,
+    "master_family_batches": 2,
+    "master_rows": 2,
+    "pentagon_box_rows": 2480,
+    "reduction_rows": 0
+  },
+  "input_policy": "Preserve",
+  "limits": "One special small-invariant equal-mass fixture, singleton batch, no production threshold changes or automatic precision rescue. Timing is diagnostic, not a performance benchmark. Rejected lanes expose no initialized scratch values.",
+  "oracle": "validation/shifted-pentagon/series-oracle.json",
+  "original_inputs_exact_rational": [
+    "0",
+    "0",
+    "0",
+    "0",
+    "1/4294967296",
+    "0",
+    "0",
+    "0",
+    "0",
+    "1/4294967296",
+    "0",
+    "0",
+    "0",
+    "0",
+    "1/4294967296",
+    "0",
+    "0",
+    "0",
+    "0",
+    "1/4294967296",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1",
+    "1"
+  ],
+  "production_status": "Unstable(\"E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)\")",
+  "public_mixed_budget_rule": "2^(19-requested_bits)*max(abs(output),1); the original fixture has natural normalization one",
+  "public_relative_budget_exact_rational": "1/649037107316853453566312041152512",
+  "qualification": "production_rejected",
+  "reference_center_exact_rational": "-12036587676219018513932201371443270439810465126668255478157473736166297438919860467/288878104229256444342724893399674592512337957743840079165638780582941675825712332800",
+  "reference_radius_exact_rational": "110680464442257309691/945648148713467500992169584679243047369731710736727807219994928268986499346953537130451216816714210994446806705766400",
+  "requested_bits": 128,
+  "rows": 1,
+  "schema_version": 1,
+  "strict_absolute_budget_exact_rational": "3640745372546849878714591459884903283527509796127461561368760213636235583481162353550381800434268947655740027898257477/29733154865440703324791682726025408691421258579941938240775649694003069330104777274156049247505224707162347413189139514650062951542493750067451373123964764160",
+  "tensor_rank": 0,
+  "working_bits": 256
+}

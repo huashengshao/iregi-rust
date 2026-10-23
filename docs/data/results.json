@@ -1,17 +1,19 @@
 {
   "schema_version": 1,
-  "status": "qualified-historical-baseline-with-current-validation-in-progress",
+  "status": "qualified-kernel-snapshots-with-full-acceptance-incomplete",
   "date": "2026-10-23",
   "revision": null,
-  "host": "AMD EPYC 9754 \u00b7 CPU 0 \u00b7 historical 4c32ece baseline",
+  "host": "AMD EPYC 9754 \u00b7 CPU 0 \u00b7 identified kernel snapshots",
   "batch_width": null,
-  "measurement_note": "Both historical 4c32ece backends pass all 8 numerical checks. Interpreter: 7 regressions and 1 improvement. Native: 5 regressions, 1 parity result and 2 improvements. Each uses its own paired IREGI run; the performance goal remains unmet and newer changes are unmeasured.",
+  "measurement_note": "The newer 5c9e3dd interpreter snapshot passes all eight numerical checks: six regressions and two inconclusive noisy timing rows. Historical 4c32ece runs remain separate. Full performance acceptance is unmet; subsequent default-stack/generalized-PV/vector changes remain unmeasured.",
   "timing_provenance": {
     "source": "validation/benchmark/baseline-4c32ece/results.json",
     "revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
     "provenance_qualified": true,
     "native_source": "validation/benchmark/native-4c32ece/results.json",
-    "cross_session_policy": "Use only each run's paired reference. Identical reference binaries and inputs do not justify a backend speedup ratio across separate sessions."
+    "cross_session_policy": "Use only each run's paired reference. Identical reference binaries and inputs do not justify a backend speedup ratio across separate sessions.",
+    "latest_source": "validation/benchmark/baseline-5c9e3dd/results.json",
+    "latest_revision": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176"
   },
   "reference_revisions": {
     "madgraph": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
@@ -113,13 +115,13 @@
       "feature": "PV component",
       "requirement": "Every tensor moment and native Laurent slot",
       "status": "partial",
-      "evidence": "10 exact tests; N1\u20134 ranks0\u20137 pass. N5 rank6: 840 slots converge at128/256 bits. Rank7 preparation timed out; no coefficients compared."
+      "evidence": "Canonical N1\u20134 ranks 0\u20137 pass. Generalized N\u22644: nine focused + 36 original comparisons pass. Saved N5 rank-seven baseline: 1320 slots. Public N6/N7 tensor ranks pending."
     },
     {
       "feature": "Precision and Dual",
       "requirement": "binary64, DoubleFloat, Float, static/dynamic jets",
       "status": "partial",
-      "evidence": "f64,DoubleFloat,Float128/256/512,static/dynamic Dual and selected physical mixed jets pass; fresh mixed Float80/256 argument guards pass. Broader recurrence precision audit remains open."
+      "evidence": "Selected f64/DD/Float128\u2013512 and static/dynamic jets pass. Mixed-precision guards: 29 + 6 pass. Small-routing E6 requested at 128 bits: Unstable."
     },
     {
       "feature": "Execution / CLI / core oracle",
@@ -131,7 +133,7 @@
       "feature": "Exceptional kinematics",
       "requirement": "Explicit errors and verified fallback",
       "status": "partial",
-      "evidence": "15 stability checks and full N5 rank6 rescue pass. Legacy corpus:22 primary plus8 verified128/256-bit rescues pass all30 retained cases."
+      "evidence": "N5 rank-six rescue passes; saved rank-seven baseline passes 1320 slots. Legacy: 22 primary + 8 rescues. E6 failures and broader domains remain visible."
     },
     {
       "feature": "Graph/numerator preparation",
@@ -3620,7 +3622,6 @@
       }
     },
     "not_yet_qualified": [
-      "rank7 fivepoint",
       "sixpoint rank0..7 binary64 family (retained failed run)",
       "rank0..7 sevenpoint",
       "translated and reversed rank7 cases"
@@ -3693,7 +3694,8 @@
         "independent_constraint": "All UV poles vanish: superficial degree at most -3. Feynman polynomial F>=3.75 excludes IR poles.",
         "qualification": "Original reference-only pole contradiction; no Rust numerical evaluation or finite-array adjudication."
       }
-    ]
+    ],
+    "qualification_update": "Saved vendored N5 rank7 baseline passes1320slots; its source scope remains separate from newer precision, routing, generalized-PV and allocation changes."
   },
   "open_discrepancies": [
     {
@@ -7788,7 +7790,7 @@
       "last_rule_difference": "1.0159e-15",
       "qualification": "Negative-width lane succeeded and unqualified zero-width endpoint was rejected. A backend budget-allocation change is pending requalification; no complete public-core success is claimed."
     },
-    "limitations": "Retained f64 finite fixtures pass; separate pre-vendor DD/Float128 and first common-mass Dual tests now pass. Current vendor build, full128-bit requested accuracy, higher/mixed Dual, broad endpoints, native E6 and performance remain unqualified.",
+    "limitations": "Retained f64 and pre-vendor DD/Float128/first common-mass Dual fixtures pass. Paired ordinary-master stack candidate DD E6 also passes all3lanes exactly, with old-guard snapshot scope retained. The current small-routing E6 fixture fails at working128/256 requested128. Broader/higher-Dual/native/precision domains and performance remain unqualified.",
     "latest_core_recheck": {
       "name": "e6_public_f64",
       "command": [
@@ -11185,7 +11187,7 @@
   },
   "stack_reuse_factory_qualification": {
     "source": "validation/stack-reuse/production-factory/qualification.json",
-    "sha256": "ec358abca86774bf56b1c0afc95619c8e5d7a35a759d830144e31f71576c9b54",
+    "sha256": "859a88a94b111c4fa86ecbcbfe6e780587d82d7cf682883456a2474d09377ff7",
     "snapshot": {
       "schema": 1,
       "status": "actual_six_output_master_factory_interpreter_qualification_passed",
@@ -11321,15 +11323,15 @@
         }
       ],
       "factory_probe_sha256": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c",
-      "candidate_source_change": "Only ordinary exact_scalar_master_evaluator calls evaluator_with_stack_reuse; Dual and production files unchanged",
+      "candidate_source_change": "Qualification used isolated snapshot changing only ordinary exact_scalar_master_evaluator to evaluator_with_stack_reuse; Dual unchanged. Subsequently the same single callsite was adopted pending current-source validation; see adoption.json.",
       "snapshot_manifest": "manifest.json",
       "native_status": "paired modules exported but not compiled or timed",
-      "core_and_e6_status": "all paired binaries compiled, runtime qualification pending",
+      "core_and_e6_status": "paired30execution+5bubble+3scalarintegration pervariant and DD E6 exact parity passed; see integration-qualification.json",
       "performance_status": "unmeasured; storage-slot counts do not establish runtime improvement",
       "remaining_pitfalls": [
         "Stack allocation is valid exactly once on fresh SSA root; do not reapply to loaded/allocated graphs or Dualized graphs",
         "Existing native-batch kernels bypass this interpreter constructor and require separate regeneration and parity/timing",
-        "Focused core/master/E6 runtime qualification is in progress; compiled-native parity remains pending",
+        "Paired focused core/master/DD-E6 qualification passed; current-source focused guard acceptance passed; compiled-native parity remains pending",
         "Pointwise parity preserves baseline behavior; this storage-only experiment does not broaden master mathematical coverage"
       ],
       "paired_core_guard_scope": {
@@ -11341,7 +11343,9 @@
           "stability/quadrature.rs",
           "stability/arguments.rs"
         ]
-      }
+      },
+      "production_status": "ordinary_factory_adopted_full_workspace_build_and_current_focused68tests_passed",
+      "current_runtime_acceptance": "current-workspace-build/acceptance/summary.json"
     }
   },
   "benchmark_harness_qualification": {
@@ -11441,18 +11445,1948 @@
         "scope": "Actual-mode export and fail-closed parser; generated Fortran syntax compiles. No numerical runtime or timing qualification."
       }
     },
-    "qualification": "21 transport/boundary checks plus4 actual-mode export/parser checks pass; generated Fortran compiles. These are harness checks, not matched physical runtime measurements. Routing, snapping, effective/generated rank and stage boundaries still require alignment."
+    "qualification": "All 37 Python ledger, protocol, provenance, transport and physical comparison boundary tests pass; generated Fortran separately compiles. The identified ggH debug binary passes numerical/protocol smoke at batches 1/3, but its timing/source provenance is unqualified. Matching optimized physical workloads remains pending."
   },
   "report_refresh": {
     "date": "2026-10-23",
-    "scope": "Latest source-identified evidence and historical measurements, with distinct binary/source scopes preserved. No new comparative performance results.",
+    "recorded_utc": "2026-10-23T15:16:42.600432+00:00",
+    "scope": "Historical 4c32ece timings unchanged. New 5c9e3dd snapshot passes eight correctness checks with six regressions and two inconclusive noisy rows. Separate source scopes record promoted changes, exact parity, diagnostic resources and explicit rejections; full performance acceptance remains unmet.",
     "new_evidence": [
-      "symbolica_production_qualification",
-      "mixed_precision_qualification",
-      "e6_exact_series_oracle",
-      "certificate_wrapper_preparation_profile",
       "stack_reuse_factory_qualification",
-      "benchmark_harness_qualification"
+      "stack_reuse_integration",
+      "stack_reuse_dd_e6_parity",
+      "stack_reuse_default_adoption",
+      "stack_reuse_current_build",
+      "stack_reuse_current_acceptance",
+      "generalized_pv_qualification",
+      "generalized_pv_promotion_compile",
+      "generalized_pv_supplemental",
+      "public_n6_rank7_attempt",
+      "lazy_cayley_solve_qualification",
+      "e6_series_production_comparison",
+      "physical_harness_smoke",
+      "kernel_ledger_qualification",
+      "concurrent_workspace_qualification",
+      "optimized_5c9_build",
+      "benchmark_5c9_qualification",
+      "qualified_5c9_benchmark"
     ]
+  },
+  "stack_reuse_integration": {
+    "source": "validation/stack-reuse/production-factory/integration-qualification.json",
+    "sha256": "176a0dc914753fd56cc095038743b3ef6a8908eebf4c6092212b80c4de26da62",
+    "snapshot": {
+      "status": "paired_focused_master_core_and_dd_e6_passed",
+      "core_execution_tests_per_variant": 30,
+      "bubble_neighborhood_tests_per_variant": 5,
+      "focused_scalar_integration_tests_per_variant": 3,
+      "dd_e6_test_per_variant": 1,
+      "runs": [
+        {
+          "variant": "baseline",
+          "report": "baseline-core_tests-execution_tests_.json",
+          "status": "passed",
+          "sha256": "5a9322053e688bfb40222cb3dffab8379532398d45d08ecda155601ca20e8425"
+        },
+        {
+          "variant": "baseline",
+          "report": "baseline-e6_capture-shifted_pentagon_core_preserves_doublefloat_precision.json",
+          "status": "passed",
+          "sha256": "bdd1bb396caeeaae05bb2456213b264279375a7d20eca43533eba030922f3e48"
+        },
+        {
+          "variant": "baseline",
+          "report": "baseline-master_integration-all_master_families_preserve_doublefloat_and_float_numerics.json",
+          "status": "passed",
+          "sha256": "3525bb8c16373b0971ac2adb75a65f97a635dc6218bd9d42f6b806147035bf36"
+        },
+        {
+          "variant": "baseline",
+          "report": "baseline-master_integration-mixed_branches_and_scaleless_uv_ir_are_preserved.json",
+          "status": "passed",
+          "sha256": "b13f1a12cd750f405f87907712f4fe22e472307583cea6ab4952f7e5192ff92c"
+        },
+        {
+          "variant": "baseline",
+          "report": "baseline-master_integration-scalar_families_match_direct_native_and_isolate_bad_lanes.json",
+          "status": "passed",
+          "sha256": "4f590d26cebbf765d6d4295aa826b59cb35599b1693a751bbb5397b597db8bd5"
+        },
+        {
+          "variant": "baseline",
+          "report": "baseline-master_tests-bubble_neighborhood_tests_.json",
+          "status": "passed",
+          "sha256": "d46d359b45c17ee5b735b37902e2f405d372faa1a8f8ffaf7ef588fdac4777b7"
+        },
+        {
+          "variant": "candidate",
+          "report": "candidate-core_tests-execution_tests_.json",
+          "status": "passed",
+          "sha256": "641a4b9a45e9ebedd4fc97a7dd7c68f03e49d6dae91fba09fed63be30b44d11c"
+        },
+        {
+          "variant": "candidate",
+          "report": "candidate-e6_capture-shifted_pentagon_core_preserves_doublefloat_precision.json",
+          "status": "passed",
+          "sha256": "a300da9c40823e67770ad93b6605a72b7ea9f6116ca03bfdbe8feff28f19543f"
+        },
+        {
+          "variant": "candidate",
+          "report": "candidate-master_integration-all_master_families_preserve_doublefloat_and_float_numerics.json",
+          "status": "passed",
+          "sha256": "69cb9089416960b5938f8cffd9a9a567998982ee5a6a64f393239de4278356a0"
+        },
+        {
+          "variant": "candidate",
+          "report": "candidate-master_integration-mixed_branches_and_scaleless_uv_ir_are_preserved.json",
+          "status": "passed",
+          "sha256": "9550f5c8cf4a4b0f0ebdda1123a53dedb7cae67e130104dd40aec1f662b4817a"
+        },
+        {
+          "variant": "candidate",
+          "report": "candidate-master_integration-scalar_families_match_direct_native_and_isolate_bad_lanes.json",
+          "status": "passed",
+          "sha256": "50aeae22f9c2c04ff4f4d6f56a666725c8b188a12ff08e901458c263eb9d0728"
+        },
+        {
+          "variant": "candidate",
+          "report": "candidate-master_tests-bubble_neighborhood_tests_.json",
+          "status": "passed",
+          "sha256": "4d7371dc78e2a289eda16acc8e3ebbe432e1aaee53d93adb7a6673d7b70c2de7"
+        }
+      ],
+      "e6_parity": "e6-dd-parity.json",
+      "guard_scope": {
+        "frozen_stability_sha256": "a889713285db129ccb0e477c37c6d4a21f04872bba7b19ec51a12007ff88b9d0",
+        "current_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "difference": "Frozen snapshot rejects any operand roundoff unit>1; later current source accepts finite units>1 outside underflow fallback. Both variants use the identical frozen source. Fixed-precision f64/DD unaffected; current-source Float tests remain required before adoption.",
+        "unchanged_files": [
+          "execution.rs",
+          "stability/quadrature.rs",
+          "stability/arguments.rs"
+        ]
+      },
+      "resource_caveat": "Original core and bubble-neighborhood reports use global RUSAGE_CHILDREN; their CPU/RSS fields are explicitly invalidated. Later scalar integration and E6 runs use per-child wait4. Numerical passes remain valid.",
+      "performance": "All timings diagnostic only; concurrent builds and no repeated controlled scheduling.",
+      "remaining_checks": [
+        "Regenerated native modules require independent compilation/parity/timing; existing native-batch production kernels unchanged",
+        "Higher-order Dual construction unchanged and allocator is not reapplied"
+      ],
+      "archive_lifetime": "Later shared workspace builds replaced the original Symbolica/oneloop archive bytes at their recorded filenames. The compiled paired static binaries, source snapshots, and matching before/after compile hashes remain preserved. Rebuilding the same sources against refreshed archives is a new matched build requiring its own provenance and qualification; it is not an exact replay of the historical binary.",
+      "current_source_followup": "current-workspace-build/acceptance/summary.json"
+    },
+    "scope_note": "Historical paired evidence; its pending current-source validation was subsequently completed by stack_reuse_current_acceptance. Other retained limitations remain."
+  },
+  "stack_reuse_dd_e6_parity": {
+    "source": "validation/stack-reuse/production-factory/e6-dd-parity.json",
+    "sha256": "ec3ac46b83f363ba950b79966becf0a982bda1533d3f26e7fd93cace5e7936eb",
+    "snapshot": {
+      "status": "passed",
+      "comparison": "Exact rational values and precision metadata for all12complexLaurent outputs and all3 Success statuses; independent finite oracle1e-23 in both variants",
+      "numeric_type": "Symbolica DoubleFloat106",
+      "requested_accuracy_bits": 80,
+      "dimension_shift": 1,
+      "algorithm": "Ibp",
+      "convention": "OneLoop",
+      "input_order": "five4-vector shifts, five squared masses, mu",
+      "inputs": [
+        [
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          0,
+          1,
+          10,
+          12,
+          15,
+          18,
+          22,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          2,
+          0,
+          0,
+          0,
+          0,
+          2,
+          40,
+          48,
+          60,
+          72,
+          88,
+          4
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          0,
+          0,
+          0,
+          0,
+          3,
+          90,
+          108,
+          135,
+          162,
+          198,
+          9
+        ]
+      ],
+      "native_laurent_order": [
+        "UV",
+        "IR",
+        "IRdouble",
+        "finite"
+      ],
+      "quadrature_order": 128,
+      "d0_rows": 3720,
+      "diagnostic_only": true,
+      "performance_gate": "Not a controlled benchmark: one run per variant with other compilation active. PeakRSS uses per-child wait4; timing cannot establish parity or improvement within uncertainty.",
+      "results": {
+        "baseline": {
+          "values_and_statuses": [
+            "E6_STATUS lane=0 status=Success",
+            "E6_VALUE lane=0 slot=0 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=0 slot=1 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=0 slot=2 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=0 slot=3 re=Some(Fraction { numerator: -1883677047661843846596019028970901, denominator: 10633823966279326983230456482242756608 }) im=Some(Fraction { numerator: 166045466577, denominator: 44601490397061246283071436545296723011960832 }) re_bits=106 im_bits=106",
+            "E6_STATUS lane=1 status=Success",
+            "E6_VALUE lane=1 slot=0 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=1 slot=1 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=1 slot=2 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=1 slot=3 re=Some(Fraction { numerator: -941838523830921923298009514473243, denominator: 85070591730234615865843651857942052864 }) im=Some(Fraction { numerator: 555113830245, denominator: 1427247692705959881058285969449495136382746624 }) re_bits=106 im_bits=106",
+            "E6_STATUS lane=2 status=Success",
+            "E6_VALUE lane=2 slot=0 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=2 slot=1 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=2 slot=2 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=2 slot=3 re=Some(Fraction { numerator: -23255272193356096871555790478549, denominator: 10633823966279326983230456482242756608 }) im=Some(Fraction { numerator: 79185469537, denominator: 713623846352979940529142984724747568191373312 }) re_bits=106 im_bits=106"
+          ],
+          "profile_and_quadrature": "E6 test DoubleFloat reduction: 44.728855424s; profile=Some(ExecutionProfile { arguments: 3.20191ms, scalar_masters: 43.915212897s, reduction: 815.173\u00b5s, total: 44.728817694s }); stats=ExecutionStats { input_rows: 3, argument_rows: 6, master_family_batches: 1, master_rows: 3, pentagon_box_rows: 3720, reduction_rows: 3, fallback_rows: 0, fallback_successes: 0, analytic_rows: 3 }; diagnostics=[[\"E6 leaf 0: quadrature order 128, box rows 1240, error estimate DoubleFloat(Compensated { hi: 2.617186450354387e-32, lo: 0.0 })\"], [\"E6 leaf 0: quadrature order 128, box rows 1240, error estimate DoubleFloat(Compensated { hi: 1.670818282900029e-33, lo: 0.0 })\"], [\"E6 leaf 0: quadrature order 128, box rows 1240, error estimate DoubleFloat(Compensated { hi: 8.357259764747344e-34, lo: -0.0 })\"]]",
+          "run": {
+            "variant": "baseline",
+            "stage": "e6_capture",
+            "filter": "shifted_pentagon_core_preserves_doublefloat_precision",
+            "command": [
+              "/shared/external/iregi/iregi-rust/target/stack-reuse-production/baseline/e6_capture",
+              "shifted_pentagon_core_preserves_doublefloat_precision",
+              "--nocapture",
+              "--test-threads=1"
+            ],
+            "timeout_seconds": 180.0,
+            "exit_code": 0,
+            "timed_out": false,
+            "elapsed_seconds": 46.6819537129486,
+            "max_rss_kib": 2052724,
+            "user_seconds": 44.511528,
+            "system_seconds": 1.668063,
+            "test_counts": {
+              "passed": 1,
+              "failed": 0,
+              "ignored": 0
+            },
+            "nonempty_test_selection": true,
+            "binary_sha256": "ca6f33186f78e9d01890f0c4725c33cafcb98e2eb7f52750067240e70bedd6e7",
+            "runner_sha256": "b5e2ddbf2843552d8a1ad920dc6493307ac632ab563ab81a245a6594a5ac3182",
+            "resource_accounting": "per-child os.wait4; excludes earlier shell children",
+            "diagnostic_only": true,
+            "performance_gate": "Not a controlled statistical benchmark; elapsed time and peak RSS are diagnostic observations."
+          }
+        },
+        "candidate": {
+          "values_and_statuses": [
+            "E6_STATUS lane=0 status=Success",
+            "E6_VALUE lane=0 slot=0 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=0 slot=1 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=0 slot=2 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=0 slot=3 re=Some(Fraction { numerator: -1883677047661843846596019028970901, denominator: 10633823966279326983230456482242756608 }) im=Some(Fraction { numerator: 166045466577, denominator: 44601490397061246283071436545296723011960832 }) re_bits=106 im_bits=106",
+            "E6_STATUS lane=1 status=Success",
+            "E6_VALUE lane=1 slot=0 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=1 slot=1 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=1 slot=2 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=1 slot=3 re=Some(Fraction { numerator: -941838523830921923298009514473243, denominator: 85070591730234615865843651857942052864 }) im=Some(Fraction { numerator: 555113830245, denominator: 1427247692705959881058285969449495136382746624 }) re_bits=106 im_bits=106",
+            "E6_STATUS lane=2 status=Success",
+            "E6_VALUE lane=2 slot=0 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=2 slot=1 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=2 slot=2 re=Some(Fraction { numerator: 0, denominator: 1 }) im=Some(Fraction { numerator: 0, denominator: 1 }) re_bits=106 im_bits=106",
+            "E6_VALUE lane=2 slot=3 re=Some(Fraction { numerator: -23255272193356096871555790478549, denominator: 10633823966279326983230456482242756608 }) im=Some(Fraction { numerator: 79185469537, denominator: 713623846352979940529142984724747568191373312 }) re_bits=106 im_bits=106"
+          ],
+          "profile_and_quadrature": "E6 test DoubleFloat reduction: 41.994352236s; profile=Some(ExecutionProfile { arguments: 3.17752ms, scalar_masters: 41.22032278s, reduction: 855.525\u00b5s, total: 41.994317534s }); stats=ExecutionStats { input_rows: 3, argument_rows: 6, master_family_batches: 1, master_rows: 3, pentagon_box_rows: 3720, reduction_rows: 3, fallback_rows: 0, fallback_successes: 0, analytic_rows: 3 }; diagnostics=[[\"E6 leaf 0: quadrature order 128, box rows 1240, error estimate DoubleFloat(Compensated { hi: 2.617186450354387e-32, lo: 0.0 })\"], [\"E6 leaf 0: quadrature order 128, box rows 1240, error estimate DoubleFloat(Compensated { hi: 1.670818282900029e-33, lo: 0.0 })\"], [\"E6 leaf 0: quadrature order 128, box rows 1240, error estimate DoubleFloat(Compensated { hi: 8.357259764747344e-34, lo: -0.0 })\"]]",
+          "run": {
+            "variant": "candidate",
+            "stage": "e6_capture",
+            "filter": "shifted_pentagon_core_preserves_doublefloat_precision",
+            "command": [
+              "/shared/external/iregi/iregi-rust/target/stack-reuse-production/candidate/e6_capture",
+              "shifted_pentagon_core_preserves_doublefloat_precision",
+              "--nocapture",
+              "--test-threads=1"
+            ],
+            "timeout_seconds": 180.0,
+            "exit_code": 0,
+            "timed_out": false,
+            "elapsed_seconds": 43.82220166607294,
+            "max_rss_kib": 558752,
+            "user_seconds": 42.547739,
+            "system_seconds": 0.886705,
+            "test_counts": {
+              "passed": 1,
+              "failed": 0,
+              "ignored": 0
+            },
+            "nonempty_test_selection": true,
+            "binary_sha256": "282ec5ff92c48e72151bb85fa6fd08a47e6249ae7ee5f54f455c063eedde2942",
+            "runner_sha256": "b5e2ddbf2843552d8a1ad920dc6493307ac632ab563ab81a245a6594a5ac3182",
+            "resource_accounting": "per-child os.wait4; excludes earlier shell children",
+            "diagnostic_only": true,
+            "performance_gate": "Not a controlled statistical benchmark; elapsed time and peak RSS are diagnostic observations."
+          }
+        }
+      }
+    }
+  },
+  "stack_reuse_default_adoption": {
+    "source": "validation/stack-reuse/production-factory/adoption.json",
+    "sha256": "0bef7140e843b67fa4928efcac3a917a12e3bfdac09526d8e9d979a5f9159b0c",
+    "snapshot": {
+      "status": "ordinary_factory_adopted_full_workspace_build_and_focused_current_acceptance_passed",
+      "recorded_utc": "2026-10-23T14:23:35.712470+00:00",
+      "production_file": "crates/iregi-masters/src/lib.rs",
+      "production_sha256": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+      "change": "exact_scalar_master_evaluator ordinary factory now invokes context.evaluator_with_stack_reuse instead of context.evaluator",
+      "independent_review": {
+        "agent": "/root/batch_execution/dual_evaluator_api",
+        "result": "approved",
+        "findings": [
+          "Fresh root SSA guaranteed by direct_translation(true) plus horner_iterations(0) path",
+          "Existing optimize_stack is applied exactly once to that root",
+          "Root allocation does not recurse into already allocated immutable shared helper bodies",
+          "ExactMasterPlan::new_dual still calls independent dual_evaluator; Dualizer unchanged"
+        ]
+      },
+      "qualification": "integration-qualification.json",
+      "scope": [
+        "Ordinary Symbolica interpreter master preparation",
+        "No generated native kernels changed",
+        "No Dual preparation changed"
+      ],
+      "pending": [
+        "Independent full reference/physical qualification remains part of the overall project acceptance",
+        "Controlled timing qualification separately from diagnostic DD memory observations",
+        "Generated native root allocation remains unchanged and requires separate regeneration/parity if pursued"
+      ],
+      "full_workspace_build": "current-workspace-build/build-result.json",
+      "current_runtime_acceptance": "current-workspace-build/acceptance/summary.json"
+    }
+  },
+  "stack_reuse_current_build": {
+    "source": "validation/stack-reuse/production-factory/current-workspace-build/build-result.json",
+    "sha256": "7fa7628b63f2e5083aafc1c9a2bc173f750861a5aec7099435ea4b7ac9fa5e29",
+    "snapshot": {
+      "status": "passed",
+      "exit_code": 0,
+      "finished_utc": "2026-10-23T14:46:17.207721+00:00",
+      "cargo_reported_duration": "19m58s",
+      "command": [
+        "taskset",
+        "-c",
+        "2,3",
+        "cargo",
+        "test",
+        "--workspace",
+        "--no-run",
+        "--locked",
+        "--offline",
+        "--jobs",
+        "2"
+      ],
+      "build_log_sha256": "44b99194581dec8aa474fb81a0a3b86774ce4a006f55fa98497982a0f34a3552",
+      "sources_changed_during_build": {},
+      "source_hashes_after": {
+        "Cargo.lock": "2e234642a80b8224de28f6bae3b6fc11cfe783de9b928c1929263fb376da0682",
+        "Cargo.toml": "92eea8006cdb0d2735b27e4b0ddb4c9f2471b4cd97ae1738019e41490f893f07",
+        "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+        "crates/iregi-masters/examples/complex_box_oracle.rs": "f08b775b16f6330eade5bfaf78031ad91c0e2cd93c582492fecb2a1b95baab51",
+        "crates/iregi-masters/examples/generate_batch.rs": "55aab093697f757d8b546bb3cb378eae03ccd19ae21bab954993cbbb4f141364",
+        "crates/iregi-masters/examples/native_policy_probe.rs": "2fc3c9565493d8da93c7ab84dcb551396b0483f1293d70da9244e10437b25d21",
+        "crates/iregi-masters/src/bubble_neighborhood.rs": "5e00cd3d1785e3ca50695969761131a769226e0fe497f7656fa993cb37d14da9",
+        "crates/iregi-masters/src/derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
+        "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+        "crates/iregi-masters/src/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+        "crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+        "crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+        "crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+        "crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+        "crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+        "crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+        "crates/iregi-masters/src/lib.rs": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+        "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+        "crates/iregi-masters/src/normalization.rs": "8c0eb611f7ec8019b4fcd2cc0800165aa026e2e70107bad1af7f290ac8bbed2d",
+        "crates/iregi-masters/src/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+        "crates/iregi-masters/src/scale_transport.rs": "bf3b94f71dec9f33a610e5ebf854644e291ccfb1e3a04c8f5451ee04721af6dc",
+        "crates/iregi-masters/tests/masters.rs": "103f15512011708ac66b99d8cd45a33e5fd63aba6ec2408f3cc629c0cc0a6c77",
+        "crates/iregi-masters/tests/native_batch.rs": "fa5ce237a01139414e86360d2f8913cbeaf0053dbc2f20cdd5a7781382eeb79c",
+        "crates/iregi-masters/tests/numeric_boundaries.rs": "c23dc36532548a233b3405b1d17d8eafb44e0c9919682439f4529236c54779a2",
+        "crates/iregi-masters/tests/physical_derivatives.rs": "06cda25481407dbf51b7de141cf31f82dba654e7587936580adcae1152aa0ffb",
+        "crates/iregi-masters/tests/pseudothreshold.rs": "677dbe2627ad588ec4f1967e35a8a14b138c0f0b60f487ef1f08371ad4733b6e",
+        "crates/iregi-masters/tests/validation_evidence.json": "c5e08cf12ca5360d5fa88b071e7c04940f877dea223268c06ff5c2f9c30c3179",
+        "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+        "crates/iregi-rust/examples/e6_parameter_series.rs": "ebcc78fd7614a7476507da3591350c2f46c02eb168a1266df14584940e0ea8dc",
+        "crates/iregi-rust/examples/e6_series_compare.rs": "e5d22091fd7a733e113de93b0436519b8eaab1d8f48e87f4fd5f9d643053e8d5",
+        "crates/iregi-rust/examples/kernel_benchmark.rs": "710c736c8636838eff225b3611d5ac412da49eacbb0932548bb037d46e7da069",
+        "crates/iregi-rust/examples/pv_physical_precision.rs": "38b0b469b39aa792ffe5468e1797787d08322a620fddd847892f322a9e48302a",
+        "crates/iregi-rust/examples/pv_precision_probe.rs": "3067200c081a33fc9752446e32d4b45cf3760e033bc2995b64809cc1e1216cd3",
+        "crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+        "crates/iregi-rust/src/certified_scalar.rs": "6ae742c16cc9334acbdd91361244f5e0b56148f4019fe2881b0af9e7c3289d05",
+        "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+        "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+        "crates/iregi-rust/src/exact_zero_certificate.rs": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+        "crates/iregi-rust/src/execution.rs": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5",
+        "crates/iregi-rust/src/ibp.rs": "b0638fbeb6fca534840de7ef9360026a25d942b291ac656ffd189add0a3687e5",
+        "crates/iregi-rust/src/invariant_certificate.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+        "crates/iregi-rust/src/lib.rs": "9d1303770c6bf0fb231612ce6f28a0cb4c0c28bc1ed51ef31d6b317fbbb237f8",
+        "crates/iregi-rust/src/plan.rs": "079469fbcd6abf5fc95bca93543faccaafa6b646f8e9caa569cd99d7fb451b73",
+        "crates/iregi-rust/src/pv.rs": "e4258e232a997afd2b41969be14c8188621db0b5e880736f1179278bb90b392d",
+        "crates/iregi-rust/src/rescue.rs": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+        "crates/iregi-rust/src/scalar.rs": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+        "crates/iregi-rust/src/snapping.rs": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+        "crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+        "crates/iregi-rust/src/stability/quadrature.rs": "f696fcda8faa03cf8f1224b5f7e1996da82af1f789b170838688057fa5dc1cd9",
+        "crates/iregi-rust/src/stability.rs": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "crates/iregi-rust/src/types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+        "crates/iregi-rust/tests/legacy_rescue.rs": "0820b9679665d40d75ecb4b42e9718003750b70e38c1eacfdb2f7347526b615f",
+        "crates/iregi-rust/tests/mixed_precision_accuracy.rs": "792762a7b42fea764899695cd2300cd09a1e57ec30b73467017b0208bbbb3000",
+        "crates/iregi-rust/tests/oracle.rs": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe",
+        "crates/iregi-rust/tests/physical_box.rs": "3429378abd89d3d9770ea712e0062bf9d5423e6a7b21e905cbc4e4c45bd64135",
+        "crates/iregi-rust/tests/shifted_pentagon.rs": "e398883b649f1d14ba84c671d5a4b76a24d5923cdff1e7bf1ba38e5448f8bfde",
+        "crates/iregi-rust/tests/triangle_gamma.rs": "3690d0535b9b60f10823b869cf098957aa2739a49669e2ca9147d658882a0f6b",
+        "dependencies/oneloopmaster/src/expressions.rs": "1dd7d7901446506a5d7e46d179e3df28f9f3956f7f0ed1a323b74e5a3f80baed",
+        "dependencies/symbolica/IREGI_PROVENANCE.json": "0cfefbda257d0b899f1b8bf86e192e395ab2c0c3d253771b447fc3dd0ae81b4f",
+        "scripts/env.sh": "d204266123805aa2da4e471b7bec85f444f52cb1853e6ec358651e9f2ef0315a"
+      },
+      "executables": [
+        {
+          "path": "target/cargo-build/debug/deps/feynkit_integrals-b5f47f839a39c0f5",
+          "sha256": "ae89e8b6c969433dfc5bf816e95f544d8c97e6762afb803145b43612bdb04b75"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/affine-480db77e4c7c47cd",
+          "sha256": "ab862e7662e6dc2525136a751f420123903eca687dcb8d24b45996e45552380e"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/iregi_cli-60696bb6ab5d6c07",
+          "sha256": "259073b9f12fb2f48e427945128ac9d5502f666b74f99b1c7ffa2203a5bd5485"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/iregi_rust-82e4cda0b88d85b9",
+          "sha256": "b9e0a60d52bf8445f0c3ac6997a06e27e132f2646b333029f73fa581924ecf8e"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/iregi_masters-8ec9ec718be6b935",
+          "sha256": "5107bef868a71546a914db5cae3510de4e0bccd08c6a62b4dc0a1d03149458a4",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/iregi_masters-8ec9ec718be6b935"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/masters-d21e6bd3224ea761",
+          "sha256": "c91f7fb828ddb20ba795294c84b8b9df2cae943d814c18615fdde677e505d902",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/masters-d21e6bd3224ea761"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/native_batch-4ac35a4d2477da3c",
+          "sha256": "c49025d94e1cc9bc5aa88075f560a0f84742490e0b31e3244ccaa112d8ca1ce8"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/numeric_boundaries-611e144c3615ae28",
+          "sha256": "ef18791342b7706e77b5095ca8177616690590c5c4aeb00a8aebdd0529e88261"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/physical_derivatives-fe53319b8320af1e",
+          "sha256": "d2742e79be0d104029835f4b3ca033aae6c528e31e5a4511baba65ee9b339b2a"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/pseudothreshold-65f8b3e1e67a4ed6",
+          "sha256": "21065cb33f08e58b3b73ca0faaa54333e20ed98e27f1978732cec8b6a416ec90"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/iregi_prepare-9602fdd061681eab",
+          "sha256": "c659f17fd2570e540821cdcd4d28d8486fbe09cc11ff1121cb4eaf1be01992c4"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/madloop_numerator-830a7de568daaf00",
+          "sha256": "afb9dc50a7e18dca1eb165740774d8855b4f516b486c84e3fba7b0b619954517"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/preparation-f5976e5d0a966286",
+          "sha256": "1a3851dda1bcd8b24359b1be2a839f4d120621eb2a1ab04816d48d943cd50db9"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/iregi_rust-c5ff865b3918ff79",
+          "sha256": "748aab531a8813094dd0c231c6761749e5a7793e6de70febb8bf666213a915fb",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/iregi_rust-c5ff865b3918ff79"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/legacy_rescue-5b5a472fc61c95f4",
+          "sha256": "380a62570b9f0e8568711cc098bd805ef8a7dff17516ad159b93f191b33864a3"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/mixed_precision_accuracy-abbca953c533a11d",
+          "sha256": "35b7f16dc48df8272494aa022eb421031a7907c2054f957e32bd78c9645a9810",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/mixed_precision_accuracy-abbca953c533a11d"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/oracle-8b9d04fb23118e79",
+          "sha256": "51da173f9246dd521a60ff0712bf8d3068ca677620aeed7a464cea67abf43ad0",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/oracle-8b9d04fb23118e79"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/physical_box-0bb9115753a7c177",
+          "sha256": "8703df1c040bcfd0dbb6af851a1d840b312797d93df2302920f610efe6595139",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/physical_box-0bb9115753a7c177"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/shifted_pentagon-aaf9744bf5da4b74",
+          "sha256": "4724a3387da49b0f4bc9fce4ec54c1a12920cf9e82f98356c164c47f901afd39",
+          "preserved_path": "target/stack-reuse-current-workspace/bin/shifted_pentagon-aaf9744bf5da4b74"
+        },
+        {
+          "path": "target/cargo-build/debug/deps/triangle_gamma-72e61435ea191597",
+          "sha256": "72378cf2b24e1cda905fd398067ccbc67c8970ddfe7e9f4fea3e2a8407ff2137"
+        }
+      ],
+      "preserved_dependencies": [
+        {
+          "source": "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+          "preserved_path": "target/stack-reuse-current-workspace/deps/libsymbolica-5cca42ee48491872.rlib",
+          "sha256": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850"
+        },
+        {
+          "source": "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib",
+          "preserved_path": "target/stack-reuse-current-workspace/deps/liboneloop-8562c3cbbf948c0e.rlib",
+          "sha256": "0de377f4602cdc7f365a61807c3a93879b5a6fff60577739acc9fe2b6abc90c8"
+        },
+        {
+          "source": "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib",
+          "preserved_path": "target/stack-reuse-current-workspace/deps/libiregi_masters-0d5459afd211649c.rlib",
+          "sha256": "0103094825ec960c856c17b09bc676f02135e3bc1c210ecc3d4ea93d44ec2f84"
+        },
+        {
+          "source": "target/cargo-build/debug/deps/libiregi_rust-b0667c2d807d11b6.rlib",
+          "preserved_path": "target/stack-reuse-current-workspace/deps/libiregi_rust-b0667c2d807d11b6.rlib",
+          "sha256": "a901ce9fb5676595fde064a02c522b48ab631b7fcbdf3a00893840c139fa7e1f"
+        }
+      ],
+      "runtime_status": "not run under this build command"
+    }
+  },
+  "generalized_pv_qualification": {
+    "source": "validation/generalized-pv/qualification.json",
+    "sha256": "bcb67d79f0a55280599277181c1a12111f9f8408ae4ef301556733dfa0c689a3",
+    "snapshot": {
+      "status": "isolated_candidate_passed",
+      "base_commit": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176",
+      "implementation_files": [
+        "crates/iregi-rust/src/plan.rs",
+        "crates/iregi-rust/src/pv.rs"
+      ],
+      "scope": "Generalized canonical PV scalar coefficients for N<=4 with per-generated-request original eligibility; higher-point generalized requests remain explicitly IBP/E6.",
+      "dependencies": "Frozen coherent pre-default-master-strategy archives from base commit; these results do not qualify the pending master strategy change.",
+      "focused_tests": {
+        "passed": 9,
+        "failed": 0,
+        "seconds": 14.91,
+        "existing_generalized_fixture_mode_comparisons": 21
+      },
+      "new_original_reference_comparison": {
+        "passed": 36,
+        "failed": 0,
+        "complex_laurent_slots": 312,
+        "tolerance": 1e-10,
+        "maximum_dimensionally_normalized_error": 7.034186491019454e-12,
+        "worst_case": "n3_p123_h4_mode1",
+        "anchored_generalized_cases": 27,
+        "translated_direct_scalar_cases": 9
+      },
+      "additional_complex_reference_capture": {
+        "tensor_transport_unsupported": 6,
+        "stable_generalized_scalar_reference_results": 2,
+        "rust_comparison": "not yet performed"
+      },
+      "independent_source_review": "No further concrete defect after mixed-tadpole guard correction: alias ordering, master identity deduplication, independent Hybrid fallback and per-lane diagnostics reviewed.",
+      "remaining_targeted_validation": [
+        "supplied scalar-product input through generalized PV",
+        "TensorWeights::Multinomial through generalized PV",
+        "independent complex generalized scalar comparison",
+        "complex generalized tensor internal PV/IBP agreement (original wrapper real-only)",
+        "explicit generalized runtime Hybrid fallback witness"
+      ],
+      "coverage_limitations": [
+        "Canonical generalized PV is bounded to N<=4; N>=5 retains genuine IBP and shifted scalar masters with explicit notes.",
+        "No performance qualification in this experiment.",
+        "No production files changed by this experiment."
+      ],
+      "evidence": [
+        "runtime-focused-manifest.json",
+        "runtime-reference-manifest.json",
+        "reference-comparison.json",
+        "reference-capture.json",
+        "reference-capture-verification.json",
+        "reference-complex-capture.json",
+        "reference-complex-capture-verification.json",
+        "review-manifest.json",
+        "review.patch",
+        "reference-build-manifest.json",
+        "build-manifest.json",
+        "frozen-dependencies.json"
+      ]
+    },
+    "later_promotion_compile": "generalized_pv_promotion_compile"
+  },
+  "e6_series_production_comparison": {
+    "source": "validation/shifted-pentagon/production-series-qualification.json",
+    "sha256": "8e8347d43b648ac62b13ca2aac59dbd599e46841696d03b25b4be1d8bcb66b0d",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T14:50:57.818742+00:00",
+      "status": "two_production_rejections_retained",
+      "scope": "One exact small-routing equal-mass D6 pentagon fixture; singleton primal Float at working128/256 and requested128. Production thresholds, original inputs, and public API unchanged.",
+      "binary": "target/e6-series-compare/e6_series_compare",
+      "binary_sha256": "65fa799476660121840260c98beff8ea72e62d66bfb57bc2005910e9e635c02f",
+      "source": "crates/iregi-rust/examples/e6_series_compare.rs",
+      "source_sha256": "e5d22091fd7a733e113de93b0436519b8eaab1d8f48e87f4fd5f9d643053e8d5",
+      "build_provenance": "Full frozen archive/source manifests are embedded in each per-case -run.json. The executable predates the default stack-allocation optimization; diagnostic durations cannot qualify current default performance.",
+      "oracle": "validation/shifted-pentagon/series-oracle.json",
+      "oracle_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+      "oracle_bound": "Exact order-four parameter-series enclosing radius below2^-321; independent oracle generation remains valid. Neither rejected production lane supplies a successful value for comparison.",
+      "cases": [
+        {
+          "working_bits": 128,
+          "requested_bits": 128,
+          "qualification": "production_rejected",
+          "production_status": "Unstable(\"E6 leaf 0: BoxFailure { pinch: 0, error: NonFiniteOutput } (quadrature order 128, box rows 1240, error estimate 2.5387e25)\")",
+          "wall_seconds_diagnostic": 94.52494560496416,
+          "reduction_seconds_diagnostic": 89.584519602,
+          "master_seconds_diagnostic": 88.77788372,
+          "timed_out": false,
+          "exit_code": 2,
+          "total_pentagon_box_rows": 2480,
+          "oracle_comparison_performed": false,
+          "successful_values_exposed": false,
+          "evidence": [
+            {
+              "path": "validation/shifted-pentagon/production-series-128-128.json",
+              "sha256": "7630f9eab8406116a80f31c209dfe10d0687de2fbe0c5e14d75b6c9b8bb9a1af"
+            },
+            {
+              "path": "validation/shifted-pentagon/production-series-128-128.log",
+              "sha256": "1aef8176c12902531d77dff726de9cc38fd80a65e4773fcf3f40b75a81e1efbc"
+            },
+            {
+              "path": "validation/shifted-pentagon/production-series-128-128-run.json",
+              "sha256": "6edad16b934443fcc378b83db942e5bb01072277db14055426b2559f04b78112"
+            }
+          ]
+        },
+        {
+          "working_bits": 256,
+          "requested_bits": 128,
+          "qualification": "production_rejected",
+          "production_status": "Unstable(\"E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)\")",
+          "wall_seconds_diagnostic": 156.391869370942,
+          "reduction_seconds_diagnostic": 148.881323787,
+          "master_seconds_diagnostic": 148.099140561,
+          "timed_out": false,
+          "exit_code": 2,
+          "total_pentagon_box_rows": 2480,
+          "oracle_comparison_performed": false,
+          "successful_values_exposed": false,
+          "evidence": [
+            {
+              "path": "validation/shifted-pentagon/production-series-256-128.json",
+              "sha256": "6272cf4b2b7005dfe7674f1a1168355f3269f32e346f5f7f323ac4f6520ea660"
+            },
+            {
+              "path": "validation/shifted-pentagon/production-series-256-128.log",
+              "sha256": "872cf7b1124475dd1806c22fe82446307e27ff1c93b176a58ecf1cb6af303c77"
+            },
+            {
+              "path": "validation/shifted-pentagon/production-series-256-128-run.json",
+              "sha256": "3c41d0348f1e67ab47ab71b48cd592dce06bbc3f5af0617363dd3f052e4f439d"
+            }
+          ]
+        }
+      ],
+      "diagnostic_interpretation": [
+        "The working128 final recorded box failure is NonFiniteOutput at quadrature order128. Its2.5387e25 estimate survives from the last completed successful refinement; no new estimate was computed after the box failure. The last recorded failing pinch need not be the only failing node or pinch.",
+        "The working256 case finishes the bounded quadrature schedule and returns NonConvergent;6.346e21 is the completed order128-versus64 difference.",
+        "Both cases attempt the exact-zero structural profile and ordinary plan, each with1240 box rows; total2480 boxes per public call. The two rejections are retained separately in diagnostics. The analytic_rows count records an attempt, not success.",
+        "An independent contour-integrand bound rules out ordinary quadrature truncation as an explanation for differences of order1e21 or1e25. Arithmetic or branch evaluation is failing; the precise operation is not yet isolated.",
+        "No successful output, false-success, oracle mismatch, convergence, requested128 qualification, batch throughput, or production performance claim is established."
+      ],
+      "unrun_pairs": [
+        [
+          384,
+          128
+        ],
+        [
+          256,
+          256
+        ],
+        [
+          384,
+          256
+        ]
+      ],
+      "runtime_lease": "Released toROOT after both authorized processes completed.",
+      "review": {
+        "agent": "/root/pentagon_precision/e6_series_review",
+        "status": "passed_both_cases",
+        "scope": "Both cases: all12 provenance hashes, classifications, hidden output values, diagnostic bookkeeping, and exact contour-integrand bound; no runtime or edits."
+      },
+      "results_and_bound": {
+        "path": "validation/shifted-pentagon/production-series-results.md",
+        "sha256": "8f271779a7c8c166afd234efdee0c84795a272d56f3931c773f8cb7fd822c1a8"
+      }
+    }
+  },
+  "physical_harness_smoke": {
+    "source": "validation/benchmark/physical-smoke/qualification.json",
+    "sha256": "ac24de9c6c114dda2db030645ee212332a112e3f1a8ff0283c72d3c6eed53c9a",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T14:32:22.952685+00:00",
+      "status": "protocol_and_numerical_smoke_passed",
+      "rows": [
+        {
+          "id": "ggh-f64-hybrid-batch1",
+          "status": "measured",
+          "correctness_passed": true,
+          "lanes": 1,
+          "moments_per_lane": 15,
+          "laurent_slots_per_moment": 4,
+          "reference_modes": [
+            0,
+            1,
+            2
+          ],
+          "maximum_normalized_tensor_error": 3.540129055639618e-15,
+          "maximum_normalized_madloop_error": 8.014058084304107e-15
+        },
+        {
+          "id": "ggh-f64-hybrid-batch3",
+          "status": "measured",
+          "correctness_passed": true,
+          "lanes": 3,
+          "moments_per_lane": 15,
+          "laurent_slots_per_moment": 4,
+          "reference_modes": [
+            0,
+            1,
+            2
+          ],
+          "maximum_normalized_tensor_error": 3.540129055639618e-15,
+          "maximum_normalized_madloop_error": 8.014058084304107e-15
+        }
+      ],
+      "scope": "Identified frozen debug executable; seven pipeline stages, separate profiling, three short blocks, batch widths1 and3. No optimized performance qualification.",
+      "provenance_qualified": false,
+      "source_scope": "The retained binary hash identifies the execution. The live capture is at5c9e3dd with ongoing source changes; neither the debug build nor live-source snapshot is promoted into a qualified committed-release build.",
+      "raw_provenance_checks": {
+        "successful_stable_build": false,
+        "binary_matches_manifest": true,
+        "sources_match_manifest": true,
+        "assets_match_manifest": true
+      },
+      "workspace_source_changed_during_run": true,
+      "qualification_limits": [
+        "Debug application build; short intervals, no performance gate.",
+        "Live source changes are explicitly retained in raw output.",
+        "Only the ggH fixture; batches repeat one physical point.",
+        "Protocol/numerical evidence does not qualify later ordinary-master stack-adoption changes."
+      ],
+      "sha256": {
+        "validation/benchmark/physical-smoke/results.json": "f7674255044446f4d08dd373c5c5b320306a68b16e8f33d9de5a406f24a0708a",
+        "validation/benchmark/physical-smoke/results-inputs.json": "d878216817b61b2f62dc58fd5b9e94e477e482d1f18e25d885cb2ad49112d406",
+        "validation/benchmark/physical-smoke/runner-result.json": "b03a1b13209eb295c3cbf530f148bb16861253846e2ee5dba1620e90b72c2d15",
+        "validation/benchmark/physical-smoke/runner.log": "b8d5af9964301c9a3fe77e04917ff7fdd9c3bf0272a4b85110ec6eecaaeea8a2",
+        "validation/benchmark/physical-smoke/physical-rust.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/benchmark/physical-smoke/debug-rust-build.json": "0aae167801eff97cc3284e53ddfa5d36df6ac1ad1007ec68f7c15abfb1db8f2e"
+      }
+    }
+  },
+  "kernel_ledger_qualification": {
+    "source": "validation/benchmark/kernel-accounting-qualification/results.json",
+    "sha256": "cb5e3e088db18c08b160294fa5f0af4fb130ce7b4468ea9949d04832b0b68462",
+    "snapshot": {
+      "recorded_utc": "2026-10-23T15:00:25.501906+00:00",
+      "status": "passed",
+      "scope": "Python benchmark ledger, provenance, protocol, transport and physical comparison boundary tests; no numerical backends executed",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/benchmark",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 1.1008544740034267,
+      "cpu_affinity": [
+        10,
+        11
+      ],
+      "source_sha256": {
+        "validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+        "validation/benchmark/test_kernel_accounting.py": "8e7313adcd0d5342b8219435791490ca0a87b6ff66188d1dcbae2060d5ee2de0",
+        "validation/benchmark/test_kernel_protocol.py": "fdd59884140aac005594299d2d1bc786c247432f03cd9033e9a727b9d4592129"
+      },
+      "historical_accounting_only_results": "validation/benchmark/kernel-accounting-qualification/initial-accounting-results.json",
+      "tests_passed": 37,
+      "tests_failed": 0,
+      "unittest_seconds": 0.957,
+      "qualification_log": "validation/benchmark/kernel-accounting-qualification/qualification.log",
+      "qualification_log_sha256": "662a0d323c0feb1d62fb41dbf706f9e9570bcd5dbcb8a0d055938e08c95d3d18"
+    }
+  },
+  "concurrent_workspace_qualification": {
+    "source": "validation/concurrent-workspaces/qualification.json",
+    "sha256": "63fa573ebdb2151e388e1c72b15bb2df6d3dc3542d7612f753941249f3a3327a",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T15:15:17.300086+00:00",
+      "status": "sequential_control_passed_concurrency_license_excluded",
+      "concurrent_numeric_status": "unqualified; ignored integration test requires public LicenseManager::max_threads(2) >=2",
+      "licensing": "No bypass, permit manipulation, or missing-check assumption. Installed license.rs states one Symbolica thread per user in restricted mode; warmed numeric evaluation has no documented exemption.",
+      "source": "crates/iregi-rust/tests/concurrent_workspaces.rs",
+      "build_evidence": "validation/concurrent-workspaces/build.json",
+      "sequential_control_command": "cargo test -p iregi-rust --test concurrent_workspaces warmed_sequential_controls_cover_the_concurrency_corpus -- --nocapture",
+      "licensed_concurrent_command": "cargo test -p iregi-rust --test concurrent_workspaces independent_warmed_numeric_workspaces_match_sequential_results -- --ignored --nocapture",
+      "coverage": [
+        "Independent Workspaces from shared prepared plans; all construction and exact-corpus lazy warmup serial",
+        "A0/B0/C0/D0 through full prepared Workspaces: rank-2 tensor triangle, scalar box, physical and complex-mass branches",
+        "Second-order Dual bubble: seeded, lightlike analytic, constant scaleless, and unstable lane branches",
+        "Float128 tadpole with heterogeneous input precision and supported scaleless exemption",
+        "Different worker lane orders; whole batches and singleton dispatch; repeated changing order",
+        "All Laurent/Taylor coefficients, signed zeros, precision metadata, lane status, result metadata, analytic/fallback flags, and execution row counts compared with sequential baselines"
+      ],
+      "limitations": [
+        "Concurrent execution must remain unclaimed if installed licensing permits fewer than two threads.",
+        "Default backend is reported by the runtime control; a separate native-feature build is needed to qualify generated native kernels."
+      ],
+      "sequential_control": "validation/concurrent-workspaces/sequential-control.json",
+      "sequential_log": "validation/concurrent-workspaces/sequential-control.log",
+      "rank1_fixture_failure": {
+        "build": "validation/concurrent-workspaces/rank1-fixture-build.json",
+        "run": "validation/concurrent-workspaces/rank1-fixture-sequential-control.json",
+        "log": "validation/concurrent-workspaces/rank1-fixture-sequential-control.log",
+        "scope": "f64 rank-1 box lanes all failed the fixture success assertion before worker comparisons; no production guard or tolerance changed"
+      },
+      "candidate_status": "rank-0 scalar-box positive control passed; rank-2 tensor triangle and second-order Dual bubble retained",
+      "sequential_tests_passed": 1,
+      "sequential_tests_failed": 0,
+      "sequential_unittest_seconds": 4.57,
+      "installed_symbolica_max_threads": 1,
+      "master_backend": "SymbolicaBatch",
+      "source_sha256": "396298bf7ac307ac4041a8c0457e005606a0b630deaebfe054c01b92c8677a41",
+      "sequential_log_sha256": "8b9f007b77111a62ea29cd8ad6d33aa20363381d740726840c5192b6e943b6dc"
+    }
+  },
+  "optimized_5c9_build": {
+    "source": "target/benchmark/builds/5c9e3dd3f60c9d16c38704865cd8c1d3ed855176/verification.json",
+    "sha256": "101391b43591894e5f926fc6fdb7d268e8e64f5ff13dfa20b08a1d7025d44d3b",
+    "snapshot": {
+      "checks": {
+        "successful_build": true,
+        "revision": true,
+        "master_backend": true,
+        "rust_binary_matches": true,
+        "reference_binary_matches": true,
+        "sources_match": true,
+        "all_preserved_files_match": true
+      },
+      "rust_binary_sha256": "b19db1b37e335971b62bdfcd65fa86d98a11562fd887429cce930f06979c7738",
+      "reference_binary_sha256": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389",
+      "source_file_count": 391,
+      "elapsed_seconds": 1213.4605015809648,
+      "master_backend": "SymbolicaBatch",
+      "runtime_executed": false,
+      "rust_binary": "/shared/external/iregi/iregi-rust/target/benchmark/builds/5c9e3dd3f60c9d16c38704865cd8c1d3ed855176/kernel_benchmark",
+      "reference_binary": "/shared/external/iregi/iregi-rust/target/benchmark/builds/5c9e3dd3f60c9d16c38704865cd8c1d3ed855176/iregi-benchmark",
+      "rust_build_manifest": "/shared/external/iregi/iregi-rust/target/benchmark/builds/5c9e3dd3f60c9d16c38704865cd8c1d3ed855176/rust-build.json",
+      "reference_build_manifest": "/shared/external/iregi/iregi-rust/target/benchmark/builds/5c9e3dd3f60c9d16c38704865cd8c1d3ed855176/reference-build.json",
+      "note": "Build provenance only. No numerical or performance evaluation performed by this build task."
+    },
+    "later_runtime_qualification": "benchmark_5c9_qualification"
+  },
+  "stack_reuse_current_acceptance": {
+    "source": "validation/stack-reuse/production-factory/current-workspace-build/acceptance/summary.json",
+    "sha256": "1c157b556fc563f9aa7ebb11688368ee94e2ab53802c6ab63c09e268b47b450f",
+    "snapshot": {
+      "status": "passed",
+      "scope": "Focused current-source acceptance after the ordinary scalar master root allocator default switch; not the full mathematical/performance qualification",
+      "recorded_utc": "2026-10-23T14:54:48.326689+00:00",
+      "source_manifest": "../source-before.json",
+      "build_manifest": "../build-result.json",
+      "current_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+      "tests_passed": 68,
+      "tests_failed": 0,
+      "tests_ignored": 0,
+      "timeouts": 0,
+      "groups": {
+        "execution": 30,
+        "stability": 29,
+        "mixed_precision": 6,
+        "focused_scalar_integration": 3
+      },
+      "cpu_affinity": [
+        0
+      ],
+      "test_threads": 1,
+      "individual_timeout_seconds": 180,
+      "runner_sha256": "b89d7ac964cec25e836c9ebda79bc8993d9bffddd38e2a54bb8afb8d78c0b20c",
+      "runs": [
+        {
+          "report": "core-execution_tests_.json",
+          "report_sha256": "e115bd7574107bd9070eac0c1959e0bd40bd2f5feefbabac3a866c8a95afeec2",
+          "log": "core-execution_tests_.log",
+          "log_sha256": "3564c1fcbdf9403fffbcc1fd47dd81df9e9b6a64cce47d22cf293c0677eafffc",
+          "stage": "core",
+          "filter": "execution::tests::",
+          "tests": {
+            "passed": 30,
+            "failed": 0,
+            "ignored": 0
+          },
+          "binary_sha256": "748aab531a8813094dd0c231c6761749e5a7793e6de70febb8bf666213a915fb"
+        },
+        {
+          "report": "core-stability_.json",
+          "report_sha256": "dfdf315e22302626d6b283d4b3491e5ea0d7478cb0f501511c0b6ce6a9a9043d",
+          "log": "core-stability_.log",
+          "log_sha256": "86cbf7676b4592747f5e6ef63a890025b8fa78fb5009b094aeeea2eb76d59e53",
+          "stage": "core",
+          "filter": "stability::",
+          "tests": {
+            "passed": 29,
+            "failed": 0,
+            "ignored": 0
+          },
+          "binary_sha256": "748aab531a8813094dd0c231c6761749e5a7793e6de70febb8bf666213a915fb"
+        },
+        {
+          "report": "masters-all_master_families_preserve_doublefloat_and_float_numerics.json",
+          "report_sha256": "89711f6c8b6fe68ba2ba60de749fc3b40e87ce05e7455c48f215162cc6ef4df0",
+          "log": "masters-all_master_families_preserve_doublefloat_and_float_numerics.log",
+          "log_sha256": "2b274da19418ee6cf41ffa04445f9d5334277a7a0b37d9b23309ca51c3048011",
+          "stage": "masters",
+          "filter": "all_master_families_preserve_doublefloat_and_float_numerics",
+          "tests": {
+            "passed": 1,
+            "failed": 0,
+            "ignored": 0
+          },
+          "binary_sha256": "c91f7fb828ddb20ba795294c84b8b9df2cae943d814c18615fdde677e505d902"
+        },
+        {
+          "report": "masters-mixed_branches_and_scaleless_uv_ir_are_preserved.json",
+          "report_sha256": "30e99c6efd4a078fc415c4c31888feff08039a4937da9b05ddd9cdde4cf60e16",
+          "log": "masters-mixed_branches_and_scaleless_uv_ir_are_preserved.log",
+          "log_sha256": "a81c60347c5948ff29ba889dd9ccabc4c016d8da29578c2b159747bb427b3351",
+          "stage": "masters",
+          "filter": "mixed_branches_and_scaleless_uv_ir_are_preserved",
+          "tests": {
+            "passed": 1,
+            "failed": 0,
+            "ignored": 0
+          },
+          "binary_sha256": "c91f7fb828ddb20ba795294c84b8b9df2cae943d814c18615fdde677e505d902"
+        },
+        {
+          "report": "masters-scalar_families_match_direct_native_and_isolate_bad_lanes.json",
+          "report_sha256": "623bb54e16f8a189338bbd2157d95fc34e0f6c653a98bf334c4438ce65baf459",
+          "log": "masters-scalar_families_match_direct_native_and_isolate_bad_lanes.log",
+          "log_sha256": "667d0e60cd55d9dbb8909fdbb14f2ff8f710ebfe3174859377dc49a885b95352",
+          "stage": "masters",
+          "filter": "scalar_families_match_direct_native_and_isolate_bad_lanes",
+          "tests": {
+            "passed": 1,
+            "failed": 0,
+            "ignored": 0
+          },
+          "binary_sha256": "c91f7fb828ddb20ba795294c84b8b9df2cae943d814c18615fdde677e505d902"
+        },
+        {
+          "report": "mixed-all.json",
+          "report_sha256": "9a88456c40afee98a87a7c9f84a8f8122e7d6fb9421a661b27712e71e540099d",
+          "log": "mixed-all.log",
+          "log_sha256": "e16729fe96876e60a94ccc836a629d6d160594fdb2d7e3ee11efe0591e074920",
+          "stage": "mixed",
+          "filter": "",
+          "tests": {
+            "passed": 6,
+            "failed": 0,
+            "ignored": 0
+          },
+          "binary_sha256": "35b7f16dc48df8272494aa022eb421031a7907c2054f957e32bd78c9645a9810"
+        }
+      ],
+      "performance": "Test timing/resource statistics are diagnostic, not a controlled performance gate.",
+      "lease_status": "released_to_root"
+    }
+  },
+  "generalized_pv_promotion_compile": {
+    "source": "validation/generalized-pv/promotion-compile-manifest.json",
+    "sha256": "c1ea418a39c9697a1dac9453caa97f416ac6cb4b11c2b182f3c716f5a62677dc",
+    "snapshot": {
+      "status": "production source compiled; supplemental runtime pending",
+      "utc": "2026-10-23T14:56:23Z",
+      "mode": "direct rustc optimized rlib build from production src/lib.rs; no Symbolica runtime",
+      "source_matches_reviewed_candidate": true,
+      "dependency_scope": "Exact private frozen archives recorded in frozen-dependencies.json, including former default master strategy; native Cargo integration/new master default not qualified by this compile.",
+      "hashes": {
+        "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+        "crates/iregi-rust/src/execution.rs": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5",
+        "crates/iregi-rust/src/plan.rs": "5b17b21f58775301c5e13b23ab9c8d97ac10c8d9526ce9d31077315b35e96b59",
+        "crates/iregi-rust/src/exact_zero_certificate.rs": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+        "crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+        "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+        "crates/iregi-rust/src/ibp.rs": "b0638fbeb6fca534840de7ef9360026a25d942b291ac656ffd189add0a3687e5",
+        "crates/iregi-rust/src/invariant_certificate.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+        "crates/iregi-rust/src/types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+        "crates/iregi-rust/src/certified_scalar.rs": "6ae742c16cc9334acbdd91361244f5e0b56148f4019fe2881b0af9e7c3289d05",
+        "crates/iregi-rust/src/pv.rs": "5b88a88bf6c2eae637c71ec366a8f83c20d53d735d876c95acc4f590c58e266b",
+        "crates/iregi-rust/src/snapping.rs": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+        "crates/iregi-rust/src/stability.rs": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "crates/iregi-rust/src/scalar.rs": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+        "crates/iregi-rust/src/rescue.rs": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+        "crates/iregi-rust/src/lib.rs": "9d1303770c6bf0fb231612ce6f28a0cb4c0c28bc1ed51ef31d6b317fbbb237f8",
+        "crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+        "crates/iregi-rust/src/stability/quadrature.rs": "f696fcda8faa03cf8f1224b5f7e1996da82af1f789b170838688057fa5dc1cd9",
+        "target/generalized-pv/libiregi_rust_promoted.rlib": "f9a4a9f2dda00385c9321b190c7dfd5918b599004883298fdb6c1bd3f0464c1c",
+        "validation/generalized-pv/promoted-compile.log": "dbdc8cb3612f259830d7eb8c665ee85848deaaf0278bbefa2591c489f4085413"
+      }
+    }
+  },
+  "benchmark_5c9_qualification": {
+    "source": "validation/benchmark/baseline-5c9e3dd/qualification.json",
+    "sha256": "e6a4f33ab6fc6550204480391e0389c3bffe0012e1af5545324c1a7b61053093",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_at": "2026-10-23T15:05:27.044587+00:00",
+      "source_revision": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176",
+      "scope": "Optimized pre-default-root-stack, pre-generalized-PV/vector-solve commit5c9e3dd; all8 correctness passed;6 regressions,2 inconclusive-noise; performance acceptance remains unmet.",
+      "counts": {
+        "correctness_passed": 8,
+        "regression": 6,
+        "inconclusive_noise": 2,
+        "parity": 0,
+        "improvement": 0
+      },
+      "harness": {
+        "path": "/shared/external/iregi/iregi-rust/validation/benchmark/run.py",
+        "sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+      },
+      "provenance_qualified": true,
+      "source_sha256": {
+        "validation/benchmark/baseline-5c9e3dd/results.json": "4a492c1075b14fdfe845260318c52153100ed80c9a45dea6f88ec7a1ffebc4d0",
+        "validation/benchmark/baseline-5c9e3dd/inputs.json": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+        "validation/benchmark/baseline-5c9e3dd/rust.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/benchmark/baseline-5c9e3dd/reference.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/benchmark/baseline-5c9e3dd/rust-build.json": "761d4e97033b94e1d44054b288d5f2ad33676dd868b95bbfd9461af5404113f0",
+        "validation/benchmark/baseline-5c9e3dd/reference-build.json": "488782471657193e0e09f69c283cb82d8534577bb4fccd23f3087192c0f2f782",
+        "validation/benchmark/baseline-5c9e3dd/build-verification.json": "101391b43591894e5f926fc6fdb7d268e8e64f5ff13dfa20b08a1d7025d44d3b",
+        "validation/benchmark/baseline-5c9e3dd/masters-cargo-fingerprint.json": "05c61a61ea8c1fb2328e7fa35242f4ad26301029f8f25f9f6b96a8fabd7c2586"
+      }
+    }
+  },
+  "qualified_5c9_benchmark": {
+    "source": "validation/benchmark/baseline-5c9e3dd/results.json",
+    "sha256": "4a492c1075b14fdfe845260318c52153100ed80c9a45dea6f88ec7a1ffebc4d0",
+    "revision": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176",
+    "scope": "Optimized pre-default-root-stack, pre-generalized-PV/vector-solve commit5c9e3dd; all8 correctness passed;6 regressions,2 inconclusive-noise; performance acceptance remains unmet.",
+    "counts": {
+      "correctness_passed": 8,
+      "regression": 6,
+      "inconclusive_noise": 2,
+      "parity": 0,
+      "improvement": 0
+    },
+    "protocol": {
+      "repeats": 21,
+      "warmup": 5,
+      "target_block_ms": 30.0,
+      "paired_random_order_seed": 271828,
+      "transport_timed": false,
+      "cache_policy": "structural plans/evaluators and allocation capacity reused; numerical results recomputed for every sample; original recurrence cache freed after every sample",
+      "outputs": "all Cartesian components through requested rank, all four separated native Laurent coefficients",
+      "kernel_scope": "public reduce_batch including result allocation/disposal; original tensor call plus mass-reference setup/status checking/cache disposal",
+      "stage_scope": "separate instrumented pass: argument evaluator, complete scalar-master calls, recurrence evaluator/stability checks; residual is validation/packing/routing",
+      "preparation_scope": "first Rust plan+workspace compile only; not a repeated timing distribution",
+      "numerator": "not applicable to tensor-array kernel; graph/numerator end-to-end benchmark reported separately"
+    },
+    "provenance_qualified": true,
+    "cpu": 0,
+    "rows": [
+      {
+        "id": "n2-r0-massive",
+        "label": "Bubble",
+        "rank": 0,
+        "batch_width": 1,
+        "rust_us_per_point": 2.2709613223140495,
+        "iregi_us_per_point": 0.9554302667893285,
+        "paired_ratio": 2.3814935430017514,
+        "paired_ratio_ci99": [
+          2.3636704626236305,
+          2.3928838165581725
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.012266820550653312,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 2.4028904649745953e-16,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.2972188429752066,
+          "masters": 1.0555289256198348,
+          "reduction": 0.6012290909090909,
+          "total": 2.400650909090909,
+          "other": 0.4466740495867767
+        },
+        "preparation_seconds": 0.821869442
+      },
+      {
+        "id": "n2-r0-massive",
+        "label": "Bubble",
+        "rank": 0,
+        "batch_width": 32,
+        "rust_us_per_point": 1.3885184017319276,
+        "iregi_us_per_point": 0.9011103064903846,
+        "paired_ratio": 1.5407859606385423,
+        "paired_ratio_ci99": [
+          1.5347482043320393,
+          1.545834629858136
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.007195305389141932,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.0332069955332499e-15,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.21223738704819278,
+          "masters": 0.5654306758283133,
+          "reduction": 0.47783960843373496,
+          "total": 1.3917715079066266,
+          "other": 0.13626383659638552
+        },
+        "preparation_seconds": null
+      },
+      {
+        "id": "n2-r1-massive",
+        "label": "Bubble",
+        "rank": 1,
+        "batch_width": 1,
+        "rust_us_per_point": 7.146230325288562,
+        "iregi_us_per_point": 3.0188945955837503,
+        "paired_ratio": 2.3674099985977457,
+        "paired_ratio_ci99": [
+          2.3624326160115463,
+          2.383905865344669
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.009070355090939819,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.433213812223251e-15,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.6426907135362014,
+          "masters": 1.5282589192025184,
+          "reduction": 4.477739244491081,
+          "total": 7.247642707240294,
+          "other": 0.5989538300104922
+        },
+        "preparation_seconds": 0.112162791
+      },
+      {
+        "id": "n2-r1-massive",
+        "label": "Bubble",
+        "rank": 1,
+        "batch_width": 32,
+        "rust_us_per_point": 4.593423125,
+        "iregi_us_per_point": 3.0195856150793654,
+        "paired_ratio": 1.5212872423206685,
+        "paired_ratio_ci99": [
+          1.5158822382496824,
+          1.5320418442854031
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.010622324033342881,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 3.79319046545774e-15,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.32018843750000003,
+          "masters": 0.8283621875,
+          "reduction": 3.27147984375,
+          "total": 4.646029843749999,
+          "other": 0.2259993749999989
+        },
+        "preparation_seconds": null
+      },
+      {
+        "id": "n3-r0-massive",
+        "label": "Triangle",
+        "rank": 0,
+        "batch_width": 1,
+        "rust_us_per_point": 19.61893081312411,
+        "iregi_us_per_point": 4.974713794289646,
+        "paired_ratio": 3.948149366637279,
+        "paired_ratio_ci99": [
+          3.9324788164170523,
+          4.026675629163505
+        ],
+        "gate": "inconclusive-noise",
+        "relative_ci_width": 0.023858472413033946,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.7149754107884505e-14,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.5804286733238231,
+          "masters": 17.91170042796006,
+          "reduction": 0.6835991440798859,
+          "total": 19.68356847360913,
+          "other": 0.5078402282453638
+        },
+        "preparation_seconds": 0.067154879
+      },
+      {
+        "id": "n3-r0-massive",
+        "label": "Triangle",
+        "rank": 0,
+        "batch_width": 32,
+        "rust_us_per_point": 11.309822172619048,
+        "iregi_us_per_point": 4.947894205729167,
+        "paired_ratio": 2.281020597467337,
+        "paired_ratio_ci99": [
+          2.2629347265008604,
+          2.296216755060011
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.014590849638142049,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 4.0181280252331804e-14,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.4750970982142857,
+          "masters": 10.18132142857143,
+          "reduction": 0.49418787202380954,
+          "total": 11.315380208333334,
+          "other": 0.16477380952380827
+        },
+        "preparation_seconds": null
+      },
+      {
+        "id": "n3-r1-massive",
+        "label": "Triangle",
+        "rank": 1,
+        "batch_width": 1,
+        "rust_us_per_point": 26.72434693877551,
+        "iregi_us_per_point": 10.231131957242903,
+        "paired_ratio": 2.6104574277941253,
+        "paired_ratio_ci99": [
+          2.5969160025659863,
+          2.6244831501619035
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.010560274725189374,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.1002496593670189e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.5746307977736549,
+          "masters": 21.111999072356216,
+          "reduction": 4.5155519480519475,
+          "total": 26.871202226345083,
+          "other": 0.6690204081632665
+        },
+        "preparation_seconds": 0.061125855
+      },
+      {
+        "id": "n3-r1-massive",
+        "label": "Triangle",
+        "rank": 1,
+        "batch_width": 32,
+        "rust_us_per_point": 16.733044811320752,
+        "iregi_us_per_point": 10.278746942934783,
+        "paired_ratio": 1.6200561648787226,
+        "paired_ratio_ci99": [
+          1.608065523615891,
+          1.6487438493991673
+        ],
+        "gate": "inconclusive-noise",
+        "relative_ci_width": 0.02510920711586658,
+        "correctness": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 2.4583237864622474e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "profile_us_per_point": {
+          "arguments": 0.5103814858490566,
+          "masters": 11.63903891509434,
+          "reduction": 4.179859080188679,
+          "total": 16.59900530660377,
+          "other": 0.26972582547169566
+        },
+        "preparation_seconds": null
+      }
+    ],
+    "qualification_source": "validation/benchmark/baseline-5c9e3dd/qualification.json",
+    "reproduction": "validation/benchmark/baseline-5c9e3dd/README.md",
+    "cross_session_policy": "Ratios use this run\u2019s paired reference; absolute timing differences across sessions do not establish revision speedup."
+  },
+  "lazy_cayley_solve_qualification": {
+    "source": "validation/invariant-certificate/solve-vector/qualification-status.json",
+    "sha256": "a6cf2280d67053cab0d78dbb42bcd307b688c10ed4fb3a5e9bff56fae87c64e8",
+    "snapshot": {
+      "status": "reviewed minimal optimization promoted; combined integration and broader qualification pending",
+      "runs": {
+        "alias_ibp": {
+          "status": "passed",
+          "started_utc": "2026-10-23T14:21:33.360849+00:00",
+          "variant": "alias",
+          "kind": "core",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-tests",
+            "ibp::tests::",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "binary_sha256": "6aff6d626fc69befdc8fa4f976566a539fa7488d48f026d45cef3454ee1893ee",
+          "timeout_seconds": 60,
+          "topology": null,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_ibp.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 0.5153469900833443,
+          "code": 0,
+          "passed_tests": 24,
+          "log_sha256": "8eb55660fc396c1734b1fef31e517fd6fe2974b6871e225e10624ba5fe97a69c"
+        },
+        "vector_ibp": {
+          "status": "passed",
+          "started_utc": "2026-10-23T14:15:01.112890+00:00",
+          "variant": "vector",
+          "kind": "core",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-tests",
+            "ibp::tests::",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "binary_sha256": "6c30182624423bc4107d44a0952a5c1fabd4e6e791a184811b07c58b05f7d022",
+          "timeout_seconds": 60,
+          "topology": null,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_ibp.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 0.6287423679605126,
+          "code": 0,
+          "passed_tests": 26,
+          "log_sha256": "e1e3322d3378a74759a8a71f71f7d1859728b16238efafa3598cadd3c3388d32"
+        },
+        "alias_gamma_tensor": {
+          "status": "passed",
+          "started_utc": "2026-10-23T14:21:51.778223+00:00",
+          "variant": "alias",
+          "kind": "gamma",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-gamma-tests",
+            "every_triangle_tensor_coefficient_through_rank_seven_matches_gamma_formula",
+            "--nocapture",
+            "--test-threads=1",
+            "--exact"
+          ],
+          "binary_sha256": "7d83ca7de8bd5f66fee597f51971f7a419ede8e20a5c7de344fa45d9b5edde84",
+          "timeout_seconds": 60,
+          "topology": null,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_gamma_tensor.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 9.443662886042148,
+          "code": 0,
+          "passed_tests": 1,
+          "log_sha256": "17e6d8ba0ce1745fc3efcb2be00ba0b9fe85ba41e65764a5175bdde8e3d7a9e0"
+        },
+        "vector_gamma_tensor": {
+          "status": "passed",
+          "started_utc": "2026-10-23T14:22:40.552230+00:00",
+          "variant": "vector",
+          "kind": "gamma",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-gamma-tests",
+            "every_triangle_tensor_coefficient_through_rank_seven_matches_gamma_formula",
+            "--nocapture",
+            "--test-threads=1",
+            "--exact"
+          ],
+          "binary_sha256": "e963765124b1963ab79627c0fe5f306553347072c30d8e34589258c547cedbf8",
+          "timeout_seconds": 60,
+          "topology": null,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_gamma_tensor.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 9.448117370018736,
+          "code": 0,
+          "passed_tests": 1,
+          "log_sha256": "986fb525eb5fb50849cde17ab340dbf24cf0e48c15b45c020635bd298ac96595"
+        },
+        "alias_gamma_generalized": {
+          "status": "passed",
+          "started_utc": "2026-10-23T14:23:07.212216+00:00",
+          "variant": "alias",
+          "kind": "gamma",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-gamma-tests",
+            "generalized_triangle_powers_and_dimensions_match_gamma_formula",
+            "--nocapture",
+            "--test-threads=1",
+            "--exact"
+          ],
+          "binary_sha256": "7d83ca7de8bd5f66fee597f51971f7a419ede8e20a5c7de344fa45d9b5edde84",
+          "timeout_seconds": 60,
+          "topology": null,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_gamma_generalized.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 0.16459438402671367,
+          "code": 0,
+          "passed_tests": 1,
+          "log_sha256": "07b041e9164e59f5ca68b8bd1215e40793e226616379004c97ccf8d3f0c9210b"
+        },
+        "vector_gamma_generalized": {
+          "status": "passed",
+          "started_utc": "2026-10-23T14:23:20.273780+00:00",
+          "variant": "vector",
+          "kind": "gamma",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-gamma-tests",
+            "generalized_triangle_powers_and_dimensions_match_gamma_formula",
+            "--nocapture",
+            "--test-threads=1",
+            "--exact"
+          ],
+          "binary_sha256": "e963765124b1963ab79627c0fe5f306553347072c30d8e34589258c547cedbf8",
+          "timeout_seconds": 60,
+          "topology": null,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_gamma_generalized.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 0.16437986597884446,
+          "code": 0,
+          "passed_tests": 1,
+          "log_sha256": "c343ade424846efc48e1fc78f8e4b1b03612d162b1d1b8a4e5699d84c0d327a3"
+        },
+        "regular_unit_power_recurrences_match_full_inverse_for_all_shifts": {
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/regular-equivalence-tests",
+            "regular_unit_power_recurrences_match_full_inverse_for_all_shifts",
+            "--exact",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "timeout_seconds": 60,
+          "binary_sha256": "1393635360d30ce17c6087e40d6d888bb2860b82afc577418a0a9e0f44dcc998",
+          "scope": "Exact old/full-inverse vs new/solve-vector algebraic equivalence, not a physical numerical oracle.",
+          "code": 0,
+          "status": "passed",
+          "log_sha256": "d1f2d63d35dda00ff1b893218766364497e2f38d2e48f406839322a8acfe7868",
+          "capture_seconds_including_binary_hash": 2.024224465014413,
+          "test_reported_seconds": 0.79
+        },
+        "regular_constrained_triangle_and_box_remain_original_master_leaves": {
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/regular-equivalence-tests",
+            "regular_constrained_triangle_and_box_remain_original_master_leaves",
+            "--exact",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "timeout_seconds": 60,
+          "binary_sha256": "1393635360d30ce17c6087e40d6d888bb2860b82afc577418a0a9e0f44dcc998",
+          "scope": "Exact old/full-inverse vs new/solve-vector algebraic equivalence, not a physical numerical oracle.",
+          "code": 0,
+          "status": "passed",
+          "log_sha256": "9518ff0cd8b6b7f1f2acef83b5d2d9b990fd450b799681d489291a748608297b",
+          "capture_seconds_including_binary_hash": 0.48854152602143586,
+          "test_reported_seconds": 0.0
+        },
+        "vector_public_n6": {
+          "status": "failed",
+          "started_utc": "2026-10-23T14:28:11.173703+00:00",
+          "variant": "vector",
+          "kind": "core",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-tests",
+            "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+            "--nocapture",
+            "--test-threads=1",
+            "--exact"
+          ],
+          "binary_sha256": "6c30182624423bc4107d44a0952a5c1fabd4e6e791a184811b07c58b05f7d022",
+          "timeout_seconds": 180,
+          "topology": 6,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_public_n6.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 49.71307748800609,
+          "code": 101,
+          "passed_tests": 0,
+          "log_sha256": "4a95c9477381e97313f601678f6d5e2ec9bb589875692a97fd6a430407d0cb2a"
+        },
+        "alias_public_n6": {
+          "status": "timeout",
+          "started_utc": "2026-10-23T14:30:40.391205+00:00",
+          "variant": "alias",
+          "kind": "core",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-tests",
+            "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+            "--nocapture",
+            "--test-threads=1",
+            "--exact"
+          ],
+          "binary_sha256": "6aff6d626fc69befdc8fa4f976566a539fa7488d48f026d45cef3454ee1893ee",
+          "timeout_seconds": 180,
+          "topology": 6,
+          "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_public_n6.log",
+          "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+          "elapsed_seconds": 180.11235468497034,
+          "code": 124,
+          "passed_tests": 0,
+          "log_sha256": "6c26e2831921938ff77dc41b0ffa16b26b2036276ab985682fcef625938f3089"
+        },
+        "alias_certified_status": {
+          "variant": "alias",
+          "kind": "status",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-probe-tests",
+            "public_precision_probe::public_certified_n6_binary64_status_before_comparator",
+            "--exact",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "binary_sha256": "034d0c3ceaa08f5cfd33241b34d04cb692ab2fb61344c672013fece59e303869",
+          "timeout_seconds": 120,
+          "scope": "Binary64 status-only diagnostic; Float verifies independent oracle and convergence. No performance qualification.",
+          "code": 0,
+          "status": "passed",
+          "elapsed_seconds": 78.98543038999196,
+          "log_sha256": "4fab145afe054d1677141d5952b94c23029befc94baa31786c94cef3105cc835",
+          "events": [
+            {
+              "phase": "chart_prepared",
+              "seconds": 76.74203761
+            },
+            {
+              "accuracy_bits": 53,
+              "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+              "phase": "certified_result",
+              "seconds": 78.892883488,
+              "statuses": "[Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\"), InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")]",
+              "working_bits": 53
+            },
+            {
+              "guard_rejection": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")",
+              "lane": 0
+            },
+            {
+              "guard_rejection": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")",
+              "lane": 2
+            }
+          ]
+        },
+        "vector_certified_float": {
+          "variant": "vector",
+          "kind": "float",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-probe-tests",
+            "public_precision_probe::public_certified_n6_float_converges_and_matches_parameter_integral",
+            "--exact",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "binary_sha256": "759ffd35213296d6e5317ba6b08e04c2b95d25e8fad587f3eafbf9ab77e65da5",
+          "timeout_seconds": 180,
+          "scope": "Binary64 status-only diagnostic; Float verifies independent oracle and convergence. No performance qualification.",
+          "oracle": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+          "oracle_sha256": "a821a4b523245bc4c7d3c01de486cc9197b6f8d4444a2eb3069b626dc0ff17c4",
+          "working_bits": [
+            128,
+            256
+          ],
+          "requested_accuracy_bits": 53,
+          "code": 0,
+          "status": "passed",
+          "elapsed_seconds": 19.536551308003254,
+          "log_sha256": "11b12f87dad4d086cacb79b245481020ab8db8720c13205bcc79203270ffc38a",
+          "events": [
+            {
+              "phase": "chart_prepared",
+              "seconds": 16.718302213
+            },
+            {
+              "accuracy_bits": 53,
+              "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+              "phase": "certified_result",
+              "seconds": 19.037347535,
+              "statuses": "[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]",
+              "working_bits": 128
+            },
+            {
+              "values": [
+                [
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0"
+                ],
+                [
+                  "4.2986076669270135250890508385340e-8",
+                  "1.8e-38"
+                ]
+              ],
+              "working_bits": 128
+            },
+            {
+              "independent_oracle_difference": "1.5250890508385339912784657660838834136239310725979435134529944e-23",
+              "oracle_path": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+              "oracle_uncertainty_kind": "estimated, not certified",
+              "working_bits": 128
+            },
+            {
+              "accuracy_bits": 53,
+              "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+              "phase": "certified_result",
+              "seconds": 19.427661002,
+              "statuses": "[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]",
+              "working_bits": 256
+            },
+            {
+              "values": [
+                [
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0"
+                ],
+                [
+                  "0",
+                  "0"
+                ],
+                [
+                  "4.2986076669270135250890508385335492354527879747290809724950896812967315e-8",
+                  "5.2e-77"
+                ]
+              ],
+              "working_bits": 256
+            },
+            {
+              "independent_oracle_difference": "1.5250890508385335492354527879747290809724950896812967315488377e-23",
+              "oracle_path": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+              "oracle_uncertainty_kind": "estimated, not certified",
+              "working_bits": 256
+            },
+            {
+              "normalized_128_256_difference": "0",
+              "slot": 0
+            },
+            {
+              "normalized_128_256_difference": "0",
+              "slot": 1
+            },
+            {
+              "normalized_128_256_difference": "0",
+              "slot": 2
+            },
+            {
+              "normalized_128_256_difference": "3.30930511165431783718881296037556292348e-32",
+              "slot": 3
+            }
+          ]
+        }
+      },
+      "public_n6_phase_records": [
+        "test certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures ... certified scalar n=6 phase=chart_prepare_begin elapsed=38.64\u00b5s",
+        "certified scalar n=6 phase=chart_prepare_end elapsed=17.181411328s",
+        "certified scalar n=6 phase=certificate_prepare_begin elapsed=17.181522769s",
+        "certified scalar n=6 phase=certificate_prepare_end elapsed=17.225637939s",
+        "certified scalar n=6 phase=certified_reduce_begin elapsed=17.226006641s",
+        "certified scalar n=6 phase=certified_reduce_end elapsed=19.160637745s",
+        "certified scalar n=6 phase=coordinate_plan_prepare_begin elapsed=19.160750336s",
+        "certified scalar n=6 phase=coordinate_plan_prepare_end elapsed=37.764710635s",
+        "certified scalar n=6 phase=coordinate_workspace_prepare_begin elapsed=37.764812246s",
+        "certified scalar n=6 phase=coordinate_workspace_prepare_end elapsed=39.70402185s",
+        "certified scalar n=6 phase=coordinate_reduce_begin elapsed=39.704185911s",
+        "certified scalar n=6 phase=coordinate_reduce_end elapsed=49.572678968s"
+      ],
+      "conclusions": [
+        "Both retained IBP suites pass; vector adds two lazy-geometry regression tests.",
+        "Both variants pass400 independent Gamma tensor identities and80 generalized identities; these primarily cover singular-R triangle recurrence and regular bubble descendants.",
+        "Exact side-by-side regular-R comparison passes44 successful requests in all4 Laurent slots plus4 matching unsupported errors, N1..5,h=-3..4, E6enabled/disabled.",
+        "Regular constrained triangle/box profiles preserve original complete C0/D0 leaves.",
+        "Public vector N6 evaluation reports Unstable due to estimated cancellation; no value-agreement assertion was reached. This does not by itself prove numerical error.",
+        "Matched baseline publicN6 timed out180s during coordinate-reference reduction after chart77.568s/certified reduction79.718s. The test prints no certified valid-lane status before that comparator, so guard parity remains unresolved.",
+        "Certified-only baseline binary64 probe rejects both valid lanes at the identical ibp_0_node_14 guard as the candidate, establishing unchanged guard behavior without claiming a binary64 numerical error.",
+        "Candidate public certified N6 Float128/256 at fixed requested accuracy53 accepts both valid lanes and rejects the incompatible Gram lane. All poles are exactly zero; all four Laurent slots converge with normalized finite difference3.30930511165431783718881296037556292348e-32.",
+        "Candidate Float256 finite4.2986076669270135250890508385335492354527879747290809724950896812967315e-8 differs from the independent direct-simplex estimate by1.5250890508385335492354527879747290809724950896812967315488377e-23, below its conservative estimated6.11e-22 uncertainty; the latter is not certified."
+      ],
+      "pending": [
+        "Combined current-production integration after promotion",
+        "Bounded public N7 comparison",
+        "Valid mixed-Dual/incompatible-Taylor integration",
+        "Controlled performance qualification"
+      ],
+      "performance_scope": "All recorded phase/test timings are diagnostics; no repeated pinned-core benchmark or uncertainty qualification.",
+      "baseline_n6_phase_records": [
+        "test certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures ... certified scalar n=6 phase=chart_prepare_begin elapsed=19.74\u00b5s",
+        "certified scalar n=6 phase=chart_prepare_end elapsed=77.568005197s",
+        "certified scalar n=6 phase=certificate_prepare_begin elapsed=77.568109517s",
+        "certified scalar n=6 phase=certificate_prepare_end elapsed=77.622114806s",
+        "certified scalar n=6 phase=certified_reduce_begin elapsed=77.622241967s",
+        "certified scalar n=6 phase=certified_reduce_end elapsed=79.718440579s",
+        "certified scalar n=6 phase=coordinate_plan_prepare_begin elapsed=79.718993391s",
+        "certified scalar n=6 phase=coordinate_plan_prepare_end elapsed=158.401213198s",
+        "certified scalar n=6 phase=coordinate_workspace_prepare_begin elapsed=158.401311959s",
+        "certified scalar n=6 phase=coordinate_workspace_prepare_end elapsed=160.113051072s",
+        "certified scalar n=6 phase=coordinate_reduce_begin elapsed=160.113501514s"
+      ],
+      "independent_review": {
+        "reviewer": "/root/pv_reduction/sixpoint_simplex_audit",
+        "outcome": "No blocking defect; unique-solve, cache upgrade, exceptional and guard semantics preserved; reporting caveats retained."
+      }
+    }
+  },
+  "generalized_pv_supplemental": {
+    "source": "validation/generalized-pv/supplemental-qualification.json",
+    "sha256": "26ab36f7b1b0c3c86687e2299a7fdc0a287dec092236547353c03504b11dfcac",
+    "snapshot": {
+      "status": "all five supplemental behaviors qualified across four passing first-run tests and the targeted precise fallback retry",
+      "source_scope": "Promoted generalized PV plus promoted IBP solve-vector, compiled together; frozen compatible prior-default master archives; native Cargo integration pending.",
+      "historical_first_run": {
+        "exit_status": 101,
+        "passed": 4,
+        "failed": 1,
+        "seconds": 8.52,
+        "manifest": "combined-runtime-manifest.json",
+        "failed_source": "supplemental-binary64-failed-source.rs",
+        "failed_source_sha256": "fc3bfeecba842cdf32619119ae57b814fa485386d2061fe732ca56674d2e396a"
+      },
+      "passing_checks": [
+        {
+          "name": "authoritative supplied-G and scalar-only interfaces",
+          "families": 3,
+          "modes": 3,
+          "interfaces": 2,
+          "sample_lanes_each": 2,
+          "complex_reference_slots": 144,
+          "policy": "f64 output; tensor workspace explicitly permits default precision rescue; scalar wrapper uses f64 directly"
+        },
+        {
+          "name": "Multinomial nonzero mixed moment against original tensor arrays",
+          "original_modes": 3,
+          "complex_reference_slots": 180,
+          "policy": "f64 output with explicit default precision rescue permitted"
+        },
+        {
+          "name": "complex generalized scalar original oracle",
+          "families": 2,
+          "rust_modes": 3,
+          "complex_reference_slots": 24,
+          "policy": "f64 output with explicit default precision rescue permitted"
+        },
+        {
+          "name": "complex generalized tensor internal PV/IBP batch agreement",
+          "pv_modes": 2,
+          "sample_lanes": 3,
+          "complex_comparisons": 360,
+          "policy": "binary64 workspaces; full output shapes and argument/reduction/master batch counters asserted; original complex generalized tensor wrapper unavailable"
+        }
+      ],
+      "failed_check": {
+        "name": "generalized Hybrid singular-Gram lane isolation",
+        "reason": "The intended regular binary64 neighbor triggered the existing conservative finite-cancellation diagnostic; both lanes retried and retained Unstable, while the test expected only the singular lane to retry.",
+        "observed_fallback_flags": [
+          true,
+          true
+        ],
+        "observed_fallback_rows": 2,
+        "observed_fallback_successes": 0,
+        "source_correction": "Only fixture working precision is increased to128/256; the requested accuracy remains53 bits, and the singular lane must remain Unstable. No numerical implementation or guard changes.",
+        "retry_status": "passed at both128/256 working bits with53-bit accuracy request; singular failure remains visible"
+      },
+      "unchanged_tolerance": 1e-10,
+      "performance_qualification": false,
+      "passed_behaviors": 5,
+      "precise_retry": {
+        "exit_status": 0,
+        "passed": 1,
+        "failed": 0,
+        "seconds": 1.82,
+        "working_precision_bits": [
+          128,
+          256
+        ],
+        "accuracy_precision_bits": 53,
+        "primary_statuses": [
+          "Success",
+          "Unstable"
+        ],
+        "hybrid_statuses": [
+          "Success",
+          "Unstable"
+        ],
+        "fallback_flags": [
+          false,
+          true
+        ],
+        "fallback_rows": 1,
+        "fallback_successes": 0,
+        "healthy_lane_unchanged": true,
+        "singular_lane_combined_failure_preserved": true,
+        "manifest": "combined-precise-runtime-manifest.json",
+        "source_diff": "supplemental-precision-fixture.patch"
+      },
+      "historical_binary64_failure_preserved": true,
+      "native_cargo_integration": "pending source freeze; direct compatible archived-dependency builds do not qualify adopted master strategy or newly rebuilt vendor metadata",
+      "evidence_hashes": {
+        "validation/generalized-pv/combined-runtime-manifest.json": "67ee2b025eb9abc092702a7dab0f65750642b5ecbccfe96c466a75ffc65d4ec1",
+        "validation/generalized-pv/combined-precise-runtime-manifest.json": "ef1246cef5e3367de12b6473b18e17831a9fafbe13b4f239f56ff3640888d361",
+        "validation/generalized-pv/combined-build-manifest.json": "bbe07429a80529a490dd7b8a992a511695b45fff72692ab272f1c9a0cc196f49",
+        "validation/generalized-pv/combined-precise-build-manifest.json": "7309d5d33db826d724ecaeceb8e1500f801f980fd0b61ffe301a9f20da1ab672",
+        "validation/generalized-pv/supplemental-precision-fixture.patch": "7c7d480d7096003d8a17cf898260a39a69e78f3e936e34819528a5a4b467b4b1"
+      }
+    }
+  },
+  "public_n6_rank7_attempt": {
+    "source": "validation/public-highpoint/n6-rank7-pv-128-53-run.json",
+    "sha256": "1c9358b27cf1c5ca41b5e65b93803154f953cb4fa05ee6a6789d8d2e0ede75d4",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "timeout",
+      "started_utc": "2026-10-23T15:09:14.160623+00:00",
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "/shared/external/iregi/iregi-rust/target/public-highpoint/highpoint_public",
+        "validation/public-highpoint/fixture-conditioned_masses.json",
+        "6",
+        "7",
+        "pv",
+        "128",
+        "53",
+        "1",
+        "validation/public-highpoint/n6-rank7-pv-128-53.json"
+      ],
+      "timeout_seconds": 180.0,
+      "binary_sha256": "3a466fe66a4725c0410e1d1f3886bfcea84a5bad2a7458f9c1c98708a7ac2991",
+      "fixture_sha256": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+      "build_manifest_sha256": "8215cf9ef211c5b982b9e61ce73dcf3c7bd128c8c04c73b36d65031bc929b2aa",
+      "probe_source_sha256": "34ca0b393775208f97f8b07ffdf22a0a13ce69d56fa220714d0e49b703fab1dc",
+      "runner_source_sha256": "fe0b8184ef9911a9fc36b4f2ab57f3a498822e8b6c24001a4430c3bedb8486f9",
+      "environment_additions": {
+        "IREGI_PV_PREPARATION_PROFILE": "1"
+      },
+      "timing_status": "diagnostic only; not an optimized controlled performance comparison",
+      "exit_code": -9,
+      "elapsed_seconds": 180.32860906992573,
+      "log_sha256": "a047c1f16ec2e2c203dad949f518d2f31571acf7ee812d977972f57a1bb1f4c2",
+      "finished_utc": "2026-10-23T15:12:15.213736+00:00",
+      "result_sha256": "b78701658fcfe8eadd129027d6838a281e52b128674bd05d9a25b8ba81aaccbb",
+      "last_public_stage": "preparing_workspace"
+    },
+    "last_stage_summary": {
+      "status": "preparing_workspace",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "alias_count": 31670,
+      "master_count": 56,
+      "diagnostic_plan_seconds": 107.835583422,
+      "limitations": "Ordinary coordinate-input public path; no numerical specialization, no reference scalars, no disabled guards. Working precision is not a claim of achieved requested precision. Timings are diagnostic, not performance gates.",
+      "moment_count": 330
+    }
   }
 }

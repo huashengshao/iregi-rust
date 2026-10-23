@@ -1,0 +1,40 @@
+{
+  "variant": "alias",
+  "kind": "status",
+  "command": [
+    "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-probe-tests",
+    "public_precision_probe::public_certified_n6_binary64_status_before_comparator",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "binary_sha256": "034d0c3ceaa08f5cfd33241b34d04cb692ab2fb61344c672013fece59e303869",
+  "timeout_seconds": 120,
+  "scope": "Binary64 status-only diagnostic; Float verifies independent oracle and convergence. No performance qualification.",
+  "code": 0,
+  "status": "passed",
+  "elapsed_seconds": 78.98543038999196,
+  "log_sha256": "4fab145afe054d1677141d5952b94c23029befc94baa31786c94cef3105cc835",
+  "events": [
+    {
+      "phase": "chart_prepared",
+      "seconds": 76.74203761
+    },
+    {
+      "accuracy_bits": 53,
+      "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+      "phase": "certified_result",
+      "seconds": 78.892883488,
+      "statuses": "[Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\"), InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")]",
+      "working_bits": 53
+    },
+    {
+      "guard_rejection": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")",
+      "lane": 0
+    },
+    {
+      "guard_rejection": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")",
+      "lane": 2
+    }
+  ]
+}

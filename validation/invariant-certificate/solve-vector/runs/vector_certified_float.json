@@ -1,0 +1,117 @@
+{
+  "variant": "vector",
+  "kind": "float",
+  "command": [
+    "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-probe-tests",
+    "public_precision_probe::public_certified_n6_float_converges_and_matches_parameter_integral",
+    "--exact",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "binary_sha256": "759ffd35213296d6e5317ba6b08e04c2b95d25e8fad587f3eafbf9ab77e65da5",
+  "timeout_seconds": 180,
+  "scope": "Binary64 status-only diagnostic; Float verifies independent oracle and convergence. No performance qualification.",
+  "oracle": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+  "oracle_sha256": "a821a4b523245bc4c7d3c01de486cc9197b6f8d4444a2eb3069b626dc0ff17c4",
+  "working_bits": [
+    128,
+    256
+  ],
+  "requested_accuracy_bits": 53,
+  "code": 0,
+  "status": "passed",
+  "elapsed_seconds": 19.536551308003254,
+  "log_sha256": "11b12f87dad4d086cacb79b245481020ab8db8720c13205bcc79203270ffc38a",
+  "events": [
+    {
+      "phase": "chart_prepared",
+      "seconds": 16.718302213
+    },
+    {
+      "accuracy_bits": 53,
+      "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+      "phase": "certified_result",
+      "seconds": 19.037347535,
+      "statuses": "[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]",
+      "working_bits": 128
+    },
+    {
+      "values": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "4.2986076669270135250890508385340e-8",
+          "1.8e-38"
+        ]
+      ],
+      "working_bits": 128
+    },
+    {
+      "independent_oracle_difference": "1.5250890508385339912784657660838834136239310725979435134529944e-23",
+      "oracle_path": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+      "oracle_uncertainty_kind": "estimated, not certified",
+      "working_bits": 128
+    },
+    {
+      "accuracy_bits": 53,
+      "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+      "phase": "certified_result",
+      "seconds": 19.427661002,
+      "statuses": "[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]",
+      "working_bits": 256
+    },
+    {
+      "values": [
+        [
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0"
+        ],
+        [
+          "4.2986076669270135250890508385335492354527879747290809724950896812967315e-8",
+          "5.2e-77"
+        ]
+      ],
+      "working_bits": 256
+    },
+    {
+      "independent_oracle_difference": "1.5250890508385335492354527879747290809724950896812967315488377e-23",
+      "oracle_path": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+      "oracle_uncertainty_kind": "estimated, not certified",
+      "working_bits": 256
+    },
+    {
+      "normalized_128_256_difference": "0",
+      "slot": 0
+    },
+    {
+      "normalized_128_256_difference": "0",
+      "slot": 1
+    },
+    {
+      "normalized_128_256_difference": "0",
+      "slot": 2
+    },
+    {
+      "normalized_128_256_difference": "3.30930511165431783718881296037556292348e-32",
+      "slot": 3
+    }
+  ]
+}

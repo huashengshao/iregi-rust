@@ -1,0 +1,318 @@
+warning: unused import: `ComplexField`
+ --> dependencies/symbolica/lib/numerica/src/domains/float/double.rs:9:21
+  |
+9 | use simba::scalar::{ComplexField, RealField};
+  |                     ^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> dependencies/symbolica/lib/numerica/src/domains/float/double.rs:48:28
+   |
+48 |             Ok(DoubleFloat(unsafe { Df64::new_full(hi, lo) }))
+   |                            ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default
+
+warning: unnecessary `unsafe` block
+  --> dependencies/symbolica/lib/numerica/src/domains/float/double.rs:75:35
+   |
+75 |             return Ok(DoubleFloat(unsafe { Df64::new_full(hi, lo) }));
+   |                                   ^^^^^^ unnecessary `unsafe` block
+
+warning: `numerica` (lib) generated 3 warnings
+   Compiling symbolica v3.0.1 (/shared/external/iregi/iregi-rust/dependencies/symbolica)
+warning: `numerica` (lib) generated 3 warnings (3 duplicates)
+warning: unused `Result` that must be used
+   --> dependencies/symbolica/src/atom.rs:776:9
+    |
+776 |         self.export(&mut data);
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: this `Result` may be an `Err` variant, which should be handled
+    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+776 |         let _ = self.export(&mut data);
+    |         +++++++
+
+warning: `symbolica` (lib) generated 1 warning (1 duplicate)
+   Compiling oneloop v0.1.0 (/shared/external/iregi/iregi-rust/dependencies/oneloopmaster)
+warning: `symbolica` (lib) generated 1 warning
+   Compiling gammaloop-workspace-hack v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling symbolica-utils v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling iregi-masters v0.1.0 (/shared/external/iregi/iregi-rust/crates/iregi-masters)
+   Compiling linnet v0.17.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling iregi-rust v0.1.0 (/shared/external/iregi/iregi-rust/crates/iregi-rust)
+warning: methods `set_precision_budget`, `evaluated_rows`, `passes`, and `check_batch` are never used
+  --> crates/iregi-rust/src/exact_zero_certificate.rs:71:19
+   |
+70 | impl ExactZeroConstraintWorkspace {
+   | --------------------------------- methods in this implementation
+71 |     pub(crate) fn set_precision_budget(
+   |                   ^^^^^^^^^^^^^^^^^^^^
+...
+79 |     pub(crate) fn evaluated_rows(&self) -> usize {
+   |                   ^^^^^^^^^^^^^^
+...
+83 |     pub(crate) fn passes(&self) -> usize {
+   |                   ^^^^^^
+...
+89 |     pub(crate) fn check_batch(
+   |                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `certified_relation_coordinates` is never used
+   --> crates/iregi-rust/src/invariant_certificate.rs:550:15
+    |
+550 | pub(crate) fn certified_relation_coordinates(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `owner`, `active`, `expression`, and `label` are never read
+  --> crates/iregi-rust/src/pv.rs:49:9
+   |
+47 | pub(crate) struct CoordinateConstraint {
+   |                   -------------------- fields in this struct
+48 |     /// Alias whose graph reachability determines whether this topology is used.
+49 |     pub owner: Atom,
+   |         ^^^^^
+50 |     /// Nonzero only when the rank-deficient identity branch is selected.
+51 |     pub active: Atom,
+   |         ^^^^^^
+52 |     /// Raw-coordinate polynomial, without aliases or master dependence.
+53 |     pub expression: Atom,
+   |         ^^^^^^^^^^
+54 |     pub label: String,
+   |         ^^^^^
+   |
+   = note: `CoordinateConstraint` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: method `coordinate_constraints` is never used
+   --> crates/iregi-rust/src/pv.rs:241:19
+    |
+ 85 | impl PvCompiler {
+    | --------------- method in this implementation
+...
+241 |     pub(crate) fn coordinate_constraints(&self) -> &[CoordinateConstraint] {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `iregi-rust` (lib) generated 4 warnings
+   Compiling feynkit-integrals v0.1.0 (/shared/external/iregi/iregi-rust/dependencies/feynkit-integrals)
+   Compiling spenso v0.6.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling feynkit-model v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling idenso v0.3.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling feynkit-kinematics v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling feynkit-graph v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling feynkit-amplitude v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling spenso-hep-lib v0.1.7 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling feynkit-generator v0.1.0 (https://github.com/alphal00p/gammaloop?rev=865afdc43fb4e6b950439d34b4ec2c38352873e7#865afdc4)
+   Compiling iregi-prepare v0.1.0 (/shared/external/iregi/iregi-rust/crates/iregi-prepare)
+   Compiling iregi-cli v0.1.0 (/shared/external/iregi/iregi-rust/crates/iregi-cli)
+warning: multiple associated items are never used
+   --> crates/iregi-rust/examples/../src/ibp.rs:161:12
+    |
+130 | impl ScalarCompiler {
+    | ------------------- associated items in this implementation
+...
+161 |     pub fn with_aliases(r: Vec<Vec<Atom>>) -> Result<Self, String> {
+    |            ^^^^^^^^^^^^
+...
+169 |     pub fn enable_aliases(&mut self) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^
+...
+182 |     pub fn aliases(&self) -> &[(Atom, Atom)] {
+    |            ^^^^^^^
+...
+190 |     pub fn enable_six_dimensional_pentagon(&mut self) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+202 |     pub fn set_routing(&mut self, shifts: Vec<[Atom; 4]>) -> Result<(), String> {
+    |            ^^^^^^^^^^^
+...
+215 |     pub(crate) fn set_certified_linear_coordinates(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+250 |     pub fn enable_gram_regular_bubbles(&mut self) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+267 |     pub fn with_zero_invariants(
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+327 |     pub fn massless_onshell_triangle(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+352 |     pub fn scaleless(propagators: usize) -> Result<Self, String> {
+    |            ^^^^^^^^^
+...
+404 |     pub fn node_count(&self) -> usize {
+    |            ^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: fields `owner`, `active`, `expression`, and `label` are never read
+  --> crates/iregi-rust/examples/../src/pv.rs:49:9
+   |
+47 | pub(crate) struct CoordinateConstraint {
+   |                   -------------------- fields in this struct
+48 |     /// Alias whose graph reachability determines whether this topology is used.
+49 |     pub owner: Atom,
+   |         ^^^^^
+50 |     /// Nonzero only when the rank-deficient identity branch is selected.
+51 |     pub active: Atom,
+   |         ^^^^^^
+52 |     /// Raw-coordinate polynomial, without aliases or master dependence.
+53 |     pub expression: Atom,
+   |         ^^^^^^^^^^
+54 |     pub label: String,
+   |         ^^^^^
+   |
+   = note: `CoordinateConstraint` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: multiple associated items are never used
+   --> crates/iregi-rust/examples/../src/pv.rs:94:12
+    |
+ 85 | impl PvCompiler {
+    | --------------- associated items in this implementation
+...
+ 94 |     pub fn with_aliases(shifts: Vec<[Atom; 4]>, mass_squared: Vec<Atom>) -> Result<Self, String> {
+    |            ^^^^^^^^^^^^
+...
+217 |     pub fn set_analytic_jet_order(&mut self, order: u16) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+228 |     pub fn set_coordinate_identities(&mut self, enabled: bool) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+237 |     pub fn preparation_notes(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^^^^^
+...
+241 |     pub(crate) fn coordinate_constraints(&self) -> &[CoordinateConstraint] {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+...
+250 |     pub fn set_gram_scalar_product_transform(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+262 |     pub fn aliases(&self) -> &[(Atom, Atom)] {
+    |            ^^^^^^^
+...
+309 |     pub fn node_count(&self) -> usize {
+    |            ^^^^^^^^^^
+
+warning: `iregi-rust` (example "pv_precision_probe") generated 3 warnings
+warning: method `rank` is never used
+ --> crates/iregi-rust/examples/../src/basis.rs:8:12
+  |
+7 | impl Monomial {
+  | ------------- method in this implementation
+8 |     pub fn rank(self) -> usize {
+  |            ^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: multiple associated items are never used
+   --> crates/iregi-rust/examples/../src/ibp.rs:161:12
+    |
+130 | impl ScalarCompiler {
+    | ------------------- associated items in this implementation
+...
+161 |     pub fn with_aliases(r: Vec<Vec<Atom>>) -> Result<Self, String> {
+    |            ^^^^^^^^^^^^
+...
+169 |     pub fn enable_aliases(&mut self) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^
+...
+182 |     pub fn aliases(&self) -> &[(Atom, Atom)] {
+    |            ^^^^^^^
+...
+190 |     pub fn enable_six_dimensional_pentagon(&mut self) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+202 |     pub fn set_routing(&mut self, shifts: Vec<[Atom; 4]>) -> Result<(), String> {
+    |            ^^^^^^^^^^^
+...
+215 |     pub(crate) fn set_certified_linear_coordinates(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+250 |     pub fn enable_gram_regular_bubbles(&mut self) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+267 |     pub fn with_zero_invariants(
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+327 |     pub fn massless_onshell_triangle(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+352 |     pub fn scaleless(propagators: usize) -> Result<Self, String> {
+    |            ^^^^^^^^^
+...
+404 |     pub fn node_count(&self) -> usize {
+    |            ^^^^^^^^^^
+
+warning: methods `set_analytic_jet_order`, `set_coordinate_identities`, `preparation_notes`, `coordinate_constraints`, `set_gram_scalar_product_transform`, and `node_count` are never used
+   --> crates/iregi-rust/examples/../src/pv.rs:217:12
+    |
+ 85 | impl PvCompiler {
+    | --------------- methods in this implementation
+...
+217 |     pub fn set_analytic_jet_order(&mut self, order: u16) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+228 |     pub fn set_coordinate_identities(&mut self, enabled: bool) -> Result<(), String> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+237 |     pub fn preparation_notes(&self) -> &[String] {
+    |            ^^^^^^^^^^^^^^^^^
+...
+241 |     pub(crate) fn coordinate_constraints(&self) -> &[CoordinateConstraint] {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+...
+250 |     pub fn set_gram_scalar_product_transform(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+309 |     pub fn node_count(&self) -> usize {
+    |            ^^^^^^^^^^
+
+warning: `iregi-rust` (example "pv_physical_precision") generated 4 warnings (1 duplicate)
+warning: fields `owner`, `active`, `expression`, and `label` are never read
+  --> crates/iregi-rust/src/pv.rs:49:9
+   |
+47 | pub(crate) struct CoordinateConstraint {
+   |                   -------------------- fields in this struct
+48 |     /// Alias whose graph reachability determines whether this topology is used.
+49 |     pub owner: Atom,
+   |         ^^^^^
+50 |     /// Nonzero only when the rank-deficient identity branch is selected.
+51 |     pub active: Atom,
+   |         ^^^^^^
+52 |     /// Raw-coordinate polynomial, without aliases or master dependence.
+53 |     pub expression: Atom,
+   |         ^^^^^^^^^^
+54 |     pub label: String,
+   |         ^^^^^
+   |
+   = note: `CoordinateConstraint` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `iregi-rust` (lib test) generated 2 warnings (1 duplicate)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19m 58s
+  Executable unittests src/lib.rs (target/cargo-build/debug/deps/feynkit_integrals-b5f47f839a39c0f5)
+  Executable tests/affine.rs (target/cargo-build/debug/deps/affine-480db77e4c7c47cd)
+  Executable unittests src/lib.rs (target/cargo-build/debug/deps/iregi_cli-60696bb6ab5d6c07)
+  Executable unittests src/main.rs (target/cargo-build/debug/deps/iregi_rust-82e4cda0b88d85b9)
+  Executable unittests src/lib.rs (target/cargo-build/debug/deps/iregi_masters-8ec9ec718be6b935)
+  Executable tests/masters.rs (target/cargo-build/debug/deps/masters-d21e6bd3224ea761)
+  Executable tests/native_batch.rs (target/cargo-build/debug/deps/native_batch-4ac35a4d2477da3c)
+  Executable tests/numeric_boundaries.rs (target/cargo-build/debug/deps/numeric_boundaries-611e144c3615ae28)
+  Executable tests/physical_derivatives.rs (target/cargo-build/debug/deps/physical_derivatives-fe53319b8320af1e)
+  Executable tests/pseudothreshold.rs (target/cargo-build/debug/deps/pseudothreshold-65f8b3e1e67a4ed6)
+  Executable unittests src/lib.rs (target/cargo-build/debug/deps/iregi_prepare-9602fdd061681eab)
+  Executable tests/madloop_numerator.rs (target/cargo-build/debug/deps/madloop_numerator-830a7de568daaf00)
+  Executable tests/preparation.rs (target/cargo-build/debug/deps/preparation-f5976e5d0a966286)
+  Executable unittests src/lib.rs (target/cargo-build/debug/deps/iregi_rust-c5ff865b3918ff79)
+  Executable tests/legacy_rescue.rs (target/cargo-build/debug/deps/legacy_rescue-5b5a472fc61c95f4)
+  Executable tests/mixed_precision_accuracy.rs (target/cargo-build/debug/deps/mixed_precision_accuracy-abbca953c533a11d)
+  Executable tests/oracle.rs (target/cargo-build/debug/deps/oracle-8b9d04fb23118e79)
+  Executable tests/physical_box.rs (target/cargo-build/debug/deps/physical_box-0bb9115753a7c177)
+  Executable tests/shifted_pentagon.rs (target/cargo-build/debug/deps/shifted_pentagon-aaf9744bf5da4b74)
+  Executable tests/triangle_gamma.rs (target/cargo-build/debug/deps/triangle_gamma-72e61435ea191597)

@@ -1,0 +1,136 @@
+--- a/crates/iregi-rust/src/stability.rs
++++ b/crates/iregi-rust/src/stability.rs
+@@ -1108,7 +1108,7 @@
+                 .entry(bits)
+                 .or_insert_with(|| dyadic(self.prototype, 1 + margin - i64::from(bits)))
+         };
+-        if !unit.is_finite() {
++        if !unit.is_finite() || *unit > self.prototype.one() {
+             return Err("operand roundoff unit is outside the supported numeric range");
+         }
+         let magnitude = value.norm();
+@@ -1121,11 +1121,6 @@
+             || magnitude.real_classify() == Some(FpCategory::Subnormal)
+             || estimate.real_classify() == Some(FpCategory::Subnormal)
+         {
+-            if *unit > self.prototype.one() {
+-                return Err(
+-                    "operand roundoff underflow fallback requires a unit no larger than one",
+-                );
+-            }
+             // The relative model does not cover gradual underflow. For
+             // epsilon <= 1, |x| is a deliberately loose upper estimate of
+             // epsilon*|x|. Keeping it positive prevents a false-safe zero;
+@@ -1825,13 +1820,7 @@
+             "{reason}"
+         );
+         assert_eq!(workspace.last_execution().requested_rows, 1);
+-        assert_eq!(
+-            workspace.last_execution().accepted_rows,
+-            1,
+-            "rescue statuses={:?}; final statuses={:?}",
+-            workspace.last_rescue_statuses(),
+-            result.statuses,
+-        );
++        assert_eq!(workspace.last_execution().accepted_rows, 1);
+         assert!(matches!(result.statuses[0], LaneStatus::Success));
+         let finite = result.lane(0).unwrap()[3];
+         let expected = -2.43837893544712293939249874984327534762e-3;
+@@ -2073,54 +2062,6 @@
+                 .complex(&Complex::new(Float::new(1), Float::new(1)))
+                 .unwrap()
+                 .is_zero()
+-        );
+-    }
+-
+-    #[test]
+-    fn tiny_low_relative_precision_terms_use_the_unchanged_absolute_budget() {
+-        let prototype = Float::new(256);
+-        let mut tiny = Float::with_val(256, 2).pow(200).inv();
+-        tiny.set_prec(1);
+-        let mut roundoff = OperandRoundoff::new(&prototype);
+-        let estimate = roundoff.complex(&complex(tiny.clone())).unwrap();
+-        assert!(!estimate.is_zero());
+-        assert!(estimate > tiny);
+-        // Symbolica can clamp a tiny cancellation residue to one significant
+-        // bit. Its relative estimate exceeds one, but its weighted absolute
+-        // estimate can still satisfy the requested dimensional target. The
+-        // precursor recurrence and positive-envelope checks remain active.
+-        let monitor = synthetic(0, false);
+-        let input = [complex(prototype.one())];
+-        assert!(
+-            monitor
+-                .inspect_lane_with_accuracy(
+-                    &[
+-                        complex(tiny.clone()),
+-                        complex(tiny),
+-                        complex(prototype.zero())
+-                    ],
+-                    &input,
+-                    1,
+-                    &prototype,
+-                    128,
+-                )
+-                .is_none()
+-        );
+-        let material = Float::with_val(1, 1);
+-        assert!(
+-            monitor
+-                .inspect_lane_with_accuracy(
+-                    &[
+-                        complex(material.clone()),
+-                        complex(material),
+-                        complex(prototype.zero())
+-                    ],
+-                    &input,
+-                    1,
+-                    &prototype,
+-                    128,
+-                )
+-                .is_some()
+         );
+     }
+ 
+--- a/crates/iregi-rust/tests/mixed_precision_accuracy.rs
++++ b/crates/iregi-rust/tests/mixed_precision_accuracy.rs
+@@ -198,13 +198,11 @@
+         })
+         .unwrap();
+     println!("rounded-zero bubble statuses={:?}", result.statuses);
+-    let expected = -(mass.at_precision(512) / Float::with_val(512, 4)).log();
+     if let Ok(value) = result.lane(0) {
+         println!(
+-            "rounded-zero bubble finite={} bits={} absolute_error={:e}",
++            "rounded-zero bubble finite={} bits={}",
+             value[3].re,
+-            value[3].re.get_precision(),
+-            (value[3].re.at_precision(512) - &expected).norm(),
++            value[3].re.get_precision()
+         );
+     }
+     assert!(
+@@ -214,6 +212,7 @@
+     );
+     assert_eq!(result.statuses[1], LaneStatus::Success);
+     assert_eq!(result.statuses[2], LaneStatus::Success);
++    let expected = -(mass.at_precision(512) / Float::with_val(512, 4)).log();
+     let error = (result.lane(1).unwrap()[3].re.at_precision(512) - expected).norm();
+     assert!(error < Float::with_val(512, 2).pow(235).inv());
+ }
+@@ -314,16 +313,6 @@
+             values,
+         })
+         .unwrap();
+-    if let (Ok(weak), Ok(strong)) = (result.lane(0), result.lane(1)) {
+-        println!(
+-            "original-scale second finite weak={} bits={} strong={} scaled_discrepancy={:e}",
+-            weak[11].re,
+-            weak[11].re.get_precision(),
+-            strong[11].re,
+-            (weak[11].re.at_precision(512) - strong[11].re.at_precision(512)).norm()
+-                / Float::with_val(512, 2),
+-        );
+-    }
+     assert!(
+         matches!(result.statuses[0], LaneStatus::Unstable(_)),
+         "{:?}",

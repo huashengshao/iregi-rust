@@ -1,0 +1,36 @@
+{
+  "variant": "current_default",
+  "stage": "core",
+  "filter": "stability::",
+  "command": [
+    "taskset",
+    "-c",
+    "0",
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-current-workspace/bin/iregi_rust-c5ff865b3918ff79",
+    "stability::",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "timeout_seconds": 180.0,
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 21.437904109014198,
+  "max_rss_kib": 605224,
+  "user_seconds": 19.554567,
+  "system_seconds": 1.549967,
+  "test_counts": {
+    "passed": 29,
+    "failed": 0,
+    "ignored": 0
+  },
+  "nonempty_test_selection": true,
+  "binary_sha256": "748aab531a8813094dd0c231c6761749e5a7793e6de70febb8bf666213a915fb",
+  "build_source_manifest": "source-before.json",
+  "cpu_affinity": [
+    0
+  ],
+  "runner_sha256": "b89d7ac964cec25e836c9ebda79bc8993d9bffddd38e2a54bb8afb8d78c0b20c",
+  "resource_accounting": "per-child os.wait4; excludes earlier shell children",
+  "diagnostic_only": true,
+  "performance_gate": "Not a controlled statistical benchmark; elapsed time and peak RSS are diagnostic observations."
+}

@@ -1,0 +1,55 @@
+error: couldn't read `target/generalized-pv/source-snapshot/crates/iregi-rust/src/../../../validation/pv-high-rank/lightlike-feynman-parameters.json`: No such file or directory (os error 2)
+    --> target/generalized-pv/source-snapshot/crates/iregi-rust/src/pv.rs:1591:62
+     |
+1591 |           let report: serde_json::Value = serde_json::from_str(include_str!(
+     |  ______________________________________________________________^
+1592 | |             "../../../validation/pv-high-rank/lightlike-feynman-parameters.json"
+1593 | |         ))
+     | |_________^
+     |
+help: there is a file with the same name in a different directory
+     |
+1592 |             "../../../../../../validation/pv-high-rank/lightlike-feynman-parameters.json"
+     |                       +++++++++
+
+error: couldn't read `target/generalized-pv/source-snapshot/crates/iregi-rust/src/../../../validation/pv-high-rank/lightlike-feynman-parameters.json`: No such file or directory (os error 2)
+    --> target/generalized-pv/source-snapshot/crates/iregi-rust/src/pv.rs:1661:62
+     |
+1661 |           let report: serde_json::Value = serde_json::from_str(include_str!(
+     |  ______________________________________________________________^
+1662 | |             "../../../validation/pv-high-rank/lightlike-feynman-parameters.json"
+1663 | |         ))
+     | |_________^
+     |
+help: there is a file with the same name in a different directory
+     |
+1662 |             "../../../../../../validation/pv-high-rank/lightlike-feynman-parameters.json"
+     |                       +++++++++
+
+error: couldn't read `target/generalized-pv/source-snapshot/crates/iregi-rust/src/../../../validation/reference/fixtures.json`: No such file or directory (os error 2)
+   --> target/generalized-pv/source-snapshot/crates/iregi-rust/src/rescue.rs:733:34
+    |
+733 |             serde_json::from_str(include_str!("../../../validation/reference/fixtures.json",))
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+help: there is a file with the same name in a different directory
+    |
+733 |             serde_json::from_str(include_str!("../../../../../../validation/reference/fixtures.json",))
+    |                                                         +++++++++
+
+error: couldn't read `target/generalized-pv/source-snapshot/crates/iregi-rust/src/../../../validation/reference/snapping/reductions.json`: No such file or directory (os error 2)
+   --> target/generalized-pv/source-snapshot/crates/iregi-rust/src/snapping.rs:400:64
+    |
+400 |           let fixtures: serde_json::Value = serde_json::from_str(include_str!(
+    |  ________________________________________________________________^
+401 | |             "../../../validation/reference/snapping/reductions.json"
+402 | |         ))
+    | |_________^
+    |
+help: there is a file with the same name in a different directory
+    |
+401 |             "../../../../../../validation/reference/snapping/reductions.json"
+    |                       +++++++++
+
+error: aborting due to 4 previous errors
+

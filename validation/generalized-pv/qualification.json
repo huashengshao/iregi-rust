@@ -1,0 +1,58 @@
+{
+  "status": "isolated_candidate_passed",
+  "base_commit": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176",
+  "implementation_files": [
+    "crates/iregi-rust/src/plan.rs",
+    "crates/iregi-rust/src/pv.rs"
+  ],
+  "scope": "Generalized canonical PV scalar coefficients for N<=4 with per-generated-request original eligibility; higher-point generalized requests remain explicitly IBP/E6.",
+  "dependencies": "Frozen coherent pre-default-master-strategy archives from base commit; these results do not qualify the pending master strategy change.",
+  "focused_tests": {
+    "passed": 9,
+    "failed": 0,
+    "seconds": 14.91,
+    "existing_generalized_fixture_mode_comparisons": 21
+  },
+  "new_original_reference_comparison": {
+    "passed": 36,
+    "failed": 0,
+    "complex_laurent_slots": 312,
+    "tolerance": 1e-10,
+    "maximum_dimensionally_normalized_error": 7.034186491019454e-12,
+    "worst_case": "n3_p123_h4_mode1",
+    "anchored_generalized_cases": 27,
+    "translated_direct_scalar_cases": 9
+  },
+  "additional_complex_reference_capture": {
+    "tensor_transport_unsupported": 6,
+    "stable_generalized_scalar_reference_results": 2,
+    "rust_comparison": "not yet performed"
+  },
+  "independent_source_review": "No further concrete defect after mixed-tadpole guard correction: alias ordering, master identity deduplication, independent Hybrid fallback and per-lane diagnostics reviewed.",
+  "remaining_targeted_validation": [
+    "supplied scalar-product input through generalized PV",
+    "TensorWeights::Multinomial through generalized PV",
+    "independent complex generalized scalar comparison",
+    "complex generalized tensor internal PV/IBP agreement (original wrapper real-only)",
+    "explicit generalized runtime Hybrid fallback witness"
+  ],
+  "coverage_limitations": [
+    "Canonical generalized PV is bounded to N<=4; N>=5 retains genuine IBP and shifted scalar masters with explicit notes.",
+    "No performance qualification in this experiment.",
+    "No production files changed by this experiment."
+  ],
+  "evidence": [
+    "runtime-focused-manifest.json",
+    "runtime-reference-manifest.json",
+    "reference-comparison.json",
+    "reference-capture.json",
+    "reference-capture-verification.json",
+    "reference-complex-capture.json",
+    "reference-complex-capture-verification.json",
+    "review-manifest.json",
+    "review.patch",
+    "reference-build-manifest.json",
+    "build-manifest.json",
+    "frozen-dependencies.json"
+  ]
+}

@@ -1,0 +1,253 @@
+{
+  "scope": "Standalone Rust build scripts; no Symbolica library or runtime",
+  "cases": [
+    {
+      "name": "test_empty_and_invalid_version_use_git_fallback",
+      "runs": [
+        {
+          "variant": "candidate",
+          "version": "symbolica-14fe861",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-14fe861\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-14fe861",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-14fe861\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-14fe861",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_empty_and_invalid_version_use_git_fallback/.git/refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-14fe861\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "name": "test_explicit_version_and_package_fallback_without_git",
+      "runs": [
+        {
+          "variant": "candidate",
+          "version": "symbolica-9cdc2949-iregi-scope-cache",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-9cdc2949-iregi-scope-cache\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-3.0.1",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-3.0.1\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "name": "test_explicit_version_ignores_embedding_commits",
+      "runs": [
+        {
+          "variant": "baseline",
+          "version": "symbolica-9cdc2949-iregi-scope-cache",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_explicit_version_ignores_embedding_commits/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_explicit_version_ignores_embedding_commits/.git/refs",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-9cdc2949-iregi-scope-cache\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_explicit_version_ignores_embedding_commits/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_explicit_version_ignores_embedding_commits/.git/refs\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-9cdc2949-iregi-scope-cache",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-9cdc2949-iregi-scope-cache\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-9cdc2949-iregi-scope-cache",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-9cdc2949-iregi-scope-cache\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        }
+      ],
+      "before_commit": "14fe861118e5e8a245a1600086788f828aa6feb1",
+      "after_commit": "66b9d314bd41bd3882f0fe41d2b89aa5872c3b8c"
+    },
+    {
+      "name": "test_missing_version_uses_changing_git_fallback",
+      "runs": [
+        {
+          "variant": "candidate",
+          "version": "symbolica-14fe861",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-14fe861\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "baseline",
+          "version": "symbolica-14fe861",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-14fe861\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-71e3d74",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-71e3d74\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-71e3d74",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/packed-refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/refs\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_missing_version_uses_changing_git_fallback/.git/packed-refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-71e3d74\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "name": "test_non_repository_uses_package_version",
+      "runs": [
+        {
+          "variant": "candidate",
+          "version": "symbolica-3.0.1",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-3.0.1\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        }
+      ]
+    },
+    {
+      "name": "test_version_file_change_is_observed",
+      "runs": [
+        {
+          "variant": "candidate",
+          "version": "symbolica-first",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-first\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-second",
+          "watches": [
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-second\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        },
+        {
+          "variant": "candidate",
+          "version": "symbolica-14fe861",
+          "watches": [
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_version_file_change_is_observed/.git/HEAD",
+            "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_version_file_change_is_observed/.git/refs",
+            "IREGI_UPSTREAM_VERSION",
+            "build.rs"
+          ],
+          "stdout": "cargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_version_file_change_is_observed/.git/HEAD\ncargo:rerun-if-changed=/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/test_version_file_change_is_observed/.git/refs\ncargo:rerun-if-changed=IREGI_UPSTREAM_VERSION\ncargo:rustc-env=SYMBOLICA_VERSION=symbolica-14fe861\ncargo:rerun-if-changed=build.rs\n",
+          "stderr": ""
+        }
+      ]
+    }
+  ],
+  "baseline": {
+    "source": "/shared/external/iregi/iregi-rust/validation/symbolica-build-metadata/baseline-build.rs",
+    "source_sha256": "b28c9ce48f266efb5e305e6c15f920a85c00cd54e6dba50b7de0be050c57c406",
+    "command": [
+      "rustc",
+      "--edition=2024",
+      "--crate-name",
+      "baseline_build",
+      "/shared/external/iregi/iregi-rust/validation/symbolica-build-metadata/baseline-build.rs",
+      "-o",
+      "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/baseline-build-script"
+    ],
+    "stdout": "",
+    "stderr": "",
+    "binary_sha256": "fd98ceac734803de88f799991e0844ee9ce72ade0b781f5eae85d19b8d2b03f7"
+  },
+  "candidate": {
+    "source": "/shared/external/iregi/iregi-rust/dependencies/symbolica/build.rs",
+    "source_sha256": "2cc8e7add392754cded51f882704f5e33c0d2ca9dd3b3cccff091325692109ce",
+    "command": [
+      "rustc",
+      "--edition=2024",
+      "--crate-name",
+      "candidate_build",
+      "/shared/external/iregi/iregi-rust/dependencies/symbolica/build.rs",
+      "-o",
+      "/shared/external/iregi/iregi-rust/target/symbolica-build-metadata-integrated-tests/candidate-build-script"
+    ],
+    "stdout": "",
+    "stderr": "",
+    "binary_sha256": "1f90ada91b91480b114bbd0b11611437dea28231166b4ae967c6fd40e193a7d1"
+  },
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
+  "status": "passed",
+  "tests_run": 6,
+  "failures": [],
+  "errors": []
+}

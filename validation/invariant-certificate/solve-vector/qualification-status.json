@@ -1,0 +1,419 @@
+{
+  "status": "reviewed minimal optimization promoted; combined integration and broader qualification pending",
+  "runs": {
+    "alias_ibp": {
+      "status": "passed",
+      "started_utc": "2026-10-23T14:21:33.360849+00:00",
+      "variant": "alias",
+      "kind": "core",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-tests",
+        "ibp::tests::",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256": "6aff6d626fc69befdc8fa4f976566a539fa7488d48f026d45cef3454ee1893ee",
+      "timeout_seconds": 60,
+      "topology": null,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_ibp.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 0.5153469900833443,
+      "code": 0,
+      "passed_tests": 24,
+      "log_sha256": "8eb55660fc396c1734b1fef31e517fd6fe2974b6871e225e10624ba5fe97a69c"
+    },
+    "vector_ibp": {
+      "status": "passed",
+      "started_utc": "2026-10-23T14:15:01.112890+00:00",
+      "variant": "vector",
+      "kind": "core",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-tests",
+        "ibp::tests::",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256": "6c30182624423bc4107d44a0952a5c1fabd4e6e791a184811b07c58b05f7d022",
+      "timeout_seconds": 60,
+      "topology": null,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_ibp.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 0.6287423679605126,
+      "code": 0,
+      "passed_tests": 26,
+      "log_sha256": "e1e3322d3378a74759a8a71f71f7d1859728b16238efafa3598cadd3c3388d32"
+    },
+    "alias_gamma_tensor": {
+      "status": "passed",
+      "started_utc": "2026-10-23T14:21:51.778223+00:00",
+      "variant": "alias",
+      "kind": "gamma",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-gamma-tests",
+        "every_triangle_tensor_coefficient_through_rank_seven_matches_gamma_formula",
+        "--nocapture",
+        "--test-threads=1",
+        "--exact"
+      ],
+      "binary_sha256": "7d83ca7de8bd5f66fee597f51971f7a419ede8e20a5c7de344fa45d9b5edde84",
+      "timeout_seconds": 60,
+      "topology": null,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_gamma_tensor.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 9.443662886042148,
+      "code": 0,
+      "passed_tests": 1,
+      "log_sha256": "17e6d8ba0ce1745fc3efcb2be00ba0b9fe85ba41e65764a5175bdde8e3d7a9e0"
+    },
+    "vector_gamma_tensor": {
+      "status": "passed",
+      "started_utc": "2026-10-23T14:22:40.552230+00:00",
+      "variant": "vector",
+      "kind": "gamma",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-gamma-tests",
+        "every_triangle_tensor_coefficient_through_rank_seven_matches_gamma_formula",
+        "--nocapture",
+        "--test-threads=1",
+        "--exact"
+      ],
+      "binary_sha256": "e963765124b1963ab79627c0fe5f306553347072c30d8e34589258c547cedbf8",
+      "timeout_seconds": 60,
+      "topology": null,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_gamma_tensor.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 9.448117370018736,
+      "code": 0,
+      "passed_tests": 1,
+      "log_sha256": "986fb525eb5fb50849cde17ab340dbf24cf0e48c15b45c020635bd298ac96595"
+    },
+    "alias_gamma_generalized": {
+      "status": "passed",
+      "started_utc": "2026-10-23T14:23:07.212216+00:00",
+      "variant": "alias",
+      "kind": "gamma",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-gamma-tests",
+        "generalized_triangle_powers_and_dimensions_match_gamma_formula",
+        "--nocapture",
+        "--test-threads=1",
+        "--exact"
+      ],
+      "binary_sha256": "7d83ca7de8bd5f66fee597f51971f7a419ede8e20a5c7de344fa45d9b5edde84",
+      "timeout_seconds": 60,
+      "topology": null,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_gamma_generalized.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 0.16459438402671367,
+      "code": 0,
+      "passed_tests": 1,
+      "log_sha256": "07b041e9164e59f5ca68b8bd1215e40793e226616379004c97ccf8d3f0c9210b"
+    },
+    "vector_gamma_generalized": {
+      "status": "passed",
+      "started_utc": "2026-10-23T14:23:20.273780+00:00",
+      "variant": "vector",
+      "kind": "gamma",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-gamma-tests",
+        "generalized_triangle_powers_and_dimensions_match_gamma_formula",
+        "--nocapture",
+        "--test-threads=1",
+        "--exact"
+      ],
+      "binary_sha256": "e963765124b1963ab79627c0fe5f306553347072c30d8e34589258c547cedbf8",
+      "timeout_seconds": 60,
+      "topology": null,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_gamma_generalized.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 0.16437986597884446,
+      "code": 0,
+      "passed_tests": 1,
+      "log_sha256": "c343ade424846efc48e1fc78f8e4b1b03612d162b1d1b8a4e5699d84c0d327a3"
+    },
+    "regular_unit_power_recurrences_match_full_inverse_for_all_shifts": {
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/regular-equivalence-tests",
+        "regular_unit_power_recurrences_match_full_inverse_for_all_shifts",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 60,
+      "binary_sha256": "1393635360d30ce17c6087e40d6d888bb2860b82afc577418a0a9e0f44dcc998",
+      "scope": "Exact old/full-inverse vs new/solve-vector algebraic equivalence, not a physical numerical oracle.",
+      "code": 0,
+      "status": "passed",
+      "log_sha256": "d1f2d63d35dda00ff1b893218766364497e2f38d2e48f406839322a8acfe7868",
+      "capture_seconds_including_binary_hash": 2.024224465014413,
+      "test_reported_seconds": 0.79
+    },
+    "regular_constrained_triangle_and_box_remain_original_master_leaves": {
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/regular-equivalence-tests",
+        "regular_constrained_triangle_and_box_remain_original_master_leaves",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 60,
+      "binary_sha256": "1393635360d30ce17c6087e40d6d888bb2860b82afc577418a0a9e0f44dcc998",
+      "scope": "Exact old/full-inverse vs new/solve-vector algebraic equivalence, not a physical numerical oracle.",
+      "code": 0,
+      "status": "passed",
+      "log_sha256": "9518ff0cd8b6b7f1f2acef83b5d2d9b990fd450b799681d489291a748608297b",
+      "capture_seconds_including_binary_hash": 0.48854152602143586,
+      "test_reported_seconds": 0.0
+    },
+    "vector_public_n6": {
+      "status": "failed",
+      "started_utc": "2026-10-23T14:28:11.173703+00:00",
+      "variant": "vector",
+      "kind": "core",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-tests",
+        "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+        "--nocapture",
+        "--test-threads=1",
+        "--exact"
+      ],
+      "binary_sha256": "6c30182624423bc4107d44a0952a5c1fabd4e6e791a184811b07c58b05f7d022",
+      "timeout_seconds": 180,
+      "topology": 6,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/vector_public_n6.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 49.71307748800609,
+      "code": 101,
+      "passed_tests": 0,
+      "log_sha256": "4a95c9477381e97313f601678f6d5e2ec9bb589875692a97fd6a430407d0cb2a"
+    },
+    "alias_public_n6": {
+      "status": "timeout",
+      "started_utc": "2026-10-23T14:30:40.391205+00:00",
+      "variant": "alias",
+      "kind": "core",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-tests",
+        "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+        "--nocapture",
+        "--test-threads=1",
+        "--exact"
+      ],
+      "binary_sha256": "6aff6d626fc69befdc8fa4f976566a539fa7488d48f026d45cef3454ee1893ee",
+      "timeout_seconds": 180,
+      "topology": 6,
+      "log": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/runs/alias_public_n6.log",
+      "scope": "Bounded diagnostic/correctness run; not a timing qualification.",
+      "elapsed_seconds": 180.11235468497034,
+      "code": 124,
+      "passed_tests": 0,
+      "log_sha256": "6c26e2831921938ff77dc41b0ffa16b26b2036276ab985682fcef625938f3089"
+    },
+    "alias_certified_status": {
+      "variant": "alias",
+      "kind": "status",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/alias-probe-tests",
+        "public_precision_probe::public_certified_n6_binary64_status_before_comparator",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256": "034d0c3ceaa08f5cfd33241b34d04cb692ab2fb61344c672013fece59e303869",
+      "timeout_seconds": 120,
+      "scope": "Binary64 status-only diagnostic; Float verifies independent oracle and convergence. No performance qualification.",
+      "code": 0,
+      "status": "passed",
+      "elapsed_seconds": 78.98543038999196,
+      "log_sha256": "4fab145afe054d1677141d5952b94c23029befc94baa31786c94cef3105cc835",
+      "events": [
+        {
+          "phase": "chart_prepared",
+          "seconds": 76.74203761
+        },
+        {
+          "accuracy_bits": 53,
+          "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+          "phase": "certified_result",
+          "seconds": 78.892883488,
+          "statuses": "[Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\"), InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")]",
+          "working_bits": 53
+        },
+        {
+          "guard_rejection": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")",
+          "lane": 0
+        },
+        {
+          "guard_rejection": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_14, Taylor component 0; this estimate is not a certified error bound\")",
+          "lane": 2
+        }
+      ]
+    },
+    "vector_certified_float": {
+      "variant": "vector",
+      "kind": "float",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/vector-probe-tests",
+        "public_precision_probe::public_certified_n6_float_converges_and_matches_parameter_integral",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256": "759ffd35213296d6e5317ba6b08e04c2b95d25e8fad587f3eafbf9ab77e65da5",
+      "timeout_seconds": 180,
+      "scope": "Binary64 status-only diagnostic; Float verifies independent oracle and convergence. No performance qualification.",
+      "oracle": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+      "oracle_sha256": "a821a4b523245bc4c7d3c01de486cc9197b6f8d4444a2eb3069b626dc0ff17c4",
+      "working_bits": [
+        128,
+        256
+      ],
+      "requested_accuracy_bits": 53,
+      "code": 0,
+      "status": "passed",
+      "elapsed_seconds": 19.536551308003254,
+      "log_sha256": "11b12f87dad4d086cacb79b245481020ab8db8720c13205bcc79203270ffc38a",
+      "events": [
+        {
+          "phase": "chart_prepared",
+          "seconds": 16.718302213
+        },
+        {
+          "accuracy_bits": 53,
+          "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+          "phase": "certified_result",
+          "seconds": 19.037347535,
+          "statuses": "[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]",
+          "working_bits": 128
+        },
+        {
+          "values": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ],
+            [
+              "4.2986076669270135250890508385340e-8",
+              "1.8e-38"
+            ]
+          ],
+          "working_bits": 128
+        },
+        {
+          "independent_oracle_difference": "1.5250890508385339912784657660838834136239310725979435134529944e-23",
+          "oracle_path": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+          "oracle_uncertainty_kind": "estimated, not certified",
+          "working_bits": 128
+        },
+        {
+          "accuracy_bits": 53,
+          "diagnostics": "[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]",
+          "phase": "certified_result",
+          "seconds": 19.427661002,
+          "statuses": "[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]",
+          "working_bits": 256
+        },
+        {
+          "values": [
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0"
+            ],
+            [
+              "4.2986076669270135250890508385335492354527879747290809724950896812967315e-8",
+              "5.2e-77"
+            ]
+          ],
+          "working_bits": 256
+        },
+        {
+          "independent_oracle_difference": "1.5250890508385335492354527879747290809724950896812967315488377e-23",
+          "oracle_path": "/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json",
+          "oracle_uncertainty_kind": "estimated, not certified",
+          "working_bits": 256
+        },
+        {
+          "normalized_128_256_difference": "0",
+          "slot": 0
+        },
+        {
+          "normalized_128_256_difference": "0",
+          "slot": 1
+        },
+        {
+          "normalized_128_256_difference": "0",
+          "slot": 2
+        },
+        {
+          "normalized_128_256_difference": "3.30930511165431783718881296037556292348e-32",
+          "slot": 3
+        }
+      ]
+    }
+  },
+  "public_n6_phase_records": [
+    "test certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures ... certified scalar n=6 phase=chart_prepare_begin elapsed=38.64\u00b5s",
+    "certified scalar n=6 phase=chart_prepare_end elapsed=17.181411328s",
+    "certified scalar n=6 phase=certificate_prepare_begin elapsed=17.181522769s",
+    "certified scalar n=6 phase=certificate_prepare_end elapsed=17.225637939s",
+    "certified scalar n=6 phase=certified_reduce_begin elapsed=17.226006641s",
+    "certified scalar n=6 phase=certified_reduce_end elapsed=19.160637745s",
+    "certified scalar n=6 phase=coordinate_plan_prepare_begin elapsed=19.160750336s",
+    "certified scalar n=6 phase=coordinate_plan_prepare_end elapsed=37.764710635s",
+    "certified scalar n=6 phase=coordinate_workspace_prepare_begin elapsed=37.764812246s",
+    "certified scalar n=6 phase=coordinate_workspace_prepare_end elapsed=39.70402185s",
+    "certified scalar n=6 phase=coordinate_reduce_begin elapsed=39.704185911s",
+    "certified scalar n=6 phase=coordinate_reduce_end elapsed=49.572678968s"
+  ],
+  "conclusions": [
+    "Both retained IBP suites pass; vector adds two lazy-geometry regression tests.",
+    "Both variants pass400 independent Gamma tensor identities and80 generalized identities; these primarily cover singular-R triangle recurrence and regular bubble descendants.",
+    "Exact side-by-side regular-R comparison passes44 successful requests in all4 Laurent slots plus4 matching unsupported errors, N1..5,h=-3..4, E6enabled/disabled.",
+    "Regular constrained triangle/box profiles preserve original complete C0/D0 leaves.",
+    "Public vector N6 evaluation reports Unstable due to estimated cancellation; no value-agreement assertion was reached. This does not by itself prove numerical error.",
+    "Matched baseline publicN6 timed out180s during coordinate-reference reduction after chart77.568s/certified reduction79.718s. The test prints no certified valid-lane status before that comparator, so guard parity remains unresolved.",
+    "Certified-only baseline binary64 probe rejects both valid lanes at the identical ibp_0_node_14 guard as the candidate, establishing unchanged guard behavior without claiming a binary64 numerical error.",
+    "Candidate public certified N6 Float128/256 at fixed requested accuracy53 accepts both valid lanes and rejects the incompatible Gram lane. All poles are exactly zero; all four Laurent slots converge with normalized finite difference3.30930511165431783718881296037556292348e-32.",
+    "Candidate Float256 finite4.2986076669270135250890508385335492354527879747290809724950896812967315e-8 differs from the independent direct-simplex estimate by1.5250890508385335492354527879747290809724950896812967315488377e-23, below its conservative estimated6.11e-22 uncertainty; the latter is not certified."
+  ],
+  "pending": [
+    "Combined current-production integration after promotion",
+    "Bounded public N7 comparison",
+    "Valid mixed-Dual/incompatible-Taylor integration",
+    "Controlled performance qualification"
+  ],
+  "performance_scope": "All recorded phase/test timings are diagnostics; no repeated pinned-core benchmark or uncertainty qualification.",
+  "baseline_n6_phase_records": [
+    "test certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures ... certified scalar n=6 phase=chart_prepare_begin elapsed=19.74\u00b5s",
+    "certified scalar n=6 phase=chart_prepare_end elapsed=77.568005197s",
+    "certified scalar n=6 phase=certificate_prepare_begin elapsed=77.568109517s",
+    "certified scalar n=6 phase=certificate_prepare_end elapsed=77.622114806s",
+    "certified scalar n=6 phase=certified_reduce_begin elapsed=77.622241967s",
+    "certified scalar n=6 phase=certified_reduce_end elapsed=79.718440579s",
+    "certified scalar n=6 phase=coordinate_plan_prepare_begin elapsed=79.718993391s",
+    "certified scalar n=6 phase=coordinate_plan_prepare_end elapsed=158.401213198s",
+    "certified scalar n=6 phase=coordinate_workspace_prepare_begin elapsed=158.401311959s",
+    "certified scalar n=6 phase=coordinate_workspace_prepare_end elapsed=160.113051072s",
+    "certified scalar n=6 phase=coordinate_reduce_begin elapsed=160.113501514s"
+  ],
+  "independent_review": {
+    "reviewer": "/root/pv_reduction/sixpoint_simplex_audit",
+    "outcome": "No blocking defect; unique-solve, cache upgrade, exceptional and guard semantics preserved; reporting caveats retained."
+  }
+}

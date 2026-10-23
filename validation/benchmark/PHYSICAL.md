@@ -132,6 +132,8 @@ Python boundary qualification is recorded in `harness-qualification/`. It checks
 large-input pipe backpressure within the request timeout, persistent responses,
 interrupted configuration accounting and strict three-slot MadLoop references.
 Those tests do not execute Rust, Fortran or Symbolica and do not qualify physical
-timings. A subsequent bounded ggH smoke should exercise singleton and odd-sized
-batches, all seven stages and a separate profiling pass, retaining every tensor
-and graph comparison; short smoke durations cannot establish performance parity.
+timings. The subsequent bounded ggH smoke in `physical-smoke/` completed
+singleton and batch-three inputs, all seven stages and a separate profiling
+pass. Every tensor and graph comparison passed. Its identified debug executable,
+short intervals and changing live source snapshot remain explicitly unqualified
+for performance; these results cannot establish performance parity.

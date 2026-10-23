@@ -1,0 +1,97 @@
+{
+  "status": "all five supplemental behaviors qualified across four passing first-run tests and the targeted precise fallback retry",
+  "source_scope": "Promoted generalized PV plus promoted IBP solve-vector, compiled together; frozen compatible prior-default master archives; native Cargo integration pending.",
+  "historical_first_run": {
+    "exit_status": 101,
+    "passed": 4,
+    "failed": 1,
+    "seconds": 8.52,
+    "manifest": "combined-runtime-manifest.json",
+    "failed_source": "supplemental-binary64-failed-source.rs",
+    "failed_source_sha256": "fc3bfeecba842cdf32619119ae57b814fa485386d2061fe732ca56674d2e396a"
+  },
+  "passing_checks": [
+    {
+      "name": "authoritative supplied-G and scalar-only interfaces",
+      "families": 3,
+      "modes": 3,
+      "interfaces": 2,
+      "sample_lanes_each": 2,
+      "complex_reference_slots": 144,
+      "policy": "f64 output; tensor workspace explicitly permits default precision rescue; scalar wrapper uses f64 directly"
+    },
+    {
+      "name": "Multinomial nonzero mixed moment against original tensor arrays",
+      "original_modes": 3,
+      "complex_reference_slots": 180,
+      "policy": "f64 output with explicit default precision rescue permitted"
+    },
+    {
+      "name": "complex generalized scalar original oracle",
+      "families": 2,
+      "rust_modes": 3,
+      "complex_reference_slots": 24,
+      "policy": "f64 output with explicit default precision rescue permitted"
+    },
+    {
+      "name": "complex generalized tensor internal PV/IBP batch agreement",
+      "pv_modes": 2,
+      "sample_lanes": 3,
+      "complex_comparisons": 360,
+      "policy": "binary64 workspaces; full output shapes and argument/reduction/master batch counters asserted; original complex generalized tensor wrapper unavailable"
+    }
+  ],
+  "failed_check": {
+    "name": "generalized Hybrid singular-Gram lane isolation",
+    "reason": "The intended regular binary64 neighbor triggered the existing conservative finite-cancellation diagnostic; both lanes retried and retained Unstable, while the test expected only the singular lane to retry.",
+    "observed_fallback_flags": [
+      true,
+      true
+    ],
+    "observed_fallback_rows": 2,
+    "observed_fallback_successes": 0,
+    "source_correction": "Only fixture working precision is increased to128/256; the requested accuracy remains53 bits, and the singular lane must remain Unstable. No numerical implementation or guard changes.",
+    "retry_status": "passed at both128/256 working bits with53-bit accuracy request; singular failure remains visible"
+  },
+  "unchanged_tolerance": 1e-10,
+  "performance_qualification": false,
+  "passed_behaviors": 5,
+  "precise_retry": {
+    "exit_status": 0,
+    "passed": 1,
+    "failed": 0,
+    "seconds": 1.82,
+    "working_precision_bits": [
+      128,
+      256
+    ],
+    "accuracy_precision_bits": 53,
+    "primary_statuses": [
+      "Success",
+      "Unstable"
+    ],
+    "hybrid_statuses": [
+      "Success",
+      "Unstable"
+    ],
+    "fallback_flags": [
+      false,
+      true
+    ],
+    "fallback_rows": 1,
+    "fallback_successes": 0,
+    "healthy_lane_unchanged": true,
+    "singular_lane_combined_failure_preserved": true,
+    "manifest": "combined-precise-runtime-manifest.json",
+    "source_diff": "supplemental-precision-fixture.patch"
+  },
+  "historical_binary64_failure_preserved": true,
+  "native_cargo_integration": "pending source freeze; direct compatible archived-dependency builds do not qualify adopted master strategy or newly rebuilt vendor metadata",
+  "evidence_hashes": {
+    "validation/generalized-pv/combined-runtime-manifest.json": "67ee2b025eb9abc092702a7dab0f65750642b5ecbccfe96c466a75ffc65d4ec1",
+    "validation/generalized-pv/combined-precise-runtime-manifest.json": "ef1246cef5e3367de12b6473b18e17831a9fafbe13b4f239f56ff3640888d361",
+    "validation/generalized-pv/combined-build-manifest.json": "bbe07429a80529a490dd7b8a992a511695b45fff72692ab272f1c9a0cc196f49",
+    "validation/generalized-pv/combined-precise-build-manifest.json": "7309d5d33db826d724ecaeceb8e1500f801f980fd0b61ffe301a9f20da1ab672",
+    "validation/generalized-pv/supplemental-precision-fixture.patch": "7c7d480d7096003d8a17cf898260a39a69e78f3e936e34819528a5a4b467b4b1"
+  }
+}

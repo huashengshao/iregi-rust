@@ -1,0 +1,326 @@
+{
+  "status": "estimated_converged",
+  "input": {
+    "purpose": "Independent scalar simplex oracle for the certified supplied-Gram public N6 fixture",
+    "source": "target/certified-scalar-matched/vector-source/crates/iregi-rust/src/certified_scalar.rs",
+    "shifts": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        1
+      ]
+    ],
+    "mass_squared": [
+      30,
+      31,
+      32,
+      33,
+      34,
+      35
+    ],
+    "mu": 3,
+    "mu_squared": 9,
+    "scale_note": "The public fixture passes mu=3, which its master adapter squares. This convergent scalar finite coefficient is independent of mu; the requested mu_squared=3 gives the same finite result.",
+    "powers": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "dimension_shift": 0,
+    "rank": 0,
+    "metric": "+---",
+    "normalization_scale_squared": 35,
+    "normalization_factor": 1500625,
+    "native_laurent_order": [
+      "UV single",
+      "IR single",
+      "IR double",
+      "finite"
+    ]
+  },
+  "provenance": {
+    "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+    "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+    "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+    "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+    "numpy_version": "2.5.4",
+    "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+    "scipy_version": "1.17.1",
+    "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+  },
+  "integrand_oneloop": "6/F^4",
+  "f_definition": "sum(x_i*m_i^2)-sum(x_i*p_i^2)+(sum(x_i*p_i))^2",
+  "pole_argument": "UV degree 4-12=-8; F>=30-Var(pt)>=29.75 excludes infrared singularities. All three pole slots are exactly zero.",
+  "native_conversion": "Native finite = i*pi^2*OneLoop finite; no pole-dependent conversion terms survive.",
+  "uncertainty_kind": "Successive library rules and independent mappings, optionally embedded cubature error; not an interval-certified bound.",
+  "runs": [
+    {
+      "provenance": {
+        "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+        "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+        "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "numpy_version": "2.5.4",
+        "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+        "scipy_version": "1.17.1",
+        "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+      },
+      "mapping": 0,
+      "ordering": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "started_unix": 1792766233.8249085,
+      "method": "scipy.special.roots_jacobi:tensor-product",
+      "order": 8,
+      "library_status": "fixed_rule_evaluated",
+      "estimated_absolute_error": null,
+      "simplex_volume_from_rule": 0.008333333333333333,
+      "run_id": "jacobi8-map0",
+      "oneloop_finite": 4.298607666927015e-08,
+      "native_finite_imaginary": 4.2425557148059325e-07,
+      "normalized_oneloop_finite": 0.06450598130182351,
+      "points_evaluated": 32768,
+      "minimum_observed_f": 30.05129837885396,
+      "maximum_observed_f": 34.8891626994646,
+      "validation_wall_seconds": 0.08764491498004645
+    },
+    {
+      "provenance": {
+        "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+        "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+        "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "numpy_version": "2.5.4",
+        "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+        "scipy_version": "1.17.1",
+        "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+      },
+      "mapping": 1,
+      "ordering": [
+        5,
+        3,
+        1,
+        4,
+        2,
+        0
+      ],
+      "started_unix": 1792766252.2443898,
+      "method": "scipy.special.roots_jacobi:tensor-product",
+      "order": 8,
+      "library_status": "fixed_rule_evaluated",
+      "estimated_absolute_error": null,
+      "simplex_volume_from_rule": 0.008333333333333333,
+      "run_id": "jacobi8-map1",
+      "oneloop_finite": 4.298607666927014e-08,
+      "native_finite_imaginary": 4.2425557148059314e-07,
+      "normalized_oneloop_finite": 0.06450598130182351,
+      "points_evaluated": 32768,
+      "minimum_observed_f": 30.29043315171796,
+      "maximum_observed_f": 34.970324668056925,
+      "validation_wall_seconds": 0.04349268600344658
+    },
+    {
+      "provenance": {
+        "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+        "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+        "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "numpy_version": "2.5.4",
+        "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+        "scipy_version": "1.17.1",
+        "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+      },
+      "mapping": 0,
+      "ordering": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "started_unix": 1792766254.0190809,
+      "method": "scipy.special.roots_jacobi:tensor-product",
+      "order": 12,
+      "library_status": "fixed_rule_evaluated",
+      "estimated_absolute_error": null,
+      "simplex_volume_from_rule": 0.00833333333333333,
+      "run_id": "jacobi12-map0",
+      "oneloop_finite": 4.2986076669270116e-08,
+      "native_finite_imaginary": 4.2425557148059293e-07,
+      "normalized_oneloop_finite": 0.06450598130182347,
+      "points_evaluated": 248832,
+      "minimum_observed_f": 30.014533739535622,
+      "maximum_observed_f": 34.945737565015285,
+      "validation_wall_seconds": 0.07299235800746828
+    },
+    {
+      "provenance": {
+        "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+        "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+        "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "numpy_version": "2.5.4",
+        "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+        "scipy_version": "1.17.1",
+        "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+      },
+      "mapping": 1,
+      "ordering": [
+        5,
+        3,
+        1,
+        4,
+        2,
+        0
+      ],
+      "started_unix": 1792766255.8604865,
+      "method": "scipy.special.roots_jacobi:tensor-product",
+      "order": 12,
+      "library_status": "fixed_rule_evaluated",
+      "estimated_absolute_error": null,
+      "simplex_volume_from_rule": 0.00833333333333333,
+      "run_id": "jacobi12-map1",
+      "oneloop_finite": 4.2986076669270136e-08,
+      "native_finite_imaginary": 4.242555714805931e-07,
+      "normalized_oneloop_finite": 0.0645059813018235,
+      "points_evaluated": 248832,
+      "minimum_observed_f": 30.146346954843764,
+      "maximum_observed_f": 34.991743588013875,
+      "validation_wall_seconds": 0.07169392402283847
+    },
+    {
+      "provenance": {
+        "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+        "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+        "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "numpy_version": "2.5.4",
+        "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+        "scipy_version": "1.17.1",
+        "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+      },
+      "mapping": 0,
+      "ordering": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "started_unix": 1792766257.6939588,
+      "method": "scipy.special.roots_jacobi:tensor-product",
+      "order": 16,
+      "library_status": "fixed_rule_evaluated",
+      "estimated_absolute_error": null,
+      "simplex_volume_from_rule": 0.008333333333333331,
+      "run_id": "jacobi16-map0",
+      "oneloop_finite": 4.2986076669270156e-08,
+      "native_finite_imaginary": 4.242555714805933e-07,
+      "normalized_oneloop_finite": 0.06450598130182353,
+      "points_evaluated": 1048576,
+      "minimum_observed_f": 30.005542324818563,
+      "maximum_observed_f": 34.9677534814709,
+      "validation_wall_seconds": 0.17025867803022265
+    },
+    {
+      "provenance": {
+        "input_sha256": "22d24893bc6024045837345e665db061d65f116917fdfe65c6639ed9a4638997",
+        "script_sha256": "89d05fea8fcf829b0888193e60c6843f3c1b579ff38b893c919c85345eec8189",
+        "fixture_source_sha256": "31f31d6d68eed43f57e1d86122da6133d0a986253f7c753ff32d678d10f27549",
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "numpy_version": "2.5.4",
+        "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+        "scipy_version": "1.17.1",
+        "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py"
+      },
+      "mapping": 1,
+      "ordering": [
+        5,
+        3,
+        1,
+        4,
+        2,
+        0
+      ],
+      "started_unix": 1792766259.6335003,
+      "method": "scipy.special.roots_jacobi:tensor-product",
+      "order": 16,
+      "library_status": "fixed_rule_evaluated",
+      "estimated_absolute_error": null,
+      "simplex_volume_from_rule": 0.008333333333333331,
+      "run_id": "jacobi16-map1",
+      "oneloop_finite": 4.298607666927012e-08,
+      "native_finite_imaginary": 4.24255571480593e-07,
+      "normalized_oneloop_finite": 0.06450598130182347,
+      "points_evaluated": 1048576,
+      "minimum_observed_f": 30.0877676996847,
+      "maximum_observed_f": 34.99688001551496,
+      "validation_wall_seconds": 0.15847319294698536
+    }
+  ],
+  "excluded_stale_run_ids": [],
+  "comparison": {
+    "oneloop_finite": 4.298607666927012e-08,
+    "native_finite_imaginary": 4.24255571480593e-07,
+    "all_order_values": [
+      4.298607666927015e-08,
+      4.298607666927014e-08,
+      4.2986076669270116e-08,
+      4.2986076669270136e-08,
+      4.2986076669270156e-08,
+      4.298607666927012e-08
+    ],
+    "tight_order_and_mapping_differences": [
+      3.970466940254533e-23,
+      1.3234889800848443e-23,
+      3.3087224502121107e-23
+    ],
+    "estimated_uncertainty_oneloop": 6.108688903235322e-22,
+    "estimated_uncertainty_normalized_oneloop": 9.166851285417504e-16,
+    "normalized_oneloop_finite": 0.06450598130182347,
+    "absolute_error_target_oneloop": 1e-19,
+    "cubature_crosscheck_run_ids": [],
+    "all_cubature_runs_report_converged": null
+  }
+}

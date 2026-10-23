@@ -1,5 +1,5 @@
 {
-  "status": "Vendored219-file tree reproduces byte-for-byte; current workspace test targets compile; four internal scope regressions and saved-core fullrank7 rescue pass. Current-tree numerical-change runtime evidence remains separate.",
+  "status": "Three-patch vendored219-file tree reproduces byte-for-byte. Metadata patch3 passes six standalone build-script tests. Earlier full-workspace and Symbolica/core runtime qualification predates this metadata-only update; all216 non-build-script retained source files are unchanged.",
   "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
   "patches": [
     {
@@ -9,14 +9,18 @@
     {
       "path": "0002-identify-vendored-source-version.patch",
       "sha256": "7a2942f2186ab1ed25ef7e54cbd72cca710cf4228029705123ebe93b3b42da72"
+    },
+    {
+      "path": "0003-limit-git-watches-to-version-fallback.patch",
+      "sha256": "81d2b29c1789541b5e2aca7ebb0749b1e1818c94ea309876f12389fc33d7057d"
     }
   ],
   "retained_upstream_or_patched_files": 217,
-  "retained_upstream_or_patched_bytes": 9585843,
+  "retained_upstream_or_patched_bytes": 9585965,
   "total_files_with_local_documentation": 219,
   "inventory": "dependencies/symbolica/IREGI_PROVENANCE.json",
-  "inventory_sha256": "0cfefbda257d0b899f1b8bf86e192e395ab2c0c3d253771b447fc3dd0ae81b4f",
-  "reproduction_command": "python3 scripts/prepare-symbolica-patch.py --vendor --output target/symbolica-vendor-final",
+  "inventory_sha256": "518955ddf778ced014ffa507e9654395138a4e86a5ae120c5a76be5ac46fa2b7",
+  "reproduction_command": "python3 scripts/prepare-symbolica-patch.py --vendor --output target/symbolica-build-metadata-reproduced",
   "reproduction_result": "All 219 files, including local provenance and README, are byte-identical.",
   "manifest_command": "cargo metadata --manifest-path dependencies/symbolica/Cargo.toml --offline --no-deps --format-version 1",
   "manifest_packages": [
@@ -26,7 +30,7 @@
   ],
   "manifest_targets": 54,
   "manifest_result": "All 54 target source paths exist; no retained Rust source uses include_str! or include_bytes! to load an omitted asset.",
-  "metadata_script_compile": "rustc --edition=2024 dependencies/symbolica/build.rs -o target/symbolica-vendor-build-script",
+  "metadata_script_compile": "python3 validation/symbolica-build-metadata/check.py --baseline validation/symbolica-build-metadata/baseline-build.rs --candidate dependencies/symbolica/build.rs --output target/symbolica-build-metadata-integrated-tests",
   "metadata_script_compile_exit_code": 0,
   "license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
   "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
@@ -36,7 +40,51 @@
   "limits": [
     "The complete source/inventory reproduction was rerun after documentation status updates.",
     "Saved-core runtime and current-tree integration qualification are separated in the production artifact.",
-    "Fixture-driven optional upstream benchmarks require omitted assets restored from the pinned revision."
+    "Fixture-driven optional upstream benchmarks require omitted assets restored from the pinned revision.",
+    "No heavy Cargo rebuild or Symbolica runtime was rerun for patch3; only metadata directives changed, with numerical/license source hashes preserved."
   ],
-  "production_qualification": "validation/symbolica-production-qualification.json"
+  "production_qualification": "validation/symbolica-production-qualification.json",
+  "metadata_watch_qualification": "validation/symbolica-build-metadata/integration.json",
+  "before_metadata_watch_patch": {
+    "status": "Vendored219-file tree reproduces byte-for-byte; current workspace test targets compile; four internal scope regressions and saved-core fullrank7 rescue pass. Current-tree numerical-change runtime evidence remains separate.",
+    "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+    "patches": [
+      {
+        "path": "0001-journal-conditional-cache.patch",
+        "sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328"
+      },
+      {
+        "path": "0002-identify-vendored-source-version.patch",
+        "sha256": "7a2942f2186ab1ed25ef7e54cbd72cca710cf4228029705123ebe93b3b42da72"
+      }
+    ],
+    "retained_upstream_or_patched_files": 217,
+    "retained_upstream_or_patched_bytes": 9585843,
+    "total_files_with_local_documentation": 219,
+    "inventory": "dependencies/symbolica/IREGI_PROVENANCE.json",
+    "inventory_sha256": "0cfefbda257d0b899f1b8bf86e192e395ab2c0c3d253771b447fc3dd0ae81b4f",
+    "reproduction_command": "python3 scripts/prepare-symbolica-patch.py --vendor --output target/symbolica-vendor-final",
+    "reproduction_result": "All 219 files, including local provenance and README, are byte-identical.",
+    "manifest_command": "cargo metadata --manifest-path dependencies/symbolica/Cargo.toml --offline --no-deps --format-version 1",
+    "manifest_packages": [
+      "numerica",
+      "graphica",
+      "symbolica"
+    ],
+    "manifest_targets": 54,
+    "manifest_result": "All 54 target source paths exist; no retained Rust source uses include_str! or include_bytes! to load an omitted asset.",
+    "metadata_script_compile": "rustc --edition=2024 dependencies/symbolica/build.rs -o target/symbolica-vendor-build-script",
+    "metadata_script_compile_exit_code": 0,
+    "license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
+    "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
+    "license_result": "Both files byte-identical to pinned upstream source.",
+    "scope_evidence": "validation/symbolica-scoped-cache.json",
+    "rank7_evidence": "validation/rescue-pentagon-rank7.json",
+    "limits": [
+      "The complete source/inventory reproduction was rerun after documentation status updates.",
+      "Saved-core runtime and current-tree integration qualification are separated in the production artifact.",
+      "Fixture-driven optional upstream benchmarks require omitted assets restored from the pinned revision."
+    ],
+    "production_qualification": "validation/symbolica-production-qualification.json"
+  }
 }

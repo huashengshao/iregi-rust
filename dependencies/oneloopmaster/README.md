@@ -213,6 +213,15 @@ string `3.0.1` alone does not identify these unreleased fixes. The constructor/D
 must use this integration or a tested successor containing those changes. See the [combined conditional-cache/C0 validation](patches/conditional-cache-c0-pin-validation.md) for the current checks and the
 [shared-helper integration validation](patches/shared-helper-stack-pin-validation.md) for the preceding checkpoint.
 
+Embedding applications can opt into
+`OneLoopExpressions::evaluator_with_stack_reuse` for ordinary expression roots.
+It applies Symbolica's existing temporary allocator once to the freshly compiled
+root without changing instruction order. Shared helper bodies and Dualizer
+already have their own allocation and are left unchanged. The IREGI workspace
+uses this entry point for its ordinary master factory; the upstream `evaluator`
+method and generated native kernels retain their existing behavior. See
+[the integration patch record](PATCHES.md) for qualification and scope.
+
 An embedding workspace controls its own `[patch.crates-io]` table: patches in a
 dependency's manifest do not propagate to the workspace root. Select compatible
 Symbolica, Numerica and Graphica sources together to retain one shared kernel.

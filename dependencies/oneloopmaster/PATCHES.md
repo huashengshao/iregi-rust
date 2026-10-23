@@ -114,8 +114,19 @@ The complete six-output IREGI scalar factory also passed the paired C0/D0
 probe: 40 configurations and 1,440 complex outputs per family, including
 massless and scaleless controls. The actual factory root uses 220 to 8
 slots for C0 and 25,010 to 25 for D0; shared helpers are unchanged. This
-candidate changes only the ordinary factory call in an isolated source
-snapshot. The default remains unchanged. Exact source, binary and dependency
+candidate changed only the ordinary factory call in an isolated source
+snapshot. After independent review and paired core/master/DD-E6 checks, the
+IREGI ordinary factory adopted this call; current-source workspace validation
+is tracked separately in `adoption.json`. Exact source, binary and dependency
 hashes, inputs, instruction provenance and parity records are in
 `../../validation/stack-reuse/production-factory/qualification.json`.
-Core/E6 qualification and compiled-native parity remain separate checks.
+Paired core execution (30 tests per variant), focused scalar integration
+(three per variant), and the three-lane DD E6 fixture passed. All 12 complex
+E6 Laurent values, precision metadata and lane statuses matched exactly.
+The observed peak RSS was 2,052,724 KiB before allocation and 558,752 KiB after;
+these single runs used per-child resource accounting, with other builds
+active. They are diagnostic observations, not a controlled timing gate.
+The frozen pair predates the latest low-relative-precision guard correction,
+so current-source Float/stability checks remain required. Generated native
+kernels and Dual preparation are unchanged; native regeneration and parity
+remain separate qualification steps.

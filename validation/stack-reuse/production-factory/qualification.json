@@ -133,15 +133,15 @@
     }
   ],
   "factory_probe_sha256": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c",
-  "candidate_source_change": "Only ordinary exact_scalar_master_evaluator calls evaluator_with_stack_reuse; Dual and production files unchanged",
+  "candidate_source_change": "Qualification used isolated snapshot changing only ordinary exact_scalar_master_evaluator to evaluator_with_stack_reuse; Dual unchanged. Subsequently the same single callsite was adopted pending current-source validation; see adoption.json.",
   "snapshot_manifest": "manifest.json",
   "native_status": "paired modules exported but not compiled or timed",
-  "core_and_e6_status": "all paired binaries compiled, runtime qualification pending",
+  "core_and_e6_status": "paired30execution+5bubble+3scalarintegration pervariant and DD E6 exact parity passed; see integration-qualification.json",
   "performance_status": "unmeasured; storage-slot counts do not establish runtime improvement",
   "remaining_pitfalls": [
     "Stack allocation is valid exactly once on fresh SSA root; do not reapply to loaded/allocated graphs or Dualized graphs",
     "Existing native-batch kernels bypass this interpreter constructor and require separate regeneration and parity/timing",
-    "Focused core/master/E6 runtime qualification is in progress; compiled-native parity remains pending",
+    "Paired focused core/master/DD-E6 qualification passed; current-source focused guard acceptance passed; compiled-native parity remains pending",
     "Pointwise parity preserves baseline behavior; this storage-only experiment does not broaden master mathematical coverage"
   ],
   "paired_core_guard_scope": {
@@ -153,5 +153,7 @@
       "stability/quadrature.rs",
       "stability/arguments.rs"
     ]
-  }
+  },
+  "production_status": "ordinary_factory_adopted_full_workspace_build_and_current_focused68tests_passed",
+  "current_runtime_acceptance": "current-workspace-build/acceptance/summary.json"
 }

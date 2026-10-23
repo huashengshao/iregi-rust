@@ -1,0 +1,36 @@
+{
+  "revision": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176",
+  "status": "compiled_not_run",
+  "command": [
+    "rustc",
+    "--test",
+    "--crate-name",
+    "concurrent_workspaces",
+    "--edition=2024",
+    "crates/iregi-rust/tests/concurrent_workspaces.rs",
+    "-L",
+    "dependency=target/cargo-build/debug/deps",
+    "-L",
+    "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "iregi_rust=target/cargo-build/debug/deps/libiregi_rust-b0667c2d807d11b6.rlib",
+    "--extern",
+    "iregi_masters=target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib",
+    "--extern",
+    "symbolica=target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+    "-o",
+    "target/concurrent-workspaces-tests"
+  ],
+  "cpu_affinity": [
+    10,
+    11
+  ],
+  "scope": "external test compiled against14:25 current debug archives; license-gated numeric concurrency has not run",
+  "sha256": {
+    "crates/iregi-rust/tests/concurrent_workspaces.rs": "47def35b150251a2ce1779edf73f5afa64082f83b535e1312ceba76a00ca9a6f",
+    "target/cargo-build/debug/deps/libiregi_rust-b0667c2d807d11b6.rlib": "a901ce9fb5676595fde064a02c522b48ab631b7fcbdf3a00893840c139fa7e1f",
+    "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib": "0103094825ec960c856c17b09bc676f02135e3bc1c210ecc3d4ea93d44ec2f84",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850",
+    "target/concurrent-workspaces-tests": "9e680b669b4a9234145924a9d202339bfae109baf0d4f98ef36944f4983665d0"
+  }
+}

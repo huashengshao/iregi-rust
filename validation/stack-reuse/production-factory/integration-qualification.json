@@ -1,0 +1,100 @@
+{
+  "status": "paired_focused_master_core_and_dd_e6_passed",
+  "core_execution_tests_per_variant": 30,
+  "bubble_neighborhood_tests_per_variant": 5,
+  "focused_scalar_integration_tests_per_variant": 3,
+  "dd_e6_test_per_variant": 1,
+  "runs": [
+    {
+      "variant": "baseline",
+      "report": "baseline-core_tests-execution_tests_.json",
+      "status": "passed",
+      "sha256": "5a9322053e688bfb40222cb3dffab8379532398d45d08ecda155601ca20e8425"
+    },
+    {
+      "variant": "baseline",
+      "report": "baseline-e6_capture-shifted_pentagon_core_preserves_doublefloat_precision.json",
+      "status": "passed",
+      "sha256": "bdd1bb396caeeaae05bb2456213b264279375a7d20eca43533eba030922f3e48"
+    },
+    {
+      "variant": "baseline",
+      "report": "baseline-master_integration-all_master_families_preserve_doublefloat_and_float_numerics.json",
+      "status": "passed",
+      "sha256": "3525bb8c16373b0971ac2adb75a65f97a635dc6218bd9d42f6b806147035bf36"
+    },
+    {
+      "variant": "baseline",
+      "report": "baseline-master_integration-mixed_branches_and_scaleless_uv_ir_are_preserved.json",
+      "status": "passed",
+      "sha256": "b13f1a12cd750f405f87907712f4fe22e472307583cea6ab4952f7e5192ff92c"
+    },
+    {
+      "variant": "baseline",
+      "report": "baseline-master_integration-scalar_families_match_direct_native_and_isolate_bad_lanes.json",
+      "status": "passed",
+      "sha256": "4f590d26cebbf765d6d4295aa826b59cb35599b1693a751bbb5397b597db8bd5"
+    },
+    {
+      "variant": "baseline",
+      "report": "baseline-master_tests-bubble_neighborhood_tests_.json",
+      "status": "passed",
+      "sha256": "d46d359b45c17ee5b735b37902e2f405d372faa1a8f8ffaf7ef588fdac4777b7"
+    },
+    {
+      "variant": "candidate",
+      "report": "candidate-core_tests-execution_tests_.json",
+      "status": "passed",
+      "sha256": "641a4b9a45e9ebedd4fc97a7dd7c68f03e49d6dae91fba09fed63be30b44d11c"
+    },
+    {
+      "variant": "candidate",
+      "report": "candidate-e6_capture-shifted_pentagon_core_preserves_doublefloat_precision.json",
+      "status": "passed",
+      "sha256": "a300da9c40823e67770ad93b6605a72b7ea9f6116ca03bfdbe8feff28f19543f"
+    },
+    {
+      "variant": "candidate",
+      "report": "candidate-master_integration-all_master_families_preserve_doublefloat_and_float_numerics.json",
+      "status": "passed",
+      "sha256": "69cb9089416960b5938f8cffd9a9a567998982ee5a6a64f393239de4278356a0"
+    },
+    {
+      "variant": "candidate",
+      "report": "candidate-master_integration-mixed_branches_and_scaleless_uv_ir_are_preserved.json",
+      "status": "passed",
+      "sha256": "9550f5c8cf4a4b0f0ebdda1123a53dedb7cae67e130104dd40aec1f662b4817a"
+    },
+    {
+      "variant": "candidate",
+      "report": "candidate-master_integration-scalar_families_match_direct_native_and_isolate_bad_lanes.json",
+      "status": "passed",
+      "sha256": "50aeae22f9c2c04ff4f4d6f56a666725c8b188a12ff08e901458c263eb9d0728"
+    },
+    {
+      "variant": "candidate",
+      "report": "candidate-master_tests-bubble_neighborhood_tests_.json",
+      "status": "passed",
+      "sha256": "4d7371dc78e2a289eda16acc8e3ebbe432e1aaee53d93adb7a6673d7b70c2de7"
+    }
+  ],
+  "e6_parity": "e6-dd-parity.json",
+  "guard_scope": {
+    "frozen_stability_sha256": "a889713285db129ccb0e477c37c6d4a21f04872bba7b19ec51a12007ff88b9d0",
+    "current_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+    "difference": "Frozen snapshot rejects any operand roundoff unit>1; later current source accepts finite units>1 outside underflow fallback. Both variants use the identical frozen source. Fixed-precision f64/DD unaffected; current-source Float tests remain required before adoption.",
+    "unchanged_files": [
+      "execution.rs",
+      "stability/quadrature.rs",
+      "stability/arguments.rs"
+    ]
+  },
+  "resource_caveat": "Original core and bubble-neighborhood reports use global RUSAGE_CHILDREN; their CPU/RSS fields are explicitly invalidated. Later scalar integration and E6 runs use per-child wait4. Numerical passes remain valid.",
+  "performance": "All timings diagnostic only; concurrent builds and no repeated controlled scheduling.",
+  "remaining_checks": [
+    "Regenerated native modules require independent compilation/parity/timing; existing native-batch production kernels unchanged",
+    "Higher-order Dual construction unchanged and allocator is not reapplied"
+  ],
+  "archive_lifetime": "Later shared workspace builds replaced the original Symbolica/oneloop archive bytes at their recorded filenames. The compiled paired static binaries, source snapshots, and matching before/after compile hashes remain preserved. Rebuilding the same sources against refreshed archives is a new matched build requiring its own provenance and qualification; it is not an exact replay of the historical binary.",
+  "current_source_followup": "current-workspace-build/acceptance/summary.json"
+}

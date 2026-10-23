@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T15:07:25.425570+00:00",
+  "status": "scalar_failure_isolated_helper_candidate_insufficient",
+  "working_bits": 256,
+  "rows": 1,
+  "node": "Representative contourx=1/2,t=1-i,allm_squared=2-i,eta=2^-64; not an actual even-orderGauss abscissa",
+  "scope": "Frozen baseline and private six-call existing-helper substitution, expression backend, primal only. No production source changes. Original exact inputs unchanged. Both fail the fixed absolute2^-109 scalar diagnostic budget; this is not the publicE6mixed budget.",
+  "cpu_affinity": [
+    0
+  ],
+  "reference": {
+    "absolute_complex_remainder_bound_exact_rational": "221360928884514619387/75651851897077400083474661883307591147610237926282029316226844726031182678745894079536236806619147814628436836698030080",
+    "center_imaginary_exact_rational": "5699141892149156493401930555053632110685646090325770542726277500096618772132003939/213717820955593368506395665689863423674492452166074869174389486108355288104960000000",
+    "center_real_exact_rational": "2442489382349638497205357855848545532490711153791521077167305670803124801506227781/122124469117481924860797523251350527813995686952042782385365420633345878917120000000",
+    "integrated_series_in_z": "1/6-1/10*z+2/35*z^2-31/945*z^3+2/105*z^4",
+    "method": "Independent Symanzik parameter series, Symbolica expansion and polynomial integration",
+    "remainder_proof": "0<=P<=1, r=eta/2, |M|^2=5: radius=r^5*(6-5*r)/(30*(1-r)^2)<2^-327",
+    "series_order_inclusive": 4,
+    "z": "eta/M"
+  },
+  "inputs_exact_rational": [
+    {
+      "im": "0",
+      "re": "0"
+    },
+    {
+      "im": "0",
+      "re": "-1/9223372036854775808"
+    },
+    {
+      "im": "0",
+      "re": "-1/9223372036854775808"
+    },
+    {
+      "im": "0",
+      "re": "0"
+    },
+    {
+      "im": "0",
+      "re": "0"
+    },
+    {
+      "im": "0",
+      "re": "-1/9223372036854775808"
+    },
+    {
+      "im": "-1",
+      "re": "2"
+    },
+    {
+      "im": "-1",
+      "re": "2"
+    },
+    {
+      "im": "-1",
+      "re": "2"
+    },
+    {
+      "im": "-1",
+      "re": "2"
+    },
+    {
+      "im": "0",
+      "re": "1"
+    }
+  ],
+  "cases": [
+    {
+      "kind": "baseline",
+      "status": "node_absolute_budget_violated",
+      "finite": {
+        "imaginary_exact_rational": "-864691128455135232",
+        "imaginary_tracked_precision": 3,
+        "real_exact_rational": "-1729382256910270464",
+        "real_tracked_precision": 3
+      },
+      "wall_seconds_diagnostic": 1.467317224945873,
+      "evaluation_seconds_diagnostic": 0.007343589,
+      "timed_out": false,
+      "evidence": [
+        {
+          "path": "validation/shifted-pentagon/d0-node-baseline.json",
+          "sha256": "16c7959acdc6a7bc7f16ae62c0b29c8f8722a0847ec56ab215f6a9513f3bf296"
+        },
+        {
+          "path": "validation/shifted-pentagon/d0-node-baseline.log",
+          "sha256": "98d68ada15152773cda0aaf1511172ce8891b59ef83e16ccaa5842221d87bcf2"
+        },
+        {
+          "path": "validation/shifted-pentagon/d0-node-baseline-run.json",
+          "sha256": "60edb92cab864a5075b7455e2054c6273896ab64520aff7d3649d216e7f55b1c"
+        }
+      ]
+    },
+    {
+      "kind": "candidate",
+      "status": "node_absolute_budget_violated",
+      "finite": {
+        "imaginary_exact_rational": "57266231/2147483648",
+        "imaginary_tracked_precision": 30,
+        "real_exact_rational": "343597385/17179869184",
+        "real_tracked_precision": 30
+      },
+      "wall_seconds_diagnostic": 1.1750511389691383,
+      "evaluation_seconds_diagnostic": 0.015530351,
+      "timed_out": false,
+      "evidence": [
+        {
+          "path": "validation/shifted-pentagon/d0-node-candidate.json",
+          "sha256": "9c9d09389ecfffefb55981228b920062c551236a370fc80d75c892405b64e96a"
+        },
+        {
+          "path": "validation/shifted-pentagon/d0-node-candidate.log",
+          "sha256": "c027c80e2294f6ce008f7fd6eebf99df89be3aed48bd59034a207c6dd1512943"
+        },
+        {
+          "path": "validation/shifted-pentagon/d0-node-candidate-run.json",
+          "sha256": "0a43d0802b67f24d9b4be0e4a326d2c309457399f8f8e356ded3ab4ddcfa8324"
+        }
+      ]
+    }
+  ],
+  "conclusions": [
+    "The baseline scalar formula itself produces a huge inaccurate finite value at this point, independently of E6geometry/quadrature. Returned components carry only3trackedbits despite256workingbits.",
+    "The existing kinematics-aware r_function_of helper substitution improves the scalar value and returnedtrackedprecision to30bits, but does not satisfy the exact oracle budget. The candidate is not ready for production.",
+    "No E6 agreement, arbitrary-precision convergence, Dual correctness, throughput or performance gate is qualified by this diagnostic.",
+    "The exact all-zero-invariant vacuum branch cannot be substituted: the nonzero firstcorrection\u2212eta/(10M^3) exceeds the target.",
+    "Further work should isolate the remaining DNS coefficient/root/divided-difference cancellations or evaluate a rigorously bounded existing-Symbolica low-momentum representation; no blind fullE6 precision rerun is justified."
+  ],
+  "protocol": "validation/shifted-pentagon/d0-node-protocol.md",
+  "candidate_patch": "validation/shifted-pentagon/dns-r-function-of.patch",
+  "review": {
+    "agent": "/root/pentagon_precision/e6_series_review",
+    "status": "passed",
+    "scope": "Source/math/patch audit and runtime evidence:113uniqueSHA256checks across frozen sources, libraries, binaries, probe/protocol, patch, logs and outputs; identical inputs/oracles and exact candidate diff verified. Both exact budget violations retained. No runtime or edits by reviewer."
+  },
+  "runtime_lease": "Released toROOT after both authorized sequentialprocesses completed."
+}

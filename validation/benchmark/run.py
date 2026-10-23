@@ -15,6 +15,7 @@ import random
 import selectors
 import statistics
 import subprocess
+import tempfile
 import time
 
 ROOT = Path.cwd()
@@ -23,6 +24,20 @@ MODE = {"Ibp": 0, "PassarinoVeltman": 1, "Hybrid": 2}
 
 def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+def freeze_executable(binary, expected_digest, label):
+    """Execute retained bytes, even if Cargo later replaces the selected file."""
+    contents = Path(binary).read_bytes()
+    if hashlib.sha256(contents).hexdigest() != expected_digest:
+        raise ValueError(f"{label} executable changed before launch")
+    directory = ROOT / "target/benchmark/executables"
+    directory.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(prefix=label + "-", dir=directory, delete=False) as target:
+        target.write(contents)
+        path = Path(target.name)
+    path.chmod(0o500)
+    return path
 
 
 def source_hashes(root=ROOT):
@@ -184,6 +199,32 @@ def degrees(rank):
             for x in range(r - t, -1, -1) for _ in range(r - t - x, -1, -1)]
 
 
+def validate_response(result, case, *, profile=None):
+    if result.get("id") != case["id"]:
+        raise ValueError("benchmark response has a mismatched case identity")
+    if not isinstance(result.get("stable"), bool):
+        raise ValueError("benchmark response has a missing or invalid stability flag")
+    values = result.get("total_ns")
+    if (not isinstance(values, list) or len(values) != 1
+            or any(isinstance(value, bool) or not isinstance(value, (int, float))
+                   or not math.isfinite(value) or value <= 0 for value in values)):
+        raise ValueError("benchmark response has missing or invalid timing values")
+    if profile is not None:
+        if result.get("profiled") is not profile:
+            raise ValueError("Rust response has a mismatched profiling mode")
+        components = result.get("profile_ns")
+        if profile:
+            if not isinstance(components, dict) or set(components) != {"arguments", "masters", "reduction", "total"}:
+                raise ValueError("Rust response has missing profile components")
+            for values in components.values():
+                if (not isinstance(values, list) or len(values) != 1
+                        or any(isinstance(value, bool) or not isinstance(value, (int, float))
+                               or not math.isfinite(value) or value < 0 for value in values)):
+                    raise ValueError("Rust response has invalid profile timing values")
+        elif components is not None:
+            raise ValueError("uninstrumented Rust response contains profile timings")
+
+
 def compare(rust, reference, case, samples):
     errors = []
     max_error = 0.0
@@ -207,6 +248,12 @@ def compare(rust, reference, case, samples):
                 errors.append(f"lane {lane}, moment {moment}: incomplete Laurent coefficients")
                 continue
             for pole, (av, bv) in enumerate(zip(a, b)):
+                if any(not isinstance(value, list) or len(value) != 2
+                       or any(isinstance(part, bool) or not isinstance(part, (int, float))
+                              or not math.isfinite(part) for part in value)
+                       for value in (av, bv)):
+                    errors.append(f"lane {lane}, moment {moment}, pole {pole}: malformed or nonfinite complex coefficient")
+                    continue
                 error = math.hypot(av[0] - bv[0], av[1] - bv[1]) / (unit + math.hypot(*bv))
                 if not math.isfinite(error):
                     errors.append(f"lane {lane}, moment {moment}, pole {pole}: nonfinite output")
@@ -261,10 +308,38 @@ def save(path, data):
     temporary.replace(path)
 
 
+def configuration_rows(cases, batches, algorithm, reference_algorithm):
+    """Keep every requested kernel workload visible even if a run is interrupted."""
+    return [{"id": case["id"], "n": case["n"], "rank": case["rank"],
+             "mass_class": case["mass_class"], "precision": "binary64", "mode": algorithm,
+             "reference_mode": reference_algorithm or algorithm, "batch_width": batch,
+             "status": "pending", "correctness": None, "rust": None, "iregi": None, "ratio": None}
+            for case in cases for batch in batches]
+
+
+def finalize_rows(data, completed_normally):
+    for row in data["rows"]:
+        if row["status"] == "pending":
+            row.update(status="not_run", error="run ended before this configuration started")
+        elif row["status"] == "running":
+            row.update(status="interrupted", error="run ended during this configuration")
+    finished = completed_normally and bool(data["rows"]) and all(
+        row["status"] in {"measured", "failed", "timeout", "unsupported", "correctness-failed"}
+        for row in data["rows"]
+    )
+    data["status"] = "complete" if finished else "interrupted"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--rust", type=Path, default=ROOT / "target/optimized/release/examples/kernel_benchmark")
     parser.add_argument("--reference", type=Path, default=ROOT / "target/benchmark/iregi-benchmark")
+    parser.add_argument("--rust-build-manifest", type=Path,
+                        default=ROOT / "target/benchmark/rust-build.json",
+                        help="Build provenance matching the selected Rust executable")
+    parser.add_argument("--reference-build-manifest", type=Path,
+                        default=ROOT / "target/benchmark/reference-build.json",
+                        help="Build provenance matching the selected reference executable")
     parser.add_argument("--output", type=Path, default=ROOT / "target/benchmark/results.json")
     parser.add_argument("--input", type=Path, help="JSON list of custom case objects, using the generated inputs.json schema")
     parser.add_argument("--cpu", type=int, default=min(os.sched_getaffinity(0)))
@@ -285,8 +360,10 @@ def main():
     args.reference = args.reference.resolve()
     if args.cpu not in os.sched_getaffinity(0):
         parser.error("requested CPU is outside the permitted affinity mask")
-    if min(args.batches) < 1 or args.repeats < 3 or args.warmup < 0 or args.block_ms <= 0:
-        parser.error("positive batches/block duration, repeats>=3, and warmup>=0 required")
+    if (min(args.batches) < 1 or args.repeats < 3 or args.warmup < 0
+            or not math.isfinite(args.block_ms) or args.block_ms <= 0
+            or not math.isfinite(args.timeout) or args.timeout <= 0):
+        parser.error("positive batches and finite block duration/timeout, repeats>=3, and warmup>=0 required")
     args.output.parent.mkdir(parents=True, exist_ok=True)
     cases = json.loads(args.input.read_text()) if args.input else suite(args.ranks, args.mass_classes, args.batches)
     cases = [case for case in cases if args.filter in case["id"]]
@@ -295,6 +372,8 @@ def main():
     if args.inputs_only:
         print(inputs_path)
         return
+    if not cases:
+        parser.error("no benchmark cases match the requested filter")
     if not args.rust.is_file() or not args.reference.is_file():
         parser.error("missing executable; run validation/benchmark/build.py first")
     original_affinity = os.sched_getaffinity(0)
@@ -313,10 +392,15 @@ def main():
                      "stage_scope": "separate instrumented pass: argument evaluator, complete scalar-master calls, recurrence evaluator/stability checks; residual is validation/packing/routing",
                      "preparation_scope": "first Rust plan+workspace compile only; not a repeated timing distribution",
                      "numerator": "not applicable to tensor-array kernel; graph/numerator end-to-end benchmark reported separately"},
-        "rows": [],
+        "rows": configuration_rows(cases, args.batches, args.algorithm, args.reference_algorithm),
+        "harness": {"path": str(Path(__file__).resolve()), "sha256": digest(Path(__file__))},
     }
-    for key, filename in [("reference_build", "reference-build.json"), ("rust_build", "rust-build.json")]:
-        path = ROOT / "target/benchmark" / filename
+    data["build_manifest_paths"] = {
+        "rust": str(args.rust_build_manifest),
+        "reference": str(args.reference_build_manifest),
+    }
+    for key, path in [("reference_build", args.reference_build_manifest),
+                      ("rust_build", args.rust_build_manifest)]:
         data[key] = json.loads(path.read_text()) if path.exists() else None
     rust_build = data["rust_build"] or {}
     reference_build = data["reference_build"] or {}
@@ -332,23 +416,27 @@ def main():
     save(args.output, data)
     rng = random.Random(271828)
     rust = reference = None
+    executed = {}
+    rows = iter(data["rows"])
+    completed_normally = False
     try:
         for case in cases:
             for batch in args.batches:
-                row = {"id": case["id"], "n": case["n"], "rank": case["rank"],
-                       "mass_class": case["mass_class"], "precision": "binary64", "mode": args.algorithm,
-                       "reference_mode": args.reference_algorithm or args.algorithm, "batch_width": batch,
-                       "status": "running", "correctness": None, "rust": None, "iregi": None, "ratio": None}
-                data["rows"].append(row)
+                row = next(rows)
+                row["status"] = "running"
                 print(f"{case['id']} batch {batch}", flush=True)
                 try:
                     if len(case["samples"]) < batch:
                         raise ValueError("custom case has fewer independent samples than requested batch width")
                     samples = case["samples"][:batch]
                     if rust is None:
-                        rust = Process(args.rust, "rust", args.output.parent, args.timeout)
+                        if "rust" not in executed:
+                            executed["rust"] = freeze_executable(args.rust, data["binaries"]["rust"]["sha256"], "rust")
+                        rust = Process(executed["rust"], "rust", args.output.parent, args.timeout)
                     if reference is None:
-                        reference = Process(args.reference, "reference", args.output.parent, args.timeout)
+                        if "reference" not in executed:
+                            executed["reference"] = freeze_executable(args.reference, data["binaries"]["reference"]["sha256"], "reference")
+                        reference = Process(executed["reference"], "reference", args.output.parent, args.timeout)
                     ref_mode = args.reference_algorithm or args.algorithm
                     pilot_rust = rust.request(rust_request(case, samples, args.algorithm, args.warmup, 1))
                     pilot_ref = reference.request(fortran_request(case, samples, ref_mode, args.warmup, 1))
@@ -358,6 +446,8 @@ def main():
                         if "unsupported" in json.dumps(row["engine_errors"]).lower():
                             row["status"] = "unsupported"
                         raise ValueError("engine failed to produce timing output")
+                    validate_response(pilot_rust, case, profile=False)
+                    validate_response(pilot_ref, case)
                     rust_iterations = max(1, min(1000000, math.ceil(args.block_ms * 1e6 / max(1, pilot_rust["total_ns"][0]))))
                     ref_iterations = max(1, min(1000000, math.ceil(args.block_ms * 1e6 / max(1, pilot_ref["total_ns"][0]))))
                     row["iterations_per_block"] = {"rust": rust_iterations, "iregi": ref_iterations}
@@ -371,6 +461,7 @@ def main():
                         for name in order:
                             result = (rust.request(rust_request(case, samples, args.algorithm, 0, rust_iterations)) if name == "rust"
                                       else reference.request(fortran_request(case, samples, ref_mode, 0, ref_iterations)))
+                            validate_response(result, case, profile=False if name == "rust" else None)
                             totals[name].append(result["total_ns"][0])
                             block[name] = result
                         checked = compare(block["rust"], block["iregi"], case, samples)
@@ -379,6 +470,10 @@ def main():
                     profiles = {name: [] for name in ["arguments", "masters", "reduction", "total"]}
                     for _ in range(args.repeats):
                         profiled = rust.request(rust_request(case, samples, args.algorithm, 0, rust_iterations, profile=True))
+                        validate_response(profiled, case, profile=True)
+                        checked = compare(profiled, pilot_ref, case, samples)
+                        if checked["status"] != "passed":
+                            row["correctness"] = checked
                         for name in profiles:
                             profiles[name].append(profiled["profile_ns"][name][0])
                     row["order"] = orders
@@ -391,26 +486,51 @@ def main():
                                     "numerator": None, "arguments": None, "masters": None, "reduction": None}
                     row["ratio"] = ratio_summary(totals["rust"], totals["iregi"], row["correctness"])
                     row["status"] = "measured" if row["correctness"]["status"] == "passed" else "correctness-failed"
-                except (RuntimeError, TimeoutError, BrokenPipeError, ValueError, KeyError, ZeroDivisionError) as error:
+                except (OSError, RuntimeError, TimeoutError, ValueError, KeyError, TypeError, IndexError, ZeroDivisionError) as error:
                     if row["status"] != "unsupported":
-                        row["status"] = "failed"
+                        row["status"] = "timeout" if isinstance(error, TimeoutError) else "failed"
                     row["error"] = str(error)
                     for process in (rust, reference):
                         if process:
                             process.close()
                     rust = reference = None
                 save(args.output, data)
+        completed_normally = True
     finally:
-        for process in (rust, reference):
-            if process:
-                process.close()
-        os.sched_setaffinity(0, original_affinity)
-        data["status"] = "complete" if all(row["status"] != "running" for row in data["rows"]) else "interrupted"
+        finalize_rows(data, completed_normally)
         data["counts"] = {status: sum(row["status"] == status for row in data["rows"])
                           for status in sorted({row["status"] for row in data["rows"]})}
-        data["workspace_source_changed_during_run"] = source_hashes() != data["environment"]["source_sha256"]
-        data["source_changed_during_run"] = source_hashes(measured_source) != measured_source_hashes
-        data["provenance_qualified"] = all(data["build_provenance_checks"].values()) and not data["source_changed_during_run"]
+        # Save terminal row states before fallible cleanup/provenance checks.
+        data["provenance_qualified"] = False
+        data["executed_binaries"] = {name: {"path": str(path), "sha256": data["binaries"][name]["sha256"]}
+                                     for name, path in executed.items()}
+        save(args.output, data)
+        for process in (rust, reference):
+            if process:
+                try:
+                    process.close()
+                except OSError as error:
+                    data.setdefault("cleanup_errors", []).append(str(error))
+        try:
+            os.sched_setaffinity(0, original_affinity)
+        except OSError as error:
+            data.setdefault("cleanup_errors", []).append(str(error))
+        checks = {
+            "workspace_source_changed_during_run": lambda: source_hashes() != data["environment"]["source_sha256"],
+            "source_changed_during_run": lambda: source_hashes(measured_source) != measured_source_hashes,
+            "binaries_changed_during_run": lambda: len(executed) != 2 or any(
+                digest(path) != data["binaries"][name]["sha256"] for name, path in executed.items()),
+            "harness_changed_during_run": lambda: digest(Path(__file__)) != data["harness"]["sha256"],
+        }
+        for name, check in checks.items():
+            try:
+                data[name] = check()
+            except (OSError, ValueError) as error:
+                data[name] = True
+                data.setdefault("finalization_errors", {})[name] = f"{type(error).__name__}: {error}"
+        data["provenance_qualified"] = (all(data["build_provenance_checks"].values())
+            and not data.get("finalization_errors") and not data.get("cleanup_errors")
+            and not any(data[name] for name in ("source_changed_during_run", "binaries_changed_during_run", "harness_changed_during_run")))
         if data["source_changed_during_run"]:
             data["measurement_warning"] = "Sources changed during measurement; results describe hashed binaries and are stale for the current source tree"
         save(args.output, data)

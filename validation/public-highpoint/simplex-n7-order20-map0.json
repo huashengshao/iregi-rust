@@ -1,0 +1,44 @@
+{
+  "status": "fixed_rule_evaluated",
+  "n": 7,
+  "order": 20,
+  "mapping": 0,
+  "ordering": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "fixture_sha256": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+  "script_sha256": "e4eb3e2178130a362d723be30670918251deb23c8e946267e50b7bd7f8587949",
+  "existing_rank7_integrand_source": "validation/pv-high-rank/sixpoint_simplex_oracle.py",
+  "existing_rank7_integrand_sha256": "3ddfc199ddda239a0f1528a1980db95aa27bc6798143b204a215f43ff28ad28d",
+  "numpy_version": "2.5.4",
+  "scipy_version": "1.17.1",
+  "method": "SciPy roots_jacobi tensor-product rule with simplex stick-breaking map",
+  "scalar_integrand_oneloop": "(-1)^N Gamma(N-2) F^(2-N)",
+  "n6_rank7_integrand_oneloop": "-Px*(6*Pz^6/F^4 +15*Pz^4/F^3 +(45/4)*Pz^2/F^2 +(15/8)/F)",
+  "positive_F_bound": "F=sum(x_i m_i^2)-Var(pt)+Var(px)+Var(py)+Var(pz)>=1-(1/2)^2/4=15/16",
+  "normalization": "native finite = i*pi^2 times real OneLoop integral; all poles vanish",
+  "qualification": "Independent fixed-rule quadrature. Successive orders and mappings provide estimated uncertainty only, not a rigorous interval certificate or performance measurement.",
+  "points_evaluated": 64000000,
+  "simplex_volume_from_rule": 0.0013888888888888887,
+  "minimum_observed_F": 1.0290581915815569,
+  "results": [
+    {
+      "monomial": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "moment_index": 0,
+      "oneloop_finite": -0.0001258644342903377,
+      "native_finite_imaginary": -0.001242232174612539
+    }
+  ],
+  "diagnostic_seconds": 5.120724275009707
+}

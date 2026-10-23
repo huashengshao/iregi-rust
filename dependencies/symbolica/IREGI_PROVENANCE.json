@@ -9,6 +9,10 @@
     {
       "path": "0002-identify-vendored-source-version.patch",
       "sha256": "7a2942f2186ab1ed25ef7e54cbd72cca710cf4228029705123ebe93b3b42da72"
+    },
+    {
+      "path": "0003-limit-git-watches-to-version-fallback.patch",
+      "sha256": "81d2b29c1789541b5e2aca7ebb0749b1e1818c94ea309876f12389fc33d7057d"
     }
   ],
   "included_paths": [
@@ -108,8 +112,8 @@
     },
     {
       "path": "build.rs",
-      "sha256": "b28c9ce48f266efb5e305e6c15f920a85c00cd54e6dba50b7de0be050c57c406",
-      "bytes": 1807
+      "sha256": "2cc8e7add392754cded51f882704f5e33c0d2ca9dd3b3cccff091325692109ce",
+      "bytes": 1929
     },
     {
       "path": "examples/algebraic_factor_expression.rs",
@@ -1113,14 +1117,15 @@
     }
   ],
   "file_count": 217,
-  "total_bytes": 9585843,
+  "total_bytes": 9585965,
   "original_license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
   "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
-  "metadata": "IREGI_UPSTREAM_VERSION is read by the build.rs metadata-only patch; displayed version9cdc2949-iregi-scope-cache cannot inherit the embedding repository Git label.",
+  "metadata": "IREGI_UPSTREAM_VERSION is read by the build.rs metadata-only patch; displayed version9cdc2949-iregi-scope-cache cannot inherit the embedding repository Git label. Git metadata is watched only when the explicit version cannot be used.",
   "validation": [
     "validation/symbolica-scoped-cache.json",
     "validation/rescue-pentagon-rank7.json",
-    "validation/symbolica-production-qualification.json"
+    "validation/symbolica-production-qualification.json",
+    "validation/symbolica-build-metadata/results.json"
   ],
   "status": "Pinned source prepared and selected by root Cargo; qualification progress is recorded separately in validation/symbolica-production-qualification.json."
 }

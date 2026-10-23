@@ -1,0 +1,98 @@
+{
+  "started_utc": "2026-10-23T14:45:13.347553+00:00",
+  "working_bits": 128,
+  "requested_bits": 128,
+  "command": [
+    "target/e6-series-compare/e6_series_compare",
+    "validation/shifted-pentagon/series-oracle.json",
+    "128",
+    "128",
+    "validation/shifted-pentagon/production-series-128-128.json"
+  ],
+  "timeout_seconds": 120,
+  "timed_out": false,
+  "exit_code": 2,
+  "wall_seconds": 94.52494560496416,
+  "log": "validation/shifted-pentagon/production-series-128-128.log",
+  "output": "validation/shifted-pentagon/production-series-128-128.json",
+  "build_inputs": {
+    "recorded_utc": "2026-10-23T14:10:30.467163+00:00",
+    "scope": "Private archive copies protect the changing public-core/master/Symbolica/oneloop roots during direct rustc linking. Unmodified transitive libraries are resolved from the shared dependency directory; the final executable is preserved independently.",
+    "libraries": {
+      "iregi_rust": {
+        "original_path": "target/libiregi_rust_mixed_precision_revised.rlib",
+        "private_path": "target/e6-series-compare/deps/libiregi_rust_mixed_precision_revised.rlib",
+        "sha256": "b8256bf7508d204d7ebcc302bad73cfe0f469419d7a7868f225f6fb83e5c6906"
+      },
+      "iregi_masters": {
+        "original_path": "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib",
+        "private_path": "target/e6-series-compare/deps/libiregi_masters-0d5459afd211649c.rlib",
+        "sha256": "5a51209413e9bb69460b3f55c97e4f08ab694596f2fbdb0d01d5517f9ef70c58"
+      },
+      "symbolica": {
+        "original_path": "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+        "private_path": "target/e6-series-compare/deps/libsymbolica-5cca42ee48491872.rlib",
+        "sha256": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc"
+      },
+      "oneloop": {
+        "original_path": "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib",
+        "private_path": "target/e6-series-compare/deps/liboneloop-8562c3cbbf948c0e.rlib",
+        "sha256": "ef3ab91a609b41f76b64ff7d7cb4fc9071ac9e5c4f10a9b996ab81940109e499"
+      },
+      "serde_json": {
+        "original_path": "target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+        "private_path": "target/e6-series-compare/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+        "sha256": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4"
+      }
+    },
+    "qualified_core_source_manifest": "validation/mixed-precision/revised-source-manifest.json",
+    "qualified_core_source_manifest_sha256": "d160dcd676ad288401024d64d427965d5c5954108362da74516a13326d3e935d",
+    "status": "compiled_pending_runtime",
+    "binary": "target/e6-series-compare/e6_series_compare",
+    "binary_sha256": "65fa799476660121840260c98beff8ea72e62d66bfb57bc2005910e9e635c02f",
+    "source": "crates/iregi-rust/examples/e6_series_compare.rs",
+    "source_sha256": "e5d22091fd7a733e113de93b0436519b8eaab1d8f48e87f4fd5f9d643053e8d5",
+    "proof_and_protocol": "validation/shifted-pentagon/production-series-comparison.md",
+    "proof_and_protocol_sha256": "766941488e6bacf698106af22fc0693bc131e24728e604faf08d88bbab28f007",
+    "oracle": "validation/shifted-pentagon/series-oracle.json",
+    "oracle_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+    "planned_pairs": [
+      [
+        128,
+        128
+      ],
+      [
+        256,
+        128
+      ],
+      [
+        384,
+        128
+      ],
+      [
+        256,
+        256
+      ],
+      [
+        384,
+        256
+      ]
+    ],
+    "initial_timeout_seconds_by_working_bits": {
+      "128": 120,
+      "256": 180,
+      "384": 240
+    },
+    "independent_review": {
+      "agent": "/root/pentagon_precision/e6_series_review",
+      "status": "passed",
+      "scope": "Read-only source, exact rational error enclosure, unchanged public mixed tolerance, original-input checks, failure classifications, and protocol audit. No runtime.",
+      "result": "No actionable defect. Certified agreement, proven violation, and inconclusive overlap remain distinct; rejected lanes hide values and successful nonfinite output is an explicit failure."
+    }
+  },
+  "provenance_note": "Frozen directly compiled executable predates the default stack-allocation optimization; production archive is the qualified mixed-precision revised source described by the embedded manifest. Unchanged thresholds, original inputs.",
+  "binary_after_sha256": "65fa799476660121840260c98beff8ea72e62d66bfb57bc2005910e9e635c02f",
+  "log_sha256": "1aef8176c12902531d77dff726de9cc38fd80a65e4773fcf3f40b75a81e1efbc",
+  "output_sha256": "7630f9eab8406116a80f31c209dfe10d0687de2fbe0c5e14d75b6c9b8bb9a1af"
+}

@@ -1,5 +1,5 @@
 {
-  "status": "all_paired_binaries_compiled_runtime_pending",
+  "status": "paired_core_execution_scalar_integration_and_dd_e6_passed",
   "commit": "69f23e8fd76cb422ddcf50282de32a4c097a092b",
   "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
   "scope": "Baseline and candidate use the same frozen core source. Only candidate exact_scalar_master_evaluator calls evaluator_with_stack_reuse; ordinary scalar all-six-output graph changes storage allocation only. Dual constructor unchanged. Native-batch feature OFF.",
@@ -154,12 +154,58 @@
       "stage": "e6",
       "report": "target/stack-reuse-production/candidate/e6-compile.json",
       "output_sha256": "d78330103c7db57bb9c86c80173ba765a78e152b98a21442f9b8bce295d6696a"
+    },
+    {
+      "variant": "baseline",
+      "stage": "master_integration",
+      "report": "target/stack-reuse-production/baseline/master_integration-compile.json",
+      "output_sha256": "0bf7d7679c1c6a15df2b60fcff238205cef8d148ea6a293a140314d2c1570c12"
+    },
+    {
+      "variant": "baseline",
+      "stage": "e6_capture",
+      "report": "target/stack-reuse-production/baseline/e6_capture-compile.json",
+      "output_sha256": "ca6f33186f78e9d01890f0c4725c33cafcb98e2eb7f52750067240e70bedd6e7"
+    },
+    {
+      "variant": "candidate",
+      "stage": "master_integration",
+      "report": "target/stack-reuse-production/candidate/master_integration-compile.json",
+      "output_sha256": "2488474d9362f022a91ccc99c1f3d4fec19bea6fceb80f53572b36ec36848e43"
+    },
+    {
+      "variant": "candidate",
+      "stage": "e6_capture",
+      "report": "target/stack-reuse-production/candidate/e6_capture-compile.json",
+      "output_sha256": "282ec5ff92c48e72151bb85fa6fd08a47e6249ae7ee5f54f455c063eedde2942"
     }
   ],
   "experiment_files": {
     "compile.py": "f1a85dadb947b7a335bdbddceec1f15a9c356746765ec6a335f2a5c81520a031",
-    "run.py": "69f3e0e23fb98caf95917891256d71a7bfa22e19cf6f4c475a66523dca68e27b",
+    "run.py": "b5e2ddbf2843552d8a1ad920dc6493307ac632ab563ab81a245a6594a5ac3182",
     "factory_probe.rs": "a0e1d738ca8983311ab003fbbc08c0725004bdda694d838812b147b9cbc78b22",
-    "factory_probe": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c"
-  }
+    "factory_probe": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c",
+    "run_extra.py": "b5e2ddbf2843552d8a1ad920dc6493307ac632ab563ab81a245a6594a5ac3182",
+    "run-global-rusage.py": "69f3e0e23fb98caf95917891256d71a7bfa22e19cf6f4c475a66523dca68e27b",
+    "compile_extra.py": "f3040c6f497237ca9fa48ac1b5c5366edd3d97b3550ad84a650545656874cbe5",
+    "e6_capture.rs": "78ac20617c348651217cc5b933441de4b654492449e0124b1b313f8ae73e9c19",
+    "reconstruct.py": "f9b98563eee55bc70854f858aefb27804b0ab7a235c784a6701d0fae41bc91d4",
+    "snapshot-from-5c9e3dd.patch": "2d66bdb9f33dc99bf0a3f529840ff04e9a6f4dcaf03c966a2841aa1ca982fb4f",
+    "e6-dd-parity.json": "ec3ac46b83f363ba950b79966becf0a982bda1533d3f26e7fd93cace5e7936eb"
+  },
+  "instrumentation_corrections": [
+    {
+      "initial_runner": "run-global-rusage.py",
+      "change": "Use per-child wait4 rather than process-global RUSAGE_CHILDREN; require nonempty test selection and clean up process group on timeout/interruption.",
+      "old_resource_metrics": "CPU and peakRSS in initial core execution and bubble-neighborhood reports are invalid as isolated-child measurements; numerical pass and elapsed time evidence remain valid."
+    }
+  ],
+  "capture_source_change": "E6 fixture copy adds exact rational/precision output and status logging only; shared frozen core libraries and all existing oracle assertions unchanged.",
+  "reconstruction": {
+    "base_commit": "5c9e3dd",
+    "script": "reconstruct.py",
+    "patch": "snapshot-from-5c9e3dd.patch",
+    "scope": "All frozen sources recoverable from this committed checkpoint plus narrow patch; every source/fixture hash is checked."
+  },
+  "archive_lifetime": "Later shared workspace builds replaced the original Symbolica/oneloop archive bytes at their recorded filenames. The compiled paired static binaries, source snapshots, and matching before/after compile hashes remain preserved. Rebuilding the same sources against refreshed archives is a new matched build requiring its own provenance and qualification; it is not an exact replay of the historical binary."
 }

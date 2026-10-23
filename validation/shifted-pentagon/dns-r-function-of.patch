@@ -1,0 +1,21 @@
+--- a/src/box_integral.rs
++++ b/src/box_integral.rs
+@@ -97,12 +97,12 @@
+     let k23 = (m[1] + m[2] - p[1]) / (&roots[1] * &roots[2]);
+     let k24 = (m[1] + m[3] - p[5]) / (&roots[1] * &roots[3]);
+     let k34 = (m[2] + m[3] - p[2]) / (&roots[2] * &roots[3]);
+-    let (r12, _) = r_function(&k12);
+-    let (r13, d13) = r_function(&k13);
+-    let (r14, _) = r_function(&k14);
+-    let (r23, _) = r_function(&k23);
+-    let (r24, d24) = r_function(&k24);
+-    let (r34, _) = r_function(&k34);
++    let (r12, _) = r_function_of(p[0], m[0], m[1], &roots[0], &roots[1]);
++    let (r13, d13) = r_function_of(p[4], m[0], m[2], &roots[0], &roots[2]);
++    let (r14, _) = r_function_of(p[3], m[0], m[3], &roots[0], &roots[3]);
++    let (r23, _) = r_function_of(p[1], m[1], m[2], &roots[1], &roots[2]);
++    let (r24, d24) = r_function_of(p[5], m[1], m[3], &roots[1], &roots[3]);
++    let (r34, _) = r_function_of(p[2], m[2], m[3], &roots[2], &roots[3]);
+     let a = &k34 / &r24 + &r13 * &k12 - &k14 * &r13 / &r24 - &k23;
+     let b = &d13 * &d24 + &k12 * &k34 - &k14 * &k23;
+     let c = &k12 / &r13 + &r24 * &k34 - &k14 * &r24 / &r13 - &k23;

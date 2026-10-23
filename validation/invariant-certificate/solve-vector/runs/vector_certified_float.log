@@ -1,0 +1,42 @@
+
+running 1 test
+test public_precision_probe::public_certified_n6_float_converges_and_matches_parameter_integral ... iregi IBP preparation routing relation [0, 1, 2, 3, 4, 5]: begin
+iregi IBP preparation routing constant solve [0, 1, 2, 3, 4, 5]: begin
+iregi IBP preparation routing constant solve [0, 1, 2, 3, 4, 5]: 0.346332s
+iregi IBP preparation routing relation [0, 1, 2, 3, 4, 5]: 0.427506s
+iregi IBP preparation Cayley scalar solve [1, 2, 3, 4, 5]: begin
+iregi IBP preparation Cayley scalar solve [1, 2, 3, 4, 5]: 2.475623s
+iregi IBP preparation Cayley scalar solve [0, 2, 3, 4, 5]: begin
+iregi IBP preparation Cayley scalar solve [0, 2, 3, 4, 5]: 2.426485s
+iregi IBP preparation Cayley scalar solve [0, 1, 3, 4, 5]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 3, 4, 5]: 2.438715s
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 4, 5]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 4, 5]: 2.433814s
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 5]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 5]: 2.453775s
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.459044s
+PROBE_RECORD {"phase":"chart_prepared","seconds":16.718302213}
+iregi preparation stability expressions: 0.717250s
+iregi preparation quadrature-stability exact evaluators: 0.000027s
+iregi preparation argument exact evaluator: 0.000059s
+iregi preparation snapping diagnostic exact evaluator: 0.000012s
+iregi preparation reduction exact evaluator: 0.017370s
+iregi preparation primal exact evaluator: 0.000000s
+iregi preparation scalar master exact evaluators: 1.268445s
+iregi preparation numeric coefficient mapping: 0.009191s
+PROBE_RECORD {"accuracy_bits":53,"diagnostics":"[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]","phase":"certified_result","seconds":19.037347535,"statuses":"[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]","working_bits":128}
+PROBE_RECORD {"values":[["0","0"],["0","0"],["0","0"],["4.2986076669270135250890508385340e-8","1.8e-38"]],"working_bits":128}
+PROBE_RECORD {"independent_oracle_difference":"1.5250890508385339912784657660838834136239310725979435134529944e-23","oracle_path":"/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json","oracle_uncertainty_kind":"estimated, not certified","working_bits":128}
+iregi preparation numeric coefficient mapping: 0.008440s
+PROBE_RECORD {"accuracy_bits":53,"diagnostics":"[[\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"], [], [\"exact full-Taylor rank-four Gram certificate, chart [1, 2, 3, 4]\"]]","phase":"certified_result","seconds":19.427661002,"statuses":"[Success, InvalidInput(\"external Gram rank exceeds four: chart [1, 2, 3, 4], residual (5, 5), Taylor component 0 is certified nonzero\"), Success]","working_bits":256}
+PROBE_RECORD {"values":[["0","0"],["0","0"],["0","0"],["4.2986076669270135250890508385335492354527879747290809724950896812967315e-8","5.2e-77"]],"working_bits":256}
+PROBE_RECORD {"independent_oracle_difference":"1.5250890508385335492354527879747290809724950896812967315488377e-23","oracle_path":"/shared/external/iregi/iregi-rust/target/certified-scalar-matched/independent-n6/result.json","oracle_uncertainty_kind":"estimated, not certified","working_bits":256}
+PROBE_RECORD {"normalized_128_256_difference":"0","slot":0}
+PROBE_RECORD {"normalized_128_256_difference":"0","slot":1}
+PROBE_RECORD {"normalized_128_256_difference":"0","slot":2}
+PROBE_RECORD {"normalized_128_256_difference":"3.30930511165431783718881296037556292348e-32","slot":3}
+ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 147 filtered out; finished in 19.48s
+

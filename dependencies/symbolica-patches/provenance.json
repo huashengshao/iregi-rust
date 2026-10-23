@@ -5,7 +5,7 @@
   "patch_sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328",
   "upstream_file_sha256": "7dd830823be3196558d45c65f5db3705c6b43ec461123e1eaf3714ae02215cfe",
   "patched_file_sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
-  "status": "Root workspace selects the coherent vendored tree and all current workspace test targets compile. Four internal scope regressions and saved-core57 tests plus full1320-coefficient rank7 rescue pass; current-tree numerical changes are qualified separately.",
+  "status": "Root workspace selects the coherent vendored tree. Earlier workspace, scope, and core runtime qualification is recorded separately; metadata-only patch3 has standalone build-script and exact-inventory validation without rebuilding the Symbolica library.",
   "scope": "Direct-evaluator branch-cache bookkeeping, optional preparation counters, and direct semantic tests. No algebra rules, arithmetic, license handling, public numeric API, or instructions changed.",
   "compile_attempt": "Successful isolated optimized build (10m04s), using target/symbolica-scope-build and target/symbolica-scope-cargo-build, jobs=2. Separate Cargo.lock recorded in target/symbolica-scoped-probe/build-manifest.json.",
   "runtime_evidence": "validation/symbolica-scoped-cache.json",
@@ -19,13 +19,19 @@
     {
       "path": "0002-identify-vendored-source-version.patch",
       "sha256": "7a2942f2186ab1ed25ef7e54cbd72cca710cf4228029705123ebe93b3b42da72"
+    },
+    {
+      "path": "0003-limit-git-watches-to-version-fallback.patch",
+      "sha256": "81d2b29c1789541b5e2aca7ebb0749b1e1818c94ea309876f12389fc33d7057d"
     }
   ],
   "patched_files": {
     "src/evaluate/tree.rs": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
-    "build.rs": "b28c9ce48f266efb5e305e6c15f920a85c00cd54e6dba50b7de0be050c57c406",
+    "build.rs": "2cc8e7add392754cded51f882704f5e33c0d2ca9dd3b3cccff091325692109ce",
     "IREGI_UPSTREAM_VERSION": "9789fecdea50e43f2203df34a1cea9ad989aee6d6527b599d93dc11628fd84e8"
   },
   "metadata_patch_scope": "Build-time display version only; uses an explicit vendored upstream+patch label before get_git_version fallback. No license handling changed. Existing qualified experimental binary predates this metadata-only patch.",
-  "production_evidence": "validation/symbolica-production-qualification.json"
+  "production_evidence": "validation/symbolica-production-qualification.json",
+  "build_watch_patch_scope": "Metadata-only: Git metadata is watched only when the explicit vendored version is missing, empty, or unreadable. The explicit version and build.rs remain watched; no arithmetic, license handling, or displayed vendored version changes.",
+  "build_watch_patch_evidence": "validation/symbolica-build-metadata/results.json"
 }

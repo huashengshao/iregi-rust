@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T14:50:57.818742+00:00",
+  "status": "two_production_rejections_retained",
+  "scope": "One exact small-routing equal-mass D6 pentagon fixture; singleton primal Float at working128/256 and requested128. Production thresholds, original inputs, and public API unchanged.",
+  "binary": "target/e6-series-compare/e6_series_compare",
+  "binary_sha256": "65fa799476660121840260c98beff8ea72e62d66bfb57bc2005910e9e635c02f",
+  "source": "crates/iregi-rust/examples/e6_series_compare.rs",
+  "source_sha256": "e5d22091fd7a733e113de93b0436519b8eaab1d8f48e87f4fd5f9d643053e8d5",
+  "build_provenance": "Full frozen archive/source manifests are embedded in each per-case -run.json. The executable predates the default stack-allocation optimization; diagnostic durations cannot qualify current default performance.",
+  "oracle": "validation/shifted-pentagon/series-oracle.json",
+  "oracle_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+  "oracle_bound": "Exact order-four parameter-series enclosing radius below2^-321; independent oracle generation remains valid. Neither rejected production lane supplies a successful value for comparison.",
+  "cases": [
+    {
+      "working_bits": 128,
+      "requested_bits": 128,
+      "qualification": "production_rejected",
+      "production_status": "Unstable(\"E6 leaf 0: BoxFailure { pinch: 0, error: NonFiniteOutput } (quadrature order 128, box rows 1240, error estimate 2.5387e25)\")",
+      "wall_seconds_diagnostic": 94.52494560496416,
+      "reduction_seconds_diagnostic": 89.584519602,
+      "master_seconds_diagnostic": 88.77788372,
+      "timed_out": false,
+      "exit_code": 2,
+      "total_pentagon_box_rows": 2480,
+      "oracle_comparison_performed": false,
+      "successful_values_exposed": false,
+      "evidence": [
+        {
+          "path": "validation/shifted-pentagon/production-series-128-128.json",
+          "sha256": "7630f9eab8406116a80f31c209dfe10d0687de2fbe0c5e14d75b6c9b8bb9a1af"
+        },
+        {
+          "path": "validation/shifted-pentagon/production-series-128-128.log",
+          "sha256": "1aef8176c12902531d77dff726de9cc38fd80a65e4773fcf3f40b75a81e1efbc"
+        },
+        {
+          "path": "validation/shifted-pentagon/production-series-128-128-run.json",
+          "sha256": "6edad16b934443fcc378b83db942e5bb01072277db14055426b2559f04b78112"
+        }
+      ]
+    },
+    {
+      "working_bits": 256,
+      "requested_bits": 128,
+      "qualification": "production_rejected",
+      "production_status": "Unstable(\"E6 leaf 0: NonConvergent (quadrature order 128, box rows 1240, error estimate 6.346e21)\")",
+      "wall_seconds_diagnostic": 156.391869370942,
+      "reduction_seconds_diagnostic": 148.881323787,
+      "master_seconds_diagnostic": 148.099140561,
+      "timed_out": false,
+      "exit_code": 2,
+      "total_pentagon_box_rows": 2480,
+      "oracle_comparison_performed": false,
+      "successful_values_exposed": false,
+      "evidence": [
+        {
+          "path": "validation/shifted-pentagon/production-series-256-128.json",
+          "sha256": "6272cf4b2b7005dfe7674f1a1168355f3269f32e346f5f7f323ac4f6520ea660"
+        },
+        {
+          "path": "validation/shifted-pentagon/production-series-256-128.log",
+          "sha256": "872cf7b1124475dd1806c22fe82446307e27ff1c93b176a58ecf1cb6af303c77"
+        },
+        {
+          "path": "validation/shifted-pentagon/production-series-256-128-run.json",
+          "sha256": "3c41d0348f1e67ab47ab71b48cd592dce06bbc3f5af0617363dd3f052e4f439d"
+        }
+      ]
+    }
+  ],
+  "diagnostic_interpretation": [
+    "The working128 final recorded box failure is NonFiniteOutput at quadrature order128. Its2.5387e25 estimate survives from the last completed successful refinement; no new estimate was computed after the box failure. The last recorded failing pinch need not be the only failing node or pinch.",
+    "The working256 case finishes the bounded quadrature schedule and returns NonConvergent;6.346e21 is the completed order128-versus64 difference.",
+    "Both cases attempt the exact-zero structural profile and ordinary plan, each with1240 box rows; total2480 boxes per public call. The two rejections are retained separately in diagnostics. The analytic_rows count records an attempt, not success.",
+    "An independent contour-integrand bound rules out ordinary quadrature truncation as an explanation for differences of order1e21 or1e25. Arithmetic or branch evaluation is failing; the precise operation is not yet isolated.",
+    "No successful output, false-success, oracle mismatch, convergence, requested128 qualification, batch throughput, or production performance claim is established."
+  ],
+  "unrun_pairs": [
+    [
+      384,
+      128
+    ],
+    [
+      256,
+      256
+    ],
+    [
+      384,
+      256
+    ]
+  ],
+  "runtime_lease": "Released toROOT after both authorized processes completed.",
+  "review": {
+    "agent": "/root/pentagon_precision/e6_series_review",
+    "status": "passed_both_cases",
+    "scope": "Both cases: all12 provenance hashes, classifications, hidden output values, diagnostic bookkeeping, and exact contour-integrand bound; no runtime or edits."
+  },
+  "results_and_bound": {
+    "path": "validation/shifted-pentagon/production-series-results.md",
+    "sha256": "8f271779a7c8c166afd234efdee0c84795a272d56f3931c773f8cb7fd822c1a8"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "command": [
+    "python3",
+    "scripts/prepare-symbolica-patch.py",
+    "--vendor",
+    "--output",
+    "target/symbolica-build-metadata-reproduced"
+  ],
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+  "patches": [
+    {
+      "path": "0001-journal-conditional-cache.patch",
+      "sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328"
+    },
+    {
+      "path": "0002-identify-vendored-source-version.patch",
+      "sha256": "7a2942f2186ab1ed25ef7e54cbd72cca710cf4228029705123ebe93b3b42da72"
+    },
+    {
+      "path": "0003-limit-git-watches-to-version-fallback.patch",
+      "sha256": "81d2b29c1789541b5e2aca7ebb0749b1e1818c94ea309876f12389fc33d7057d"
+    }
+  ],
+  "stdout": "Prepared target/symbolica-build-metadata-reproduced from 9cdc2949cdb153478c1eca0d40690dc0abfc616e plus 3 patches\n",
+  "stderr": "",
+  "retained_file_count": 217,
+  "total_reproduced_files_including_local_metadata": 219,
+  "all_files_byte_identical": true,
+  "original_license_matches": true,
+  "license_implementation_matches": true,
+  "preparation_script_modified": false,
+  "preparation_script_sha256": "b01f2ff46326f478a97c32072cc8f7057b3edf554bdb1fadeceaa7e43cac5dc0"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T15:15:17.300086+00:00",
+  "status": "sequential_control_passed_concurrency_license_excluded",
+  "concurrent_numeric_status": "unqualified; ignored integration test requires public LicenseManager::max_threads(2) >=2",
+  "licensing": "No bypass, permit manipulation, or missing-check assumption. Installed license.rs states one Symbolica thread per user in restricted mode; warmed numeric evaluation has no documented exemption.",
+  "source": "crates/iregi-rust/tests/concurrent_workspaces.rs",
+  "build_evidence": "validation/concurrent-workspaces/build.json",
+  "sequential_control_command": "cargo test -p iregi-rust --test concurrent_workspaces warmed_sequential_controls_cover_the_concurrency_corpus -- --nocapture",
+  "licensed_concurrent_command": "cargo test -p iregi-rust --test concurrent_workspaces independent_warmed_numeric_workspaces_match_sequential_results -- --ignored --nocapture",
+  "coverage": [
+    "Independent Workspaces from shared prepared plans; all construction and exact-corpus lazy warmup serial",
+    "A0/B0/C0/D0 through full prepared Workspaces: rank-2 tensor triangle, scalar box, physical and complex-mass branches",
+    "Second-order Dual bubble: seeded, lightlike analytic, constant scaleless, and unstable lane branches",
+    "Float128 tadpole with heterogeneous input precision and supported scaleless exemption",
+    "Different worker lane orders; whole batches and singleton dispatch; repeated changing order",
+    "All Laurent/Taylor coefficients, signed zeros, precision metadata, lane status, result metadata, analytic/fallback flags, and execution row counts compared with sequential baselines"
+  ],
+  "limitations": [
+    "Concurrent execution must remain unclaimed if installed licensing permits fewer than two threads.",
+    "Default backend is reported by the runtime control; a separate native-feature build is needed to qualify generated native kernels."
+  ],
+  "sequential_control": "validation/concurrent-workspaces/sequential-control.json",
+  "sequential_log": "validation/concurrent-workspaces/sequential-control.log",
+  "rank1_fixture_failure": {
+    "build": "validation/concurrent-workspaces/rank1-fixture-build.json",
+    "run": "validation/concurrent-workspaces/rank1-fixture-sequential-control.json",
+    "log": "validation/concurrent-workspaces/rank1-fixture-sequential-control.log",
+    "scope": "f64 rank-1 box lanes all failed the fixture success assertion before worker comparisons; no production guard or tolerance changed"
+  },
+  "candidate_status": "rank-0 scalar-box positive control passed; rank-2 tensor triangle and second-order Dual bubble retained",
+  "sequential_tests_passed": 1,
+  "sequential_tests_failed": 0,
+  "sequential_unittest_seconds": 4.57,
+  "installed_symbolica_max_threads": 1,
+  "master_backend": "SymbolicaBatch",
+  "source_sha256": "396298bf7ac307ac4041a8c0457e005606a0b630deaebfe054c01b92c8677a41",
+  "sequential_log_sha256": "8b9f007b77111a62ea29cd8ad6d33aa20363381d740726840c5192b6e943b6dc"
+}

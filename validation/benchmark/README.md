@@ -33,6 +33,16 @@ Use `--revision COMMIT` to build a retained Git snapshot below
 from the project root. Measurements identify that exact revision and snapshot;
 they qualify that implementation, not subsequent working-tree edits. The
 runner separately tracks measured-source and current-workspace changes.
+When selecting preserved executables with `--rust` and `--reference`, also
+select their matching `--rust-build-manifest` and `--reference-build-manifest`.
+The default manifest paths remain under `target/benchmark`; explicit paths
+allow multiple retained builds without overwriting each other's provenance.
+Before launch, the runner verifies and copies each executable into a unique
+file under `target/benchmark/executables`. Measurements record those actual
+executed bytes, so a later Cargo build cannot replace a running benchmark's
+selected executable. Final checks cover the retained source, executed binaries
+and live measurement script. Unrelated working-tree edits are recorded
+separately when measuring an immutable source snapshot.
 
 A smaller qualification run, after obtaining the shared Symbolica runtime
 slot, is:
@@ -123,6 +133,11 @@ Crashes, missing results (including an original Fortran `STOP` with exit code
 zero), unstable lanes, unsupported input, and disagreement remain explicit rows.
 There is no aggregate speed score that can improve by dropping these rows. The
 runner saves after each family and retains partial results if interrupted. If
+interrupted before later families start, those requested rows remain `not_run`.
+Terminal row states are saved before final provenance checks; a failed check
+cannot qualify the measurements or erase completed rows. Profiling responses
+undergo the same complete tensor and Laurent comparison as timed responses.
+If
 sources change during a run, the artifact identifies the data as stale for the
 current tree; binary hashes still identify the measured implementation.
 

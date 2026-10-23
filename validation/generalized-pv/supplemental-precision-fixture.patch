@@ -1,0 +1,112 @@
+--- binary64-failed-source
++++ production-integration-tests
+@@ -8,7 +8,10 @@
+     ScalarKinematicsBatch, ScalarReductionPlan, ScalarWorkspace, TensorWeights, Workspace,
+ };
+ use serde_json::Value;
+-use symbolica::domains::{float::Complex, integer::Integer};
++use symbolica::domains::{
++    float::{Complex, Float},
++    integer::Integer,
++};
+ 
+ const MODES: [Algorithm; 3] = [
+     Algorithm::Ibp,
+@@ -322,50 +325,56 @@
+     configuration.powers = vec![1, 2, 1];
+     configuration.dimension_shift = 1;
+     configuration.convention = Convention::OneLoop;
+-    let values = [1., 0.]
+-        .into_iter()
+-        .flat_map(|transverse| {
+-            [
+-                0., 0., 0., 0., 0., 1., 0., 0., 0., 2., transverse, 0., 4., 9., 16., 3.,
+-            ]
+-            .map(c)
+-        })
+-        .collect();
+-    let input = KinematicsBatch {
+-        rows: 2,
+-        components: 1,
+-        values,
+-    };
+     configuration.algorithm = Algorithm::PassarinoVeltman;
+     let pv_plan = ReductionPlan::new(configuration.clone()).unwrap();
+-    let mut pv = Workspace::new(&pv_plan, 0.).unwrap();
+-    let primary = pv.reduce_batch(&input).unwrap();
+     configuration.algorithm = Algorithm::Hybrid;
+     let hybrid_plan = ReductionPlan::new(configuration.clone()).unwrap();
+-    let mut hybrid = Workspace::new(&hybrid_plan, 0.).unwrap();
+-    let actual = hybrid.reduce_batch(&input).unwrap();
+-    eprintln!(
+-        "generalized fallback primary={:?}, hybrid={:?}, flags={:?}, stats={:?}",
+-        primary.statuses,
+-        actual.statuses,
+-        actual.fallback_used,
+-        hybrid.last_execution()
+-    );
+-    assert_eq!(primary.statuses[0], LaneStatus::Success);
+-    assert!(matches!(primary.statuses[1], LaneStatus::Unstable(_)));
+-    assert_eq!(actual.fallback_used, [false, true]);
+-    assert_eq!(hybrid.last_execution().fallback_rows, 1);
+-    assert_eq!(actual.lane(0).unwrap(), primary.lane(0).unwrap());
+     configuration.algorithm = Algorithm::Ibp;
+     let ibp_plan = ReductionPlan::new(configuration).unwrap();
+-    let mut ibp = Workspace::new(&ibp_plan, 0.).unwrap();
+-    let expected = ibp.reduce_batch(&input).unwrap();
+-    // In this exact collinear triangle, the inverse Cayley matrix exists but
+-    // sum(R^-1 * 1) is zero. The independent IBP dimension recurrence is also
+-    // singular: an attempted fallback must remain a visible failure.
+-    assert!(matches!(expected.statuses[1], LaneStatus::Unstable(_)));
+-    assert!(matches!(&actual.statuses[1], LaneStatus::Unstable(reason)
+-        if reason.contains("PV reduction failed") && reason.contains("IBP fallback returned")));
+-    assert_eq!(hybrid.last_execution().fallback_successes, 0);
+-    assert!(actual.lane(1).is_err());
+-}
++    // The regular lane triggers conservative finite-cancellation diagnostics
++    // in binary64. Keep the same 53-bit accuracy request while increasing the
++    // working precision; the singular neighbor must remain a failed lane.
++    for bits in [128, 256] {
++        let values = [1, 0]
++            .into_iter()
++            .flat_map(|transverse| {
++                [0, 0, 0, 0, 0, 1, 0, 0, 0, 2, transverse, 0, 4, 9, 16, 3]
++                    .map(|value| Complex::new(Float::with_val(bits, value), Float::new(bits)))
++            })
++            .collect();
++        let input = KinematicsBatch {
++            rows: 2,
++            components: 1,
++            values,
++        };
++        let mut pv = Workspace::new(&pv_plan, Float::new(bits)).unwrap();
++        pv.set_accuracy_precision(53).unwrap();
++        let primary = pv.reduce_batch(&input).unwrap();
++        let mut hybrid = Workspace::new(&hybrid_plan, Float::new(bits)).unwrap();
++        hybrid.set_accuracy_precision(53).unwrap();
++        let actual = hybrid.reduce_batch(&input).unwrap();
++        eprintln!(
++            "generalized fallback working_bits={bits}, requested_bits=53, primary={:?}, hybrid={:?}, flags={:?}, stats={:?}",
++            primary.statuses,
++            actual.statuses,
++            actual.fallback_used,
++            hybrid.last_execution()
++        );
++        assert_eq!(primary.statuses[0], LaneStatus::Success);
++        assert!(matches!(primary.statuses[1], LaneStatus::Unstable(_)));
++        assert_eq!(actual.fallback_used, [false, true]);
++        assert_eq!(hybrid.last_execution().fallback_rows, 1);
++        assert_eq!(actual.lane(0).unwrap(), primary.lane(0).unwrap());
++        let mut ibp = Workspace::new(&ibp_plan, Float::new(bits)).unwrap();
++        ibp.set_accuracy_precision(53).unwrap();
++        let expected = ibp.reduce_batch(&input).unwrap();
++        // In this exact collinear triangle, the inverse Cayley matrix exists
++        // but sum(R^-1 * 1) is zero. Its independent IBP dimension recurrence
++        // is also singular; an attempted fallback must remain a failure.
++        assert!(matches!(expected.statuses[1], LaneStatus::Unstable(_)));
++        assert!(matches!(&actual.statuses[1], LaneStatus::Unstable(reason)
++            if reason.contains("PV reduction failed") && reason.contains("IBP fallback returned")));
++        assert_eq!(hybrid.last_execution().fallback_successes, 0);
++        assert!(actual.lane(1).is_err());
++    }
++}

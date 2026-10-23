@@ -1,0 +1,386 @@
+{
+  "started_utc": "2026-10-23T15:06:00.573711+00:00",
+  "kind": "candidate",
+  "command": [
+    "taskset",
+    "-c",
+    "0",
+    "target/d0-node-probe/d0_node_candidate",
+    "candidate",
+    "validation/shifted-pentagon/d0-node-candidate.json"
+  ],
+  "cpu_affinity_requested": [
+    0
+  ],
+  "timeout_seconds": 30,
+  "timed_out": false,
+  "exit_code": 3,
+  "wall_seconds_diagnostic": 1.1750511389691383,
+  "output": "validation/shifted-pentagon/d0-node-candidate.json",
+  "log": "validation/shifted-pentagon/d0-node-candidate.log",
+  "build_provenance": {
+    "created_utc": "2026-10-23T14:59:18.907199+00:00",
+    "source_origin": "dependencies/oneloopmaster/src",
+    "source_files": [
+      {
+        "path": "analytic_continuation_tests.rs",
+        "sha256": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c"
+      },
+      {
+        "path": "backend.rs",
+        "sha256": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52"
+      },
+      {
+        "path": "box_complex.rs",
+        "sha256": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a"
+      },
+      {
+        "path": "box_integral.rs",
+        "sha256": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f"
+      },
+      {
+        "path": "branch_selection.rs",
+        "sha256": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862"
+      },
+      {
+        "path": "coincident_dilog_tests.rs",
+        "sha256": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27"
+      },
+      {
+        "path": "definitions.rs",
+        "sha256": "83ab0ca0f2a77cb7a37a0eccacac62d01d9c9a1cf9c7207261561eaab84f2c22"
+      },
+      {
+        "path": "epsilon.rs",
+        "sha256": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143"
+      },
+      {
+        "path": "evaluators.rs",
+        "sha256": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed"
+      },
+      {
+        "path": "expressions.rs",
+        "sha256": "1dd7d7901446506a5d7e46d179e3df28f9f3956f7f0ed1a323b74e5a3f80baed"
+      },
+      {
+        "path": "initialization.rs",
+        "sha256": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7"
+      },
+      {
+        "path": "inspection.rs",
+        "sha256": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93"
+      },
+      {
+        "path": "inspection_formulas.rs",
+        "sha256": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a"
+      },
+      {
+        "path": "inspection_graph.rs",
+        "sha256": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3"
+      },
+      {
+        "path": "inspection_sheet.rs",
+        "sha256": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769"
+      },
+      {
+        "path": "jit_primitives.rs",
+        "sha256": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07"
+      },
+      {
+        "path": "labelling.rs",
+        "sha256": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4"
+      },
+      {
+        "path": "lib.rs",
+        "sha256": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6"
+      },
+      {
+        "path": "masters.rs",
+        "sha256": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1"
+      },
+      {
+        "path": "native/batch.rs",
+        "sha256": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3"
+      },
+      {
+        "path": "native/constants.rs",
+        "sha256": "0297975c8a0f37c44c33ffb78522ef2243bd310fd85e008ba07061158616ca98"
+      },
+      {
+        "path": "native/disabled.rs",
+        "sha256": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657"
+      },
+      {
+        "path": "native/generated_a0.rs",
+        "sha256": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723"
+      },
+      {
+        "path": "native/generated_b0.rs",
+        "sha256": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79"
+      },
+      {
+        "path": "native/generated_c0.rs",
+        "sha256": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee"
+      },
+      {
+        "path": "native/generated_constants.rs",
+        "sha256": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47"
+      },
+      {
+        "path": "native/generated_d0.rs",
+        "sha256": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611"
+      },
+      {
+        "path": "native/generated_db0.rs",
+        "sha256": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88"
+      },
+      {
+        "path": "native/handwritten/box_contour/vertex.rs",
+        "sha256": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2"
+      },
+      {
+        "path": "native/handwritten/box_contour.rs",
+        "sha256": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a"
+      },
+      {
+        "path": "native/handwritten/boxes.rs",
+        "sha256": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648"
+      },
+      {
+        "path": "native/handwritten/mod.rs",
+        "sha256": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7"
+      },
+      {
+        "path": "native/handwritten/sheet.rs",
+        "sha256": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49"
+      },
+      {
+        "path": "native/handwritten/triangle.rs",
+        "sha256": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137"
+      },
+      {
+        "path": "native/mod.rs",
+        "sha256": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b"
+      },
+      {
+        "path": "native/primitives.rs",
+        "sha256": "b610c92e859565e71cdb3a9e6091e86298a2a02faa5cf8545709ae57d42167cc"
+      },
+      {
+        "path": "native/simple.rs",
+        "sha256": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651"
+      },
+      {
+        "path": "native/tensor/binary64.rs",
+        "sha256": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5"
+      },
+      {
+        "path": "native/tensor.rs",
+        "sha256": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584"
+      },
+      {
+        "path": "precision.rs",
+        "sha256": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77"
+      },
+      {
+        "path": "quotient_tests.rs",
+        "sha256": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433"
+      },
+      {
+        "path": "removable_log_tests.rs",
+        "sha256": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6"
+      },
+      {
+        "path": "rust_codegen/batch.rs",
+        "sha256": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411"
+      },
+      {
+        "path": "rust_codegen.rs",
+        "sha256": "c281c6c05ae8a7aefdfac2d2c0b3adcf3be1b9f471fdb16cfaa0ce27a5d88681"
+      },
+      {
+        "path": "sheet_exact.rs",
+        "sha256": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d"
+      },
+      {
+        "path": "tests.rs",
+        "sha256": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7"
+      },
+      {
+        "path": "triangle.rs",
+        "sha256": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8"
+      },
+      {
+        "path": "triangle_hv.rs",
+        "sha256": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2"
+      },
+      {
+        "path": "two_point.rs",
+        "sha256": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e"
+      }
+    ],
+    "libraries": {
+      "symbolica": {
+        "original": "target/e6-series-compare/deps/libsymbolica-5cca42ee48491872.rlib",
+        "private": "target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+        "sha256": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc"
+      },
+      "bincode": {
+        "original": "target/cargo-build/debug/deps/libbincode-5a2e9b42b4a27edc.rlib",
+        "private": "target/d0-node-probe/deps/libbincode-5a2e9b42b4a27edc.rlib",
+        "sha256": "5ba8a1931ac6c96402f8896569955019a705f8dea0e83054c5cc63784b3d6834"
+      },
+      "symjit": {
+        "original": "target/cargo-build/debug/deps/libsymjit-8d32612cb0bea732.rlib",
+        "private": "target/d0-node-probe/deps/libsymjit-8d32612cb0bea732.rlib",
+        "sha256": "4b38a2a715259bd00994b80aff4f1cf49b58ef0c54c434331d36bdf4e465991d"
+      },
+      "serde_json": {
+        "original": "target/e6-series-compare/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+        "private": "target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+        "sha256": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4"
+      }
+    },
+    "candidate_patch": "validation/shifted-pentagon/dns-r-function-of.patch",
+    "candidate_patch_sha256": "a71c6108a535ee933a3a35edf40262077ea4fa188b02031ccb34428575571c97",
+    "candidate_box_source_sha256": "8555bab6e537486a15db2f2a1b83e8abe057fa80d686fb1024ae780317201e0c",
+    "scope": "Private source snapshots. Candidate changes only six DNS r_function calls to the existing kinematics-aware upstream r_function_of helper; production tree remains unchanged. Both archives compiled without generated-evaluators/prebuilt features and use explicit Expression backend.",
+    "status": "compiled_pending_runtime",
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+    "probe_source": "crates/iregi-rust/examples/d0_contour_node.rs",
+    "probe_source_sha256": "5c5e328de9a73af1f7abb688a8bff27c5dbde5160fb185547860cdb784ed02a1",
+    "protocol": "validation/shifted-pentagon/d0-node-protocol.md",
+    "protocol_sha256": "0f48d28cbe66809199a1bbb0070b4d092023ff6cecee91c5244e2f98b5501cda",
+    "builds": {
+      "baseline": {
+        "oneloop_archive": {
+          "path": "target/d0-node-probe/liboneloop_baseline.rlib",
+          "sha256": "20422536ffadaa8e77aaf706559277c0d92ba35bec42ba8b50acbfdc026c4a1b"
+        },
+        "executable": {
+          "path": "target/d0-node-probe/d0_node_baseline",
+          "sha256": "3b2a95944e2fc8c2eda03c13cedd8779ea0841388fe4fcd9047c5b4316db8b2d"
+        }
+      },
+      "candidate": {
+        "oneloop_archive": {
+          "path": "target/d0-node-probe/liboneloop_candidate.rlib",
+          "sha256": "fce56dfcc7782a00f54121cb1ce66feeb3fda108bcd6b37e9e91c1cd60dd3c5e"
+        },
+        "executable": {
+          "path": "target/d0-node-probe/d0_node_candidate",
+          "sha256": "ee2e14e7a26d5905c57ed05228cf5e50df1bacbbdac4d1569ca5b191a728bf82"
+        }
+      }
+    },
+    "independent_review": {
+      "agent": "/root/pentagon_precision/e6_series_review",
+      "status": "passed",
+      "scope": "Read-only source and patch audit: independent oracle normalization/series/tail, exact complex values, input preservation, disk-based comparison, hidden failures, upstream helper scope, representative contour node limitation. No runtime."
+    },
+    "initial_timeout_seconds_per_process": 30,
+    "project_head_at_snapshot": "5c9e3dd3f60c9d16c38704865cd8c1d3ed855176",
+    "compile_environment": {
+      "CARGO_CRATE_NAME": "oneloop for archives; d0_contour_node for executables",
+      "setup": "source scripts/env.sh",
+      "cwd": "/shared/external/iregi/iregi-rust"
+    },
+    "compile_commands": {
+      "baseline": {
+        "archive": [
+          "rustc",
+          "--crate-name",
+          "oneloop",
+          "--crate-type",
+          "rlib",
+          "--edition=2024",
+          "-C",
+          "metadata=d0_node_baseline",
+          "target/d0-node-probe/baseline/src/lib.rs",
+          "-L",
+          "dependency=target/d0-node-probe/deps",
+          "-L",
+          "dependency=target/cargo-build/debug/deps",
+          "--extern",
+          "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+          "--extern",
+          "bincode=target/d0-node-probe/deps/libbincode-5a2e9b42b4a27edc.rlib",
+          "--extern",
+          "symjit=target/d0-node-probe/deps/libsymjit-8d32612cb0bea732.rlib",
+          "-o",
+          "target/d0-node-probe/liboneloop_baseline.rlib"
+        ],
+        "executable": [
+          "rustc",
+          "--crate-name",
+          "d0_contour_node",
+          "--edition=2024",
+          "crates/iregi-rust/examples/d0_contour_node.rs",
+          "-L",
+          "dependency=target/d0-node-probe/deps",
+          "-L",
+          "dependency=target/cargo-build/debug/deps",
+          "-L",
+          "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+          "--extern",
+          "oneloop=target/d0-node-probe/liboneloop_baseline.rlib",
+          "--extern",
+          "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+          "--extern",
+          "serde_json=target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+          "-o",
+          "target/d0-node-probe/d0_node_baseline"
+        ]
+      },
+      "candidate": {
+        "archive": [
+          "rustc",
+          "--crate-name",
+          "oneloop",
+          "--crate-type",
+          "rlib",
+          "--edition=2024",
+          "-C",
+          "metadata=d0_node_candidate",
+          "target/d0-node-probe/candidate/src/lib.rs",
+          "-L",
+          "dependency=target/d0-node-probe/deps",
+          "-L",
+          "dependency=target/cargo-build/debug/deps",
+          "--extern",
+          "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+          "--extern",
+          "bincode=target/d0-node-probe/deps/libbincode-5a2e9b42b4a27edc.rlib",
+          "--extern",
+          "symjit=target/d0-node-probe/deps/libsymjit-8d32612cb0bea732.rlib",
+          "-o",
+          "target/d0-node-probe/liboneloop_candidate.rlib"
+        ],
+        "executable": [
+          "rustc",
+          "--crate-name",
+          "d0_contour_node",
+          "--edition=2024",
+          "crates/iregi-rust/examples/d0_contour_node.rs",
+          "-L",
+          "dependency=target/d0-node-probe/deps",
+          "-L",
+          "dependency=target/cargo-build/debug/deps",
+          "-L",
+          "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+          "--extern",
+          "oneloop=target/d0-node-probe/liboneloop_candidate.rlib",
+          "--extern",
+          "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+          "--extern",
+          "serde_json=target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+          "-o",
+          "target/d0-node-probe/d0_node_candidate"
+        ]
+      }
+    }
+  },
+  "binary_after_sha256": "ee2e14e7a26d5905c57ed05228cf5e50df1bacbbdac4d1569ca5b191a728bf82",
+  "log_sha256": "c027c80e2294f6ce008f7fd6eebf99df89be3aed48bd59034a207c6dd1512943",
+  "output_sha256": "9c9d09389ecfffefb55981228b920062c551236a370fc80d75c892405b64e96a"
+}

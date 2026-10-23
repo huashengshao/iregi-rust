@@ -1,7 +1,7 @@
 # Symbolica evaluator patch series
 
 The series applies to `alphal00p/symbolica` revision
-`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records both patches
+`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all three patches
 and their source hashes. The retained source is in `dependencies/symbolica`;
 its `IREGI_PROVENANCE.json` inventories every upstream or patched file.
 
@@ -49,6 +49,21 @@ explicit `IREGI_UPSTREAM_VERSION` file supplies the display label
 outer project's Git label. The qualified experimental executable predates this
 metadata patch; its provenance records its exact source hashes independently
 of the displayed version.
+
+`0003-limit-git-watches-to-version-fallback.patch` also changes only build
+metadata. When the explicit version file is usable, Cargo watches that file
+and `build.rs`; unrelated commits in the embedding project no longer invalidate
+Symbolica through Git HEAD/ref watches. Missing, empty, or unreadable version
+files retain the upstream Git/package-version fallback and its existing
+HEAD/ref/packed-ref watches. The vendored display label remains unchanged.
+
+Six standalone build-script tests compile only `build.rs`, then use temporary
+Git repositories to check outer-project commits, version-file edits/removal,
+empty and invalid UTF-8 files, packed refs, and environments without Git or a
+repository. They assert the emitted Cargo watch directives and version values;
+no Symbolica library or numerical runtime is invoked. Evidence is recorded in
+`validation/symbolica-build-metadata/results.json`. This metadata test does not
+replace numerical qualification of the evaluator patch.
 
 Recreate the retained source in a new directory, from the project directory:
 

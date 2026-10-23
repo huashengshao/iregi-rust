@@ -1,0 +1,30 @@
+{
+  "status": "ordinary_factory_adopted_full_workspace_build_and_focused_current_acceptance_passed",
+  "recorded_utc": "2026-10-23T14:23:35.712470+00:00",
+  "production_file": "crates/iregi-masters/src/lib.rs",
+  "production_sha256": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+  "change": "exact_scalar_master_evaluator ordinary factory now invokes context.evaluator_with_stack_reuse instead of context.evaluator",
+  "independent_review": {
+    "agent": "/root/batch_execution/dual_evaluator_api",
+    "result": "approved",
+    "findings": [
+      "Fresh root SSA guaranteed by direct_translation(true) plus horner_iterations(0) path",
+      "Existing optimize_stack is applied exactly once to that root",
+      "Root allocation does not recurse into already allocated immutable shared helper bodies",
+      "ExactMasterPlan::new_dual still calls independent dual_evaluator; Dualizer unchanged"
+    ]
+  },
+  "qualification": "integration-qualification.json",
+  "scope": [
+    "Ordinary Symbolica interpreter master preparation",
+    "No generated native kernels changed",
+    "No Dual preparation changed"
+  ],
+  "pending": [
+    "Independent full reference/physical qualification remains part of the overall project acceptance",
+    "Controlled timing qualification separately from diagnostic DD memory observations",
+    "Generated native root allocation remains unchanged and requires separate regeneration/parity if pursued"
+  ],
+  "full_workspace_build": "current-workspace-build/build-result.json",
+  "current_runtime_acceptance": "current-workspace-build/acceptance/summary.json"
+}
