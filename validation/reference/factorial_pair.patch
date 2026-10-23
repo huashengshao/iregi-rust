@@ -1,0 +1,14 @@
+--- original/funlib.f90
++++ patched/funlib.f90
+@@ -168,8 +168,9 @@
+     factorial_pair(1:MAXINDICES_IREGI,0)=1d0
+     DO i=1,MAXINDICES_IREGI
+        DO j=1,MAXRANK_IREGI
+-          factorial_pair(i,j)=DBLE(factorial(i+j-1))&
+-               /DBLE(factorial(i-1))/DBLE(factorial(j))
++          ! Same binomial coefficient, without overflowing 32-bit factorial.
++          factorial_pair(i,j)=factorial_pair(i,j-1)&
++               *DBLE(i+j-1)/DBLE(j)
+        ENDDO
+     ENDDO
+     RETURN

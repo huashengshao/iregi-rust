@@ -5,13 +5,24 @@
   "revision": null,
   "host": "Timing environment not yet recorded",
   "batch_width": null,
-  "measurement_note": "Report infrastructure and source-convention audit are available. No performance measurements or reference agreement are claimed by this data file.",
+  "measurement_note": "The independent Fortran oracle passes its recorded initialization and identity checks. Rust/reference agreement and runtime performance remain unmeasured in this report.",
   "timing_provenance": null,
   "reference_revisions": {
     "madgraph": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
     "gammaloop_feynkit": "865afdc43fb4e6b950439d34b4ec2c38352873e7",
     "symbolica_reference_checkout": "81f08a88c1e8a58bffbe33a2855093546b1c0c72",
     "oneloopmaster": "8ec256fc26cb361b20e10f59c19beb35717ef32c"
+  },
+  "reference_validation": {
+    "source": "target/reference/validation.json",
+    "fixtures": "validation/reference/fixtures.json",
+    "compiler": "GNU Fortran (GCC) 15.2.0",
+    "ordinary_cases_unchanged": 24,
+    "generalized_cases": 7,
+    "factorial_table_entries": 80,
+    "driver_sha256": "187dd73c06cc4e3f140c5bb40dfc0a2d30ecad626a34e97ec4dcb37f907b1118",
+    "repair_sha256": "83ce1eda082e4d7cea84130bfd3a6ded3f56f369cb0804e4b72a223ac3501bed",
+    "checks": ["original initialization STOP reproduced", "ordinary results unchanged exactly", "factorial table equals exact binomial coefficients", "analytic A0 normalization", "scaleless UV/IR cancellation", "general unit powers equal ordinary tensor API", "analytic A0 mass derivative", "tadpole dimension-shift identity", "B0 mass derivative finite difference"]
   },
   "cases": [
     {"id": "bubble-polynomial", "label": "Bubble", "description": "Explicit DOT numerator", "n": 2, "rank": "0–3", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
@@ -20,6 +31,7 @@
     {"id": "physical-diagram", "label": "Top-loop gg → H / HH", "description": "FeynKit numerator / MadLoop", "n": null, "rank": "planned", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null}
   ],
   "coverage": [
+    {"feature": "Independent reference oracle", "requirement": "Untouched/repaired Fortran twins", "status": "verified", "evidence": "24 ordinary cases identical; 80 table entries exact; 7 generalized fixtures pass."},
     {"feature": "Coefficient ordering and normalization", "requirement": "Native IREGI and MadLoop conventions", "status": "source-audited", "evidence": "Original Fortran interfaces and scalar wrappers inspected; numerical checks pending."},
     {"feature": "Scalar-master backend", "requirement": "OneLoopMaster, all batch lanes", "status": "pending", "evidence": "Native evaluation integration and reference comparison pending."},
     {"feature": "Precision", "requirement": "binary64, DoubleFloat, arbitrary precision", "status": "pending", "evidence": "No numerical coverage claimed."},
