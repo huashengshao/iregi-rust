@@ -1,0 +1,198 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T09:48:23.313679+00:00",
+  "cli_unit_tests": {
+    "passed": 6,
+    "failed": 0,
+    "duration_seconds": 0.03,
+    "command": [
+      "source scripts/env.sh",
+      "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "execution_owner": "ROOT, reported directly after integrated workspace compilation",
+    "includes": [
+      "decimal input precision",
+      "JSON decimal token preservation",
+      "rational parsing and numeric input policy",
+      "full dimension-offset translation",
+      "supplied scalar-product precision and packing",
+      "comparison scale from all kinematics"
+    ]
+  },
+  "cli_smoke": {
+    "schema_version": 1,
+    "passed": true,
+    "status": "passed",
+    "checks": [
+      "help",
+      "prepare-bubble",
+      "compare-bubble-rank2",
+      "reduce-bubble-f64",
+      "reduce-bubble-dd",
+      "reduce-bubble-float",
+      "run-bubble",
+      "run-triangle",
+      "supplied-invariants",
+      "invalid-lane",
+      "mixed-ranks",
+      "singular-coefficient-lane"
+    ],
+    "qualification": "Small CLI integration suite; full tensor oracle comparisons and physical MadLoop comparison run separately."
+  },
+  "cli_smoke_reproduction": [
+    "source scripts/env.sh",
+    "python3 validation/cli_smoke.py --cli target/debug/iregi-rust"
+  ],
+  "core_oracle": {
+    "total": 31,
+    "passed": 31,
+    "failed": 0,
+    "status": "passed with explicit precision rescue",
+    "duration_seconds": 8.57,
+    "binary64_cases": 30,
+    "rescued_cases": [
+      {
+        "id": "C0_power2_1_1_rank2",
+        "working_bits": 128,
+        "verification_bits": 256,
+        "accepted_rows": 1
+      }
+    ],
+    "execution_owner": "ROOT, reported directly after integrated workspace compilation",
+    "reproduction": [
+      "source scripts/env.sh",
+      "target/cargo-build/debug/deps/oracle-6c52b475eea102c1 --test-threads=1 --nocapture"
+    ],
+    "test_source": "crates/iregi-rust/tests/oracle.rs",
+    "qualification": "Thirty cases pass at binary64. The generalized triangle is accepted only through the explicit 128/256-bit rescue check; this is not a claim that all cases pass in binary64."
+  },
+  "executables_sha256": {
+    "target/debug/iregi-rust": "645c0680dbdccdc1a4bc7aaf7ad4e44b6023c93abab5c82f05e22f57ced07580",
+    "target/cargo-build/debug/deps/iregi_rust-00900036acb1137e": "f644f9f61f97d0b243b4adef1f1ec941981bc9b4a45cbdfe3a4a188e6e2596aa",
+    "target/cargo-build/debug/deps/oracle-70a0223120956b1d": "60c6ef98389440de782ceb3f5863e577ce8589c9e3791b8b9b39988c849e5c38",
+    "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546": "23e649190726268456f593df0cb99ae52c188cda91cc79a494c9dd9759bf0d7d",
+    "target/cargo-build/debug/deps/oracle-6c52b475eea102c1": "e074cad5ce431b100a49895286e5562836e3458ecbbfb5a00a12ee100caf0d11"
+  },
+  "source_snapshot_sha256": {
+    "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+    "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+    "validation/cli_smoke.py": "ccaa6c3fce9e132dab20cdf470b50e9d5398f73c1c3f82be944fa1368b50d219",
+    "validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+    "crates/iregi-cli/src/main.rs": "bac7b3a80f6f30fa61706fbcd5939b0aca88e78bea57ff98af46c7e67331b6ec",
+    "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
+    "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+    "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+    "crates/iregi-masters/src/lib.rs": "f616101756b4df3059bd4fce7ff46a0f5bf8c054d011c304d95c438c12a808a3",
+    "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+    "crates/iregi-prepare/src/lib.rs": "f5eb1f73f18992535d3f23a110b39abfd67bd29f76e28b52f05d104036834d73",
+    "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+    "crates/iregi-rust/src/contraction.rs": "b8cea9e4f36283f6f7394ee4d5efbb9aa402a8351f8965a1746aa87fd28f07be",
+    "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+    "crates/iregi-rust/src/execution.rs": "bcf7a3b974efac55f1f6de8e259be821afbef09971ddbce90f7446e77a56104e",
+    "crates/iregi-rust/src/ibp.rs": "94ec5d3e6738ad5d167624022000bb46244363bad82ac49d62d6ff56d7135027",
+    "crates/iregi-rust/src/lib.rs": "8b78f415cc5688e71601ad26d5dba00b155d4203ae7205c9e9e785bc85ad8268",
+    "crates/iregi-rust/src/plan.rs": "30310675507dfb6a4f6b81c912b4a6903f7a481d78637e547d2f66038fcc9d15",
+    "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
+    "crates/iregi-rust/src/stability.rs": "53bdb45157375502a278fe481c336651457bdfd88cd40b134dd1810523dbf5ad",
+    "crates/iregi-rust/src/types.rs": "05765a1354773b44eca5ebfd9bb8862b156743c7285ff7b361ed98d59973d14f"
+  },
+  "qualification": "Six CLI unit tests and twelve current CLI integration checks pass. The original oracle passes all31 with explicit128/256-bit rescue for one generalized triangle. Earlier ggH physical evidence retains its own tested executable hash and is not claimed as a new end-to-end run. Earlier smoke and oracle records remain in history. Source snapshots were recorded after execution; final prepare source formatting may postdate compilation without semantic changes. Durations are correctness-suite observations, not runtime benchmarks.",
+  "physical_ggh": {
+    "passed": true,
+    "report": "validation/physical/ggh-cli-comparison.json",
+    "tensor_slots_compared": 60,
+    "max_tensor_error": 1.8575259805604474e-15,
+    "physical_errors": [
+      9.375902174539343e-15,
+      0.0,
+      0.0
+    ]
+  },
+  "updated_utc": "2026-10-23T10:13:57.231294+00:00",
+  "previous_core_oracle": {
+    "total": 31,
+    "passed": 30,
+    "failed": 1,
+    "status": "not fully validated",
+    "first_run_seconds": 5.98,
+    "remaining_dimension_shift_cases_seconds": 1.33,
+    "failure": {
+      "id": "C0_power2_1_1_rank2",
+      "kind": "conservative cancellation guard rejection before numerical comparison",
+      "diagnostic": "estimated cancellation exceeds 2^(19-53) in recurrence ibp_196_node_23, Taylor component 0; this estimate is not a certified error bound"
+    },
+    "remaining_cases_passed": [
+      "A0_dim6_power2",
+      "C0_dim6"
+    ],
+    "reproduction": [
+      "source scripts/env.sh",
+      "target/cargo-build/debug/deps/oracle-70a0223120956b1d --test-threads=1 --nocapture",
+      "IREGI_ORACLE_CASE=_dim6 target/cargo-build/debug/deps/oracle-70a0223120956b1d --test-threads=1 --nocapture"
+    ]
+  },
+  "previous_cli_smoke": {
+    "report": {
+      "schema_version": 1,
+      "passed": true,
+      "checks": [
+        "help",
+        "prepare-bubble",
+        "reduce-bubble-f64",
+        "reduce-bubble-dd",
+        "reduce-bubble-float",
+        "run-bubble",
+        "run-triangle",
+        "supplied-invariants",
+        "invalid-lane",
+        "mixed-ranks",
+        "singular-coefficient-lane"
+      ],
+      "qualification": "Small CLI integration suite; full tensor oracle comparisons and physical MadLoop comparison run separately."
+    },
+    "cli_sha256": "9b3f634143c1c4529f4996d3ae836a5092a3f090d3ad373181eec9125b9b7a4a"
+  },
+  "resolved_cli_smoke_regression": {
+    "passed": false,
+    "completed_checks": [
+      "help"
+    ],
+    "failed_check": "prepare-bubble",
+    "exit_status": 2,
+    "diagnostic": "model input: invalid JSON: data did not match any variant of untagged enum Input at line 7 column 154",
+    "cli_sha256": "8c81d9d740087da9b38823eb217b4c08dbfd0afdf5447377aaf9639b7f25f455",
+    "suspected_cause": "serde_json arbitrary_precision incompatibility with FeynKit integral floating-point quantum-number deserialization",
+    "status": "resolved by exact preparation-boundary quantum-number normalization; fresh twelve-check smoke passes"
+  },
+  "current_source_snapshot_sha256": {
+    "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+    "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+    "validation/cli_smoke.py": "9edc1e3eddf908b1cfda54f3c51cb2fe40ef621f222018fc93e9264914ccfc8c",
+    "validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+    "crates/iregi-cli/Cargo.toml": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac",
+    "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+    "crates/iregi-prepare/Cargo.toml": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1",
+    "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+    "crates/iregi-cli/src/main.rs": "1722d2506cc62a5db315e680af3901eb0f54a53e110a5e96d71a1fe72a0408cc",
+    "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
+    "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+    "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+    "crates/iregi-masters/src/lib.rs": "236fe067e511f6cc7284659c7b017eed4da564450f903d67ed4b1d4505b983b1",
+    "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+    "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+    "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+    "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+    "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+    "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+    "crates/iregi-rust/src/execution.rs": "25a99e56b8ff2480e44815696a6d1bccfabde3336f31f552cce1304fdb6dab0e",
+    "crates/iregi-rust/src/ibp.rs": "b6f3f41bae5f46705dae8c4deb495552b36fc1df7bf1f122164621f19daace10",
+    "crates/iregi-rust/src/lib.rs": "189ab7ff0288a71b97b3ecccd5aa5c49d5a7e4c368e0265a3620a04c5bf96646",
+    "crates/iregi-rust/src/plan.rs": "1748e07ae04eb6d70206bd1819e0adbffa3e569171c618bd44b65838e9d76bda",
+    "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
+    "crates/iregi-rust/src/rescue.rs": "1010c39b8ec36408f53dba6f8c669156f15e2540c9eb32a21540ad815c304f06",
+    "crates/iregi-rust/src/stability.rs": "f5611e4f8482707f28639f8e31f60e5060f46e31781b2c7d9ecbb45b822fa903",
+    "crates/iregi-rust/src/types.rs": "991e8b6f5db103b41869337ca0ceb8107d1d1f486e506bc4b44b928a87539dc9"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "script_sha256": "5619de6e02aaa9ab2643086f19f08b029d7d3c02516ba70a7f46fa5b4955b1bb",
+  "checks": [
+    {
+      "check": "valid",
+      "passed": true,
+      "exit_code": 0,
+      "report_sha256": "52b07a104aa1e5ea38945d69aacbfe192a83992eeb678e1a597c3cefa3dbad74"
+    },
+    {
+      "check": "missing_binary",
+      "passed": true,
+      "exit_code": 1,
+      "report_sha256": "1e91f2ef5583f5edc2ebc4f4d9bd47e05ea382290179cd277fd5ae5a4c23521d"
+    },
+    {
+      "check": "injected_mismatch",
+      "passed": true,
+      "exit_code": 1,
+      "report_sha256": "6f7b8a394fdebe31d544f0e25a51803d06b8119b9d31572e082f0bf23cfcbdd6"
+    },
+    {
+      "check": "wrong_convention_rejected",
+      "passed": true,
+      "exit_code": 1,
+      "report_sha256": "4dc9c4ced302a1fbee4118aa72b53b639120bb0140b7abdd5575ddf32077b87a"
+    }
+  ],
+  "qualification": "Harness checks replay the already captured ggH CLI result. Injected errors and absent executables are deliberate validation inputs, not physical results. No new Symbolica runtime was used."
+}

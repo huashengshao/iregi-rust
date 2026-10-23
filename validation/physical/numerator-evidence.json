@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "recorded_at_utc": "2026-10-23T10:13:18.094199+00:00",
+  "scope": "Independent numerator preparation validation; no integrated-result or throughput claim",
+  "preparation_tests": {
+    "passed": 13,
+    "failed": 0,
+    "elapsed_seconds": 0.45,
+    "command": "source scripts/env.sh && target/cargo-build/debug/deps/preparation-eddb15eca6e5b731 --nocapture"
+  },
+  "physical_numerator_tests": {
+    "passed": 4,
+    "failed": 0,
+    "elapsed_seconds": 10.11,
+    "command": "source scripts/env.sh && target/cargo-build/debug/deps/madloop_numerator-84a61a30209b3196 --nocapture",
+    "observed_by": "graph_physics_audit agent, serialized runtime granted by root",
+    "probes_per_graph": 3,
+    "symbolica_evaluation_bits": 128,
+    "error_metric": "complex_absolute_error / max(1, abs(expected))",
+    "tolerance": 2e-11,
+    "reference": "MadLoop HELAS binary64 coefficients and direct complex probe",
+    "uses_evaluated_external_momenta": true,
+    "cases": [
+      {
+        "id": "ggh",
+        "selected_group": 1,
+        "reference_factor": "-1/2"
+      },
+      {
+        "id": "gghh",
+        "selected_group": 2,
+        "reference_factor": "-1/2"
+      },
+      {
+        "id": "gghhh",
+        "selected_group": 5,
+        "reference_factor": "-1/2"
+      },
+      {
+        "id": "gggg-up",
+        "selected_group": 2,
+        "reference_factor": "-1/8",
+        "massless_parameter": "UFO::MU=0"
+      }
+    ]
+  },
+  "exact_color_checks": [
+    "Tr(T0^2)=1/2",
+    "Tr(T0^4)=1/8"
+  ],
+  "sha256": {
+    "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+    "crates/iregi-prepare/tests/preparation.rs": "64e5e2d681eba046b94cf571a3ea4b52586aa04f16eaf686531ea773ba08829f",
+    "crates/iregi-prepare/tests/madloop_numerator.rs": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948",
+    "fixtures/models/sm.json": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+    "fixtures/models/phi3.json": "18db0733ba3ad2e53618189c4f8766047dea42b03f1aec2ba2ec0dc927b9d916",
+    "validation/physical/ggh-numerator-reference.json": "d4f12d85a4b995a6a3386a7daa700e7258d4935f1680feedbaaaf80c3c3a5dbb",
+    "examples/graphs/ggh_top_triangle.dot": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+    "validation/physical/madloop/fixtures/ggh-helicity-1.json": "afa15fe2f94933b5d70e57824de65d091414b1a2b224177612f7d8c5837ef71d",
+    "validation/physical/ggh-cli-input.json": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+    "examples/graphs/gghh_top_box.dot": "6efba48e58fd1abc2ac726bc9712117a671958edceff4487ba71ba7eb0777974",
+    "validation/physical/madloop/fixtures/gghh-helicity-1.json": "8ec4d723a8851567d46a5e1459c07fbebde464c2a98fc7a4ea880e158f825aa8",
+    "validation/physical/gghh-cli-input.json": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+    "examples/graphs/gghhh_top_pentagon.dot": "2dd4f92b2e4b7742784ea48ef347d21dc10ee9fc39f285703acccfc0889257ed",
+    "validation/physical/madloop/fixtures/gghhh-helicity-1.json": "787fbeaa0b4e0aadc182ea62d552c692463f6c42ab12ce516556c86b68895cf4",
+    "validation/physical/gghhh-cli-input.json": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed",
+    "examples/graphs/gggg_up_box.dot": "2fca7b55d1bb1408750c2a71d29a8a1c4a44502f3e7927d08809d334ef2505d5",
+    "validation/physical/madloop/fixtures/gggg-up-helicity-1.json": "93975368536da7892bd42049ccfa8d245db4749283eba1774208700c8af78e85",
+    "validation/physical/gggg-up-cli-input.json": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+    "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+    "crates/iregi-prepare/Cargo.toml": "46e20cfabcf38cf35f8ef47d563befd9f13979c750edf51430c9a73decc0bfde"
+  },
+  "model_boundary_tests": {
+    "passed": 4,
+    "failed": 0,
+    "elapsed_seconds": 0.04,
+    "command": "source scripts/env.sh && target/cargo-build/debug/deps/iregi_prepare-ab76cd89db56dc0c --nocapture",
+    "checks": [
+      "integer decimal quantum numbers accepted without binary64 conversion",
+      "fractional and large decimal quantum numbers rejected, including near-integer values and extreme exponents",
+      "other numeric tokens and exact rational strings preserved",
+      "both pinned model snapshots load with serde_json arbitrary_precision"
+    ]
+  }
+}

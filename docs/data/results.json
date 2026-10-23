@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
-  "status": "pending",
+  "status": "component-validation-in-progress",
   "date": "2026-10-23",
   "revision": null,
   "host": "Timing environment not yet recorded",
   "batch_width": null,
-  "measurement_note": "The independent Fortran oracle passes its recorded initialization and identity checks. Rust/reference agreement and runtime performance remain unmeasured in this report.",
+  "measurement_note": "The recorded ggH triangle path, current twelve-check CLI smoke suite and all31 frozen oracle cases pass; one oracle case requires explicit128/256-bit rescue. Higher-point accuracy, physical reference disagreements and mixed D0 derivatives remain open. No qualified timing is claimed.",
   "timing_provenance": null,
   "reference_revisions": {
     "madgraph": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
@@ -22,22 +22,1339 @@
     "factorial_table_entries": 80,
     "driver_sha256": "187dd73c06cc4e3f140c5bb40dfc0a2d30ecad626a34e97ec4dcb37f907b1118",
     "repair_sha256": "83ce1eda082e4d7cea84130bfd3a6ded3f56f369cb0804e4b72a223ac3501bed",
-    "checks": ["original initialization STOP reproduced", "ordinary results unchanged exactly", "factorial table equals exact binomial coefficients", "analytic A0 normalization", "scaleless UV/IR cancellation", "general unit powers equal ordinary tensor API", "analytic A0 mass derivative", "tadpole dimension-shift identity", "B0 mass derivative finite difference"]
+    "checks": [
+      "original initialization STOP reproduced",
+      "ordinary results unchanged exactly",
+      "factorial table equals exact binomial coefficients",
+      "analytic A0 normalization",
+      "scaleless UV/IR cancellation",
+      "general unit powers equal ordinary tensor API",
+      "analytic A0 mass derivative",
+      "tadpole dimension-shift identity",
+      "B0 mass derivative finite difference"
+    ]
   },
   "cases": [
-    {"id": "bubble-polynomial", "label": "Bubble", "description": "Explicit DOT numerator", "n": 2, "rank": "0–3", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
-    {"id": "triangle-polynomial", "label": "Triangle", "description": "Explicit DOT numerator", "n": 3, "rank": "0–3", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
-    {"id": "box-polynomial", "label": "Box", "description": "Expanded topology coverage", "n": 4, "rank": "planned", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
-    {"id": "physical-diagram", "label": "Top-loop gg → H / HH", "description": "FeynKit numerator / MadLoop", "n": null, "rank": "planned", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null}
+    {
+      "id": "bubble-polynomial",
+      "label": "Bubble",
+      "description": "Tensor components and CLI smoke pass",
+      "n": 2,
+      "rank": "0\u20137",
+      "status": "component-validated",
+      "rust_us": null,
+      "iregi_us": null,
+      "madloop_us": null,
+      "max_error": null
+    },
+    {
+      "id": "triangle-polynomial",
+      "label": "Triangle",
+      "description": "Tensor components and CLI smoke pass",
+      "n": 3,
+      "rank": "0\u20137",
+      "status": "component-validated",
+      "rust_us": null,
+      "iregi_us": null,
+      "madloop_us": null,
+      "max_error": null
+    },
+    {
+      "id": "box-polynomial",
+      "label": "Box",
+      "description": "Tensor components; full flow pending",
+      "n": 4,
+      "rank": "0\u20137",
+      "status": "component-validated",
+      "rust_us": null,
+      "iregi_us": null,
+      "madloop_us": null,
+      "max_error": null
+    },
+    {
+      "id": "physical-diagram",
+      "label": "Top loops / massless box",
+      "description": "4 numerators / integrated ggH pass",
+      "n": null,
+      "rank": "planned",
+      "status": "partial",
+      "rust_us": null,
+      "iregi_us": null,
+      "madloop_us": null,
+      "max_error": 9.375902174539343e-15
+    }
   ],
   "coverage": [
-    {"feature": "Independent reference oracle", "requirement": "Untouched/repaired Fortran twins", "status": "verified", "evidence": "24 ordinary cases identical; 80 table entries exact; 7 generalized fixtures pass."},
-    {"feature": "Coefficient ordering and normalization", "requirement": "Native IREGI and MadLoop conventions", "status": "source-audited", "evidence": "Original Fortran interfaces and scalar wrappers inspected; numerical checks pending."},
-    {"feature": "Scalar-master backend", "requirement": "OneLoopMaster, all batch lanes", "status": "pending", "evidence": "Native evaluation integration and reference comparison pending."},
-    {"feature": "Precision", "requirement": "binary64, DoubleFloat, arbitrary precision", "status": "pending", "evidence": "No numerical coverage claimed."},
-    {"feature": "Automatic differentiation", "requirement": "Dual values and derivatives", "status": "pending", "evidence": "Derivative checks pending."},
-    {"feature": "Vectorization", "requirement": "Batches propagated through masters", "status": "pending", "evidence": "Widths 1, 4, 8, 16, 32 and 64 planned."},
-    {"feature": "Exceptional kinematics", "requirement": "Lane-local errors and precision rescue", "status": "pending", "evidence": "Threshold and small-Gram corpus pending."},
-    {"feature": "Physical verification", "requirement": "Isolated MadLoop graph, no R2 / UV counterterms", "status": "pending", "evidence": "Bare poles and R1 must remain in the comparison."}
-  ]
+    {
+      "feature": "Independent reference oracle",
+      "requirement": "Untouched/repaired Fortran twins",
+      "status": "verified",
+      "evidence": "24 ordinary cases identical; 80 table entries exact; 7 generalized fixtures pass."
+    },
+    {
+      "feature": "Scalar-master component",
+      "requirement": "OneLoopMaster A0/B0/C0/D0/DB0",
+      "status": "verified",
+      "evidence": "10 current tests pass, including lightlike B0/DB0 jets; generated native kernels pass specified scalar parity checks and remain opt-in."
+    },
+    {
+      "feature": "IBP component",
+      "requirement": "Powers, dimension shifts and singular identities",
+      "status": "verified",
+      "evidence": "21 exact tests; independent Gamma oracle passes 200 tensor requests and 40 generalized requests, all four slots."
+    },
+    {
+      "feature": "PV component",
+      "requirement": "Every tensor moment and native Laurent slot",
+      "status": "partial",
+      "evidence": "8 exact tests; ranks0\u20137 n1\u20134 pass. N5 rank6: Rust/IREGI f64 errors2.23e\u221210/3.40e\u221210 vs converged high precision; gate failed."
+    },
+    {
+      "feature": "Precision and Dual",
+      "requirement": "binary64, DoubleFloat, Float, static/dynamic jets",
+      "status": "partial",
+      "evidence": "Float128/256/512, specified second-order jets and grouping-identity regression pass; full physical mixed D0 derivatives remain pending."
+    },
+    {
+      "feature": "Execution / CLI / core oracle",
+      "requirement": "Batches through reduction and scalar masters",
+      "status": "partial",
+      "evidence": "14 execution +8 contraction +6 CLI units +12 current smoke checks pass. Oracle31/31:30 binary64 +1 explicit128/256-bit rescue."
+    },
+    {
+      "feature": "Exceptional kinematics",
+      "requirement": "Explicit errors and verified fallback",
+      "status": "partial",
+      "evidence": "Stability10, exact bubble Taylor4 and precision-rescue3 pass. Full N5 rank6 rescue timed out at180s and remains unqualified."
+    },
+    {
+      "feature": "Graph/numerator preparation",
+      "requirement": "FeynKit DOT to Symbolica coefficients",
+      "status": "verified",
+      "evidence": "4 exact model-boundary,13 preparation and4 physical numerator tests pass. Model-import regression fixed; fresh12-check CLI smoke passes."
+    },
+    {
+      "feature": "Physical MadLoop comparison",
+      "requirement": "Graph-isolated top loops and massless box",
+      "status": "partial",
+      "evidence": "Four numerators and integrated ggH pass. Other integrated graphs pending; original ggHHH modes disagree by0.60013 despite stable flags."
+    }
+  ],
+  "validated_base_revision": "92eafe860498d8aae0453eaab0f1898f8e8abfd2",
+  "validation_snapshot_note": "Counts describe the executed component, public-execution and selected physical checks below. They do not certify all kinematics, higher-point ranks or every physical graph. Open discrepancies remain listed with the original tolerance.",
+  "component_validation": [
+    {
+      "component": "iregi-masters",
+      "tests_passed": 10,
+      "tests_failed": 0,
+      "command": "source scripts/env.sh; RUST_MIN_STACK=67108864 target/iregi-masters-tests --test-threads=1 --nocapture",
+      "source": "crates/iregi-masters/tests/masters.rs",
+      "scope": "A0/B0/C0/D0/DB0; lane counts 0,1,3,5,31; binary64, DoubleFloat, Float128/256/512; static/dynamic second-order A0 and Euclidean massive C0/D0 scaling jets; soft-box parity; scaleless UV/IR; isolated bad lanes; equal/unequal/one-massless tangent B0 at p\u00b2=0 and DB0 jets",
+      "limitations": "Full physical mixed D0 derivative qualification remains pending. Generated native-batch is opt-in, with separate scalar parity evidence and no speed claim.",
+      "log": "target/masters-identity.log"
+    },
+    {
+      "component": "IBP",
+      "tests_passed": 21,
+      "tests_failed": 0,
+      "command": "source scripts/env.sh; target/ibp-unit --test-threads=1 --nocapture",
+      "source": "crates/iregi-rust/src/ibp.rs",
+      "scope": "Tadpole derivatives; positive/negative dimension shifts; finite rational terms; scaleless UV/IR; pinch caches; on-shell triangle; coincident denominators; raised pentagon identity; lightlike bubble mixed jets",
+      "limitations": "Selected exact recurrence identities are qualified; higher-point general precision and physical integration remain bounded by separate corpus results."
+    },
+    {
+      "component": "PV exact",
+      "tests_passed": 8,
+      "tests_failed": 0,
+      "source": "crates/iregi-rust/src/pv.rs",
+      "scope": "Translated moments/rational terms; supplied scalar products; alias and physical-pole checks; singular errors; lightlike branch and independent 60/100-digit parameter-integral primal and Symbolica Dualizer derivative fixtures",
+      "limitations": "Numerical high-rank coverage is bounded by the separate corpus entry."
+    },
+    {
+      "component": "PV numerical",
+      "tests_passed": null,
+      "tests_failed": null,
+      "source": "validation/pv-high-rank/rust-coverage.json",
+      "scope": "All330 Cartesian moments and four native Laurent slots, both complex components, ranks0..7 for n1..4",
+      "limitations": "N5 rank6 remains a failed binary64 gate: Rust error2.23e-10 and originalIBP3.40e-10 versus a128/256bit converged value; both need validated rescue."
+    },
+    {
+      "component": "IBP independent Gamma oracle",
+      "tests_passed": 2,
+      "tests_failed": 0,
+      "source": "crates/iregi-rust/tests/triangle_gamma.rs",
+      "tensor_requests": 200,
+      "generalized_requests": 40,
+      "scope": "Independent Dirichlet-simplex Gamma expression expanded with Symbolica; all native Laurent slots match exact one-off-shell-leg massless-triangle requests through tensor rank7 and generalized powers/dimensions",
+      "limitations": "Exact symbolic recurrence oracle; not a timing result or broad numerical-kinematics validation."
+    },
+    {
+      "component": "Execution",
+      "tests_passed": 14,
+      "tests_failed": 0,
+      "source": "crates/iregi-rust/src/execution.rs",
+      "scope": "Batched guards, lane scatter, profiling stages, supplied scalar products, typed/static/dynamic Dual, beyond-binary64 precision and finite-cancellation retry",
+      "limitations": "Broader physical and core-oracle qualification remains bounded by the separate corpus results."
+    },
+    {
+      "component": "Contraction",
+      "tests_passed": 8,
+      "tests_failed": 0,
+      "source": "crates/iregi-rust/src/contraction.rs",
+      "scope": "8 current contraction tests: convention/weight/shape validation; sparse lane isolation; zero/empty numerators; second-order Dual; DoubleFloat low component and Float256 coefficients"
+    },
+    {
+      "component": "Preparation",
+      "tests_passed": 13,
+      "tests_failed": 0,
+      "source": "crates/iregi-prepare/tests/preparation.rs",
+      "scope": "DOT/routing, explicit and physical numerator preparation, exact tiny coefficients, Minkowski and fixed-color contractions"
+    },
+    {
+      "component": "Stability",
+      "tests_passed": 10,
+      "tests_failed": 0,
+      "source": "crates/iregi-rust/src/stability.rs",
+      "scope": "Current full stability suite, including conservative cancellation guards and verified policies",
+      "limitations": "Passing policies do not establish rescued rank-six numerical accuracy for the open high-point case."
+    },
+    {
+      "component": "Exact bubble Taylor expansion",
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "source": "crates/iregi-masters/src/bubble_neighborhood.rs",
+      "command": "target/bubble-neighborhood-unit --test-threads=1 --nocapture",
+      "tests": [
+        "equal_mass_mixed_jet_matches_feynman_parameter_moments",
+        "literal_lightlike_equal_mass_input_keeps_constant_term",
+        "one_massless_tangent_jet_keeps_momentum_derivatives",
+        "unequal_mass_momentum_jet_matches_exact_parameter_integral"
+      ],
+      "scope": "Exact equal/unequal-mass momentum and mixed jets; literal lightlike constant term; one-massless tangent momentum derivatives"
+    },
+    {
+      "component": "CLI units",
+      "tests_passed": 6,
+      "tests_failed": 0,
+      "evidence": "validation/cli-results.json",
+      "source": "crates/iregi-cli/src/main.rs"
+    },
+    {
+      "component": "Core frozen oracle",
+      "cases_passed": 31,
+      "cases_failed": 0,
+      "evidence": "validation/cli-results.json",
+      "source": "crates/iregi-rust/tests/oracle.rs",
+      "qualification": "30 binary64 cases and C0_power2_1_1_rank2 verified through explicit batched128/256-bit rescue; unchanged tolerance. This is not31 binary64 successes.",
+      "binary64_cases": 30,
+      "rescued_cases": 1
+    },
+    {
+      "component": "Physical pointwise numerator",
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "source": "crates/iregi-prepare/tests/madloop_numerator.rs",
+      "scope": "Top ggH,ggHH,ggHHH and massless up-quark box; actual evaluated schema2 external momenta; independent MadLoop numerators"
+    },
+    {
+      "component": "Integrated physical ggH",
+      "status": "passed",
+      "evidence": "validation/physical/ggh-cli-comparison.json",
+      "tensor_slots": 60,
+      "tensor_max_normalized_error": 1.8575259805604474e-15,
+      "contracted_finite_error": 9.375902174539343e-15,
+      "precision": "binary64",
+      "scope": "FeynKit DOT+physical rules+external wavefunctions to Rust hybrid reduction and contraction; independent IREGI tensor moments and graph-isolated fixed-color MadLoop result",
+      "limitations": "One graph and recorded executable/phase-space fixture; retained exact tested provenance. Current CLI smoke passes, but the physical reference is not a fresh replay. No timing qualification."
+    },
+    {
+      "component": "Precision rescue",
+      "tests_passed": 3,
+      "tests_failed": 0,
+      "source": "crates/iregi-rust/src/rescue.rs",
+      "log": "target/rescue-active-tests.log",
+      "scope": "Exact f64/DoubleFloat/Float promotion including exponent gaps and signed zero; generalized-triangle reference coefficients; batched second-order Dual and invalid-lane isolation",
+      "limitations": "Opt-in. Full five-point rank-six regression timed out after180s and remains unqualified; no performance claim."
+    },
+    {
+      "component": "Master grouping identity",
+      "tests_passed": 1,
+      "tests_failed": 0,
+      "log": "target/physical-identity-regression.log",
+      "scope": "Zero-primal jets preserved, genuine IF branches unaffected, tiny-invariant grouping"
+    },
+    {
+      "component": "Generated native batch parity",
+      "tests_passed": 2,
+      "tests_failed": 0,
+      "logs": [
+        "target/masters-native-parity.log",
+        "target/masters-native-generic-parity.log"
+      ],
+      "scope": "Instruction-major generated Rust kernels: all five scalar families with f64 batches0,1,3,5,31 and bad lanes; DoubleFloat/Float A0/B0/C0/D0 parity",
+      "limitations": "native-batch feature opt-in and default off; scalar parity does not certify full physical mixed Dual coverage or runtime speed."
+    },
+    {
+      "component": "CLI smoke current",
+      "checks_passed": 12,
+      "checks_failed": 0,
+      "status": "passed",
+      "evidence": "validation/cli-results.json",
+      "source": "validation/cli_smoke.py",
+      "scope": "Current rebuilt executable including model import, original-IREGI compare command, f64/DD/Float, supplied products and failed-lane handling"
+    },
+    {
+      "component": "Exact model boundary",
+      "tests_passed": 4,
+      "tests_failed": 0,
+      "source": "crates/iregi-prepare/src/model.rs",
+      "evidence": "validation/physical/numerator-evidence.json",
+      "scope": "Symbolica-backed integral quantum-number compatibility; fractional/large decimal rejection; unrelated token precision and exact rational strings preserved"
+    }
+  ],
+  "known_issues": [
+    {
+      "id": "original-pv-bubble-rank4",
+      "evidence": "validation/pv-high-rank/evidence.json",
+      "reproduce": "source scripts/env.sh; python3 validation/pv-high-rank/parameter_check.py --write",
+      "status": "independently-adjudicated-original-reference-defect",
+      "input": {
+        "shifts": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ]
+        ],
+        "mass_squared": [
+          4,
+          9
+        ],
+        "mu": 3,
+        "numerator": "qx^4"
+      },
+      "independent_finite_imaginary": "45.43163000150589518329979586611707229587461094099687773819943892697433",
+      "original_ibp_finite_imaginary": 45.43163000150602,
+      "original_pv_finite_imaginary": 46.11123944517427,
+      "original_hybrid_finite_imaginary": 46.11123944517427,
+      "all_original_modes_report_stable": true,
+      "policy": "Keep the original defect visible; use independent IBP/parameter-integral evidence. No repair of this branch applied to reference sources."
+    },
+    {
+      "id": "original-pv-rank7-highpoint",
+      "evidence": "validation/pv-high-rank/reference-coverage.json",
+      "status": "reference-mode-coverage-recorded",
+      "summary": "For recorded rank-seven cases, original PV reports unstable for n=5,6,7; n=4 PV reports stable but disagrees with IBP. Original IBP reports stable. No new Rust high-rank success is inferred from this audit."
+    },
+    {
+      "id": "physical-ggHHH-reference-mode-disagreement",
+      "evidence": "validation/physical/canonical-reference-audit.json",
+      "status": "unadjudicated",
+      "rank": 4,
+      "max_normalized_error": 0.6001338886545732,
+      "all_original_modes_report_stable": true,
+      "summary": "Original canonical ggHHH rank4: IBP differs from PV/hybrid; correct answer remains unknown. Other three canonical physical families agree within2.22e-14. No Rust integrated success follows from this reference-only audit."
+    }
+  ],
+  "physical_reference": {
+    "status": "ggh-integrated-verified-other-processes-pending",
+    "fixtures": [
+      "validation/physical/madloop/fixtures/ggh-helicity-1.json",
+      "validation/physical/madloop/fixtures/ggh-helicity-4.json"
+    ],
+    "numerator_reference": "validation/physical/ggh-numerator-reference.json",
+    "process": "g g > h [sqrvirt=QCD]",
+    "graph_selection": "n==3 and 6 in loop_pdgs; loop grouping disabled",
+    "coefficients_per_graph": 35,
+    "tensor_laurent_entries_per_graph": 105,
+    "counterterms": "R2 calls zeroed; selected process has no UV-counterterm diagram; bare poles and R1 retained",
+    "numerator_comparison": {
+      "status": "passed",
+      "tests": 4,
+      "probes": 3,
+      "source": "crates/iregi-prepare/tests/madloop_numerator.rs",
+      "scope": "Four selected graph numerators independently agree with isolated MadLoop at real/complex probes using actual evaluated external momenta; not a claim for all40 exported graph records",
+      "integrated_result": "ggH passed; ggHH/ggHHH/massless up-box pending",
+      "cli_input": "validation/physical/ggh-cli-input.json",
+      "processes_passed": [
+        "ggh",
+        "gghh",
+        "gghhh",
+        "gggg-up"
+      ]
+    },
+    "additional_fixtures": [
+      "validation/physical/madloop/fixtures/gghh-helicity-1.json",
+      "validation/physical/madloop/fixtures/gghhh-helicity-1.json",
+      "validation/physical/madloop/fixtures/gggg-up-helicity-1.json"
+    ],
+    "schema_version": 2,
+    "capture_files": 5,
+    "graph_records": 40,
+    "phase_space_policy": "Use schema2 evaluated_external_momenta at the actual numerator seam; requested driver momenta may differ after MadLoop ImprovePSPoint.",
+    "ggh_integrated_comparison": {
+      "evidence": "validation/physical/ggh-cli-comparison.json",
+      "snapshot": {
+        "schema_version": 1,
+        "passed": true,
+        "tolerance": 1e-10,
+        "precision": "f64",
+        "precision_bits": 53,
+        "algorithm": "hybrid",
+        "tensor_comparison": {
+          "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+          "moments": 15,
+          "slots_per_moment": 4,
+          "max_normalized_error": 1.8575259805604474e-15,
+          "worst": {
+            "moment": 0,
+            "exponents": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "pole": 3
+          }
+        },
+        "physical_comparison": {
+          "reference": "MadLoop selected graph, fixed equal gluon colors",
+          "group": 1,
+          "factor": "-1/2",
+          "laurent_order": [
+            "finite",
+            "single_pole",
+            "double_pole"
+          ],
+          "actual_raw": [
+            [
+              -147.86843349622455,
+              9.853003660313785e-13
+            ],
+            [
+              2.842170943040401e-14,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "expected_raw": [
+            [
+              -147.8684334962245,
+              -3.9993379997872965e-13
+            ],
+            [
+              2.842170943040401e-14,
+              -0.0
+            ],
+            [
+              -0.0,
+              0.0
+            ]
+          ],
+          "errors": [
+            9.375902174539343e-15,
+            0.0,
+            0.0
+          ],
+          "actual_normalized": [
+            [
+              -0.9363877940734862,
+              6.239487458095495e-15
+            ],
+            [
+              1.799825775391955e-16,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "expected_normalized": [
+            [
+              -0.9363877940734858,
+              -2.532610374526428e-15
+            ],
+            [
+              1.799825775391955e-16,
+              -0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "excludes": [
+            "R2",
+            "UV counterterms"
+          ],
+          "includes": [
+            "bare UV and IR poles",
+            "R1"
+          ]
+        },
+        "provenance": {
+          "cli_sha256": "9b3f634143c1c4529f4996d3ae836a5092a3f090d3ad373181eec9125b9b7a4a",
+          "input_sha256": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+          "madloop_fixture_sha256": "afa15fe2f94933b5d70e57824de65d091414b1a2b224177612f7d8c5837ef71d",
+          "original_iregi_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+          "graph_sha256": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+          "model_sha256": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+          "madgraph_revision": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/debug/iregi-rust",
+            "run",
+            "examples/graphs/ggh_top_triangle.dot",
+            "--model",
+            "fixtures/models/sm.json",
+            "--input",
+            "validation/physical/ggh-cli-input.json",
+            "--feynman-rules",
+            "--external-wavefunctions",
+            "--component",
+            "0,0",
+            "--convention",
+            "oneloop",
+            "--algorithm",
+            "hybrid",
+            "--precision",
+            "f64",
+            "--bits",
+            "128"
+          ]
+        },
+        "qualification": "Reference data and this comparison arithmetic are binary64; higher working precision does not certify additional digits."
+      }
+    },
+    "canonical_mode_audit": {
+      "schema_version": 1,
+      "reference_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+      "script_sha256": "808dd72a2f9effa71672f92bdb45e8cd4f719db02285c8c0a533953d77b2c31c",
+      "comparison_script_sha256": "5619de6e02aaa9ab2643086f19f08b029d7d3c02516ba70a7f46fa5b4955b1bb",
+      "qualification": "Original IREGI modes compared at canonical physical inputs. No Rust reduction is executed. All four Laurent slots are numerically converted to OneLoop. A disagreement does not identify the correct mode.",
+      "tolerance": 1e-10,
+      "cases": [
+        {
+          "case": "ggh",
+          "input_sha256": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+          "rank": 2,
+          "kinematic_scale": 173.0,
+          "modes": [
+            {
+              "mode": 0,
+              "stable": true,
+              "moments": 15
+            },
+            {
+              "mode": 1,
+              "stable": true,
+              "moments": 15
+            },
+            {
+              "mode": 2,
+              "stable": true,
+              "moments": 15
+            }
+          ],
+          "comparisons_to_ibp": [
+            {
+              "mode": 1,
+              "max_normalized_error": 6.938893903907228e-16,
+              "passed": true,
+              "worst": {
+                "moment": 4,
+                "rank": 1,
+                "pole": 3,
+                "mode_value": [
+                  -0.0007354037220624219,
+                  4.440892098500625e-19
+                ],
+                "ibp_value": [
+                  -0.0007354037220624179,
+                  4.440892098500632e-19
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "max_normalized_error": 6.938893903907228e-16,
+              "passed": true,
+              "worst": {
+                "moment": 4,
+                "rank": 1,
+                "pole": 3,
+                "mode_value": [
+                  -0.0007354037220624219,
+                  4.440892098500625e-19
+                ],
+                "ibp_value": [
+                  -0.0007354037220624179,
+                  4.440892098500632e-19
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "case": "gghh",
+          "input_sha256": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+          "rank": 4,
+          "kinematic_scale": 600.0,
+          "modes": [
+            {
+              "mode": 0,
+              "stable": true,
+              "moments": 70
+            },
+            {
+              "mode": 1,
+              "stable": true,
+              "moments": 70
+            },
+            {
+              "mode": 2,
+              "stable": true,
+              "moments": 70
+            }
+          ],
+          "comparisons_to_ibp": [
+            {
+              "mode": 1,
+              "max_normalized_error": 6.839722312648237e-15,
+              "passed": true,
+              "worst": {
+                "moment": 65,
+                "rank": 4,
+                "pole": 3,
+                "mode_value": [
+                  0.35288874540866116,
+                  0.07357865234934449
+                ],
+                "ibp_value": [
+                  0.35288874540866416,
+                  0.07357865234933834
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "max_normalized_error": 6.839722312648237e-15,
+              "passed": true,
+              "worst": {
+                "moment": 65,
+                "rank": 4,
+                "pole": 3,
+                "mode_value": [
+                  0.35288874540866116,
+                  0.07357865234934449
+                ],
+                "ibp_value": [
+                  0.35288874540866416,
+                  0.07357865234933834
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "case": "gghhh",
+          "input_sha256": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed",
+          "rank": 4,
+          "kinematic_scale": 750.0,
+          "modes": [
+            {
+              "mode": 0,
+              "stable": true,
+              "moments": 70
+            },
+            {
+              "mode": 1,
+              "stable": true,
+              "moments": 70
+            },
+            {
+              "mode": 2,
+              "stable": true,
+              "moments": 70
+            }
+          ],
+          "comparisons_to_ibp": [
+            {
+              "mode": 1,
+              "max_normalized_error": 0.6001338886545732,
+              "passed": false,
+              "worst": {
+                "moment": 54,
+                "rank": 4,
+                "pole": 3,
+                "mode_value": [
+                  3.347444464419028e-13,
+                  2.9254799485349827e-13
+                ],
+                "ibp_value": [
+                  1.06690502568591e-06,
+                  2.925479413432438e-13
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "max_normalized_error": 0.6001338886545732,
+              "passed": false,
+              "worst": {
+                "moment": 54,
+                "rank": 4,
+                "pole": 3,
+                "mode_value": [
+                  3.347444464419028e-13,
+                  2.9254799485349827e-13
+                ],
+                "ibp_value": [
+                  1.06690502568591e-06,
+                  2.925479413432438e-13
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "case": "gggg-up",
+          "input_sha256": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+          "rank": 4,
+          "kinematic_scale": 400.0,
+          "modes": [
+            {
+              "mode": 0,
+              "stable": true,
+              "moments": 70
+            },
+            {
+              "mode": 1,
+              "stable": true,
+              "moments": 70
+            },
+            {
+              "mode": 2,
+              "stable": true,
+              "moments": 70
+            }
+          ],
+          "comparisons_to_ibp": [
+            {
+              "mode": 1,
+              "max_normalized_error": 2.211393154784976e-14,
+              "passed": true,
+              "worst": {
+                "moment": 65,
+                "rank": 4,
+                "pole": 3,
+                "mode_value": [
+                  0.4090028632926296,
+                  0.2109300547319737
+                ],
+                "ibp_value": [
+                  0.4090028632926516,
+                  0.21093005473197188
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "max_normalized_error": 2.211393154784976e-14,
+              "passed": true,
+              "worst": {
+                "moment": 65,
+                "rank": 4,
+                "pole": 3,
+                "mode_value": [
+                  0.4090028632926296,
+                  0.2109300547319737
+                ],
+                "ibp_value": [
+                  0.4090028632926516,
+                  0.21093005473197188
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "all_modes_agree": false
+    },
+    "numerator_evidence": {
+      "schema_version": 1,
+      "recorded_at_utc": "2026-10-23T10:13:18.094199+00:00",
+      "scope": "Independent numerator preparation validation; no integrated-result or throughput claim",
+      "preparation_tests": {
+        "passed": 13,
+        "failed": 0,
+        "elapsed_seconds": 0.45,
+        "command": "source scripts/env.sh && target/cargo-build/debug/deps/preparation-eddb15eca6e5b731 --nocapture"
+      },
+      "physical_numerator_tests": {
+        "passed": 4,
+        "failed": 0,
+        "elapsed_seconds": 10.11,
+        "command": "source scripts/env.sh && target/cargo-build/debug/deps/madloop_numerator-84a61a30209b3196 --nocapture",
+        "observed_by": "graph_physics_audit agent, serialized runtime granted by root",
+        "probes_per_graph": 3,
+        "symbolica_evaluation_bits": 128,
+        "error_metric": "complex_absolute_error / max(1, abs(expected))",
+        "tolerance": 2e-11,
+        "reference": "MadLoop HELAS binary64 coefficients and direct complex probe",
+        "uses_evaluated_external_momenta": true,
+        "cases": [
+          {
+            "id": "ggh",
+            "selected_group": 1,
+            "reference_factor": "-1/2"
+          },
+          {
+            "id": "gghh",
+            "selected_group": 2,
+            "reference_factor": "-1/2"
+          },
+          {
+            "id": "gghhh",
+            "selected_group": 5,
+            "reference_factor": "-1/2"
+          },
+          {
+            "id": "gggg-up",
+            "selected_group": 2,
+            "reference_factor": "-1/8",
+            "massless_parameter": "UFO::MU=0"
+          }
+        ]
+      },
+      "exact_color_checks": [
+        "Tr(T0^2)=1/2",
+        "Tr(T0^4)=1/8"
+      ],
+      "sha256": {
+        "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+        "crates/iregi-prepare/tests/preparation.rs": "64e5e2d681eba046b94cf571a3ea4b52586aa04f16eaf686531ea773ba08829f",
+        "crates/iregi-prepare/tests/madloop_numerator.rs": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948",
+        "fixtures/models/sm.json": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+        "fixtures/models/phi3.json": "18db0733ba3ad2e53618189c4f8766047dea42b03f1aec2ba2ec0dc927b9d916",
+        "validation/physical/ggh-numerator-reference.json": "d4f12d85a4b995a6a3386a7daa700e7258d4935f1680feedbaaaf80c3c3a5dbb",
+        "examples/graphs/ggh_top_triangle.dot": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+        "validation/physical/madloop/fixtures/ggh-helicity-1.json": "afa15fe2f94933b5d70e57824de65d091414b1a2b224177612f7d8c5837ef71d",
+        "validation/physical/ggh-cli-input.json": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+        "examples/graphs/gghh_top_box.dot": "6efba48e58fd1abc2ac726bc9712117a671958edceff4487ba71ba7eb0777974",
+        "validation/physical/madloop/fixtures/gghh-helicity-1.json": "8ec4d723a8851567d46a5e1459c07fbebde464c2a98fc7a4ea880e158f825aa8",
+        "validation/physical/gghh-cli-input.json": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+        "examples/graphs/gghhh_top_pentagon.dot": "2dd4f92b2e4b7742784ea48ef347d21dc10ee9fc39f285703acccfc0889257ed",
+        "validation/physical/madloop/fixtures/gghhh-helicity-1.json": "787fbeaa0b4e0aadc182ea62d552c692463f6c42ab12ce516556c86b68895cf4",
+        "validation/physical/gghhh-cli-input.json": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed",
+        "examples/graphs/gggg_up_box.dot": "2fca7b55d1bb1408750c2a71d29a8a1c4a44502f3e7927d08809d334ef2505d5",
+        "validation/physical/madloop/fixtures/gggg-up-helicity-1.json": "93975368536da7892bd42049ccfa8d245db4749283eba1774208700c8af78e85",
+        "validation/physical/gggg-up-cli-input.json": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+        "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+        "crates/iregi-prepare/Cargo.toml": "46e20cfabcf38cf35f8ef47d563befd9f13979c750edf51430c9a73decc0bfde"
+      },
+      "model_boundary_tests": {
+        "passed": 4,
+        "failed": 0,
+        "elapsed_seconds": 0.04,
+        "command": "source scripts/env.sh && target/cargo-build/debug/deps/iregi_prepare-ab76cd89db56dc0c --nocapture",
+        "checks": [
+          "integer decimal quantum numbers accepted without binary64 conversion",
+          "fractional and large decimal quantum numbers rejected, including near-integer values and extreme exponents",
+          "other numeric tokens and exact rational strings preserved",
+          "both pinned model snapshots load with serde_json arbitrary_precision"
+        ]
+      }
+    }
+  },
+  "dependency_revisions": {
+    "symbolica_numerica_graphica": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+    "source": "Cargo.lock"
+  },
+  "pv_validation": {
+    "schema_version": 1,
+    "test_command": "target/pv-unit pv::tests::original_iregi_cartesian_moments --exact --ignored --test-threads=1 --nocapture",
+    "comparison": "Independent original IREGI IBP tensor moments and independently queried original scalar leaves; exact Rust PV coefficients evaluated in binary64",
+    "tolerance": {
+      "mixed_absolute_relative": "1e-10",
+      "dimension_normalization": "Q^(rank+4-2N), Q\u00b2=max(1,abs masses_squared,abs pair squared distances)"
+    },
+    "exact_tests": {
+      "passed": 8,
+      "failed": 0,
+      "includes": "lightlike branch generic/literal comparison, independent60/100digit parameter-integral primal fixture, Symbolica Dualizer first-invariant derivative fixture"
+    },
+    "passed": [
+      {
+        "propagators": 1,
+        "ranks": "0..7",
+        "cartesian_moments": 330,
+        "laurent_slots": 4,
+        "complex_components": 2
+      },
+      {
+        "propagators": 2,
+        "ranks": "0..7",
+        "cartesian_moments": 330,
+        "laurent_slots": 4,
+        "complex_components": 2
+      },
+      {
+        "propagators": 3,
+        "ranks": "0..7",
+        "cartesian_moments": 330,
+        "laurent_slots": 4,
+        "complex_components": 2
+      },
+      {
+        "propagators": 4,
+        "ranks": "0..7",
+        "cartesian_moments": 330,
+        "laurent_slots": 4,
+        "complex_components": 2
+      }
+    ],
+    "first_failure": {
+      "propagators": 5,
+      "rank": 6,
+      "monomial": [
+        5,
+        0,
+        0,
+        1
+      ],
+      "laurent_slot": "finite",
+      "complex_component": "imaginary",
+      "actual": "-2.4383791587752057e-3",
+      "reference": "-2.4383792757856071e-3",
+      "absolute_difference": "1.1701040140000000e-10",
+      "status": "Highprecision scalar masters and exact coefficient evaluation converge at128/256bits; both binary64 routes fail fixed1e-10 tolerance for this component. Requires precision rescue or explicit instability diagnostic.",
+      "high_precision": {
+        "binary128": "-2.4383789354471229393924987499367e-3",
+        "binary256": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+        "method": "Exact Symbolica PV coefficients, oneloop NativeEvaluator<Float> A0-D0, exact integer inputs, native IREGI normalization",
+        "rust_binary64_error": "2.2332808276060750125015672465e-10",
+        "reference_binary64_error": "3.4033848416060750125015672465e-10",
+        "probe_source": "crates/iregi-rust/examples/pv_precision_probe.rs",
+        "command": "cargo run -p iregi-rust --example pv_precision_probe --offline"
+      },
+      "conditioning_evidence": "validation/pv-high-rank/precision-probe.json"
+    },
+    "not_yet_qualified": [
+      "rank7 fivepoint",
+      "rank0..7 sixpoint and sevenpoint",
+      "translated rank7 cases"
+    ]
+  },
+  "open_discrepancies": [
+    {
+      "id": "rust-pv-n5-rank6",
+      "evidence": "validation/pv-high-rank/rust-coverage.json",
+      "propagators": 5,
+      "rank": 6,
+      "monomial": [
+        5,
+        0,
+        0,
+        1
+      ],
+      "laurent_slot": "finite",
+      "complex_component": "imaginary",
+      "actual": "-2.4383791587752057e-3",
+      "reference": "-2.4383792757856071e-3",
+      "absolute_difference": "1.1701040140000000e-10",
+      "status": "Binary64 failure confirmed against128/256bit convergence; precision rescue remains required and the gate is failed.",
+      "precision_adjudication": "Float128/256 converge; binary64 Rust error2.23e-10 and originalIBP3.40e-10 vs converged result. Gate remains failed; both need rescue."
+    }
+  ],
+  "unqualified_timing_artifacts": {
+    "status": "excluded-from-performance-results",
+    "reason": "Smoke runs have only two1ms blocks and no CPU pinning; not qualified benchmark evidence.",
+    "kernel": "target/benchmark/results.json",
+    "physical": "target/physical/*-benchmark.json"
+  },
+  "pv_precision_probe": {
+    "status": "128-and-256-bit-convergence-observed",
+    "source": "crates/iregi-rust/examples/pv_precision_probe.rs",
+    "retained_output": "validation/pv-high-rank/precision-probe.json",
+    "precision_bits": [
+      128,
+      256
+    ],
+    "finite_imaginary": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+    "rust_binary64_absolute_error": "2.233280827606075012501567246523799845311742951466356381700279570E-10",
+    "original_ibp_binary64_absolute_error": "3.403384841606075012501567246523799845311742951466356381700279570E-10",
+    "tolerance": "1e-10",
+    "gate": "failed",
+    "required_action": "Validate the full N5 rank6 rescue regression; current180s attempt timed out. Both original binary64 results still exceed the fixed tolerance; no gate relaxation.",
+    "evidence": {
+      "input": {
+        "shifts": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ],
+        "mass_squared": [
+          4,
+          9,
+          16,
+          25,
+          36
+        ],
+        "mu": 3,
+        "monomial": [
+          5,
+          0,
+          0,
+          1
+        ]
+      },
+      "convention": "Native IREGI finite imaginary coefficient; raw Cartesian moment",
+      "precision": {
+        "binary128": "-2.4383789354471229393924987499367e-3",
+        "binary256": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+        "method": "Exact Symbolica PV coefficients, oneloop NativeEvaluator<Float> A0-D0, exact integer inputs, native IREGI normalization",
+        "rust_binary64_error": "2.2332808276060750125015672465e-10",
+        "reference_binary64_error": "3.4033848416060750125015672465e-10",
+        "probe_source": "crates/iregi-rust/examples/pv_precision_probe.rs",
+        "command": "cargo run -p iregi-rust --example pv_precision_probe --offline"
+      },
+      "conclusion": "Highprecision scalar masters and exact coefficient evaluation converge at128/256bits; both binary64 routes fail fixed1e-10 tolerance for this component. Requires precision rescue or explicit instability diagnostic.",
+      "conditioning": {
+        "finite_master_term_absolute_sum_oneloop": "55375.72548164514891993307",
+        "rounded_true_masters_evaluated_at_binary256_native": "-2.43837893855469802247931882903567165212043704306600012422909081863125701e-3",
+        "rounded_true_masters_evaluated_at_binary64_native": "-2.43837891317418964e-3",
+        "master_rounding_only_absolute_error": "3.10757508308682007919239630450042157424029527086472898865921401E-12",
+        "master_rounding_plus_reduction_rounding_absolute_error": "2.22729332993924987498432753476200154688257048533643618299720430E-11",
+        "interpretation": "About28bits of relative cancellation. Correctly rounded scalar master inputs greatly reduce the observed error; higherprecision scalar masters and a conservative instability monitor are needed."
+      }
+    },
+    "full_rescue_regression": {
+      "status": "timed-out-unqualified",
+      "time_limit_seconds": 180,
+      "source": "crates/iregi-rust/src/rescue.rs",
+      "test": "five_point_rank_six_verifies_the_preserved_precision_discrepancy",
+      "log": "target/rescue-pentagon-test.log"
+    }
+  },
+  "cli_validation": {
+    "evidence": "validation/cli-results.json",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T09:48:23.313679+00:00",
+      "cli_unit_tests": {
+        "passed": 6,
+        "failed": 0,
+        "duration_seconds": 0.03,
+        "command": [
+          "source scripts/env.sh",
+          "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "execution_owner": "ROOT, reported directly after integrated workspace compilation",
+        "includes": [
+          "decimal input precision",
+          "JSON decimal token preservation",
+          "rational parsing and numeric input policy",
+          "full dimension-offset translation",
+          "supplied scalar-product precision and packing",
+          "comparison scale from all kinematics"
+        ]
+      },
+      "cli_smoke": {
+        "schema_version": 1,
+        "passed": true,
+        "status": "passed",
+        "checks": [
+          "help",
+          "prepare-bubble",
+          "compare-bubble-rank2",
+          "reduce-bubble-f64",
+          "reduce-bubble-dd",
+          "reduce-bubble-float",
+          "run-bubble",
+          "run-triangle",
+          "supplied-invariants",
+          "invalid-lane",
+          "mixed-ranks",
+          "singular-coefficient-lane"
+        ],
+        "qualification": "Small CLI integration suite; full tensor oracle comparisons and physical MadLoop comparison run separately."
+      },
+      "cli_smoke_reproduction": [
+        "source scripts/env.sh",
+        "python3 validation/cli_smoke.py --cli target/debug/iregi-rust"
+      ],
+      "core_oracle": {
+        "total": 31,
+        "passed": 31,
+        "failed": 0,
+        "status": "passed with explicit precision rescue",
+        "duration_seconds": 8.57,
+        "binary64_cases": 30,
+        "rescued_cases": [
+          {
+            "id": "C0_power2_1_1_rank2",
+            "working_bits": 128,
+            "verification_bits": 256,
+            "accepted_rows": 1
+          }
+        ],
+        "execution_owner": "ROOT, reported directly after integrated workspace compilation",
+        "reproduction": [
+          "source scripts/env.sh",
+          "target/cargo-build/debug/deps/oracle-6c52b475eea102c1 --test-threads=1 --nocapture"
+        ],
+        "test_source": "crates/iregi-rust/tests/oracle.rs",
+        "qualification": "Thirty cases pass at binary64. The generalized triangle is accepted only through the explicit 128/256-bit rescue check; this is not a claim that all cases pass in binary64."
+      },
+      "executables_sha256": {
+        "target/debug/iregi-rust": "645c0680dbdccdc1a4bc7aaf7ad4e44b6023c93abab5c82f05e22f57ced07580",
+        "target/cargo-build/debug/deps/iregi_rust-00900036acb1137e": "f644f9f61f97d0b243b4adef1f1ec941981bc9b4a45cbdfe3a4a188e6e2596aa",
+        "target/cargo-build/debug/deps/oracle-70a0223120956b1d": "60c6ef98389440de782ceb3f5863e577ce8589c9e3791b8b9b39988c849e5c38",
+        "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546": "23e649190726268456f593df0cb99ae52c188cda91cc79a494c9dd9759bf0d7d",
+        "target/cargo-build/debug/deps/oracle-6c52b475eea102c1": "e074cad5ce431b100a49895286e5562836e3458ecbbfb5a00a12ee100caf0d11"
+      },
+      "source_snapshot_sha256": {
+        "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+        "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+        "validation/cli_smoke.py": "ccaa6c3fce9e132dab20cdf470b50e9d5398f73c1c3f82be944fa1368b50d219",
+        "validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+        "crates/iregi-cli/src/main.rs": "bac7b3a80f6f30fa61706fbcd5939b0aca88e78bea57ff98af46c7e67331b6ec",
+        "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
+        "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+        "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+        "crates/iregi-masters/src/lib.rs": "f616101756b4df3059bd4fce7ff46a0f5bf8c054d011c304d95c438c12a808a3",
+        "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+        "crates/iregi-prepare/src/lib.rs": "f5eb1f73f18992535d3f23a110b39abfd67bd29f76e28b52f05d104036834d73",
+        "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+        "crates/iregi-rust/src/contraction.rs": "b8cea9e4f36283f6f7394ee4d5efbb9aa402a8351f8965a1746aa87fd28f07be",
+        "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+        "crates/iregi-rust/src/execution.rs": "bcf7a3b974efac55f1f6de8e259be821afbef09971ddbce90f7446e77a56104e",
+        "crates/iregi-rust/src/ibp.rs": "94ec5d3e6738ad5d167624022000bb46244363bad82ac49d62d6ff56d7135027",
+        "crates/iregi-rust/src/lib.rs": "8b78f415cc5688e71601ad26d5dba00b155d4203ae7205c9e9e785bc85ad8268",
+        "crates/iregi-rust/src/plan.rs": "30310675507dfb6a4f6b81c912b4a6903f7a481d78637e547d2f66038fcc9d15",
+        "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
+        "crates/iregi-rust/src/stability.rs": "53bdb45157375502a278fe481c336651457bdfd88cd40b134dd1810523dbf5ad",
+        "crates/iregi-rust/src/types.rs": "05765a1354773b44eca5ebfd9bb8862b156743c7285ff7b361ed98d59973d14f"
+      },
+      "qualification": "Six CLI unit tests and twelve current CLI integration checks pass. The original oracle passes all31 with explicit128/256-bit rescue for one generalized triangle. Earlier ggH physical evidence retains its own tested executable hash and is not claimed as a new end-to-end run. Earlier smoke and oracle records remain in history. Source snapshots were recorded after execution; final prepare source formatting may postdate compilation without semantic changes. Durations are correctness-suite observations, not runtime benchmarks.",
+      "physical_ggh": {
+        "passed": true,
+        "report": "validation/physical/ggh-cli-comparison.json",
+        "tensor_slots_compared": 60,
+        "max_tensor_error": 1.8575259805604474e-15,
+        "physical_errors": [
+          9.375902174539343e-15,
+          0.0,
+          0.0
+        ]
+      },
+      "updated_utc": "2026-10-23T10:13:57.231294+00:00",
+      "previous_core_oracle": {
+        "total": 31,
+        "passed": 30,
+        "failed": 1,
+        "status": "not fully validated",
+        "first_run_seconds": 5.98,
+        "remaining_dimension_shift_cases_seconds": 1.33,
+        "failure": {
+          "id": "C0_power2_1_1_rank2",
+          "kind": "conservative cancellation guard rejection before numerical comparison",
+          "diagnostic": "estimated cancellation exceeds 2^(19-53) in recurrence ibp_196_node_23, Taylor component 0; this estimate is not a certified error bound"
+        },
+        "remaining_cases_passed": [
+          "A0_dim6_power2",
+          "C0_dim6"
+        ],
+        "reproduction": [
+          "source scripts/env.sh",
+          "target/cargo-build/debug/deps/oracle-70a0223120956b1d --test-threads=1 --nocapture",
+          "IREGI_ORACLE_CASE=_dim6 target/cargo-build/debug/deps/oracle-70a0223120956b1d --test-threads=1 --nocapture"
+        ]
+      },
+      "previous_cli_smoke": {
+        "report": {
+          "schema_version": 1,
+          "passed": true,
+          "checks": [
+            "help",
+            "prepare-bubble",
+            "reduce-bubble-f64",
+            "reduce-bubble-dd",
+            "reduce-bubble-float",
+            "run-bubble",
+            "run-triangle",
+            "supplied-invariants",
+            "invalid-lane",
+            "mixed-ranks",
+            "singular-coefficient-lane"
+          ],
+          "qualification": "Small CLI integration suite; full tensor oracle comparisons and physical MadLoop comparison run separately."
+        },
+        "cli_sha256": "9b3f634143c1c4529f4996d3ae836a5092a3f090d3ad373181eec9125b9b7a4a"
+      },
+      "resolved_cli_smoke_regression": {
+        "passed": false,
+        "completed_checks": [
+          "help"
+        ],
+        "failed_check": "prepare-bubble",
+        "exit_status": 2,
+        "diagnostic": "model input: invalid JSON: data did not match any variant of untagged enum Input at line 7 column 154",
+        "cli_sha256": "8c81d9d740087da9b38823eb217b4c08dbfd0afdf5447377aaf9639b7f25f455",
+        "suspected_cause": "serde_json arbitrary_precision incompatibility with FeynKit integral floating-point quantum-number deserialization",
+        "status": "resolved by exact preparation-boundary quantum-number normalization; fresh twelve-check smoke passes"
+      },
+      "current_source_snapshot_sha256": {
+        "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+        "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+        "validation/cli_smoke.py": "9edc1e3eddf908b1cfda54f3c51cb2fe40ef621f222018fc93e9264914ccfc8c",
+        "validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+        "crates/iregi-cli/Cargo.toml": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac",
+        "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+        "crates/iregi-prepare/Cargo.toml": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1",
+        "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+        "crates/iregi-cli/src/main.rs": "1722d2506cc62a5db315e680af3901eb0f54a53e110a5e96d71a1fe72a0408cc",
+        "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
+        "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+        "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+        "crates/iregi-masters/src/lib.rs": "236fe067e511f6cc7284659c7b017eed4da564450f903d67ed4b1d4505b983b1",
+        "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+        "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+        "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+        "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+        "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+        "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+        "crates/iregi-rust/src/execution.rs": "25a99e56b8ff2480e44815696a6d1bccfabde3336f31f552cce1304fdb6dab0e",
+        "crates/iregi-rust/src/ibp.rs": "b6f3f41bae5f46705dae8c4deb495552b36fc1df7bf1f122164621f19daace10",
+        "crates/iregi-rust/src/lib.rs": "189ab7ff0288a71b97b3ecccd5aa5c49d5a7e4c368e0265a3620a04c5bf96646",
+        "crates/iregi-rust/src/plan.rs": "1748e07ae04eb6d70206bd1819e0adbffa3e569171c618bd44b65838e9d76bda",
+        "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
+        "crates/iregi-rust/src/rescue.rs": "1010c39b8ec36408f53dba6f8c669156f15e2540c9eb32a21540ad815c304f06",
+        "crates/iregi-rust/src/stability.rs": "f5611e4f8482707f28639f8e31f60e5060f46e31781b2c7d9ecbb45b822fa903",
+        "crates/iregi-rust/src/types.rs": "991e8b6f5db103b41869337ca0ceb8107d1d1f486e506bc4b44b928a87539dc9"
+      }
+    }
+  },
+  "resolved_preparation_issues": [
+    {
+      "id": "physical-pentagon-external-point",
+      "status": "resolved-and-pointwise-test-passed",
+      "observed_relative_discrepancy": "7.2e-10",
+      "diagnosis": "MadLoop altered external momenta before the captured integration seam; independent128bit evaluation confirms a mismatched input point. Actual evaluated momenta were re-exported and the comparison rerun.",
+      "resolution": "Schema2 actual evaluated momenta and corrected mass binding used in the four passing physical numerator tests; integrated result remains separate."
+    },
+    {
+      "id": "massless-up-box-binding",
+      "status": "resolved-and-pointwise-test-passed",
+      "diagnosis": "The massless-up binder requires UFO::MU=0.",
+      "resolution": "Schema2 actual evaluated momenta and corrected mass binding used in the four passing physical numerator tests; integrated result remains separate."
+    },
+    {
+      "id": "model-import-arbitrary-precision",
+      "status": "resolved-and-current-cli-smoke-passed",
+      "evidence": [
+        "validation/physical/numerator-evidence.json",
+        "validation/cli-results.json"
+      ],
+      "diagnosis": "Global serde_json arbitrary_precision changed decimal-number representation seen by FeynKit untagged quantum-number deserialization.",
+      "resolution": "A narrow Symbolica-backed adapter normalizes three quantum-number fields without a binary64 conversion and preserves other tokens.4 adapter,13 preparation,4 physical numerator and12 current CLI smoke checks pass.",
+      "previous_failure": {
+        "passed": false,
+        "completed_checks": [
+          "help"
+        ],
+        "failed_check": "prepare-bubble",
+        "exit_status": 2,
+        "diagnostic": "model input: invalid JSON: data did not match any variant of untagged enum Input at line 7 column 154",
+        "cli_sha256": "8c81d9d740087da9b38823eb217b4c08dbfd0afdf5447377aaf9639b7f25f455",
+        "suspected_cause": "serde_json arbitrary_precision incompatibility with FeynKit integral floating-point quantum-number deserialization",
+        "status": "resolved by exact preparation-boundary quantum-number normalization; fresh twelve-check smoke passes"
+      }
+    }
+  ],
+  "pending_test_additions": [],
+  "resolved_accuracy_issues": [
+    {
+      "id": "C0_power2_1_1_rank2",
+      "previous_diagnostic": "estimated cancellation exceeds 2^(19-53) in recurrence ibp_196_node_23, Taylor component 0; this estimate is not a certified error bound",
+      "status": "verified-with-explicit-128/256-bit-rescue",
+      "evidence": "validation/cli-results.json",
+      "qualification": "Primary binary64 guard rejection retained; full reference coefficient comparison passes with explicit batched precision rescue and unchanged tolerance."
+    }
+  ],
+  "latest_checkpoint": {
+    "source": "Root-agent executed integrated workspace and test checkpoint,2026-10-23",
+    "workspace_compile": "passed",
+    "test_counts": {
+      "contraction": 8,
+      "stability": 10,
+      "ibp": 21,
+      "cli_units": 6,
+      "execution": 14,
+      "rescue": 3,
+      "masters": 10,
+      "core_oracle": 31,
+      "cli_smoke": 12,
+      "model_boundary": 4
+    },
+    "oracle_precision_split": {
+      "binary64": 30,
+      "explicit128_256_rescue": 1
+    },
+    "limitations": [
+      "Full N5 rank6 rescue timed out180s",
+      "Full physical mixed D0 derivative suite pending",
+      "No qualified timings",
+      "Canonical ggHHH reference discrepancy unadjudicated"
+    ],
+    "retained_logs_sha256": {
+      "target/workspace-checkpoint-compile.log": "e9ad1f352e1c979deebf7f078d457d5058fd25933a21b8c2c0adb0132f6b0490",
+      "target/rescue-active-tests.log": "808bff8b303d2c4ba0392612635b177fb6aaa3aeeb3d954b9a63110fd4eeba9e",
+      "target/rescue-pentagon-test.log": "14299bbd8366a437f50a901d83106ed60b1a097fe8b55a4005781c0d3dbbd886",
+      "target/masters-identity.log": "5da395059250170e4086ca90ad70c209433e354a64bb0ffb7b752a32324e6dbd",
+      "target/physical-identity-regression.log": "192bdb73ac463fb224e70d50b49d21023ccbbd319513a62dbf6e620a0df8c044",
+      "target/masters-native-parity.log": "83f7aa4ede99b64aba314050bb0f58c2b2ba0ebfc1477ea7a31a2bd7eb95a49f",
+      "target/masters-native-generic-parity.log": "4dd9ffb09dac50f6619fbe9f9bc56cbb457aae9984a6ad1c6890ca45d1081dae"
+    }
+  }
 }

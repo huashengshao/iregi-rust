@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "tolerance": 1e-10,
+  "precision": "f64",
+  "precision_bits": 53,
+  "algorithm": "hybrid",
+  "tensor_comparison": {
+    "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+    "moments": 15,
+    "slots_per_moment": 4,
+    "max_normalized_error": 1.8575259805604474e-15,
+    "worst": {
+      "moment": 0,
+      "exponents": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "pole": 3
+    }
+  },
+  "physical_comparison": {
+    "reference": "MadLoop selected graph, fixed equal gluon colors",
+    "group": 1,
+    "factor": "-1/2",
+    "laurent_order": [
+      "finite",
+      "single_pole",
+      "double_pole"
+    ],
+    "actual_raw": [
+      [
+        -147.86843349622455,
+        9.853003660313785e-13
+      ],
+      [
+        2.842170943040401e-14,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "expected_raw": [
+      [
+        -147.8684334962245,
+        -3.9993379997872965e-13
+      ],
+      [
+        2.842170943040401e-14,
+        -0.0
+      ],
+      [
+        -0.0,
+        0.0
+      ]
+    ],
+    "errors": [
+      9.375902174539343e-15,
+      0.0,
+      0.0
+    ],
+    "actual_normalized": [
+      [
+        -0.9363877940734862,
+        6.239487458095495e-15
+      ],
+      [
+        1.799825775391955e-16,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "expected_normalized": [
+      [
+        -0.9363877940734858,
+        -2.532610374526428e-15
+      ],
+      [
+        1.799825775391955e-16,
+        -0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "excludes": [
+      "R2",
+      "UV counterterms"
+    ],
+    "includes": [
+      "bare UV and IR poles",
+      "R1"
+    ]
+  },
+  "provenance": {
+    "cli_sha256": "9b3f634143c1c4529f4996d3ae836a5092a3f090d3ad373181eec9125b9b7a4a",
+    "input_sha256": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+    "madloop_fixture_sha256": "afa15fe2f94933b5d70e57824de65d091414b1a2b224177612f7d8c5837ef71d",
+    "original_iregi_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+    "graph_sha256": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+    "model_sha256": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+    "madgraph_revision": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
+    "command": [
+      "/shared/external/iregi/iregi-rust/target/debug/iregi-rust",
+      "run",
+      "examples/graphs/ggh_top_triangle.dot",
+      "--model",
+      "fixtures/models/sm.json",
+      "--input",
+      "validation/physical/ggh-cli-input.json",
+      "--feynman-rules",
+      "--external-wavefunctions",
+      "--component",
+      "0,0",
+      "--convention",
+      "oneloop",
+      "--algorithm",
+      "hybrid",
+      "--precision",
+      "f64",
+      "--bits",
+      "128"
+    ]
+  },
+  "qualification": "Reference data and this comparison arithmetic are binary64; higher working precision does not certify additional digits."
+}

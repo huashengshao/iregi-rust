@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "source_commit": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
+  "issues": [
+    {
+      "id": "original-pv-bubble-rank4-quadratic-roots",
+      "status": "reference disagreement reproduced; no additional source repair applied",
+      "description": "Original real-mass PV and hybrid disagree with original IBP for the finite q1^4 bubble moment, while every method reports stable.",
+      "input": {
+        "id": "bubble_rank4_mode0",
+        "api": "tensor",
+        "mode": 0,
+        "rank": 4,
+        "dimension_shift": 0,
+        "mu": 3,
+        "snap": false,
+        "threshold": 1e-06,
+        "propagators": [
+          {
+            "shift": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "mass_squared": [
+              4,
+              0
+            ],
+            "power": 1
+          },
+          {
+            "shift": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "mass_squared": [
+              9,
+              0
+            ],
+            "power": 1
+          }
+        ]
+      },
+      "affected_moment": {
+        "index": 55,
+        "exponents": [
+          0,
+          4,
+          0,
+          0
+        ]
+      },
+      "observations": [
+        {
+          "mode": 0,
+          "stable": true,
+          "poles": [
+            [
+              0.0,
+              96.22864291062082
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              45.43163000150602
+            ]
+          ]
+        },
+        {
+          "mode": 1,
+          "stable": true,
+          "poles": [
+            [
+              0.0,
+              96.22864291062147
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -2.7073211252542046e-11,
+              46.11123944517427
+            ]
+          ]
+        },
+        {
+          "mode": 2,
+          "stable": true,
+          "poles": [
+            [
+              0.0,
+              96.22864291062147
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              -2.7073211252542046e-11,
+              46.11123944517427
+            ]
+          ]
+        }
+      ],
+      "suspected_cause": "pave_reduce.f90 lines 468-475 and 2432-2439 divide only the square-root term, rather than the complete quadratic numerator, by 2*P02.",
+      "oracle_policy": "Do not silently accept PV/hybrid as truth in this domain; compare independent IBP and analytic or high-precision evidence. Keep this separate from the validated factorial initialization repair."
+    }
+  ]
+}

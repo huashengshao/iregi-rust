@@ -1,0 +1,69 @@
+{
+  "input": {
+    "shifts": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "mass_squared": [
+      4,
+      9,
+      16,
+      25,
+      36
+    ],
+    "mu": 3,
+    "monomial": [
+      5,
+      0,
+      0,
+      1
+    ]
+  },
+  "convention": "Native IREGI finite imaginary coefficient; raw Cartesian moment",
+  "precision": {
+    "binary128": "-2.4383789354471229393924987499367e-3",
+    "binary256": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+    "method": "Exact Symbolica PV coefficients, oneloop NativeEvaluator<Float> A0-D0, exact integer inputs, native IREGI normalization",
+    "rust_binary64_error": "2.2332808276060750125015672465e-10",
+    "reference_binary64_error": "3.4033848416060750125015672465e-10",
+    "probe_source": "crates/iregi-rust/examples/pv_precision_probe.rs",
+    "command": "cargo run -p iregi-rust --example pv_precision_probe --offline"
+  },
+  "conclusion": "Highprecision scalar masters and exact coefficient evaluation converge at128/256bits; both binary64 routes fail fixed1e-10 tolerance for this component. Requires precision rescue or explicit instability diagnostic.",
+  "conditioning": {
+    "finite_master_term_absolute_sum_oneloop": "55375.72548164514891993307",
+    "rounded_true_masters_evaluated_at_binary256_native": "-2.43837893855469802247931882903567165212043704306600012422909081863125701e-3",
+    "rounded_true_masters_evaluated_at_binary64_native": "-2.43837891317418964e-3",
+    "master_rounding_only_absolute_error": "3.10757508308682007919239630450042157424029527086472898865921401E-12",
+    "master_rounding_plus_reduction_rounding_absolute_error": "2.22729332993924987498432753476200154688257048533643618299720430E-11",
+    "interpretation": "About28bits of relative cancellation. Correctly rounded scalar master inputs greatly reduce the observed error; higherprecision scalar masters and a conservative instability monitor are needed."
+  }
+}

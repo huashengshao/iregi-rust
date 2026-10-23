@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "test_command": "target/pv-unit pv::tests::original_iregi_cartesian_moments --exact --ignored --test-threads=1 --nocapture",
+  "comparison": "Independent original IREGI IBP tensor moments and independently queried original scalar leaves; exact Rust PV coefficients evaluated in binary64",
+  "tolerance": {
+    "mixed_absolute_relative": "1e-10",
+    "dimension_normalization": "Q^(rank+4-2N), Q\u00b2=max(1,abs masses_squared,abs pair squared distances)"
+  },
+  "exact_tests": {
+    "passed": 8,
+    "failed": 0,
+    "includes": "lightlike branch generic/literal comparison, independent60/100digit parameter-integral primal fixture, Symbolica Dualizer first-invariant derivative fixture"
+  },
+  "passed": [
+    {
+      "propagators": 1,
+      "ranks": "0..7",
+      "cartesian_moments": 330,
+      "laurent_slots": 4,
+      "complex_components": 2
+    },
+    {
+      "propagators": 2,
+      "ranks": "0..7",
+      "cartesian_moments": 330,
+      "laurent_slots": 4,
+      "complex_components": 2
+    },
+    {
+      "propagators": 3,
+      "ranks": "0..7",
+      "cartesian_moments": 330,
+      "laurent_slots": 4,
+      "complex_components": 2
+    },
+    {
+      "propagators": 4,
+      "ranks": "0..7",
+      "cartesian_moments": 330,
+      "laurent_slots": 4,
+      "complex_components": 2
+    }
+  ],
+  "first_failure": {
+    "propagators": 5,
+    "rank": 6,
+    "monomial": [
+      5,
+      0,
+      0,
+      1
+    ],
+    "laurent_slot": "finite",
+    "complex_component": "imaginary",
+    "actual": "-2.4383791587752057e-3",
+    "reference": "-2.4383792757856071e-3",
+    "absolute_difference": "1.1701040140000000e-10",
+    "status": "Highprecision scalar masters and exact coefficient evaluation converge at128/256bits; both binary64 routes fail fixed1e-10 tolerance for this component. Requires precision rescue or explicit instability diagnostic.",
+    "high_precision": {
+      "binary128": "-2.4383789354471229393924987499367e-3",
+      "binary256": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+      "method": "Exact Symbolica PV coefficients, oneloop NativeEvaluator<Float> A0-D0, exact integer inputs, native IREGI normalization",
+      "rust_binary64_error": "2.2332808276060750125015672465e-10",
+      "reference_binary64_error": "3.4033848416060750125015672465e-10",
+      "probe_source": "crates/iregi-rust/examples/pv_precision_probe.rs",
+      "command": "cargo run -p iregi-rust --example pv_precision_probe --offline"
+    },
+    "conditioning_evidence": "validation/pv-high-rank/precision-probe.json"
+  },
+  "not_yet_qualified": [
+    "rank7 fivepoint",
+    "rank0..7 sixpoint and sevenpoint",
+    "translated rank7 cases"
+  ]
+}

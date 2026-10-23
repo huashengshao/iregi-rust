@@ -147,3 +147,19 @@ complex-mass triangle, and generalized powers/dimension shifts. Each fixture
 states whether the repaired executable was used. Run `capture.py` without
 `--write-fixtures` to repeat validation without changing committed expected
 values. Fixture preparation and process transport are not reduction benchmarks.
+
+## Additional original-reference disagreement
+
+`python3 validation/reference/audit.py` reproduces a distinct rank-four bubble
+problem in the untouched source. With squared masses 4 and 9, shifts zero and
+`(0,1,0,0)`, and scale 3, the finite `q1^4` moment is
+`45.43163000150602 i` in IBP mode but approximately `46.11123944517427 i` in PV
+and hybrid mode; all three return `stable=true`. The UV poles agree. The
+quadratic-root expressions in the two real-mass bubble analytic branches appear
+to divide only the square-root term by `2*P02`, rather than the complete
+numerator. This is a suspected cause, separate from the reproduced disagreement.
+
+The captured inputs and outputs are in `known-issues.json` (regenerate with
+`audit.py --write`). No repair for this second issue is applied by the builder.
+PV/hybrid results in this domain require additional independent evidence before
+being accepted as oracle truth.
