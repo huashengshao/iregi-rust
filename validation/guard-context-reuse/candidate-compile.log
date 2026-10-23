@@ -1,0 +1,79 @@
+warning: methods `set_precision_budget`, `evaluated_rows`, `passes`, and `check_batch` are never used
+  --> /shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate/crates/iregi-rust/src/exact_zero_certificate.rs:71:19
+   |
+70 | impl ExactZeroConstraintWorkspace {
+   | --------------------------------- methods in this implementation
+71 |     pub(crate) fn set_precision_budget(
+   |                   ^^^^^^^^^^^^^^^^^^^^
+...
+79 |     pub(crate) fn evaluated_rows(&self) -> usize {
+   |                   ^^^^^^^^^^^^^^
+...
+83 |     pub(crate) fn passes(&self) -> usize {
+   |                   ^^^^^^
+...
+89 |     pub(crate) fn check_batch(
+   |                   ^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: function `certified_relation_coordinates` is never used
+   --> /shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate/crates/iregi-rust/src/invariant_certificate.rs:550:15
+    |
+550 | pub(crate) fn certified_relation_coordinates(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `owner`, `active`, `expression`, and `label` are never read
+  --> /shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate/crates/iregi-rust/src/pv.rs:49:9
+   |
+47 | pub(crate) struct CoordinateConstraint {
+   |                   -------------------- fields in this struct
+48 |     /// Alias whose graph reachability determines whether this topology is used.
+49 |     pub owner: Atom,
+   |         ^^^^^
+50 |     /// Nonzero only when the rank-deficient identity branch is selected.
+51 |     pub active: Atom,
+   |         ^^^^^^
+52 |     /// Raw-coordinate polynomial, without aliases or master dependence.
+53 |     pub expression: Atom,
+   |         ^^^^^^^^^^
+54 |     pub label: String,
+   |         ^^^^^
+   |
+   = note: `CoordinateConstraint` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: method `coordinate_constraints` is never used
+   --> /shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate/crates/iregi-rust/src/pv.rs:241:19
+    |
+ 85 | impl PvCompiler {
+    | --------------- method in this implementation
+...
+241 |     pub(crate) fn coordinate_constraints(&self) -> &[CoordinateConstraint] {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: methods `inspect_lane_with_accuracy`, `inspect_primal_lane`, and `inspect_output_precision_lane` are never used
+   --> /shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate/crates/iregi-rust/src/stability.rs:693:19
+    |
+ 78 | impl StabilityPlan {
+    | ------------------ methods in this implementation
+...
+693 |     pub(crate) fn inspect_lane_with_accuracy<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+841 |     pub(crate) fn inspect_primal_lane<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^
+...
+954 |     pub(crate) fn inspect_output_precision_lane<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method `inspect_quadrature_lane` is never used
+   --> /shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate/crates/iregi-rust/src/stability/quadrature.rs:211:19
+    |
+206 | impl StabilityPlan {
+    | ------------------ method in this implementation
+...
+211 |     pub(crate) fn inspect_quadrature_lane<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 6 warnings emitted
+

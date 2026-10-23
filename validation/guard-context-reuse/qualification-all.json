@@ -1,0 +1,196 @@
+{
+  "recorded_utc": "2026-10-23T16:50:44.912653+00:00",
+  "status": "passed",
+  "scope": "serial numerical correctness; no performance or actual concurrent execution",
+  "cpu_affinity": [
+    10,
+    11
+  ],
+  "group": "all",
+  "results": [
+    {
+      "name": "baseline-stability",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/baseline-unit",
+        "stability::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 7.730039922054857,
+      "binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "final_binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "log_sha256": "ef042bdac30c1c9391a467992b0d867dad2c2b2beff26d023bd2bfb05c5b5f51",
+      "tests_passed": 19,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "candidate-stability",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate-unit",
+        "stability::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 8.222875160980038,
+      "binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "final_binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "log_sha256": "25390ae5542cc84bc1c559b52a928470727794b0ad13fae98c429c267d262309",
+      "tests_passed": 28,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "baseline-arguments",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/baseline-unit",
+        "stability::arguments::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9874101940076798,
+      "binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "final_binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "log_sha256": "ec6b259b56bfa7a25d8dd3b4075979f87ef1392ccb11981a9dfe5a497d40d0e3",
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "baseline-quadrature",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/baseline-unit",
+        "stability::quadrature::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 1.0583480299683288,
+      "binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "final_binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "log_sha256": "723a4c4273169cd9e06812741dee925df78c67d7895aea4f1c06b7cc21269643",
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "candidate-arguments",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate-unit",
+        "stability::arguments::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9873580390121788,
+      "binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "final_binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "log_sha256": "63d617c92f75c930a760fddeb90b27c6e52b000e01ad05f839a7c68537171ee4",
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "candidate-quadrature",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate-unit",
+        "stability::quadrature::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 0.9189801380271092,
+      "binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "final_binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "log_sha256": "a6c2fe5b2917206b8a210d3d8c88cfd556e04057ba03de51b9e72289346bee11",
+      "tests_passed": 5,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "protocol",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/protocol"
+      ],
+      "exit_code": 0,
+      "seconds": 10.187794933910482,
+      "binary_sha256": "deb778266b0f24e30805670ae4e1c27973d4802dd2b5b2b1660194d530a401ee",
+      "final_binary_sha256": "deb778266b0f24e30805670ae4e1c27973d4802dd2b5b2b1660194d530a401ee",
+      "log_sha256": "3deca72edf5dbbd1d427d28973b148423a70081dda46c79093aad4f7bf834f08",
+      "tests_passed": null,
+      "tests_failed": null,
+      "tests_ignored": null
+    },
+    {
+      "name": "baseline-execution",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/baseline-unit",
+        "execution::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 31.550117566017434,
+      "binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "final_binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "log_sha256": "c3a9a1d1d8b99eba63b7e65b8264fa7390c8d9eb145413fca089f7e87c0ace96",
+      "tests_passed": 30,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "candidate-execution",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate-unit",
+        "execution::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 35.82971382502001,
+      "binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "final_binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "log_sha256": "67966062d4eaee5e4d42ab79d3d8eb1d38aa9fa02aa256f1a2af2be8bf5dc996",
+      "tests_passed": 34,
+      "tests_failed": 0,
+      "tests_ignored": 0
+    },
+    {
+      "name": "baseline-rescue",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/baseline-unit",
+        "rescue::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 5.576202149968594,
+      "binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "final_binary_sha256": "a52eaa2c5e63b684b7dd03a8ecf5a096c18e8092bea7dda67e3b4da04f67a4e2",
+      "log_sha256": "dd8a1c0ae08b72e38cd9db33db7a029bfbb89f70bbe38d994d57b4280a7f7cbf",
+      "tests_passed": 3,
+      "tests_failed": 0,
+      "tests_ignored": 2
+    },
+    {
+      "name": "candidate-rescue",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/guard-context-reuse/candidate-unit",
+        "rescue::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 5.27743725804612,
+      "binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "final_binary_sha256": "ad6b190228cfea4d3eb486a0978229f9d833195977013b353c469f5a48b81d2a",
+      "log_sha256": "f629b9d35533cf7d36daf9199980c31f54d2ed689d63e6e151fb0d53a1b904c1",
+      "tests_passed": 3,
+      "tests_failed": 0,
+      "tests_ignored": 2
+    }
+  ]
+}

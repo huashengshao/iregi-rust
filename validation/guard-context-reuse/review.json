@@ -1,0 +1,20 @@
+{
+  "status": "no_concrete_blocker_found",
+  "reviewer": "/root/numeric_batch_audit/scale_cache_precision_review",
+  "scope": "source arithmetic/error-order/precision/lifecycle review; reviewer ran no numerical jobs",
+  "findings": [
+    "Strict scale-max traversal and equal-value precision ties preserved.",
+    "Exponent0 and negative signed_power arithmetic unchanged.",
+    "Numeric caches reset per compact row and independently cloned.",
+    "Accuracy refresh propagates to existing and late child workspaces.",
+    "Natural-value validity checks remain at original consumers.",
+    "Quadrature check.output and output_slots share the same basis/Laurent flattening."
+  ],
+  "reviewed_source_sha256": {
+    "crates/iregi-rust/src/stability.rs": "2b0b464a87edd06124d2846bf0e49bea02eb35adae88ed8984a64254078dd3f7",
+    "crates/iregi-rust/src/stability/context.rs": "a4f6362d3f38b802d3e569968e9bd4ae4fb34b0db46d88acd8c4f8506b60a1f7",
+    "crates/iregi-rust/src/stability/quadrature.rs": "993dca8bfc6c82cb64a930346ad2eb7724b2cfb7d61e7e7abd3fe5fa8263ba43",
+    "crates/iregi-rust/src/execution.rs": "5113c73849d85d0e13b52224508dbb08ef9c7f0e7f9a96d9781551ed314a40d3"
+  },
+  "independent_test_source_sha256": "25599a2f7378c2354cc394afff7d498eec7c82ff05c926ef206151bef5d8cd31"
+}

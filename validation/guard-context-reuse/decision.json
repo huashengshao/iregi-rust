@@ -1,0 +1,305 @@
+{
+  "recorded_utc": "2026-10-23T16:56:30.609006+00:00",
+  "status": "isolated_candidate_qualified_rebase_and_current_source_validation_required",
+  "production_changed": false,
+  "source_revision": "80949db",
+  "correctness": {
+    "passed_tests": {
+      "baseline": 62,
+      "candidate": 76
+    },
+    "candidate_added_tests": 14,
+    "public_exact_snapshots": 120,
+    "scope": "all stability/argument/quadrature/execution/rescue tests in the selected modules; two pre-existing expensive rescue tests ignored in each variant; broader160-test suite not claimed",
+    "initial_candidate_tests": 75,
+    "v2_additional_tests": 1,
+    "v2_scope": "same candidate implementation; one extra discriminating retained-rescue-target test"
+  },
+  "performance": {
+    "classification_counts": {
+      "improvement": 6,
+      "inconclusive-noise": 6
+    },
+    "gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise",
+    "rows": [
+      {
+        "workload": "n1-rank0",
+        "rows": 1,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 936.329493,
+        "candidate_median_ns_per_batch": 782.276233,
+        "median_paired_speedup": 1.198759694805399,
+        "candidate_over_baseline_latency_ratio": 0.8341955475591256,
+        "latency_ratio_ci99": [
+          0.8314703147671347,
+          0.8433167118284485
+        ],
+        "relative_ci_width": 0.014200983325764032,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.1857941221535104,
+          1.2026887577821277
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "n1-rank0",
+        "rows": 32,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 14103.294159,
+        "candidate_median_ns_per_batch": 10764.251232,
+        "median_paired_speedup": 1.3094050889223,
+        "candidate_over_baseline_latency_ratio": 0.7637056007037865,
+        "latency_ratio_ci99": [
+          0.7599251301537109,
+          0.7678055541333261
+        ],
+        "relative_ci_width": 0.010318667261773455,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.3024130844283452,
+          1.3159191087650028
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "n1-rank7",
+        "rows": 1,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 79307.898438,
+        "candidate_median_ns_per_batch": 80368.175781,
+        "median_paired_speedup": 0.9915255493613471,
+        "candidate_over_baseline_latency_ratio": 1.008546880757749,
+        "latency_ratio_ci99": [
+          0.9826664606661897,
+          1.0255472859816595
+        ],
+        "relative_ci_width": 0.042517433877989126,
+        "ci_width_qualified": false,
+        "classification": "inconclusive-noise",
+        "paired_bootstrap_99_percent_interval": [
+          0.9750891194088573,
+          1.0176392906725027
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "n1-rank7",
+        "rows": 32,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 2388639.625,
+        "candidate_median_ns_per_batch": 2390100.875,
+        "median_paired_speedup": 0.9887838584345835,
+        "candidate_over_baseline_latency_ratio": 1.0113433704138066,
+        "latency_ratio_ci99": [
+          0.9474154666591867,
+          1.035104755205788
+        ],
+        "relative_ci_width": 0.08670575307249186,
+        "ci_width_qualified": false,
+        "classification": "inconclusive-noise",
+        "paired_bootstrap_99_percent_interval": [
+          0.9660857946703096,
+          1.055503140059808
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "n2-rank1",
+        "rows": 1,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 6167.035508,
+        "candidate_median_ns_per_batch": 6047.772382,
+        "median_paired_speedup": 1.017579142407171,
+        "candidate_over_baseline_latency_ratio": 0.9827245452716474,
+        "latency_ratio_ci99": [
+          0.9717251458421158,
+          0.9887616506321807
+        ],
+        "relative_ci_width": 0.017335991933889912,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0113660854065627,
+          1.029097584104794
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "n2-rank1",
+        "rows": 32,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 122628.96319,
+        "candidate_median_ns_per_batch": 121100.184049,
+        "median_paired_speedup": 1.0111563738850393,
+        "candidate_over_baseline_latency_ratio": 0.9889667175392718,
+        "latency_ratio_ci99": [
+          0.9765995254148574,
+          0.9961374316773434
+        ],
+        "relative_ci_width": 0.019755878449681116,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0038775456074898,
+          1.0239611775105073
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "n2-rank3",
+        "rows": 1,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 43862.553333,
+        "candidate_median_ns_per_batch": 43173.751111,
+        "median_paired_speedup": 1.018007012898797,
+        "candidate_over_baseline_latency_ratio": 0.9823115040754762,
+        "latency_ratio_ci99": [
+          0.9771849546795323,
+          0.9920297392067915
+        ],
+        "relative_ci_width": 0.015112094753721456,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.008034296229447,
+          1.0233477247180396
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "n2-rank3",
+        "rows": 32,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 1126763.444444,
+        "candidate_median_ns_per_batch": 1128089.0,
+        "median_paired_speedup": 0.9971136101298311,
+        "candidate_over_baseline_latency_ratio": 1.0028947452334875,
+        "latency_ratio_ci99": [
+          0.9743534553968053,
+          1.023018473569662
+        ],
+        "relative_ci_width": 0.048524551957370904,
+        "ci_width_qualified": false,
+        "classification": "inconclusive-noise",
+        "paired_bootstrap_99_percent_interval": [
+          0.9774994546390325,
+          1.02632160276247
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "n3-rank1",
+        "rows": 1,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 25755.583591,
+        "candidate_median_ns_per_batch": 25543.21517,
+        "median_paired_speedup": 1.0082153999794137,
+        "candidate_over_baseline_latency_ratio": 0.9918515428552456,
+        "latency_ratio_ci99": [
+          0.9879972923451588,
+          0.999067650696271
+        ],
+        "relative_ci_width": 0.011161305772882083,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0009332193901777,
+          1.0121485228227205
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "n3-rank1",
+        "rows": 32,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 551590.833333,
+        "candidate_median_ns_per_batch": 553377.805556,
+        "median_paired_speedup": 0.9953236094318871,
+        "candidate_over_baseline_latency_ratio": 1.0046983619435914,
+        "latency_ratio_ci99": [
+          0.9942303904060854,
+          1.02047898079593
+        ],
+        "relative_ci_width": 0.02612584172931929,
+        "ci_width_qualified": false,
+        "classification": "inconclusive-noise",
+        "paired_bootstrap_99_percent_interval": [
+          0.9799319915634545,
+          1.005803091164371
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "n3-rank3",
+        "rows": 1,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 153326.066116,
+        "candidate_median_ns_per_batch": 149531.347107,
+        "median_paired_speedup": 1.0288647447615091,
+        "candidate_over_baseline_latency_ratio": 0.9719450540914394,
+        "latency_ratio_ci99": [
+          0.9517004981143286,
+          1.0038439438775006
+        ],
+        "relative_ci_width": 0.05364855301611165,
+        "ci_width_qualified": false,
+        "classification": "inconclusive-noise",
+        "paired_bootstrap_99_percent_interval": [
+          0.9961707754467763,
+          1.0507507372134097
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "n3-rank3",
+        "rows": 32,
+        "paired_blocks": 21,
+        "baseline_median_ns_per_batch": 5299021.25,
+        "candidate_median_ns_per_batch": 5192743.25,
+        "median_paired_speedup": 1.0113154181470307,
+        "candidate_over_baseline_latency_ratio": 0.9888111879399968,
+        "latency_ratio_ci99": [
+          0.9644559604161612,
+          1.0060222348797359
+        ],
+        "relative_ci_width": 0.04203661423994423,
+        "ci_width_qualified": false,
+        "classification": "inconclusive-noise",
+        "paired_bootstrap_99_percent_interval": [
+          0.9940138153303781,
+          1.0368539788675282
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      }
+    ],
+    "scope": "Isolated f64 lane guard-context reuse with matched direct-rustc builds and the same guards; not full reference-code acceptance benchmark",
+    "recommendation": "adopt only after rebase and current-source focused correctness; no term cache or operation-factor vector; no IREGI-reference acceptance claim"
+  },
+  "license_context": {
+    "public_capabilities": "validation/concurrent-workspaces/license-capabilities.json",
+    "private_license_value_recorded": false
+  },
+  "evidence_sha256": {
+    "validation/guard-context-reuse/source-manifest.json": "ce0ca27a0be9cb18ea9c03e88001f82eb9f7633ae54b1b58c061a1a21d5db60c",
+    "validation/guard-context-reuse/build.json": "15538256c34ba202da4007353f1b5a2765027fab088010948f07f416cb303e19",
+    "validation/guard-context-reuse/baseline-unit-compile.json": "6dfbfcb4754925415efb9576acf62d1ffdc65b37dcf4731baad1f79f14ae6028",
+    "validation/guard-context-reuse/candidate-unit-compile.json": "85ec375904be471a23ce7a5b4f36e6c6b8699dfbd9f00d7778b3b3913669dcc5",
+    "validation/guard-context-reuse/initial-unit-source-bindings.json": "621354ec769e267758975bd685000918128f50745ab1facfad8128194072ada4",
+    "validation/guard-context-reuse/candidate-unit-v2-compile.json": "7921d6f4f9d225eceb9c002df329aa84425a4333aeeb2041d88afda73b5309e0",
+    "validation/guard-context-reuse/qualification-all.json": "edc3fdc460f1b1ddeda91369d42fe144183cdb260339e01306bdfe8dbb18be9d",
+    "validation/guard-context-reuse/candidate-v2-rescue-target.json": "4775175c82cd2cde3e23effbada381adcc2a0d95e6bfd8b705c02e7dd1dfce59",
+    "validation/guard-context-reuse/protocol-source.json": "54b37e4aa0d6a1769820b38ce576ef086e1c05dfb92eabbf6e0d0ed4b2d64e03",
+    "validation/guard-context-reuse/protocol-compile.json": "c67b54f61193ca4d7721b9e30870dc802f0509ac3089f1f7054203f6a76dc4ab",
+    "validation/guard-context-reuse/protocol.log": "3deca72edf5dbbd1d427d28973b148423a70081dda46c79093aad4f7bf834f08",
+    "validation/guard-context-reuse/review.json": "072a46b1784e82751c2c98200d99af6237545a0e6dc2b7c3ada94daa9f5374d2",
+    "validation/guard-context-reuse/dimension-reuse.json": "601230b30f685b98c4d7797b1790efde2a6d27443a7705e68613bfcee169a4b4",
+    "validation/guard-context-reuse/performance-compile.json": "f6c5563f4121f454a7a451172fbb0a4c044b666f67633b52305e701460969180",
+    "validation/guard-context-reuse/performance-run.json": "a667662a9a7e840ea5ed97ad2c3f83ab982d06ed3445785ac7c71b2292856268",
+    "validation/guard-context-reuse/performance-analysis.json": "3e10713bc0107dfa5317a1ec13001d4ffca3e086957f5692c3f7f8f12af674e5",
+    "validation/guard-context-reuse/performance.csv": "fab584476ca186d75a8e3653d2cb21d55cdef5bac76ff8e836ee15836ae485f2",
+    "validation/guard-context-reuse/performance.log": "761c79bb3c924b2d1340ed1bb4de24a66a09d7bb8a1cc405853ec40b9e30ea21"
+  }
+}

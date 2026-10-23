@@ -1,0 +1,260 @@
+{
+  "scope": "Isolated f64 lane guard-context reuse with matched direct-rustc builds and the same guards; not full reference-code acceptance benchmark",
+  "method": "21 alternating paired blocks, median log ratio, 20000 paired bootstrap resamples, deterministic seed14050301, percentile99 interval",
+  "speedup_definition": "baseline time / candidate time",
+  "classification_gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise",
+  "results": [
+    {
+      "workload": "n1-rank0",
+      "rows": 1,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 936.329493,
+      "candidate_median_ns_per_batch": 782.276233,
+      "median_paired_speedup": 1.198759694805399,
+      "candidate_over_baseline_latency_ratio": 0.8341955475591256,
+      "latency_ratio_ci99": [
+        0.8314703147671347,
+        0.8433167118284485
+      ],
+      "relative_ci_width": 0.014200983325764032,
+      "ci_width_qualified": true,
+      "classification": "improvement",
+      "paired_bootstrap_99_percent_interval": [
+        1.1857941221535104,
+        1.2026887577821277
+      ],
+      "direction_without_width_gate": "candidate faster"
+    },
+    {
+      "workload": "n1-rank0",
+      "rows": 32,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 14103.294159,
+      "candidate_median_ns_per_batch": 10764.251232,
+      "median_paired_speedup": 1.3094050889223,
+      "candidate_over_baseline_latency_ratio": 0.7637056007037865,
+      "latency_ratio_ci99": [
+        0.7599251301537109,
+        0.7678055541333261
+      ],
+      "relative_ci_width": 0.010318667261773455,
+      "ci_width_qualified": true,
+      "classification": "improvement",
+      "paired_bootstrap_99_percent_interval": [
+        1.3024130844283452,
+        1.3159191087650028
+      ],
+      "direction_without_width_gate": "candidate faster"
+    },
+    {
+      "workload": "n1-rank7",
+      "rows": 1,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 79307.898438,
+      "candidate_median_ns_per_batch": 80368.175781,
+      "median_paired_speedup": 0.9915255493613471,
+      "candidate_over_baseline_latency_ratio": 1.008546880757749,
+      "latency_ratio_ci99": [
+        0.9826664606661897,
+        1.0255472859816595
+      ],
+      "relative_ci_width": 0.042517433877989126,
+      "ci_width_qualified": false,
+      "classification": "inconclusive-noise",
+      "paired_bootstrap_99_percent_interval": [
+        0.9750891194088573,
+        1.0176392906725027
+      ],
+      "direction_without_width_gate": "unresolved at 99 percent"
+    },
+    {
+      "workload": "n1-rank7",
+      "rows": 32,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 2388639.625,
+      "candidate_median_ns_per_batch": 2390100.875,
+      "median_paired_speedup": 0.9887838584345835,
+      "candidate_over_baseline_latency_ratio": 1.0113433704138066,
+      "latency_ratio_ci99": [
+        0.9474154666591867,
+        1.035104755205788
+      ],
+      "relative_ci_width": 0.08670575307249186,
+      "ci_width_qualified": false,
+      "classification": "inconclusive-noise",
+      "paired_bootstrap_99_percent_interval": [
+        0.9660857946703096,
+        1.055503140059808
+      ],
+      "direction_without_width_gate": "unresolved at 99 percent"
+    },
+    {
+      "workload": "n2-rank1",
+      "rows": 1,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 6167.035508,
+      "candidate_median_ns_per_batch": 6047.772382,
+      "median_paired_speedup": 1.017579142407171,
+      "candidate_over_baseline_latency_ratio": 0.9827245452716474,
+      "latency_ratio_ci99": [
+        0.9717251458421158,
+        0.9887616506321807
+      ],
+      "relative_ci_width": 0.017335991933889912,
+      "ci_width_qualified": true,
+      "classification": "improvement",
+      "paired_bootstrap_99_percent_interval": [
+        1.0113660854065627,
+        1.029097584104794
+      ],
+      "direction_without_width_gate": "candidate faster"
+    },
+    {
+      "workload": "n2-rank1",
+      "rows": 32,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 122628.96319,
+      "candidate_median_ns_per_batch": 121100.184049,
+      "median_paired_speedup": 1.0111563738850393,
+      "candidate_over_baseline_latency_ratio": 0.9889667175392718,
+      "latency_ratio_ci99": [
+        0.9765995254148574,
+        0.9961374316773434
+      ],
+      "relative_ci_width": 0.019755878449681116,
+      "ci_width_qualified": true,
+      "classification": "improvement",
+      "paired_bootstrap_99_percent_interval": [
+        1.0038775456074898,
+        1.0239611775105073
+      ],
+      "direction_without_width_gate": "candidate faster"
+    },
+    {
+      "workload": "n2-rank3",
+      "rows": 1,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 43862.553333,
+      "candidate_median_ns_per_batch": 43173.751111,
+      "median_paired_speedup": 1.018007012898797,
+      "candidate_over_baseline_latency_ratio": 0.9823115040754762,
+      "latency_ratio_ci99": [
+        0.9771849546795323,
+        0.9920297392067915
+      ],
+      "relative_ci_width": 0.015112094753721456,
+      "ci_width_qualified": true,
+      "classification": "improvement",
+      "paired_bootstrap_99_percent_interval": [
+        1.008034296229447,
+        1.0233477247180396
+      ],
+      "direction_without_width_gate": "candidate faster"
+    },
+    {
+      "workload": "n2-rank3",
+      "rows": 32,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 1126763.444444,
+      "candidate_median_ns_per_batch": 1128089.0,
+      "median_paired_speedup": 0.9971136101298311,
+      "candidate_over_baseline_latency_ratio": 1.0028947452334875,
+      "latency_ratio_ci99": [
+        0.9743534553968053,
+        1.023018473569662
+      ],
+      "relative_ci_width": 0.048524551957370904,
+      "ci_width_qualified": false,
+      "classification": "inconclusive-noise",
+      "paired_bootstrap_99_percent_interval": [
+        0.9774994546390325,
+        1.02632160276247
+      ],
+      "direction_without_width_gate": "unresolved at 99 percent"
+    },
+    {
+      "workload": "n3-rank1",
+      "rows": 1,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 25755.583591,
+      "candidate_median_ns_per_batch": 25543.21517,
+      "median_paired_speedup": 1.0082153999794137,
+      "candidate_over_baseline_latency_ratio": 0.9918515428552456,
+      "latency_ratio_ci99": [
+        0.9879972923451588,
+        0.999067650696271
+      ],
+      "relative_ci_width": 0.011161305772882083,
+      "ci_width_qualified": true,
+      "classification": "improvement",
+      "paired_bootstrap_99_percent_interval": [
+        1.0009332193901777,
+        1.0121485228227205
+      ],
+      "direction_without_width_gate": "candidate faster"
+    },
+    {
+      "workload": "n3-rank1",
+      "rows": 32,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 551590.833333,
+      "candidate_median_ns_per_batch": 553377.805556,
+      "median_paired_speedup": 0.9953236094318871,
+      "candidate_over_baseline_latency_ratio": 1.0046983619435914,
+      "latency_ratio_ci99": [
+        0.9942303904060854,
+        1.02047898079593
+      ],
+      "relative_ci_width": 0.02612584172931929,
+      "ci_width_qualified": false,
+      "classification": "inconclusive-noise",
+      "paired_bootstrap_99_percent_interval": [
+        0.9799319915634545,
+        1.005803091164371
+      ],
+      "direction_without_width_gate": "unresolved at 99 percent"
+    },
+    {
+      "workload": "n3-rank3",
+      "rows": 1,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 153326.066116,
+      "candidate_median_ns_per_batch": 149531.347107,
+      "median_paired_speedup": 1.0288647447615091,
+      "candidate_over_baseline_latency_ratio": 0.9719450540914394,
+      "latency_ratio_ci99": [
+        0.9517004981143286,
+        1.0038439438775006
+      ],
+      "relative_ci_width": 0.05364855301611165,
+      "ci_width_qualified": false,
+      "classification": "inconclusive-noise",
+      "paired_bootstrap_99_percent_interval": [
+        0.9961707754467763,
+        1.0507507372134097
+      ],
+      "direction_without_width_gate": "unresolved at 99 percent"
+    },
+    {
+      "workload": "n3-rank3",
+      "rows": 32,
+      "paired_blocks": 21,
+      "baseline_median_ns_per_batch": 5299021.25,
+      "candidate_median_ns_per_batch": 5192743.25,
+      "median_paired_speedup": 1.0113154181470307,
+      "candidate_over_baseline_latency_ratio": 0.9888111879399968,
+      "latency_ratio_ci99": [
+        0.9644559604161612,
+        1.0060222348797359
+      ],
+      "relative_ci_width": 0.04203661423994423,
+      "ci_width_qualified": false,
+      "classification": "inconclusive-noise",
+      "paired_bootstrap_99_percent_interval": [
+        0.9940138153303781,
+        1.0368539788675282
+      ],
+      "direction_without_width_gate": "unresolved at 99 percent"
+    }
+  ]
+}

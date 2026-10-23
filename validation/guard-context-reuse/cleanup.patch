@@ -1,0 +1,25 @@
+--- a/crates/iregi-rust/src/stability/context.rs
++++ b/crates/iregi-rust/src/stability/context.rs
+@@ -1,4 +1,4 @@
+-//! Isolated experiment: unchanged dimensional guard arithmetic, reused per lane.
++//! Workspace constants and lane-local dimensional normalization for guards.
+ use super::{OperandRoundoff, StabilityPlan, dyadic, signed_power};
+ use iregi_masters::NativeFloat;
+ use std::collections::{BTreeSet, HashMap};
+@@ -52,16 +52,6 @@
+             .map(|c| slots[&c.dimension])
+             .collect();
+         let output_slots = plan.output_dimensions.iter().map(|d| slots[d]).collect();
+-        if std::env::var_os("IREGI_GUARD_CONTEXT_PROFILE").is_some() {
+-            eprintln!(
+-                "GUARD_CONTEXT checks={} non_denominator_checks={} primal_checks={} outputs={} distinct_dimensions={:?}",
+-                plan.checks.len(),
+-                plan.checks.iter().filter(|c| !c.denominator).count(),
+-                plan.primal_checks.len(),
+-                plan.output_dimensions.len(),
+-                dimensions
+-            );
+-        }
+         let natural = vec![None; dimensions.len()];
+         Self {
+             tolerance: dyadic(prototype, 19i64 - i64::from(accuracy_bits)),
