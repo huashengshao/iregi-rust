@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "purpose": "Precision-preserving Euler-Mascheroni metadata/runtime support for reusable Rust batch emission",
+  "source_sha256": {
+    "dependencies/oneloopmaster/src/native/constants.rs": "0297975c8a0f37c44c33ffb78522ef2243bd310fd85e008ba07061158616ca98",
+    "dependencies/oneloopmaster/src/rust_codegen.rs": "c281c6c05ae8a7aefdfac2d2c0b3adcf3be1b9f471fdb16cfaa0ce27a5d88681",
+    "dependencies/oneloopmaster/tests/data/scalar_audit.txt": "913e5b81f8bff8349c1bb3c75232c9c8c12a7f01b70b14e2abb136cacde4ca2d",
+    "dependencies/oneloopmaster/tests/data/sheets.txt": "dec3611c0de335b9f2cb1acccd7e3db08e35ba32d3a7ca68c1f3144ba89f98b4"
+  },
+  "binary_sha256": "17c5fb2165b71ce6310f4a920732a13558ae9beedf7f7ff378fe6c9e2880c34d",
+  "tests": [
+    {
+      "name": "native::constants::tests::euler_gamma_uses_requested_precision",
+      "log": "\nrunning 1 test\ntest native::constants::tests::euler_gamma_uses_requested_precision ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 95 filtered out; finished in 0.01s\n\n"
+    },
+    {
+      "name": "rust_codegen::tests::registered_constants_are_exported_symbolically_not_as_zero_placeholders",
+      "log": "\nrunning 1 test\ntest rust_codegen::tests::registered_constants_are_exported_symbolically_not_as_zero_placeholders ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 95 filtered out; finished in 0.03s\n\n"
+    }
+  ],
+  "scope": "Two focused tests, including f64/DoubleFloat/Float256 constants and exact instruction export. Does not qualify the whole upstream oneloop test suite."
+}

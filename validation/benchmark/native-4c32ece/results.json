@@ -1,0 +1,3857 @@
+{
+  "schema_version": 1,
+  "kind": "iregi-kernel-benchmark",
+  "status": "complete",
+  "date": "2026-10-23T11:34:05.029425+00:00",
+  "environment": {
+    "platform": "Linux-6.18.45-x86_64-with-glibc2.42",
+    "hostname": "itphlies",
+    "cpu": 0,
+    "affinity": [
+      0
+    ],
+    "cpu_info": {
+      "processor": "0",
+      "vendor_id": "AuthenticAMD",
+      "cpu family": "25",
+      "model": "160",
+      "model name": "AMD EPYC 9754 128-Core Processor",
+      "stepping": "2",
+      "microcode": "0xaa00215",
+      "cpu MHz": "1800.800",
+      "cache size": "1024 KB",
+      "physical id": "0",
+      "siblings": "256",
+      "core id": "0",
+      "cpu cores": "128",
+      "apicid": "0",
+      "initial apicid": "0",
+      "fpu": "yes",
+      "fpu_exception": "yes",
+      "cpuid level": "16",
+      "wp": "yes",
+      "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid overflow_recov succor smca fsrm flush_l1d debug_swap",
+      "bugs": "sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape",
+      "bogomips": "4500.06",
+      "TLB size": "3584 4K pages",
+      "clflush size": "64",
+      "cache_alignment": "64",
+      "address sizes": "52 bits physical, 57 bits virtual",
+      "power management": "ts ttp tm hwpstate cpb eff_freq_ro [13] [14]"
+    },
+    "frequency": {
+      "energy_performance_available_preferences": "performance",
+      "amd_pstate_highest_perf": "255",
+      "scaling_min_freq": "1800800",
+      "scaling_available_governors": "performance powersave",
+      "scaling_governor": "performance",
+      "cpuinfo_max_freq": "3102730",
+      "boost": "1",
+      "amd_pstate_lowest_nonlinear_freq": "1800800",
+      "amd_pstate_max_freq": "3102730",
+      "related_cpus": "0",
+      "scaling_cur_freq": "3100022",
+      "scaling_setspeed": "<unsupported>",
+      "affected_cpus": "0",
+      "scaling_max_freq": "3102730",
+      "cpuinfo_transition_latency": "0",
+      "energy_performance_preference": "performance",
+      "scaling_driver": "amd-pstate-epp",
+      "amd_pstate_hw_prefcore": "disabled",
+      "amd_pstate_prefcore_ranking": "255",
+      "cpuinfo_min_freq": "401530",
+      "cpuinfo_avg_freq": "3100022"
+    },
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+    "gfortran": "GNU Fortran (GCC) 15.2.0",
+    "revision": "b01a72fca760198fc75546db85590aaca71150c1",
+    "dirty": true,
+    "source_sha256": {
+      "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+      "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+      "crates/iregi-cli/src/main.rs": "4138018530d3dbc9d59fcb712eda7169a6e6e1dbff279dd7a87d0da12a2a5922",
+      "crates/iregi-masters/examples/complex_box_oracle.rs": "f08b775b16f6330eade5bfaf78031ad91c0e2cd93c582492fecb2a1b95baab51",
+      "crates/iregi-masters/examples/generate_batch.rs": "55aab093697f757d8b546bb3cb378eae03ccd19ae21bab954993cbbb4f141364",
+      "crates/iregi-masters/src/bubble_neighborhood.rs": "0076006242ce6f622391d27672aef9b8d1e76b09a0818d483c4c4a76a18399fb",
+      "crates/iregi-masters/src/derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
+      "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+      "crates/iregi-masters/src/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+      "crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+      "crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+      "crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+      "crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+      "crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+      "crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+      "crates/iregi-masters/src/lib.rs": "039af6272aef117fac2b9109b936623cc5eec41a4f63de3cebc369927b24cd66",
+      "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+      "crates/iregi-masters/src/pentagon6.rs": "2f3894bd8ae7944efc862f17ca1d3bb521fff522fd76dfc9c553f984025eca8c",
+      "crates/iregi-masters/tests/masters.rs": "103f15512011708ac66b99d8cd45a33e5fd63aba6ec2408f3cc629c0cc0a6c77",
+      "crates/iregi-masters/tests/native_batch.rs": "fa5ce237a01139414e86360d2f8913cbeaf0053dbc2f20cdd5a7781382eeb79c",
+      "crates/iregi-masters/tests/numeric_boundaries.rs": "c23dc36532548a233b3405b1d17d8eafb44e0c9919682439f4529236c54779a2",
+      "crates/iregi-masters/tests/physical_derivatives.rs": "06cda25481407dbf51b7de141cf31f82dba654e7587936580adcae1152aa0ffb",
+      "crates/iregi-masters/tests/pseudothreshold.rs": "ec375039d5dbf6cd47419daabbc88c4bfbd368121436b3ac875c4db13740d404",
+      "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+      "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+      "crates/iregi-prepare/tests/madloop_numerator.rs": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948",
+      "crates/iregi-prepare/tests/preparation.rs": "64e5e2d681eba046b94cf571a3ea4b52586aa04f16eaf686531ea773ba08829f",
+      "crates/iregi-rust/examples/kernel_benchmark.rs": "710c736c8636838eff225b3611d5ac412da49eacbb0932548bb037d46e7da069",
+      "crates/iregi-rust/examples/pv_physical_precision.rs": "0379d38c4bbc8fcf6939b98484a2abe9feb6f16d9058a3e28f3551c78bd2c323",
+      "crates/iregi-rust/examples/pv_precision_probe.rs": "3067200c081a33fc9752446e32d4b45cf3760e033bc2995b64809cc1e1216cd3",
+      "crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+      "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+      "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+      "crates/iregi-rust/src/execution.rs": "817569ab2f9483c5781b48447a4f58c72df5089db0f70ffa37ab0cf40949bd49",
+      "crates/iregi-rust/src/ibp.rs": "42a2845593a9059159d632a842c7a9c50fe71245b92e8921c7c091778901c605",
+      "crates/iregi-rust/src/lib.rs": "2e130db707219d2d7b1e4a286cf45cff200110bb292f321ef0e6e4da899674fe",
+      "crates/iregi-rust/src/plan.rs": "c9c76dcdb4c50a7a0cee3c8d5da1b5334e31c43c955c19223dadc3ea595af768",
+      "crates/iregi-rust/src/pv.rs": "528dfb7554d70d152005335fb0d688c8ee9246388f9f311d5a0aeaf36df71961",
+      "crates/iregi-rust/src/rescue.rs": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+      "crates/iregi-rust/src/scalar.rs": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+      "crates/iregi-rust/src/snapping.rs": "54dbca1c8ad59e27ad96d63520dfd6d6ea584e963a96916f2b149acc08b784c6",
+      "crates/iregi-rust/src/stability.rs": "96a29607b5a0f802981f33687143964fe6efb71c2f7e138b2c37b7aaf9d7b37e",
+      "crates/iregi-rust/src/types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+      "crates/iregi-rust/tests/legacy_rescue.rs": "0820b9679665d40d75ecb4b42e9718003750b70e38c1eacfdb2f7347526b615f",
+      "crates/iregi-rust/tests/oracle.rs": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe",
+      "crates/iregi-rust/tests/physical_box.rs": "3429378abd89d3d9770ea712e0062bf9d5423e6a7b21e905cbc4e4c45bd64135",
+      "crates/iregi-rust/tests/shifted_pentagon.rs": "ea7c2d84b94d46d6fe68e5308855e2cea10b60c74d82cbda376c24327d19a577",
+      "crates/iregi-rust/tests/triangle_gamma.rs": "7f3b3f64912d7b016fd9fa129d75ffa85720be9a873d5e9553374ffb5c831490",
+      "crates/iregi-cli/Cargo.toml": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac",
+      "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+      "crates/iregi-prepare/Cargo.toml": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1",
+      "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+      "dependencies/oneloopmaster/Cargo.toml": "b4b7c8198f595b17f922a3b4bafdb24b9d71a019be109ab1c38f2bde345401e4",
+      "dependencies/oneloopmaster/PATCHES.md": "a95b23c116dce377f4b6eee39138ecc2ab7ee101cb2ccd8a95a727d7d1151693",
+      "dependencies/oneloopmaster/README.md": "db72a532a49cce96b3bc9daa8f1816fd6478cd131e0ffef9bccbae06c95b3545",
+      "dependencies/oneloopmaster/assets/evaluators/README.md": "30b6afe1904b9966ab7897fae8d7e538d139b0e52b599b359786219814918af2",
+      "dependencies/oneloopmaster/assets/evaluators/a0.bin": "b034aa19e48f3f62b7029f2c88ad4f14e19ff6d9580979d43868349c5e651a0d",
+      "dependencies/oneloopmaster/assets/evaluators/b0.bin": "0730c8a390d31c508fbece0760186627dc851b8ccf2da787072f8c2788f50354",
+      "dependencies/oneloopmaster/assets/evaluators/c0.bin": "7a7bd44280ba5dcf70d0ad9b54b93cbc29853665799a8288c8d7f1a648ac25d9",
+      "dependencies/oneloopmaster/assets/evaluators/d0.bin": "3dc226c8dccb84ee48b0d1eadcf9dd38770dc90bdcdb5e7ba5a5534d9efb9aaf",
+      "dependencies/oneloopmaster/assets/evaluators/db0.bin": "5f145ba984ffe2bdffb9355557a9272c3006d0a601e845cd48877d5d19ea4d77",
+      "dependencies/oneloopmaster/examples/arbitrary_precision.rs": "cd60964e71870c0524d3961f752ed85c074c69bea22cab157d39fb6f0a0fd23a",
+      "dependencies/oneloopmaster/examples/basic.rs": "55aacdbf20b92bbfbff6ccf96048e8972f2a897776d9528f506a26fe8ff56e3e",
+      "dependencies/oneloopmaster/examples/c0_selected_branch.py": "4bfa8379dabe838b9a4f4bb7f28c41056b9b9617eb7357366081414afba78dfb",
+      "dependencies/oneloopmaster/examples/complex_branch_probe.rs": "0646ea0d2de9b47d2d2b38ab0525e867517342825116b5ead5a77c7bd9eeb2be",
+      "dependencies/oneloopmaster/examples/expansion_survey.rs": "0d7a9eabf064de0805906a17dea1adfab28075358c978310c98c4dfa00bf588c",
+      "dependencies/oneloopmaster/examples/expressions/b0_equal_mass.txt": "06c1d1c26c9aa129c15a78c7bab94025e60b82c4b463fc677f3a9900bb6caf7c",
+      "dependencies/oneloopmaster/examples/generate_native.rs": "17dedd3bf246e19d0950159ebf44ca074a4a4d5c1a7dd5604445aad5dc4798a8",
+      "dependencies/oneloopmaster/examples/get_expression.rs": "ec2b4b9b207190ac32f6bd9a2399393b4387966268766f79041e4b9fbc873bf4",
+      "dependencies/oneloopmaster/examples/jit_probe.rs": "b66c9977eb0743bcc4d7f69b91995709cd59e2fc525926f7671653c795591b55",
+      "dependencies/oneloopmaster/examples/numeric_performance.rs": "e187d4fc6507050edb127e7f9b6c6f691f89dbc71aa7cabcd198aa0f9acce907",
+      "dependencies/oneloopmaster/examples/oracle_sweep.rs": "377b19e926d16d408728245ade35323b4a5230cdf5f7d02941dad14b8a7a9b57",
+      "dependencies/oneloopmaster/examples/performance_survey.rs": "7c2ffef66f531caa35bbe6b2e3027b7cb0fc400a81791903a3c89ce0534fe85b",
+      "dependencies/oneloopmaster/examples/power_branch_probe.rs": "790131ee02e3f5aed7a701a14dbe0149c52af7054e9ddf19f2cc6cccdbb6716b",
+      "dependencies/oneloopmaster/examples/rebuild_evaluators.rs": "58637aa0cfd492a2fe246ef7431598aaa470f9006a9e70dd04b5cd1efa1b0045",
+      "dependencies/oneloopmaster/examples/rows_survey.rs": "16e820bea0f8c8edeeb8343e2301bef3a1aa9b22f7cb1eba1d221ed1e881242d",
+      "dependencies/oneloopmaster/examples/select_branch.rs": "2cabc4f8538d9332e5755446777436535be2c77ee7e0edd517b2bb6f5479a92a",
+      "dependencies/oneloopmaster/examples/simd_probe.rs": "cfcfe4efde1bc0bea190599c9d76e250932237f7f52b8cb1dcce9291b2718bfb",
+      "dependencies/oneloopmaster/examples/triangle_branch_probe.rs": "d791526c87266d20c97ad8987858e66a4c3593db6fa658f6ed373099ff74261e",
+      "dependencies/oneloopmaster/src/analytic_continuation_tests.rs": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c",
+      "dependencies/oneloopmaster/src/backend.rs": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52",
+      "dependencies/oneloopmaster/src/box_complex.rs": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a",
+      "dependencies/oneloopmaster/src/box_integral.rs": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f",
+      "dependencies/oneloopmaster/src/branch_selection.rs": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862",
+      "dependencies/oneloopmaster/src/coincident_dilog_tests.rs": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27",
+      "dependencies/oneloopmaster/src/definitions.rs": "83ab0ca0f2a77cb7a37a0eccacac62d01d9c9a1cf9c7207261561eaab84f2c22",
+      "dependencies/oneloopmaster/src/epsilon.rs": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143",
+      "dependencies/oneloopmaster/src/evaluators.rs": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed",
+      "dependencies/oneloopmaster/src/expressions.rs": "b78104772233fa4382de2d4ce675ba77a95d29df4c34f65962d97010282a34e5",
+      "dependencies/oneloopmaster/src/initialization.rs": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7",
+      "dependencies/oneloopmaster/src/inspection.rs": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93",
+      "dependencies/oneloopmaster/src/inspection_formulas.rs": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a",
+      "dependencies/oneloopmaster/src/inspection_graph.rs": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3",
+      "dependencies/oneloopmaster/src/inspection_sheet.rs": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769",
+      "dependencies/oneloopmaster/src/jit_primitives.rs": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07",
+      "dependencies/oneloopmaster/src/labelling.rs": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4",
+      "dependencies/oneloopmaster/src/lib.rs": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6",
+      "dependencies/oneloopmaster/src/masters.rs": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1",
+      "dependencies/oneloopmaster/src/native/batch.rs": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3",
+      "dependencies/oneloopmaster/src/native/constants.rs": "0297975c8a0f37c44c33ffb78522ef2243bd310fd85e008ba07061158616ca98",
+      "dependencies/oneloopmaster/src/native/disabled.rs": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657",
+      "dependencies/oneloopmaster/src/native/generated_a0.rs": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723",
+      "dependencies/oneloopmaster/src/native/generated_b0.rs": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79",
+      "dependencies/oneloopmaster/src/native/generated_c0.rs": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee",
+      "dependencies/oneloopmaster/src/native/generated_constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+      "dependencies/oneloopmaster/src/native/generated_d0.rs": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611",
+      "dependencies/oneloopmaster/src/native/generated_db0.rs": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88",
+      "dependencies/oneloopmaster/src/native/handwritten/box_contour/vertex.rs": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2",
+      "dependencies/oneloopmaster/src/native/handwritten/box_contour.rs": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a",
+      "dependencies/oneloopmaster/src/native/handwritten/boxes.rs": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648",
+      "dependencies/oneloopmaster/src/native/handwritten/mod.rs": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7",
+      "dependencies/oneloopmaster/src/native/handwritten/sheet.rs": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49",
+      "dependencies/oneloopmaster/src/native/handwritten/triangle.rs": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137",
+      "dependencies/oneloopmaster/src/native/mod.rs": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b",
+      "dependencies/oneloopmaster/src/native/primitives.rs": "cd1d861857cd7e24d77fe2ff65d7246893cfc4d1ec92aee0830eee9e4dba3598",
+      "dependencies/oneloopmaster/src/native/simple.rs": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651",
+      "dependencies/oneloopmaster/src/native/tensor/binary64.rs": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5",
+      "dependencies/oneloopmaster/src/native/tensor.rs": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584",
+      "dependencies/oneloopmaster/src/precision.rs": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77",
+      "dependencies/oneloopmaster/src/quotient_tests.rs": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433",
+      "dependencies/oneloopmaster/src/removable_log_tests.rs": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6",
+      "dependencies/oneloopmaster/src/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+      "dependencies/oneloopmaster/src/rust_codegen.rs": "c281c6c05ae8a7aefdfac2d2c0b3adcf3be1b9f471fdb16cfaa0ce27a5d88681",
+      "dependencies/oneloopmaster/src/sheet_exact.rs": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d",
+      "dependencies/oneloopmaster/src/tests.rs": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7",
+      "dependencies/oneloopmaster/src/triangle.rs": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8",
+      "dependencies/oneloopmaster/src/triangle_hv.rs": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2",
+      "dependencies/oneloopmaster/src/two_point.rs": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e",
+      "dependencies/oneloopmaster/tests/data/scalar_audit.txt": "913e5b81f8bff8349c1bb3c75232c9c8c12a7f01b70b14e2abb136cacde4ca2d",
+      "dependencies/oneloopmaster/tests/data/sheets.txt": "dec3611c0de335b9f2cb1acccd7e3db08e35ba32d3a7ca68c1f3144ba89f98b4",
+      "dependencies/symbolica-patches/0001-journal-conditional-cache.patch": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328",
+      "dependencies/symbolica-patches/README.md": "26d10c9b39f9a7ae87267e5b9fb4e6023f4fce03a0f2bd78f452cef716931b0f",
+      "dependencies/symbolica-patches/provenance.json": "74cdf282df8ccfb3ee5fdd2e30e4ffe7adb88527186f1a0d0139ab3ea972dcb1",
+      "validation/benchmark/build.py": "5d07432d3b4ae0dec7fc4de71b55ad5efbe94065c84fd2773fda1da9245ed4bb",
+      "validation/benchmark/build_reference.py": "3b0c085f9288f47c1721e3162cdc60a216d30db0f70e8e55cd984bbd830ef585",
+      "validation/benchmark/run.py": "e76317e5e58d0e6e56b2a0e6aedfd4d2a808c19698b93042e2fd63f3370d7871",
+      "validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d"
+    }
+  },
+  "input_path": "target/benchmark/native-4c32ece/results-inputs.json",
+  "input_sha256": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+  "binaries": {
+    "rust": {
+      "path": "/shared/external/iregi/iregi-rust/target/benchmark/kernel-native-4c32ece",
+      "sha256": "d253ea15f4cd7bc0bb1676c73edd676c6a4e13183c03df570cdb27debe2cb551"
+    },
+    "reference": {
+      "path": "/shared/external/iregi/iregi-rust/target/benchmark/iregi-benchmark",
+      "sha256": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389"
+    }
+  },
+  "protocol": {
+    "repeats": 21,
+    "warmup": 5,
+    "target_block_ms": 30.0,
+    "paired_random_order_seed": 271828,
+    "transport_timed": false,
+    "cache_policy": "structural plans/evaluators and allocation capacity reused; numerical results recomputed for every sample; original recurrence cache freed after every sample",
+    "outputs": "all Cartesian components through requested rank, all four separated native Laurent coefficients",
+    "kernel_scope": "public reduce_batch including result allocation/disposal; original tensor call plus mass-reference setup/status checking/cache disposal",
+    "stage_scope": "separate instrumented pass: argument evaluator, complete scalar-master calls, recurrence evaluator/stability checks; residual is validation/packing/routing",
+    "preparation_scope": "first Rust plan+workspace compile only; not a repeated timing distribution",
+    "numerator": "not applicable to tensor-array kernel; graph/numerator end-to-end benchmark reported separately"
+  },
+  "rows": [
+    {
+      "id": "n2-r0-massive",
+      "n": 2,
+      "rank": 0,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 1,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 1.2014452324872977e-16,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            932.8973223273606,
+            935.5317092812563,
+            960.5971914636601,
+            934.189853029998,
+            964.1134487618281,
+            941.9772498490034,
+            934.1727400845581,
+            936.0637205556674,
+            932.6003623917858,
+            934.0499295349306,
+            944.7782866921683,
+            961.0048822226696,
+            930.888061203946,
+            932.7392792430038,
+            930.111938796054,
+            935.015300986511,
+            942.5405174149386,
+            933.3820213408496,
+            936.0818401449567,
+            938.6452587074693,
+            937.7211596537145
+          ],
+          "unit": "ns/batch",
+          "median_ns": 935.5317092812563,
+          "ci99_ns": [
+            933.3820213408496,
+            941.9772498490034
+          ],
+          "minimum_ns": 930.111938796054,
+          "maximum_ns": 964.1134487618281,
+          "relative_mad": 0.0029848587819624704
+        },
+        "preparation_ns": 11100916,
+        "master_backend": "RustBatch",
+        "preparation_reused": false,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              83.92933360177169,
+              80.16297563921884,
+              81.23298771894504,
+              80.11208979263137,
+              80.59004429232938,
+              80.20817394805718,
+              80.34799677873968,
+              80.61068049124219,
+              81.45545600966378,
+              80.18039057781357,
+              80.74239983893699,
+              84.00407690759009,
+              81.4215321119388,
+              82.35021139520838,
+              80.13534326555265,
+              81.40884839943628,
+              89.6398228306825,
+              81.97332393799074,
+              80.31422387759211,
+              81.61359975840547,
+              80.96924703040064
+            ],
+            "unit": "ns/batch",
+            "median_ns": 80.96924703040064,
+            "ci99_ns": [
+              80.31422387759211,
+              81.61359975840547
+            ],
+            "minimum_ns": 80.11208979263137,
+            "maximum_ns": 89.6398228306825,
+            "relative_mad": 0.008089777005862367
+          },
+          "masters": {
+            "samples_ns": [
+              240.25191262331387,
+              238.8199617475337,
+              240.16599557076705,
+              239.28110529494666,
+              254.14520837527684,
+              240.61042883027986,
+              241.1074592309241,
+              240.25931145560702,
+              238.85091604590295,
+              238.43783974229916,
+              239.4758908798067,
+              247.14435272800483,
+              240.28452788403462,
+              242.8553956110328,
+              238.98666196899538,
+              246.28115562713913,
+              263.3930440910006,
+              240.81814978860479,
+              238.0803301791826,
+              241.11138514193678,
+              241.3688343064224
+            ],
+            "unit": "ns/batch",
+            "median_ns": 240.28452788403462,
+            "ci99_ns": [
+              239.28110529494666,
+              241.3688343064224
+            ],
+            "minimum_ns": 238.0803301791826,
+            "maximum_ns": 263.3930440910006,
+            "relative_mad": 0.004512593598665195
+          },
+          "reduction": {
+            "samples_ns": [
+              320.5400140930139,
+              320.0120797261929,
+              319.85292933360176,
+              320.1252264948661,
+              323.70364405073485,
+              321.3673243406483,
+              319.55747936380106,
+              319.08279645661366,
+              319.7189450372458,
+              323.8910308033018,
+              319.9816790819408,
+              333.122961546205,
+              320.8503623917858,
+              321.3530299979867,
+              318.99189651701226,
+              324.22412925307026,
+              348.61823032011273,
+              320.6371552244816,
+              320.37286088182003,
+              318.7394805717737,
+              318.9230420777129
+            ],
+            "unit": "ns/batch",
+            "median_ns": 320.37286088182003,
+            "ci99_ns": [
+              319.7189450372458,
+              321.3673243406483
+            ],
+            "minimum_ns": 318.7394805717737,
+            "maximum_ns": 348.61823032011273,
+            "relative_mad": 0.003059463630810618
+          },
+          "total": {
+            "samples_ns": [
+              1057.0411214012483,
+              1053.677219649688,
+              1057.5007046506946,
+              1054.2758204147372,
+              1100.6883430642238,
+              1076.4068351117376,
+              1057.4547010267768,
+              1055.4005939198712,
+              1057.106704248037,
+              1054.3366217032415,
+              1053.1362995772097,
+              1101.0375981477753,
+              1059.4924501711293,
+              1060.4509261123414,
+              1055.643396416348,
+              1107.2131568351117,
+              1149.6877894101067,
+              1055.585715723777,
+              1056.380561707268,
+              1052.565482182404,
+              1067.8070767062613
+            ],
+            "unit": "ns/batch",
+            "median_ns": 1057.106704248037,
+            "ci99_ns": [
+              1055.3952740587881,
+              1067.8070767062613
+            ],
+            "minimum_ns": 1052.565482182404,
+            "maximum_ns": 1149.6877894101067,
+            "relative_mad": 0.0026779546680801205
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 1,
+          "master_rows": 1,
+          "reduction_rows": 1
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            945.5922650475185,
+            938.2902587117212,
+            944.271471312918,
+            933.8846356916579,
+            945.6327437522,
+            938.7487240408307,
+            942.7838349172827,
+            942.1278159098908,
+            939.4148627243928,
+            939.9657250967969,
+            938.4992520239352,
+            936.7788630763815,
+            946.7494280183034,
+            954.6027807110172,
+            943.0403467089053,
+            947.6157602956705,
+            953.8671242520239,
+            964.8012143611404,
+            944.3361052446322,
+            936.15232312566,
+            950.5953449489616
+          ],
+          "unit": "ns/batch",
+          "median_ns": 943.0403467089053,
+          "ci99_ns": [
+            938.7487240408307,
+            946.7494280183034
+          ],
+          "minimum_ns": 933.8846356916579,
+          "maximum_ns": 964.8012143611404,
+          "relative_mad": 0.004550836751631966
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          0.9865746123467709,
+          0.9970600255039923,
+          1.0172892231172066,
+          1.0003268255271316,
+          1.0195432160442097,
+          1.0034391799695617,
+          0.9908663104798778,
+          0.993563404824889,
+          0.9927460160542443,
+          0.9937063709836259,
+          1.006690505777913,
+          1.0258609796838603,
+          0.9832464997126454,
+          0.9770967548913604,
+          0.9862907160250673,
+          0.986702986762031,
+          0.9881255926018342,
+          0.9674345424190873,
+          0.9912591872175244,
+          1.002662959349912,
+          0.9864567132969304
+        ],
+        "median": 0.9927460160542443,
+        "ci99": [
+          0.9865746123467709,
+          1.002662959349912
+        ],
+        "gate": "parity",
+        "relative_ci_width": 0.016205904373291297,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 19868,
+        "iregi": 22728
+      },
+      "order": [
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ]
+      ]
+    },
+    {
+      "id": "n2-r0-massive",
+      "n": 2,
+      "rank": 0,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 32,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 8.395179341322145e-16,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            28750.069605568446,
+            28797.84222737819,
+            28903.294663573084,
+            28909.65197215777,
+            28878.628770301624,
+            29327.84222737819,
+            28704.245939675173,
+            28969.025522041764,
+            29713.92343387471,
+            28669.881670533643,
+            28884.361948955917,
+            28944.570765661254,
+            28845.336426914153,
+            30239.515081206497,
+            28626.14849187935,
+            28914.336426914153,
+            29463.294663573084,
+            29121.22969837587,
+            30373.436194895592,
+            34419.24825986079,
+            28883.039443155452
+          ],
+          "unit": "ns/batch",
+          "median_ns": 28909.65197215777,
+          "ci99_ns": [
+            28845.336426914153,
+            29327.84222737819
+          ],
+          "minimum_ns": 28626.14849187935,
+          "maximum_ns": 34419.24825986079,
+          "relative_mad": 0.005520037624216853
+        },
+        "preparation_ns": null,
+        "master_backend": "RustBatch",
+        "preparation_reused": true,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              1858.15313225058,
+              1847.9953596287703,
+              1843.9187935034802,
+              1879.2343387470999,
+              1866.1508120649653,
+              1856.7935034802783,
+              1854.399071925754,
+              1860.9466357308584,
+              1853.8167053364268,
+              1840.4965197215777,
+              1871.060324825986,
+              1863.9930394431553,
+              1870.9164733178654,
+              1862.1136890951277,
+              1880.1624129930394,
+              1850.5429234338746,
+              2001.5707656612528,
+              1849.169373549884,
+              1851.986078886311,
+              1850.5452436194896,
+              1855.6542923433874
+            ],
+            "unit": "ns/batch",
+            "median_ns": 1856.7935034802783,
+            "ci99_ns": [
+              1850.5452320185616,
+              1866.1508120649653
+            ],
+            "minimum_ns": 1840.4965197215777,
+            "maximum_ns": 2001.5707656612528,
+            "relative_mad": 0.003877402602595586
+          },
+          "masters": {
+            "samples_ns": [
+              14186.22505800464,
+              14093.573085846867,
+              14114.092807424595,
+              14099.758700696055,
+              14069.726218097449,
+              14021.893271461717,
+              14068.800464037124,
+              14070.241299303945,
+              14066.027842227379,
+              14267.941995359628,
+              14140.252900232019,
+              15480.524361948956,
+              14060.30626450116,
+              14081.30162412993,
+              14073.932714617169,
+              14205.4686774942,
+              14099.102088167054,
+              14155.313225058004,
+              14056.009280742459,
+              14031.941995359628,
+              14161.07192575406
+            ],
+            "unit": "ns/batch",
+            "median_ns": 14093.573085846867,
+            "ci99_ns": [
+              14068.800464037124,
+              14155.313225058004
+            ],
+            "minimum_ns": 14021.893271461717,
+            "maximum_ns": 15480.524361948956,
+            "relative_mad": 0.0023604249357542053
+          },
+          "reduction": {
+            "samples_ns": [
+              8716.825986078886,
+              8553.689095127611,
+              8584.037122969838,
+              8536.106728538283,
+              8835.475638051044,
+              8623.102088167054,
+              8557.547563805105,
+              8570.327146171694,
+              8552.178654292344,
+              8552.67981438515,
+              8647.252900232019,
+              8541.368909512761,
+              8551.406032482599,
+              8541.294663573086,
+              8512.470997679815,
+              8533.552204176334,
+              8544.772621809745,
+              8579.705336426914,
+              8558.7656612529,
+              8543.116009280742,
+              8592.064965197216
+            ],
+            "unit": "ns/batch",
+            "median_ns": 8553.689095127611,
+            "ci99_ns": [
+              8543.116009280742,
+              8584.037122969838
+            ],
+            "minimum_ns": 8512.470997679815,
+            "maximum_ns": 8835.475638051044,
+            "relative_mad": 0.0019451316103551801
+          },
+          "total": {
+            "samples_ns": [
+              29022.626450116008,
+              28875.69373549884,
+              28793.15777262181,
+              28750.24825986079,
+              29054.654292343388,
+              28704.443155452434,
+              28696.020881670534,
+              28767.542923433874,
+              28728.30626450116,
+              28864.245939675173,
+              28877.49883990719,
+              30177.20185614849,
+              28762.867749419955,
+              28707.74477958237,
+              28725.828306264502,
+              28809.118329466357,
+              28906.336426914153,
+              28799.25522041763,
+              28645.84686774942,
+              28683.438515081205,
+              28911.658932714618
+            ],
+            "unit": "ns/batch",
+            "median_ns": 28793.15777262181,
+            "ci99_ns": [
+              28725.828306264502,
+              28877.49883990719
+            ],
+            "minimum_ns": 28645.84686774942,
+            "maximum_ns": 30177.20185614849,
+            "relative_mad": 0.002929205193519232
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 32,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 32,
+          "master_family_batches": 1,
+          "master_rows": 32,
+          "reduction_rows": 32
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            28012.721554116557,
+            27983.46160962072,
+            28112.259944495836,
+            28740.150786308972,
+            28236.783533765032,
+            27835.533765032378,
+            28262.759481961148,
+            28085.53469010176,
+            28504.05550416281,
+            28094.63644773358,
+            28019.650323774284,
+            28035.191489361703,
+            27905.477335800184,
+            28042.85198889917,
+            28208.23496762257,
+            28232.94449583719,
+            27983.822386679,
+            28097.30989824237,
+            28075.82978723404,
+            28174.08233117484,
+            28200.705827937094
+          ],
+          "unit": "ns/batch",
+          "median_ns": 28094.63644773358,
+          "ci99_ns": [
+            28019.650323774284,
+            28208.23496762257
+          ],
+          "minimum_ns": 27835.533765032378,
+          "maximum_ns": 28740.150786308972,
+          "relative_mad": 0.003775431670057069
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          1.026321899856372,
+          1.029102211481852,
+          1.0281384250372987,
+          1.0058977138675815,
+          1.0227308197397584,
+          1.053611634500808,
+          1.0156207838797837,
+          1.0314571483750807,
+          1.04244546638408,
+          1.0204752684331841,
+          1.0308608999466327,
+          1.0324370631334774,
+          1.033680093689285,
+          1.0783323712287496,
+          1.014815302153306,
+          1.0241346392749588,
+          1.0528688417347285,
+          1.0364419157507159,
+          1.0818357435941666,
+          1.221663508158902,
+          1.0241956218890949
+        ],
+        "median": 1.0308608999466327,
+        "ci99": [
+          1.0241346392749588,
+          1.042497583260825
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.017813212225642448,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 431,
+        "iregi": 1081
+      },
+      "order": [
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ]
+      ]
+    },
+    {
+      "id": "n2-r1-massive",
+      "n": 2,
+      "rank": 1,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 1,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 5.901468638566327e-16,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            4656.601095890411,
+            4669.444748858447,
+            4659.293150684932,
+            4656.719634703197,
+            4646.529863013699,
+            4651.83397260274,
+            4656.977351598173,
+            4801.333881278539,
+            4689.360913242009,
+            4675.046757990867,
+            4718.2798173515985,
+            4714.66703196347,
+            4684.911598173516,
+            4670.59196347032,
+            4643.82301369863,
+            4671.33899543379,
+            4650.212054794521,
+            4773.942100456621,
+            4661.158173515982,
+            4659.262283105023,
+            4663.379178082192
+          ],
+          "unit": "ns/batch",
+          "median_ns": 4663.379178082192,
+          "ci99_ns": [
+            4656.719634703197,
+            4684.911598173516
+          ],
+          "minimum_ns": 4643.82301369863,
+          "maximum_ns": 4801.333881278539,
+          "relative_mad": 0.0024757166506456495
+        },
+        "preparation_ns": 11990328,
+        "master_backend": "RustBatch",
+        "preparation_reused": false,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              442.2394520547945,
+              442.7408219178082,
+              440.387397260274,
+              439.42009132420094,
+              433.706301369863,
+              638.5952511415525,
+              437.92328767123286,
+              438.1936073059361,
+              446.7537899543379,
+              438.2535159817352,
+              437.5901369863014,
+              438.80566210045663,
+              437.55397260273975,
+              437.0162557077626,
+              436.51068493150683,
+              440.91616438356164,
+              442.97205479452055,
+              436.29187214611875,
+              442.0049315068493,
+              440.75817351598175,
+              444.3156164383562
+            ],
+            "unit": "ns/batch",
+            "median_ns": 439.42009132420094,
+            "ci99_ns": [
+              437.5901369863014,
+              442.2394520547945
+            ],
+            "minimum_ns": 433.706301369863,
+            "maximum_ns": 638.5952511415525,
+            "relative_mad": 0.005470472706867708
+          },
+          "masters": {
+            "samples_ns": [
+              618.1755251141552,
+              625.6918721461187,
+              619.6770776255707,
+              617.9006392694064,
+              614.4805479452054,
+              617.4421917808219,
+              619.9806392694064,
+              615.6907762557078,
+              616.2412785388128,
+              624.954703196347,
+              620.0113242009132,
+              617.9932420091325,
+              622.9125114155252,
+              618.2120547945206,
+              630.9830136986301,
+              619.0401826484018,
+              630.8100456621005,
+              623.7176255707762,
+              622.7479452054795,
+              624.0962557077626,
+              621.8321461187214
+            ],
+            "unit": "ns/batch",
+            "median_ns": 619.9806392694064,
+            "ci99_ns": [
+              617.9932420091325,
+              624.0962557077626
+            ],
+            "minimum_ns": 614.4805479452054,
+            "maximum_ns": 630.9830136986301,
+            "relative_mad": 0.004463536053858212
+          },
+          "reduction": {
+            "samples_ns": [
+              3111.634703196347,
+              3127.3850228310503,
+              3244.251872146119,
+              3129.2659360730595,
+              3129.0489497716894,
+              3152.9265753424656,
+              3118.804566210046,
+              3146.874337899543,
+              3140.039086757991,
+              3128.0186301369863,
+              3125.1693150684932,
+              3132.2390867579907,
+              3121.4310502283106,
+              3109.4480365296804,
+              3117.3574429223745,
+              3109.855707762557,
+              3124.125114155251,
+              3149.0045662100456,
+              3106.6268493150683,
+              3133.580639269406,
+              3117.5081278538814
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3127.3850228310503,
+            "ci99_ns": [
+              3117.3574429223745,
+              3133.580639269406
+            ],
+            "minimum_ns": 3106.6268493150683,
+            "maximum_ns": 3244.251872146119,
+            "relative_mad": 0.0031581960344069884
+          },
+          "total": {
+            "samples_ns": [
+              4786.200913242009,
+              4802.906301369863,
+              4920.536621004566,
+              4807.303561643836,
+              4782.566757990868,
+              5020.876529680365,
+              4787.11196347032,
+              4805.932054794521,
+              4817.610776255708,
+              4798.851506849315,
+              4783.820273972603,
+              4908.9775342465755,
+              4794.299908675799,
+              4777.320547945205,
+              4795.461369863014,
+              4778.8166210045665,
+              4811.55598173516,
+              4816.844383561644,
+              4772.224292237443,
+              4802.454794520548,
+              4793.166575342466
+            ],
+            "unit": "ns/batch",
+            "median_ns": 4798.851506849315,
+            "ci99_ns": [
+              4786.200913242009,
+              4811.55598173516
+            ],
+            "minimum_ns": 4772.224292237443,
+            "maximum_ns": 5020.876529680365,
+            "relative_mad": 0.0026473990428150253
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 2,
+          "master_rows": 3,
+          "reduction_rows": 1
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            3090.3933900604266,
+            3107.61622888149,
+            3149.392156862745,
+            3027.1510667159946,
+            3043.7697619928476,
+            3045.669996300407,
+            3037.8590455049944,
+            3044.9769392033545,
+            3052.0113454186708,
+            3016.7046491552596,
+            3123.0127019361203,
+            3027.4163275373044,
+            3083.550376125293,
+            3030.242816623505,
+            3037.6987298063877,
+            3016.0437785176964,
+            2989.242569983968,
+            3070.0406955234926,
+            3054.291404612159,
+            3037.7172277716118,
+            3027.305339745961
+          ],
+          "unit": "ns/batch",
+          "median_ns": 3043.7697619928476,
+          "ci99_ns": [
+            3027.4163275373044,
+            3070.0406955234926
+          ],
+          "minimum_ns": 2989.242569983968,
+          "maximum_ns": 3149.392156862745,
+          "relative_mad": 0.005409220648839973
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          1.5067988143086728,
+          1.502580886745819,
+          1.4794261618172913,
+          1.5383175573576644,
+          1.5265707416619698,
+          1.5273598184482722,
+          1.5329800632089654,
+          1.576804677717754,
+          1.5364821367001598,
+          1.549719744456912,
+          1.5108103192876827,
+          1.5573236456046613,
+          1.5193238399628322,
+          1.541325974884943,
+          1.5287306039050854,
+          1.5488299701437445,
+          1.5556489464886285,
+          1.5550093871451385,
+          1.5261013295841253,
+          1.5338038183767795,
+          1.5404389893731445
+        ],
+        "median": 1.5338038183767795,
+        "ci99": [
+          1.5261013295841253,
+          1.5488299701437445
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.01481847957822459,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 5475,
+        "iregi": 8109
+      },
+      "order": [
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ]
+      ]
+    },
+    {
+      "id": "n2-r1-massive",
+      "n": 2,
+      "rank": 1,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 32,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 3.79319046545774e-15,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            105912.25850340136,
+            103569.29591836735,
+            103276.37074829932,
+            105160.86394557822,
+            103298.8843537415,
+            103193.27210884354,
+            103179.6700680272,
+            103370.01020408163,
+            103643.13605442178,
+            102828.88775510204,
+            103046.02721088435,
+            103520.11224489796,
+            103131.13265306123,
+            103230.38095238095,
+            102966.67346938775,
+            103474.90816326531,
+            106877.3299319728,
+            103539.90816326531,
+            105355.35714285714,
+            106444.77891156463,
+            103394.90816326531
+          ],
+          "unit": "ns/batch",
+          "median_ns": 103394.90816326531,
+          "ci99_ns": [
+            103193.27210884354,
+            103643.13605442178
+          ],
+          "minimum_ns": 102828.88775510204,
+          "maximum_ns": 106877.3299319728,
+          "relative_mad": 0.00208170884873978
+        },
+        "preparation_ns": null,
+        "master_backend": "RustBatch",
+        "preparation_reused": true,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              4800.411564625851,
+              4780.078231292517,
+              4817.578231292517,
+              4781.465986394558,
+              4721.142857142857,
+              4741.183673469388,
+              4755.472789115646,
+              5012.285714285715,
+              4746.414965986394,
+              4775.972789115646,
+              4785.302721088436,
+              4797.377551020408,
+              4780.918367346939,
+              4779.051020408163,
+              4714.850340136054,
+              4689.241496598639,
+              4707.431972789115,
+              4735.646258503401,
+              4855.755102040816,
+              4745.666666666667,
+              4799.173469387755
+            ],
+            "unit": "ns/batch",
+            "median_ns": 4779.051020408163,
+            "ci99_ns": [
+              4741.183673469388,
+              4797.377551020408
+            ],
+            "minimum_ns": 4689.241496598639,
+            "maximum_ns": 5012.285714285715,
+            "relative_mad": 0.006828982214753869
+          },
+          "masters": {
+            "samples_ns": [
+              21938.428571428572,
+              22017.690476190477,
+              22020.115646258502,
+              22128.391156462585,
+              22031.231292517008,
+              21955.57482993197,
+              22125.255102040817,
+              21944.210884353743,
+              22114.826530612245,
+              22237.520408163266,
+              22013.085034013606,
+              22050.75850340136,
+              21919.700680272108,
+              21890.06462585034,
+              22101.224489795917,
+              21896.70408163265,
+              21979.8231292517,
+              22054.173469387755,
+              21959.79591836735,
+              21921.238095238095,
+              21883.74149659864
+            ],
+            "unit": "ns/batch",
+            "median_ns": 22013.085034013606,
+            "ci99_ns": [
+              21938.428571428572,
+              22054.173469387755
+            ],
+            "minimum_ns": 21883.74149659864,
+            "maximum_ns": 22237.520408163266,
+            "relative_mad": 0.0033914584198297317
+          },
+          "reduction": {
+            "samples_ns": [
+              69513.02721088435,
+              71593.54421768707,
+              69798.4693877551,
+              69601.10884353741,
+              69478.19047619047,
+              70139.51700680272,
+              69455.14965986395,
+              69250.4931972789,
+              69573.40136054422,
+              71785.16666666667,
+              69734.9387755102,
+              69572.22108843537,
+              69606.35034013605,
+              69941.81972789115,
+              69555.67346938775,
+              69690.42857142857,
+              69250.88095238095,
+              71705.42517006803,
+              69747.40476190476,
+              69646.3163265306,
+              69692.7925170068
+            ],
+            "unit": "ns/batch",
+            "median_ns": 69646.3163265306,
+            "ci99_ns": [
+              69555.67346938775,
+              69798.4693877551
+            ],
+            "minimum_ns": 69250.4931972789,
+            "maximum_ns": 71785.16666666667,
+            "relative_mad": 0.0019137999348212927
+          },
+          "total": {
+            "samples_ns": [
+              102712.3299319728,
+              105007.76870748299,
+              103078.6530612245,
+              102986.33673469388,
+              102705.40136054422,
+              103276.94897959183,
+              102800.04761904762,
+              102720.29591836735,
+              102912.91496598639,
+              105357.85714285714,
+              103047.63945578231,
+              103131.57823129251,
+              102784.88095238095,
+              103092.7925170068,
+              102982.09183673469,
+              102779.29591836735,
+              102412.21768707484,
+              104966.56802721089,
+              103100.34353741497,
+              102741.69727891157,
+              102913.98299319728
+            ],
+            "unit": "ns/batch",
+            "median_ns": 102982.09183673469,
+            "ci99_ns": [
+              102779.29591836735,
+              103100.34353741497
+            ],
+            "minimum_ns": 102412.21768707484,
+            "maximum_ns": 105357.85714285714,
+            "relative_mad": 0.001915001733178968
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 32,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 32,
+          "master_family_batches": 2,
+          "master_rows": 96,
+          "reduction_rows": 32
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            99359.35331230283,
+            100104.33753943218,
+            99523.67823343849,
+            96898.96845425868,
+            96061.48895899054,
+            97198.68454258675,
+            96725.24605678233,
+            96943.51104100946,
+            95874.23343848581,
+            96189.59621451104,
+            96950.23343848581,
+            98744.30599369085,
+            95889.09463722397,
+            97375.65930599369,
+            98050.92744479496,
+            96610.70347003154,
+            96697.99369085174,
+            96882.28391167193,
+            97457.54889589906,
+            98059.44479495268,
+            96171.68138801261
+          ],
+          "unit": "ns/batch",
+          "median_ns": 96943.51104100946,
+          "ci99_ns": [
+            96189.59621451104,
+            98050.92744479496
+          ],
+          "minimum_ns": 95874.23343848581,
+          "maximum_ns": 100104.33753943218,
+          "relative_mad": 0.007776846726538517
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          1.065951568449743,
+          1.0346134689475397,
+          1.0377065295563,
+          1.0852629870380879,
+          1.0753412785204761,
+          1.061673546246712,
+          1.0667294659292552,
+          1.0662911740462298,
+          1.0810322266714194,
+          1.069022969238636,
+          1.0628754935001397,
+          1.0483653837367823,
+          1.0755251474970744,
+          1.060125104036414,
+          1.05013462037226,
+          1.0710501471026244,
+          1.105269363433381,
+          1.0687186963682975,
+          1.0810384453172968,
+          1.0855127635501722,
+          1.0751076270166267
+        ],
+        "median": 1.0687186963682975,
+        "ci99": [
+          1.061673546246712,
+          1.0810322266714194
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.018113915748355303,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 294,
+        "iregi": 317
+      },
+      "order": [
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ]
+      ]
+    },
+    {
+      "id": "n3-r0-massive",
+      "n": 3,
+      "rank": 0,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 1,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 6.784884058720352e-15,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            4178.5775972637875,
+            4184.5887131252675,
+            4203.028217186832,
+            4198.855493800769,
+            4195.747327917914,
+            4211.3822146216335,
+            4245.833262077811,
+            4235.568191534844,
+            4186.521162890124,
+            4169.980333475844,
+            4226.825138948268,
+            4168.650277896537,
+            4235.345446772125,
+            4232.395895681915,
+            4216.713552800342,
+            4294.328345446772,
+            5541.607952116289,
+            4264.879863189397,
+            4421.17357845233,
+            4405.948696023942,
+            4342.430525865755
+          ],
+          "unit": "ns/batch",
+          "median_ns": 4226.825138948268,
+          "ci99_ns": [
+            4195.747327917914,
+            4264.879863189397
+          ],
+          "minimum_ns": 4168.650277896537,
+          "maximum_ns": 5541.607952116289,
+          "relative_mad": 0.009003146094327761
+        },
+        "preparation_ns": 1397653,
+        "master_backend": "RustBatch",
+        "preparation_reused": false,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              174.13210773834973,
+              177.51517742625055,
+              204.89097905087644,
+              170.85976913210774,
+              169.4690038477982,
+              168.8401026079521,
+              166.81274048738777,
+              165.92389910218043,
+              167.95724668661822,
+              165.5408294142796,
+              169.22915775972638,
+              171.27746900384778,
+              167.96622488242838,
+              173.6049593843523,
+              168.80247969217615,
+              166.1222744762719,
+              167.42967079948696,
+              164.37451902522446,
+              188.92646430098333,
+              159.27575887131252,
+              171.46515604959384
+            ],
+            "unit": "ns/batch",
+            "median_ns": 168.8401026079521,
+            "ci99_ns": [
+              166.81274048738777,
+              171.46515604959384
+            ],
+            "minimum_ns": 159.27575887131252,
+            "maximum_ns": 204.89097905087644,
+            "relative_mad": 0.015547570755373987
+          },
+          "masters": {
+            "samples_ns": [
+              3381.758443779393,
+              3378.514749893117,
+              3381.56434373664,
+              3360.0966224882427,
+              3582.610517315092,
+              3274.1893971782815,
+              3292.5032064985035,
+              3282.3629756306113,
+              3293.9033775117573,
+              3282.253954681488,
+              3271.7729799059425,
+              3262.326207781103,
+              3273.690466011116,
+              3270.692176143651,
+              3278.98546387345,
+              3283.69431380932,
+              3298.447627191107,
+              3270.026079521163,
+              3253.077811030355,
+              3251.7152629328775,
+              3246.2684908080378
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3282.253954681488,
+            "ci99_ns": [
+              3270.692176143651,
+              3298.447627191107
+            ],
+            "minimum_ns": 3246.2684908080378,
+            "maximum_ns": 3582.610517315092,
+            "relative_mad": 0.0037254506595640487
+          },
+          "reduction": {
+            "samples_ns": [
+              379.622060709705,
+              391.48439504061565,
+              390.6755023514322,
+              391.9901667379222,
+              385.7293715262933,
+              369.995297135528,
+              378.40017101325355,
+              371.211201368106,
+              369.3766566908935,
+              404.9593843522873,
+              374.6532706284737,
+              370.59897392047884,
+              369.6357417699872,
+              372.7447627191107,
+              372.2274476271911,
+              364.29072253099616,
+              372.31808465156047,
+              379.65882855921336,
+              367.3304831124412,
+              368.7238135955537,
+              368.6930312099188
+            ],
+            "unit": "ns/batch",
+            "median_ns": 372.31808465156047,
+            "ci99_ns": [
+              369.6357417699872,
+              379.65882855921336
+            ],
+            "minimum_ns": 364.29072253099616,
+            "maximum_ns": 404.9593843522873,
+            "relative_mad": 0.009736442013108882
+          },
+          "total": {
+            "samples_ns": [
+              4455.747327917914,
+              4494.773407439076,
+              4510.367250961949,
+              4445.440359127832,
+              4666.182984181274,
+              4313.607524583155,
+              4358.705429670799,
+              4319.301410859342,
+              4322.001710132536,
+              4367.022231722958,
+              4337.814878153057,
+              4336.841385207354,
+              4329.947840957674,
+              4327.065412569475,
+              4332.7729799059425,
+              4328.540401881146,
+              4353.168448054725,
+              4318.0833689610945,
+              4313.798631893972,
+              4265.056861906798,
+              4272.115861479265
+            ],
+            "unit": "ns/batch",
+            "median_ns": 4332.7729799059425,
+            "ci99_ns": [
+              4319.301410859342,
+              4367.022231722958
+            ],
+            "minimum_ns": 4265.056861906798,
+            "maximum_ns": 4666.182984181274,
+            "relative_mad": 0.004423369378379776
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 1,
+          "master_rows": 1,
+          "reduction_rows": 1
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            4934.905166666666,
+            4934.170166666667,
+            4946.650166666666,
+            5149.4338333333335,
+            4968.4785,
+            4929.945166666666,
+            4928.5635,
+            4932.986833333333,
+            4928.7401666666665,
+            4948.8185,
+            5042.188833333334,
+            4937.745166666667,
+            4936.806833333333,
+            4982.2536666666665,
+            4985.056833333333,
+            5025.928666666667,
+            4994.038666666666,
+            5071.9205,
+            5199.6825,
+            5081.618833333333,
+            5061.580333333333
+          ],
+          "unit": "ns/batch",
+          "median_ns": 4968.4785,
+          "ci99_ns": [
+            4934.9014916666665,
+            5042.188833333334
+          ],
+          "minimum_ns": 4928.5635,
+          "maximum_ns": 5199.6825,
+          "relative_mad": 0.007143367263573101
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          0.8467391887261436,
+          0.8480835828068355,
+          0.8496716112065533,
+          0.8154013877449444,
+          0.8444732784730605,
+          0.8542452445711719,
+          0.8614748013448159,
+          0.858621426457928,
+          0.8494099955205168,
+          0.8426213920506166,
+          0.83829171787562,
+          0.8442416806031073,
+          0.8579119235889606,
+          0.8494942607997643,
+          0.8458707079535487,
+          0.8544347980758127,
+          1.1096445826710237,
+          0.8408806611202594,
+          0.8502776041522401,
+          0.8670364386881455,
+          0.8579199064111311
+        ],
+        "median": 0.8494942607997643,
+        "ci99": [
+          0.8444732784730605,
+          0.8579119235889606
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.01581958317558044,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 2339,
+        "iregi": 6000
+      },
+      "order": [
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ]
+      ]
+    },
+    {
+      "id": "n3-r0-massive",
+      "n": 3,
+      "rank": 0,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 32,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 5.3593360361509914e-14,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            268002.4285714286,
+            274742.8035714286,
+            267684.125,
+            268699.48214285716,
+            269016.4464285714,
+            269063.6875,
+            267970.46428571426,
+            267450.64285714284,
+            267312.59821428574,
+            273348.0625,
+            268582.51785714284,
+            268876.8035714286,
+            268952.96428571426,
+            269071.08928571426,
+            267098.3214285714,
+            271247.4375,
+            269611.98214285716,
+            276829.15178571426,
+            268775.7410714286,
+            271189.1339285714,
+            273610.125
+          ],
+          "unit": "ns/batch",
+          "median_ns": 268952.96428571426,
+          "ci99_ns": [
+            268002.4285714286,
+            271189.1339285714
+          ],
+          "minimum_ns": 267098.3214285714,
+          "maximum_ns": 276829.15178571426,
+          "relative_mad": 0.003653055108016099
+        },
+        "preparation_ns": null,
+        "master_backend": "RustBatch",
+        "preparation_reused": true,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              4102.580357142857,
+              4124.0,
+              4100.348214285715,
+              4157.794642857143,
+              4103.8125,
+              4129.526785714285,
+              4158.241071428572,
+              4336.098214285715,
+              4140.517857142857,
+              4442.973214285715,
+              4724.669642857143,
+              4166.080357142857,
+              4093.8571428571427,
+              4164.464285714285,
+              4090.2053571428573,
+              4191.830357142857,
+              4636.955357142857,
+              4096.580357142857,
+              4104.294642857143,
+              4091.0535714285716,
+              4283.946428571428
+            ],
+            "unit": "ns/batch",
+            "median_ns": 4140.517857142857,
+            "ci99_ns": [
+              4102.580357142857,
+              4191.830357142857
+            ],
+            "minimum_ns": 4090.2053571428573,
+            "maximum_ns": 4724.669642857143,
+            "relative_mad": 0.009701598747568515
+          },
+          "masters": {
+            "samples_ns": [
+              251542.80357142858,
+              250628.61607142858,
+              250919.36607142858,
+              250707.83035714287,
+              250556.04464285713,
+              251195.88392857142,
+              248993.0982142857,
+              255427.04464285713,
+              249977.4732142857,
+              249436.42857142858,
+              249556.66964285713,
+              249392.69642857142,
+              249417.0267857143,
+              249817.5892857143,
+              249273.25,
+              254819.86607142858,
+              249433.4732142857,
+              249453.76785714287,
+              252234.51785714287,
+              249072.2857142857,
+              253015.07142857142
+            ],
+            "unit": "ns/batch",
+            "median_ns": 249977.4732142857,
+            "ci99_ns": [
+              249433.4732142857,
+              251195.88392857142
+            ],
+            "minimum_ns": 248993.0982142857,
+            "maximum_ns": 255427.04464285713,
+            "relative_mad": 0.0028171467021831835
+          },
+          "reduction": {
+            "samples_ns": [
+              8649.5,
+              8747.017857142857,
+              8741.25,
+              8573.910714285714,
+              8726.99107142857,
+              8607.0,
+              8591.214285714286,
+              8622.517857142857,
+              8606.75,
+              8663.776785714286,
+              8648.375,
+              8722.0,
+              8604.9375,
+              8548.910714285714,
+              8931.580357142857,
+              8903.142857142857,
+              8683.42857142857,
+              8689.848214285714,
+              8560.61607142857,
+              9207.089285714286,
+              8753.69642857143
+            ],
+            "unit": "ns/batch",
+            "median_ns": 8663.776785714286,
+            "ci99_ns": [
+              8606.75,
+              8741.25
+            ],
+            "minimum_ns": 8548.910714285714,
+            "maximum_ns": 9207.089285714286,
+            "relative_mad": 0.00729638900883487
+          },
+          "total": {
+            "samples_ns": [
+              269276.6339285714,
+              268407.14285714284,
+              268655.16071428574,
+              268376.79464285716,
+              268312.625,
+              268940.125,
+              266679.34821428574,
+              273394.58035714284,
+              267745.5714285714,
+              267425.39285714284,
+              267812.98214285716,
+              267320.6875,
+              267005.77678571426,
+              267397.21428571426,
+              267166.90178571426,
+              272880.33928571426,
+              267735.3660714286,
+              267087.70535714284,
+              269779.60714285716,
+              267335.03571428574,
+              271158.6160714286
+            ],
+            "unit": "ns/batch",
+            "median_ns": 267812.98214285716,
+            "ci99_ns": [
+              267335.03571428574,
+              268940.125
+            ],
+            "minimum_ns": 266679.34821428574,
+            "maximum_ns": 273394.58035714284,
+            "relative_mad": 0.0024124310628013757
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 32,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 32,
+          "master_family_batches": 1,
+          "master_rows": 32,
+          "reduction_rows": 32
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            157020.78865979382,
+            156749.96391752578,
+            157141.92268041236,
+            156489.3969072165,
+            156598.62371134022,
+            159932.34536082475,
+            156759.70103092783,
+            157132.6443298969,
+            156917.7474226804,
+            156553.30927835053,
+            156616.04639175258,
+            158202.07731958764,
+            157070.01546391752,
+            159608.52577319587,
+            156480.78865979382,
+            156695.06701030929,
+            156463.77319587627,
+            157797.44329896907,
+            156752.38659793814,
+            157492.49484536084,
+            156655.11855670103
+          ],
+          "unit": "ns/batch",
+          "median_ns": 156759.70103092783,
+          "ci99_ns": [
+            156616.04639175258,
+            157141.92268041236
+          ],
+          "minimum_ns": 156463.77319587627,
+          "maximum_ns": 159932.34536082475,
+          "relative_mad": 0.0017243215056783388
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          1.7067958380472223,
+          1.7527455618170662,
+          1.7034545615456356,
+          1.7170459306081338,
+          1.717872354513486,
+          1.6823594182462784,
+          1.709434647574667,
+          1.7020692549132914,
+          1.703520491498269,
+          1.7460382265953212,
+          1.7149105985303843,
+          1.6995782111524642,
+          1.712312585513807,
+          1.6858190249063825,
+          1.70690807297292,
+          1.7310528191813088,
+          1.7231591481903685,
+          1.7543323009437053,
+          1.7146516675425467,
+          1.7219178234165846,
+          1.746576348866426
+        ],
+        "median": 1.7146516675425467,
+        "ci99": [
+          1.703520491498269,
+          1.7231591481903685
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.011453438073661877,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 112,
+        "iregi": 194
+      },
+      "order": [
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ]
+      ]
+    },
+    {
+      "id": "n3-r1-massive",
+      "n": 3,
+      "rank": 1,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 1,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 4.7765413365998006e-14,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            8777.575795383656,
+            8802.694323144106,
+            8869.531815346227,
+            8779.643792888335,
+            8825.535870243293,
+            8805.198689956333,
+            8808.605115408609,
+            8807.14504054897,
+            8820.850904553961,
+            8785.910168434186,
+            9538.06394260761,
+            8971.802557704304,
+            8839.968496568934,
+            8785.666874610106,
+            8875.15252651279,
+            8829.537741734248,
+            8787.75358702433,
+            8831.914535246413,
+            8805.882096069869,
+            8997.672800998129,
+            8805.729257641922
+          ],
+          "unit": "ns/batch",
+          "median_ns": 8808.605115408609,
+          "ci99_ns": [
+            8802.694323144106,
+            8839.968496568934
+          ],
+          "minimum_ns": 8777.575795383656,
+          "maximum_ns": 9538.06394260761,
+          "relative_mad": 0.002576451853281924
+        },
+        "preparation_ns": 13491163,
+        "master_backend": "RustBatch",
+        "preparation_reused": false,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              173.69900187149096,
+              177.24828446662508,
+              172.92794759825327,
+              174.64379288833436,
+              172.91484716157206,
+              176.2651278852152,
+              172.16001247660637,
+              173.14566437928883,
+              175.04491578290705,
+              172.7345601996257,
+              173.1837180286962,
+              174.90954460386774,
+              177.9407361197754,
+              181.58265751715533,
+              173.5308796007486,
+              175.13755458515283,
+              171.86244541484717,
+              173.5230817217717,
+              174.70118527760448,
+              172.51840299438553,
+              171.74360573923892
+            ],
+            "unit": "ns/batch",
+            "median_ns": 173.5308796007486,
+            "ci99_ns": [
+              172.91484716157206,
+              175.13755458515283
+            ],
+            "minimum_ns": 171.74360573923892,
+            "maximum_ns": 181.58265751715533,
+            "relative_mad": 0.006744077362763745
+          },
+          "masters": {
+            "samples_ns": [
+              5385.397067997505,
+              5355.901122894573,
+              5360.820024953213,
+              5375.912351840299,
+              5378.9076731129135,
+              5560.522769806613,
+              5371.141609482221,
+              5365.272925764192,
+              5353.451341235184,
+              5375.540237055521,
+              5349.127261384903,
+              5392.587960074859,
+              5364.426388022458,
+              5364.150343106675,
+              5389.352776044916,
+              5348.58452900811,
+              5349.263880224579,
+              5361.251091703057,
+              5439.612601372427,
+              5366.813786650031,
+              5374.6958827199005
+            ],
+            "unit": "ns/batch",
+            "median_ns": 5366.813786650031,
+            "ci99_ns": [
+              5360.820024953213,
+              5378.9076731129135
+            ],
+            "minimum_ns": 5348.58452900811,
+            "maximum_ns": 5560.522769806613,
+            "relative_mad": 0.002033359864768084
+          },
+          "reduction": {
+            "samples_ns": [
+              2712.860573923893,
+              2711.870867124142,
+              2708.9288833437304,
+              2703.582345601996,
+              2714.7130380536496,
+              2709.984716157205,
+              2702.1213349968807,
+              2741.768870867124,
+              2716.7049282595135,
+              2703.4946974422955,
+              2719.390517779164,
+              2704.487211478478,
+              2703.247972551466,
+              2910.02027448534,
+              2703.9769182782284,
+              2715.543668122271,
+              2723.6363069245167,
+              2699.508421709295,
+              2730.6796631316283,
+              2708.232064878353,
+              2704.891141609482
+            ],
+            "unit": "ns/batch",
+            "median_ns": 2709.984716157205,
+            "ci99_ns": [
+              2703.9769182782284,
+              2716.7049282595135
+            ],
+            "minimum_ns": 2699.508421709295,
+            "maximum_ns": 2910.02027448534,
+            "relative_mad": 0.0023625116839358657
+          },
+          "total": {
+            "samples_ns": [
+              8951.774173424828,
+              8914.957891453525,
+              8911.235807860263,
+              8913.957579538366,
+              8937.37866500312,
+              9111.808796007486,
+              8913.654086088583,
+              8971.457891453525,
+              8908.95290081098,
+              8924.407985028072,
+              8915.442295695571,
+              8933.90860885839,
+              8917.011228945727,
+              9129.977854023706,
+              8935.797255146601,
+              8906.127261384903,
+              8914.71958827199,
+              8898.139426076108,
+              9007.312850904555,
+              8913.727698066126,
+              8923.055208983156
+            ],
+            "unit": "ns/batch",
+            "median_ns": 8917.011228945727,
+            "ci99_ns": [
+              8913.727698066126,
+              8951.774173424828
+            ],
+            "minimum_ns": 8898.139426076108,
+            "maximum_ns": 9129.977854023706,
+            "relative_mad": 0.0009037028134032093
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 2,
+          "master_rows": 4,
+          "reduction_rows": 1
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            10481.03284807764,
+            10628.226577081,
+            10352.943635684956,
+            10433.918253079508,
+            10297.030981709593,
+            10313.59723777529,
+            10623.16834639791,
+            10427.098544232922,
+            10369.390444195595,
+            10299.684957073536,
+            10761.750653228817,
+            10504.54535274356,
+            10437.677118327734,
+            10385.837252706233,
+            10568.666666666666,
+            10427.583799925345,
+            10408.830907054871,
+            10392.921985815603,
+            10318.01679731243,
+            10418.490854796566,
+            10312.492347891004
+          ],
+          "unit": "ns/batch",
+          "median_ns": 10418.490854796566,
+          "ci99_ns": [
+            10318.01679731243,
+            10504.54535274356
+          ],
+          "minimum_ns": 10297.030981709593,
+          "maximum_ns": 10761.750653228817,
+          "relative_mad": 0.006291431266307858
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          0.8374724058796914,
+          0.828237360137436,
+          0.8567159377526558,
+          0.8414522310731232,
+          0.857095204036961,
+          0.8537466110956715,
+          0.8291881318434927,
+          0.8446400504596818,
+          0.8506624330547367,
+          0.8530270785030437,
+          0.886292969419983,
+          0.8540876598110991,
+          0.8469287176019892,
+          0.8459276475106355,
+          0.8397608521900704,
+          0.8467481931717932,
+          0.8442594240884621,
+          0.8498009075118939,
+          0.8534471564694067,
+          0.8636253490452211,
+          0.8538895313161393
+        ],
+        "median": 0.8498009075118939,
+        "ci99": [
+          0.8442594240884621,
+          0.8538895313161393
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.011332192214142141,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 3206,
+        "iregi": 2679
+      },
+      "order": [
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ]
+      ]
+    },
+    {
+      "id": "n3-r1-massive",
+      "n": 3,
+      "rank": 1,
+      "mass_class": "massive",
+      "precision": "binary64",
+      "mode": "Hybrid",
+      "reference_mode": "Hybrid",
+      "batch_width": 32,
+      "status": "measured",
+      "correctness": {
+        "status": "passed",
+        "errors": [],
+        "max_error": 3.379393444298393e-13,
+        "tolerance": 1e-10,
+        "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+      },
+      "rust": {
+        "total": {
+          "samples_ns": [
+            423375.1692307692,
+            400722.5076923077,
+            395209.4,
+            399928.3538461538,
+            398740.8153846154,
+            398745.41538461536,
+            398587.8769230769,
+            397549.72307692305,
+            406987.75384615385,
+            397225.41538461536,
+            398721.43076923076,
+            400339.58461538464,
+            405037.27692307695,
+            399103.56923076924,
+            399967.27692307695,
+            395280.95384615386,
+            397491.41538461536,
+            402790.6615384615,
+            396407.41538461536,
+            396328.1692307692,
+            398185.72307692305
+          ],
+          "unit": "ns/batch",
+          "median_ns": 398740.8153846154,
+          "ci99_ns": [
+            397491.41538461536,
+            400339.58461538464
+          ],
+          "minimum_ns": 395209.4,
+          "maximum_ns": 423375.1692307692,
+          "relative_mad": 0.003800463713598786
+        },
+        "preparation_ns": null,
+        "master_backend": "RustBatch",
+        "preparation_reused": true,
+        "numerator": null,
+        "profiled_components": {
+          "arguments": {
+            "samples_ns": [
+              5130.784615384616,
+              4877.969230769231,
+              5052.138461538461,
+              4902.784615384616,
+              5388.507692307692,
+              4898.953846153846,
+              4905.3538461538465,
+              5221.876923076923,
+              4991.276923076923,
+              4885.830769230769,
+              4878.753846153846,
+              4920.6,
+              4921.523076923077,
+              4895.6461538461535,
+              4901.4,
+              5041.892307692307,
+              5046.323076923077,
+              4983.046153846154,
+              4915.615384615385,
+              5019.030769230769,
+              4909.076923076923
+            ],
+            "unit": "ns/batch",
+            "median_ns": 4920.6,
+            "ci99_ns": [
+              4901.4,
+              5041.892307692307
+            ],
+            "minimum_ns": 4877.969230769231,
+            "maximum_ns": 5388.507692307692,
+            "relative_mad": 0.008504278715228684
+          },
+          "masters": {
+            "samples_ns": [
+              300645.07692307694,
+              301126.1692307692,
+              298710.04615384614,
+              300728.09230769234,
+              300202.6,
+              299822.04615384614,
+              308877.5230769231,
+              299404.8,
+              301070.6615384615,
+              299676.4769230769,
+              301668.6153846154,
+              302229.2153846154,
+              300539.5076923077,
+              301245.3384615385,
+              302849.8153846154,
+              311349.41538461536,
+              301436.09230769234,
+              300850.9692307692,
+              302228.3538461538,
+              300960.2923076923,
+              300386.06153846154
+            ],
+            "unit": "ns/batch",
+            "median_ns": 300960.2923076923,
+            "ci99_ns": [
+              300386.06153846154,
+              302228.3538461538
+            ],
+            "minimum_ns": 298710.04615384614,
+            "maximum_ns": 311349.41538461536,
+            "relative_mad": 0.0023535432913486132
+          },
+          "reduction": {
+            "samples_ns": [
+              83225.98461538462,
+              83351.84615384616,
+              83767.27692307692,
+              83610.38461538461,
+              83037.6,
+              83062.2923076923,
+              83255.95384615385,
+              84265.32307692307,
+              83366.0923076923,
+              83137.89230769231,
+              83483.07692307692,
+              87506.93846153846,
+              83840.96923076923,
+              83450.87692307692,
+              82629.12307692308,
+              83573.0923076923,
+              84210.04615384615,
+              83010.6,
+              83723.2,
+              83343.30769230769,
+              82934.75384615385
+            ],
+            "unit": "ns/batch",
+            "median_ns": 83366.0923076923,
+            "ci99_ns": [
+              83137.89230769231,
+              83723.2
+            ],
+            "minimum_ns": 82629.12307692308,
+            "maximum_ns": 87506.93846153846,
+            "relative_mad": 0.0036441674497434836
+          },
+          "total": {
+            "samples_ns": [
+              397416.2153846154,
+              397742.04615384614,
+              395756.6,
+              397523.95384615386,
+              397083.26153846155,
+              396192.8153846154,
+              405504.04615384614,
+              397182.09230769234,
+              397811.06153846154,
+              396056.56923076924,
+              398379.41538461536,
+              402988.2153846154,
+              397625.41538461536,
+              398034.95384615386,
+              398644.90769230766,
+              408390.3230769231,
+              399145.5230769231,
+              397141.1076923077,
+              399113.8461538461,
+              397628.95384615386,
+              396653.73846153845
+            ],
+            "unit": "ns/batch",
+            "median_ns": 397628.95384615386,
+            "ci99_ns": [
+              397141.1076923077,
+              398644.90769230766
+            ],
+            "minimum_ns": 395756.6,
+            "maximum_ns": 408390.3230769231,
+            "relative_mad": 0.0018873412793572945
+          }
+        },
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 32,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 32,
+          "master_family_batches": 2,
+          "master_rows": 128,
+          "reduction_rows": 32
+        }
+      },
+      "iregi": {
+        "total": {
+          "samples_ns": [
+            326562.0752688172,
+            330803.688172043,
+            328332.51612903224,
+            322673.89247311826,
+            335713.2688172043,
+            322296.03225806454,
+            326694.5483870968,
+            325818.9569892473,
+            323832.9247311828,
+            332375.96774193546,
+            324566.59139784944,
+            329154.34408602153,
+            326818.75268817204,
+            327155.623655914,
+            333035.8602150538,
+            324687.8817204301,
+            329678.32258064515,
+            330049.18279569893,
+            324586.8064516129,
+            330343.376344086,
+            325211.10752688174
+          ],
+          "unit": "ns/batch",
+          "median_ns": 326818.75268817204,
+          "ci99_ns": [
+            324687.8817204301,
+            330049.18279569893
+          ],
+          "minimum_ns": 322296.03225806454,
+          "maximum_ns": 335713.2688172043,
+          "relative_mad": 0.007146442419960993
+        },
+        "preparation": null,
+        "numerator": null,
+        "arguments": null,
+        "masters": null,
+        "reduction": null
+      },
+      "ratio": {
+        "samples": [
+          1.2964615345558974,
+          1.2113604594514122,
+          1.2036864476885552,
+          1.2394196220243372,
+          1.187742196754605,
+          1.2372023713445448,
+          1.2200628351189826,
+          1.2201552873120363,
+          1.2567831210615745,
+          1.1951087140362402,
+          1.228473420668498,
+          1.2162670546762082,
+          1.239333035792887,
+          1.2199196357099047,
+          1.2009736028570708,
+          1.217418253344322,
+          1.205694727736859,
+          1.2203958759315872,
+          1.2212678011104219,
+          1.1997460751807336,
+          1.2243915224943824
+        ],
+        "median": 1.2200628351189826,
+        "ci99": [
+          1.205694727736859,
+          1.228473420668498
+        ],
+        "gate": "regression",
+        "relative_ci_width": 0.018670098191637403,
+        "definition": "Rust / IREGI paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+      },
+      "iterations_per_block": {
+        "rust": 65,
+        "iregi": 93
+      },
+      "order": [
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "iregi",
+          "rust"
+        ],
+        [
+          "rust",
+          "iregi"
+        ],
+        [
+          "iregi",
+          "rust"
+        ]
+      ]
+    }
+  ],
+  "reference_build": {
+    "compiler": "GNU Fortran (GCC) 15.2.0",
+    "flags": [
+      "-O3",
+      "-std=legacy",
+      "-fallow-argument-mismatch"
+    ],
+    "reference": {
+      "madgraph_commit": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
+      "compiler": "GNU Fortran (GCC) 15.2.0",
+      "flags": [
+        "-O3",
+        "-fPIC",
+        "-std=legacy",
+        "-fallow-argument-mismatch",
+        "-J",
+        "/shared/external/iregi/iregi-rust/target/reference/objects",
+        "-I",
+        "/shared/external/iregi/iregi-rust/target/reference/objects",
+        "-I",
+        "/shared/external/iregi/iregi-rust/target/reference/source"
+      ],
+      "source_sha256": {
+        "global.f90": "eb824e14ce88e7a0e1749b32c7115b6a8b8b48c405dfec5427548e84c3dfd730",
+        "special_fun.f90": "42566ddbe172a6450b79b8d01d8a4492b3374c5ab7ad30b54aa3dce9bd4ba3ad",
+        "csi_reduce.f90": "46703a0d18ddd4291f0ae38b9c78224b11177b55ac4b6cfa5d02dc923e880fee",
+        "si_reduce.f90": "c9cc407de5db60d043acb81b40de8a16f2c19bd3de1bb92c9643c60667d5bfe6",
+        "IREGI4ML5_interface.f90": "7dea440003e38c7c68688894f0e87758c5ae2f2322a5770b30701aa3929ad3b1",
+        "kinematics.f90": "d86a520646158d48499298f3444d6628bc956881bf498ff6acfd205c1dc92117",
+        "funlib.f90": "1eebe2910debc482fa3976c0bc9a73553bf7cefe03dbf6b52786f0ce7979bf95",
+        "banner.inc": "e25eb460b096bb87811c5c51825b5412d25ca85458e54fc3f3df09c2acf94308",
+        "cpave_reduce.f90": "ed67f9c00433363254aa27a7f9636b5cbf514929c5b0b9a41bc9d26304af1575",
+        "binary_tree.f90": "c47405dc762e00045ca0a9ada8325c7c31bfa488e8b4fae7a30fb852677cbdbb",
+        "mis_warp.f90": "a91edb13d4934cce9ee2d86af473eb82f0e383e5d0636bce7560d60fdd0a8649",
+        "matrices.f90": "c63bd717ebea1af2be8d024a0f6dbea50d179bba2fbf00abfd9c21a5df84c575",
+        "pave_reduce.f90": "8dbabaad834152fc2eb090dbbda9fc0f736d0510ad417eb7f88d1a426ec25e89",
+        "matrix_base.f90": "5c49d7215d4434d5d74b6128942ef9a1da6ad038294c16c2f91275cab892fb12",
+        "linear_algebra.f90": "bf6c1b6a495594572fb889d02350c17a420785b154d70d683e55f6628a002723",
+        "cti_reduce.f90": "cc7ef03c9da81a038d299ebac3730409fc53792cf912db16df320f75b5cc2156",
+        "ti_reduce.f90": "17d9a0f5e14b84f46667f532a1463a5734cd46c885467cfb6230e862d2ceb49a",
+        "gti_reduce.f90": "f454ed573338c869ca8c9054ca30d3c45d3fa829c397b7f8b242a9e6ea6755a6",
+        "cmatrix_base.f90": "283c5a574b7010729504df943f7e57d4bdaa7d5ef8510e6e842aaa8d4ad0b5f7",
+        "oneloop/avh_olo_foriregi.f90": "a8479811673441cce6d1b147f2c08af08453bc7e9876c3702b3fbec9676a51cd",
+        "qcdloop/test.f": "83742aabbc3ef2b4362c2a28eb07b6f85c6a894aeeadf6ff6c4dc433bea4e674",
+        "qcdloop/ff/ffcrr.f": "f1942622eec3505988cfbfe32c6b0cd9eef45f64ba6b5956ea09357f2890dd4e",
+        "qcdloop/ff/aaxcx.f": "f8b0fbe67c0f41afae969ad095dfa32767bd0f9b70e3ade1a5c5b5b0c0ca20aa",
+        "qcdloop/ff/aa.h": "14e1924840dd12c46533fd0184d87d945832e0ba9a00f351476f820dd2b22fb1",
+        "qcdloop/ff/ffcli2.f": "cda10211025a5a10660482741bc076ea3541d90d4d6ad6eba2adce639cb72131",
+        "qcdloop/ff/ffcd0.f": "756d10f4af38987a8e8229e8b527ec670e6afe39a1e79ee5376c343cf9a58940",
+        "qcdloop/ff/ffxe0.f": "035036bcd94cde9ab9709687a01e58813be4f48f53c5910204bb671785b2d996",
+        "qcdloop/ff/ffxc0i.f": "1a6cb3ebc5027bd2591be5b1d3d357f5b56704def30887807278ff3d67b1fc93",
+        "qcdloop/ff/ffxd0.f": "3814366ebcbeb969325aa74dcd38cd822f3eb8802b34a4486647de99d5eccfb2",
+        "qcdloop/ff/ffcxyz.f": "86e4f346636cd645010f0bfdb4a769b984cabcbc94649879c2d05dfc8700bb36",
+        "qcdloop/ff/ffs.h": "2b1dbfef8e362468e6e2aebc2d3200a419b21e59a1a798a7194d5ce1efb1c409",
+        "qcdloop/ff/ffdl2i.f": "db324e1ab45433fa97a7aaeddc2dcddf022ae737e611b5119c167b6c452f32da",
+        "qcdloop/ff/ffxd0i.f": "bdf5fd12352009b018764ab33e37cd939b0a4160bae2c44c4dec69726166e22a",
+        "qcdloop/ff/aaxbx.f": "ca319716bef6e5a103bc62030a43def89c875962d59f94c08b0b7b27b0712c32",
+        "qcdloop/ff/ffdel6.f": "3ef7e4681446d1b65cc4e446b3bad5b8083df8f89065e7df32c6a65aff63c6f2",
+        "qcdloop/ff/ffxd0h.f": "bb1327aac229b1dc9457474fb1c2927c4f9030e9b7398a86b8effd3f055f1d30",
+        "qcdloop/ff/ffxf0.f": "bca637613227bb69796ebda728f0bb94be4d8ecd79f93c3ee550a947ee3ed957",
+        "qcdloop/ff/ffinit_mine.f": "2e8cf2d2c72579e40c56b15382be5d32de58935f5925781b2c8659a3196a9221",
+        "qcdloop/ff/ffceta.f": "14e276e2fd4073a4df43c71575303c5d1a9841af7922a9e0eae7ad3d0047d67a",
+        "qcdloop/ff/ffxd1.f": "52c0b17de97dce5f4d15b075780309f9fae6cdaa63ffbadec6b68aeb34e5226f",
+        "qcdloop/ff/ffcb2p.f": "84be40ce5c1c8efd70c698ae6cd9f6c3c9cfe8dc873ff528e3dd38087025279c",
+        "qcdloop/ff/ffxe1.f": "2ab21de519c513a24650826b218822198c9cafcff72578feadaeedf4bc07b125",
+        "qcdloop/ff/ffxdb0.f": "0d31e6a833b36075cde925f188c736902f17f62f8a88e9597aa7cbcf24972f69",
+        "qcdloop/ff/aacinv.f": "7ad6b236d5ca85000db6821a3b45d898bfc41c3989ccf872b95336ec3ecc7b28",
+        "qcdloop/ff/ffabcd.f": "8fcefb4e41d3dc6edc4d38ff43efac298ad23576db8ad271acad3c24d1111ebd",
+        "qcdloop/ff/ffcb2.f": "347930dc9f2a34f28df17c2fb95df2bc60f6dc5added6f90567cae56d8688952",
+        "qcdloop/ff/ffcb0.f": "3e9d5c5f2c3c6dca4563f57b86c215c9fb81db805a354ae551aaad7524cad1a5",
+        "qcdloop/ff/ffxc0.f": "2e67cd06fecb40ee1398017a4cef1c82aa1f8ecdcd1530fed4686e0044af2596",
+        "qcdloop/ff/ffdcc0.f": "59befaa12cd737a0f39cd47961d1c6a84605077091c2aed79345383e331c235b",
+        "qcdloop/ff/ffcc0p.f": "16c75f991a7bfd03a6af860c5af333a9d50b0e33a0fee9924afe4a09cae1748d",
+        "qcdloop/ff/aaxex.f": "0672dadca3899ed52566a539588c05533c02f448b697c691aaa1ddd120a60e75",
+        "qcdloop/ff/aaxdx.f": "019b5a5a28ff185b04cc02485b05e0865a887877ef27a67cf77293f08daf267a",
+        "qcdloop/ff/ffcel3.f": "3d9271063508605baafe2f93c6509ada0c6e4aaa0e2435a556d0efb49a963b1f",
+        "qcdloop/ff/ffdxc0.f": "55a25c748a0ce4865602b4f3716f9b15a90dc957434e47d424fd60e60d43a280",
+        "qcdloop/ff/ffcc0.f": "a87906d237b6b360e5a727608554dc05ae87c30d6a8e722f50d069f39a44c979",
+        "qcdloop/ff/ffcxs4.f": "7687a067d733178bcd9befa36f66b11e40e5680a5e1ed97884f9b6e2f11d932c",
+        "qcdloop/ff/ffdel4.f": "3b172a5a138adcf597f4cb3cf445ae50c16b241dc14fcd1c6d670080d4d68b65",
+        "qcdloop/ff/ffxb0.f": "b7a9b8dc3b1f5b557013038c2ff2c7ba03bd73129a480f7fff9fe0d4290b202c",
+        "qcdloop/ff/ffxb1.f": "3ff8090a85a67986bd392bb47753fb53253d39162a8e2b31cd4031cebad90987",
+        "qcdloop/ff/ffdel5.f": "8a4f4dea6f5141b34a8c217c955e3705c92cc3236f49257de2d7317ba00d7b0a",
+        "qcdloop/ff/ffcc1.f": "b91fecc12fdbdfc382cdbf1f9cc6ffe491a61a006686a668bc8fd8532c9c5f28",
+        "qcdloop/ff/ffca0.f": "84a819b75b371a8d6a1ee53fe493d809e8c8be3b0beec40c7ef6be975b17944c",
+        "qcdloop/ff/ffcel2.f": "7abc264f693cb484eadf9f8793ff844e6b21d02d3053c6b3755a6fe69b89bd81",
+        "qcdloop/ff/ffxdbd.f": "cc8613f21a517f159808900e18a8e75e055f5cb20066fbb289a5f8fba052d1e6",
+        "qcdloop/ff/npoin.f": "0aec7bd58c607437f3f63c2ddc90dbabdf9f56ab4da99b321f239c346fbce9ec",
+        "qcdloop/ff/ffxc1.f": "5264a2c3fd4eda4929d80d4223d68fc53eaab95688b4312c8c5eb5d87604bc1b",
+        "qcdloop/ff/ffcb1.f": "3b6527f765f5c268b096ba3cb3d83d865deca99e42112ce5fd2ef68ff9aafee9",
+        "qcdloop/ff/fftest.f": "43c4cf19c0dec09afc520aef4b4172c0a6d07618a8b684bff48c71340fc6fbb7",
+        "qcdloop/ff/ffxf0h.f": "89137241b17c9602966af900fc2f84fb3893057c8a02922dc86782aa95c025da",
+        "qcdloop/ff/ffxc0p.f": "5cfa74bb1705b97b7690bf0aea2dbe6239172c1edac486a3aa30a7e1cf4b78a6",
+        "qcdloop/ff/fftran.f": "5693144c3c96a3e91350313c44a2aac5d654474c3c8fc5140edd0a7f9c52f759",
+        "qcdloop/ff/ffxd0p.f": "7950472f4b7a50e2f2e74af45bfa7f2bd2c4e79b24e4f591f3eefa3c469edf1c",
+        "qcdloop/ff/ffinit.f": "2b60e25cf03903951e439aa20a704da318582be648c03c2abcff6a38ca2ab16c",
+        "qcdloop/ff/ffcdbd.f": "4a9d59d1dc377c0fc06f65e54d366051f070e2f76bb6c6de8a9f7f71609e73ae",
+        "qcdloop/ff/ffxdpv.f": "028bc62625b5d4aca51474816dd220991c994f2030d1a633645e6cce6a59c2d8",
+        "qcdloop/ff/ffdl5p.f": "0047efd1f955be4daa4d059aa8dc00476afc1f6a0b77b2f8dfab4191f6913c31",
+        "qcdloop/ff/spence.f": "6c44d1f44ebda28672aabf9ce46c43d46e3373b880f91eb2558ac0ea57dce965",
+        "qcdloop/ff/ffini.f": "d0bf04ead3bbcdfc62eb258faf51a1383647cba08cb35d473fc0f2c85dc7d548",
+        "qcdloop/ff/ffxxyz.f": "79a04a5beb82be99f57d651b21c9e598513caef3956133e2f8fc5fda50d53fd3",
+        "qcdloop/ff/ffxli2.f": "9bfd736913900fa2736e6b663ace2b7de1d245419733f64507a98f00d9e3bcae",
+        "qcdloop/ff/ffcxr.f": "59c8d405ae7c299c9ec525564ef7cd821455989ec382407bbe76ab65d1fd5725",
+        "qcdloop/ff/ffcel5.f": "b95133c5879782373d6de974b22808a623a8cf7c8a53b40bcff4e0a6b3e2f7f7",
+        "qcdloop/ff/ff2dl2.f": "f4dcdbb4bae3194f4510d2a08fe21be649edf09d0773df40a3bd15d47eb0af05",
+        "qcdloop/ff/ffdel2.f": "4dbf306a464a713959944b225d70d05301d20fbf8efecbc28d8a5a8c1a72ad26",
+        "qcdloop/ff/ffxdi.f": "4795c9e005512ebef0e938d08242ee1137abc6f2df6d149b06941e3d62bccf59",
+        "qcdloop/ff/ffcxs3.f": "eff4f6c113fdb149fb72cf8fa39780e742711913ea508dee09b7e36bd57bd982",
+        "qcdloop/ff/ffdel3.f": "13da9c4af5bfd945a70141f45f07a2af906f09397b2b3b539a533fee536d3b87",
+        "qcdloop/ff/aaccc.f": "5501ec33f0866ef2c65f0352ce9ed56f90246bd41f88f6aad7788d91c73bd7ac",
+        "qcdloop/ff/ffcel4.f": "1b5ce730d176f2b8785e267cbf01b1774d49378d920a6bd8939f4c241df0b367",
+        "qcdloop/ff/ff.h": "37de572b28b7f5b5a4af86ec99f555c1ededc312d80494dacd70dcb49c76dcd7",
+        "qcdloop/ff/npointes.f": "8a02e5220735599998cabe7898334994025efa01a44ac3dc64b2369e0e0e676e",
+        "qcdloop/ff/ffrcvr.f": "03473e216066c7bb6626e3cff9bf5120b1f3096ce6777226f51d22b17f97b5f7",
+        "qcdloop/ff/ffcdb0.f": "589965ad393051f237ad5361b3fd5cd5213b74c7e5f63db5a1b2c358355fe00f",
+        "qcdloop/ff/aaxinv.f": "598bcd22ec1f17c2fdb1406dff545ba3c29558b086832e62275bc7d2014d2f32",
+        "qcdloop/ff/ffdcxs.f": "e50a9cec3b71616a66c2c8a53131cb70ab6109bb71f4e7f31cc0a5d7da41f2d7",
+        "qcdloop/ff/ffxb2p.f": "50bb8a0c5b9729d664ea69df93815e1af5845e1686ff47471190c1b25462a40e",
+        "qcdloop/ff/aacbc.f": "2b6e36e744d54212cc579cfa5840466a13c7e227ed54166a40d73bbee36023bd",
+        "qcdloop/ql/qlfndd.f": "2b6666965425168f7845e0c713e02488e4bcc109ce99a7897fa41dee04c21d45",
+        "qcdloop/ql/qlbox13.f": "5d75306052b444e64c3e91308769f85b05ff01ea48e42a0a8500f86516cec13d",
+        "qcdloop/ql/qlbox5.f": "1e8e5933b16333117a75ab5ee75bb06da109664448fe979d4a69f42a5f3fdf57",
+        "qcdloop/ql/qlspencer.f": "026354f7b75eef62600b564d656353239c6b36fef758c8e46202f98868a17b60",
+        "qcdloop/ql/qlI3sub.f": "31fa6f1173953f062c38e418d77f30ff5f29a8cfa5fcc6f7ac92a6d89b7b01b6",
+        "qcdloop/ql/ddilog.f": "c8f1691debb485b9071dad69dff0128b6014f15a58159f161d00d510cf49ed63",
+        "qcdloop/ql/qlLi2omx.f": "2d5bad2700434c75c67bbb9d3a754a25df10642abf98e7855f297185de9ab46e",
+        "qcdloop/ql/qltri3.f": "3f8f5ae6fd3ac5c9261c0e189a460d2cae545f30f408f8ceccc4aed6d47ad301",
+        "qcdloop/ql/qlI4DNS41.f": "cdadb56ee9aa15738eaf6ac185f428e986fc947cb268c7ccd999e9c8e19fa20f",
+        "qcdloop/ql/qlI4.f": "b4d3dc8cb18e704d96f09978dec2e303b00cebc5277bba2c3ec4aec39911b101",
+        "qcdloop/ql/qltri2.f": "44d3a8f65dfebcde57b535d5381c0d272edc13386b7e55af0f666b10562cd08e",
+        "qcdloop/ql/qlLi2omx2.f": "4f27012fa22595d9300322bd42c97c30ae718fb33c21ecdc5c8c637800a3c931",
+        "qcdloop/ql/qlbox4.f": "ecff3160065c92185ca87afbcc2034df645354d756305de2a579519da62a180b",
+        "qcdloop/ql/qlI2fin.f": "5a8ff3988a031b7101f7eaf5fb1d97cad4fab7457a8d32868ffc5e8da8bb79ef",
+        "qcdloop/ql/qlbox12.f": "a8554797b44b764b1b13b9a422fffbf383b25439197c10953327feef5d2e0ad8",
+        "qcdloop/ql/qlbox10.f": "394d02106dbd444c9e4133ebcb3aa21d02e479fe8106f12bc54564fb9fc4e6d8",
+        "qcdloop/ql/qlbox6.f": "b6d08c0dc13cf04eefbaf237341049387c48c3d879f2302279f39fc61f343f98",
+        "qcdloop/ql/qlfunctions.f": "b8e1f11cee75ebfae2c5416168cd70faf684084ae34cfce19708dabd2fe369d3",
+        "qcdloop/ql/qlI4sub2mo.f": "55d8feee75b561f2eff3ebfeb65b1914fd8dcbf53b52120b7c8ad73bba655641",
+        "qcdloop/ql/qlI3fin.f": "01ad2afe338e20249898ec5cb0b56bf87057bb6cee9b67415fb2d42f1d1a66bc",
+        "qcdloop/ql/qlonshellcutoff.f": "a6b65dc7f21f258b64b20f668a95f9e91a8c0a6f3bdd13010f49f0e6aa7cef21",
+        "qcdloop/ql/qltri1.f": "1b18e05c9c6c6caece9c6b3b2c81bb355f810929ca6eee45d204f2c3ffa424c1",
+        "qcdloop/ql/qlsnglsort.f": "270cd4470d82d47d2565af9ab11b4912b0930f231f436d08bc707e68c727e925",
+        "qcdloop/ql/qlbox7.f": "849ef46d56d1a628754a755bfb4ee34d31e685ac3911d28d36a6775cfb6accf8",
+        "qcdloop/ql/qlbox11.f": "e21d52bdf0725d59457fe7c53128b27492b7a9d3d07d5a7062460d6b53390dbc",
+        "qcdloop/ql/qlkfn.f": "347da434c839b68fe6489b964f3332eba232be3dbec1ad0a2a39be34435b9088",
+        "qcdloop/ql/qlbox15.f": "d0afce99ba6183a80c59472442cd8242ae9a690c75b351375eb8c8e13066bc12",
+        "qcdloop/ql/qlbox3.f": "de33f076d32e88e15486a063920bb82941f6358377cf60b44ec53658f00b0c7a",
+        "qcdloop/ql/qlYcalc.f": "12cad400daf3627799d79207ff6af4a13f5b44c1cb5ac19bc87140781a2ee8a8",
+        "qcdloop/ql/qlbox9.f": "66f3afc6522df3d49806d8f5606f5323eea59d5b2dc4ac8ca7e06bfdae48906b",
+        "qcdloop/ql/qlxpicheck.f": "34be8f92e9cd4e8fb12b898eea195f73a4ca3a093c51ec15c5deeaf953024938",
+        "qcdloop/ql/auxCD.f": "6dd5df77c65de7668ff36d876de186f7d86e95d4286a1ffc9e77450aa65939be",
+        "qcdloop/ql/qltri5.f": "bf8fb09a23828089741cd2add4022a386bf92182543d136acf7487e61b5aa7cd",
+        "qcdloop/ql/qlI2.f": "a82b2855c6d53f5a5f50f46d9c78d98ad5a3dff32a53a617de19cb7b8c53394f",
+        "qcdloop/ql/qlI3.f": "11c585fd832106118972e9143e05d6554f0b358437dbee0c40e58f7c2c30a164",
+        "qcdloop/ql/qltri4.f": "e7d73f9e8e231e9ff739d6dfe3e4c1ff3f0d24c7ea59fa123b71818643fd0fed",
+        "qcdloop/ql/qltrisort.f": "ea94b1659b60002a9b4c0c8e51b3d179ffc2e5eacbe422d48be3c0b612846502",
+        "qcdloop/ql/qlbox8.f": "d9ec9af27ad323e47d5ad9cebfeaf37aae4a96cddfeab1c52d252dbd0f3bba1d",
+        "qcdloop/ql/qlI4sub2ma.f": "63655faed2223e523f7dcb625826db419e0a404411f64e4aa6a4a36ec3ca0ecb",
+        "qcdloop/ql/qlbox2.f": "64e6593d9336592591acc4158a952379aeee1503512e5ac61c240693328abbe3",
+        "qcdloop/ql/qlbox14.f": "c4061be3b62e354df4b6f13b9037aa793af300b0ccf35442bb27455d05010ba3",
+        "qcdloop/ql/qlI4sub0m.f": "1e839901ebbce68d121e972f44367b40db64c0a1c312d004d4ae283fd6e394f1",
+        "qcdloop/ql/qlbox16.f": "397885ffec712065a268c6136181fb52a2a9531d298b673e2884b206d4b762bc",
+        "qcdloop/ql/qllnomrat4.f": "171334a94c7f9324f04f21a97c7e3368f85d5a5b2dbfba9b80823162adb5ea9e",
+        "qcdloop/ql/qlcLi2omx3.f": "127d5bd6120c8e0ea20e8c9c0fedec27d35dcf3103a245fb4a1d9dad8975c9d4",
+        "qcdloop/ql/qlinit.f": "7ee96fe78b34360e98a49fb6fb8a0e12bca70ad407a9e418599bd3d371860865",
+        "qcdloop/ql/qlratgam.f": "30625359d1a989d39f9cec0fe158c15e1db7ecd87229ee61941338f6ea3ba2c7",
+        "qcdloop/ql/qltri6.f": "4bdf53ca979eca50363cb4584241b2d400b8abd79bcfc4da2729e60b60fc3a4d",
+        "qcdloop/ql/qlratreal.f": "72a6e519226aee4165f426e76d0fd264021a05d4d8c25b4da08be6128bf90ba4",
+        "qcdloop/ql/qlI4sub1m.f": "54bc45dc46287aa608c97853c02dbd5523dfafe6db8817112cc81779a8128880",
+        "qcdloop/ql/qlI1.f": "a9a8517e3340c6f9723a72f1306f89446eb2d86ef2d31c68672fce3457034468",
+        "qcdloop/ql/qlI4array.f": "bd78eafaf47bc106de8f88a23b460e5edd8091a03d5cd28cd8a01d4237c326f7",
+        "qcdloop/ql/qlI4sub3m.f": "c65c42e7bbf6c6ad7219b287e87f073003021578f5adeb53afd04130b4e54032",
+        "qcdloop/ql/qllnrat.f": "477b30faa0572b2d6b98830f8cc225f30e842d041618b01f9af2635546b98f35",
+        "qcdloop/ql/qlI4fin.f": "01252afff29c35cf30f603564f42ea09303913935d6a22dd60e5a88a256a46ce",
+        "qcdloop/ql/qlLi2omprod.f": "1fb5c73145a04b27e24bf24168b462ea3b8280a1a376677d14d45b34cbe48340",
+        "qcdloop/ql/qlcLi2omx2.f": "fddc6f8663345164f43f9f8800203b0be7e86c210de88a99e9533cd606713656",
+        "qcdloop/ql/qlzero.f": "84d71fc8fece1e0b43eff433c280e09f048822a26e0b65f025510c12832840fb",
+        "qcdloop/ql/qlI4sub2m.f": "2b4293fa94bac395f7dfef8cd6b70153cdcfa86aec28a4ea4e47636c08090e89",
+        "qcdloop/ql/qlconstants.f": "4b6e366738f6ac7fab86257bdab6c480dc8ce0646f4c51411fa8f14ce46abf41",
+        "qcdloop/ql/qlbox1.f": "5f844fbb6e047fd9330ce9fb7c2b923b24de2447357c4e5909a2d957c3387f1d",
+        "qcdloop/ql/qlLi2omrat.f": "90b5b535d8353b66051b111ba0bfd5cd8aa8a39e41763cb44ddf5c098c6b470d",
+        "oneloop/src/avh_olo_arrays.f90": "10a6703cc4b0e65b765333c4b94ac644431dfd336c9c4c75463a215a076c265f",
+        "oneloop/src/avh_olo_version.f90": "32d52d21341a497984d412792dfe02c623eefed683beed36364ec37ae36f5021",
+        "oneloop/src/avh_olo_intrinsic.f90": "cdc8a0f2d1807e9bf9ff811c7fa536b06c18af7e54ca78a3fa8303b1d17ec283",
+        "oneloop/src/avh_olo_olog.f90": "0d60f7a02adfdee4f146895e1a3f837b5cdb6add194214f37e1762647a0ff005",
+        "oneloop/src/avh_olo_arprec.f90": "c876918d571241882d74bade45595561f6c632126462ce4cd00777b9514509c2",
+        "oneloop/src/avh_olo_box.f90": "c4cc0e1c6fd022f97a5f211308e14a4e07f052890925c2cac675124a00deadf4",
+        "oneloop/src/avh_olo_mpfun90.f90": "db0918f3204c7ee56842a9c3183cf40c8392264e952b0c3499996288bc24f80e",
+        "oneloop/src/avh_olo_boxc.f90": "18de65941eb162132b646593d5f3b324ccd5a0caf3fc72cf99854d3f70d7992a",
+        "oneloop/src/avh_olo_qmplx.f90": "f88b81cd047cd14be8c91f25585f5e2e4d468d9985877f4fb38bafe1804aa20e",
+        "oneloop/src/avh_olo_units.f90": "b7d3f0fa00660ac314c5af3447e47f76c97d7ef031bbb780d0449a8096d9c752",
+        "oneloop/src/avh_olo_ddfun90.f90": "e86322c79f70854989335fecce28ba55041132fa0642ecd4391b02aadf9bad6b",
+        "oneloop/src/avh_olo_dilog.f90": "4d1d2c7c5cadc8fa78b2ec4db605b141d8baa228b1630949a8940337b1b793b5",
+        "oneloop/src/avh_olo_wrp01.f90": "57c406d0824f0d53b80f474bf82d61cba98e3e427998a7986b7cb3cd85706ad4",
+        "oneloop/src/avh_olo_auxfun.f90": "49dc0f29e0d8efe7e8f3236707be0af8415e17cdccc5509ea1467e99a0a37c91",
+        "oneloop/src/avh_olo_kinds.f90": "a96821b63d44cb92f7c25b3f6429a83f0058a48ae280d3468cce9769cc4dd75b",
+        "oneloop/src/avh_olo_bub.f90": "7cadbd3b714b52ca61e2e0434c00c2ae00eefb1cc628752906d99608ae2d36dd",
+        "oneloop/src/avh_olo_print.f90": "d28bfa0d9334b2b6a18cf765c541245e257bf6e2164ffb67cc9014a20b6f71bb",
+        "oneloop/src/avh_olo_qdcpp.f90": "875e7b0861b5fc76c85ad91627438398aeac5804db1bdd3ddedc693c6af10ae2",
+        "oneloop/src/avh_olo_tri.f90": "f894fc249b6f28986d18272dd91fe45889bd818efac5c4a312a6c1b8298568b8",
+        "oneloop/src/avh_olo_main.f90": "e4332a9b09f746d467b8b3ffe448ba9ccfe33565fc2943b431de530a4a0ec50e",
+        "oneloop/src/avh_olo_comb.f90": "d91fe7670f6607cd9bd24095fdbd6754f14653b38015db13bfbbcbbada55fe54",
+        "oneloop/src/avh_olo_bnlog.f90": "16421269108a8116c555f48a8b211ef4e5c9395f7d4cfc266155b91a253e84ed",
+        "oneloop/example_mpfun90/example.f": "4153e94ab72255ab6b27ea5027826f90f6fa50ef54ade876cb8b1f3fdcbac95a",
+        "oneloop/example_qdcpp/f_test.f": "90fab152e42cf700bcb999bdb9a1df9143ba07847ded7b4e7edb17da5d0ae98b",
+        "oneloop/example_cpp/cavh_olo.h": "f19561a8cb639fed6232236ef1285217bec15cbbba5c0269b5fa649b48af021f",
+        "oneloop/example_ddfun90/example.f": "89712a336ccf110b980bc57374ca08c94d7d3625a633a10016223978c375b8fb",
+        "oneloop/example/example.f": "70e34d10b1a7a45712f38c56aae45e8d510d8028b0b66def1576ff1a9063173a",
+        "oneloop/example_arprec/f_test.f": "265f7ffc5d725e2aaa653ffb90298616aa93ec59a7d5cd58313054880266bc70",
+        "oneloop/ONI/src/avh_oni_dqagpe.f": "cca79e6e9af58fac494d5b1db8456e6cbb68180473e8e04ec000dbc60711df5c",
+        "oneloop/ONI/src/avh_oni_3fin.f": "0f21359e42025c297e37150a4854deeee2cb9a3d82f55eeb993db42ad8059cb1",
+        "oneloop/ONI/src/avh_oni_3div.f": "515237ad867eeeb1f38c55cd6cdce90a9bd42061e4a400f6459d4aefbbb4869b",
+        "oneloop/ONI/src/avh_oni_cuba-1.x.h": "7ddcfda184b55ee06b0c81e0ad136b1aa4a86daeb1078bcaeccc246eb2c8693b",
+        "oneloop/ONI/src/avh_oni_func.f": "3f8970d32354a47e40ab097cf097ceccf230f139e0d6326bb8ad02b206a0016a",
+        "oneloop/ONI/src/avh_oni_d1mach.f": "3f1b4e140fe8b6985143a3563d7d8b09da171ecd90a6aba5e67fbb8507fc4125",
+        "oneloop/ONI/src/avh_oni_hello.f": "528d62e4bf500cb926122c0ded7b83337d9362cd2e4d8bbf8810c4b3a1a7c809",
+        "oneloop/ONI/src/avh_oni_dfam.f": "6af9df4058637097915cad91626db9944954cab75697232e5e27e4643f91be08",
+        "oneloop/ONI/src/avh_oni_4div.f": "7cca0e082af938fbbb44115ca81818e582f465bd5d96b4561a4309535bcb1343",
+        "oneloop/ONI/src/avh_oni_cuba.h": "6b2325e2b136e2b4ea4e83fd5d2f6c87839258ef5f9f176ba40f6f57e663dd48",
+        "oneloop/ONI/src/avh_oni_cuba-2.x.h": "6b2325e2b136e2b4ea4e83fd5d2f6c87839258ef5f9f176ba40f6f57e663dd48",
+        "oneloop/ONI/src/avh_oni_cmplx.f": "a55a5a9dde8646797cfbfa65c04937a5a85f34334110e528b6b285d585198709",
+        "oneloop/ONI/src/avh_oni_cuba.f": "e33f215f98c41147075a43bef4c0a3afcee7bd7d29b54017d27557cb6f98965d",
+        "oneloop/ONI/src/avh_oni_real.f": "6f53fd528b2701d644c95f0c7b56f0cb7c2a18b58ea5a57b5ab992a160768aaf",
+        "oneloop/ONI/example/example.f": "bf155e6391a7f0d1e80e27f1aa70dcb18f77c1d753a2e85849cf3a1cb638362c"
+      },
+      "patch_sha256": "c39de3683ebd8c1494dc35bde8de8dfadd34a531c6675a4265c776dfdeb1b67a",
+      "driver_sha256": "537feca6168480d98d541e1cf2331b79708c4a6caa425ddd23862a51c5b999df"
+    },
+    "driver_sha256": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d",
+    "binary_sha256": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389",
+    "object_sha256": {
+      "target/reference/objects/IREGI4ML5_interface.o": "9e1cb790fbf5b9925e8bfba92f6495d10e77be999af808d22f3f1ed75d3595fe",
+      "target/reference/objects/avh_olo_foriregi.o": "e06c1ba0b39f5ea43161e7415f39b850655faa9c75634886f189027cc92746a0",
+      "target/reference/objects/binary_tree.o": "e50e3bc2898c7c7432b0f0d4a982211d10413cd7d40d7c921a6f7e5f62818dd0",
+      "target/reference/objects/cmatrix_base.o": "3fb513dbf90fbb9a1b6805006d038e3da435522501d52a1f34723af9e2de6086",
+      "target/reference/objects/cpave_reduce.o": "08c11bee247ff669e45d6a460284da603e344b9c16f5724a0f9abb782c7f6f1e",
+      "target/reference/objects/csi_reduce.o": "8c42396c7c2ca8334ff0f4937fd69bde8ea9c244f4683b6f79174ae213949a50",
+      "target/reference/objects/cti_reduce.o": "81aa292637fa2afc41c1f9dbe384e4d3db6250d018e8926f434f232944beb1a4",
+      "target/reference/objects/ff_ff2dl2.o": "49878e2a95e7316e108a406d44754bc9fe479c690c949d26e6b2e0207a663db7",
+      "target/reference/objects/ff_ffabcd.o": "90826aeffb58138247b16d6d94efef2cd77506eb72acc17f97d346a20a98dbb7",
+      "target/reference/objects/ff_ffca0.o": "a6c56923d9c23804fd1d3a8f0daaab1f751e16a7576ff41d1ac0335f43e047e3",
+      "target/reference/objects/ff_ffcb0.o": "fe63da917401bd63c2564c11b28e5bbfd817bafc1e6c950014e4954aebbbcb65",
+      "target/reference/objects/ff_ffcb1.o": "b0b625644ef5870af5e1aad0eb74a8ac3bac4649000e48fc8181021b73fa8d17",
+      "target/reference/objects/ff_ffcb2.o": "3528ab00b1c901116359699b8846c1890f4dd549cc045bf674096c23efb0ba8e",
+      "target/reference/objects/ff_ffcb2p.o": "98bbbccc04367bcc70ad586a8501ab9a8aa55dfc23d5552bc1f370a14ddbe3d1",
+      "target/reference/objects/ff_ffcc0.o": "4aadb53095d95e7e897b2dc00cd00156926b350c0c2f572f90cfb654f7c262f5",
+      "target/reference/objects/ff_ffcc0p.o": "ef0aa07a68854d3c3ff6fbf0a2340d04906493fa8ab33c81d130631a6318ba42",
+      "target/reference/objects/ff_ffcc1.o": "7640522f76e443c4d57737198930a13bc82a10b42cd3c93dfa355cdb99bc4280",
+      "target/reference/objects/ff_ffcdb0.o": "eb99a4d9e740ccc805643b1183bfaea54f4b349d240c8730907b7bfbe5b04fff",
+      "target/reference/objects/ff_ffcel2.o": "fb4a802cd810392a827c5d049d733e7b5216fc83730eef8597dd232e10030a5b",
+      "target/reference/objects/ff_ffcel3.o": "5e7c781731fa08e04eef6eb2ad5661f6571121a2588d0422f7594946cd8fda49",
+      "target/reference/objects/ff_ffcel4.o": "9cb9c2d166d8baee8d4ffa40b7603101887e64fbe6cc2d1b623374826debcdee",
+      "target/reference/objects/ff_ffcel5.o": "e6fe5218671fcfadb436490802a7320d7d240d14981511c27094191d583e387d",
+      "target/reference/objects/ff_ffceta.o": "3bf2ba2e9fd3ae29022faf2a2835fa1ea3e3c39e1457b9b56de585ad258d3d85",
+      "target/reference/objects/ff_ffcli2.o": "07361654454c80867516b6df1f6a604c8b5957930178d13f357d5c2b7c7fd6f3",
+      "target/reference/objects/ff_ffcrr.o": "7f599effba9e896ee7d9c226ac45dbfd0b2a1040f19c96892cd1cfa33f1af82c",
+      "target/reference/objects/ff_ffcxr.o": "370cae4ed2938af2cf1c8b908618e043c6ea370efa1cad8f1daa6c35fcea38c1",
+      "target/reference/objects/ff_ffcxs3.o": "8f29fbe87abd985db62d7ea54b4d34e6016b22f6caa4a952651df6457e43cd8f",
+      "target/reference/objects/ff_ffcxs4.o": "96da01982020752d0a2e25ba6405dfb9b43249e5329c541308bb59014cd54ce7",
+      "target/reference/objects/ff_ffcxyz.o": "d13ebb4afca868a547fe68c15da57d2373338135052aab9d5e9c1387d8b78695",
+      "target/reference/objects/ff_ffdcc0.o": "1c12a7863b33812a1bf00d5a4476987ccef0c96e912e443abf1f91b69ba5078b",
+      "target/reference/objects/ff_ffdcxs.o": "6b9ed70aa1f4a26926954ea84fa28685f09a99817dc5026a024bfd440b283f1c",
+      "target/reference/objects/ff_ffdel2.o": "9510de56beb64070e348f16b1ff8d20296911f4fe861fa7066aaae0429ef1bb7",
+      "target/reference/objects/ff_ffdel3.o": "fea36e1a2a8a37831e963e609e8512b623abb3f0e4b98ca85c8c544c3ff33b5b",
+      "target/reference/objects/ff_ffdel4.o": "3a9c0ab53f1d572d5b2378e52f599e55a776db4c2614a0c95d3de653a3fbf322",
+      "target/reference/objects/ff_ffdel5.o": "84026520f85aeed921b2f0081778369798379fab0c82ea449eb617849c80c9ab",
+      "target/reference/objects/ff_ffdel6.o": "59437be95e682f24a50f80f69f990fa0c6ed63de05aa74921707702598b505fe",
+      "target/reference/objects/ff_ffdl2i.o": "53103790e845be949b9509b2f1cb951ecc9addb1d0b4b74dbcb1ae6b105f7d52",
+      "target/reference/objects/ff_ffdl5p.o": "3baa2338d8c269201e599dbfa59137ccb03dfe2db546a444fb39379f4b8352e0",
+      "target/reference/objects/ff_ffdxc0.o": "3a9975c745935c4764f0b60f2970b7c2c72779709a75889f8dd41a410ed9a5a6",
+      "target/reference/objects/ff_ffinit_mine.o": "8002e31980fb2bda82b41f053bdab43a94f55ab82942a8be26d88fec1e2bb312",
+      "target/reference/objects/ff_ffrcvr.o": "78bb2f8a13955ba4e12d9f36a8b66f526d69b9507bc33d6f195d5da12e271934",
+      "target/reference/objects/ff_fftran.o": "aa090caf1d32ead78a54cc2ececdb24f62c0cce78132c6ccb407b8a27f22efe2",
+      "target/reference/objects/ff_ffxb0.o": "ab1b0fb9cc62573b6b6b83da7b114ea44e078a1f9237940b1f238eef8a3ab7ee",
+      "target/reference/objects/ff_ffxb1.o": "77263ff2219a45d2d04e5ef2e602eb9197de8757fdf9d034df1b631ff5bd2f15",
+      "target/reference/objects/ff_ffxb2p.o": "667eac6ce102a89a6fa4847805929470559688e09958ab60459ddfc0e6dff84c",
+      "target/reference/objects/ff_ffxc0.o": "08dfd90b6eba48840285f3ec2b2c2e9a06b90968a7ef9cba59f92f5f2b78087a",
+      "target/reference/objects/ff_ffxc0i.o": "2aacd181fabf7d94fca85cfb6820ad8a5665d70fc89e466b883bf81d2c059ce1",
+      "target/reference/objects/ff_ffxc0p.o": "965a123ae6a9e7b0bc03d3311e8800d8675c50f440ef6022382a535d2d0ec53e",
+      "target/reference/objects/ff_ffxc1.o": "5b233e6a10cc1af23638a573e1a2f216419c3cc5fc79170c60eae7bb64d9c4a1",
+      "target/reference/objects/ff_ffxd0.o": "e65110520e44d8dbf35b57df4bf1738d2118604b0935d8472e61ad1c7486591d",
+      "target/reference/objects/ff_ffxd0h.o": "c69d4fc5a950888c6f98f655b4f513dfc091a052e95fdf001f17242dcd919348",
+      "target/reference/objects/ff_ffxd0i.o": "149c096aa13a9e54d1e143c004fc6ffedaf2af05e92c2b6dbe1b69b157d65341",
+      "target/reference/objects/ff_ffxd0p.o": "ffb7d161a1ed4a61902b13d6da09a98bf53153c415fb09aaf3e145faac06c80a",
+      "target/reference/objects/ff_ffxd1.o": "9258cc73260b64297034b68d2939e5590abd19689bbdcc2514191982f035b71a",
+      "target/reference/objects/ff_ffxdb0.o": "9010dfe9eec24dd2025f5551f2b839c5d79f955c534661f22db340f792f82de7",
+      "target/reference/objects/ff_ffxdbd.o": "19719c07b7a89b9faf408f028dd8093d6450a8cd61961c2de9a68420e25a26b6",
+      "target/reference/objects/ff_ffxdi.o": "bc50ec62f50cca50a69de4292e5fccf78e4bf9f9da5eaa2a21a47d4e516d793c",
+      "target/reference/objects/ff_ffxdpv.o": "630cd23136a992e1cfd241862447e845b739ab08140a4d49b04d45096a2b628b",
+      "target/reference/objects/ff_ffxe0.o": "aa5635d83ee70a6952fb47db842bab11a24b715c2cac94f32e1da005d685596d",
+      "target/reference/objects/ff_ffxe1.o": "a76e48a9484cc4717c2956d7dff2bfab21fe6296d2204e0f35ff3b4e00672cf3",
+      "target/reference/objects/ff_ffxf0.o": "421244422dc9ccdbce864acb6bd5e14a52c5bce060e906a5ee83be12d791eccc",
+      "target/reference/objects/ff_ffxf0h.o": "3df8b06724b917916706f15324fcdcabb9d6223368eab884c762f259de1b05bc",
+      "target/reference/objects/ff_ffxli2.o": "2162083bfef59ec214b7ff9017eca950cb8474752e32ec93429af329d02d9c2c",
+      "target/reference/objects/ff_ffxxyz.o": "1354135a187b34d27ccd43a24260af08812b5671bdafe00b2b0b5832d6e7ec83",
+      "target/reference/objects/global.o": "2ff5d82743e81eeefd50a0eb4f1a3f1b51b9cd3bec23111d265985d60412ec4e",
+      "target/reference/objects/gti_reduce.o": "8a0eef899cdd688028f075de14f3bcd9eca837c00dc9bd5e3d4faa13a7ee9967",
+      "target/reference/objects/kinematics.o": "52e6ad42d190c31322f54f5999b9f7f3d86ffaf6d13b02bdc7af628eeaae782c",
+      "target/reference/objects/linear_algebra.o": "57b98c903e23cb42fda8699b46d262cc96cf3fb2cde2cccb62911bc4a137a088",
+      "target/reference/objects/matrices.o": "fe81d34db8dc036529d231a16fa135535b8b70e9d605a8fb2530acf35187d01d",
+      "target/reference/objects/matrix_base.o": "2a7d767dd2dbaa9cf1794f11dbb372e7331a69015df845089a48f7d6eabde84e",
+      "target/reference/objects/mis_warp.o": "80b21a4af4002a2bba31394e57caa5075a19924d7bd80a4077f87e7df443b13d",
+      "target/reference/objects/pave_reduce.o": "8b642cb5e1c11febbf2a00152089a06ef1386709358817ac83ac2c4fa391c939",
+      "target/reference/objects/ql_auxCD.o": "58fc5eac797d1e404d997ceaaa76b4c33d42a1127172f1577e38a3bd07ae1603",
+      "target/reference/objects/ql_ddilog.o": "a191350dfabf2a1cbf880c3e7bd0ad9c5d0c5c6269e6164453eb75b87bbed668",
+      "target/reference/objects/ql_qlI1.o": "0d49b063274857059818e0974e4ef545370ff90cbe55a25c5da43f9f299a64b9",
+      "target/reference/objects/ql_qlI2.o": "86e5a4ace2923750533182ce31b401fb0a2119a8edf55798b563248da7871639",
+      "target/reference/objects/ql_qlI2fin.o": "0e7a09c58c0fa5480ce63a194d29c806e4430b786ffc6c61dd4abda1a879897f",
+      "target/reference/objects/ql_qlI3.o": "d03e02843f0bd7d873a0ea1d144fe42a713906dc0043ff9c8a262734cd6d1c1e",
+      "target/reference/objects/ql_qlI3fin.o": "4de1873ac7e7e7a456e0fd50c51d9a56c0ba501b9afd14d356c9dec3745a35f0",
+      "target/reference/objects/ql_qlI3sub.o": "59206eddf6a6e101dad0c262bb032a942084d7b8e29f69c8a0df236de77e20d0",
+      "target/reference/objects/ql_qlI4.o": "ed8d6d3a3f43c30df657f9ea0bb31e5f4a22c4134d0a73aa6991ac380bf88a5c",
+      "target/reference/objects/ql_qlI4DNS41.o": "f8982564df6af9ca300a31780c9034b1ae81f23a7d127eea1b9ac0b15f199a56",
+      "target/reference/objects/ql_qlI4array.o": "1749fa705dcc5dbe6ef3cb637007b89aa2ddcdbb64ac85ecd71e331debb2fe70",
+      "target/reference/objects/ql_qlI4fin.o": "c4fce7cb30f78b2800e4763c2095ff9046fb6ca5696c1e95b4ac5748cbe3fd41",
+      "target/reference/objects/ql_qlI4sub0m.o": "3c6435a9d92723a3815187180a037aec6a29a63bdc07358c323900ad765b76c1",
+      "target/reference/objects/ql_qlI4sub1m.o": "40a65175090132b010e6a6ec0196a932b521c3886bf9ead9e356f6d98a83558d",
+      "target/reference/objects/ql_qlI4sub2m.o": "56871ffdadb946db15e8627ec8f265d040a088b707e4e5ed6deb6f3a81490fbb",
+      "target/reference/objects/ql_qlI4sub2ma.o": "f4be387480d4b832f1a4f1fcc3b99d7ba2d150e258babd530febf0f9c17e0e74",
+      "target/reference/objects/ql_qlI4sub2mo.o": "e0f4500c64762e7978fc5fe8a80ac2a7520cc640e9b1e6a0a1493f532c2c441d",
+      "target/reference/objects/ql_qlI4sub3m.o": "ef5b7133576e7b3b824cb23d817cd1cb0e89bcf446e40a93d3d4253279e18eff",
+      "target/reference/objects/ql_qlLi2omprod.o": "1934ab6c73ee55150d57e388f9ce7130f68c418164a932165378e5de4cc06c7e",
+      "target/reference/objects/ql_qlLi2omrat.o": "d0339d37e2114ca8c8d230e098b95606f95724eaa5b174091a270012aa58dfb6",
+      "target/reference/objects/ql_qlLi2omx.o": "e403b1aefb18010c2feab6d1cfe02c7fdbb70ac079098001feacc8b1c7e607d6",
+      "target/reference/objects/ql_qlLi2omx2.o": "41234d90764aa1617bac4baacf22954444a8c4d19a455962a2006f24997656ff",
+      "target/reference/objects/ql_qlYcalc.o": "912e859a5eb72909347c5002ae77ba9c2872d6c5f567b217c00bf36ffe830c3a",
+      "target/reference/objects/ql_qlbox1.o": "49104035573051424a7e28726f12cf50a244a4c4f6a8ad7b3b811f52c75185e4",
+      "target/reference/objects/ql_qlbox10.o": "523e5c9b7e76fb00f7c1b1fc5d5fe697e979b0d98f270753fa3afe86db666ab0",
+      "target/reference/objects/ql_qlbox11.o": "b239e2898889b3d3e1007c0edef63636dad237cb224b722173cf6ad9fe89d3bb",
+      "target/reference/objects/ql_qlbox12.o": "ecdcacd0dbf27196816bb1f5d9bd1e6a1b777b61ab68ed2cabc8294b8bce0b69",
+      "target/reference/objects/ql_qlbox13.o": "82e45bcd17afc63937f3e9cec49a2d5380fb7aac5a7670fa34017748af0ac52c",
+      "target/reference/objects/ql_qlbox14.o": "84f9abed7d125f50e855c8fcbbac23f15b6107d86b57998424f905ec3ba6be4b",
+      "target/reference/objects/ql_qlbox15.o": "d706c5a37b77d7415e7a1e59b8da617612b11ca1cc439162312f5895ea3f2817",
+      "target/reference/objects/ql_qlbox16.o": "04668b71833ce7c3202c6b8b0484f0b5ae8137b4e9a46ca105806405f318e477",
+      "target/reference/objects/ql_qlbox2.o": "25a8f174c1c4fbae67bc4038307de837c7c675b73ce62477cb11e50de1045e38",
+      "target/reference/objects/ql_qlbox3.o": "c1c5a3537f611c2b05d412a47ee4b1d8df7bb0bb5e0c7f0da31cce88238dc03c",
+      "target/reference/objects/ql_qlbox4.o": "9e7be9f4c3f48e1e46e87ee6e6740b80f35b58e31ff108b2affbd78ae8fbd132",
+      "target/reference/objects/ql_qlbox5.o": "5baa5e8bf1d7ad8e56e535b6431fb4ff2df5d96a60652f10744bfce8508fdc5c",
+      "target/reference/objects/ql_qlbox6.o": "0497016eb4c6bbd6e55fe44d89da6a4c421b2497bd341c118d0999fbafb62798",
+      "target/reference/objects/ql_qlbox7.o": "d5996828875ebbf6db6e58dbbbe53dbb087a03cdd9159030b189864725351acd",
+      "target/reference/objects/ql_qlbox8.o": "a16f9d744b716baecf980e526d8f70fbe1ac5727f65cf6578ee811f0bd685adf",
+      "target/reference/objects/ql_qlbox9.o": "01eece046ab8f6695ef585f1f937dd21af94a12049564c108be094c4a5b4ba9a",
+      "target/reference/objects/ql_qlcLi2omx2.o": "7764ca6f05910d408312cd29fb830a2576ed92299187f0d8282a967d9cc46575",
+      "target/reference/objects/ql_qlcLi2omx3.o": "4cdc66fa8a0b82690decac8cd9061dbdce9f9d03377ca00e00225d1fb0e00222",
+      "target/reference/objects/ql_qlfndd.o": "0dbc503c8fa8e6151fbec2785318b35ff7dcfebfbb7913bae0cb9a0beea49202",
+      "target/reference/objects/ql_qlfunctions.o": "91cc244ef2733796b7c83860abb0dde12dfb827cdf3860caaa531c34a3457864",
+      "target/reference/objects/ql_qlinit.o": "f826c8212c1598dd0e10642171478b920551b117998b6233daeefaece101d2f6",
+      "target/reference/objects/ql_qlkfn.o": "effb8d3d5eb3d02af5ea72d4a567042bb9f0ea7e9a6b50a410574073f52fa6ca",
+      "target/reference/objects/ql_qllnomrat4.o": "21d28b8bdbc5a9bae27d8815a5e978c168c52129b38bcb06401cc4da18da3c42",
+      "target/reference/objects/ql_qllnrat.o": "b6e8b93ddf50159d98f764151d1c46c0a8affd14397d399339e69e30a3621517",
+      "target/reference/objects/ql_qlratgam.o": "3f603594292b7cff19644e5adb834db9bb06647ff09d5aac0ae78ab425f9c412",
+      "target/reference/objects/ql_qlratreal.o": "f3b76459f4dc3b9a0863712a2d1af87e55def9b1a70c042eee71246690416223",
+      "target/reference/objects/ql_qlsnglsort.o": "8aa4c60065fd293da5f62ad3ee4680c1be0b851e68020bd443853a51581f99ef",
+      "target/reference/objects/ql_qlspencer.o": "9ddaefb0b93729679e78a5ad36186640b9dbf7bc0d05ae33c891fddf2f13342f",
+      "target/reference/objects/ql_qltri1.o": "6c4b2f1ad7e794af5d77fb6394eabd1965806590a94a9d2cfb3064885e31c451",
+      "target/reference/objects/ql_qltri2.o": "b80d45a7153f66b2e132a018c8c69befd69097ada6e4ca190d5fac50a2b683af",
+      "target/reference/objects/ql_qltri3.o": "3b0c12d9690de9c8b788bfe2fb97c9516c1ef18cf86342f5ae5e347e779bbb45",
+      "target/reference/objects/ql_qltri4.o": "388c172fbe9d52b58f332d4bd98bd94e991115bc5369f444218d8398be635c14",
+      "target/reference/objects/ql_qltri5.o": "2970923b0080281698ca1b5a44845fd5e0dac164ecfda71f50d0659a29831b5a",
+      "target/reference/objects/ql_qltri6.o": "2a7831912643f3d7312291684aaa54be7ff443df36f523b24027b29b48a6e3c3",
+      "target/reference/objects/ql_qltrisort.o": "319480c9dd605e2ada70639792b12e02111ae65162d498fb295065c358a4a42c",
+      "target/reference/objects/ql_qlxpicheck.o": "35616720dd20c2e91f8fe695aecd7d558d92caf62b4d804830dfb3d61cbef5cf",
+      "target/reference/objects/ql_qlzero.o": "763351289a98a966d66b5f979f07c808e0645cfc3bf66671c3573c5648203074",
+      "target/reference/objects/si_reduce.o": "1153f7b3ab9815dac0b28451777a445db9122f684e0f2728234ee9e103f25861",
+      "target/reference/objects/special_fun.o": "2896ec5bf4f29b77630792c94cd1ea25ae5771dbe1203b237341aacd9e624f77",
+      "target/reference/objects/ti_reduce.o": "dacb3a5812cd6b9ebb5da66adcd2e448970d1c425818aee6ebf653abc45aee35",
+      "target/reference/patched/funlib.o": "b9ba0d06289ed614e7dd5dd12731b35ab550dd60163deddfd79f2effd11d06c2"
+    },
+    "timing_scope": "wall clock around repeated batches of tensor_integral_reduce, input mass-reference setup, finiteness/status checks, and IREGI_FREE_PS; no setup, transport, or I/O",
+    "cache_policy": "IREGI initialization reused; numerical caches freed after every sample"
+  },
+  "rust_build": {
+    "command": [
+      "cargo",
+      "build",
+      "--offline",
+      "--locked",
+      "--release",
+      "-p",
+      "iregi-rust",
+      "--example",
+      "kernel_benchmark",
+      "--manifest-path",
+      "/shared/external/iregi/iregi-rust/target/benchmark/sources/4c32ecec25e3067cfd43a72cea204eab8cdc6bef/Cargo.toml",
+      "--features",
+      "iregi-masters/native-batch"
+    ],
+    "master_backend": "RustBatch",
+    "source_root": "/shared/external/iregi/iregi-rust/target/benchmark/sources/4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+    "source_revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+    "environment": {
+      "RUSTFLAGS": null,
+      "CARGO_ENCODED_RUSTFLAGS": null,
+      "CARGO_TARGET_DIR": "/shared/external/iregi/iregi-rust/target/optimized",
+      "CARGO_BUILD_BUILD_DIR": "/shared/external/iregi/iregi-rust/target/optimized/cargo-build"
+    },
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+    "source_sha256": {
+      "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+      "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+      "crates/iregi-cli/src/main.rs": "1722d2506cc62a5db315e680af3901eb0f54a53e110a5e96d71a1fe72a0408cc",
+      "crates/iregi-masters/examples/generate_batch.rs": "55aab093697f757d8b546bb3cb378eae03ccd19ae21bab954993cbbb4f141364",
+      "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
+      "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+      "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+      "crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+      "crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+      "crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+      "crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+      "crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+      "crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+      "crates/iregi-masters/src/lib.rs": "236fe067e511f6cc7284659c7b017eed4da564450f903d67ed4b1d4505b983b1",
+      "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+      "crates/iregi-masters/tests/masters.rs": "336ee0d8e36fca5c51da9d8ef9487ee50885e289a225be20279da255464a96f7",
+      "crates/iregi-masters/tests/physical_derivatives.rs": "f7007a80bc0928285aff8aec3252d0b219fad8b951d7f80975529892e3b475f1",
+      "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+      "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+      "crates/iregi-prepare/tests/madloop_numerator.rs": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948",
+      "crates/iregi-prepare/tests/preparation.rs": "64e5e2d681eba046b94cf571a3ea4b52586aa04f16eaf686531ea773ba08829f",
+      "crates/iregi-rust/examples/kernel_benchmark.rs": "c40a0ed58ea28fe3d80927ddd21f39e13e9b03f7ba31742122cf3cf470f44b46",
+      "crates/iregi-rust/examples/pv_precision_probe.rs": "3067200c081a33fc9752446e32d4b45cf3760e033bc2995b64809cc1e1216cd3",
+      "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+      "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+      "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+      "crates/iregi-rust/src/execution.rs": "25a99e56b8ff2480e44815696a6d1bccfabde3336f31f552cce1304fdb6dab0e",
+      "crates/iregi-rust/src/ibp.rs": "b6f3f41bae5f46705dae8c4deb495552b36fc1df7bf1f122164621f19daace10",
+      "crates/iregi-rust/src/lib.rs": "189ab7ff0288a71b97b3ecccd5aa5c49d5a7e4c368e0265a3620a04c5bf96646",
+      "crates/iregi-rust/src/plan.rs": "1748e07ae04eb6d70206bd1819e0adbffa3e569171c618bd44b65838e9d76bda",
+      "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
+      "crates/iregi-rust/src/rescue.rs": "1010c39b8ec36408f53dba6f8c669156f15e2540c9eb32a21540ad815c304f06",
+      "crates/iregi-rust/src/stability.rs": "f5611e4f8482707f28639f8e31f60e5060f46e31781b2c7d9ecbb45b822fa903",
+      "crates/iregi-rust/src/types.rs": "991e8b6f5db103b41869337ca0ceb8107d1d1f486e506bc4b44b928a87539dc9",
+      "crates/iregi-rust/tests/oracle.rs": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe",
+      "crates/iregi-rust/tests/triangle_gamma.rs": "7f3b3f64912d7b016fd9fa129d75ffa85720be9a873d5e9553374ffb5c831490",
+      "crates/iregi-cli/Cargo.toml": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac",
+      "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+      "crates/iregi-prepare/Cargo.toml": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1",
+      "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+      "dependencies/oneloopmaster/Cargo.toml": "b4b7c8198f595b17f922a3b4bafdb24b9d71a019be109ab1c38f2bde345401e4",
+      "dependencies/oneloopmaster/PATCHES.md": "514669f675ef718d10118fbf7533b47da78c5feaa3b3cfb6d7865cd0736df200",
+      "dependencies/oneloopmaster/README.md": "db72a532a49cce96b3bc9daa8f1816fd6478cd131e0ffef9bccbae06c95b3545",
+      "dependencies/oneloopmaster/assets/evaluators/README.md": "30b6afe1904b9966ab7897fae8d7e538d139b0e52b599b359786219814918af2",
+      "dependencies/oneloopmaster/assets/evaluators/a0.bin": "b034aa19e48f3f62b7029f2c88ad4f14e19ff6d9580979d43868349c5e651a0d",
+      "dependencies/oneloopmaster/assets/evaluators/b0.bin": "0730c8a390d31c508fbece0760186627dc851b8ccf2da787072f8c2788f50354",
+      "dependencies/oneloopmaster/assets/evaluators/c0.bin": "7a7bd44280ba5dcf70d0ad9b54b93cbc29853665799a8288c8d7f1a648ac25d9",
+      "dependencies/oneloopmaster/assets/evaluators/d0.bin": "3dc226c8dccb84ee48b0d1eadcf9dd38770dc90bdcdb5e7ba5a5534d9efb9aaf",
+      "dependencies/oneloopmaster/assets/evaluators/db0.bin": "5f145ba984ffe2bdffb9355557a9272c3006d0a601e845cd48877d5d19ea4d77",
+      "dependencies/oneloopmaster/examples/arbitrary_precision.rs": "cd60964e71870c0524d3961f752ed85c074c69bea22cab157d39fb6f0a0fd23a",
+      "dependencies/oneloopmaster/examples/basic.rs": "55aacdbf20b92bbfbff6ccf96048e8972f2a897776d9528f506a26fe8ff56e3e",
+      "dependencies/oneloopmaster/examples/c0_selected_branch.py": "4bfa8379dabe838b9a4f4bb7f28c41056b9b9617eb7357366081414afba78dfb",
+      "dependencies/oneloopmaster/examples/complex_branch_probe.rs": "0646ea0d2de9b47d2d2b38ab0525e867517342825116b5ead5a77c7bd9eeb2be",
+      "dependencies/oneloopmaster/examples/expansion_survey.rs": "0d7a9eabf064de0805906a17dea1adfab28075358c978310c98c4dfa00bf588c",
+      "dependencies/oneloopmaster/examples/expressions/b0_equal_mass.txt": "06c1d1c26c9aa129c15a78c7bab94025e60b82c4b463fc677f3a9900bb6caf7c",
+      "dependencies/oneloopmaster/examples/generate_native.rs": "17dedd3bf246e19d0950159ebf44ca074a4a4d5c1a7dd5604445aad5dc4798a8",
+      "dependencies/oneloopmaster/examples/get_expression.rs": "ec2b4b9b207190ac32f6bd9a2399393b4387966268766f79041e4b9fbc873bf4",
+      "dependencies/oneloopmaster/examples/jit_probe.rs": "b66c9977eb0743bcc4d7f69b91995709cd59e2fc525926f7671653c795591b55",
+      "dependencies/oneloopmaster/examples/numeric_performance.rs": "e187d4fc6507050edb127e7f9b6c6f691f89dbc71aa7cabcd198aa0f9acce907",
+      "dependencies/oneloopmaster/examples/oracle_sweep.rs": "377b19e926d16d408728245ade35323b4a5230cdf5f7d02941dad14b8a7a9b57",
+      "dependencies/oneloopmaster/examples/performance_survey.rs": "7c2ffef66f531caa35bbe6b2e3027b7cb0fc400a81791903a3c89ce0534fe85b",
+      "dependencies/oneloopmaster/examples/power_branch_probe.rs": "790131ee02e3f5aed7a701a14dbe0149c52af7054e9ddf19f2cc6cccdbb6716b",
+      "dependencies/oneloopmaster/examples/rebuild_evaluators.rs": "58637aa0cfd492a2fe246ef7431598aaa470f9006a9e70dd04b5cd1efa1b0045",
+      "dependencies/oneloopmaster/examples/rows_survey.rs": "16e820bea0f8c8edeeb8343e2301bef3a1aa9b22f7cb1eba1d221ed1e881242d",
+      "dependencies/oneloopmaster/examples/select_branch.rs": "2cabc4f8538d9332e5755446777436535be2c77ee7e0edd517b2bb6f5479a92a",
+      "dependencies/oneloopmaster/examples/simd_probe.rs": "cfcfe4efde1bc0bea190599c9d76e250932237f7f52b8cb1dcce9291b2718bfb",
+      "dependencies/oneloopmaster/examples/triangle_branch_probe.rs": "d791526c87266d20c97ad8987858e66a4c3593db6fa658f6ed373099ff74261e",
+      "dependencies/oneloopmaster/src/analytic_continuation_tests.rs": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c",
+      "dependencies/oneloopmaster/src/backend.rs": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52",
+      "dependencies/oneloopmaster/src/box_complex.rs": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a",
+      "dependencies/oneloopmaster/src/box_integral.rs": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f",
+      "dependencies/oneloopmaster/src/branch_selection.rs": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862",
+      "dependencies/oneloopmaster/src/coincident_dilog_tests.rs": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27",
+      "dependencies/oneloopmaster/src/definitions.rs": "4d107ac747f20a0e6b4d2608492d9a65886624aadddfc09c07d70bd5a7a62ae0",
+      "dependencies/oneloopmaster/src/epsilon.rs": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143",
+      "dependencies/oneloopmaster/src/evaluators.rs": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed",
+      "dependencies/oneloopmaster/src/expressions.rs": "b78104772233fa4382de2d4ce675ba77a95d29df4c34f65962d97010282a34e5",
+      "dependencies/oneloopmaster/src/initialization.rs": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7",
+      "dependencies/oneloopmaster/src/inspection.rs": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93",
+      "dependencies/oneloopmaster/src/inspection_formulas.rs": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a",
+      "dependencies/oneloopmaster/src/inspection_graph.rs": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3",
+      "dependencies/oneloopmaster/src/inspection_sheet.rs": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769",
+      "dependencies/oneloopmaster/src/jit_primitives.rs": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07",
+      "dependencies/oneloopmaster/src/labelling.rs": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4",
+      "dependencies/oneloopmaster/src/lib.rs": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6",
+      "dependencies/oneloopmaster/src/masters.rs": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1",
+      "dependencies/oneloopmaster/src/native/batch.rs": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3",
+      "dependencies/oneloopmaster/src/native/constants.rs": "b755af0982a29444528c29e9bf98e3ef894c7419bd45e84762780bad51a24df4",
+      "dependencies/oneloopmaster/src/native/disabled.rs": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657",
+      "dependencies/oneloopmaster/src/native/generated_a0.rs": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723",
+      "dependencies/oneloopmaster/src/native/generated_b0.rs": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79",
+      "dependencies/oneloopmaster/src/native/generated_c0.rs": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee",
+      "dependencies/oneloopmaster/src/native/generated_constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+      "dependencies/oneloopmaster/src/native/generated_d0.rs": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611",
+      "dependencies/oneloopmaster/src/native/generated_db0.rs": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88",
+      "dependencies/oneloopmaster/src/native/handwritten/box_contour/vertex.rs": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2",
+      "dependencies/oneloopmaster/src/native/handwritten/box_contour.rs": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a",
+      "dependencies/oneloopmaster/src/native/handwritten/boxes.rs": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648",
+      "dependencies/oneloopmaster/src/native/handwritten/mod.rs": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7",
+      "dependencies/oneloopmaster/src/native/handwritten/sheet.rs": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49",
+      "dependencies/oneloopmaster/src/native/handwritten/triangle.rs": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137",
+      "dependencies/oneloopmaster/src/native/mod.rs": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b",
+      "dependencies/oneloopmaster/src/native/primitives.rs": "cd1d861857cd7e24d77fe2ff65d7246893cfc4d1ec92aee0830eee9e4dba3598",
+      "dependencies/oneloopmaster/src/native/simple.rs": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651",
+      "dependencies/oneloopmaster/src/native/tensor/binary64.rs": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5",
+      "dependencies/oneloopmaster/src/native/tensor.rs": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584",
+      "dependencies/oneloopmaster/src/precision.rs": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77",
+      "dependencies/oneloopmaster/src/quotient_tests.rs": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433",
+      "dependencies/oneloopmaster/src/removable_log_tests.rs": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6",
+      "dependencies/oneloopmaster/src/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+      "dependencies/oneloopmaster/src/rust_codegen.rs": "90d2c696acd4e2fa0a912284abd02c48c164ed3c3b99a3d5f447c5f5677422a1",
+      "dependencies/oneloopmaster/src/sheet_exact.rs": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d",
+      "dependencies/oneloopmaster/src/tests.rs": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7",
+      "dependencies/oneloopmaster/src/triangle.rs": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8",
+      "dependencies/oneloopmaster/src/triangle_hv.rs": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2",
+      "dependencies/oneloopmaster/src/two_point.rs": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e",
+      "validation/benchmark/build.py": "ab0ece1966e90285368e8d3a3a7157ca68ea7f3830df505648e056f0c1eab872",
+      "validation/benchmark/build_reference.py": "3b0c085f9288f47c1721e3162cdc60a216d30db0f70e8e55cd984bbd830ef585",
+      "validation/benchmark/run.py": "ed95ffd94b3bc207ce20817376f04d8767ce6d40fb002f8825f5a688a2470257",
+      "validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d"
+    },
+    "binary_sha256": "d253ea15f4cd7bc0bb1676c73edd676c6a4e13183c03df570cdb27debe2cb551",
+    "profile": "release: opt-level=3, thin LTO, codegen-units=1 (workspace Cargo.toml)"
+  },
+  "measured_source": {
+    "path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+    "revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+    "sha256": {
+      "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
+      "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
+      "crates/iregi-cli/src/main.rs": "1722d2506cc62a5db315e680af3901eb0f54a53e110a5e96d71a1fe72a0408cc",
+      "crates/iregi-masters/examples/generate_batch.rs": "55aab093697f757d8b546bb3cb378eae03ccd19ae21bab954993cbbb4f141364",
+      "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
+      "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+      "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+      "crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+      "crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+      "crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+      "crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+      "crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+      "crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+      "crates/iregi-masters/src/lib.rs": "236fe067e511f6cc7284659c7b017eed4da564450f903d67ed4b1d4505b983b1",
+      "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+      "crates/iregi-masters/tests/masters.rs": "336ee0d8e36fca5c51da9d8ef9487ee50885e289a225be20279da255464a96f7",
+      "crates/iregi-masters/tests/physical_derivatives.rs": "f7007a80bc0928285aff8aec3252d0b219fad8b951d7f80975529892e3b475f1",
+      "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
+      "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
+      "crates/iregi-prepare/tests/madloop_numerator.rs": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948",
+      "crates/iregi-prepare/tests/preparation.rs": "64e5e2d681eba046b94cf571a3ea4b52586aa04f16eaf686531ea773ba08829f",
+      "crates/iregi-rust/examples/kernel_benchmark.rs": "c40a0ed58ea28fe3d80927ddd21f39e13e9b03f7ba31742122cf3cf470f44b46",
+      "crates/iregi-rust/examples/pv_precision_probe.rs": "3067200c081a33fc9752446e32d4b45cf3760e033bc2995b64809cc1e1216cd3",
+      "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+      "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+      "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+      "crates/iregi-rust/src/execution.rs": "25a99e56b8ff2480e44815696a6d1bccfabde3336f31f552cce1304fdb6dab0e",
+      "crates/iregi-rust/src/ibp.rs": "b6f3f41bae5f46705dae8c4deb495552b36fc1df7bf1f122164621f19daace10",
+      "crates/iregi-rust/src/lib.rs": "189ab7ff0288a71b97b3ecccd5aa5c49d5a7e4c368e0265a3620a04c5bf96646",
+      "crates/iregi-rust/src/plan.rs": "1748e07ae04eb6d70206bd1819e0adbffa3e569171c618bd44b65838e9d76bda",
+      "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
+      "crates/iregi-rust/src/rescue.rs": "1010c39b8ec36408f53dba6f8c669156f15e2540c9eb32a21540ad815c304f06",
+      "crates/iregi-rust/src/stability.rs": "f5611e4f8482707f28639f8e31f60e5060f46e31781b2c7d9ecbb45b822fa903",
+      "crates/iregi-rust/src/types.rs": "991e8b6f5db103b41869337ca0ceb8107d1d1f486e506bc4b44b928a87539dc9",
+      "crates/iregi-rust/tests/oracle.rs": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe",
+      "crates/iregi-rust/tests/triangle_gamma.rs": "7f3b3f64912d7b016fd9fa129d75ffa85720be9a873d5e9553374ffb5c831490",
+      "crates/iregi-cli/Cargo.toml": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac",
+      "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+      "crates/iregi-prepare/Cargo.toml": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1",
+      "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+      "dependencies/oneloopmaster/Cargo.toml": "b4b7c8198f595b17f922a3b4bafdb24b9d71a019be109ab1c38f2bde345401e4",
+      "dependencies/oneloopmaster/PATCHES.md": "514669f675ef718d10118fbf7533b47da78c5feaa3b3cfb6d7865cd0736df200",
+      "dependencies/oneloopmaster/README.md": "db72a532a49cce96b3bc9daa8f1816fd6478cd131e0ffef9bccbae06c95b3545",
+      "dependencies/oneloopmaster/assets/evaluators/README.md": "30b6afe1904b9966ab7897fae8d7e538d139b0e52b599b359786219814918af2",
+      "dependencies/oneloopmaster/assets/evaluators/a0.bin": "b034aa19e48f3f62b7029f2c88ad4f14e19ff6d9580979d43868349c5e651a0d",
+      "dependencies/oneloopmaster/assets/evaluators/b0.bin": "0730c8a390d31c508fbece0760186627dc851b8ccf2da787072f8c2788f50354",
+      "dependencies/oneloopmaster/assets/evaluators/c0.bin": "7a7bd44280ba5dcf70d0ad9b54b93cbc29853665799a8288c8d7f1a648ac25d9",
+      "dependencies/oneloopmaster/assets/evaluators/d0.bin": "3dc226c8dccb84ee48b0d1eadcf9dd38770dc90bdcdb5e7ba5a5534d9efb9aaf",
+      "dependencies/oneloopmaster/assets/evaluators/db0.bin": "5f145ba984ffe2bdffb9355557a9272c3006d0a601e845cd48877d5d19ea4d77",
+      "dependencies/oneloopmaster/examples/arbitrary_precision.rs": "cd60964e71870c0524d3961f752ed85c074c69bea22cab157d39fb6f0a0fd23a",
+      "dependencies/oneloopmaster/examples/basic.rs": "55aacdbf20b92bbfbff6ccf96048e8972f2a897776d9528f506a26fe8ff56e3e",
+      "dependencies/oneloopmaster/examples/c0_selected_branch.py": "4bfa8379dabe838b9a4f4bb7f28c41056b9b9617eb7357366081414afba78dfb",
+      "dependencies/oneloopmaster/examples/complex_branch_probe.rs": "0646ea0d2de9b47d2d2b38ab0525e867517342825116b5ead5a77c7bd9eeb2be",
+      "dependencies/oneloopmaster/examples/expansion_survey.rs": "0d7a9eabf064de0805906a17dea1adfab28075358c978310c98c4dfa00bf588c",
+      "dependencies/oneloopmaster/examples/expressions/b0_equal_mass.txt": "06c1d1c26c9aa129c15a78c7bab94025e60b82c4b463fc677f3a9900bb6caf7c",
+      "dependencies/oneloopmaster/examples/generate_native.rs": "17dedd3bf246e19d0950159ebf44ca074a4a4d5c1a7dd5604445aad5dc4798a8",
+      "dependencies/oneloopmaster/examples/get_expression.rs": "ec2b4b9b207190ac32f6bd9a2399393b4387966268766f79041e4b9fbc873bf4",
+      "dependencies/oneloopmaster/examples/jit_probe.rs": "b66c9977eb0743bcc4d7f69b91995709cd59e2fc525926f7671653c795591b55",
+      "dependencies/oneloopmaster/examples/numeric_performance.rs": "e187d4fc6507050edb127e7f9b6c6f691f89dbc71aa7cabcd198aa0f9acce907",
+      "dependencies/oneloopmaster/examples/oracle_sweep.rs": "377b19e926d16d408728245ade35323b4a5230cdf5f7d02941dad14b8a7a9b57",
+      "dependencies/oneloopmaster/examples/performance_survey.rs": "7c2ffef66f531caa35bbe6b2e3027b7cb0fc400a81791903a3c89ce0534fe85b",
+      "dependencies/oneloopmaster/examples/power_branch_probe.rs": "790131ee02e3f5aed7a701a14dbe0149c52af7054e9ddf19f2cc6cccdbb6716b",
+      "dependencies/oneloopmaster/examples/rebuild_evaluators.rs": "58637aa0cfd492a2fe246ef7431598aaa470f9006a9e70dd04b5cd1efa1b0045",
+      "dependencies/oneloopmaster/examples/rows_survey.rs": "16e820bea0f8c8edeeb8343e2301bef3a1aa9b22f7cb1eba1d221ed1e881242d",
+      "dependencies/oneloopmaster/examples/select_branch.rs": "2cabc4f8538d9332e5755446777436535be2c77ee7e0edd517b2bb6f5479a92a",
+      "dependencies/oneloopmaster/examples/simd_probe.rs": "cfcfe4efde1bc0bea190599c9d76e250932237f7f52b8cb1dcce9291b2718bfb",
+      "dependencies/oneloopmaster/examples/triangle_branch_probe.rs": "d791526c87266d20c97ad8987858e66a4c3593db6fa658f6ed373099ff74261e",
+      "dependencies/oneloopmaster/src/analytic_continuation_tests.rs": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c",
+      "dependencies/oneloopmaster/src/backend.rs": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52",
+      "dependencies/oneloopmaster/src/box_complex.rs": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a",
+      "dependencies/oneloopmaster/src/box_integral.rs": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f",
+      "dependencies/oneloopmaster/src/branch_selection.rs": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862",
+      "dependencies/oneloopmaster/src/coincident_dilog_tests.rs": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27",
+      "dependencies/oneloopmaster/src/definitions.rs": "4d107ac747f20a0e6b4d2608492d9a65886624aadddfc09c07d70bd5a7a62ae0",
+      "dependencies/oneloopmaster/src/epsilon.rs": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143",
+      "dependencies/oneloopmaster/src/evaluators.rs": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed",
+      "dependencies/oneloopmaster/src/expressions.rs": "b78104772233fa4382de2d4ce675ba77a95d29df4c34f65962d97010282a34e5",
+      "dependencies/oneloopmaster/src/initialization.rs": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7",
+      "dependencies/oneloopmaster/src/inspection.rs": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93",
+      "dependencies/oneloopmaster/src/inspection_formulas.rs": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a",
+      "dependencies/oneloopmaster/src/inspection_graph.rs": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3",
+      "dependencies/oneloopmaster/src/inspection_sheet.rs": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769",
+      "dependencies/oneloopmaster/src/jit_primitives.rs": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07",
+      "dependencies/oneloopmaster/src/labelling.rs": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4",
+      "dependencies/oneloopmaster/src/lib.rs": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6",
+      "dependencies/oneloopmaster/src/masters.rs": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1",
+      "dependencies/oneloopmaster/src/native/batch.rs": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3",
+      "dependencies/oneloopmaster/src/native/constants.rs": "b755af0982a29444528c29e9bf98e3ef894c7419bd45e84762780bad51a24df4",
+      "dependencies/oneloopmaster/src/native/disabled.rs": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657",
+      "dependencies/oneloopmaster/src/native/generated_a0.rs": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723",
+      "dependencies/oneloopmaster/src/native/generated_b0.rs": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79",
+      "dependencies/oneloopmaster/src/native/generated_c0.rs": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee",
+      "dependencies/oneloopmaster/src/native/generated_constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+      "dependencies/oneloopmaster/src/native/generated_d0.rs": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611",
+      "dependencies/oneloopmaster/src/native/generated_db0.rs": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88",
+      "dependencies/oneloopmaster/src/native/handwritten/box_contour/vertex.rs": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2",
+      "dependencies/oneloopmaster/src/native/handwritten/box_contour.rs": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a",
+      "dependencies/oneloopmaster/src/native/handwritten/boxes.rs": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648",
+      "dependencies/oneloopmaster/src/native/handwritten/mod.rs": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7",
+      "dependencies/oneloopmaster/src/native/handwritten/sheet.rs": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49",
+      "dependencies/oneloopmaster/src/native/handwritten/triangle.rs": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137",
+      "dependencies/oneloopmaster/src/native/mod.rs": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b",
+      "dependencies/oneloopmaster/src/native/primitives.rs": "cd1d861857cd7e24d77fe2ff65d7246893cfc4d1ec92aee0830eee9e4dba3598",
+      "dependencies/oneloopmaster/src/native/simple.rs": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651",
+      "dependencies/oneloopmaster/src/native/tensor/binary64.rs": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5",
+      "dependencies/oneloopmaster/src/native/tensor.rs": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584",
+      "dependencies/oneloopmaster/src/precision.rs": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77",
+      "dependencies/oneloopmaster/src/quotient_tests.rs": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433",
+      "dependencies/oneloopmaster/src/removable_log_tests.rs": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6",
+      "dependencies/oneloopmaster/src/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+      "dependencies/oneloopmaster/src/rust_codegen.rs": "90d2c696acd4e2fa0a912284abd02c48c164ed3c3b99a3d5f447c5f5677422a1",
+      "dependencies/oneloopmaster/src/sheet_exact.rs": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d",
+      "dependencies/oneloopmaster/src/tests.rs": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7",
+      "dependencies/oneloopmaster/src/triangle.rs": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8",
+      "dependencies/oneloopmaster/src/triangle_hv.rs": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2",
+      "dependencies/oneloopmaster/src/two_point.rs": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e",
+      "validation/benchmark/build.py": "ab0ece1966e90285368e8d3a3a7157ca68ea7f3830df505648e056f0c1eab872",
+      "validation/benchmark/build_reference.py": "3b0c085f9288f47c1721e3162cdc60a216d30db0f70e8e55cd984bbd830ef585",
+      "validation/benchmark/run.py": "ed95ffd94b3bc207ce20817376f04d8767ce6d40fb002f8825f5a688a2470257",
+      "validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d"
+    },
+    "is_current_workspace": false
+  },
+  "build_provenance_checks": {
+    "rust_binary_matches_manifest": true,
+    "reference_binary_matches_manifest": true,
+    "rust_sources_match_manifest": true
+  },
+  "counts": {
+    "measured": 8
+  },
+  "workspace_source_changed_during_run": true,
+  "source_changed_during_run": false,
+  "provenance_qualified": true
+}

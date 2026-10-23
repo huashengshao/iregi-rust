@@ -262,6 +262,7 @@ type Signature = (Symbol, Vec<String>);
 pub enum ExactConstant {
     Rational(String, String),
     Pi,
+    EulerGamma,
     Polylog2(String, String),
 }
 
@@ -271,6 +272,7 @@ impl ExactConstant {
         match self {
             Self::Rational(re, im) => runtime::ConstantSpec::Rational { re, im },
             Self::Pi => runtime::ConstantSpec::Pi,
+            Self::EulerGamma => runtime::ConstantSpec::EulerGamma,
             Self::Polylog2(re, im) => runtime::ConstantSpec::Polylog2 { re, im },
         }
     }
@@ -305,6 +307,11 @@ impl Constants {
                 && definition.fixed_args.is_empty()
             {
                 ExactConstant::Pi
+            } else if definition.symbol == symbolica::transcendental::euler_gamma()
+                && definition.tags.is_empty()
+                && definition.fixed_args.is_empty()
+            {
+                ExactConstant::EulerGamma
             } else if definition.symbol == symbolica::transcendental::polylog()
                 && definition.tags == ["2"]
                 && definition.fixed_args.len() == 1
@@ -337,6 +344,7 @@ impl Constants {
                 )
                 .unwrap(),
                 ExactConstant::Pi => output.push_str("    ConstantSpec::Pi,\n"),
+                ExactConstant::EulerGamma => output.push_str("    ConstantSpec::EulerGamma,\n"),
                 ExactConstant::Polylog2(re, im) => writeln!(
                     output,
                     "    ConstantSpec::Polylog2 {{ re: {re:?}, im: {im:?} }},"
@@ -1259,7 +1267,11 @@ mod tests {
         let inner_body = graph(
             2,
             Vec::new(),
-            vec![Instruction::Mul(Slot::Out(0), vec![Slot::Param(0), Slot::Param(1)], 0)],
+            vec![Instruction::Mul(
+                Slot::Out(0),
+                vec![Slot::Param(0), Slot::Param(1)],
+                0,
+            )],
             Vec::new(),
         );
         let outer_body = graph(
@@ -1279,8 +1291,16 @@ mod tests {
             1,
             vec![number(7), number(11)],
             vec![
-                call(Slot::Temp(0), outer, vec![Slot::Param(0), Slot::Const(0), Slot::Const(1)]),
-                call(Slot::Temp(1), outer, vec![Slot::Param(0), Slot::Const(0), Slot::Const(0)]),
+                call(
+                    Slot::Temp(0),
+                    outer,
+                    vec![Slot::Param(0), Slot::Const(0), Slot::Const(1)],
+                ),
+                call(
+                    Slot::Temp(1),
+                    outer,
+                    vec![Slot::Param(0), Slot::Const(0), Slot::Const(0)],
+                ),
                 Instruction::Add(Slot::Out(0), vec![Slot::Temp(0), Slot::Temp(1)], 0),
             ],
             vec![SubEvaluator {
@@ -1292,15 +1312,24 @@ mod tests {
         let mut emitter = RustEmitter::default();
         let module = emitter.emit_graph(&entry, EmitOptions::default()).unwrap();
         let source = &module.source;
-        assert!(source.contains("fn helper_0<T: NativeFloat>(a0: &C<T>, ctx: &Context<T>)"), "{source}");
+        assert!(
+            source.contains("fn helper_0<T: NativeFloat>(a0: &C<T>, ctx: &Context<T>)"),
+            "{source}"
+        );
         assert!(source.contains("mul(a0, ctx.constant(0))"), "{source}");
         assert!(
             source.contains("fn helper_1<T: NativeFloat>(a0: &C<T>, a2: &C<T>, ctx: &Context<T>)"),
             "{source}"
         );
         assert!(source.contains("helper_0(a0, ctx)"), "{source}");
-        assert!(source.contains("helper_1(a0, ctx.constant(1), ctx)"), "{source}");
-        assert!(source.contains("helper_1(a0, ctx.constant(0), ctx)"), "{source}");
+        assert!(
+            source.contains("helper_1(a0, ctx.constant(1), ctx)"),
+            "{source}"
+        );
+        assert!(
+            source.contains("helper_1(a0, ctx.constant(0), ctx)"),
+            "{source}"
+        );
         let probe = PURE_NUMERIC_PROBE.replace(
             "struct Context<T>(std::marker::PhantomData<T>);",
             "struct Context<T>(Vec<T>);\nimpl<T> Context<T> { fn constant(&self, index: usize) -> &T { &self.0[index] } }",
@@ -1336,17 +1365,23 @@ fn powi<T: NativeFloat>(a: &T, exponent: i64, _: bool) -> T {
             .stack_size(128 * 1024 * 1024)
             .spawn(|| {
                 crate::initialization::ensure_symbolica_state();
-                let expressions = [Symbol::PI.to_atom(), Atom::num((1, 2)).polylog(2)];
+                let expressions = [
+                    Symbol::PI.to_atom(),
+                    Atom::num((1, 2)).polylog(2),
+                    Atom::from(symbolica::transcendental::euler_gamma()),
+                ];
                 let evaluator = Atom::evaluator_multiple(&expressions, &[] as &[Atom])
                     .direct_translation(true)
                     .build()
                     .unwrap();
                 let graph = export_checked(evaluator).unwrap();
                 assert_eq!(graph.input_count, 0);
-                assert_eq!(graph.constant_functions.len(), 2);
+                assert_eq!(graph.constant_functions.len(), 3);
                 let mut constants = Constants::default();
                 constants.graph_constants(&graph).unwrap();
                 assert!(constants.values.contains(&ExactConstant::Pi));
+                assert!(constants.values.contains(&ExactConstant::EulerGamma));
+                assert!(constants.source().contains("ConstantSpec::EulerGamma"));
                 assert!(
                     constants
                         .values
