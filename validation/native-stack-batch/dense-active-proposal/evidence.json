@@ -1,0 +1,18 @@
+{
+  "scope": "read-only source/API and compiler evidence; no implementation or runtime profile",
+  "binary": "target/native-stack-batch/probe-fixed-c0",
+  "binary_sha256": "f752571c95f8e9d6399c545f4a197c81740cbeed75dc92d2914791a868cda5c8",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
+  "source": "target/native-stack-batch/c0/c0_baseline.rs",
+  "source_sha256": "42ae46af9b13f31bbd089d94393c7b1858d3e1bde154454f21c3c4e0814dcfff",
+  "command": [
+    "objdump",
+    "-d",
+    "--no-show-raw-insn",
+    "--start-address=0x1d53d0",
+    "--stop-address=0x1d5584",
+    "target/native-stack-batch/probe-fixed-c0"
+  ],
+  "assembly_sha256": "4b8f525cd3618ce92d36d4bb4d2e1127c9722f3e9ffab471eac1bd3cee19bdcb",
+  "independent_api_review": "batch_execution agent; no existing contiguous-active-run abstraction found; agrees on sorted/unique inheritance and read-before-write alias requirements"
+}

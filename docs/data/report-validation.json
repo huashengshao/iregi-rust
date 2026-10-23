@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "recorded_utc": "2026-10-23T16:58:45.853934+00:00",
+  "recorded_utc": "2026-10-23T17:08:42.684839+00:00",
   "status": "passed",
-  "scope": "Benchmark report checkpoint through production allocator commitd1a4b8e; timing evidence uses separate frozen80949db and historical snapshots. Later optimization experiments are outside this checkpoint.",
+  "scope": "Benchmark report checkpoint through production guard-context commit6b24c03. Reference timing evidence remains bound to frozen80949db and historical sources; candidate effects are not multiplied and currentoptimizedreference performance is pending.",
   "report_artifacts": {
-    "docs/benchmark.typ": "2051bf3be713478a3a6dcb7d60f9565659d9e2d1c45a590d80bfa1381ad6a2f0",
-    "docs/data/results.json": "11e292498db6ccf12324f08a3b078163c587a63e665055ade85b1a8c6d7410c3",
-    "docs/benchmark.pdf": "2edebc605a6ef44167d13dfe654a643641c240081cbcc2c4e2209a22ce1abfed",
+    "docs/benchmark.typ": "6298ddd469be448d910f4ed73ed3401eb880b1cfdc2215a9bd905290f90d850e",
+    "docs/data/results.json": "c658bb749f7392a4ab254ecf24558213ee8339f74c0955428544c05fa81a1cdd",
+    "docs/benchmark.pdf": "b6fe7017cfe43e3cbaa800ed9fb5bbd7ddf1cec69224ebd801d59a6846072373",
     "scripts/build-benchmark-report.sh": "c0e6106dee393689921cb7b19afb7a5ff0241071cf022b28b6e6174d56bec1b7"
   },
   "typst_version": "typst 0.15.1 (9dfd3a08)",
@@ -26,8 +26,8 @@
   ],
   "byte_identical_rebuild": true,
   "page_count": 13,
-  "render_check": "All13 pages rendered toPNG with Typst. Changed pages1/3/5/8/10 inspected for overflow and legibility; current component axis expanded to50us/point so allbars fit.",
-  "source_ledger_count": 47,
+  "render_check": "All13pages rendered toPNG. Changed pages2/10 inspected; historical/main comparison tables unchanged. Finalcurrentcommitlabel preserves layout. DeterministicPDFrebuild is byte-identical.",
+  "source_ledger_count": 53,
   "source_ledger": [
     {
       "key": "stack_reuse_factory_qualification",
@@ -263,6 +263,36 @@
       "key": "planar_certified_nway_qualification",
       "source": "validation/planar-certified-nway/qualification.json",
       "sha256": "2cedd9a815f4c6bdfccdbe95ff146db156ea805b46e00db4ce050e22cf9a3664"
+    },
+    {
+      "key": "guard_context_reuse_decision",
+      "source": "validation/guard-context-reuse/decision.json",
+      "sha256": "9ba13f58f3a9ecc536369b0ffc2dbb20affaddc314e4a3529843863d68f87ad0"
+    },
+    {
+      "key": "guard_context_reuse_performance",
+      "source": "validation/guard-context-reuse/performance-analysis.json",
+      "sha256": "3e10713bc0107dfa5317a1ec13001d4ffca3e086957f5692c3f7f8f12af674e5"
+    },
+    {
+      "key": "native_stack_batch_qualification",
+      "source": "validation/native-stack-batch/qualification.json",
+      "sha256": "e0eb0086711700601f724541676775e5cc7c5604cf117508d161e2548520de20"
+    },
+    {
+      "key": "native_stack_batch_corrected_timings",
+      "source": "validation/native-stack-batch/timing-fixed-summary.json",
+      "sha256": "b2e3e3ee1e0a6d80a19696caf10b6f371716a148dbc1384b9c4a5e2ff82379d4"
+    },
+    {
+      "key": "guard_context_reuse_adoption",
+      "source": "validation/guard-context-reuse/adoption-qualification.json",
+      "sha256": "c06913573624e499a2d59d1b149b2b14fdaa8d20b5bc752c5cd20f7754d74e10"
+    },
+    {
+      "key": "guard_context_reuse_final_adoption",
+      "source": "validation/guard-context-reuse/final-adoption-qualification.json",
+      "sha256": "252696b64c427328141668b08993d80129233bdf20d1b222f97258014fa63836"
     }
   ],
   "independent_arithmetic_review": {
@@ -303,5 +333,26 @@
     "benchmark_harness_tests_passed": 80,
     "public_harness_tests_passed": 10,
     "latest_visual_review": "ROOT inspected pages3/5: clean and legible, no overflow."
+  },
+  "independent_optimization_review": {
+    "reviewer": "/root/report_update/guard_report_review",
+    "status": "passed",
+    "guard_groups": 12,
+    "guard_counts": {
+      "improvement": 6,
+      "regression": 0,
+      "inconclusive_noise": 6
+    },
+    "native_fixed_groups": 24,
+    "native_fixed_counts": {
+      "singleton_parity": 2,
+      "inconclusive_noise": 22,
+      "qualified_batch32": 0
+    },
+    "native_original_counts": {
+      "regression": 2,
+      "inconclusive_noise": 22
+    },
+    "checks": "Independently recomputed paired ratios,99%bootstrap intervals and width-gated classifications;18guard evidence hashes and132native durable manifest files match. Adoption cleanup is separately bound by final-adoption-qualification.json."
   }
 }
