@@ -1,0 +1,30 @@
+{
+  "filter": "execution::tests::",
+  "command": [
+    "taskset",
+    "-c",
+    "18",
+    "/shared/external/iregi/iregi-rust/target/core-stack-adoption/core_tests",
+    "execution::tests::",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "expected_tests": 30,
+  "binary_sha256_before": "f21d2902129febd87d594fc722434c8253f1f14518c370650d1d7aea34acdad8",
+  "source_manifest_sha256": "469dcd84d78d278ca2f3f19d210ee914566b8d20c6a3b255408ac136bcd420d9",
+  "compile_manifest_sha256": "6a50c9157a0cc67db88b24106f8803a8caef24a0440894028cbf0a60753ce3dd",
+  "runner_sha256": "1eb1fadceaea6a49b6b7fee91d7eace95140470bfc324512aca0320395120571",
+  "timeout_seconds": 180,
+  "performance_scope": "Correctness only; concurrent project work is permitted.",
+  "exit_code": 0,
+  "timed_out": false,
+  "elapsed_seconds": 36.25453566398937,
+  "binary_sha256_after": "f21d2902129febd87d594fc722434c8253f1f14518c370650d1d7aea34acdad8",
+  "test_counts": {
+    "passed": 30,
+    "failed": 0,
+    "ignored": 0
+  },
+  "log_sha256": "a7e184a8a9e427a3304c52d5762a9f0c91301262a1fe10ca24936ed6a1990ee8",
+  "status": "passed"
+}

@@ -1,0 +1,18 @@
+{
+  "scope": "Fresh ordinary root allocation only; no symbolic rewrite, derivative-layout change or repeated allocation of cached evaluators.",
+  "findings": [
+    "AtomView::to_evaluator returns linearize_multiple directly when horner_iterations is zero; linearize_multiple constructs SSA with reserved+instruction stack and returns without optimize_stack.",
+    "ExpressionEvaluator::vectorize ends with remove_common_pairs, optimize_stack and fix_labels; the Some(Dual) arm remains untouched.",
+    "optimize_stack rewrites root temporary slots according to last use; it protects reserved parameters/constants and result slots, preserves instruction order/labels/phase flags and does not recurse into shared helper evaluators.",
+    "compile_exact always begins with a new Atom evaluator build, and maps/clones only after optional Dualizer or ordinary root allocation; exact structural caches hold the allocated graph, not a graph sent through the allocator again.",
+    "Primal-only snapping and error monitors inside Dual workspaces use the ordinary path and therefore receive allocation; the retained mixed-Dual and lazy-branch semantic corpus covers those graphs.",
+    "Constant-only and empty-output/zero-polynomial paths are covered by the existing contraction suite; reserved slots remain protected."
+  ],
+  "source_sha256": {
+    "dependencies/symbolica/src/evaluate/tree.rs": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
+    "dependencies/symbolica/src/evaluate/dual.rs": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+    "dependencies/symbolica/src/evaluate/optimize.rs": "899d86347eb9efc9ae39d85e94d0c5a35fbc6de8a1efa13b9ccc95464f92e0f6"
+  },
+  "prior_independent_review": "/root/batch_execution/dual_evaluator_api and /root/precision_rescue; fresh SSA insertion seams accepted; 760 retained graph proofs and 12 paired numerical cases passed.",
+  "new_independent_agent_attempt": "Additional reviewer restart unavailable because global agent thread limit was reached; no extra independent runtime claimed."
+}

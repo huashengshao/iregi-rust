@@ -1,0 +1,22 @@
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -2259,6 +2259,8 @@
+         exact = exact
+             .vectorize(&Dualizer::new(BorrowedDual(layout), Vec::new()))
+             .map_err(ReductionError::Preparation)?;
++    } else {
++        exact.optimize_stack();
+     }
+     Ok(exact)
+ }
+--- a/crates/iregi-rust/src/contraction.rs
++++ b/crates/iregi-rust/src/contraction.rs
+@@ -222,6 +222,8 @@
+             exact = exact
+                 .vectorize(&Dualizer::new(BorrowedDual(layout), Vec::new()))
+                 .map_err(ReductionError::Preparation)?;
++        } else {
++            exact.optimize_stack();
+         }
+         let evaluator = exact
+             .map_coeff_with_prec(

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "Production four-line change applied; focused current-source correctness qualification passed; not yet an opt3 performance gate.",
+  "source_base_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "source_patch": "production.patch",
+  "source_patch_sha256": "dbea94e3517184d9e45107da66794c13eb9ca16cb02d2417700497d4cf96ca89",
+  "source_inventory": "preparation.json",
+  "source_inventory_sha256": "469dcd84d78d278ca2f3f19d210ee914566b8d20c6a3b255408ac136bcd420d9",
+  "dependency_audit": "dependency-audit.json",
+  "compile_manifest": "compile.json",
+  "compile_manifest_sha256": "6a50c9157a0cc67db88b24106f8803a8caef24a0440894028cbf0a60753ce3dd",
+  "compile_exit_code": 0,
+  "compile_elapsed_seconds": 189.96782185998745,
+  "binary_sha256": "f21d2902129febd87d594fc722434c8253f1f14518c370650d1d7aea34acdad8",
+  "test_counts": {
+    "execution": 30,
+    "contraction": 8,
+    "stability": 29,
+    "total": 67,
+    "failures": 0,
+    "ignored": 0
+  },
+  "run_manifests": [
+    "runs/contraction_tests/result.json",
+    "runs/execution_tests/result.json",
+    "runs/stability/result.json"
+  ],
+  "numeric_scope": "Current production core, uninstrumented opt2 test binary, retained full-workspace feature-union dependency archives. Dualized graphs retain their existing allocator path; ordinary primal monitors inside Dual workspaces receive the new root allocation.",
+  "provenance": "Production core is 80949db plus exactly the retained four-line patch; prepared sources, explicit dependency archives and test binary are hashed before/after. The separate frozen80949db opt3 kernel/physical benchmark binaries exclude this change.",
+  "performance": "No new timing gate. Earlier opt2 quiet diagnostics and structural storage proofs are supporting evidence; a fresh immutable optimized workspace build and reference comparison are separate work."
+}

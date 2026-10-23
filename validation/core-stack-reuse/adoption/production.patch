@@ -1,0 +1,26 @@
+diff --git a/crates/iregi-rust/src/contraction.rs b/crates/iregi-rust/src/contraction.rs
+index f34e1db..96c9413 100644
+--- a/crates/iregi-rust/src/contraction.rs
++++ b/crates/iregi-rust/src/contraction.rs
+@@ -222,6 +222,8 @@ where
+             exact = exact
+                 .vectorize(&Dualizer::new(BorrowedDual(layout), Vec::new()))
+                 .map_err(ReductionError::Preparation)?;
++        } else {
++            exact.optimize_stack();
+         }
+         let evaluator = exact
+             .map_coeff_with_prec(
+diff --git a/crates/iregi-rust/src/execution.rs b/crates/iregi-rust/src/execution.rs
+index 1d940ef..ce63f09 100644
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -2259,6 +2259,8 @@ fn compile_exact<D: DualNumberStructure>(
+         exact = exact
+             .vectorize(&Dualizer::new(BorrowedDual(layout), Vec::new()))
+             .map_err(ReductionError::Preparation)?;
++    } else {
++        exact.optimize_stack();
+     }
+     Ok(exact)
+ }

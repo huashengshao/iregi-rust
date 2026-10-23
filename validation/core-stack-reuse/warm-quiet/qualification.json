@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "status": "passed; diagnostic only; no production adoption",
+  "source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "protocol": "Same retained opt2 binaries, CPU18, 21 alternating paired blocks targeting30ms; all other project computations held by coordinator; pilot, every completed pair and final outputs compared exactly. Preparation excluded.",
+  "observed_elapsed_seconds": 11.778587067034096,
+  "full_output_parity_checks": 92,
+  "raw_jsonl_sha256": "1301e904f6fc8dc9ca40c4579eee1fed5e6cf0346b387a9315fb432966290cc0",
+  "raw_compressed_sha256": "28a8595f015ae6a7dfc0acb67437b767dc12dd1814d9784dd40a3a5fefda52b6",
+  "binary_sha256": {
+    "baseline": "f5b9570112815f9eb622e99ecabc69a5c335364dda88ba970169acce99345d0e",
+    "candidate": "23f0081e8356613efe8c7bdaed2a504b2d7b80b98e223dfd52b4ee23fc91c99c"
+  },
+  "runner_sha256": "53f08b2e401734d2e3aaebe970a1b0a672f98979c47963826121d98249fef424",
+  "helper_sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+  "limitations": [
+    "The host outside this project was not isolated; visible raw outliers remain.",
+    "Opt2 warm-core comparison only; neither an opt3 workspace gate nor a reference-IREGI speed comparison.",
+    "Instrumentation affects preparation and prevents preparation-time or peak-memory claims.",
+    "No core factory change has been adopted in production."
+  ],
+  "outcome": "Both singleton 99% intervals include parity; bubble and triangle batch32 ratios are modestly below1 in this run.",
+  "rows": [
+    {
+      "family": "n2-r1-massive",
+      "batch": 1,
+      "candidate_over_baseline": 1.0007455817196862,
+      "ci99": [
+        0.9882508105857095,
+        1.0081870060986684
+      ],
+      "baseline_median_ns": 7457.886732329084,
+      "candidate_median_ns": 7437.989853137517
+    },
+    {
+      "family": "n2-r1-massive",
+      "batch": 32,
+      "candidate_over_baseline": 0.987264285179994,
+      "ci99": [
+        0.9801756217591614,
+        0.9996353846082731
+      ],
+      "baseline_median_ns": 161405.95263157896,
+      "candidate_median_ns": 159616.48704663213
+    },
+    {
+      "family": "n3-r1-massive",
+      "batch": 1,
+      "candidate_over_baseline": 0.9885581152947788,
+      "ci99": [
+        0.9767230839149241,
+        1.011427918826198
+      ],
+      "baseline_median_ns": 27248.212003872217,
+      "candidate_median_ns": 26931.471953578337
+    },
+    {
+      "family": "n3-r1-massive",
+      "batch": 32,
+      "candidate_over_baseline": 0.9802165227101756,
+      "ci99": [
+        0.9701311964802459,
+        0.9930481809921271
+      ],
+      "baseline_median_ns": 628445.4,
+      "candidate_median_ns": 614523.5106382979
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "command": [
+    "taskset",
+    "-c",
+    "19",
+    "rustc",
+    "--edition=2024",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/crates/iregi-rust/examples/kernel_benchmark.rs",
+    "-C",
+    "opt-level=2",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "iregi_rust=/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/libiregi_rust.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libiregi_masters-0d5459afd211649c.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libserde_json-3b583d0e8aa0facc.rlib",
+    "--extern",
+    "serde=/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libserde-fc3dcd4b8c210596.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/kernel_benchmark"
+  ],
+  "source_sha256": "710c736c8636838eff225b3611d5ac412da49eacbb0932548bb037d46e7da069",
+  "extern_before": {
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/libiregi_rust.rlib": "0b5fd3912f4e79cec536dcecc92cacdf1a9c1e42bcf985866d94c7c8436ed849",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libsymbolica-5cca42ee48491872.rlib": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libiregi_masters-0d5459afd211649c.rlib": "0103094825ec960c856c17b09bc676f02135e3bc1c210ecc3d4ea93d44ec2f84",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libserde_json-3b583d0e8aa0facc.rlib": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libserde-fc3dcd4b8c210596.rlib": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 47.97440286597703,
+  "extern_after": {
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/libiregi_rust.rlib": "0b5fd3912f4e79cec536dcecc92cacdf1a9c1e42bcf985866d94c7c8436ed849",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libsymbolica-5cca42ee48491872.rlib": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libiregi_masters-0d5459afd211649c.rlib": "0103094825ec960c856c17b09bc676f02135e3bc1c210ecc3d4ea93d44ec2f84",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libserde_json-3b583d0e8aa0facc.rlib": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+    "/shared/external/iregi/iregi-rust/target/core-stack-reuse/deps/libserde-fc3dcd4b8c210596.rlib": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a"
+  },
+  "binary_sha256": "23f0081e8356613efe8c7bdaed2a504b2d7b80b98e223dfd52b4ee23fc91c99c"
+}

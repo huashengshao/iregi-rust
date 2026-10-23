@@ -1,0 +1,189 @@
+{
+  "schema_version": 1,
+  "source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "status": "Paired correctness qualification passed; subsequent production adoption qualification recorded separately.",
+  "candidate_patch": "ordinary-root-allocation.patch",
+  "independent_review": "/root/batch_execution/dual_evaluator_api; no semantic defect found; evidence issues fixed before runtime",
+  "change": "One Symbolica optimize_stack call after each fresh ordinary execution/contraction SSA factory; Dualized arithmetic untouched; primal-only monitors inside Dual workspaces do receive allocation.",
+  "backend": "SymbolicaBatch; preserved master/Symbolica archive hashes in preparation.json",
+  "compiler": "Both proof variants opt-level2; exact commands/source/archive/binary hashes retained in compile manifests.",
+  "test_counts": {
+    "baseline_execution": 30,
+    "candidate_execution": 30,
+    "baseline_contraction": 8,
+    "candidate_contraction": 8,
+    "failures": 0
+  },
+  "paired_capture_cases": 12,
+  "domains": [
+    "f64",
+    "DoubleFloat",
+    "Float128"
+  ],
+  "capture_checks": [
+    "all successful tensor coefficients",
+    "contractions",
+    "exact represented rational values",
+    "component precision",
+    "signed zeros",
+    "metadata and basis",
+    "statuses and diagnostics",
+    "fallback/analytic flags",
+    "repeated calls",
+    "expected invalid-scale lane",
+    "at least one successful physical lane per case"
+  ],
+  "graph_proofs": 760,
+  "allocated_graphs": 380,
+  "allocated_graphs_with_reduced_temporaries": 252,
+  "maximum_before_temporaries": 333585,
+  "maximum_after_for_largest_before": 156,
+  "semantics_archive_sha256": "e1496aaa653ad237338eb82f844ed2d58d0b8022af3510fa841a6862dfe1f649",
+  "performance_gate": "Not measured. Proof instrumentation exports/serializes graphs and invalidates preparation-memory/time comparisons. Structural slot reductions are not timing claims.",
+  "runtime": "Serialized CPU0; each invocation bounded180s.",
+  "runs": [
+    {
+      "variant": "baseline",
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "/shared/external/iregi/iregi-rust/target/core-stack-reuse/baseline/core_tests",
+        "contraction::tests::",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256_before": "b11d599dcc202bfeceea6cedfa5b7406a62e24e12c00e496117a825ba33f2de3",
+      "binary_sha256_after": "b11d599dcc202bfeceea6cedfa5b7406a62e24e12c00e496117a825ba33f2de3",
+      "timeout_seconds": 180.0,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 0.5206104889512062,
+      "max_rss_kib": 12328,
+      "test_counts": {
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0
+      },
+      "graph_count": 4,
+      "graphs_with_reduced_temporaries": 0,
+      "structural_proof_all_passed": true,
+      "diagnostic_only": "Instrumented proof; no performance or preparation-memory claim.",
+      "runner_sha256": "1e9db0dbe80cfea64075d650f04498752a5bd62b21446a63878f7c74927efcd2"
+    },
+    {
+      "variant": "baseline",
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "/shared/external/iregi/iregi-rust/target/core-stack-reuse/baseline/core_tests",
+        "execution::tests::",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256_before": "b11d599dcc202bfeceea6cedfa5b7406a62e24e12c00e496117a825ba33f2de3",
+      "binary_sha256_after": "b11d599dcc202bfeceea6cedfa5b7406a62e24e12c00e496117a825ba33f2de3",
+      "timeout_seconds": 180.0,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 66.68284983898047,
+      "max_rss_kib": 723052,
+      "test_counts": {
+        "passed": 30,
+        "failed": 0,
+        "ignored": 0
+      },
+      "graph_count": 247,
+      "graphs_with_reduced_temporaries": 0,
+      "structural_proof_all_passed": true,
+      "diagnostic_only": "Instrumented proof; no performance or preparation-memory claim.",
+      "runner_sha256": "1e9db0dbe80cfea64075d650f04498752a5bd62b21446a63878f7c74927efcd2"
+    },
+    {
+      "variant": "candidate",
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/core_tests",
+        "contraction::tests::",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256_before": "16e1adfd3400cf0cc68e96e5c24fe10bbdf7ffc43d99badc5559436f4db7b645",
+      "binary_sha256_after": "16e1adfd3400cf0cc68e96e5c24fe10bbdf7ffc43d99badc5559436f4db7b645",
+      "timeout_seconds": 180.0,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 0.5223929859930649,
+      "max_rss_kib": 12328,
+      "test_counts": {
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0
+      },
+      "graph_count": 4,
+      "graphs_with_reduced_temporaries": 1,
+      "structural_proof_all_passed": true,
+      "diagnostic_only": "Instrumented proof; no performance or preparation-memory claim.",
+      "runner_sha256": "1e9db0dbe80cfea64075d650f04498752a5bd62b21446a63878f7c74927efcd2"
+    },
+    {
+      "variant": "candidate",
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "/shared/external/iregi/iregi-rust/target/core-stack-reuse/candidate/core_tests",
+        "execution::tests::",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256_before": "16e1adfd3400cf0cc68e96e5c24fe10bbdf7ffc43d99badc5559436f4db7b645",
+      "binary_sha256_after": "16e1adfd3400cf0cc68e96e5c24fe10bbdf7ffc43d99badc5559436f4db7b645",
+      "timeout_seconds": 180.0,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 32.53550759796053,
+      "max_rss_kib": 765316,
+      "test_counts": {
+        "passed": 30,
+        "failed": 0,
+        "ignored": 0
+      },
+      "graph_count": 247,
+      "graphs_with_reduced_temporaries": 146,
+      "structural_proof_all_passed": true,
+      "diagnostic_only": "Instrumented proof; no performance or preparation-memory claim.",
+      "runner_sha256": "1e9db0dbe80cfea64075d650f04498752a5bd62b21446a63878f7c74927efcd2"
+    },
+    {
+      "variant": "capture",
+      "command": [
+        "taskset",
+        "-c",
+        "0",
+        "/shared/external/iregi/iregi-rust/target/core-stack-reuse/capture",
+        "/shared/external/iregi/iregi-rust/target/core-stack-reuse/runs/capture-complete-corpus-20261023T155743/outputs.json"
+      ],
+      "binary_sha256_before": "17b66e63d5e58c56a0876f91bcfc1d47d64d438050c0feb1c47f9945a46f65c6",
+      "binary_sha256_after": "17b66e63d5e58c56a0876f91bcfc1d47d64d438050c0feb1c47f9945a46f65c6",
+      "timeout_seconds": 180.0,
+      "timed_out": false,
+      "exit_code": 0,
+      "elapsed_seconds": 23.42689991206862,
+      "max_rss_kib": 702560,
+      "test_counts": null,
+      "graph_count": 258,
+      "graphs_with_reduced_temporaries": 105,
+      "structural_proof_all_passed": true,
+      "diagnostic_only": "Instrumented proof; no performance or preparation-memory claim.",
+      "runner_sha256": "1e9db0dbe80cfea64075d650f04498752a5bd62b21446a63878f7c74927efcd2"
+    }
+  ],
+  "semantics_archive_layout": "Deduplicated semantics/<SHA256>.txt; semantics-sha256.json maps each original per-run graph path to retained content.",
+  "warm_diagnostic": "warm/qualification.json",
+  "quiet_warm_diagnostic": "warm-quiet/qualification.json",
+  "production_adoption": "adoption/qualification.json"
+}
