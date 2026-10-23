@@ -1,0 +1,44 @@
+{
+  "status": "failed",
+  "command": [
+    "/shared/external/iregi/iregi-rust/target/planar-automatic-receipts/core-tests",
+    "execution::proof_receipt_tests::",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "timeout_seconds": 180,
+  "selected_tests": [
+    "execution::proof_receipt_tests::receipt_compaction_reordering_calls_and_clones_preserve_outputs_and_work_counts",
+    "execution::proof_receipt_tests::receipt_dispatch_requires_the_same_source_object_not_equal_values",
+    "execution::proof_receipt_tests::receipt_domain_requires_complete_ordered_semantics_and_context",
+    "execution::proof_receipt_tests::receipt_exact_zero_component_cannot_skip_other_component_conditioning",
+    "execution::proof_receipt_tests::receipt_fallback_error_harvests_fresh_child_proof_before_returning_error",
+    "execution::proof_receipt_tests::receipt_legacy_policy_never_creates_reusable_coverage",
+    "execution::proof_receipt_tests::receipt_partial_coverage_cannot_hide_new_false_zero_component",
+    "execution::proof_receipt_tests::receipt_partial_selection_certifies_uncovered_complex_taylor_components",
+    "execution::proof_receipt_tests::receipt_precision_context_mismatch_runs_a_fresh_certificate",
+    "execution::proof_receipt_tests::receipt_profile_error_harvests_covered_proof_work_before_returning_error",
+    "execution::proof_receipt_tests::receipt_recursive_transfer_rekeys_masks_to_each_child_local_batch",
+    "execution::proof_receipt_tests::receipt_rows_use_explicit_source_mapping_and_live_batch_identity"
+  ],
+  "ignored_tests": [],
+  "expected_passed_tests": 12,
+  "started_utc": "2026-10-23T19:23:39.282093+00:00",
+  "cpu_affinity": [
+    16,
+    17
+  ],
+  "binary_sha256": "17eb14caac46e37e7b87106b941ebfaf4353f38dfc952248f56757cb9cb2fc4b",
+  "build_manifest_sha256": "67a11255717e981d2a73fb050448e819f621b80ac7a7663533f5a7af4af16d0a",
+  "runner_sha256": "6dcb2bb0823f7c3c8985a3e64d39d9a0ae27d7edfbf93e47666af1307befd0a8",
+  "environment": {
+    "RAYON_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "IREGI_PREPARATION_PROFILE": "1"
+  },
+  "exit_code": 101,
+  "elapsed_seconds": 9.5193276850041,
+  "finished_utc": "2026-10-23T19:23:48.841584+00:00",
+  "source_hashes_unchanged": true,
+  "binary_unchanged": true
+}

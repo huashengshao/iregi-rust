@@ -1,0 +1,73 @@
+{
+  "scope": "Selected original A0/B0/C0 native versus Symbolica raw f64 kernels; no full feature/D0/core recompilation",
+  "command": [
+    "taskset",
+    "-c",
+    "20,21",
+    "rustc",
+    "--edition=2024",
+    "--crate-name",
+    "actual_master_replay",
+    "/shared/external/iregi/iregi-rust/target/native-master-replay/source/replay.rs",
+    "-C",
+    "opt-level=3",
+    "-C",
+    "codegen-units=1",
+    "-C",
+    "lto=thin",
+    "-C",
+    "metadata=actual_master_replay",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/build/gmp-mpfr-sys-e9fd89ef30e561a9/out/lib",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_masters-736462b347335a0f.rlib",
+    "--extern",
+    "oneloop=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/liboneloop-6117c7de19c8681b.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libserde_json-d5ce7f4fcf58bd84.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/native-master-replay/replay"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 423.06652031396516,
+  "sources_before": {
+    "source/replay.rs": "077b419abaee4a5f23e746527c86f753205e86657b94fe092e4005bac624c811",
+    "source/native/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+    "source/native/mod.rs": "8c3ca1baf356fb1b449d799ea7a3617ff90ff84e474c139f803268e337e242bf",
+    "source/native/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "source/native/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+    "source/native/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9"
+  },
+  "sources_after": {
+    "source/replay.rs": "077b419abaee4a5f23e746527c86f753205e86657b94fe092e4005bac624c811",
+    "source/native/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+    "source/native/mod.rs": "8c3ca1baf356fb1b449d799ea7a3617ff90ff84e474c139f803268e337e242bf",
+    "source/native/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "source/native/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+    "source/native/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9"
+  },
+  "archives": {
+    "iregi_masters": {
+      "path": "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_masters-736462b347335a0f.rlib",
+      "sha256": "e52e3b2678b1d29ce41e9fa6309dd3b8e34febea4b14932984b7fad3b9e22d09"
+    },
+    "oneloop": {
+      "path": "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/liboneloop-6117c7de19c8681b.rlib",
+      "sha256": "ec29638d0b8fe54eec44d32ea34fa506d1e360f51b8f53bab269db5f3ac29886"
+    },
+    "symbolica": {
+      "path": "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+      "sha256": "987a2e4f7c68871e34fb13be828160a884ea96972265a6f8a4d51460da8ba03c"
+    },
+    "serde_json": {
+      "path": "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libserde_json-d5ce7f4fcf58bd84.rlib",
+      "sha256": "8a7861923cdbacb4aa5a5bd9c037d5b8d1a5a3198f6ae778971f5e6826791a7f"
+    }
+  },
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
+  "binary_sha256": "ec285c8e6f846dc97b7a129063ebc3e7f205303552a58e9d79811d019a851d25"
+}

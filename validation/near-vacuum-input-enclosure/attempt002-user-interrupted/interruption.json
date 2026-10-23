@@ -1,0 +1,26 @@
+{
+  "status": "paused_at_user_request",
+  "recorded_utc": "2026-10-23T18:56:20.752509+00:00",
+  "candidate_build": "Metadata passed; ThinLTO rustc2348400 terminated with SIGTERM, wrapper2345122 exited on observed returncode-15. No candidate runtime occurred.",
+  "candidate_binary_exists": false,
+  "owned_processes_remaining": [],
+  "preserved_files_sha256": {
+    "build-link.log": "150eb3b0e295c8952b08dd0a0bfd9745b1a1ca34ee6ac3cf8e519881cbb64e71",
+    "build-metadata.log": "074a15aec8207027f9b2828bfc7db4e57be12fbcfd9a4f415c4cea2020e2489e",
+    "build-progress.json": "07943e2ae8c3be7a61fcf77b12a0eb2102239dfdfd8746290ee4e6ec7f3a50ac",
+    "build-source.json": "2e4676c0f2a0a74e858f81701297f764dadea671396e0c71a0c631377345ad20",
+    "build_candidate.py": "590f843fb1144493110fa37be0d1045d8d8cd4a68a7a65234be4bbb17d2f081d",
+    "closure-before-build.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+    "input_enclosure_compare.rs": "0d60820ea9148f507a1f5865ca203bb8a6e5720a7f3194e2499d743cf09009bb",
+    "source/near_vacuum.rs": "79b07d47c00d9bf79675461f270148eda90bcaace94fc5376b27589bc2d0fb79"
+  },
+  "oracle": "Independent exact oracle completed before pause, output ea6073e9d6bddcc5cff7e401e3c6b50a5e31192ecd8619526f87bec53374e1b6; candidate comparison and independent output audits pending.",
+  "resume_commands": [
+    "source scripts/env.sh",
+    "python3 validation/near-vacuum-input-enclosure/build_candidate.py",
+    "source .local/symbolica-license.env",
+    "python3 validation/near-vacuum-input-enclosure/run_candidate.py"
+  ],
+  "resume_notes": "Wait for user resume and ROOT coordination. Build against retained complete-kinds closure onCPU18; frozen source mirrors match. Preserve both prior attempts. After run ask independent oracle child to audit candidate output before packaging. package.py expects oracle/candidate-audit.json and must not run before a passed independent audit.",
+  "production": "No input-rectangle production changes. The explicit certified-master cleanup package is separately adopted/tested by ROOT; default E6 remains unchanged."
+}

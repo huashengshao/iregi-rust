@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "kind": "private-automatic-planar-retry-and-receipt-accounting",
+  "status": "passed-for-listed-scopes",
+  "production_promoted": false,
+  "base": "21622ec",
+  "recorded_utc": "2026-10-23T19:42:50.475550+00:00",
+  "combined_candidate": {
+    "build": "combined/build.json",
+    "binary_sha256": "17eb14caac46e37e7b87106b941ebfaf4353f38dfc952248f56757cb9cb2fc4b",
+    "groups": [
+      {
+        "name": "eligibility",
+        "report": "combined/runs/eligibility.json",
+        "passed": 1,
+        "ignored": [],
+        "selected_tests": [
+          "execution::planar_fallback::tests::eligibility_retains_requested_mode_and_excludes_unchecked_chart_recursion"
+        ],
+        "elapsed_seconds": 27.716861200984567
+      },
+      {
+        "name": "binary64",
+        "report": "combined/runs/binary64.json",
+        "passed": 1,
+        "ignored": [],
+        "selected_tests": [
+          "execution::planar_fallback::tests::binary64_mixed_rows_preserve_failures_and_count_actual_chart_work"
+        ],
+        "elapsed_seconds": 7.039399728993885
+      },
+      {
+        "name": "hybrid",
+        "report": "combined/runs/hybrid.json",
+        "passed": 1,
+        "ignored": [],
+        "selected_tests": [
+          "execution::planar_fallback::tests::hybrid_nonplanar_failure_and_planar_recovery_retain_clone_accuracy_lifecycle"
+        ],
+        "elapsed_seconds": 27.129939166945405
+      },
+      {
+        "name": "mixed",
+        "report": "combined/runs/mixed.json",
+        "passed": 1,
+        "ignored": [],
+        "selected_tests": [
+          "execution::planar_fallback::tests::ordered_mixed_shapes_recover_tangent_rows_and_retain_transverse_primary_failure"
+        ],
+        "elapsed_seconds": 196.4510550480336
+      },
+      {
+        "name": "auxiliary",
+        "report": "combined/runs/auxiliary.json",
+        "passed": 1,
+        "ignored": [],
+        "selected_tests": [
+          "execution::planar_fallback::tests::auxiliary_preparation_and_metadata_errors_cannot_replace_primary_failure"
+        ],
+        "elapsed_seconds": 11.400330879958346
+      },
+      {
+        "name": "ordinary",
+        "report": "combined/runs/ordinary.json",
+        "passed": 41,
+        "ignored": [],
+        "selected_tests": [
+          "execution::tests::accounting_failed_profile_retry_remains_visible_after_ordinary_rejoin",
+          "execution::tests::accounting_parent_retry_error_keeps_child_master_work_and_outer_timing",
+          "execution::tests::accounting_parent_retry_includes_child_analytic_work_and_flags_once",
+          "execution::tests::accounting_profile_child_retry_survives_later_parent_retry",
+          "execution::tests::accounting_profile_error_keeps_completed_master_work_and_attempt_flags",
+          "execution::tests::accounting_profile_scatter_preserves_prior_fallback_flags_and_work",
+          "execution::tests::compounded_primal_monitor_preserves_dual_stride_and_lane_isolation",
+          "execution::tests::derived_distance_envelope_checks_internal_second_taylor_cancellation",
+          "execution::tests::derived_distance_guard_respects_input_precision_within_one_batch",
+          "execution::tests::derived_distance_guards_preserve_nonzero_jets_and_isolate_unstable_rows",
+          "execution::tests::distinct_master_leaves_preserve_mixed_dual_components_and_lane_scatter",
+          "execution::tests::equal_mass_lightlike_profile_retains_transverse_and_mixed_taylor_components",
+          "execution::tests::equal_mass_rank_one_bubble_respects_routing_and_batch_order",
+          "execution::tests::exact_preparation_is_shared_across_precisions_and_keyed_by_dual_shape",
+          "execution::tests::exact_zero_profiles_preserve_shifted_scaleless_poles_and_batch_neighbors",
+          "execution::tests::failed_optional_zero_profile_rejoins_ordinary_batch_in_original_order",
+          "execution::tests::finite_cancellation_retries_and_optional_profiles_include_child_stages",
+          "execution::tests::fused_ordinary_monitors_match_separate_primal_graph_and_lazy_lanes",
+          "execution::tests::guard_context_lifecycle_accuracy_refresh_reaches_existing_and_late_zero_profiles",
+          "execution::tests::guard_context_lifecycle_accuracy_refresh_reaches_existing_hybrid_children",
+          "execution::tests::guard_context_lifecycle_accuracy_refresh_rejects_invalid_targets_and_clones_independently",
+          "execution::tests::guard_context_lifecycle_rescue_retains_the_callers_target_at_each_precision",
+          "execution::tests::guard_context_lifecycle_reused_batches_match_fresh_workspaces_after_empty_and_invalid_calls",
+          "execution::tests::inactive_master_branches_are_batched_without_false_dual_failures",
+          "execution::tests::legacy_boundaries_are_primal_only_and_isolated_before_master_evaluation",
+          "execution::tests::legacy_pv_does_not_replace_its_gram_system_with_an_ibp_zero_profile",
+          "execution::tests::legacy_threshold_representability_respects_precision_and_unused_queries",
+          "execution::tests::legacy_zero_image_rejects_only_lanes_using_an_unsupported_diagonal",
+          "execution::tests::lightlike_unequal_mass_lanes_use_analytic_profiles",
+          "execution::tests::native_normalization_constants_use_the_requested_precision",
+          "execution::tests::nonzero_derived_distance_cancellation_is_rejected_and_resolved_at_higher_precision",
+          "execution::tests::pentagon_quadrature_budget_tracks_requested_accuracy_with_two_guard_bits",
+          "execution::tests::quadrature_error_packing_preserves_selected_lanes_and_taylor_order",
+          "execution::tests::reduction_keeps_double_double_and_arbitrary_precision_inputs",
+          "execution::tests::rounded_zero_distance_is_rejected_before_massless_master_and_profile_dispatch",
+          "execution::tests::scalar_tadpole_empty_mixed_lanes_and_reused_workspace",
+          "execution::tests::scale_squared_and_mass_taylor_components_propagate_through_all_stages",
+          "execution::tests::supplied_scalar_products_match_shift_derived_batches_and_dual_jets",
+          "execution::tests::supplied_scalar_products_use_exact_distance_zero_proofs",
+          "execution::tests::typed_static_and_dynamic_dual_carriers_agree",
+          "execution::tests::zero_constraints_check_higher_dual_components_without_freezing_routing"
+        ],
+        "elapsed_seconds": 35.413306433940306
+      },
+      {
+        "name": "pv-fast",
+        "report": "combined/runs/pv-fast.json",
+        "passed": 13,
+        "ignored": [
+          "pv::tests::original_iregi_cartesian_moments"
+        ],
+        "selected_tests": [
+          "pv::tests::alias_dag_matches_inline_and_preserves_supplied_distances",
+          "pv::tests::bubble_rank_one_and_uv_tensor_components",
+          "pv::tests::denominator_identity_is_exact_in_symbolica",
+          "pv::tests::generalized_pv_eligibility_and_coefficient_budget_are_explicit",
+          "pv::tests::generalized_pv_scalar_conversion_matches_independent_ibp_coefficients",
+          "pv::tests::generic_planar_pentagon_branch_is_lazy_and_preserves_ordinary_points",
+          "pv::tests::gram_transform_uses_raw_products_at_each_origin",
+          "pv::tests::lightlike_bubble_branches_match_exact_coefficients",
+          "pv::tests::lightlike_dual_coefficients_match_parameter_derivatives",
+          "pv::tests::lightlike_moments_match_independent_parameter_integral",
+          "pv::tests::original_iregi_cartesian_moments",
+          "pv::tests::seven_point_chart_switch_preserves_identity_and_dual_jet",
+          "pv::tests::singular_six_point_subspace_is_an_explicit_error",
+          "pv::tests::tadpole_translation_and_metric_rational_term"
+        ],
+        "elapsed_seconds": 0.5213396730832756
+      },
+      {
+        "name": "standalone",
+        "report": "combined/runs/standalone.json",
+        "passed": 9,
+        "ignored": [
+          "certified_planar::tests::certified_planar_all_330_moments_match_independent_box_identity",
+          "certified_planar::tests::public_planar_rank7_precision_artifacts_and_convergence",
+          "certified_planar::tests::public_planar_rank7_rectangular_mixed_artifact"
+        ],
+        "selected_tests": [
+          "certified_planar::tests::certified_planar_all_330_moments_match_independent_box_identity",
+          "certified_planar::tests::certified_planar_float_batches_preserve_binary64_target_and_converge",
+          "certified_planar::tests::certified_planar_rotating_mixed_jets_match_independent_box_identity",
+          "certified_planar::tests::certified_planar_spatial_binary64_guard_rejection_is_explicit",
+          "certified_planar::tests::certified_planar_tetrahedron_rank_two_binary64_isolates_failed_rows",
+          "certified_planar::tests::planar_certificate_checks_full_jets_and_primal_chart_units",
+          "certified_planar::tests::planar_constructor_rejects_unsupported_contexts_without_an_unchecked_plan",
+          "certified_planar::tests::public_planar_rank7_precision_artifacts_and_convergence",
+          "certified_planar::tests::public_planar_rank7_rectangular_mixed_artifact",
+          "certified_planar::tests::public_planar_statistics_profiles_reordering_and_error_reuse",
+          "certified_planar::tests::rounded_zero_rank_determinant_and_homogeneous_families_never_succeed",
+          "certified_planar::tests::shared_input_validator_preserves_full_jet_check_order"
+        ],
+        "elapsed_seconds": 63.257418018067256
+      },
+      {
+        "name": "success",
+        "report": "combined/runs-storage-retry/success.json",
+        "passed": 1,
+        "ignored": [],
+        "selected_tests": [
+          "execution::planar_fallback::tests::stable_nonplanar_primary_is_preserved_alongside_planar_recoveries"
+        ],
+        "elapsed_seconds": 21.446522666024975
+      }
+    ],
+    "scope": "Automatic PV/Hybrid N5 ordinary ranks1/2 and rank2 four/six-component ordered Dual dispatch; full returned arrays/metadata and per-stage counters. Guard failures/invalid rows retained.",
+    "counter_version": "Initial unchecked internal receipt increments; final mechanical delta separately qualified below."
+  },
+  "final_counter_followup": {
+    "build": "final/build.json",
+    "binary_sha256": "3e9b74af764200a68ce33c915bf87dc9739d98eab2d12484abce22f9f4bfea3d",
+    "report": "final/runs/all.json",
+    "passed": 18,
+    "selected_tests": [
+      "execution::accounting_followup_tests::accounting_failed_profile_retry_remains_visible_after_ordinary_rejoin",
+      "execution::accounting_followup_tests::accounting_parent_retry_error_keeps_child_master_work_and_outer_timing",
+      "execution::accounting_followup_tests::accounting_parent_retry_includes_child_analytic_work_and_flags_once",
+      "execution::accounting_followup_tests::accounting_profile_child_retry_survives_later_parent_retry",
+      "execution::accounting_followup_tests::accounting_profile_error_keeps_completed_master_work_and_attempt_flags",
+      "execution::accounting_followup_tests::accounting_profile_scatter_preserves_prior_fallback_flags_and_work",
+      "execution::proof_receipt_tests::receipt_compaction_reordering_calls_and_clones_preserve_outputs_and_work_counts",
+      "execution::proof_receipt_tests::receipt_dispatch_requires_the_same_source_object_not_equal_values",
+      "execution::proof_receipt_tests::receipt_domain_requires_complete_ordered_semantics_and_context",
+      "execution::proof_receipt_tests::receipt_exact_zero_component_cannot_skip_other_component_conditioning",
+      "execution::proof_receipt_tests::receipt_fallback_error_harvests_fresh_child_proof_before_returning_error",
+      "execution::proof_receipt_tests::receipt_legacy_policy_never_creates_reusable_coverage",
+      "execution::proof_receipt_tests::receipt_partial_coverage_cannot_hide_new_false_zero_component",
+      "execution::proof_receipt_tests::receipt_partial_selection_certifies_uncovered_complex_taylor_components",
+      "execution::proof_receipt_tests::receipt_precision_context_mismatch_runs_a_fresh_certificate",
+      "execution::proof_receipt_tests::receipt_profile_error_harvests_covered_proof_work_before_returning_error",
+      "execution::proof_receipt_tests::receipt_recursive_transfer_rekeys_masks_to_each_child_local_batch",
+      "execution::proof_receipt_tests::receipt_rows_use_explicit_source_mapping_and_live_batch_identity"
+    ],
+    "elapsed_seconds": 11.906748046982102,
+    "scope": "Corrected12receipt +6accounting; final checked-counter code and global-error work harvesting. Test-only module trimming source map independently audited.",
+    "source_manifest": "final/source.json",
+    "source_review": "final/source-review.json"
+  },
+  "final_adoption_patch": {
+    "path": "final/adoption.patch",
+    "sha256": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3",
+    "production_source": "final/production-source.tar.gz"
+  },
+  "failed_history": [
+    {
+      "path": "initial/runs/hybrid.json",
+      "reason": "Incorrect test assumption: full-rank nonplanar tetra fixture has exactly singular triangle sub-Gram; next candidate preserves failure and adds qualified rank1 positive control."
+    },
+    {
+      "path": "initial/runs/pv-supervisor-failure.json",
+      "reason": "ENOSPC erased final report; no PASS/timeout inferred from incomplete log."
+    },
+    {
+      "path": "combined/runs/receipts.json",
+      "reason": "11PASS/1FAIL: new synthetic fixture cloned an already-prepared immutable execution cache before mutating moments; fresh-parent fixture then passed final followup."
+    },
+    {
+      "path": "combined/runs/success-supervisor-failure.json",
+      "reason": "ENOSPC prevented final record, numerical failure location unknown. Same binary fresh-destination retry passed."
+    },
+    {
+      "path": "initial/failed-build-initializer/build.json",
+      "reason": "Incorrect private workspace initializer placement, preserved and corrected."
+    },
+    {
+      "path": "combined/failed-build-test-import/build.json",
+      "reason": "New concrete Float fixture lacked SingleFloat trait import, preserved and corrected."
+    }
+  ],
+  "limitations": [
+    "No automatic rank7 numerical claim; standalone rank7 complete-array/box agreement remains separate prior evidence.",
+    "Automatic numeric probes cover f64 and Float128, not a new DoubleFloat or arbitrary-width performance qualification.",
+    "Final checked-counter delta was tested with18focused tests, not a repeated full combined69-test suite.",
+    "Elapsed correctness timings include documented CPU contention; no parity, speedup, or final-code performance conclusion.",
+    "One external coefficient-oracle test ignored; longrank7prototype explicitly excluded from pv-fast.",
+    "Failed or unsupported lanes retain original failure, never successful initialized zeros."
+  ]
+}

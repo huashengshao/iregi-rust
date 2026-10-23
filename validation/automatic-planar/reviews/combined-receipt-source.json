@@ -1,0 +1,28 @@
+{
+  "recorded_utc": "2026-10-23T19:12:35.663031+00:00",
+  "reviewer": "/root/numeric_batch_audit",
+  "mode": "read-only source integration review;not runtime qualification",
+  "result": "no concrete proof-lifetime/context or counter-harvest blocker found",
+  "reviewed": [
+    "dispatch captures child Result;harvests public stats/private proofs/profile/notes before propagating error",
+    "generic fallback captures Result andharvests private proofs before error propagation",
+    "certified planar resets proof counters at start ofeverycall and aggregates each chart before childerror",
+    "automatic fallback aggregates certified planar proofwork before retaining originalfailure on auxiliary error",
+    "no receipt is passed across thecertifiedplanar boundary;onlycall-local countersare aggregated",
+    "public experimental accessor isabsent;counteraccessors remaincrate-private",
+    "all original receipt context/source/mask semantics unchanged"
+  ],
+  "pending": [
+    "12receipt tests including2newerrorharvest tests",
+    "automatic fallback and accounting integration runtime groups",
+    "current collector/shared-validator regression filters"
+  ],
+  "files": {
+    "execution.rs": "082145d5538b60d12ee55e6794b25cd5c3e15c09abb1509de3ee07ef29b096b1",
+    "execution/proof_receipts.rs": "4b946e4879cc2c2468b23922e6740535aced528b97b4433cc5a5f4eca188986b",
+    "execution/proof_receipt_tests.rs": "2ba0706e1172addf7e87171c06d5bd728a27c3d90bd63d9835c7c8d55d19b5bd",
+    "execution/proof_receipt_accounting_tests.rs": "444cc4d1a06f43e040bd446b73320f7a808bf4996bc5667cb2467159a2757ee8",
+    "execution/planar_fallback.rs": "1e0186c4b61a386e4ecd19dc9c119a407643f220f04694d096056644b9cc662b",
+    "certified_planar.rs": "9dbb9735e5760c327095b1e61a8a3f0c04a03b1d6e4908d185a3023d0a39d749"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "source_prepared_not_built_or_run",
+  "historical_source": "target/near-vacuum-adapter/oracle/five_pinch_oracle.rs",
+  "historical_source_sha256": "c73dbec8647da6046fe8997c6373980d0ee31b487675e5bbc0b4c6af00bf46d2",
+  "source": "target/near-vacuum-input-enclosure/oracle/five_pinch_oracle.rs",
+  "source_sha256": "a12d96533f48983bd38f5835c2085dfcb8579707363371385aabc8df33460081",
+  "durable_source": "validation/near-vacuum-input-enclosure/oracle/five_pinch_oracle.rs",
+  "fixture": {
+    "x": "2/5",
+    "eta": "2^-64",
+    "t": {
+      "real": "2/3",
+      "imaginary": "-2/3"
+    },
+    "M": {
+      "real": "5/3",
+      "imaginary": "-2/3"
+    },
+    "dt_dx": {
+      "real": "25/9",
+      "imaginary": "-25/9"
+    }
+  },
+  "orders": {
+    "box": 8,
+    "direct_pentagon": 4
+  },
+  "remainder_target": "strictly less than 2^-320 for every box, direct pentagon, five-box contraction, and mapped integrand",
+  "execution_scope": "Source preparation only. No Rust build or numeric oracle execution has been performed for this source."
+}

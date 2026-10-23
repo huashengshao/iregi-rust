@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "command": [
+    "taskset",
+    "-c",
+    "19",
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "120s",
+    "/shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/oracle/five_pinch_oracle",
+    "/shared/external/iregi/iregi-rust/validation/near-vacuum-input-enclosure/oracle/output.json"
+  ],
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "environment_overrides": {
+    "CARGO_CRATE_NAME": "five_pinch_nondyadic_oracle",
+    "RAYON_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1"
+  },
+  "license": "Inherited privately; contents never recorded.",
+  "started_utc": "2026-10-23T18:54:26.031857+00:00",
+  "completed_utc": "2026-10-23T18:54:26.210581+00:00",
+  "exit_code": 0,
+  "diagnostic_runtime_seconds": 0.17872383003123105,
+  "runtime_limit_seconds": 120,
+  "cpu": 19,
+  "binary_sha256": "058ab722b8867b8dd0e58099dc819cfcf1d4c668040d60f22ebec834c1c162fa",
+  "source_sha256": "a12d96533f48983bd38f5835c2085dfcb8579707363371385aabc8df33460081",
+  "build_manifest_sha256": "bb07b5dba1b4b300cb0fcebf63c5be3f26827847cb7433ec3c155855e5e21add",
+  "run_log_sha256": "62bcaa08d45f57b540f715c37cd5c050aa4fc321fe8e2c55ae2e9dbfbedf1fb2",
+  "timing_scope": "Diagnostic duration only; not a performance benchmark.",
+  "output_sha256": "ea6073e9d6bddcc5cff7e401e3c6b50a5e31192ecd8619526f87bec53374e1b6",
+  "closure_after_run_sha256": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44"
+}

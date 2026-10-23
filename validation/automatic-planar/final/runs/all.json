@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "command": [
+    "/shared/external/iregi/iregi-rust/target/planar-counter-followup/core-tests",
+    "--nocapture",
+    "--test-threads=1"
+  ],
+  "timeout_seconds": 180,
+  "selected_tests": [
+    "execution::accounting_followup_tests::accounting_failed_profile_retry_remains_visible_after_ordinary_rejoin",
+    "execution::accounting_followup_tests::accounting_parent_retry_error_keeps_child_master_work_and_outer_timing",
+    "execution::accounting_followup_tests::accounting_parent_retry_includes_child_analytic_work_and_flags_once",
+    "execution::accounting_followup_tests::accounting_profile_child_retry_survives_later_parent_retry",
+    "execution::accounting_followup_tests::accounting_profile_error_keeps_completed_master_work_and_attempt_flags",
+    "execution::accounting_followup_tests::accounting_profile_scatter_preserves_prior_fallback_flags_and_work",
+    "execution::proof_receipt_tests::receipt_compaction_reordering_calls_and_clones_preserve_outputs_and_work_counts",
+    "execution::proof_receipt_tests::receipt_dispatch_requires_the_same_source_object_not_equal_values",
+    "execution::proof_receipt_tests::receipt_domain_requires_complete_ordered_semantics_and_context",
+    "execution::proof_receipt_tests::receipt_exact_zero_component_cannot_skip_other_component_conditioning",
+    "execution::proof_receipt_tests::receipt_fallback_error_harvests_fresh_child_proof_before_returning_error",
+    "execution::proof_receipt_tests::receipt_legacy_policy_never_creates_reusable_coverage",
+    "execution::proof_receipt_tests::receipt_partial_coverage_cannot_hide_new_false_zero_component",
+    "execution::proof_receipt_tests::receipt_partial_selection_certifies_uncovered_complex_taylor_components",
+    "execution::proof_receipt_tests::receipt_precision_context_mismatch_runs_a_fresh_certificate",
+    "execution::proof_receipt_tests::receipt_profile_error_harvests_covered_proof_work_before_returning_error",
+    "execution::proof_receipt_tests::receipt_recursive_transfer_rekeys_masks_to_each_child_local_batch",
+    "execution::proof_receipt_tests::receipt_rows_use_explicit_source_mapping_and_live_batch_identity"
+  ],
+  "ignored_tests": [],
+  "expected_passed_tests": 18,
+  "started_utc": "2026-10-23T19:38:43.782806+00:00",
+  "cpu_affinity": [
+    16,
+    17
+  ],
+  "binary_sha256": "3e9b74af764200a68ce33c915bf87dc9739d98eab2d12484abce22f9f4bfea3d",
+  "build_manifest_sha256": "eb5d6c02a9435b7cd6a5de52a1537135c506cf5a200eef6d443dda80e594ff03",
+  "runner_sha256": "cb7467d83494259b592c81c22433f7056995a5c54276f1bbb1fb1709b8cae3d0",
+  "environment": {
+    "RAYON_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "IREGI_PREPARATION_PROFILE": "1"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 11.906748046982102,
+  "finished_utc": "2026-10-23T19:38:55.728655+00:00",
+  "source_hashes_unchanged": true,
+  "binary_unchanged": true
+}

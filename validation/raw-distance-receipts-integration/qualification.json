@@ -1,0 +1,52 @@
+{
+  "recorded_utc": "2026-10-23T19:40:25.128767+00:00",
+  "status": "compact_integration_qualification_passed",
+  "scope": "Private combined accounting + automatic-planar + raw-distance receipts snapshot with checked proof counters; no production adoption or final-counter performance claim",
+  "receipt_tests_passed": 12,
+  "accounting_tests_passed": 6,
+  "failed": 0,
+  "ignored": 0,
+  "elapsed_seconds_validation_only": 11.906748046982102,
+  "binary_sha256": "3e9b74af764200a68ce33c915bf87dc9739d98eab2d12484abce22f9f4bfea3d",
+  "binary_retained_path": "target/planar-counter-followup/core-tests",
+  "source_manifest_sha256": "d8eaba2a2bffad9e89a872e314330b8e320fb2996c659f0bd68c6b4822b8b965",
+  "independent_review": {
+    "reviewer": "/root/numeric_batch_audit",
+    "source_files_rehashed": 64,
+    "explicit_dependencies_rehashed": 6,
+    "build_and_run_and_binary_bindings_verified": true,
+    "selected_names_and_actual_log_verified": true,
+    "builder_full_closure_rechecks_recorded": 865,
+    "scope": "Independent source, explicit extern, binary, manifest and log validation; relies on builder retained full closure recheck for transitive files"
+  },
+  "changes_since_original_receipt_qualification": [
+    "Child Result retained until public work and private proof counters are harvested, including analytic and generic fallback errors",
+    "Certified-planar aggregates actual child proof work but does not transfer proof receipts across its boundary",
+    "Four direct proof counters use checked accumulation; completed certificate work is harvested before certificate error propagation",
+    "Generic child-error fixture creates a fresh parent plan, avoiding reuse of an already-populated immutable execution cache"
+  ],
+  "retained_initial_failure": {
+    "result": "11 passed, 1 failed",
+    "reason": "Fault-injection fixture cloned a plan after its immutable execution cache was populated, so the intended generic fallback was never entered",
+    "log": "initial-receipts-run.log",
+    "test_fix": "Fresh parent plan plus explicit assertion that fallback was reached; no numerical threshold changed"
+  },
+  "separate_existing_evidence": {
+    "original_receipts": "validation/raw-distance-receipts/qualification.json",
+    "original_receipt_timing": "validation/raw-distance-receipts-performance/qualification.json",
+    "ordinary_hybrid_and_planar_groups": "Owned and separately qualified by checkpoint_audit; not counted in this18-test scope"
+  },
+  "files_sha256": {
+    "source.json": "d8eaba2a2bffad9e89a872e314330b8e320fb2996c659f0bd68c6b4822b8b965",
+    "source-review.json": "f62041afccfa32ad5dfdb59efc282472c1c080b4b6e61760b59ed0b0d6775bb1",
+    "build.json": "eb5d6c02a9435b7cd6a5de52a1537135c506cf5a200eef6d443dda80e594ff03",
+    "build.log": "f14baec18d54025c7d1937b20ca893dd6be1a69252f5cc09dd35460704b993ec",
+    "run.py": "cb7467d83494259b592c81c22433f7056995a5c54276f1bbb1fb1709b8cae3d0",
+    "run.json": "db09760820867e3656ca39da18d8cbe3b0510ef9d5a39128da164e61da1801f6",
+    "run.log": "6a00ab5db0dc5f2b423e59fd654c2a748953537d2aa7c46a47ffc76b81c892f1",
+    "adoption.patch": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3",
+    "initial-receipts-run.json": "3a1198943d3a6bc4df7053a59f639014af73c2fb9f195797eaa866fc89ce9015",
+    "initial-receipts-run.log": "caef6f5b15ed2db19fbaebc681a245a246b86a81a16e95912206e339150c96e9",
+    "source-snapshots.tar.gz": "7f03258c46ba8ca5a186c91306f56d6f038abd3dfb2daf9b80094a74d51b498e"
+  }
+}

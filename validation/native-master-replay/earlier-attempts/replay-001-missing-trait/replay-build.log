@@ -1,0 +1,208 @@
+warning: unused import: `FloatLike`
+ --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/replay.rs:3:48
+  |
+3 | use iregi_masters::{NativeFloat,ScalarIntegral,FloatLike};
+  |                                                ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0599]: no method named `from_rational` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/replay.rs:15:22
+    |
+ 15 |  let mut value=0_f64.from_rational(&q);if value==0.&&sign{value=-0.;}
+    |                      ^^^^^^^^^^^^^ method not found in `f64`
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:136:8
+    |
+136 |     fn from_rational(&self, rat: &Rational) -> Self;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `SingleFloat` which provides `from_rational` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use symbolica::prelude::SingleFloat;
+    |
+
+error[E0599]: no method named `from_rational` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/replay.rs:41:59
+    |
+ 41 |   let symbolic=exact.map_coeff_with_prec(&|v|C::new(0_f64.from_rational(&v.re),0_f64.from_rational(&v.im)),53).into_batch_evaluator();
+    |                                                           ^^^^^^^^^^^^^ method not found in `f64`
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:136:8
+    |
+136 |     fn from_rational(&self, rat: &Rational) -> Self;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `SingleFloat` which provides `from_rational` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use symbolica::prelude::SingleFloat;
+    |
+
+error[E0599]: no method named `from_rational` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/replay.rs:41:86
+    |
+ 41 |   let symbolic=exact.map_coeff_with_prec(&|v|C::new(0_f64.from_rational(&v.re),0_f64.from_rational(&v.im)),53).into_batch_evaluator();
+    |                                                                                      ^^^^^^^^^^^^^ method not found in `f64`
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:136:8
+    |
+136 |     fn from_rational(&self, rat: &Rational) -> Self;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: trait `SingleFloat` which provides `from_rational` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use symbolica::prelude::SingleFloat;
+    |
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:7876:9
+     |
+7876 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+     |
+     = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:8674:9
+     |
+8674 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:8698:9
+     |
+8698 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:8732:9
+     |
+8732 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:8896:9
+     |
+8896 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:8981:9
+     |
+8981 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+    --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:9874:9
+     |
+9874 |     let mut active_len = lanes.len();
+     |         ----^^^^^^^^^^
+     |         |
+     |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:17434:9
+      |
+17434 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:17946:9
+      |
+17946 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:18463:9
+      |
+18463 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:18975:9
+      |
+18975 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:23506:9
+      |
+23506 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:24029:9
+      |
+24029 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:25999:9
+      |
+25999 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:28790:9
+      |
+28790 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:29301:9
+      |
+29301 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:29822:9
+      |
+29822 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+warning: variable does not need to be mutable
+     --> /shared/external/iregi/iregi-rust/target/native-master-replay/source/native/c0.rs:31284:9
+      |
+31284 |     let mut active_len = *count;
+      |         ----^^^^^^^^^^
+      |         |
+      |         help: remove this `mut`
+
+error: aborting due to 3 previous errors; 19 warnings emitted
+
+For more information about this error, try `rustc --explain E0599`.

@@ -1,0 +1,135 @@
+error[E0599]: no method named `exact_rational` found for struct `symbolica::prelude::Float` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare.rs:30:30
+   |
+30 |     Ok(Complex::new(value.re.exact_rational().ok_or("nonfinite real output")?,value.im.exact_rational().ok_or("nonfinite imaginary o...
+   |                              ^^^^^^^^^^^^^^
+   |
+  ::: dependencies/oneloopmaster/src/native/primitives.rs:50:8
+   |
+50 |     fn exact_rational(&self) -> Option<Rational> {
+   |        -------------- the method is available for `symbolica::prelude::Float` here
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `NativeFloat` which provides `exact_rational` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use oneloop::NativeFloat;
+   |
+help: there is a method `to_rational` with a similar name
+   |
+30 -     Ok(Complex::new(value.re.exact_rational().ok_or("nonfinite real output")?,value.im.exact_rational().ok_or("nonfinite imaginary output")?))
+30 +     Ok(Complex::new(value.re.to_rational().ok_or("nonfinite real output")?,value.im.exact_rational().ok_or("nonfinite imaginary output")?))
+   |
+
+error[E0599]: no method named `exact_rational` found for struct `symbolica::prelude::Float` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare.rs:30:88
+   |
+30 |     Ok(Complex::new(value.re.exact_rational().ok_or("nonfinite real output")?,value.im.exact_rational().ok_or("nonfinite imaginary o...
+   |                                                                                        ^^^^^^^^^^^^^^
+   |
+  ::: dependencies/oneloopmaster/src/native/primitives.rs:50:8
+   |
+50 |     fn exact_rational(&self) -> Option<Rational> {
+   |        -------------- the method is available for `symbolica::prelude::Float` here
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `NativeFloat` which provides `exact_rational` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use oneloop::NativeFloat;
+   |
+help: there is a method `to_rational` with a similar name
+   |
+30 -     Ok(Complex::new(value.re.exact_rational().ok_or("nonfinite real output")?,value.im.exact_rational().ok_or("nonfinite imaginary output")?))
+30 +     Ok(Complex::new(value.re.exact_rational().ok_or("nonfinite real output")?,value.im.to_rational().ok_or("nonfinite imaginary output")?))
+   |
+
+error[E0599]: no method named `exact_rational` found for struct `symbolica::prelude::Float` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare.rs:44:42
+   |
+44 |         Ok(Self{rl:ball.re.lower_bound().exact_rational().ok_or("nonfinite rectangle")?,
+   |                                          ^^^^^^^^^^^^^^
+   |
+  ::: dependencies/oneloopmaster/src/native/primitives.rs:50:8
+   |
+50 |     fn exact_rational(&self) -> Option<Rational> {
+   |        -------------- the method is available for `symbolica::prelude::Float` here
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `NativeFloat` which provides `exact_rational` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use oneloop::NativeFloat;
+   |
+help: there is a method `to_rational` with a similar name
+   |
+44 -         Ok(Self{rl:ball.re.lower_bound().exact_rational().ok_or("nonfinite rectangle")?,
+44 +         Ok(Self{rl:ball.re.lower_bound().to_rational().ok_or("nonfinite rectangle")?,
+   |
+
+error[E0599]: no method named `exact_rational` found for struct `symbolica::prelude::Float` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare.rs:45:38
+   |
+45 |             ru:ball.re.upper_bound().exact_rational().ok_or("nonfinite rectangle")?,
+   |                                      ^^^^^^^^^^^^^^
+   |
+  ::: dependencies/oneloopmaster/src/native/primitives.rs:50:8
+   |
+50 |     fn exact_rational(&self) -> Option<Rational> {
+   |        -------------- the method is available for `symbolica::prelude::Float` here
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `NativeFloat` which provides `exact_rational` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use oneloop::NativeFloat;
+   |
+help: there is a method `to_rational` with a similar name
+   |
+45 -             ru:ball.re.upper_bound().exact_rational().ok_or("nonfinite rectangle")?,
+45 +             ru:ball.re.upper_bound().to_rational().ok_or("nonfinite rectangle")?,
+   |
+
+error[E0599]: no method named `exact_rational` found for struct `symbolica::prelude::Float` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare.rs:46:38
+   |
+46 |             il:ball.im.lower_bound().exact_rational().ok_or("nonfinite rectangle")?,
+   |                                      ^^^^^^^^^^^^^^
+   |
+  ::: dependencies/oneloopmaster/src/native/primitives.rs:50:8
+   |
+50 |     fn exact_rational(&self) -> Option<Rational> {
+   |        -------------- the method is available for `symbolica::prelude::Float` here
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `NativeFloat` which provides `exact_rational` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use oneloop::NativeFloat;
+   |
+help: there is a method `to_rational` with a similar name
+   |
+46 -             il:ball.im.lower_bound().exact_rational().ok_or("nonfinite rectangle")?,
+46 +             il:ball.im.lower_bound().to_rational().ok_or("nonfinite rectangle")?,
+   |
+
+error[E0599]: no method named `exact_rational` found for struct `symbolica::prelude::Float` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare.rs:47:38
+   |
+47 |             iu:ball.im.upper_bound().exact_rational().ok_or("nonfinite rectangle")?})
+   |                                      ^^^^^^^^^^^^^^
+   |
+  ::: dependencies/oneloopmaster/src/native/primitives.rs:50:8
+   |
+50 |     fn exact_rational(&self) -> Option<Rational> {
+   |        -------------- the method is available for `symbolica::prelude::Float` here
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: trait `NativeFloat` which provides `exact_rational` is implemented but not in scope; perhaps you want to import it
+   |
+ 2 + use oneloop::NativeFloat;
+   |
+help: there is a method `to_rational` with a similar name
+   |
+47 -             iu:ball.im.upper_bound().exact_rational().ok_or("nonfinite rectangle")?})
+47 +             iu:ball.im.upper_bound().to_rational().ok_or("nonfinite rectangle")?})
+   |
+
+error: aborting due to 6 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

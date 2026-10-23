@@ -1,0 +1,27 @@
+{
+  "recorded_utc": "2026-10-23T19:30:34.890631+00:00",
+  "reviewer": "/root/numeric_batch_audit",
+  "mode": "boundedread-only source/hash audit;no buildor runtime",
+  "source_manifest_sha256": "d8eaba2a2bffad9e89a872e314330b8e320fb2996c659f0bd68c6b4822b8b965",
+  "source_hashes_verified": true,
+  "production_delta_vs_frozen_combined": [
+    "execution.rs:existing checked DistanceProofWork::add replaces4directincrements;completedcertificateworkharvestedbeforeResult propagation",
+    "execution/proof_receipt_accounting_tests.rs:fresh parentplan avoids reusing populated immutable executioncache;explicitfallbackreached assertion"
+  ],
+  "test_mapping": {
+    "cfg_only_files": 18,
+    "normalization": "replace #[cfg(any())] with #[cfg(test)] reconstructs productionsource exactly inallmodifiedfiles except appended testharness inexecution.rs",
+    "execution_append": "Reenables12proof_receipt_tests plus6accounting_followup_tests with copied c/plan/close helpers;includes exact accounting_tests.rs",
+    "other_production_changes": false
+  },
+  "production_execution_sha256": "7793591d03b7fc126f543322d56dfad45086affc921bdcebbced09600c2e3397",
+  "corrected_receipt_tests_sha256": "db2d064748cb48f853840bf1965f6d5b8cade9ee6c195917530789ef15889a06",
+  "counter_error_review": "Underlyingcertificateengine resets rows/passes before anyvalidation, soharvestonErr cannotimport priorcallcounts. Existingcheckedadd providesexplicitoverflowerror. No numericalformula/input/branchselectionchange.",
+  "result": "no concrete source blocker;18test runtimequalification stillpending",
+  "not_claimed": [
+    "compilepass",
+    "testpass",
+    "productionadoption",
+    "performancequalificationofthisfinalcounterdelta"
+  ]
+}

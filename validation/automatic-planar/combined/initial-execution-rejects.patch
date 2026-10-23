@@ -1,0 +1,86 @@
+diff a/target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs b/target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs	(rejected hunks)
+@@ -39,6 +39,9 @@
+         BatchResult, InputLayout, KinematicsBatch, LaneStatus, ReductionError, ResultMetadata,
+     },
+ };
++
++mod proof_receipts;
++use proof_receipts::*;
+ 
+ /// Work performed by the last batch, independently of Taylor component count.
+ ///
+@@ -1271,9 +1328,25 @@
+         &mut self,
+         batch: &KinematicsBatch<T>,
+     ) -> Result<BatchResult<T>, ReductionError> {
++        self.reduce_batch_with_receipts(batch, None)
++    }
++
++    fn reduce_batch_with_receipts(
++        &mut self,
++        batch: &KinematicsBatch<T>,
++        incoming: Option<&IncomingDistanceReceipts<'_, '_, T>>,
++    ) -> Result<BatchResult<T>, ReductionError> {
++        let incoming = incoming.filter(|proof| {
++            proof.source_lanes.len() == batch.rows
++                && proof
++                    .source_lanes
++                    .iter()
++                    .all(|&lane| lane < proof.receipt.source.rows)
++        });
++        self.proof_work = DistanceProofWork::default();
+         self.profile = ExecutionProfile::default();
+         let started = self.profiling.then(Instant::now);
+-        let result = self.reduce_batch_impl(batch);
++        let result = self.reduce_batch_impl(batch, incoming);
+         if let Some(started) = started {
+             self.profile.total = started.elapsed();
+         }
+@@ -2006,6 +2105,7 @@
+                     components: self.components,
+                     values,
+                 })?;
++                self.proof_work.add(fallback.proof_work)?;
+                 self.stats.fallback_rows = lanes.len();
+                 for (compact, &lane) in lanes.iter().enumerate() {
+                     result.fallback_used[lane] = true;
+@@ -2164,11 +2266,30 @@
+     for &lane in lanes {
+         values.extend_from_slice(&batch.values[lane * input_width..(lane + 1) * input_width]);
+     }
+-    let evaluated = workspace.reduce_batch(&KinematicsBatch {
++    let child_batch = KinematicsBatch {
+         rows: lanes.len(),
+         components: batch.components,
+         values,
+-    })?;
++    };
++    // The reference identity binds proofs to exactly the rows cloned above.
++    // A mismatched source disables reuse rather than comparing sample values.
++    let incoming = receipts
++        .filter(|receipt| {
++            std::ptr::eq(receipt.source, batch)
++                && lanes.iter().all(|&lane| lane < receipt.source.rows)
++                && workspace.distance_zeros.as_ref().is_some_and(|checks| {
++                    checks.domain.reusable()
++                        && receipt.domain.as_ref() == checks.domain.as_ref()
++                        && receipt.working_bits == workspace.prototype.get_precision()
++                        && receipt.accuracy_bits == workspace.accuracy_bits
++                })
++        })
++        .map(|receipt| IncomingDistanceReceipts {
++            receipt,
++            source_lanes: lanes,
++        });
++    let evaluated = workspace.reduce_batch_with_receipts(&child_batch, incoming.as_ref())?;
++    proof_work.add(workspace.proof_work)?;
+     for (compact, &lane) in lanes.iter().enumerate() {
+         diagnostics[lane].extend_from_slice(&workspace.diagnostics[compact]);
+         result.analytic_used[lane] = true;
+@@ -4008,3 +4129,6 @@
+     }
+     include!("execution/guard_context_tests.rs");
+ }
++
++#[cfg(test)]
++mod proof_receipt_tests;

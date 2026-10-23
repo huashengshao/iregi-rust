@@ -1,0 +1,37 @@
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -305,9 +305,15 @@
+                     );
+                 }
+                 selected.retain(|pair| covered.binary_search(pair).is_err());
+-                work.reused_pairs += before - selected.len();
++                work.add(DistanceProofWork {
++                    reused_pairs: before - selected.len(),
++                    ..Default::default()
++                })?;
+                 if selected.is_empty() {
+-                    work.covered_rows += 1;
++                    work.add(DistanceProofWork {
++                        covered_rows: 1,
++                        ..Default::default()
++                    })?;
+                     continue;
+                 }
+             }
+@@ -336,9 +342,13 @@
+         }
+         let certificates =
+             self.certificate
+-                .check_selected_batch(&self.input, self.lanes.len(), &self.selected)?;
+-        work.certificate_rows += self.certificate.evaluated_rows();
+-        work.certificate_passes += self.certificate.passes();
++                .check_selected_batch(&self.input, self.lanes.len(), &self.selected);
++        work.add(DistanceProofWork {
++            certificate_rows: self.certificate.evaluated_rows(),
++            certificate_passes: self.certificate.passes(),
++            ..Default::default()
++        })?;
++        let certificates = certificates?;
+         for ((&compact, selected), certificate) in
+             self.lanes.iter().zip(&self.selected).zip(certificates)
+         {

@@ -1,0 +1,825 @@
+diff --git a/crates/iregi-rust/src/plan.rs b/crates/iregi-rust/src/plan.rs
+--- a/crates/iregi-rust/src/plan.rs
++++ b/crates/iregi-rust/src/plan.rs
+@@ -650,6 +650,31 @@
+             && !(self.snapping_threshold.is_some()
+                 && self.algorithm_used == Algorithm::PassarinoVeltman)
+     }
++    /// Only ordinary requested PV/Hybrid plans may own the outer planar retry.
++    /// The condition is retained when a plan is specialized for a Dual shape.
++    pub(crate) fn automatic_planar_settings(&self) -> Option<ReductionSettings> {
++        let settings = &self.settings;
++        if self.special_kinematics
++            || self.certified_scalar_basis.is_some()
++            || self.certified_planar_chart.is_some()
++            || settings.propagators != 5
++            || settings.rank > 7
++            || settings.powers != [1; 5]
++            || settings.dimension_shift != 0
++            || !matches!(
++                settings.algorithm,
++                Algorithm::PassarinoVeltman | Algorithm::Hybrid
++            )
++            || settings.invariants != InvariantInput::FromShifts
++            || settings.input_policy != InputPolicy::Preserve
++        {
++            return None;
++        }
++        let mut settings = settings.clone();
++        settings.algorithm = Algorithm::PassarinoVeltman;
++        Some(settings)
++    }
++
+     pub fn preparation_notes(&self) -> &[String] {
+         &self.preparation_notes
+     }
+diff --git a/crates/iregi-rust/src/execution.rs b/crates/iregi-rust/src/execution.rs
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -40,6 +40,9 @@
+     },
+ };
+ 
++mod planar_fallback;
++use planar_fallback::PlanarFallback;
++
+ /// Work performed by the last batch, independently of Taylor component count.
+ ///
+ /// Each scalar family is called once for all its leaves and active samples.
+@@ -981,6 +984,7 @@
+     primal_inputs: Vec<Complex<T>>,
+     primal_output: Vec<Complex<T>>,
+     fallback: Option<Box<Workspace<T>>>,
++    planar_fallback: Option<PlanarFallback<T>>,
+     lightlike_equal: Option<Box<Workspace<T>>>,
+     lightlike_unequal: Option<Box<Workspace<T>>>,
+     stats: ExecutionStats,
+@@ -1166,6 +1170,9 @@
+             quadrature,
+             masters,
+             fallback,
++            planar_fallback: plan
++                .and_then(ReductionPlan::automatic_planar_settings)
++                .map(PlanarFallback::new),
+             lightlike_equal,
+             lightlike_unequal,
+             valid_lanes: Vec::new(),
+@@ -1206,6 +1213,9 @@
+                 "accuracy precision must be positive and no greater than working precision".into(),
+             ));
+         }
++        if let Some(state) = &mut self.planar_fallback {
++            state.set_accuracy_precision(bits)?;
++        }
+         self.accuracy_bits = bits;
+         self.guard_context.set_accuracy(&self.prototype, bits);
+         for group in &mut self.masters {
+@@ -1246,6 +1256,9 @@
+     /// Enable or disable timing for this workspace and its analytic/fallback plans.
+     pub fn set_profiling(&mut self, enabled: bool) {
+         self.profiling = enabled;
++        if let Some(state) = &mut self.planar_fallback {
++            state.set_profiling(enabled);
++        }
+         for child in [
+             &mut self.fallback,
+             &mut self.lightlike_equal,
+@@ -1276,7 +1289,15 @@
+     ) -> Result<BatchResult<T>, ReductionError> {
+         self.profile = ExecutionProfile::default();
+         let started = self.profiling.then(Instant::now);
+-        let result = self.reduce_batch_impl(batch);
++        if let Some(state) = &mut self.planar_fallback {
++            state.begin_batch();
++        }
++        let mut result = self.reduce_batch_impl(batch);
++        if let Ok(reduced) = &mut result {
++            if let Err(error) = self.retry_planar(batch, reduced) {
++                result = Err(error);
++            }
++        }
+         if let Some(started) = started {
+             self.profile.total = started.elapsed();
+         }
+diff --git a/crates/iregi-rust/src/execution/planar_fallback.rs b/crates/iregi-rust/src/execution/planar_fallback.rs
+new file mode 100644
+--- /dev/null
++++ b/crates/iregi-rust/src/execution/planar_fallback.rs
+@@ -0,0 +1,213 @@
++//! Optional outer retry through the checked constant-one planar interface.
++
++use super::*;
++use crate::{
++    CertificateExecutionStats, CertifiedPlanarReductionPlan, CertifiedPlanarWorkspace,
++    ReductionSettings,
++};
++
++#[derive(Clone)]
++pub(super) struct PlanarFallback<T: NativeFloat> {
++    settings: ReductionSettings,
++    workspace: Option<Result<Box<CertifiedPlanarWorkspace<T>>, String>>,
++    certificate_stats: CertificateExecutionStats,
++}
++
++impl<T: NativeFloat> PlanarFallback<T>
++where
++    Complex<T>: EvaluationDomain,
++{
++    pub(super) fn new(settings: ReductionSettings) -> Self {
++        Self {
++            settings,
++            workspace: None,
++            certificate_stats: CertificateExecutionStats::default(),
++        }
++    }
++
++    pub(super) fn begin_batch(&mut self) {
++        self.certificate_stats = CertificateExecutionStats::default();
++    }
++
++    pub(super) fn set_accuracy_precision(&mut self, bits: u32) -> Result<(), ReductionError> {
++        if let Some(Ok(workspace)) = &mut self.workspace {
++            workspace.set_accuracy_precision(bits)?;
++        }
++        Ok(())
++    }
++
++    pub(super) fn set_profiling(&mut self, enabled: bool) {
++        if let Some(Ok(workspace)) = &mut self.workspace {
++            workspace.set_profiling(enabled);
++        }
++    }
++
++    fn prepare(
++        &self,
++        prototype: T,
++        shape: &Option<Vec<Vec<usize>>>,
++        accuracy_bits: u32,
++        profiling: bool,
++    ) -> Result<Box<CertifiedPlanarWorkspace<T>>, String> {
++        let plan =
++            CertifiedPlanarReductionPlan::new(self.settings.clone()).map_err(|e| e.to_string())?;
++        let mut workspace = match shape {
++            None => CertifiedPlanarWorkspace::new(&plan, prototype),
++            Some(shape) => CertifiedPlanarWorkspace::new_dual(
++                &plan,
++                prototype,
++                HyperDual::<Complex<Rational>>::new(shape.clone()),
++            ),
++        }
++        .map_err(|e| e.to_string())?;
++        workspace
++            .set_accuracy_precision(accuracy_bits)
++            .map_err(|e| e.to_string())?;
++        workspace.set_profiling(profiling);
++        Ok(Box::new(workspace))
++    }
++}
++
++impl<T: NativeFloat> Workspace<T>
++where
++    Complex<T>: EvaluationDomain,
++{
++    /// Certificate work performed by the optional planar fallback in the last
++    /// outer call. Zero when no certificate was run, including preparation
++    /// failure; `fallback_rows` separately counts all attempted retry stages.
++    pub fn last_planar_certificate_execution(&self) -> CertificateExecutionStats {
++        self.planar_fallback
++            .as_ref()
++            .map_or_else(CertificateExecutionStats::default, |s| s.certificate_stats)
++    }
++
++    pub(super) fn retry_planar(
++        &mut self,
++        batch: &KinematicsBatch<T>,
++        result: &mut BatchResult<T>,
++    ) -> Result<(), ReductionError> {
++        let Some(state) = &mut self.planar_fallback else {
++            return Ok(());
++        };
++        let input_width = checked_mul(self.parameters, self.components)?;
++        let output_width = checked_mul(checked_mul(self.basis.len(), 4)?, self.components)?;
++        // Recheck the original rows: retained active-lane lists can omit a
++        // failed analytic profile or a lane rejected by a numerical guard.
++        let lanes: Vec<_> = batch
++            .values
++            .chunks_exact(input_width)
++            .enumerate()
++            .filter_map(|(lane, row)| {
++                (result.statuses[lane] != LaneStatus::Success
++                    && validate_input_row(row, &self.layout, self.components).is_none())
++                .then_some(lane)
++            })
++            .collect();
++        if lanes.is_empty() {
++            return Ok(());
++        }
++        self.stats.fallback_rows = self
++            .stats
++            .fallback_rows
++            .checked_add(lanes.len())
++            .ok_or_else(size_error)?;
++        for &lane in &lanes {
++            result.fallback_used[lane] = true;
++        }
++        if state.workspace.is_none() {
++            let started = self.profiling.then(Instant::now);
++            state.workspace = Some(state.prepare(
++                self.prototype.clone(),
++                &self.shape,
++                self.accuracy_bits,
++                self.profiling,
++            ));
++            record_time(started, &mut self.profile.arguments);
++        }
++        let workspace = match state.workspace.as_mut().expect("prepared planar retry") {
++            Ok(workspace) => workspace,
++            Err(error) => {
++                for &lane in &lanes {
++                    self.diagnostics[lane].push(format!(
++                        "planar fallback preparation failed; original failure retained: {error}"
++                    ));
++                }
++                return Ok(());
++            }
++        };
++        let mut packed = KinematicsBatch {
++            rows: lanes.len(),
++            components: self.components,
++            values: Vec::with_capacity(checked_mul(lanes.len(), input_width)?),
++        };
++        for &lane in &lanes {
++            packed
++                .values
++                .extend_from_slice(&batch.values[lane * input_width..(lane + 1) * input_width]);
++        }
++        let retried = workspace.reduce_batch(&packed);
++        self.stats.add_child_work(workspace.last_execution())?;
++        state.certificate_stats = workspace.last_certificate_execution();
++        if let Some(profile) = workspace.last_profile() {
++            self.profile.add_stages(profile);
++        }
++        for (compact, &lane) in lanes.iter().enumerate() {
++            if let Some(notes) = workspace.last_diagnostics().get(compact) {
++                self.diagnostics[lane].extend_from_slice(notes);
++            }
++            if workspace.last_chart_attempts().get(compact) == Some(&true) {
++                result.analytic_used[lane] = true;
++            }
++        }
++        let retried = match retried {
++            Ok(retried) => retried,
++            Err(error) => {
++                for &lane in &lanes {
++                    self.diagnostics[lane].push(format!(
++                        "planar fallback evaluation failed; original failure retained: {error}"
++                    ));
++                }
++                return Ok(());
++            }
++        };
++        // A component count alone does not establish a Dual algebra or the
++        // normalization of coefficients. Validate the whole result before any
++        // failed parent lane can become successful.
++        if retried.basis != self.basis
++            || retried.metadata() != &self.metadata
++            || retried.components != self.components
++            || retried.rows() != lanes.len()
++            || retried.fallback_used.len() != lanes.len()
++            || retried.analytic_used.len() != lanes.len()
++            || retried.values.len() != checked_mul(lanes.len(), output_width)?
++        {
++            for &lane in &lanes {
++                self.diagnostics[lane].push("planar fallback returned inconsistent basis, metadata or buffer dimensions; original failure retained".into());
++            }
++            return Ok(());
++        }
++        for (compact, &lane) in lanes.iter().enumerate() {
++            result.analytic_used[lane] |= retried.analytic_used[compact];
++            result.fallback_used[lane] |= retried.fallback_used[compact];
++            match retried.lane(compact) {
++                Ok(values) => {
++                    result.values[lane * output_width..(lane + 1) * output_width]
++                        .clone_from_slice(values);
++                    result.statuses[lane] = LaneStatus::Success;
++                    self.stats.fallback_successes = self
++                        .stats
++                        .fallback_successes
++                        .checked_add(1)
++                        .ok_or_else(size_error)?;
++                }
++                Err(status) => self.diagnostics[lane].push(format!(
++                    "planar fallback returned {status:?}; original failure retained"
++                )),
++            }
++        }
++        Ok(())
++    }
++}
++
++#[cfg(test)]
++mod tests;
+diff --git a/crates/iregi-rust/src/execution/planar_fallback/tests.rs b/crates/iregi-rust/src/execution/planar_fallback/tests.rs
+new file mode 100644
+--- /dev/null
++++ b/crates/iregi-rust/src/execution/planar_fallback/tests.rs
+@@ -0,0 +1,499 @@
++use super::*;
++use crate::{Algorithm, Convention, InputPolicy, InvariantInput, TensorWeights};
++use symbolica::domains::float::{Float, FloatLike};
++
++fn settings(algorithm: Algorithm) -> ReductionSettings {
++    let mut value = ReductionSettings::new(5, 2);
++    value.algorithm = algorithm;
++    value
++}
++
++fn ordinary_plan(algorithm: Algorithm) -> &'static ReductionPlan {
++    static PV: OnceLock<ReductionPlan> = OnceLock::new();
++    static HYBRID: OnceLock<ReductionPlan> = OnceLock::new();
++    match algorithm {
++        Algorithm::PassarinoVeltman => {
++            PV.get_or_init(|| ReductionPlan::new(settings(algorithm)).unwrap())
++        }
++        Algorithm::Hybrid => {
++            HYBRID.get_or_init(|| ReductionPlan::new(settings(algorithm)).unwrap())
++        }
++        _ => unreachable!(),
++    }
++}
++
++fn row<T: NativeFloat>(
++    prototype: &T,
++    points: [[i64; 4]; 5],
++    components: usize,
++    masses: [i64; 5],
++    scale: i64,
++) -> Vec<Complex<T>> {
++    let mut values = vec![Complex::new(prototype.zero(), prototype.zero()); 26 * components];
++    for (index, value) in points
++        .into_iter()
++        .flatten()
++        .chain(masses)
++        .chain([scale])
++        .enumerate()
++    {
++        values[index * components].re = prototype.from_rational(&Rational::from(value));
++    }
++    values
++}
++
++fn tetra<T: NativeFloat>(prototype: &T, components: usize) -> Vec<Complex<T>> {
++    row(
++        prototype,
++        [
++            [0, -1, -1, -1],
++            [0, 1, 1, -1],
++            [0, 1, -1, 1],
++            [0, -1, 1, 1],
++            [0, 0, 0, 0],
++        ],
++        components,
++        [1; 5],
++        1,
++    )
++}
++fn spatial<T: NativeFloat>(prototype: &T, components: usize) -> Vec<Complex<T>> {
++    row(
++        prototype,
++        [
++            [0, 0, 0, 0],
++            [0, 1, 0, 0],
++            [0, 0, 1, 0],
++            [0, 0, 0, 1],
++            [0, 1, 1, 1],
++        ],
++        components,
++        [4, 9, 16, 25, 36],
++        3,
++    )
++}
++
++fn assert_result_lane<T: NativeFloat>(a: &BatchResult<T>, i: usize, b: &BatchResult<T>, j: usize) {
++    assert_eq!(a.metadata(), b.metadata());
++    assert_eq!(a.basis, b.basis);
++    assert_eq!(a.components, b.components);
++    assert_eq!(a.statuses[i], b.statuses[j]);
++    if a.statuses[i] == LaneStatus::Success {
++        assert_eq!(a.lane(i).unwrap(), b.lane(j).unwrap());
++    } else {
++        assert!(a.lane(i).is_err());
++        assert!(b.lane(j).is_err());
++    }
++    assert_eq!(a.fallback_used[i], b.fallback_used[j]);
++    assert_eq!(a.analytic_used[i], b.analytic_used[j]);
++}
++
++#[test]
++fn eligibility_retains_requested_mode_and_excludes_unchecked_chart_recursion() {
++    let plan = ordinary_plan(Algorithm::PassarinoVeltman);
++    assert!(plan.automatic_planar_settings().is_some());
++    assert!(
++        ordinary_plan(Algorithm::Hybrid)
++            .automatic_planar_settings()
++            .is_some()
++    );
++    let mut altered = plan.clone();
++    altered.settings.algorithm = Algorithm::Ibp;
++    assert!(altered.automatic_planar_settings().is_none());
++    altered.settings = plan.settings.clone();
++    altered.settings.powers[0] = 2;
++    assert!(altered.automatic_planar_settings().is_none());
++    altered.settings = plan.settings.clone();
++    altered.settings.dimension_shift = 1;
++    assert!(altered.automatic_planar_settings().is_none());
++    altered.settings = plan.settings.clone();
++    altered.settings.invariants = InvariantInput::SuppliedScalarProducts;
++    assert!(altered.automatic_planar_settings().is_none());
++    altered.settings = plan.settings.clone();
++    altered.settings.input_policy = InputPolicy::legacy_onshell();
++    assert!(altered.automatic_planar_settings().is_none());
++    altered.settings = plan.settings.clone();
++    altered.special_kinematics = true;
++    assert!(altered.automatic_planar_settings().is_none());
++    let certified =
++        ReductionPlan::new_certified_planar(settings(Algorithm::PassarinoVeltman), 0).unwrap();
++    assert!(certified.automatic_planar_settings().is_none());
++    assert!(
++        certified
++            .with_analytic_jet_order(2)
++            .unwrap()
++            .automatic_planar_settings()
++            .is_none()
++    );
++    assert!(
++        plan.with_analytic_jet_order(2)
++            .unwrap()
++            .automatic_planar_settings()
++            .is_some()
++    );
++    let child = Workspace::new(&certified, 0_f64).unwrap();
++    assert!(child.planar_fallback.is_none());
++}
++
++#[test]
++fn binary64_mixed_rows_preserve_failures_and_count_actual_chart_work() {
++    let plan = ordinary_plan(Algorithm::PassarinoVeltman);
++    let mut workspace = Workspace::new(plan, 0_f64).unwrap();
++    workspace.set_profiling(true);
++    let mut baseline = workspace.clone();
++    baseline.planar_fallback = None;
++    let good = tetra(&0_f64, 1);
++    let mut nonplanar = good.clone();
++    nonplanar[16].re = 1.;
++    let mut invalid = good.clone();
++    invalid[25].re = -1.;
++    let batch = KinematicsBatch {
++        rows: 5,
++        components: 1,
++        values: [good.clone(), nonplanar, good, invalid, spatial(&0_f64, 1)].concat(),
++    };
++    let input = batch.values.clone();
++    let primary = baseline.reduce_batch(&batch).unwrap();
++    let prior = baseline.last_execution();
++    let reduced = workspace.reduce_batch(&batch).unwrap();
++    eprintln!(
++        "automatic f64 primary={:?} final={:?}",
++        primary.statuses, reduced.statuses
++    );
++    assert_eq!(batch.values, input);
++    for lane in [0, 2] {
++        assert_ne!(primary.statuses[lane], LaneStatus::Success);
++        assert_eq!(reduced.statuses[lane], LaneStatus::Success);
++        assert!(reduced.fallback_used[lane] && reduced.analytic_used[lane]);
++    }
++    assert_eq!(reduced.lane(0).unwrap(), reduced.lane(2).unwrap());
++    assert_eq!(reduced.statuses[3], primary.statuses[3]);
++    assert!(!reduced.fallback_used[3]);
++    assert_ne!(primary.statuses[4], LaneStatus::Success);
++    assert_eq!(reduced.statuses[4], primary.statuses[4]);
++    assert!(reduced.fallback_used[4] && reduced.analytic_used[4]);
++    assert!(reduced.lane(4).is_err());
++    assert!(
++        workspace.last_diagnostics()[4]
++            .iter()
++            .any(|m| m.contains("original failure retained"))
++    );
++    assert_eq!(reduced.statuses[1], primary.statuses[1]);
++    if primary.statuses[1] == LaneStatus::Success {
++        assert_eq!(reduced.lane(1).unwrap(), primary.lane(1).unwrap());
++        assert!(!reduced.fallback_used[1]);
++    } else {
++        assert!(
++            workspace.last_diagnostics()[1]
++                .iter()
++                .any(|m| m.contains("certified nonzero"))
++        );
++        assert!(!reduced.analytic_used[1]);
++    }
++    let attempts = (0..5)
++        .filter(|&i| i != 3 && primary.statuses[i] != LaneStatus::Success)
++        .count();
++    let child = workspace
++        .planar_fallback
++        .as_ref()
++        .unwrap()
++        .workspace
++        .as_ref()
++        .unwrap()
++        .as_ref()
++        .unwrap();
++    let child_work = child.last_execution();
++    let actual = workspace.last_execution();
++    assert_eq!(actual.input_rows, 5);
++    assert_eq!(
++        actual.fallback_rows,
++        prior.fallback_rows + attempts + child_work.fallback_rows
++    );
++    assert_eq!(
++        actual.fallback_successes,
++        prior.fallback_successes + 2 + child_work.fallback_successes
++    );
++    assert_eq!(
++        actual.master_rows,
++        prior.master_rows + child_work.master_rows
++    );
++    assert_eq!(
++        actual.reduction_rows,
++        prior.reduction_rows + child_work.reduction_rows
++    );
++    assert_eq!(
++        actual.analytic_rows,
++        prior.analytic_rows + child_work.analytic_rows
++    );
++    let certificate = workspace.last_planar_certificate_execution();
++    assert_eq!(certificate.input_rows, attempts);
++    assert_eq!(certificate.reduction_batches, 1);
++    assert_eq!(child_work.analytic_rows, 3);
++    assert_eq!(child_work.reduction_rows, 3);
++    assert!(
++        workspace.last_profile().unwrap().total >= workspace.last_profile().unwrap().scalar_masters
++    );
++    let reordered = KinematicsBatch {
++        rows: 5,
++        components: 1,
++        values: [4, 2, 3, 0, 1]
++            .into_iter()
++            .flat_map(|i| batch.values[i * 26..(i + 1) * 26].to_vec())
++            .collect(),
++    };
++    let reordered_result = workspace.reduce_batch(&reordered).unwrap();
++    for (i, original) in [4, 2, 3, 0, 1].into_iter().enumerate() {
++        assert_result_lane(&reordered_result, i, &reduced, original);
++    }
++    for range in [0..2, 2..5] {
++        let part = KinematicsBatch {
++            rows: range.len(),
++            components: 1,
++            values: batch.values[range.start * 26..range.end * 26].to_vec(),
++        };
++        let part_result = workspace.reduce_batch(&part).unwrap();
++        for (i, original) in range.enumerate() {
++            assert_result_lane(&part_result, i, &reduced, original);
++        }
++    }
++    let empty = workspace
++        .reduce_batch(&KinematicsBatch {
++            rows: 0,
++            components: 1,
++            values: vec![],
++        })
++        .unwrap();
++    assert_eq!(empty.rows(), 0);
++    assert_eq!(workspace.last_execution(), ExecutionStats::default());
++    assert_eq!(
++        workspace.last_planar_certificate_execution(),
++        CertificateExecutionStats::default()
++    );
++    assert!(
++        workspace
++            .reduce_batch(&KinematicsBatch {
++                rows: 1,
++                components: 1,
++                values: vec![]
++            })
++            .is_err()
++    );
++    assert_eq!(
++        workspace.last_planar_certificate_execution(),
++        CertificateExecutionStats::default()
++    );
++    assert_eq!(workspace.last_execution().fallback_rows, 0);
++    assert!(workspace.last_profile().is_some());
++    let singleton = workspace
++        .reduce_batch(&KinematicsBatch {
++            rows: 1,
++            components: 1,
++            values: batch.values[..26].to_vec(),
++        })
++        .unwrap();
++    assert_result_lane(&singleton, 0, &reduced, 0);
++}
++
++#[test]
++fn hybrid_stable_primary_and_planar_recovery_retain_clone_accuracy_lifecycle() {
++    let prototype = Float::new(128);
++    let plan = ordinary_plan(Algorithm::Hybrid);
++    let mut workspace = Workspace::new(plan, prototype.clone()).unwrap();
++    workspace.set_accuracy_precision(53).unwrap();
++    let good = tetra(&prototype, 1);
++    let mut nonplanar = good.clone();
++    nonplanar[16].re = prototype.one();
++    let batch = KinematicsBatch {
++        rows: 3,
++        components: 1,
++        values: [good.clone(), nonplanar, good].concat(),
++    };
++    let mut baseline = workspace.clone();
++    baseline.planar_fallback = None;
++    let primary = baseline.reduce_batch(&batch).unwrap();
++    let reduced = workspace.reduce_batch(&batch).unwrap();
++    eprintln!(
++        "automatic Hybrid128 primary={:?} final={:?}",
++        primary.statuses, reduced.statuses
++    );
++    assert_eq!(primary.statuses[1], LaneStatus::Success);
++    assert_eq!(reduced.statuses, vec![LaneStatus::Success; 3]);
++    assert_eq!(reduced.lane(1).unwrap(), primary.lane(1).unwrap());
++    assert_eq!(reduced.fallback_used[1], primary.fallback_used[1]);
++    assert_eq!(workspace.last_planar_certificate_execution().input_rows, 2);
++    let mut cloned = workspace.clone();
++    cloned.set_profiling(true);
++    cloned.set_accuracy_precision(80).unwrap();
++    assert_eq!(workspace.accuracy_bits, 53);
++    assert_eq!(cloned.accuracy_bits, 80);
++    assert!(workspace.last_profile().is_none());
++    let strict = cloned.reduce_batch(&batch).unwrap();
++    let mut fresh = Workspace::new(plan, prototype).unwrap();
++    fresh.set_accuracy_precision(80).unwrap();
++    let fresh_result = fresh.reduce_batch(&batch).unwrap();
++    for i in 0..3 {
++        assert_result_lane(&strict, i, &fresh_result, i);
++    }
++    let original = workspace.reduce_batch(&batch).unwrap();
++    for i in 0..3 {
++        assert_result_lane(&original, i, &reduced, i);
++    }
++    assert!(cloned.last_profile().is_some());
++    assert!(workspace.last_profile().is_none());
++}
++
++#[test]
++fn ordered_mixed_shapes_recover_tangent_rows_and_retain_transverse_primary_failure() {
++    let prototype = Float::new(128);
++    let mut configuration = settings(Algorithm::PassarinoVeltman);
++    configuration.convention = Convention::MadLoop;
++    configuration.tensor_weights = TensorWeights::Multinomial;
++    let plan = ReductionPlan::new(configuration).unwrap();
++    for shape in [
++        vec![vec![0, 0], vec![0, 1], vec![1, 0], vec![1, 1]],
++        vec![
++            vec![0, 0],
++            vec![1, 0],
++            vec![0, 1],
++            vec![1, 1],
++            vec![0, 2],
++            vec![2, 0],
++        ],
++    ] {
++        let components = shape.len();
++        let s = shape.iter().position(|v| v == &[1, 0]).unwrap();
++        let t = shape.iter().position(|v| v == &[0, 1]).unwrap();
++        let mixed = 3;
++        let mut tangent = spatial(&prototype, components);
++        for (argument, component) in [
++            (4, s),
++            (8, t),
++            (16, s),
++            (16, t),
++            (20, mixed),
++            (21, mixed),
++            (22, mixed),
++            (23, mixed),
++            (24, mixed),
++        ] {
++            tangent[argument * components + component].re = prototype.one();
++        }
++        let mut transverse = tangent.clone();
++        transverse[16 * components + mixed].re = prototype.one();
++        let mut invalid = tangent.clone();
++        invalid[25 * components].re = -prototype.one();
++        let batch = KinematicsBatch {
++            rows: 5,
++            components,
++            values: [
++                tangent.clone(),
++                transverse,
++                tangent.clone(),
++                invalid,
++                tangent,
++            ]
++            .concat(),
++        };
++        let mut workspace = Workspace::new_dual(
++            &plan,
++            prototype.clone(),
++            HyperDual::<u8>::new(shape.clone()),
++        )
++        .unwrap();
++        workspace.set_accuracy_precision(53).unwrap();
++        let mut baseline = workspace.clone();
++        baseline.planar_fallback = None;
++        let primary = baseline.reduce_batch(&batch).unwrap();
++        let reduced = workspace.reduce_batch(&batch).unwrap();
++        eprintln!(
++            "automatic ordered shape{shape:?} primary={:?} final={:?}",
++            primary.statuses, reduced.statuses
++        );
++        for i in [0, 2, 4] {
++            assert_eq!(reduced.statuses[i], LaneStatus::Success);
++            assert!(reduced.fallback_used[i] && reduced.analytic_used[i]);
++            assert_eq!(reduced.lane(i).unwrap(), reduced.lane(0).unwrap());
++        }
++        assert_eq!(reduced.metadata().dual_shape(), Some(shape.as_slice()));
++        assert_eq!(reduced.metadata().convention(), Convention::MadLoop);
++        assert_eq!(
++            reduced.metadata().tensor_weights(),
++            TensorWeights::Multinomial
++        );
++        assert_ne!(primary.statuses[1], LaneStatus::Success);
++        assert_eq!(reduced.statuses[1], primary.statuses[1]);
++        assert!(reduced.fallback_used[1]);
++        assert!(!reduced.analytic_used[1]);
++        assert!(reduced.lane(1).is_err());
++        assert!(
++            workspace.last_diagnostics()[1].iter().any(
++                |n| n.contains("Taylor component 3") && n.contains("original failure retained")
++            )
++        );
++        assert_eq!(reduced.statuses[3], primary.statuses[3]);
++        assert!(!reduced.fallback_used[3]);
++        let certificate = workspace.last_planar_certificate_execution();
++        assert_eq!(certificate.input_rows, 4);
++        assert_eq!(certificate.reduction_batches, 1);
++        let child = workspace
++            .planar_fallback
++            .as_ref()
++            .unwrap()
++            .workspace
++            .as_ref()
++            .unwrap()
++            .as_ref()
++            .unwrap();
++        let mut standalone = child.clone();
++        let reference = standalone.reduce_batch(&batch).unwrap();
++        for i in [0, 2, 4] {
++            assert_eq!(reduced.lane(i).unwrap(), reference.lane(i).unwrap());
++        }
++        assert_eq!(workspace.last_execution().fallback_successes, 3);
++    }
++}
++
++#[test]
++fn auxiliary_preparation_and_metadata_errors_cannot_replace_primary_failure() {
++    let plan = ordinary_plan(Algorithm::PassarinoVeltman);
++    let mut workspace = Workspace::new(plan, 0_f64).unwrap();
++    let batch = KinematicsBatch {
++        rows: 1,
++        components: 1,
++        values: tetra(&0_f64, 1),
++    };
++    let mut baseline = workspace.clone();
++    baseline.planar_fallback = None;
++    let primary = baseline.reduce_batch(&batch).unwrap();
++    assert_ne!(primary.statuses[0], LaneStatus::Success);
++    workspace.planar_fallback.as_mut().unwrap().settings.rank = 8;
++    let rejected = workspace.reduce_batch(&batch).unwrap();
++    assert_eq!(rejected.statuses, primary.statuses);
++    assert!(rejected.fallback_used[0]);
++    assert!(!rejected.analytic_used[0]);
++    assert_eq!(
++        workspace.last_planar_certificate_execution(),
++        CertificateExecutionStats::default()
++    );
++    assert!(
++        workspace.last_diagnostics()[0]
++            .iter()
++            .any(|m| m.contains("preparation failed"))
++    );
++    let mut wrong = Workspace::new(plan, 0_f64).unwrap();
++    wrong.planar_fallback.as_mut().unwrap().settings.convention = Convention::MadLoop;
++    let rejected = wrong.reduce_batch(&batch).unwrap();
++    assert_eq!(rejected.statuses, primary.statuses);
++    assert!(rejected.fallback_used[0] && rejected.analytic_used[0]);
++    assert_eq!(wrong.last_execution().fallback_successes, 0);
++    assert_eq!(
++        wrong.last_planar_certificate_execution().reduction_batches,
++        1
++    );
++    assert!(
++        wrong.last_diagnostics()[0]
++            .iter()
++            .any(|m| m.contains("inconsistent basis, metadata or buffer dimensions"))
++    );
++    assert!(rejected.lane(0).is_err());
++}

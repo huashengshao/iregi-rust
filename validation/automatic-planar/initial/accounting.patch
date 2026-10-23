@@ -1,0 +1,654 @@
+diff --git a/crates/iregi-rust/src/execution.rs b/crates/iregi-rust/src/execution.rs
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -54,10 +54,13 @@
+     /// These are separate from `master_rows`, which counts requested leaves.
+     pub pentagon_box_rows: usize,
+     pub reduction_rows: usize,
+-    /// Samples retried by the hybrid algorithm after a failed PV stability check.
++    /// Lane attempts across fallback stages, including failed preparation or
++    /// certification. One sample can contribute once to each attempted stage.
+     pub fallback_rows: usize,
++    /// Failed-to-successful recoveries across fallback stages, including children.
+     pub fallback_successes: usize,
+-    /// Samples routed through an exact analytic kinematic-limit profile.
++    /// Lane attempts across numerical analytic profiles, including child stages.
++    /// Certificate-only attempts and chart preparation failures are excluded.
+     pub analytic_rows: usize,
+ }
+ 
+@@ -1592,7 +1595,7 @@
+                                 ));
+                                 result.statuses[lane] = LaneStatus::Success;
+                                 result.analytic_used[lane] = false;
+-                                result.fallback_used[lane] = false;
++                                // Keep any actual child fallback attempt visible after rejoining.
+                                 ordinary.push(compact);
+                             }
+                         }
+@@ -2001,21 +2004,41 @@
+                         &batch.values[lane * input_width..(lane + 1) * input_width],
+                     );
+                 }
++                self.stats.fallback_rows = self
++                    .stats
++                    .fallback_rows
++                    .checked_add(lanes.len())
++                    .ok_or_else(size_error)?;
++                for &lane in &lanes {
++                    result.fallback_used[lane] = true;
++                }
+                 let retried = fallback.reduce_batch(&KinematicsBatch {
+                     rows: lanes.len(),
+                     components: self.components,
+                     values,
+-                })?;
+-                self.stats.fallback_rows = lanes.len();
++                });
++                self.stats.add_child_work(fallback.last_execution())?;
++                if let Some(profile) = fallback.last_profile() {
++                    self.profile.add_stages(profile);
++                }
+                 for (compact, &lane) in lanes.iter().enumerate() {
+-                    result.fallback_used[lane] = true;
+-                    self.diagnostics[lane].extend_from_slice(&fallback.diagnostics[compact]);
++                    if let Some(notes) = fallback.diagnostics.get(compact) {
++                        self.diagnostics[lane].extend_from_slice(notes);
++                    }
++                }
++                let retried = retried?;
++                for (compact, &lane) in lanes.iter().enumerate() {
++                    result.analytic_used[lane] |= retried.analytic_used[compact];
+                     match retried.lane(compact) {
+                         Ok(output) => {
+                             result.values[lane * output_width..(lane + 1) * output_width]
+                                 .clone_from_slice(output);
+                             result.statuses[lane] = LaneStatus::Success;
+-                            self.stats.fallback_successes += 1;
++                            self.stats.fallback_successes = self
++                                .stats
++                                .fallback_successes
++                                .checked_add(1)
++                                .ok_or_else(size_error)?;
+                         }
+                         Err(status) => {
+                             let primary = &result.statuses[lane];
+@@ -2025,35 +2048,6 @@
+                         }
+                     }
+                 }
+-                let work = fallback.last_execution();
+-                if let Some(profile) = fallback.last_profile() {
+-                    self.profile.add_stages(profile);
+-                }
+-                self.stats.argument_rows = self
+-                    .stats
+-                    .argument_rows
+-                    .checked_add(work.argument_rows)
+-                    .ok_or_else(size_error)?;
+-                self.stats.master_family_batches = self
+-                    .stats
+-                    .master_family_batches
+-                    .checked_add(work.master_family_batches)
+-                    .ok_or_else(size_error)?;
+-                self.stats.master_rows = self
+-                    .stats
+-                    .master_rows
+-                    .checked_add(work.master_rows)
+-                    .ok_or_else(size_error)?;
+-                self.stats.pentagon_box_rows = self
+-                    .stats
+-                    .pentagon_box_rows
+-                    .checked_add(work.pentagon_box_rows)
+-                    .ok_or_else(size_error)?;
+-                self.stats.reduction_rows = self
+-                    .stats
+-                    .reduction_rows
+-                    .checked_add(work.reduction_rows)
+-                    .ok_or_else(size_error)?;
+             }
+         }
+         Ok(result)
+@@ -2164,56 +2158,35 @@
+     for &lane in lanes {
+         values.extend_from_slice(&batch.values[lane * input_width..(lane + 1) * input_width]);
+     }
++    stats.analytic_rows = stats
++        .analytic_rows
++        .checked_add(lanes.len())
++        .ok_or_else(size_error)?;
++    for &lane in lanes {
++        result.analytic_used[lane] = true;
++    }
+     let evaluated = workspace.reduce_batch(&KinematicsBatch {
+         rows: lanes.len(),
+         components: batch.components,
+         values,
+-    })?;
++    });
++    stats.add_child_work(workspace.last_execution())?;
++    if let Some(child_profile) = workspace.last_profile() {
++        profile.add_stages(child_profile);
++    }
+     for (compact, &lane) in lanes.iter().enumerate() {
+-        diagnostics[lane].extend_from_slice(&workspace.diagnostics[compact]);
+-        result.analytic_used[lane] = true;
+-        result.fallback_used[lane] = evaluated.fallback_used[compact];
++        if let Some(notes) = workspace.diagnostics.get(compact) {
++            diagnostics[lane].extend_from_slice(notes);
++        }
++    }
++    let evaluated = evaluated?;
++    for (compact, &lane) in lanes.iter().enumerate() {
++        result.fallback_used[lane] |= evaluated.fallback_used[compact];
+         result.statuses[lane] = evaluated.statuses[compact].clone();
+         if let Ok(output) = evaluated.lane(compact) {
+             result.values[lane * output_width..(lane + 1) * output_width].clone_from_slice(output);
+         }
+     }
+-    stats.analytic_rows = stats
+-        .analytic_rows
+-        .checked_add(lanes.len())
+-        .ok_or_else(size_error)?;
+-    let work = workspace.last_execution();
+-    if let Some(child_profile) = workspace.last_profile() {
+-        profile.add_stages(child_profile);
+-    }
+-    stats.argument_rows = stats
+-        .argument_rows
+-        .checked_add(work.argument_rows)
+-        .ok_or_else(size_error)?;
+-    stats.master_family_batches = stats
+-        .master_family_batches
+-        .checked_add(work.master_family_batches)
+-        .ok_or_else(size_error)?;
+-    stats.master_rows = stats
+-        .master_rows
+-        .checked_add(work.master_rows)
+-        .ok_or_else(size_error)?;
+-    stats.pentagon_box_rows = stats
+-        .pentagon_box_rows
+-        .checked_add(work.pentagon_box_rows)
+-        .ok_or_else(size_error)?;
+-    stats.reduction_rows = stats
+-        .reduction_rows
+-        .checked_add(work.reduction_rows)
+-        .ok_or_else(size_error)?;
+-    stats.fallback_rows = stats
+-        .fallback_rows
+-        .checked_add(work.fallback_rows)
+-        .ok_or_else(size_error)?;
+-    stats.fallback_successes = stats
+-        .fallback_successes
+-        .checked_add(work.fallback_successes)
+-        .ok_or_else(size_error)?;
+     Ok(())
+ }
+ 
+@@ -2381,6 +2354,29 @@
+     }
+ }
+ 
++impl ExecutionStats {
++    /// Aggregate actual child work while preserving the outer input row count.
++    fn add_child_work(&mut self, child: Self) -> Result<(), ReductionError> {
++        macro_rules! add {
++            ($field:ident) => {
++                self.$field = self
++                    .$field
++                    .checked_add(child.$field)
++                    .ok_or_else(size_error)?;
++            };
++        }
++        add!(argument_rows);
++        add!(master_family_batches);
++        add!(master_rows);
++        add!(pentagon_box_rows);
++        add!(reduction_rows);
++        add!(fallback_rows);
++        add!(fallback_successes);
++        add!(analytic_rows);
++        Ok(())
++    }
++}
++
+ impl ExecutionProfile {
+     fn add_stages(&mut self, child: Self) {
+         self.arguments += child.arguments;
+@@ -4007,4 +4003,5 @@
+         assert!(scalar.snapping_monitor.is_none());
+     }
+     include!("execution/guard_context_tests.rs");
++    include!("execution/accounting_tests.rs");
+ }
+diff --git a/crates/iregi-rust/src/types.rs b/crates/iregi-rust/src/types.rs
+--- a/crates/iregi-rust/src/types.rs
++++ b/crates/iregi-rust/src/types.rs
+@@ -150,7 +150,8 @@
+     pub(crate) metadata: ResultMetadata,
+     pub(crate) values: Vec<Complex<T>>,
+     pub statuses: Vec<LaneStatus>,
+-    /// True when this sample was retried with the alternate reduction method.
++    /// True when an optional fallback stage was attempted for this sample,
++    /// including preparation or certificate rejection before numerical work.
+     pub fallback_used: Vec<bool>,
+     /// The lane used an exact analytic kinematic-limit profile.
+     pub analytic_used: Vec<bool>,
+diff --git a/crates/iregi-rust/src/certified_planar.rs b/crates/iregi-rust/src/certified_planar.rs
+--- a/crates/iregi-rust/src/certified_planar.rs
++++ b/crates/iregi-rust/src/certified_planar.rs
+@@ -179,6 +179,7 @@
+     certificate_stats: CertificateExecutionStats,
+     profile: ExecutionProfile,
+     diagnostics: Vec<Vec<String>>,
++    chart_attempts: Vec<bool>,
+ }
+ 
+ impl<T: NativeFloat> CertifiedPlanarWorkspace<T>
+@@ -229,6 +230,7 @@
+             certificate_stats: CertificateExecutionStats::default(),
+             profile: ExecutionProfile::default(),
+             diagnostics: Vec::new(),
++            chart_attempts: Vec::new(),
+         })
+     }
+ 
+@@ -273,6 +275,9 @@
+     pub fn last_profile(&self) -> Option<ExecutionProfile> {
+         self.profiling.then_some(self.profile)
+     }
++    pub(crate) fn last_chart_attempts(&self) -> &[bool] {
++        &self.chart_attempts
++    }
+     pub fn last_diagnostics(&self) -> &[Vec<String>] {
+         &self.diagnostics
+     }
+@@ -304,6 +309,7 @@
+             ..Default::default()
+         };
+         self.diagnostics.clear();
++        self.chart_attempts.clear();
+         if input.components != self.components {
+             return Err(ReductionError::InvalidInput(
+                 "planar input Taylor layout does not match workspace".into(),
+@@ -334,6 +340,7 @@
+             analytic_used: vec![false; input.rows],
+         };
+         self.diagnostics.resize_with(input.rows, Vec::new);
++        self.chart_attempts.resize(input.rows, false);
+         let mut exact = Vec::with_capacity(input.values.len());
+         let mut lanes = Vec::with_capacity(input.rows);
+         for (lane, row) in input.values.chunks_exact(width).enumerate() {
+@@ -368,8 +375,12 @@
+         ];
+         let certificates =
+             self.certificate
+-                .check_selected_batch(&exact, lanes.len(), &rank_selection)?;
++                .check_selected_batch(&exact, lanes.len(), &rank_selection);
+         self.add_certificate_stats()?;
++        if let Some(started) = started {
++            self.profile.arguments = started.elapsed();
++        }
++        let certificates = certificates?;
+         let mut planar_lanes = Vec::new();
+         let mut planar_exact = Vec::new();
+         for (compact, (&lane, certificate)) in lanes.iter().zip(certificates).enumerate() {
+@@ -399,8 +410,12 @@
+             &planar_exact,
+             planar_lanes.len(),
+             &chart_selection,
+-        )?;
++        );
+         self.add_certificate_stats()?;
++        if let Some(started) = started {
++            self.profile.arguments = started.elapsed();
++        }
++        let certificates = certificates?;
+         let mut groups = BTreeMap::<usize, Vec<usize>>::new();
+         for (lane, certificate) in planar_lanes.into_iter().zip(certificates) {
+             match certificate {
+@@ -459,6 +474,9 @@
+                 .analytic_rows
+                 .checked_add(lanes.len())
+                 .ok_or_else(|| preparation("planar execution counter overflow"))?;
++            for &lane in &lanes {
++                self.chart_attempts[lane] = true;
++            }
+             let reduced = workspace.reduce_batch(&packed);
+             add_stats(&mut self.stats, workspace.last_execution())?;
+             if let Some(profile) = workspace.last_profile() {
+@@ -466,6 +484,11 @@
+                 self.profile.scalar_masters += profile.scalar_masters;
+                 self.profile.reduction += profile.reduction;
+             }
++            for (compact, &lane) in lanes.iter().enumerate() {
++                if let Some(notes) = workspace.last_diagnostics().get(compact) {
++                    self.diagnostics[lane].extend_from_slice(notes);
++                }
++            }
+             let reduced = reduced?;
+             for (compact, &lane) in lanes.iter().enumerate() {
+                 result.statuses[lane] = reduced.statuses[compact].clone();
+@@ -473,7 +496,6 @@
+                 // Match ordinary analytic-profile routing: an attempted chart
+                 // remains visible even when its numerical guard rejects the lane.
+                 result.analytic_used[lane] = true;
+-                self.diagnostics[lane].extend_from_slice(&workspace.last_diagnostics()[compact]);
+                 if let Ok(values) = reduced.lane(compact) {
+                     result.values[lane * output_width..(lane + 1) * output_width]
+                         .clone_from_slice(values);
+diff --git a/crates/iregi-rust/src/execution/accounting_tests.rs b/crates/iregi-rust/src/execution/accounting_tests.rs
+new file mode 100644
+--- /dev/null
++++ b/crates/iregi-rust/src/execution/accounting_tests.rs
+@@ -0,0 +1,310 @@
++// Included inside execution::tests. These are private dispatch/accounting
++// controls, not additional mathematical integral-validation fixtures.
++
++fn accounting_a0_batch(masses: &[f64]) -> KinematicsBatch<f64> {
++    KinematicsBatch {
++        rows: masses.len(),
++        components: 1,
++        values: masses
++            .iter()
++            .flat_map(|&mass| [0., 0., 0., 0., mass, 1.].map(c))
++            .collect(),
++    }
++}
++
++fn accounting_a0_workspace(reject_primary: bool, allow_profiles: bool) -> Workspace<f64> {
++    let mut configuration = plan(1, 0);
++    configuration.special_kinematics = !allow_profiles;
++    if reject_primary {
++        // Preserve the actual A0 dependency but inject a singular output term.
++        // All fixture rows have p0_time=0, so the existing numerical guard
++        // rejects this primary only after its argument/master work has run.
++        configuration.moments[0][3] =
++            &configuration.moments[0][3] + Atom::num(1) / &configuration.parameters[0];
++    }
++    Workspace::new(&configuration, 0.).unwrap()
++}
++
++fn accounting_assert_same_lanes(actual: &BatchResult<f64>, expected: &BatchResult<f64>) {
++    assert_eq!(actual.metadata(), expected.metadata());
++    assert_eq!(actual.basis, expected.basis);
++    assert_eq!(actual.components, expected.components);
++    assert_eq!(actual.rows(), expected.rows());
++    for lane in 0..actual.rows() {
++        assert_eq!(actual.statuses[lane], LaneStatus::Success);
++        for (&left, &right) in actual
++            .lane(lane)
++            .unwrap()
++            .iter()
++            .zip(expected.lane(lane).unwrap())
++        {
++            close(left, right);
++        }
++    }
++}
++
++#[test]
++fn accounting_profile_child_retry_survives_later_parent_retry() {
++    let batch = accounting_a0_batch(&[0., 4.]);
++    let expected = accounting_a0_workspace(false, false)
++        .reduce_batch(&batch)
++        .unwrap();
++
++    let mut profile_child = accounting_a0_workspace(true, false);
++    profile_child.fallback = Some(Box::new(accounting_a0_workspace(false, false)));
++    let mut parent = accounting_a0_workspace(true, true);
++    parent.zero_profiles.insert(
++        ZeroInvariantProfile {
++            masses: vec![true],
++            distances: Vec::new(),
++        },
++        Ok(Box::new(profile_child)),
++    );
++    parent.fallback = Some(Box::new(accounting_a0_workspace(false, false)));
++    parent.set_profiling(true);
++
++    let actual = parent.reduce_batch(&batch).unwrap();
++    accounting_assert_same_lanes(&actual, &expected);
++    assert_eq!(actual.fallback_used, [true, true]);
++    assert_eq!(actual.analytic_used, [true, false]);
++    let work = parent.last_execution();
++    assert_eq!(work.input_rows, 2);
++    // One retry happens inside the zero-mass analytic child, before the
++    // nonzero-mass ordinary lane reaches the parent's retry stage.
++    assert_eq!(work.fallback_rows, 2);
++    assert_eq!(work.fallback_successes, 2);
++    assert_eq!(work.analytic_rows, 1);
++    assert_eq!(work.argument_rows, 5);
++    assert_eq!(work.reduction_rows, 4);
++    assert_eq!(work.master_family_batches, 4);
++    assert_eq!(work.master_rows, 4);
++    let profile = parent.last_profile().unwrap();
++    assert!(profile.arguments + profile.scalar_masters + profile.reduction <= profile.total);
++}
++
++#[test]
++fn accounting_profile_scatter_preserves_prior_fallback_flags_and_work() {
++    let batch = accounting_a0_batch(&[2., 4., 9.]);
++    let mut initial = accounting_a0_workspace(true, false);
++    initial.fallback = Some(Box::new(accounting_a0_workspace(false, false)));
++    initial.set_profiling(true);
++    let mut result = initial.reduce_batch(&batch).unwrap();
++    let before = result.clone();
++    assert_eq!(result.fallback_used, [true; 3]);
++    let mut work = initial.last_execution();
++    let mut profile = initial.last_profile().unwrap();
++    let before_total = profile.total;
++    let mut diagnostics = initial.last_diagnostics().to_vec();
++    let mut child = accounting_a0_workspace(false, false);
++    child.set_profiling(true);
++
++    dispatch_profile(
++        &mut child,
++        &[2, 0],
++        &batch,
++        &mut result,
++        &mut work,
++        &mut profile,
++        &mut diagnostics,
++    )
++    .unwrap();
++
++    accounting_assert_same_lanes(&result, &before);
++    assert_eq!(result.fallback_used, [true; 3]);
++    assert_eq!(result.analytic_used, [true, false, true]);
++    assert_eq!(work.input_rows, 3);
++    assert_eq!(work.fallback_rows, 3);
++    assert_eq!(work.fallback_successes, 3);
++    assert_eq!(work.analytic_rows, 2);
++    assert_eq!(work.argument_rows, 8);
++    assert_eq!(work.reduction_rows, 8);
++    assert_eq!(work.master_rows, 8);
++    assert_eq!(child.last_execution().input_rows, 2);
++    // dispatch_profile adds only child stages. The owning outer call closes
++    // its own timer; adding the child's total here would count elapsed time twice.
++    assert_eq!(profile.total, before_total);
++}
++
++#[test]
++fn accounting_profile_error_keeps_completed_master_work_and_attempt_flags() {
++    let batch = accounting_a0_batch(&[2., 4., 9.]);
++    let mut initial = accounting_a0_workspace(false, false);
++    initial.set_profiling(true);
++    let mut result = initial.reduce_batch(&batch).unwrap();
++    let before = result.clone();
++    let mut work = initial.last_execution();
++    let mut profile = initial.last_profile().unwrap();
++    let before_profile = profile;
++    let mut diagnostics = initial.last_diagnostics().to_vec();
++    let mut child = accounting_a0_workspace(false, false);
++    child.set_profiling(true);
++    // A real A0 batch executes first. Symbolica then rejects the deliberately
++    // wrong output buffer length at the recurrence evaluator boundary.
++    child.reduction_outputs = 0;
++    let failure = dispatch_profile(
++        &mut child,
++        &[2, 0],
++        &batch,
++        &mut result,
++        &mut work,
++        &mut profile,
++        &mut diagnostics,
++    );
++
++    assert!(matches!(failure, Err(ReductionError::Evaluation(_))));
++    assert_eq!(result.values, before.values);
++    assert_eq!(result.statuses, before.statuses);
++    assert_eq!(result.metadata(), before.metadata());
++    assert_eq!(result.fallback_used, [false; 3]);
++    assert_eq!(result.analytic_used, [true, false, true]);
++    assert_eq!(work.input_rows, 3);
++    assert_eq!(work.argument_rows, 5);
++    assert_eq!(work.master_family_batches, 2);
++    assert_eq!(work.master_rows, 5);
++    assert_eq!(work.reduction_rows, 5);
++    assert_eq!(work.analytic_rows, 2);
++    assert_eq!(work.fallback_rows, 0);
++    assert_eq!(work.fallback_successes, 0);
++    let child_work = child.last_execution();
++    assert_eq!(child_work.master_rows, 2);
++    assert_eq!(child_work.reduction_rows, 2);
++    let child_profile = child.last_profile().unwrap();
++    assert_eq!(
++        profile.arguments,
++        before_profile.arguments + child_profile.arguments
++    );
++    assert_eq!(
++        profile.scalar_masters,
++        before_profile.scalar_masters + child_profile.scalar_masters
++    );
++    assert_eq!(
++        profile.reduction,
++        before_profile.reduction + child_profile.reduction
++    );
++    assert_eq!(profile.total, before_profile.total);
++    assert!(
++        child_profile.arguments + child_profile.scalar_masters + child_profile.reduction
++            <= child_profile.total
++    );
++}
++
++#[test]
++fn accounting_parent_retry_error_keeps_child_master_work_and_outer_timing() {
++    let batch = accounting_a0_batch(&[2.]);
++    let mut child = accounting_a0_workspace(false, false);
++    child.reduction_outputs = 0;
++    let mut parent = accounting_a0_workspace(true, false);
++    parent.fallback = Some(Box::new(child));
++    parent.set_profiling(true);
++
++    let failure = parent.reduce_batch(&batch);
++    assert!(matches!(failure, Err(ReductionError::Evaluation(_))));
++    let work = parent.last_execution();
++    assert_eq!(work.input_rows, 1);
++    assert_eq!(work.argument_rows, 2);
++    assert_eq!(work.master_family_batches, 2);
++    assert_eq!(work.master_rows, 2);
++    assert_eq!(work.reduction_rows, 2);
++    assert_eq!(work.fallback_rows, 1);
++    assert_eq!(work.fallback_successes, 0);
++    assert_eq!(work.analytic_rows, 0);
++    let child = parent.fallback.as_ref().unwrap();
++    assert_eq!(child.last_execution().master_rows, 1);
++    assert_eq!(child.last_execution().reduction_rows, 1);
++    let profile = parent.last_profile().unwrap();
++    let child_profile = child.last_profile().unwrap();
++    assert!(profile.arguments >= child_profile.arguments);
++    assert!(profile.scalar_masters >= child_profile.scalar_masters);
++    assert!(profile.reduction >= child_profile.reduction);
++    assert!(profile.arguments + profile.scalar_masters + profile.reduction <= profile.total);
++}
++
++#[test]
++fn accounting_parent_retry_includes_child_analytic_work_and_flags_once() {
++    let mut settings = ReductionSettings::new(2, 0);
++    settings.convention = Convention::OneLoop;
++    settings.algorithm = Algorithm::Hybrid;
++    let mut configuration = ReductionPlan::new(settings).unwrap();
++    let clean_fallback = configuration.fallback.as_ref().unwrap().clone();
++    // This dimensionless fault affects only the fresh primary graph. The
++    // original IBP fallback is left intact and still sees a lightlike bubble.
++    configuration.moments[0][3] =
++        &configuration.moments[0][3] + &configuration.parameters[0] / &configuration.parameters[1];
++    let batch = KinematicsBatch {
++        rows: 1,
++        components: 1,
++        values: [0., 0., 0., 0., 1., 1., 0., 0., 4., 9., 1.].map(c).to_vec(),
++    };
++    let expected = Workspace::new(&clean_fallback, 0.)
++        .unwrap()
++        .reduce_batch(&batch)
++        .unwrap();
++    assert_eq!(expected.analytic_used, [true]);
++    let mut parent = Workspace::new(&configuration, 0.).unwrap();
++    // Keep classification enabled in the child only, so this control reaches
++    // the actual parent retry before the exact lightlike analytic dispatch.
++    parent.classification_offset = None;
++    parent.zero_profile_offset = None;
++    parent.zero_profile_plan = None;
++    parent.set_profiling(true);
++    let actual = parent.reduce_batch(&batch).unwrap();
++
++    accounting_assert_same_lanes(&actual, &expected);
++    assert_eq!(actual.fallback_used, [true]);
++    assert_eq!(actual.analytic_used, [true]);
++    let work = parent.last_execution();
++    let child_work = parent.fallback.as_ref().unwrap().last_execution();
++    assert_eq!(work.input_rows, 1);
++    assert_eq!(work.fallback_rows, 1);
++    assert_eq!(work.fallback_successes, 1);
++    assert_eq!(work.analytic_rows, 1);
++    assert_eq!(child_work.analytic_rows, 1);
++    assert_eq!(child_work.argument_rows, 2);
++    assert_eq!(work.argument_rows, 3);
++    assert_eq!(work.reduction_rows, 2);
++    let profile = parent.last_profile().unwrap();
++    assert!(profile.arguments + profile.scalar_masters + profile.reduction <= profile.total);
++}
++
++#[test]
++fn accounting_failed_profile_retry_remains_visible_after_ordinary_rejoin() {
++    let batch = accounting_a0_batch(&[4., 0., 9.]);
++    let expected = accounting_a0_workspace(false, false)
++        .reduce_batch(&batch)
++        .unwrap();
++    let mut profile_child = accounting_a0_workspace(true, false);
++    profile_child.fallback = Some(Box::new(accounting_a0_workspace(true, false)));
++    let mut parent = accounting_a0_workspace(false, true);
++    parent.zero_profiles.insert(
++        ZeroInvariantProfile {
++            masses: vec![true],
++            distances: Vec::new(),
++        },
++        Ok(Box::new(profile_child)),
++    );
++    parent.set_profiling(true);
++
++    let actual = parent.reduce_batch(&batch).unwrap();
++    accounting_assert_same_lanes(&actual, &expected);
++    // The optional profile and its retry both fail, after which the ordinary
++    // graph succeeds. The retry remains an actual attempt in this lane.
++    assert_eq!(actual.fallback_used, [false, true, false]);
++    // This flag also controls routing: rejoining clears it so that an ordinary
++    // failure would remain eligible for the owning workspace's later retry.
++    assert_eq!(actual.analytic_used, [false; 3]);
++    assert!(parent.last_diagnostics()[1].iter().any(|note| {
++        note.contains("exact-zero profile evaluation failed")
++            && note.contains("ordinary reduction retained")
++    }));
++    let work = parent.last_execution();
++    assert_eq!(work.input_rows, 3);
++    assert_eq!(work.fallback_rows, 1);
++    assert_eq!(work.fallback_successes, 0);
++    assert_eq!(work.analytic_rows, 1);
++    assert_eq!(work.argument_rows, 5);
++    assert_eq!(work.reduction_rows, 5);
++    assert_eq!(work.master_family_batches, 3);
++    assert_eq!(work.master_rows, 5);
++    let profile = parent.last_profile().unwrap();
++    assert!(profile.arguments + profile.scalar_masters + profile.reduction <= profile.total);
++}

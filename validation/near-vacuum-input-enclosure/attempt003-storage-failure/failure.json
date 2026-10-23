@@ -1,0 +1,20 @@
+{
+  "status": "infrastructure_storage_failure",
+  "recorded_utc": "2026-10-23T19:18:49.179824+00:00",
+  "failure": "Python OSError errno28 No space left on device while write(build-progress.json) after subprocess return. Build-progress file was truncated to0bytes; link exit code was not persisted. Do not infer a precise rustc failure cause from this missing record.",
+  "observed_state": "Metadata log has expected warnings only; link log has expected warnings only; final executable absent. Compiler3222012 and wrapper3204489 exited. No candidate numerical runtime occurred.",
+  "session": 90427,
+  "candidate_binary_exists": false,
+  "preserved_files_sha256": {
+    "build-link.log": "150eb3b0e295c8952b08dd0a0bfd9745b1a1ca34ee6ac3cf8e519881cbb64e71",
+    "build-metadata.log": "074a15aec8207027f9b2828bfc7db4e57be12fbcfd9a4f415c4cea2020e2489e",
+    "build-progress.json": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build-source.json": "2e4676c0f2a0a74e858f81701297f764dadea671396e0c71a0c631377345ad20",
+    "build_candidate.py": "590f843fb1144493110fa37be0d1045d8d8cd4a68a7a65234be4bbb17d2f081d",
+    "closure-before-build.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+    "input_enclosure_compare.rs": "0d60820ea9148f507a1f5865ca203bb8a6e5720a7f3194e2499d743cf09009bb",
+    "source/near_vacuum.rs": "79b07d47c00d9bf79675461f270148eda90bcaace94fc5376b27589bc2d0fb79"
+  },
+  "wrapper_trace": "build_candidate.py:65 builds.append(record); write(build-progress.json,builds) -> pathlib.write_text -> open -> OSError[Errno28]",
+  "continuation": "Wait for ROOT capacity coordination; preserve this failed attempt. Retry exact same Rust source with stage exit records printed before filesystem writes."
+}

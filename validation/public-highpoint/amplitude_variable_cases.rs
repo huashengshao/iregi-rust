@@ -1,0 +1,102 @@
+/// Private witness: complete variable sets and full amplitude/error equality.
+pub fn diagnostic_amplitude_variable_cases() -> Vec<(String, String)> {
+    let sx = symbolica::symbol!("iregi_amplitude_variable_diagnostic::x");
+    let sy = symbolica::symbol!("iregi_amplitude_variable_diagnostic::y");
+    let sf = symbolica::symbol!("iregi_amplitude_variable_diagnostic::f");
+    let x = Atom::var(sx);
+    let y = Atom::var(sy);
+    let p = Atom::var(symbolica::symbol!("iregi_amplitude_variable_diagnostic::p"));
+    let q = Atom::var(symbolica::symbol!("iregi_amplitude_variable_diagnostic::q"));
+    let mut amplitudes = HashMap::from([
+        (x.clone(), Symbol::ABS.call((&x,))),
+        (y.clone(), Symbol::ABS.call((&y,))),
+    ]);
+    let composite = sf.call((&p,));
+    amplitudes.insert(composite.clone(), Atom::num(11));
+    let hidden = (&x + Atom::num(1)).set_coefficient_ring(sx);
+    assert!(matches!(hidden.as_view(), AtomView::Num(_)));
+    assert!(depends_on_amplitudes(&hidden, &amplitudes));
+    let branch = Symbol::IF.call((&p, &x, Atom::num(-2) * &y));
+    let condition_only = Symbol::IF.call((&x, &p, &q));
+    let master_free = Symbol::IF.call((&p, &p, &q));
+    let nested_condition = Symbol::IF.call((&branch, &p, &q));
+    let nested_branch = Symbol::IF.call((&p, &branch, &y));
+    let inactive = Symbol::IF.call((&p, &x * q.pow(-1), &y));
+    let hidden_condition = Symbol::IF.call((sf.call((&hidden,)), &p, &q));
+    for expression in [&branch, &condition_only, &master_free, &nested_condition, &nested_branch, &inactive, &hidden_condition] {
+        assert!(if_parts(expression.as_view()).is_some(), "IF fixture normalized away");
+    }
+    assert!(depends_on_amplitudes(&hidden_condition, &amplitudes));
+    let repeated = sf.call((&x, &p)) + sf.call((&x, &q)) + &x * &p + &x * &q;
+    assert!(matches!(repeated.as_view(), AtomView::Add(sum) if sum.get_nargs() == 4));
+    let cases: Vec<(&str, Atom, Vec<Atom>)> = vec![
+        ("zero", Atom::num(0), vec![]),
+        ("constant", Atom::num(7), vec![]),
+        ("known_variable", x.clone(), vec![x.clone()]),
+        ("unknown_variable", p.clone(), vec![]),
+        ("repeated_occurrences", repeated, vec![x.clone()]),
+        ("function_head_not_variable", sx.call((&p,)), vec![]),
+        ("function_arguments", sf.call((&x, &y, &p)), vec![x.clone(), y.clone()]),
+        ("master_named_function_with_master_argument", sx.call((&y,)), vec![y.clone()]),
+        ("power_base_and_exponent", x.pow(&y), vec![x.clone(), y.clone()]),
+        ("polynomial_number_ignored", hidden.clone(), vec![]),
+        ("polynomial_coefficient_ignored", &hidden * &y, vec![y.clone()]),
+        ("polynomial_function_argument_ignored", sf.call((&hidden, &y)), vec![y.clone()]),
+        ("whole_if", branch.clone(), vec![branch.clone()]),
+        ("condition_only_if", condition_only.clone(), vec![condition_only.clone()]),
+        ("nested_if_condition", nested_condition.clone(), vec![nested_condition.clone()]),
+        ("nested_if_branch", nested_branch.clone(), vec![nested_branch.clone()]),
+        ("master_free_if", master_free.clone(), vec![]),
+        ("if_below_function", sf.call((&branch, &x)), vec![branch.clone(), x.clone()]),
+        ("if_below_product", &branch * &x, vec![branch.clone(), x.clone()]),
+        ("if_below_power", branch.pow(&y), vec![branch.clone(), y.clone()]),
+        ("if_in_power_exponent", p.pow(&branch), vec![branch.clone()]),
+        ("inactive_singular_branch", inactive.clone(), vec![inactive.clone()]),
+        ("composite_map_key_not_variable", composite.clone(), vec![]),
+        ("hidden_master_if_condition", hidden_condition.clone(), vec![hidden_condition.clone()]),
+    ];
+    let mut results = Vec::new();
+    for (name, expression, expected) in cases {
+        for preseed in [false, true] {
+            let seed = if preseed { BTreeSet::from([q.clone(), x.clone(), sf.call((&q,))]) } else { BTreeSet::new() };
+            let mut old = seed.clone();
+            let mut new = seed.clone();
+            collect_amplitude_variables_legacy(expression.as_view(), &amplitudes, &mut old);
+            collect_amplitude_variables(expression.as_view(), &amplitudes, &mut new);
+            let mut wanted = seed;
+            wanted.extend(expected.iter().cloned());
+            assert_eq!(old, wanted, "legacy expected set: {name}, preseed={preseed}");
+            assert_eq!(new, wanted, "candidate expected set: {name}, preseed={preseed}");
+            results.push((format!("set_{name}_preseed_{preseed}"), new.iter().map(ToString::to_string).collect::<Vec<_>>().join("\n")));
+        }
+    }
+    let cases = vec![
+        ("condition_only_if", condition_only, false),
+        ("nested_if_condition", nested_condition, false),
+        ("nested_if_branch", nested_branch, false),
+        ("master_free_if", master_free, false),
+        ("inactive_singular_if", inactive, false),
+        ("hidden_master_if_condition", hidden_condition, false),
+        ("function_head_collision", sx.call((&p,)), false),
+        ("direct_composite_key", composite, false),
+        ("power_exponent_error", p.pow(&x), true),
+        ("hidden_number_error", hidden.clone(), true),
+        ("hidden_coefficient_error", &hidden * &y, true),
+        ("hidden_function_argument_error", sf.call((&hidden, &p)), true),
+        ("if_below_nonlinear_function_error", sf.call((&branch,)), true),
+        ("if_times_master_error", &branch * &x, true),
+    ];
+    for (name, expression, error) in cases {
+        let legacy = master_amplitude_legacy(&expression, &amplitudes);
+        let candidate = master_amplitude(&expression, &amplitudes);
+        assert_eq!(legacy.is_err(), error, "legacy expected result: {name}");
+        assert_eq!(candidate.is_err(), error, "candidate expected result: {name}");
+        let result = match (legacy, candidate) {
+            (Ok(left), Ok(right)) => { assert_eq!(left, right, "full amplitude differs: {name}"); right.to_string() },
+            (Err(left), Err(right)) => { assert_eq!(left.to_string(), right.to_string()); format!("ERROR: {right}") },
+            _ => panic!("result/error mismatch: {name}"),
+        };
+        results.push((format!("amplitude_{name}"), result));
+    }
+    results
+}

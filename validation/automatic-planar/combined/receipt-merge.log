@@ -1,0 +1,95 @@
+Checking patch target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs...
+error: while searching for:
+        BatchResult, InputLayout, KinematicsBatch, LaneStatus, ReductionError, ResultMetadata,
+    },
+};
+
+/// Work performed by the last batch, independently of Taylor component count.
+///
+
+error: patch failed: target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs:39
+Hunk #2 succeeded at 158 (offset 3 lines).
+Hunk #3 succeeded at 169 (offset 3 lines).
+Hunk #4 succeeded at 189 (offset 3 lines).
+Hunk #5 succeeded at 213 (offset 3 lines).
+Hunk #6 succeeded at 289 (offset 3 lines).
+Hunk #7 succeeded at 334 (offset 3 lines).
+Hunk #8 succeeded at 361 (offset 3 lines).
+Hunk #9 succeeded at 722 (offset 3 lines).
+Hunk #10 succeeded at 1040 (offset 4 lines).
+Hunk #11 succeeded at 1238 (offset 7 lines).
+error: while searching for:
+        &mut self,
+        batch: &KinematicsBatch<T>,
+    ) -> Result<BatchResult<T>, ReductionError> {
+        self.profile = ExecutionProfile::default();
+        let started = self.profiling.then(Instant::now);
+        let result = self.reduce_batch_impl(batch);
+        if let Some(started) = started {
+            self.profile.total = started.elapsed();
+        }
+
+error: patch failed: target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs:1271
+Hunk #13 succeeded at 1361 (offset 5 lines).
+Hunk #14 succeeded at 1503 (offset 5 lines).
+Hunk #15 succeeded at 1528 (offset 5 lines).
+Hunk #16 succeeded at 1586 (offset 5 lines).
+Hunk #17 succeeded at 1599 (offset 5 lines).
+Hunk #18 succeeded at 1685 (offset 5 lines).
+error: while searching for:
+                    components: self.components,
+                    values,
+                })?;
+                self.stats.fallback_rows = lanes.len();
+                for (compact, &lane) in lanes.iter().enumerate() {
+                    result.fallback_used[lane] = true;
+
+error: patch failed: target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs:2006
+Hunk #20 succeeded at 2249 (offset -5 lines).
+error: while searching for:
+    for &lane in lanes {
+        values.extend_from_slice(&batch.values[lane * input_width..(lane + 1) * input_width]);
+    }
+    let evaluated = workspace.reduce_batch(&KinematicsBatch {
+        rows: lanes.len(),
+        components: batch.components,
+        values,
+    })?;
+    for (compact, &lane) in lanes.iter().enumerate() {
+        diagnostics[lane].extend_from_slice(&workspace.diagnostics[compact]);
+        result.analytic_used[lane] = true;
+
+error: patch failed: target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs:2164
+error: while searching for:
+    }
+    include!("execution/guard_context_tests.rs");
+}
+
+error: patch failed: target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs:4008
+Checking patch target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution/proof_receipts.rs...
+Checking patch target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution/proof_receipt_tests.rs...
+Applying patch target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution.rs with 5 rejects...
+Rejected hunk #1.
+Hunk #2 applied cleanly.
+Hunk #3 applied cleanly.
+Hunk #4 applied cleanly.
+Hunk #5 applied cleanly.
+Hunk #6 applied cleanly.
+Hunk #7 applied cleanly.
+Hunk #8 applied cleanly.
+Hunk #9 applied cleanly.
+Hunk #10 applied cleanly.
+Hunk #11 applied cleanly.
+Rejected hunk #12.
+Hunk #13 applied cleanly.
+Hunk #14 applied cleanly.
+Hunk #15 applied cleanly.
+Hunk #16 applied cleanly.
+Hunk #17 applied cleanly.
+Hunk #18 applied cleanly.
+Rejected hunk #19.
+Hunk #20 applied cleanly.
+Rejected hunk #21.
+Rejected hunk #22.
+Applied patch target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution/proof_receipts.rs cleanly.
+Applied patch target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution/proof_receipt_tests.rs cleanly.

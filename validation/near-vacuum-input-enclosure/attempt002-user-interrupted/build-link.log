@@ -1,0 +1,34 @@
+warning: fields `order` and `integrated_polynomial` are never read
+   --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/source/near_vacuum.rs:114:9
+    |
+113 | pub struct NearVacuumPlan {
+    |            -------------- fields in this struct
+114 |     pub order: usize,
+    |         ^^^^^
+115 |     pub shape: Vec<Vec<usize>>,
+116 |     pub integrated_polynomial: Atom,
+    |         ^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `NearVacuumPlan` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: associated function `from_dual` is never used
+   --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/source/near_vacuum.rs:202:12
+    |
+171 | impl NearVacuumPlan {
+    | ------------------- associated function in this implementation
+...
+202 |     pub fn from_dual<D: DualNumberStructure>(order: usize, dual: &D) -> Result<Self, String> {
+    |            ^^^^^^^^^
+
+warning: method `evaluate_batch` is never used
+   --> /shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/source/near_vacuum.rs:409:12
+    |
+405 | / impl<T: NativeFloat> Workspace<T>
+406 | | where
+407 | |     Complex<T>: EvaluationDomain,
+    | |_________________________________- method in this implementation
+408 |   {
+409 |       pub fn evaluate_batch(
+    |              ^^^^^^^^^^^^^^
+

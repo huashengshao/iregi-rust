@@ -1,0 +1,33 @@
+--- a/crates/iregi-rust/src/stability.rs
++++ b/crates/iregi-rust/src/stability.rs
+@@ -1207,6 +1207,30 @@
+         }
+         return;
+     }
++    // Num coefficients deliberately remain opaque, as in the legacy walker.
++    if matches!(expression, AtomView::Num(_)) {
++        return;
++    }
++    if matches!(expression, AtomView::Var(_)) {
++        let value = expression.to_owned();
++        if amplitudes.contains_key(&value) {
++            variables.insert(value);
++        }
++        return;
++    }
++    // Whole IF generators were handled above. Only IF-free subtrees use
++    // Symbolica's indeterminate collection; function heads are not variables.
++    if !expression.contains_symbol(Symbol::IF) {
++        for variable in expression.get_all_indeterminates(true) {
++            if matches!(variable, AtomView::Var(_)) {
++                let value = variable.to_owned();
++                if amplitudes.contains_key(&value) {
++                    variables.insert(value);
++                }
++            }
++        }
++        return;
++    }
+     match expression {
+         AtomView::Var(_) => {
+             let value = expression.to_owned();

@@ -1,0 +1,25 @@
+error[E0599]: no method named `from_rational` found for struct `iregi_masters::Float` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/planar-automatic-receipts/source-snapshot/crates/iregi-rust/src/execution/planar_fallback/tests.rs:536:33
+    |
+536 |     ordinary[16].re = prototype.from_rational(&Rational::from((1, 2)));
+    |                                 ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:136:8
+    |
+136 |     fn from_rational(&self, rat: &Rational) -> Self;
+    |        ------------- the method is available for `iregi_masters::Float` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `to_rational` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs:892:5
+    |
+892 |     pub fn to_rational(&self) -> Rational {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `SingleFloat` which provides `from_rational` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use symbolica::prelude::SingleFloat;
+    |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0599`.

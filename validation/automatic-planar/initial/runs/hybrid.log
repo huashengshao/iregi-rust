@@ -1,0 +1,56 @@
+
+running 1 test
+test execution::planar_fallback::tests::hybrid_stable_primary_and_planar_recovery_retain_clone_accuracy_lifecycle ... iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.316835s
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.260952s
+iregi IBP preparation Cayley geometry [0, 1, 2, 3, 4]: begin
+iregi IBP preparation Cayley inverse [0, 1, 2, 3, 4]: begin
+iregi IBP preparation Cayley inverse [0, 1, 2, 3, 4]: 10.440694s
+iregi IBP preparation Cayley geometry [0, 1, 2, 3, 4]: 12.560592s
+iregi IBP preparation routing relation [0, 1, 2, 3, 4]: begin
+iregi IBP preparation routing constant solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation routing constant solve [0, 1, 2, 3, 4]: 0.014339s
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: 0.017543s
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: 0.017352s
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: 0.016562s
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation routing homogeneous solve [0, 1, 2, 3, 4]: 0.015583s
+iregi IBP preparation routing relation [0, 1, 2, 3, 4]: 0.082895s
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: begin
+iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.294103s
+iregi preparation stability expressions: 0.845920s
+iregi preparation quadrature-stability exact evaluators: 0.000002s
+iregi preparation argument exact evaluator: 0.000242s
+iregi preparation snapping diagnostic exact evaluator: 0.000001s
+iregi preparation reduction exact evaluator: 0.019892s
+iregi preparation primal exact evaluator: 0.000000s
+iregi preparation scalar master exact evaluators: 1.385739s
+iregi preparation numeric coefficient mapping: 0.006819s
+iregi preparation stability expressions: 0.264661s
+iregi preparation quadrature-stability exact evaluators: 0.000001s
+iregi preparation argument exact evaluator: 0.000088s
+iregi preparation snapping diagnostic exact evaluator: 0.000001s
+iregi preparation reduction exact evaluator: 0.026959s
+iregi preparation primal exact evaluator: 0.000000s
+iregi preparation scalar master exact evaluators: 0.548096s
+iregi preparation numeric coefficient mapping: 0.008398s
+automatic Hybrid128 primary=[Unstable("reduction has nonfinite coefficients at this kinematic point"), Unstable("reduction has nonfinite coefficients at this kinematic point"), Unstable("reduction has nonfinite coefficients at this kinematic point")] final=[Success, Unstable("reduction has nonfinite coefficients at this kinematic point"), Success]
+
+thread 'execution::planar_fallback::tests::hybrid_stable_primary_and_planar_recovery_retain_clone_accuracy_lifecycle' (3211686) panicked at /shared/external/iregi/iregi-rust/target/planar-automatic/source-snapshot/crates/iregi-rust/src/execution/planar_fallback/tests.rs:319:5:
+assertion `left == right` failed
+  left: Unstable("reduction has nonfinite coefficients at this kinematic point")
+ right: Success
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    execution::planar_fallback::tests::hybrid_stable_primary_and_planar_recovery_retain_clone_accuracy_lifecycle
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 196 filtered out; finished in 32.34s
+

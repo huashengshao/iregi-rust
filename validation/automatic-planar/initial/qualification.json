@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "kind": "private-automatic-planar-initial-candidate",
+  "status": "partially-qualified-with-retained-fixture-assumption-failure-and-unqualified-pv-run",
+  "base": "21622ec",
+  "production_promoted": false,
+  "build": {
+    "path": "build.json",
+    "sha256": "81ac1e04666c94693edbe1c4a141e8a0a99314fd069311a5c8c389bf6a893584",
+    "binary_sha256": "eb52303483e511267ba38ed1839329723b5fdb67446f673c797196708f4dd3cd",
+    "closure": "target/benchmark/dependency-closures/6b24c03-complete-kinds"
+  },
+  "patches": {
+    "accounting": {
+      "path": "accounting.patch",
+      "sha256": "d119f401dd1429f2dea066854dd71050ca522279d74175a5fecb3afa537ea128"
+    },
+    "automatic": {
+      "path": "automatic.patch",
+      "sha256": "5d575c15df09bd114b762e128ed171242cebf295356047047a7a3983ff395f71"
+    }
+  },
+  "tests": {
+    "accounting": {
+      "path": "runs/accounting.json",
+      "sha256": "85d7ab8640b93572770b4ba1d662dc157eeacf34b6d9c147019774161b120749",
+      "status": "passed",
+      "expected_test_count": 6,
+      "elapsed_seconds": 1.7301531650591642,
+      "log_sha256": "442fbd0b048eaf8d0147c1dc1fa0d7dc1bfea98a827059e4d5e0768132a1baf6"
+    },
+    "eligibility": {
+      "path": "runs/eligibility.json",
+      "sha256": "1f501992a4ac043bdef87cec752cf98261be72ed12a36486b7e561124737157e",
+      "status": "passed",
+      "expected_test_count": 1,
+      "elapsed_seconds": 26.619741196045652,
+      "log_sha256": "5a0b5dfc6b189d52b0cb99b3020d7d7c8f4b829708ef26785074d9ccf15ebdbe"
+    },
+    "binary64": {
+      "path": "runs/binary64.json",
+      "sha256": "bdd585bd4739e548a8c20ab39611f761e307cec2ffc3e4342832bff41832f5b1",
+      "status": "passed",
+      "expected_test_count": 1,
+      "elapsed_seconds": 7.9450310070533305,
+      "log_sha256": "6c1fe45d43458c22cb3a373265b9b93845a8faff8ddc952db4faf3d5697db938"
+    },
+    "hybrid": {
+      "path": "runs/hybrid.json",
+      "sha256": "27816faa72036d05ade9d9cb76ef0663d68a14eea359eee0b0a72331204966c1",
+      "status": "failed",
+      "expected_test_count": 1,
+      "elapsed_seconds": 32.45082465198357,
+      "log_sha256": "14e826e4a72fa7726073f3d5d3ff409444a7c5d8fe7755a31e79e596f1d22ade"
+    },
+    "mixed": {
+      "path": "runs/mixed.json",
+      "sha256": "3a34628dce86987c90261ca02bc8edd28fb5c1216b95beb86f634ede3e08a558",
+      "status": "passed",
+      "expected_test_count": 1,
+      "elapsed_seconds": 140.2488375849789,
+      "log_sha256": "cce939128fcde823407d4b2bb756bd593c521032563692abc5aa0bf18af9b774"
+    },
+    "auxiliary": {
+      "path": "runs/auxiliary.json",
+      "sha256": "56dfb395eb0896822571c141c9ef9b9436061162d3e9865aa0a453b3f25a0936",
+      "status": "passed",
+      "expected_test_count": 1,
+      "elapsed_seconds": 7.294370595016517,
+      "log_sha256": "3ae862622b9949abb20c963eef0a04e1cb13eed32c18ca5fc8f01d3eb2735cf0"
+    },
+    "ordinary": {
+      "path": "runs/ordinary.json",
+      "sha256": "4c2dd40e3f7aeb05cc98fd939c44c574eaea63aa1e9ed813d15d7c95b799c2d5",
+      "status": "passed",
+      "expected_test_count": 41,
+      "elapsed_seconds": 33.41319944302086,
+      "log_sha256": "31eb72bd6f16878f9f375c595cfbf95969fb961ba2d88b49671b387800919d02"
+    }
+  },
+  "pv_failure_record": {
+    "path": "runs/pv-supervisor-failure.json",
+    "sha256": "ba2f41900059f2cf451039b2933811d423ab223249c10c02bdae1f3598c49855"
+  },
+  "hybrid_failure": {
+    "nature": "test asserted primary Success for an exactly exceptional nonplanar fixture; observed status Unstable with nonfinite reduction coefficients",
+    "exact_subgram": {
+      "q": [
+        0,
+        2,
+        2,
+        0
+      ],
+      "r": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "q_squared": -8,
+      "r_squared": -2,
+      "q_dot_r": -4,
+      "determinant": 0
+    },
+    "observed_planar_final_statuses": [
+      "Success",
+      "Unstable",
+      "Success"
+    ],
+    "followup": "Next separate combined candidate retains this negative fixture and adds qualified rank1 primary-success control; no guard relaxation."
+  },
+  "verified_scope": [
+    "f64 rank2 packed mixed valid/nonplanar/invalid/unstable lanes, reorder/chunk/empty/malformed/reuse",
+    "Float128 requested53 rank2 ordered rectangular4 and reordered6 Taylor components, tangential recovery and transverse rejection, metadata/basis and full output comparison to certified child",
+    "preparation and inconsistent metadata rejection retain original failure",
+    "six accounting regressions and all41 ordinary execution tests"
+  ],
+  "limitations": [
+    "No automatic rank7 numerical claim.",
+    "Standalone9 and completePV14 not qualified on this binary.",
+    "No performance inference from correctness-run timings.",
+    "Preserved original failed compilation and user/quiet-window process history."
+  ],
+  "recorded_utc": "2026-10-23T19:20:41.567227+00:00"
+}

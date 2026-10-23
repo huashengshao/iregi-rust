@@ -1,0 +1,19 @@
+--- /shared/external/iregi/iregi-rust/crates/iregi-rust/src/execution.rs	2026-10-23 18:22:20.986765919 +0000
++++ /shared/external/iregi/iregi-rust/target/native-master-replay/core/crates/iregi-rust/src/execution.rs	2026-10-23 19:12:48.978598304 +0000
+@@ -1672,6 +1672,7 @@
+             match &mut group.evaluator {
+                 ScalarMasterEvaluator::OneLoop(evaluator) => {
+                     let evaluated = evaluator.evaluate_batch(&group.input, rows);
++                    crate::master_capture::record(family.name(), self.components, &group.input, &group.requests, &self.valid_lanes, &evaluated);
+                     record_time(started, &mut self.profile.scalar_masters);
+                     let values =
+                         evaluated.map_err(|error| ReductionError::Evaluation(error.to_string()))?;
+--- /shared/external/iregi/iregi-rust/crates/iregi-rust/src/lib.rs	2026-10-23 18:22:20.987765922 +0000
++++ /shared/external/iregi/iregi-rust/target/native-master-replay/core/crates/iregi-rust/src/lib.rs	2026-10-23 19:12:48.984598322 +0000
+@@ -33,3 +33,6 @@
+     RescueTrigger,
+ };
+ pub use types::*;
++
++mod master_capture;
++pub use master_capture::take_master_captures;

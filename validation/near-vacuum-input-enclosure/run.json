@@ -1,0 +1,35 @@
+{
+  "command": [
+    "taskset",
+    "-c",
+    "18",
+    "timeout",
+    "--signal=TERM",
+    "--kill-after=5s",
+    "60s",
+    "/shared/external/iregi/iregi-rust/target/near-vacuum-input-enclosure/input_enclosure_compare",
+    "/shared/external/iregi/iregi-rust/validation/near-vacuum-input-enclosure/oracle/output.json",
+    "/shared/external/iregi/iregi-rust/validation/near-vacuum-input-enclosure/output.json"
+  ],
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "cpu": 18,
+  "runtime_limit_seconds": 60,
+  "exit_code": 0,
+  "started_utc": "2026-10-23T19:38:56.031414+00:00",
+  "diagnostic_seconds": 0.05931366595905274,
+  "run_log_sha256": "f6acd14ee09db3c4d3fd7a402bea8592fdd5d10a12df82707646a4cc266c0d74",
+  "binary_sha256": "8fad6c7e5b72da060e6349cf594a7d57d79691811fcdb2465f038492a32ee602",
+  "build_manifest_sha256": "6abece11db4d637f1b70d9043f4f79882cdc2e3daba974d2ee45c154bc396a1e",
+  "source_sha256": {
+    "input_enclosure_compare.rs": "0d60820ea9148f507a1f5865ca203bb8a6e5720a7f3194e2499d743cf09009bb",
+    "source/near_vacuum.rs": "79b07d47c00d9bf79675461f270148eda90bcaace94fc5376b27589bc2d0fb79"
+  },
+  "oracle_sha256": "ea6073e9d6bddcc5cff7e401e3c6b50a5e31192ecd8619526f87bec53374e1b6",
+  "oracle_run_sha256": "abf3b043ea6870b585cd15dc8845972a03adb00f1255b3591492cd906618c59e",
+  "license": "Privately inherited; never recorded",
+  "timing_scope": "Diagnostic observation only; no performance qualification",
+  "output_sha256": "0b0cdc5bd0754b4bd80faf3ef54a40bb09c860e42e789e2e7492563cc0cc6573",
+  "closure_before_run_sha256": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+  "closure_after_run_sha256": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+  "closure_files_verified": 870
+}

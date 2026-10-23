@@ -1,0 +1,16 @@
+{
+  "kind": "correctness-run-concurrency-note",
+  "not_a_performance_comparison": true,
+  "build": "build.json",
+  "shared_cpu_affinity": [
+    16,
+    17
+  ],
+  "overlapping_tests": [
+    "target/planar-automatic-receipts/runs-storage-retry/success.json",
+    "target/planar-automatic-receipts/runs/mixed.json",
+    "target/planar-automatic-receipts/runs/auxiliary.json",
+    "target/planar-automatic-receipts/runs/ordinary.json"
+  ],
+  "explanation": "ROOT permitted bounded correctness runs while the compact followup compiled. Shared CPU contention is retained in elapsed time and must not be interpreted as parity or speedup."
+}

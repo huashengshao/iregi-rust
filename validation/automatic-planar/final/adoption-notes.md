@@ -1,0 +1,11 @@
+# Private automatic planar fallback adoption scope
+
+No production files have been modified. The proposed patch adds one optional outer retry to ordinary N5 PV/Hybrid `Workspace` calls, after the existing primary and PV→IBP retry. Eligibility requires unit powers, zero dimension shift, preserved inputs, coordinate-derived invariants, and rank at most seven. Certified chart plans and their Dual variants never recursively enter this retry.
+
+Failed, originally valid rows are packed into one certified planar batch. Original failure statuses remain unless the certified child succeeds and its full basis, convention, tensor weights, ordered Taylor shape, component count, flags, and buffer sizes match. Invalid original inputs never enter the child. Certification checks the complete Taylor polynomial; transverse jets are rejected. The supported exact constant-one rank-three charts reuse the existing standalone API; lower-rank/homogeneous exceptional cases remain unsupported by this fallback.
+
+`fallback_rows` counts lane attempts per stage, including preparation/certificate rejection; one sample can count more than once. `fallback_successes` counts recoveries per stage. Flags remain per-sample. Analytic counts cover actual numerical chart attempts, while the separate public `last_planar_certificate_execution` records certificate-only work. Child work/profile/diagnostics are harvested before returning global errors. Exact raw-distance proof receipts remain private and call-local; no receipt is transferred across the certified-planar boundary, and actual child proof work is aggregated.
+
+Qualification scope is deliberately separate from the structural rank-seven eligibility: current automatic dispatch probes cover ordinary ranks one/two and rank-two mixed four/six-component Dual layouts. Standalone rank-seven complete tensor and independent-box evidence is retained separately; no automatic rank-seven runtime or performance claim is made.
+
+Preserve initial failed Hybrid test assumption, its exact singular triangle sub-Gram diagnosis, the receipt test's shared-cache fixture mistake, compile-import failures, and ENOSPC supervisor failures alongside corrected followups. Correctness-run wall times are not comparative performance measurements.

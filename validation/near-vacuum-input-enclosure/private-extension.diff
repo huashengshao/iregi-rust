@@ -1,0 +1,234 @@
+--- qualified-cleanup/near_vacuum.rs
++++ private-input-enclosure/near_vacuum.rs
+@@ -9,7 +9,7 @@
+     domains::{
+         atom::AtomField,
+         dual::{DualNumberStructure, HyperDual},
+-        float::{Complex, ComplexBall, RealBall},
++        float::{Complex, ComplexBall, Real, RealBall},
+         integer::Integer,
+         rational::{Q, Rational},
+     },
+@@ -356,6 +356,52 @@
+     pub execution: Execution,
+ }
+ 
++/// Experimental side input enclosing the intended physical input component.
++/// It must contain the separately supplied represented numeric component.
++#[derive(Clone, Debug)]
++pub struct InputRectangle {
++    pub real_lower: Rational,
++    pub real_upper: Rational,
++    pub imaginary_lower: Rational,
++    pub imaginary_upper: Rational,
++}
++
++impl InputRectangle {
++    pub fn from_ball(ball: &ComplexBall) -> Option<Self> {
++        Some(Self {
++            real_lower: ball.re.lower_bound().exact_rational()?,
++            real_upper: ball.re.upper_bound().exact_rational()?,
++            imaginary_lower: ball.im.lower_bound().exact_rational()?,
++            imaginary_upper: ball.im.upper_bound().exact_rational()?,
++        })
++    }
++
++    pub fn exact(point: &Exact) -> Self {
++        Self {
++            real_lower: point.re.clone(),
++            real_upper: point.re.clone(),
++            imaginary_lower: point.im.clone(),
++            imaginary_upper: point.im.clone(),
++        }
++    }
++
++    pub fn contains(&self, point: &Exact) -> bool {
++        self.real_lower <= point.re && point.re <= self.real_upper
++            && self.imaginary_lower <= point.im && point.im <= self.imaginary_upper
++    }
++
++    fn ball(&self, bits: u32) -> ComplexBall {
++        Complex::new(
++            RealBall::from_rational_bounds(&self.real_lower, &self.real_upper, bits),
++            RealBall::from_rational_bounds(&self.imaginary_lower, &self.imaginary_upper, bits),
++        )
++    }
++}
++
++fn ball_l1_upper(value: &ComplexBall) -> Option<Rational> {
++    (value.re.norm() + value.im.norm()).upper_bound().exact_rational()
++}
++
+ impl<T: NativeFloat> Workspace<T>
+ where
+     Complex<T>: EvaluationDomain,
+@@ -366,6 +412,28 @@
+         rows: usize,
+         accuracy: &AccuracyContext,
+     ) -> Result<Vec<Lane<T>>, String> {
++        self.evaluate_batch_impl(input, rows, accuracy, None)
++    }
++
++    /// Private experiment: propagate supplied physical-input rectangles through
++    /// both the retained Symbolica polynomial and the complete Taylor tail.
++    pub fn evaluate_batch_enclosed(
++        &mut self,
++        input: &[Complex<T>],
++        rows: usize,
++        accuracy: &AccuracyContext,
++        input_bounds: &[InputRectangle],
++    ) -> Result<Vec<Lane<T>>, String> {
++        self.evaluate_batch_impl(input, rows, accuracy, Some(input_bounds))
++    }
++
++    fn evaluate_batch_impl(
++        &mut self,
++        input: &[Complex<T>],
++        rows: usize,
++        accuracy: &AccuracyContext,
++        input_bounds: Option<&[InputRectangle]>,
++    ) -> Result<Vec<Lane<T>>, String> {
+         let components = self.plan.shape.len();
+         accuracy.validate(components)?;
+         if input.len()
+@@ -374,6 +442,9 @@
+                 .ok_or("batch size overflow")?
+         {
+             return Err("invalid row-major input length".into());
++        }
++        if input_bounds.is_some_and(|bounds| bounds.len() != input.len()) {
++            return Err("invalid physical-input enclosure length".into());
+         }
+         self.execution = Execution {
+             input_rows: rows,
+@@ -389,7 +460,9 @@
+             .collect();
+         let mut active = Vec::new();
+         let mut exact_arguments = Vec::new();
++        let mut enclosed_arguments = Vec::new();
+         let mut bounds_input = Vec::new();
++        let bits = self.prototype.get_precision();
+         for (lane, row) in input
+             .chunks_exact(PHYSICAL_ARGUMENTS * components)
+             .enumerate()
+@@ -419,10 +492,64 @@
+                     Status::InvalidInput("physical invariant/mass input domain".into());
+                 continue;
+             }
++            let supplied = input_bounds.map(|bounds| {
++                let width = PHYSICAL_ARGUMENTS * components;
++                &bounds[lane * width..(lane + 1) * width]
++            });
++            if let Some(bounds) = supplied {
++                if bounds.iter().zip(&point).any(|(bound, value)| !bound.contains(value)) {
++                    results[lane].status = Status::InvalidInput(
++                        "input rectangle is unordered or omits its represented component".into(),
++                    );
++                    continue;
++                }
++                let zero = Rational::from(0);
++                if (0..6).any(|i| (0..components).any(|j| {
++                    let bound = &bounds[i * components + j];
++                    bound.imaginary_lower != zero || bound.imaginary_upper != zero
++                })) || (6..10).any(|i| {
++                    let bound = &bounds[i * components];
++                    bound.real_lower <= zero || bound.imaginary_upper > zero
++                }) || (6..10).any(|i| {
++                    bounds[i * components].imaginary_upper == zero
++                        && (1..components).any(|j| {
++                            let bound = &bounds[i * components + j];
++                            bound.imaginary_lower != zero || bound.imaginary_upper != zero
++                        })
++                }) {
++                    results[lane].status = Status::InvalidInput(
++                        "physical invariant/mass enclosure domain".into(),
++                    );
++                    continue;
++                }
++            }
+             let mass = point[6 * components].clone();
+             let lower = abs(&mass.re).max(abs(&mass.im));
++            let physical_balls = supplied.map(|bounds| {
++                bounds.iter().map(|bound| bound.ball(bits)).collect::<Vec<_>>()
++            });
++            let reference_ball = ComplexBall::from_rational_ball(&mass, &Rational::from(0), bits);
+             let mut envelope = Vec::new();
+             for component in 0..components {
++                if let Some(balls) = &physical_balls {
++                    let sigma = (0..6)
++                        .map(|i| ball_l1_upper(&balls[i * components + component]))
++                        .collect::<Option<Vec<_>>>();
++                    let mu = (6..10).map(|i| {
++                        let value = &balls[i * components + component];
++                        if component == 0 {
++                            ball_l1_upper(&(value - &reference_ball))
++                        } else {
++                            ball_l1_upper(value)
++                        }
++                    }).collect::<Option<Vec<_>>>();
++                    let (Some(sigma), Some(mu)) = (sigma, mu) else {
++                        break;
++                    };
++                    envelope.push((mu.into_iter().max().unwrap()
++                        + Rational::from((3, 8)) * sigma.into_iter().max().unwrap()) / &lower);
++                    continue;
++                }
+                 let sigma = (0..6)
+                     .map(|i| upper_abs(&point[i * components + component]))
+                     .max()
+@@ -438,6 +565,10 @@
+                     .unwrap();
+                 envelope.push((mu + Rational::from((3, 8)) * sigma) / &lower);
+             }
++            if envelope.len() != components {
++                results[lane].status = Status::NonFiniteOutput;
++                continue;
++            }
+             results[lane].rho = Some(envelope[0].clone());
+             if envelope[0] > Rational::from((1, 4)) {
+                 continue;
+@@ -454,6 +585,21 @@
+             exact_arguments.extend(
+                 (0..components).map(|component| if component == 0 { mass.clone() } else { zero() }),
+             );
++            if let Some(balls) = physical_balls {
++                for argument in 0..PHYSICAL_ARGUMENTS {
++                    for component in 0..components {
++                        let mut value = balls[argument * components + component].clone();
++                        if argument >= 6 && component == 0 {
++                            value -= &reference_ball;
++                        }
++                        enclosed_arguments.push(value / &reference_ball);
++                    }
++                }
++                enclosed_arguments.extend((0..components).map(|component| {
++                    if component == 0 { reference_ball.clone() }
++                    else { ComplexBall::from_rational_ball(&zero(), &Rational::from(0), bits) }
++                }));
++            }
+             bounds_input.extend(envelope);
+             bounds_input.extend((0..components).map(|component| {
+                 if component == 0 {
+@@ -469,7 +615,6 @@
+         if count == 0 {
+             return Ok(results);
+         }
+-        let bits = self.prototype.get_precision();
+         let numeric_input: Vec<_> = exact_arguments
+             .iter()
+             .map(|x| {
+@@ -479,10 +624,12 @@
+                 )
+             })
+             .collect();
+-        let ball_input: Vec<_> = exact_arguments
++        let ball_input: Vec<_> = if input_bounds.is_some() {
++            enclosed_arguments
++        } else { exact_arguments
+             .iter()
+             .map(|x| ComplexBall::from_rational_ball(x, &Rational::from(0), bits))
+-            .collect();
++            .collect() };
+         let mut numeric_output =
+             vec![Complex::new(self.prototype.zero(), self.prototype.zero()); count * components];
+         let mut ball_output =
