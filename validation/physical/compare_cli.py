@@ -112,11 +112,22 @@ def compare_physical(result, sample, madloop, case, tolerance):
     record = next(record for record in madloop["records"] if record["group"] == group)
     if not record["stable"]:
         raise ValueError("selected MadLoop graph reports unstable reduction")
-    raw_reference = [case[2] * number(value) for value in record["raw_result"]]
+    raw_result = record.get("raw_result")
+    if not isinstance(raw_result, (list, tuple)) or len(raw_result) != 3:
+        raise ValueError("selected MadLoop graph must supply exactly three Laurent coefficients")
+    if any(not isinstance(value, (list, tuple)) or len(value) != 2
+           or any(isinstance(component, bool) for component in value)
+           for value in raw_result):
+        raise ValueError("selected MadLoop Laurent coefficients must be real/imaginary pairs")
+    try:
+        raw_reference = [case[2] * number(value) for value in raw_result]
+    except (TypeError, ValueError, OverflowError) as error:
+        raise ValueError("selected MadLoop Laurent coefficients must be finite complex values") from error
     uv, ir, ir2, finite = map(number, result["samples"][0]["integral"])
     raw_actual = [finite, uv + ir, ir2]
     scale = kinematic_scale(sample) ** case[4]
-    errors = [normalized_error(actual, reference, scale) for actual, reference in zip(raw_actual, raw_reference)]
+    errors = [normalized_error(actual, reference, scale)
+              for actual, reference in zip(raw_actual, raw_reference, strict=True)]
     passed = max(errors) <= tolerance
     return {"status": "passed" if passed else "mismatch", "passed": passed,
             "reference": "MadLoop selected graph, fixed equal gluon colors",

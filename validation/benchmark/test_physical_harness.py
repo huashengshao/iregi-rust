@@ -47,6 +47,38 @@ class ProvenanceTests(unittest.TestCase):
                 self.assertFalse(benchmark.provenance_qualified(failed))
 
 
+class InterruptedRunTests(unittest.TestCase):
+    def setUp(self):
+        self.configurations = [(case, {"id": case, "precision": "f64", "bits": 53,
+                                      "accuracy_bits": 53, "input": {"samples": [{}]}})
+                               for case in ["ggh", "gghh", "gghhh"]]
+        self.data = {"status": "running", "rows": benchmark.configuration_rows(self.configurations)}
+
+    def test_interrupt_between_rows_retains_every_requested_configuration(self):
+        self.data["rows"][0]["status"] = "measured"
+        benchmark.finalize_rows(self.data, completed_normally=False)
+        self.assertEqual(self.data["status"], "interrupted")
+        self.assertEqual([row["id"] for row in self.data["rows"]], ["ggh", "gghh", "gghhh"])
+        self.assertEqual([row["status"] for row in self.data["rows"]],
+                         ["measured", "not_run", "not_run"])
+
+    def test_interrupt_during_a_row_keeps_completed_work_and_pending_failures_visible(self):
+        self.data["rows"][0]["status"] = "failed"
+        self.data["rows"][1]["status"] = "running"
+        benchmark.finalize_rows(self.data, completed_normally=False)
+        self.assertEqual([row["status"] for row in self.data["rows"]],
+                         ["failed", "interrupted", "not_run"])
+        self.assertEqual(self.data["status"], "interrupted")
+
+    def test_completion_requires_all_configurations_to_finish(self):
+        benchmark.finalize_rows(self.data, completed_normally=True)
+        self.assertEqual(self.data["status"], "interrupted")
+        for row, status in zip(self.data["rows"], ["measured", "failed", "timeout"], strict=True):
+            row["status"] = status
+        benchmark.finalize_rows(self.data, completed_normally=True)
+        self.assertEqual(self.data["status"], "complete")
+
+
 class ProtocolTests(unittest.TestCase):
     def setUp(self):
         self.request = {"op": "measure", "id": "fixture", "stage": "reduction",

@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "recorded_at_utc": "2026-10-23T13:23:31.477463+00:00",
+  "scope": "Python transport and validation-boundary regression tests only; no Rust, Fortran or Symbolica execution",
+  "command": "python3 -B -m unittest discover -s validation/benchmark -p 'test_*.py' -v",
+  "tests": 21,
+  "failures": 0,
+  "observed_suite_seconds": 0.298,
+  "duration_qualification": "validation observation, not a performance benchmark",
+  "independent_root_rerun": {
+    "tests": 21,
+    "status": "passed",
+    "duration_recorded": false
+  },
+  "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+  "file_sha256": {
+    "validation/benchmark/run.py": "513b443db0af895b287f5a6635becd1807ecf1c65b87ae588542a59b3fbaa644",
+    "validation/benchmark/physical_run.py": "6bd2e419fd0da97648de183b60b1bd40d0bb67873f98d395400d92320d6cab09",
+    "validation/benchmark/build_physical.py": "99ca5a6ab2091887e14f9491848e4d71fae4fa9776d467ef30701b4021e80b87",
+    "validation/benchmark/test_physical_harness.py": "d403176bdc7252a52c8c2b3bd0f0cd5bc3342cc62c89b37576ace14616fa9f9b",
+    "validation/benchmark/test_process_transport.py": "882cb1de09412703870675a327993bad9ee629093658181b1e47c37559c6dace",
+    "validation/benchmark/test_physical_reference_shape.py": "ba434feed2c7b0e557647bc5302cee8923969960dd11dd08153295f831a9d75c",
+    "validation/physical/compare_cli.py": "bd15231de5b8adeb70524e5b92e7f8133afd7139aa59977395acb3474e8bae5b",
+    "validation/benchmark/PHYSICAL.md": "a3b8eb5fd0b1ed4f3d206c9410474f05ae5ec4b488797f2233094d3c4157802f"
+  },
+  "fixes": [
+    {
+      "issue": "A large prepare request could block in stdin.write before its timeout began.",
+      "change": "Use nonblocking stdin/stdout with a shared monotonic deadline, drain both pipe directions, and kill/reap a timed-out child.",
+      "regressions": [
+        "4 MiB input to a child that never reads times out",
+        "large duplex traffic and persistent second response",
+        "EOF without a result exits promptly"
+      ]
+    },
+    {
+      "issue": "Interruption between configurations could leave an incomplete run marked complete.",
+      "change": "Record all configurations before execution; retain interrupted and not_run rows; require normal completion of all rows.",
+      "regressions": [
+        "interrupt between configurations",
+        "interrupt during a configuration",
+        "completion requires all requested configurations"
+      ]
+    },
+    {
+      "issue": "zip could silently compare fewer than three MadLoop Laurent coefficients.",
+      "change": "Require exactly three finite real/imaginary pairs and strict pairing.",
+      "regressions": [
+        "missing/short/long/nonarray reference",
+        "malformed pairs in every slot",
+        "nonfinite either component",
+        "selected graph, color factor and all Laurent slots",
+        "all four retained fixture shapes"
+      ]
+    }
+  ],
+  "runtime_smoke": "pending on a provenance-identified Rust binary",
+  "matched_physical_timings": "not qualified; routing, snapping, effective/generated rank and stage boundaries still require alignment",
+  "performance_parity_claim": false
+}

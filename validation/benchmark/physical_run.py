@@ -181,6 +181,28 @@ def provenance_qualified(data):
     ])
 
 
+def configuration_rows(configurations):
+    """Record every requested workload before any subprocess can fail."""
+    return [{"id": configuration["id"], "case": case, "precision": configuration["precision"],
+             "bits": configuration["bits"], "accuracy_bits": configuration["accuracy_bits"],
+             "batch_width": len(configuration["input"]["samples"]),
+             "status": "pending", "stages": {}, "profiled_components": {}}
+            for case, configuration in configurations]
+
+
+def finalize_rows(data, completed_normally):
+    for row in data["rows"]:
+        if row["status"] == "pending":
+            row.update(status="not_run", error="run ended before this configuration started")
+        elif row["status"] == "running":
+            row.update(status="interrupted", error="run ended during this configuration")
+    finished = completed_normally and all(
+        row["status"] in {"measured", "failed", "timeout", "unsupported"}
+        for row in data["rows"]
+    )
+    data["status"] = "complete" if finished else "interrupted"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--rust", type=Path, default=Path("target/optimized/release/examples/physical_benchmark"))
@@ -244,7 +266,7 @@ def main():
                          "numerical_end_to_end": "single uninstrumented numerator+reduction+contraction call, not the sum of component medians",
                          "reference_timing": None, "performance_parity_claim": False,
                          "qualification": "stored MadLoop and original IREGI outputs establish correctness only; no physical timing ratio is inferred"},
-            "rows": []}
+            "rows": configuration_rows(configurations)}
     data["build_provenance_checks"] = {
         "successful_stable_build": build.get("status") == "complete" and build.get("provenance_qualified") is True,
         "binary_matches_manifest": build.get("binary_sha256") == data["binary"]["sha256"],
@@ -255,12 +277,10 @@ def main():
     engine = None
     reference_cache = {}
     rng = random.Random(271828)
+    completed_normally = False
     try:
-        for case, configuration in configurations:
-            row = {"id": configuration["id"], "case": case, "precision": configuration["precision"],
-                   "bits": configuration["bits"], "accuracy_bits": configuration["accuracy_bits"],
-                   "batch_width": len(configuration["input"]["samples"]), "status": "running", "stages": {}, "profiled_components": {}}
-            data["rows"].append(row)
+        for (case, configuration), row in zip(configurations, data["rows"], strict=True):
+            row["status"] = "running"
             directory = args.output.parent / configuration["id"]
             directory.mkdir(parents=True, exist_ok=True)
             print(configuration["id"], flush=True)
@@ -334,6 +354,7 @@ def main():
             finally:
                 raw.close()
                 kernel.save(args.output, data)
+        completed_normally = True
     finally:
         if engine:
             engine.close()
@@ -343,7 +364,7 @@ def main():
                 os.environ.pop(name, None)
             else:
                 os.environ[name] = value
-        data["status"] = "complete" if all(row["status"] != "running" for row in data["rows"]) else "interrupted"
+        finalize_rows(data, completed_normally)
         try:
             data["source_changed_during_run"] = kernel.source_hashes(source_root) != sources
             data["workspace_source_changed_during_run"] = kernel.source_hashes() != data["environment"]["source_sha256"]

@@ -73,6 +73,8 @@ class Process:
         self.log = (directory / f"{label}.stderr.log").open("a")
         self.process = subprocess.Popen([str(binary)], stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                         stderr=self.log, bufsize=0)
+        os.set_blocking(self.process.stdin.fileno(), False)
+        os.set_blocking(self.process.stdout.fileno(), False)
         self.selector = selectors.DefaultSelector()
         self.selector.register(self.process.stdout, selectors.EVENT_READ)
         self.buffer = b""
@@ -80,33 +82,60 @@ class Process:
     def request(self, text):
         if self.process.poll() is not None:
             raise RuntimeError(f"benchmark process already exited: {self.process.returncode}")
-        self.process.stdin.write(text.encode())
-        self.process.stdin.flush()
         deadline = time.monotonic() + self.timeout
-        while time.monotonic() < deadline:
-            while b"\n" in self.buffer:
-                line, self.buffer = self.buffer.split(b"\n", 1)
-                if line.startswith(b"RESULT "):
-                    return json.loads(line[7:])
-            if not self.selector.select(max(0.0, deadline - time.monotonic())):
-                break
-            chunk = os.read(self.process.stdout.fileno(), 65536)
-            if not chunk:
-                raise RuntimeError(f"benchmark process exited without RESULT: {self.process.poll()}")
-            self.buffer += chunk
-        self.process.kill()
-        raise TimeoutError("benchmark request exceeded timeout; retained as failed")
+        payload = memoryview(text.encode())
+        sent = 0
+        self.selector.register(self.process.stdin, selectors.EVENT_WRITE)
+        try:
+            while time.monotonic() < deadline:
+                if sent == len(payload):
+                    while b"\n" in self.buffer:
+                        line, self.buffer = self.buffer.split(b"\n", 1)
+                        if line.startswith(b"RESULT "):
+                            return json.loads(line[7:])
+                events = self.selector.select(max(0.0, deadline - time.monotonic()))
+                if not events:
+                    break
+                for key, _ in events:
+                    if key.fileobj is self.process.stdin:
+                        try:
+                            sent += os.write(self.process.stdin.fileno(), payload[sent:])
+                        except BlockingIOError:
+                            continue
+                        if sent == len(payload):
+                            self.selector.unregister(self.process.stdin)
+                    else:
+                        try:
+                            chunk = os.read(self.process.stdout.fileno(), 65536)
+                        except BlockingIOError:
+                            continue
+                        if not chunk:
+                            raise RuntimeError(
+                                f"benchmark process exited without RESULT: {self.process.poll()}"
+                            )
+                        self.buffer += chunk
+            self.process.kill()
+            self.process.wait()
+            raise TimeoutError("benchmark request exceeded timeout; retained as failed")
+        finally:
+            # A timeout or early child failure can occur before all input was
+            # transmitted. Keep the selector reusable and cleanup nonblocking.
+            try:
+                self.selector.unregister(self.process.stdin)
+            except KeyError:
+                pass
 
     def close(self):
         if self.process.poll() is None:
             try:
-                self.process.stdin.write(b"QUIT\n")
-                self.process.stdin.flush()
+                os.write(self.process.stdin.fileno(), b"QUIT\n")
                 self.process.wait(timeout=5)
-            except (BrokenPipeError, subprocess.TimeoutExpired):
+            except (BrokenPipeError, BlockingIOError, subprocess.TimeoutExpired):
                 self.process.kill()
                 self.process.wait()
         self.selector.close()
+        self.process.stdin.close()
+        self.process.stdout.close()
         self.log.close()
 
 

@@ -101,6 +101,19 @@ cannot establish physical performance parity; reference timing and ratios remain
 absent. The separate tensor-kernel benchmark supplies its own matched reference
 timings.
 
+The existing MadLoop timer requires additional workload alignment before a
+physical timing ratio can be formed. Its generated ggH tensor rank is three,
+while the prepared polynomial has degree two; ggHHH allocates rank five while
+the prepared polynomial has degree four. Matched tensor timings must request
+the same rank and complete moment array. MadLoop also uses the mapped variable
+`x=p1-q` and legacy snapping at `1e-6`, whereas these canonical Rust inputs
+preserve their shifts. Both engines must receive the same routing, snapping
+policy, scale and coefficient arrays for a matched reduction comparison.
+MadLoop's `numerator_assembly` corresponds to numerical coefficient preparation;
+its `numerator` is a separate polynomial probe. Its `reduction` includes ordering
+conversion, contraction and cache cleanup, so it cannot be compared directly
+with the isolated Rust reduction stage or with a sum of stage medians.
+
 Each row retains precision, accuracy target, actual scalar backend, full initial
 output, references, raw response log, execution counters and stage samples.
 The artifact records binary/build identity, source and asset hashes, CPU details,
@@ -108,3 +121,11 @@ thread settings and source changes during measurement. Missing manifests,
 changing sources or mismatched hashes make provenance unqualified. Failed,
 unsupported, timed-out and interrupted rows remain in the output; there is no
 aggregate score that benefits from excluding them.
+
+Python boundary qualification is recorded in `harness-qualification/`. It checks
+large-input pipe backpressure within the request timeout, persistent responses,
+interrupted configuration accounting and strict three-slot MadLoop references.
+Those tests do not execute Rust, Fortran or Symbolica and do not qualify physical
+timings. A subsequent bounded ggH smoke should exercise singleton and odd-sized
+batches, all seven stages and a separate profiling pass, retaining every tensor
+and graph comparison; short smoke durations cannot establish performance parity.
