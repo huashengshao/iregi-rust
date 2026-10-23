@@ -1,0 +1,50 @@
+{
+  "recorded_utc": "2026-10-23T23:32:54.471532+00:00",
+  "total_cap_seconds": 300,
+  "total_seconds": 13.226759660989046,
+  "commands": [
+    {
+      "name": "venv",
+      "command": [
+        "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+        "-m",
+        "venv",
+        "/shared/external/iregi/iregi-rust/.local/notebooks-browser-env"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "seconds": 2.369936060043983
+    },
+    {
+      "name": "package",
+      "command": [
+        "/shared/external/iregi/iregi-rust/.local/notebooks-browser-env/bin/python",
+        "-m",
+        "pip",
+        "--disable-pip-version-check",
+        "install",
+        "playwright==1.55.0"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "seconds": 2.721373126958497
+    },
+    {
+      "name": "chromium",
+      "command": [
+        "/shared/external/iregi/iregi-rust/.local/notebooks-browser-env/bin/python",
+        "-m",
+        "playwright",
+        "install",
+        "--only-shell",
+        "chromium"
+      ],
+      "status": "completed",
+      "exit_code": 0,
+      "seconds": 8.13458982098382
+    }
+  ],
+  "browser_cache": "/shared/external/iregi/iregi-rust/.local/playwright-browsers",
+  "manual_retries": 0,
+  "Rust_or_native_wheel_operations": false
+}

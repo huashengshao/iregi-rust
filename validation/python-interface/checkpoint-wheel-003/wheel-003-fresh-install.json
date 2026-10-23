@@ -1,0 +1,38 @@
+{
+  "scope": "fresh project-local venv from inspected actual wheel, no editable/source package install",
+  "versions": {
+    "numpy": "2.5.4",
+    "pytest": "8.4.2",
+    "basedpyright": "1.40.2"
+  },
+  "steps": [
+    {
+      "command": [
+        "uv",
+        "venv",
+        "--python",
+        "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+        ".local/tirust-wheel-003-env"
+      ],
+      "seconds": 0.11467829800676554,
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "uv",
+        "pip",
+        "install",
+        "--python",
+        ".local/tirust-wheel-003-env/bin/python",
+        "target/python-interface-build/wheels/tirust-0.1.0-cp310-abi3-linux_x86_64.whl",
+        "numpy==2.5.4",
+        "pytest==8.4.2",
+        "basedpyright==1.40.2"
+      ],
+      "seconds": 4.936969001893885,
+      "exit_code": 0
+    }
+  ],
+  "pass": true,
+  "venv": ".local/tirust-wheel-003-env"
+}

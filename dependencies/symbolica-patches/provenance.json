@@ -23,15 +23,22 @@
     {
       "path": "0003-limit-git-watches-to-version-fallback.patch",
       "sha256": "81d2b29c1789541b5e2aca7ebb0749b1e1818c94ea309876f12389fc33d7057d"
+    },
+    {
+      "path": "0004-check-polynomial-exponent-conversion.patch",
+      "sha256": "6834ad46cc3e0959cc0fe179862d937522f24cc814c3b565cc9f36166765cd74"
     }
   ],
   "patched_files": {
     "src/evaluate/tree.rs": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
     "build.rs": "2cc8e7add392754cded51f882704f5e33c0d2ca9dd3b3cccff091325692109ce",
-    "IREGI_UPSTREAM_VERSION": "9789fecdea50e43f2203df34a1cea9ad989aee6d6527b599d93dc11628fd84e8"
+    "IREGI_UPSTREAM_VERSION": "9789fecdea50e43f2203df34a1cea9ad989aee6d6527b599d93dc11628fd84e8",
+    "src/poly.rs": "0f246ceca41a50213458c51d0c103e36f85d023616120d5789482fd35a65d6d2",
+    "tests/polynomial_exponent_bounds.rs": "e375973f1a250099d6a0b752e78cbede665968b61c3cf63cc7654c772a3a049c"
   },
   "metadata_patch_scope": "Build-time display version only; uses an explicit vendored upstream+patch label before get_git_version fallback. No license handling changed. Existing qualified experimental binary predates this metadata-only patch.",
   "production_evidence": "validation/symbolica-production-qualification.json",
   "build_watch_patch_scope": "Metadata-only: Git metadata is watched only when the explicit vendored version is missing, empty, or unreadable. The explicit version and build.rs remain watched; no arithmetic, license handling, or displayed vendored version changes.",
-  "build_watch_patch_evidence": "validation/symbolica-build-metadata/results.json"
+  "build_watch_patch_evidence": "validation/symbolica-build-metadata/results.json",
+  "exponent_guard_scope": "Fast-path compact polynomial exponent acceptance is capped at i32::MAX, matching the existing subsequent conversion; no algebra rules, arithmetic or precision conversion changes. Compact regression source is included. Python-build qualification pending."
 }

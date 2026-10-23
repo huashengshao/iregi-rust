@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-diagnostic-256-audit/audit_saved_256.py", line 147, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-diagnostic-256-audit/audit_saved_256.py", line 117, in main
+    agree_report(precision_max,saved['precision_comparison']['maximum_normalized_error'],'precision maximum')
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-diagnostic-256-audit/audit_saved_256.py", line 33, in agree_report
+    check(abs(ours-saved)<=max(abs(ours),abs(saved),D('1e-300'))*D('1e-190'),'saved report rounding mismatch '+label)
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-diagnostic-256-audit/audit_saved_256.py", line 14, in check
+    if not value:raise ValueError(message)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: saved report rounding mismatch precision maximum

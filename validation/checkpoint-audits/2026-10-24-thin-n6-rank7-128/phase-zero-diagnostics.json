@@ -1,0 +1,352 @@
+{
+  "schema_version": 1,
+  "status": "completed_independent_analytic_phase_zero_and_saved_data_diagnostics",
+  "reviewer": "/root/guard_performance_review",
+  "recorded_utc": "2026-10-23T23:21:07.849193+00:00",
+  "phase_zero_premise_verified": true,
+  "positive_F_lower_bound": "15/16",
+  "Q": "2",
+  "zero_identity_error_definition": "abs(Re output)/Q^(rank-8)",
+  "original_gate_real_error_definition": "abs(Re output)/max(Q^(rank-8),abs(original_IBP_complex_output))",
+  "threshold": "1e-10",
+  "kernel_build_test_or_algebra_execution": false,
+  "numerical_agreement_qualified": false,
+  "precision_convergence_qualified": false,
+  "imaginary_accuracy_qualified": false,
+  "causal_cache_bug_inferred": false,
+  "limitations": "Analytic real-zero identity in the retained real positive-F ordinary domain only. No general complex-mass/threshold/physical-cut claim. Additional real-part accuracy information does not replace the failed complete-array gate or certify imaginary components. Original PV remains explicitly unstable.",
+  "backend_summaries": [
+    {
+      "backend": "TIRust128",
+      "reported_stable": true,
+      "complex_slots": 1320,
+      "exact_zero_real_parts": 993,
+      "real_zero_identity_failures_at_1e_minus_10": 0,
+      "maximum_dimensionally_normalized_real_residual": "2.31111593326468302366717353110191278224572197785846583428792655467987060546875E-32",
+      "worst": {
+        "backend": "TIRust128",
+        "moment": 246,
+        "basis": [
+          2,
+          4,
+          1,
+          0
+        ],
+        "rank": 7,
+        "slot": 3,
+        "represented_real": "1.155557966632341511833586765550956391122860988929232917143963277339935302734375E-32",
+        "dimensionally_normalized_real_residual": "2.31111593326468302366717353110191278224572197785846583428792655467987060546875E-32",
+        "original_gate_normalized_real_residual": "2.31111593326468302366717353110191278224572197785846583428792655467987060546875E-32",
+        "zero_identity_failure_at_1e_minus_10": false
+      },
+      "by_rank": {
+        "0": {
+          "complex_slots": 4,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.3240768367662246489759848355271375314949448831480793842274579219520092010498046875E-34",
+          "maximum_raw_real_magnitude": "5.172175143618065035062440763777880982402128449797185094638507507625035941600799560546875E-37"
+        },
+        "1": {
+          "complex_slots": 16,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "8.425943506694156857119903498809057018604194710942323354174732230603694915771484375E-35",
+          "maximum_raw_real_magnitude": "6.58276836460481004462492460844457579578452711792369012044900955515913665294647216796875E-37"
+        },
+        "2": {
+          "complex_slots": 40,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "8.425943506694156857119903498809057018604194710942323354174732230603694915771484375E-35",
+          "maximum_raw_real_magnitude": "1.31655367292096200892498492168891515915690542358473802408980191103182733058929443359375E-36"
+        },
+        "3": {
+          "complex_slots": 80,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "6.018531076210112040799931070577897870431567650673088110124808736145496368408203125E-35",
+          "maximum_raw_real_magnitude": "1.8807909613156600127499784595555930845098648908353400344140027300454676151275634765625E-36"
+        },
+        "4": {
+          "complex_slots": 140,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "4.8148248609680896326399448564623182963452541205384704880998469889163970947265625E-35",
+          "maximum_raw_real_magnitude": "3.0092655381050560203999655352889489352157838253365440550624043680727481842041015625E-36"
+        },
+        "5": {
+          "complex_slots": 224,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "4.8148248609680896326399448564623182963452541205384704880998469889163970947265625E-34",
+          "maximum_raw_real_magnitude": "6.018531076210112040799931070577897870431567650673088110124808736145496368408203125E-35"
+        },
+        "6": {
+          "complex_slots": 336,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "2.5037089277034066089727713253604055140995321426800046538119204342365264892578125E-33",
+          "maximum_raw_real_magnitude": "6.25927231925851652243192831340101378524883035670001163452980108559131622314453125E-34"
+        },
+        "7": {
+          "complex_slots": 480,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "2.31111593326468302366717353110191278224572197785846583428792655467987060546875E-32",
+          "maximum_raw_real_magnitude": "1.155557966632341511833586765550956391122860988929232917143963277339935302734375E-32"
+        }
+      },
+      "original_full_array_failed_slots_explained_by_reference_real_residual_alone": null,
+      "qualification": "additional real-zero identity only; imaginary accuracy and original failed full-array gate unchanged"
+    },
+    {
+      "backend": "IREGI_IBP",
+      "reported_stable": true,
+      "complex_slots": 1320,
+      "exact_zero_real_parts": 990,
+      "real_zero_identity_failures_at_1e_minus_10": 88,
+      "maximum_dimensionally_normalized_real_residual": "2.48176243822302334E-9",
+      "worst": {
+        "backend": "IREGI_IBP",
+        "moment": 210,
+        "basis": [
+          7,
+          0,
+          0,
+          0
+        ],
+        "rank": 7,
+        "slot": 3,
+        "represented_real": "1.24088121911151167E-9",
+        "dimensionally_normalized_real_residual": "2.48176243822302334E-9",
+        "original_gate_normalized_real_residual": "2.48176243822302334E-9",
+        "zero_identity_failure_at_1e_minus_10": true
+      },
+      "by_rank": {
+        "0": {
+          "complex_slots": 4,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.72628428875329297408E-13",
+          "maximum_raw_real_magnitude": "6.74329800294255068E-16"
+        },
+        "1": {
+          "complex_slots": 16,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.26942325978857982592E-13",
+          "maximum_raw_real_magnitude": "9.91736921709827989E-16"
+        },
+        "2": {
+          "complex_slots": 40,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.1526427594268295488E-12",
+          "maximum_raw_real_magnitude": "1.80100431160442117E-14"
+        },
+        "3": {
+          "complex_slots": 80,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "2.4239255954080312672E-12",
+          "maximum_raw_real_magnitude": "7.57476748565009771E-14"
+        },
+        "4": {
+          "complex_slots": 140,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.061259358604192552E-11",
+          "maximum_raw_real_magnitude": "6.63287099127620345E-13"
+        },
+        "5": {
+          "complex_slots": 224,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "7.137499938914236784E-11",
+          "maximum_raw_real_magnitude": "8.92187492364279598E-12"
+        },
+        "6": {
+          "complex_slots": 336,
+          "real_zero_identity_failures": 12,
+          "maximum_dimensionally_normalized_real_residual": "4.18302006810586932E-10",
+          "maximum_raw_real_magnitude": "1.04575501702646733E-10"
+        },
+        "7": {
+          "complex_slots": 480,
+          "real_zero_identity_failures": 76,
+          "maximum_dimensionally_normalized_real_residual": "2.48176243822302334E-9",
+          "maximum_raw_real_magnitude": "1.24088121911151167E-9"
+        }
+      },
+      "original_full_array_failed_slots_explained_by_reference_real_residual_alone": 88,
+      "qualification": "additional real-zero identity only; imaginary accuracy and original failed full-array gate unchanged"
+    },
+    {
+      "backend": "IREGI_PV",
+      "reported_stable": false,
+      "complex_slots": 1320,
+      "exact_zero_real_parts": 1110,
+      "real_zero_identity_failures_at_1e_minus_10": 12,
+      "maximum_dimensionally_normalized_real_residual": "4.18302006810585016E-10",
+      "worst": {
+        "backend": "IREGI_PV",
+        "moment": 126,
+        "basis": [
+          6,
+          0,
+          0,
+          0
+        ],
+        "rank": 6,
+        "slot": 3,
+        "represented_real": "1.04575501702646254E-10",
+        "dimensionally_normalized_real_residual": "4.18302006810585016E-10",
+        "original_gate_normalized_real_residual": "4.18302006810585016E-10",
+        "zero_identity_failure_at_1e_minus_10": true
+      },
+      "by_rank": {
+        "0": {
+          "complex_slots": 4,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.72628428875329322496E-13",
+          "maximum_raw_real_magnitude": "6.74329800294255166E-16"
+        },
+        "1": {
+          "complex_slots": 16,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.269423259788578816E-13",
+          "maximum_raw_real_magnitude": "9.91736921709827200E-16"
+        },
+        "2": {
+          "complex_slots": 40,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.8416761067697561472E-13",
+          "maximum_raw_real_magnitude": "2.87761891682774398E-15"
+        },
+        "3": {
+          "complex_slots": 80,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "2.4239255954080332864E-12",
+          "maximum_raw_real_magnitude": "7.57476748565010402E-14"
+        },
+        "4": {
+          "complex_slots": 140,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.0612593586041990144E-11",
+          "maximum_raw_real_magnitude": "6.63287099127624384E-13"
+        },
+        "5": {
+          "complex_slots": 224,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "7.137499938914249712E-11",
+          "maximum_raw_real_magnitude": "8.92187492364281214E-12"
+        },
+        "6": {
+          "complex_slots": 336,
+          "real_zero_identity_failures": 12,
+          "maximum_dimensionally_normalized_real_residual": "4.18302006810585016E-10",
+          "maximum_raw_real_magnitude": "1.04575501702646254E-10"
+        },
+        "7": {
+          "complex_slots": 480,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "0",
+          "maximum_raw_real_magnitude": "0"
+        }
+      },
+      "original_full_array_failed_slots_explained_by_reference_real_residual_alone": null,
+      "qualification": "unstable original PV remains unqualified"
+    },
+    {
+      "backend": "IREGI_Hybrid",
+      "reported_stable": true,
+      "complex_slots": 1320,
+      "exact_zero_real_parts": 990,
+      "real_zero_identity_failures_at_1e_minus_10": 88,
+      "maximum_dimensionally_normalized_real_residual": "2.48176243822302334E-9",
+      "worst": {
+        "backend": "IREGI_Hybrid",
+        "moment": 210,
+        "basis": [
+          7,
+          0,
+          0,
+          0
+        ],
+        "rank": 7,
+        "slot": 3,
+        "represented_real": "1.24088121911151167E-9",
+        "dimensionally_normalized_real_residual": "2.48176243822302334E-9",
+        "original_gate_normalized_real_residual": "2.48176243822302334E-9",
+        "zero_identity_failure_at_1e_minus_10": true
+      },
+      "by_rank": {
+        "0": {
+          "complex_slots": 4,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.72628428875329322496E-13",
+          "maximum_raw_real_magnitude": "6.74329800294255166E-16"
+        },
+        "1": {
+          "complex_slots": 16,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.269423259788578816E-13",
+          "maximum_raw_real_magnitude": "9.91736921709827200E-16"
+        },
+        "2": {
+          "complex_slots": 40,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.8416761067697561472E-13",
+          "maximum_raw_real_magnitude": "2.87761891682774398E-15"
+        },
+        "3": {
+          "complex_slots": 80,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "2.4239255954080332864E-12",
+          "maximum_raw_real_magnitude": "7.57476748565010402E-14"
+        },
+        "4": {
+          "complex_slots": 140,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "1.0612593586041990144E-11",
+          "maximum_raw_real_magnitude": "6.63287099127624384E-13"
+        },
+        "5": {
+          "complex_slots": 224,
+          "real_zero_identity_failures": 0,
+          "maximum_dimensionally_normalized_real_residual": "7.137499938914249712E-11",
+          "maximum_raw_real_magnitude": "8.92187492364281214E-12"
+        },
+        "6": {
+          "complex_slots": 336,
+          "real_zero_identity_failures": 12,
+          "maximum_dimensionally_normalized_real_residual": "4.18302006810585016E-10",
+          "maximum_raw_real_magnitude": "1.04575501702646254E-10"
+        },
+        "7": {
+          "complex_slots": 480,
+          "real_zero_identity_failures": 76,
+          "maximum_dimensionally_normalized_real_residual": "2.48176243822302334E-9",
+          "maximum_raw_real_magnitude": "1.24088121911151167E-9"
+        }
+      },
+      "original_full_array_failed_slots_explained_by_reference_real_residual_alone": null,
+      "qualification": "additional real-zero identity only; imaginary accuracy and original failed full-array gate unchanged"
+    }
+  ],
+  "input_sha256": {
+    "validation/public-highpoint/fixture-conditioned_masses.json": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+    "target/public-highpoint/thin-n6-rank7-phase/n6-rank7-128-001/result.json": "717ec3e0e634add1975bd969291aab0b23c640fb0d6c41cd3307d23f96b00982",
+    "validation/public-highpoint/reference-conditioned_masses.json": "9bc3f10ad27615f23ddb3c2f62169575378d32e6c35c9d2a9dd51223f9b39ec4",
+    "target/guard-performance-review/rank7-audit/audit-128.json": "9fd8f76748730315304c8eebfe59950f894e2a265f31d9505e8bf4b0d954f78e",
+    "target/guard-performance-review/rank7-audit/all-slots.json": "10f1bca4b5bc5e2a8eda981f8032d4e2510bb7a3f4e4e5146e029a7ced74825d",
+    "docs/conventions.typ": "ceb2f1f1c7902d5b72b48174a33cb6ed6929809f4f002cc4362d340c325457fe",
+    "validation/reference/driver.f90": "99e8201f5687c2106b1b3b2c8e65bd1fbda4d1722b258db6e7298f889d31d3c2",
+    "validation/public-highpoint/simplex_oracle.py": "e4eb3e2178130a362d723be30670918251deb23c8e946267e50b7bd7f8587949",
+    "validation/pv-high-rank/sixpoint_simplex_oracle.py": "3ddfc199ddda239a0f1528a1980db95aa27bc6798143b204a215f43ff28ad28d",
+    "target/public-highpoint/thin-n6-rank7-phase/core/crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+    "target/public-highpoint/thin-n6-rank7-phase/core/crates/iregi-rust/src/types.rs": "6389ad02d4da70d37535c6e010f541cd3a049fa16bd02d3031b7296204d9c77b",
+    "../references/madgraph/vendor/IREGI/src/mis_warp.f90": "a91edb13d4934cce9ee2d86af473eb82f0e383e5d0636bce7560d60fdd0a8649",
+    "../references/madgraph/vendor/IREGI/src/IREGI4ML5_interface.f90": "7dea440003e38c7c68688894f0e87758c5ae2f2322a5770b30701aa3929ad3b1",
+    "target/guard-performance-review/rank7-audit/phase-zero-proof.md": "02afd5d67f7ba89b4978db57e3a12881101fd56a860f331b6d04456883557745"
+  },
+  "script_sha256": "b815b8e75141cb2cb1f32371822c133fc63d921b976520e8ddd9260accf7698f",
+  "all_slot_residuals_sha256": "a499220af425f363b62d02960a3f96c688747794606067182795aab4ade3f8ee",
+  "primary_sources": [
+    {
+      "title": "Alwall et al. Appendix C.1 EqC.1",
+      "url": "https://arxiv.org/html/1405.0301v2#A3.SS1"
+    },
+    {
+      "title": "Bern,Dixon,Kosower Eqs3\u20136",
+      "url": "https://cds.cern.ch/record/247616/files/9212308.pdf"
+    }
+  ]
+}

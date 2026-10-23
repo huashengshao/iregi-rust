@@ -1,0 +1,362 @@
+{
+  "schema_version": 1,
+  "status": "source_only_ready_for_independent_review",
+  "created_utc": "2026-10-23T22:55:41.415566+00:00",
+  "source_root": "target/public-highpoint/thin-n6-generic-fixed/core",
+  "instrumented_root": "target/public-highpoint/thin-n6-rank7-phase/core",
+  "copy_manifest_sha256": "c534a5af2ebf57defa6284a021ab01fc696101608f976cf47ac9c41799d5f413",
+  "patch": "instrumentation.patch",
+  "patch_sha256": "214d94affa319fa59f890d3228bb80358279a479efc094eebeb71be3a637264d",
+  "file_count": 36,
+  "changed_files": [
+    "crates/iregi-rust/src/certified_planar.rs",
+    "crates/iregi-rust/src/thin_n6.rs"
+  ],
+  "instrumentation_line_count": 29,
+  "source_and_production_guards_unchanged": true,
+  "stripped_all_files_byte_identical": true,
+  "instrumentation_contract": "Only added single-line stderr eprintln statements and std::time::Instant declarations; removal of lines ending // IREGI_PHASE_ONLY exactly restores each original source byte. Existing expressions, guards, branches, outputs and calls remain byte-identical. Cache probes are read-only and never control reduction. No archive/dependency copied; no build or numerical runtime performed.",
+  "marker_semantics": "BEGIN precedes the unchanged fallible call; END is emitted only after its success. Missing END alone does not distinguish error, timeout or process termination; use the driver/result ledger. Timing is diagnostic and includes logging overhead; no performance claim.",
+  "files": [
+    {
+      "path": "crates/iregi-rust/Cargo.toml",
+      "source_sha256": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+      "instrumented_sha256": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/basis.rs",
+      "source_sha256": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+      "instrumented_sha256": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/certified_planar/mask_tests.rs",
+      "source_sha256": "5677e2db630498a8b8028c6977cfa5151d63c5423720ee3fa10e049ded81f3db",
+      "instrumented_sha256": "5677e2db630498a8b8028c6977cfa5151d63c5423720ee3fa10e049ded81f3db",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/certified_planar/public_api_tests.rs",
+      "source_sha256": "c950ebd84a9aa6868c0a7b2b390c92fea76a97f27667865ef2787fb3b687632e",
+      "instrumented_sha256": "c950ebd84a9aa6868c0a7b2b390c92fea76a97f27667865ef2787fb3b687632e",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/certified_planar.rs",
+      "source_sha256": "65dcbb0e4e63bae1ec7079e9d9113d7efccc08d0c80b4d6902beae5671cfdc9f",
+      "instrumented_sha256": "b40984ca756f6d55388a6ea6f074a4ebebc97a733d6541da737f7ed9e0dcade6",
+      "unchanged": false,
+      "added_instrumentation_lines": [
+        {
+          "line": 137,
+          "text": "        eprintln!(\"IREGI_PHASE CACHE planar.chart_plan rank={} omitted={omitted} inactive={inactive:#07b} initialized={}\", self.settings.rank, entry.get().is_some()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 487,
+          "text": "            eprintln!(\"IREGI_PHASE CACHE planar.chart_workspace rank={} omitted={omitted} inactive={inactive:#07b} cached={} rows={} components={}\", self.plan.settings.rank, self.charts.contains_key(&key), lanes.len(), self.components); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 614,
+          "text": "        let phase_chart_plan = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 615,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN planar.chart_plan rank={} omitted={omitted} inactive={inactive:#07b} components={}\", self.plan.settings.rank, self.components); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 617,
+          "text": "        eprintln!(\"IREGI_PHASE END planar.chart_plan rank={} omitted={omitted} inactive={inactive:#07b} seconds={:.9}\", self.plan.settings.rank, phase_chart_plan.elapsed().as_secs_f64()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 618,
+          "text": "        let phase_chart_workspace = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 619,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN planar.chart_workspace rank={} omitted={omitted} inactive={inactive:#07b} components={} working_bits={}\", self.plan.settings.rank, self.components, self.prototype.get_precision()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 628,
+          "text": "        eprintln!(\"IREGI_PHASE END planar.chart_workspace rank={} omitted={omitted} inactive={inactive:#07b} seconds={:.9}\", self.plan.settings.rank, phase_chart_workspace.elapsed().as_secs_f64()); // IREGI_PHASE_ONLY"
+        }
+      ],
+      "stripped_sha256": "65dcbb0e4e63bae1ec7079e9d9113d7efccc08d0c80b4d6902beae5671cfdc9f",
+      "stripped_matches_source": true
+    },
+    {
+      "path": "crates/iregi-rust/src/certified_scalar.rs",
+      "source_sha256": "c869f242023c08717f141a08463ca943315e3d7a6d4fb55875d2301eea7d70d8",
+      "instrumented_sha256": "c869f242023c08717f141a08463ca943315e3d7a6d4fb55875d2301eea7d70d8",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/contraction.rs",
+      "source_sha256": "7d2a7dc0172b4ebdbe4785324d7597b5547a97975ea3f1e184d48ea69bddebcd",
+      "instrumented_sha256": "7d2a7dc0172b4ebdbe4785324d7597b5547a97975ea3f1e184d48ea69bddebcd",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/convention.rs",
+      "source_sha256": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+      "instrumented_sha256": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/exact_zero_certificate.rs",
+      "source_sha256": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+      "instrumented_sha256": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/accounting_tests.rs",
+      "source_sha256": "a8aff2f9633870e48602a772682ad1caf711a9f15298873f9c72af24f15c9c65",
+      "instrumented_sha256": "a8aff2f9633870e48602a772682ad1caf711a9f15298873f9c72af24f15c9c65",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/guard_context_tests.rs",
+      "source_sha256": "25599a2f7378c2354cc394afff7d498eec7c82ff05c926ef206151bef5d8cd31",
+      "instrumented_sha256": "25599a2f7378c2354cc394afff7d498eec7c82ff05c926ef206151bef5d8cd31",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/planar_fallback/tests.rs",
+      "source_sha256": "f308e26dff0dfac8d437f8472449de10bc9379479b9ea48064d04d2bd5b6bf1a",
+      "instrumented_sha256": "f308e26dff0dfac8d437f8472449de10bc9379479b9ea48064d04d2bd5b6bf1a",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/planar_fallback.rs",
+      "source_sha256": "bb5d051d68b9d80441cb6e756e6a16742c5ad01e80328ce6450af02e98e2e6ae",
+      "instrumented_sha256": "bb5d051d68b9d80441cb6e756e6a16742c5ad01e80328ce6450af02e98e2e6ae",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/proof_receipt_accounting_tests.rs",
+      "source_sha256": "db2d064748cb48f853840bf1965f6d5b8cade9ee6c195917530789ef15889a06",
+      "instrumented_sha256": "db2d064748cb48f853840bf1965f6d5b8cade9ee6c195917530789ef15889a06",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/proof_receipt_tests.rs",
+      "source_sha256": "2ba0706e1172addf7e87171c06d5bd728a27c3d90bd63d9835c7c8d55d19b5bd",
+      "instrumented_sha256": "2ba0706e1172addf7e87171c06d5bd728a27c3d90bd63d9835c7c8d55d19b5bd",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/proof_receipts.rs",
+      "source_sha256": "4b946e4879cc2c2468b23922e6740535aced528b97b4433cc5a5f4eca188986b",
+      "instrumented_sha256": "4b946e4879cc2c2468b23922e6740535aced528b97b4433cc5a5f4eca188986b",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/execution.rs",
+      "source_sha256": "b3d8eb139efba0e7852fa26adbba7bb0ab92ecbfd70a8fd0d571d9a74ec10532",
+      "instrumented_sha256": "b3d8eb139efba0e7852fa26adbba7bb0ab92ecbfd70a8fd0d571d9a74ec10532",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/ibp.rs",
+      "source_sha256": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+      "instrumented_sha256": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/invariant_certificate.rs",
+      "source_sha256": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+      "instrumented_sha256": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/lib.rs",
+      "source_sha256": "51fe221eff97db40fd6c54ba4f8dec997d98b0b7f156cc30c99eec23b6308914",
+      "instrumented_sha256": "51fe221eff97db40fd6c54ba4f8dec997d98b0b7f156cc30c99eec23b6308914",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/plan.rs",
+      "source_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+      "instrumented_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/pv.rs",
+      "source_sha256": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d",
+      "instrumented_sha256": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/rescue.rs",
+      "source_sha256": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+      "instrumented_sha256": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/scalar.rs",
+      "source_sha256": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+      "instrumented_sha256": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/snapping.rs",
+      "source_sha256": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+      "instrumented_sha256": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/stability/arguments.rs",
+      "source_sha256": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+      "instrumented_sha256": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/stability/context.rs",
+      "source_sha256": "0a6016687b4b2d0e5505cd4a1ca8574dd4d901c5cf003f9fca177f49fe78af4d",
+      "instrumented_sha256": "0a6016687b4b2d0e5505cd4a1ca8574dd4d901c5cf003f9fca177f49fe78af4d",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/stability/context_tests.rs",
+      "source_sha256": "9573b774e704aca91c20fd141265bb23fd1a5a3ad079048204f14b66e623c8ab",
+      "instrumented_sha256": "9573b774e704aca91c20fd141265bb23fd1a5a3ad079048204f14b66e623c8ab",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/stability/quadrature.rs",
+      "source_sha256": "993dca8bfc6c82cb64a930346ad2eb7724b2cfb7d61e7e7abd3fe5fa8263ba43",
+      "instrumented_sha256": "993dca8bfc6c82cb64a930346ad2eb7724b2cfb7d61e7e7abd3fe5fa8263ba43",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/stability.rs",
+      "source_sha256": "f6c9ad7bed125cd48f71a4d8b8afd09ef64d91bde04def055ba0bc5580151ed5",
+      "instrumented_sha256": "f6c9ad7bed125cd48f71a4d8b8afd09ef64d91bde04def055ba0bc5580151ed5",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/thin_n6/generic_tests.rs",
+      "source_sha256": "098c6e941bf4b695642a086117eb5e25d72aeeed9354cd58e93ac2fe182b8a39",
+      "instrumented_sha256": "098c6e941bf4b695642a086117eb5e25d72aeeed9354cd58e93ac2fe182b8a39",
+      "unchanged": true
+    },
+    {
+      "path": "crates/iregi-rust/src/thin_n6.rs",
+      "source_sha256": "18e513c8fc99389fd6390adfc29396bbde66b146b04ea892c6017bfd09357a45",
+      "instrumented_sha256": "c337c767d35f7dd3e4908fff38a9fc79aadc01005b3f094902c6e5b2035166e5",
+      "unchanged": false,
+      "added_instrumentation_lines": [
+        {
+          "line": 14,
+          "text": "        let phase_parent_plan = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 15,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.parent_plan rank={} child_rank={child_rank}\", settings.rank); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 17,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.parent_plan seconds={:.9} basis={} aliases={}\", phase_parent_plan.elapsed().as_secs_f64(), parent.basis().len(), parent.aliases().len()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 19,
+          "text": "        let phase_child_plan = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 20,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.child_plan rank={child_rank}\"); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 22,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.child_plan seconds={:.9} basis={} aliases={}\", phase_child_plan.elapsed().as_secs_f64(), child.basis().len(), child.aliases().len()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 42,
+          "text": "        let phase_child_workspace = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 43,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.child_workspace rank={} components=1 working_bits={}\", plan.child.settings().rank, prototype.get_precision()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 45,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.child_workspace seconds={:.9}\", phase_child_workspace.elapsed().as_secs_f64()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 46,
+          "text": "        let phase_parent_workspace = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 47,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.parent_workspace rank={} components=1 working_bits={}\", plan.settings().rank, prototype.get_precision()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 49,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.parent_workspace seconds={:.9}\", phase_parent_workspace.elapsed().as_secs_f64()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 60,
+          "text": "        let phase_dual_parent_plan = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 61,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.dual_parent_plan rank={} components={} order={order}\", plan.settings().rank, shape.len()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 63,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.dual_parent_plan seconds={:.9} basis={} aliases={}\", phase_dual_parent_plan.elapsed().as_secs_f64(), parent_plan.basis().len(), parent_plan.aliases().len()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 64,
+          "text": "        let phase_dual_child_workspace = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 65,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.dual_child_workspace rank={} components={} working_bits={}\", plan.child.settings().rank, shape.len(), prototype.get_precision()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 67,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.dual_child_workspace seconds={:.9}\", phase_dual_child_workspace.elapsed().as_secs_f64()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 68,
+          "text": "        let phase_dual_parent_workspace = std::time::Instant::now(); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 69,
+          "text": "        eprintln!(\"IREGI_PHASE BEGIN thin.dual_parent_workspace rank={} components={} working_bits={}\", plan.settings().rank, shape.len(), prototype.get_precision()); // IREGI_PHASE_ONLY"
+        },
+        {
+          "line": 71,
+          "text": "        eprintln!(\"IREGI_PHASE END thin.dual_parent_workspace seconds={:.9}\", phase_dual_parent_workspace.elapsed().as_secs_f64()); // IREGI_PHASE_ONLY"
+        }
+      ],
+      "stripped_sha256": "18e513c8fc99389fd6390adfc29396bbde66b146b04ea892c6017bfd09357a45",
+      "stripped_matches_source": true
+    },
+    {
+      "path": "crates/iregi-rust/src/types.rs",
+      "source_sha256": "6389ad02d4da70d37535c6e010f541cd3a049fa16bd02d3031b7296204d9c77b",
+      "instrumented_sha256": "6389ad02d4da70d37535c6e010f541cd3a049fa16bd02d3031b7296204d9c77b",
+      "unchanged": true
+    },
+    {
+      "path": "validation/pv-high-rank/lightlike-feynman-parameters.json",
+      "source_sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+      "instrumented_sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+      "unchanged": true
+    },
+    {
+      "path": "validation/reference/fixtures.json",
+      "source_sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+      "instrumented_sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+      "unchanged": true
+    },
+    {
+      "path": "validation/reference/snapping/reductions.json",
+      "source_sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305",
+      "instrumented_sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305",
+      "unchanged": true
+    }
+  ]
+}

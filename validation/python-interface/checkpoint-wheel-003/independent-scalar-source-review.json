@@ -1,0 +1,29 @@
+{
+  "status": "source_review_no_concrete_blocker",
+  "recorded_utc": "2026-10-23T23:13:20.229997+00:00",
+  "sources": {
+    "crates/iregi-python/src/scalar.rs": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+    "tests/python/test_tirust_numerics.py": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+    "dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs": "8bd257589a36a5b93a8d45996c799d300dad1f6103103483301b25a4dc4f1c1f",
+    "dependencies/symbolica/lib/numerica/src/domains/float/double.rs": "dad8abd1088732fe6067b6867bee1c9e1f5453e7f8ad187326b1bc601686cdda",
+    "dependencies/symbolica/src/coefficient.rs": "fdf0423303170496a7aa9ee397abd33349494c9036c7f32771c0bc02fa293a3b",
+    "dependencies/oneloopmaster/src/native/primitives.rs": "b610c92e859565e71cdb3a9e6091e86298a2a02faa5cf8545709ae57d42167cc",
+    "docs/research/python-interface.md": "9d84abb034839585405c6d383c45b36b1c9638d026e846897c7c2ab921e233bf"
+  },
+  "checks": [
+    "DD export uses exact represented high+low rational and sufficient numerator bits, then verifies rational roundtrip; dyadic denominator requires no extra mantissa bits.",
+    "DD reimport uses upstream Float::to_double_float source-precision residual; explicit signed-zero handling precedes conversion. Nonfinite inputs remain nonfinite for lane validation.",
+    "Existing Float inputs clone their precision/value; Complex<Rational>::try_from rejects floating coefficients, so numeric Float Expressions reach the Float-preserving branch.",
+    "Exact integer/rational literals convert at requested arithmetic precision; this is distinct from transport of an existing representable DD pair.",
+    "Dual transport binds exact ordered shape and validates ancestors/overflow before canonical Symbolica construction.",
+    "Wide-gap Python test exercises identity coefficient transport and repeated rational roundtrip, not DD arithmetic beyond nominal106-bit accuracy.",
+    "Dotted propagator comparison has correct positive mass-squared derivative sign and checks allfour Laurent slots in Float256 at unchanged1e-28 test threshold."
+  ],
+  "limits": [
+    "No wheel import, Rust compile, Python test, or numerical execution performed by reviewer.",
+    "Subnormal/nonfinite DD transport Rust tests are declared source, not runtime-qualified here.",
+    "Internal components/output_components rely on validated workspace shapes/output widths, consistent with their private caller contract."
+  ],
+  "edits": 0,
+  "tests_run": 0
+}

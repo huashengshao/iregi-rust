@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_only_independent_review",
+  "reviewer": "/root/highpoint_coverage/mask_wrapper/phase_review",
+  "reviewed_utc": "2026-10-23T22:57:34.538614+00:00",
+  "scope": "Static byte, hash, diff, and source inspection only. No compilation, tests, numerical execution, or new algebra evaluation performed by this review.",
+  "instrumentation_manifest": "target/public-highpoint/thin-n6-rank7-phase/instrumentation-manifest.json",
+  "instrumentation_manifest_sha256": "896a4b323b459efd120332d86edf869a939c226e7cae1e1af64f1b6245c1d869",
+  "copy_manifest_sha256": "c534a5af2ebf57defa6284a021ab01fc696101608f976cf47ac9c41799d5f413",
+  "patch_sha256": "214d94affa319fa59f890d3228bb80358279a479efc094eebeb71be3a637264d",
+  "verified_file_count": 36,
+  "byte_identical_unmodified_files": 34,
+  "changed_files": [
+    "crates/iregi-rust/src/certified_planar.rs",
+    "crates/iregi-rust/src/thin_n6.rs"
+  ],
+  "added_lines": 29,
+  "all_changed_files_restore_exact_source_bytes_after_declared_line_removal": true,
+  "all_manifest_source_and_destination_hashes_verified": true,
+  "patch_independently_regenerated_byte_identical": true,
+  "source_and_destination_inventory_identical_no_symlinks": true,
+  "production_observation": {
+    "count": 23,
+    "matches_copy_time_snapshot": true,
+    "scope": "One-time static observation only; not a future build guard."
+  },
+  "instrumentation_review": [
+    "Nine Instant declarations, eighteen BEGIN/END stderr markers, and two CACHE stderr markers are the only additions.",
+    "No existing line is changed or deleted. Numerical expressions, algebra, reduction calls, guards, branches, output buffers, and precision contexts remain byte-identical.",
+    "Cache probes use OnceLock.get().is_some() and HashMap.contains_key(); neither initializes or mutates a cache nor controls reduction.",
+    "Accessor reads expose only rank, basis/alias lengths, component/row counts, and precision metadata. as_secs_f64 converts wall-clock duration only.",
+    "BEGIN precedes each unchanged fallible call. END follows successful return; chart-workspace END precedes unchanged set_accuracy_precision and set_profiling calls, so it marks constructor completion only.",
+    "A missing END is not alone a timeout or failure classification. A driver/exit ledger is required. Diagnostic output and timing overhead are intentional; this is not a performance measurement."
+  ],
+  "critical_unchanged_uv_semantics": {
+    "plan_source_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+    "thin_source_sha256": "18e513c8fc99389fd6390adfc29396bbde66b146b04ea892c6017bfd09357a45",
+    "tests_source_sha256": "098c6e941bf4b695642a086117eb5e25d72aeeed9354cd58e93ac2fe182b8a39",
+    "rule": "Final output UV single is zeroed iff 4 + 2*h - 2*sum(powers) + monomial_rank < 0; IR single, IR double and finite slots are untouched.",
+    "n5_rank6": "The child is an ordinary native/raw N5 plan with rank parent_rank.saturating_sub(1). At N5 rank six, degree is zero, so the child UV single is retained. Internal recurrence poles remain available before the child final-output rule.",
+    "n6_rank7": "The parent assembles all four imported Laurent slots through Symbolica and then applies the existing final-output rule. N6 ranks zero through seven have degree rank-8<0, so final parent UV is zero; no child array is modified or convention conversion repeated.",
+    "private_domain": "Exactly N6; rank<=7; six unit powers; h=0; FromShifts; Preserve; PV; IregiNative; raw Components. Unsupported contexts reject before geometry. No N7 or generalized-interface expansion.",
+    "test_limits": "The 792 cancellation checks use artificial nonzero equal-subset UV sentinels before final-output UV zeroing. The 6600 checks are integrand identities across 330 moments, four distinguishable assembly slots, and five routing/mass variants; they are not numerical Laurent values or rank-seven master qualification."
+  },
+  "prior_exact_evidence_binding": {
+    "build_manifest": "target/public-highpoint/thin-n6-generic-fixed/build-001/build.json",
+    "build_manifest_sha256": "0c01555ac79dc9703492a4f4288e471a50eb3d84f98411360a49b3c189ce755a",
+    "run_manifest": "target/public-highpoint/thin-n6-generic-fixed/exact-001/run.json",
+    "run_manifest_sha256": "a19f9624edd2a571fa4a003a56ad4387f3ae03123f94345347bdddd549d2ed6c",
+    "all_36_current_source_hashes_equal_prior_build_and_run_inputs": true,
+    "test_executable_sha256": "9500430b7e49dc911abc2d4a9b8a67452c9db225123a86557350180f46cf7ad1",
+    "test_executable_matches_build_output_and_run_input": true,
+    "all_logged_output_hashes_verified": {
+      "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-0.log": "2c9a055fb7ba90ef9d045f641beee8d1b2db4fb9f703224729a0129bdb8c79fa",
+      "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-1.log": "7f61181ca81d2b91278c748a4bd0fcc19554ab11a786f25eebd9d13a8fd4ea5e",
+      "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-2.log": "ed52cdc430f5fe862d10c74befd1f703a3c54faff1c666665a15756e10348dcf",
+      "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-3.log": "1be9843cae946743ab621315b604a7dd2dc3582c26ed8b761fde672978eb58af",
+      "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-4.log": "2e47e920e0246d36d95106ee49fccf0c1438966d7446bc652985575b63f155e8"
+    },
+    "relevant_prior_step_exit_code": 0,
+    "relevant_prior_step_seconds": 51.416863591060974,
+    "relevant_prior_step_summary": "10 tests passed, 0 failed; includes 792 raw UV cancellations and 6600 full integrand identities.",
+    "scope_limit": "This binds source, retained executable, and recorded test outputs; the full historical dependency closure was not rehashed here and no test was rerun."
+  },
+  "findings": [],
+  "build_or_runtime_performed": false,
+  "limitations": [
+    "Static review does not prove the instrumented source compiles.",
+    "No new rank-seven numerical success, timing, or production-adoption claim."
+  ]
+}

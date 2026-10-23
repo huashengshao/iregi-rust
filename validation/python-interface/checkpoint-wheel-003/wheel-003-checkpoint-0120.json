@@ -1,0 +1,1733 @@
+{
+  "captured_unix": 1792798262.732367,
+  "elapsed_seconds": 120.75261379301082,
+  "pgid": 1339785,
+  "processes": [
+    {
+      "pid": 1339785,
+      "ppid": 1338731,
+      "rss_bytes": 15970304,
+      "lifetime_cpu_percent": 0.2,
+      "name": "maturin"
+    },
+    {
+      "pid": 1340821,
+      "ppid": 1339785,
+      "rss_bytes": 106180608,
+      "lifetime_cpu_percent": 0.5,
+      "name": ".cargo-wrapped"
+    },
+    {
+      "pid": 1340841,
+      "ppid": 1340821,
+      "rss_bytes": 5032058880,
+      "lifetime_cpu_percent": 178.0,
+      "name": "rustc"
+    },
+    {
+      "pid": 1394354,
+      "ppid": 1340821,
+      "rss_bytes": 2651860992,
+      "lifetime_cpu_percent": 99.3,
+      "name": "rustc"
+    },
+    {
+      "pid": 1402820,
+      "ppid": 1340821,
+      "rss_bytes": 440328192,
+      "lifetime_cpu_percent": 99.3,
+      "name": "rustc"
+    },
+    {
+      "pid": 1402853,
+      "ppid": 1340821,
+      "rss_bytes": 869920768,
+      "lifetime_cpu_percent": 99.5,
+      "name": "rustc"
+    },
+    {
+      "pid": 1402854,
+      "ppid": 1340821,
+      "rss_bytes": 668610560,
+      "lifetime_cpu_percent": 99.4,
+      "name": "rustc"
+    },
+    {
+      "pid": 1430757,
+      "ppid": 1340821,
+      "rss_bytes": 970936320,
+      "lifetime_cpu_percent": 99.9,
+      "name": "rustc"
+    }
+  ],
+  "compilers": [
+    {
+      "pid": 1340841,
+      "argv": [
+        "rustc",
+        "--crate-name",
+        "symbolica",
+        "--edition=2024",
+        "dependencies/symbolica/src/lib.rs",
+        "--error-format=json",
+        "--json=diagnostic-rendered-ansi,artifacts,future-incompat",
+        "--crate-type",
+        "lib",
+        "--emit=dep-info,metadata,link",
+        "-C",
+        "opt-level=2",
+        "-C",
+        "embed-bitcode=no",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=on",
+        "--cfg",
+        "feature=\"bincode\"",
+        "--cfg",
+        "feature=\"float-mpfr\"",
+        "--cfg",
+        "feature=\"integer-gmp\"",
+        "--cfg",
+        "feature=\"native_code_generation\"",
+        "--cfg",
+        "feature=\"numpy\"",
+        "--cfg",
+        "feature=\"pyo3\"",
+        "--cfg",
+        "feature=\"pyo3-stub-gen-derive\"",
+        "--cfg",
+        "feature=\"python_export\"",
+        "--cfg",
+        "feature=\"serde\"",
+        "--cfg",
+        "feature=\"tracing_max_level_info\"",
+        "--check-cfg",
+        "cfg(docsrs,test)",
+        "--check-cfg",
+        "cfg(feature, values(\"binary_size\", \"bincode\", \"c_api\", \"default\", \"faster_alloc\", \"faster_alloc_dynamic_tls\", \"flint_benchmarks\", \"flint_system_benchmarks\", \"float-astro\", \"float-mpfr\", \"full_fn_cmp\", \"integer-gmp\", \"integer-malachite\", \"mathematica_api\", \"mimalloc\", \"native_code_generation\", \"numpy\", \"polynomial_benchmark_capture\", \"pyo3\", \"pyo3-log\", \"pyo3-stub-gen\", \"pyo3-stub-gen-derive\", \"python_abi3\", \"python_api\", \"python_export\", \"python_stubgen\", \"serde\", \"symbolica_benchmarks\", \"tracing_max_level_info\", \"wasm\", \"wolfram-library-link\"))",
+        "-C",
+        "metadata=d71c2eebe86c5d49",
+        "-C",
+        "extra-filename=-09563b0bee1a5a34",
+        "--out-dir",
+        "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "-C",
+        "incremental=/shared/external/iregi/iregi-rust/target/cargo-build/debug/incremental",
+        "-L",
+        "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "--extern",
+        "ahash=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libahash-ece2be4770c7abf8.rmeta",
+        "--extern",
+        "append_only_vec=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libappend_only_vec-3331ff3972d77b07.rmeta",
+        "--extern",
+        "bincode=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode-cc3f5e6db9654962.rmeta",
+        "--extern",
+        "bincode_trait_derive=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode_trait_derive-de7cbf62db2ceded.so",
+        "--extern",
+        "brotli=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbrotli-3709e0f26c4c7465.rmeta",
+        "--extern",
+        "byteorder=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbyteorder-1fa702c4820b7fe0.rmeta",
+        "--extern",
+        "bytes=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbytes-8c7b35ffbb0c95dc.rmeta",
+        "--extern",
+        "data_encoding=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libdata_encoding-76cfb28a2826e244.rmeta",
+        "--extern",
+        "directories=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libdirectories-063c37adc25f26f0.rmeta",
+        "--extern",
+        "dyn_clone=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libdyn_clone-55d8556e8e6136a2.rmeta",
+        "--extern",
+        "ed25519_compact=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libed25519_compact-beccfa49df7566b1.rmeta",
+        "--extern",
+        "graphica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libgraphica-e3ff147ed1552771.rmeta",
+        "--extern",
+        "inventory=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libinventory-16243963384d172e.rmeta",
+        "--extern",
+        "libloading=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liblibloading-92f3e006835656fa.rmeta",
+        "--extern",
+        "numerica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnumerica-44ddc33914317582.rmeta",
+        "--extern",
+        "numpy=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnumpy-9f9c98e31a955d9f.rmeta",
+        "--extern",
+        "once_cell=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libonce_cell-55a71cdad673103e.rmeta",
+        "--extern",
+        "pyo3=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libpyo3-562de423e3ccf7b0.rmeta",
+        "--extern",
+        "pyo3_stub_gen_derive=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libpyo3_stub_gen_derive-bdab6efdcf53948a.so",
+        "--extern",
+        "rand=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/librand-285c07d8b8ca170a.rmeta",
+        "--extern",
+        "rayon=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/librayon-8fd0ca3d85152821.rmeta",
+        "--extern",
+        "rug=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/librug-4875c20f4e169f6a.rmeta",
+        "--extern",
+        "self_cell=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libself_cell-cd3afeacf9d97dbe.rmeta",
+        "--extern",
+        "serde=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde-120999ebb41b04ad.rmeta",
+        "--extern",
+        "smallvec=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsmallvec-636779f9b46ea0d5.rmeta",
+        "--extern",
+        "smartstring=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsmartstring-e7a0e02c6732954b.rmeta",
+        "--extern",
+        "symjit=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymjit-10e92175116ef029.rmeta",
+        "--extern",
+        "tinyjson=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtinyjson-4933151ccf2fa2e3.rmeta",
+        "--extern",
+        "tracing=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtracing-e6df7b99a9dd20bb.rmeta",
+        "--extern",
+        "tracing_subscriber=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtracing_subscriber-94ab91f8ef4a8e1e.rmeta",
+        "--extern",
+        "wide=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libwide-5690cc922f01a4c7.rmeta",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib"
+      ],
+      "jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n1340841 1340841  0.0 4916564 Sl futex_do_wait                rustc\n1340841 1340854  0.0 4916564 Sl futex_do_wait                ctrl-c\n1340841 1340855 66.7 4916564 Sl futex_do_wait                rustc\n1340841 1394387  0.0 4916564 Sl anon_pipe_read               rustc\n1340841 1394388  0.0 4916564 Sl futex_do_wait                coordinator\n1340841 1401536 98.2 4916564 Rl -                            opt cgq9ji4kayr\n1340841 1433065 98.2 4916564 Rl -                            opt cssyzdon2z3\n1340841 1435686 98.6 4916564 Rl -                            opt 4nocn4usg0i\n"
+    },
+    {
+      "pid": 1394354,
+      "argv": [
+        "rustc",
+        "--crate-name",
+        "oneloop",
+        "--edition=2024",
+        "dependencies/oneloopmaster/src/lib.rs",
+        "--error-format=json",
+        "--json=diagnostic-rendered-ansi,artifacts,future-incompat",
+        "--crate-type",
+        "lib",
+        "--emit=dep-info,metadata,link",
+        "-C",
+        "opt-level=2",
+        "-C",
+        "embed-bitcode=no",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=on",
+        "--cfg",
+        "feature=\"default\"",
+        "--cfg",
+        "feature=\"generated-evaluators\"",
+        "--cfg",
+        "feature=\"prebuilt\"",
+        "--cfg",
+        "feature=\"rust-codegen\"",
+        "--check-cfg",
+        "cfg(docsrs,test)",
+        "--check-cfg",
+        "cfg(feature, values(\"default\", \"generated-evaluators\", \"prebuilt\", \"rust-codegen\"))",
+        "-C",
+        "metadata=16d80b9e6f7c9dd6",
+        "-C",
+        "extra-filename=-7559f424bc83d17d",
+        "--out-dir",
+        "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "-C",
+        "incremental=/shared/external/iregi/iregi-rust/target/cargo-build/debug/incremental",
+        "-L",
+        "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "--extern",
+        "bincode=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode-cc3f5e6db9654962.rmeta",
+        "--extern",
+        "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-09563b0bee1a5a34.rmeta",
+        "--extern",
+        "symjit=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymjit-10e92175116ef029.rmeta",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib"
+      ],
+      "jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n1394354 1394354  0.0 2590796 Sl futex_do_wait                rustc\n1394354 1394376  0.0 2590796 Sl futex_do_wait                ctrl-c\n1394354 1394377 38.4 2590796 Sl futex_do_wait                rustc\n1394354 1409967  0.0 2590796 Sl anon_pipe_read               rustc\n1394354 1409968  0.0 2590796 Sl futex_do_wait                coordinator\n1394354 1413676 99.0 2590796 Rl -                            opt d3ip9caj2i8\n"
+    },
+    {
+      "pid": 1402820,
+      "argv": [
+        "rustc",
+        "--crate-name",
+        "feynkit_model",
+        "--edition=2024",
+        "/shared/external/iregi/iregi-rust/.local/cargo-home/git/checkouts/gammaloop-277a30c7f1437c23/865afdc/crates/feynkit-model/src/lib.rs",
+        "--error-format=json",
+        "--json=diagnostic-rendered-ansi,artifacts,future-incompat",
+        "--crate-type",
+        "lib",
+        "--emit=dep-info,metadata,link",
+        "-C",
+        "opt-level=2",
+        "-C",
+        "embed-bitcode=no",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=on",
+        "--cfg",
+        "feature=\"native\"",
+        "--check-cfg",
+        "cfg(docsrs,test)",
+        "--check-cfg",
+        "cfg(feature, values(\"native\"))",
+        "-C",
+        "metadata=7f1a813ccc701ed1",
+        "-C",
+        "extra-filename=-d79b4dea51ebadde",
+        "--out-dir",
+        "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "-L",
+        "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "--extern",
+        "bincode=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode-cc3f5e6db9654962.rmeta",
+        "--extern",
+        "bincode_trait_derive=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode_trait_derive-de7cbf62db2ceded.so",
+        "--extern",
+        "blake3=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libblake3-8540b89b70281bcb.rmeta",
+        "--extern",
+        "linnet=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liblinnet-a789e92a8ba62f8b.rmeta",
+        "--extern",
+        "miniz_oxide=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libminiz_oxide-78468629d0a3f2b6.rmeta",
+        "--extern",
+        "serde=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde-120999ebb41b04ad.rmeta",
+        "--extern",
+        "serde_json=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rmeta",
+        "--extern",
+        "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-09563b0bee1a5a34.rmeta",
+        "--extern",
+        "thiserror=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libthiserror-fd758c53f99eb8df.rmeta",
+        "--extern",
+        "vectorize=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libvectorize-2def2799e980a313.rmeta",
+        "--cap-lints",
+        "allow",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/blake3-aa5a8444d5b67bf8/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/blake3-aa5a8444d5b67bf8/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/psm-c49424470c09cfc6/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib"
+      ],
+      "jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n1402820 1402820  0.0 430008 Sl  futex_do_wait                rustc\n1402820 1402920  0.0 430008 Sl  futex_do_wait                ctrl-c\n1402820 1402922 10.5 430008 Sl  futex_do_wait                rustc\n1402820 1404864  0.0 430008 Sl  futex_do_wait                coordinator\n1402820 1423032  0.0 430008 Sl  anon_pipe_read               coordinator\n1402820 1443741  100 430008 Rl  -                            lto cgu.09\n"
+    },
+    {
+      "pid": 1402853,
+      "argv": [
+        "rustc",
+        "--crate-name",
+        "spenso",
+        "--edition=2024",
+        "/shared/external/iregi/iregi-rust/.local/cargo-home/git/checkouts/gammaloop-277a30c7f1437c23/865afdc/crates/spenso/src/spenso.rs",
+        "--error-format=json",
+        "--json=diagnostic-rendered-ansi,artifacts,future-incompat",
+        "--crate-type",
+        "lib",
+        "--emit=dep-info,metadata,link",
+        "-C",
+        "opt-level=2",
+        "-C",
+        "embed-bitcode=no",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=on",
+        "--cfg",
+        "feature=\"native\"",
+        "--cfg",
+        "feature=\"native-code-generation\"",
+        "--cfg",
+        "feature=\"portable-payload\"",
+        "--cfg",
+        "feature=\"python\"",
+        "--cfg",
+        "feature=\"shadowing\"",
+        "--check-cfg",
+        "cfg(docsrs,test)",
+        "--check-cfg",
+        "cfg(feature, values(\"default\", \"native\", \"native-code-generation\", \"portable-payload\", \"python\", \"python_stubgen\", \"shadowing\", \"wasm\"))",
+        "-C",
+        "metadata=01a26cc631490a83",
+        "-C",
+        "extra-filename=-0ed21f4ed9d5972e",
+        "--out-dir",
+        "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "-L",
+        "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "--extern",
+        "ahash=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libahash-ece2be4770c7abf8.rmeta",
+        "--extern",
+        "append_only_vec=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libappend_only_vec-3331ff3972d77b07.rmeta",
+        "--extern",
+        "bincode=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode-cc3f5e6db9654962.rmeta",
+        "--extern",
+        "bincode_trait_derive=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode_trait_derive-de7cbf62db2ceded.so",
+        "--extern",
+        "bitvec=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbitvec-814a11c86a6f380a.rmeta",
+        "--extern",
+        "blake3=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libblake3-8540b89b70281bcb.rmeta",
+        "--extern",
+        "ciborium=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libciborium-2b5d26a6ec0b5504.rmeta",
+        "--extern",
+        "colored=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libcolored-10be27f8db242b0c.rmeta",
+        "--extern",
+        "constcat=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libconstcat-91518502f64efbe2.rmeta",
+        "--extern",
+        "delegate=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libdelegate-e88297977c5de070.so",
+        "--extern",
+        "derive_more=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libderive_more-2716b5279637df28.so",
+        "--extern",
+        "duplicate=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libduplicate-5150bc0641788324.so",
+        "--extern",
+        "dyn_clone=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libdyn_clone-55d8556e8e6136a2.rmeta",
+        "--extern",
+        "enum_try_as_inner=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libenum_try_as_inner-1c3abb21d7743a48.so",
+        "--extern",
+        "env_logger=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libenv_logger-fa1692b39ca5eb54.rmeta",
+        "--extern",
+        "eyre=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libeyre-eddfc3d871d8a19c.rmeta",
+        "--extern",
+        "features=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libfeatures-7108641757e002c5.rmeta",
+        "--extern",
+        "gammaloop_workspace_hack=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libgammaloop_workspace_hack-cebe150ee561af37.rmeta",
+        "--extern",
+        "gat_lending_iterator=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libgat_lending_iterator-d778f498cae0339f.rmeta",
+        "--extern",
+        "indexmap=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libindexmap-80bd7981be9b509a.rmeta",
+        "--extern",
+        "itertools=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libitertools-7eeacf5e0868ab3d.rmeta",
+        "--extern",
+        "linnet=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liblinnet-a789e92a8ba62f8b.rmeta",
+        "--extern",
+        "log=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liblog-5165a8fee86feed2.rmeta",
+        "--extern",
+        "nu_ansi_term=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnu_ansi_term-c868977821057230.rmeta",
+        "--extern",
+        "num=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnum-3c4c25619fb19dbb.rmeta",
+        "--extern",
+        "once_cell=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libonce_cell-55a71cdad673103e.rmeta",
+        "--extern",
+        "pyo3=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libpyo3-562de423e3ccf7b0.rmeta",
+        "--extern",
+        "rand=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/librand-285c07d8b8ca170a.rmeta",
+        "--extern",
+        "rand_xoshiro=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/librand_xoshiro-200e77d1df78fe3c.rmeta",
+        "--extern",
+        "rayon=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/librayon-8fd0ca3d85152821.rmeta",
+        "--extern",
+        "ref_ops=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libref_ops-ecd3448a8cedde42.rmeta",
+        "--extern",
+        "serde=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde-120999ebb41b04ad.rmeta",
+        "--extern",
+        "serde_json=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rmeta",
+        "--extern",
+        "spenso_macros=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libspenso_macros-5076651f6a1e6d6b.so",
+        "--extern",
+        "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-09563b0bee1a5a34.rmeta",
+        "--extern",
+        "symbolica_typst_plugin=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica_typst_plugin-157745cb7f66f39f.rmeta",
+        "--extern",
+        "symbolica_utils=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica_utils-481579315fa214c0.rmeta",
+        "--extern",
+        "tabled=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtabled-57d71bbbf50d8544.rmeta",
+        "--extern",
+        "thiserror=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libthiserror-fd758c53f99eb8df.rmeta",
+        "--extern",
+        "tracing=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtracing-e6df7b99a9dd20bb.rmeta",
+        "--cap-lints",
+        "allow",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/blake3-aa5a8444d5b67bf8/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/blake3-aa5a8444d5b67bf8/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/psm-c49424470c09cfc6/out"
+      ],
+      "jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n1402853 1402853  0.0 849532 Sl  futex_do_wait                rustc\n1402853 1402924  0.0 849532 Sl  futex_do_wait                ctrl-c\n1402853 1402925 33.1 849532 Sl  futex_do_wait                rustc\n1402853 1415936  0.0 849532 Sl  futex_do_wait                coordinator\n1402853 1432260  0.0 849532 Sl  anon_pipe_read               coordinator\n1402853 1443408 98.0 849532 Rl  -                            lto cgu.11\n"
+    },
+    {
+      "pid": 1402854,
+      "argv": [
+        "rustc",
+        "--crate-name",
+        "three_dimensional_reps",
+        "--edition=2024",
+        "/shared/external/iregi/iregi-rust/.local/cargo-home/git/checkouts/gammaloop-277a30c7f1437c23/865afdc/crates/three-dimensional-reps/src/lib.rs",
+        "--error-format=json",
+        "--json=diagnostic-rendered-ansi,artifacts,future-incompat",
+        "--crate-type",
+        "lib",
+        "--emit=dep-info,metadata,link",
+        "-C",
+        "opt-level=2",
+        "-C",
+        "embed-bitcode=no",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=on",
+        "--check-cfg",
+        "cfg(docsrs,test)",
+        "--check-cfg",
+        "cfg(feature, values(\"display\", \"eval\", \"json_schema\", \"python\"))",
+        "-C",
+        "metadata=34b16eb2f89f0bd2",
+        "-C",
+        "extra-filename=-b81bc7dd2372a812",
+        "--out-dir",
+        "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "-L",
+        "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "--extern",
+        "bincode=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode-cc3f5e6db9654962.rmeta",
+        "--extern",
+        "bincode_trait_derive=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbincode_trait_derive-de7cbf62db2ceded.so",
+        "--extern",
+        "itertools=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libitertools-7eeacf5e0868ab3d.rmeta",
+        "--extern",
+        "linnet=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liblinnet-a789e92a8ba62f8b.rmeta",
+        "--extern",
+        "serde=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde-120999ebb41b04ad.rmeta",
+        "--extern",
+        "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-09563b0bee1a5a34.rmeta",
+        "--extern",
+        "thiserror=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libthiserror-fd758c53f99eb8df.rmeta",
+        "--extern",
+        "typed_index_collections=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtyped_index_collections-fdb8940a7d77f91e.rmeta",
+        "--cap-lints",
+        "allow",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/psm-c49424470c09cfc6/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib"
+      ],
+      "jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n1402854 1402854  0.0 652940 Sl  futex_do_wait                rustc\n1402854 1402921  0.0 652940 Sl  futex_do_wait                ctrl-c\n1402854 1402923 19.0 652940 Sl  futex_do_wait                rustc\n1402854 1407429  0.0 652940 Sl  futex_do_wait                coordinator\n1402854 1432449  0.0 652940 Sl  anon_pipe_read               coordinator\n1402854 1441664 98.4 652940 Rl  -                            lto cgu.03\n"
+    },
+    {
+      "pid": 1430757,
+      "argv": [
+        "rustc",
+        "--crate-name",
+        "idenso",
+        "--edition=2024",
+        "/shared/external/iregi/iregi-rust/.local/cargo-home/git/checkouts/gammaloop-277a30c7f1437c23/865afdc/crates/idenso/src/lib.rs",
+        "--error-format=json",
+        "--json=diagnostic-rendered-ansi,artifacts,future-incompat",
+        "--crate-type",
+        "lib",
+        "--emit=dep-info,metadata,link",
+        "-C",
+        "opt-level=2",
+        "-C",
+        "embed-bitcode=no",
+        "-C",
+        "debuginfo=2",
+        "-C",
+        "debug-assertions=on",
+        "--cfg",
+        "feature=\"native\"",
+        "--check-cfg",
+        "cfg(docsrs,test)",
+        "--check-cfg",
+        "cfg(feature, values(\"bincode\", \"default\", \"native\", \"reference-cases\", \"wasm\"))",
+        "-C",
+        "metadata=ead9663112998ba9",
+        "-C",
+        "extra-filename=-54f64ef939670f14",
+        "--out-dir",
+        "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "-L",
+        "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+        "--extern",
+        "ahash=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libahash-ece2be4770c7abf8.rmeta",
+        "--extern",
+        "base64=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libbase64-0e5ceece356bde37.rmeta",
+        "--extern",
+        "blake3=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libblake3-8540b89b70281bcb.rmeta",
+        "--extern",
+        "delegate=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libdelegate-5d11451e7d63d2d2.so",
+        "--extern",
+        "eyre=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libeyre-eddfc3d871d8a19c.rmeta",
+        "--extern",
+        "itertools=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libitertools-7eeacf5e0868ab3d.rmeta",
+        "--extern",
+        "linnet=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liblinnet-a789e92a8ba62f8b.rmeta",
+        "--extern",
+        "nu_ansi_term=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnu_ansi_term-c868977821057230.rmeta",
+        "--extern",
+        "spenso=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libspenso-0ed21f4ed9d5972e.rmeta",
+        "--extern",
+        "spenso_macros=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libspenso_macros-5076651f6a1e6d6b.so",
+        "--extern",
+        "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-09563b0bee1a5a34.rmeta",
+        "--extern",
+        "symbolica_utils=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica_utils-481579315fa214c0.rmeta",
+        "--extern",
+        "thiserror=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libthiserror-fd758c53f99eb8df.rmeta",
+        "--extern",
+        "tracing=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libtracing-e6df7b99a9dd20bb.rmeta",
+        "--cap-lints",
+        "allow",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/blake3-aa5a8444d5b67bf8/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/blake3-aa5a8444d5b67bf8/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/psm-c49424470c09cfc6/out",
+        "-L",
+        "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib"
+      ],
+      "jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n1430757 1430757  0.1 959704 Sl  futex_do_wait                rustc\n1430757 1430758  0.0 959716 Sl  futex_do_wait                ctrl-c\n1430757 1430759 98.6 959724 Rl  -                            rustc\n1430757 1443303  0.0 959736 Sl  futex_do_wait                rustc\n1430757 1443304  0.0 959740 Sl  futex_do_wait                coordinator\n"
+    }
+  ],
+  "runtime_objects": [
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9k6lnjosyz6km44m227j0znht.05w24un.rcgu.o",
+      "bytes": 1701856,
+      "mtime": 1792797760.7848213,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.e9jsfcws5h4bs343qkya915ix.05w24un.rcgu.o",
+      "bytes": 1234160,
+      "mtime": 1792797770.8988488,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6yw9ud8x1l8et4k3gs2hjalqp.05w24un.rcgu.o",
+      "bytes": 1646616,
+      "mtime": 1792797753.1148002,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.elb0mk13d97izw0rrzosa6liy.05w24un.rcgu.o",
+      "bytes": 1285520,
+      "mtime": 1792797779.9908736,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0rao69go0svivnit43snt2p7r.05w24un.rcgu.o",
+      "bytes": 3118880,
+      "mtime": 1792797733.4047465,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8tvslyeavfjtahjcdaj17l2sj.05w24un.rcgu.o",
+      "bytes": 1968312,
+      "mtime": 1792797759.575818,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cukw2dfx0dghvecgq5qsq2xun.05w24un.rcgu.o",
+      "bytes": 829704,
+      "mtime": 1792797802.476935,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.361sbhxn3k7mn8uk27x4c74hv.05w24un.rcgu.o",
+      "bytes": 478168,
+      "mtime": 1792797820.488984,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.f2hvsaspcpz0ts8b9sngwre6q.05w24un.rcgu.o",
+      "bytes": 1820680,
+      "mtime": 1792797769.9738462,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.4qoa6qxkzujuu4if936f994hp.05w24un.rcgu.o",
+      "bytes": 293664,
+      "mtime": 1792797794.2069123,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ay5ag9t1vc8blybfmrn3ub124.05w24un.rcgu.o",
+      "bytes": 3964840,
+      "mtime": 1792797685.5256162,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7fpzwwv4wchrg3z9ruwxncr9i.05w24un.rcgu.o",
+      "bytes": 656416,
+      "mtime": 1792797816.5289733,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ah9culug0ax41gatio08gbhsk.05w24un.rcgu.o",
+      "bytes": 5439528,
+      "mtime": 1792797707.490676,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.34qspp7z64m288nupthmq4xrp.05w24un.rcgu.o",
+      "bytes": 468008,
+      "mtime": 1792797811.1939588,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.13oq96v8s9vbrur7nzhmsx9hm.05w24un.rcgu.o",
+      "bytes": 569632,
+      "mtime": 1792797779.0958712,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7c3fg6jm6rnulbh80re9fsspe.05w24un.rcgu.o",
+      "bytes": 1586176,
+      "mtime": 1792797771.9618518,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.63wrnenub7i9f7eh7ye1jdi32.05w24un.rcgu.o",
+      "bytes": 3130728,
+      "mtime": 1792797738.7657611,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.47dkl7w1oqho1lp8rvgwybdke.05w24un.rcgu.o",
+      "bytes": 2172720,
+      "mtime": 1792797754.4688041,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.aiznoc47gztxsf5ocdcaexrr2.05w24un.rcgu.o",
+      "bytes": 440704,
+      "mtime": 1792797809.5629542,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8jl5efr4k0l6wtimdk2cp155y.05w24un.rcgu.o",
+      "bytes": 3544848,
+      "mtime": 1792797786.9678926,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1im9htf08f7lxkovoqsa6wf2i.05w24un.rcgu.o",
+      "bytes": 2368696,
+      "mtime": 1792797784.7368865,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.40ypbvdquqhpqoem4c8bad5iq.05w24un.rcgu.o",
+      "bytes": 188928,
+      "mtime": 1792797801.1989315,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.71bu2c4udvglbcwbbc2uyelu4.05w24un.rcgu.o",
+      "bytes": 41551536,
+      "mtime": 1792797367.117752,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6lm06pwgiuc14ty18czdcrkvd.05w24un.rcgu.o",
+      "bytes": 3849344,
+      "mtime": 1792797720.1427104,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ardfeafa2drd71xmt32rqq0e3.05w24un.rcgu.o",
+      "bytes": 21228600,
+      "mtime": 1792797498.3101072,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dyoup4jzm3pj74d3f17y8jdrs.05w24un.rcgu.o",
+      "bytes": 500920,
+      "mtime": 1792797815.7519712,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.5j1agdj5e5vyazw7zeqxqqzb4.05w24un.rcgu.o",
+      "bytes": 1199912,
+      "mtime": 1792797722.9827182,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dv6104swr2dd8uhxvnor9xrax.05w24un.rcgu.o",
+      "bytes": 451856,
+      "mtime": 1792797798.1979232,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.03w3jrg9woq7kcwv14job23lz.05w24un.rcgu.o",
+      "bytes": 2091704,
+      "mtime": 1792797762.7308266,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bhbpd8kwuk4i1vyrzjhsouv0l.05w24un.rcgu.o",
+      "bytes": 1523632,
+      "mtime": 1792797778.7128701,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6ye3avzvqzspfgsv8eh1ej175.05w24un.rcgu.o",
+      "bytes": 446792,
+      "mtime": 1792797813.110964,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.de0b950bjnin6qz2dzdttfxh3.05w24un.rcgu.o",
+      "bytes": 892848,
+      "mtime": 1792797789.4118993,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.76ykoircy1wer76f0z5ljsbtu.05w24un.rcgu.o",
+      "bytes": 675424,
+      "mtime": 1792797802.897936,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0lrpg14h9t4xdkxheb9k6iujf.05w24un.rcgu.o",
+      "bytes": 5249712,
+      "mtime": 1792797671.889579,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6rtd84xmucjj6w4nwhacvuri3.05w24un.rcgu.o",
+      "bytes": 655544,
+      "mtime": 1792797813.6959655,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bddpvjuf9srbgwuvj7ibwuhlt.05w24un.rcgu.o",
+      "bytes": 2569528,
+      "mtime": 1792797730.7467394,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7cpsc70h9d7togc64xbqmlkyl.05w24un.rcgu.o",
+      "bytes": 550088,
+      "mtime": 1792797800.9419308,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3otvu12m5q62i66hlk6q98ceu.05w24un.rcgu.o",
+      "bytes": 17214672,
+      "mtime": 1792797584.6313417,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ar9nnvsckv49bn2lydhsmd5z4.05w24un.rcgu.o",
+      "bytes": 829840,
+      "mtime": 1792797781.5118778,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.71bu2c4udvglbcwbbc2uyelu4.1p3kxaw.rcgu.o",
+      "bytes": 41551536,
+      "mtime": 1792796409.99325,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6p0bp8u9x64x30r4su9arqnmn.05w24un.rcgu.o",
+      "bytes": 354256,
+      "mtime": 1792797818.0579774,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.93m4kpl85lbrn8xrxef2bt9gw.05w24un.rcgu.o",
+      "bytes": 1008528,
+      "mtime": 1792797782.1738796,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.4uvg2r6qboegcrw1etnkflt5a.05w24un.rcgu.o",
+      "bytes": 920480,
+      "mtime": 1792797800.7639303,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9wcx6o8bv9siptpwhhrnjcfyp.05w24un.rcgu.o",
+      "bytes": 2988128,
+      "mtime": 1792797747.144784,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0jji5jlqch1ap6n9orpywe4k3.05w24un.rcgu.o",
+      "bytes": 724960,
+      "mtime": 1792797734.5467498,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dhainoz9jy4p4hh7migk1hltu.05w24un.rcgu.o",
+      "bytes": 526784,
+      "mtime": 1792797811.5789597,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.34q6sksybqr08racaurabll1n.05w24un.rcgu.o",
+      "bytes": 426296,
+      "mtime": 1792797814.6969683,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ceg6xnhulo4fuderhfeaxf54z.05w24un.rcgu.o",
+      "bytes": 447008,
+      "mtime": 1792797821.3109863,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cesvtncio0lqtidczqphumnex.05w24un.rcgu.o",
+      "bytes": 10588096,
+      "mtime": 1792797667.4145668,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cltss0o6iz6kue2on9k59kxxx.05w24un.rcgu.o",
+      "bytes": 874760,
+      "mtime": 1792797783.2628825,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3bwottelnbdexpnhqoflmbfnr.05w24un.rcgu.o",
+      "bytes": 2325112,
+      "mtime": 1792797756.5568097,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.449zdiihvz8wy7vpcnrcw9e4w.05w24un.rcgu.o",
+      "bytes": 1628144,
+      "mtime": 1792797773.3968556,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8jfifrvpyblnsifkoiz55z5tt.05w24un.rcgu.o",
+      "bytes": 1685376,
+      "mtime": 1792797774.2238579,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bc0f4o8ixlpyopdwmdmcmx4ok.05w24un.rcgu.o",
+      "bytes": 1354896,
+      "mtime": 1792797768.7958431,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6ee1kos8tsi6wm0zaqekxuikq.05w24un.rcgu.o",
+      "bytes": 645432,
+      "mtime": 1792797803.247937,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2fc04h6ql5ybd0hca0els0buj.05w24un.rcgu.o",
+      "bytes": 324040,
+      "mtime": 1792797820.7059846,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.87hb7jxnpkkvulsje7x15o2xh.05w24un.rcgu.o",
+      "bytes": 1430608,
+      "mtime": 1792797793.8329115,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0yhscffv73galeqjj4vy5b8xp.05w24un.rcgu.o",
+      "bytes": 916200,
+      "mtime": 1792797763.0978274,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7gpipxe72pf24camqnou1bnnq.05w24un.rcgu.o",
+      "bytes": 9320864,
+      "mtime": 1792797623.0414462,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9ep3vmx6jngnab66tb3s06bcl.05w24un.rcgu.o",
+      "bytes": 880224,
+      "mtime": 1792797782.752881,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8gqu9kx5njfik4hgzvdmpe0hr.05w24un.rcgu.o",
+      "bytes": 1215216,
+      "mtime": 1792797775.5568616,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3aqmvivkom6yozzisaz5zt225.05w24un.rcgu.o",
+      "bytes": 8818672,
+      "mtime": 1792797645.9865086,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.du2nxhxriz4o54jupn5w2wnwz.05w24un.rcgu.o",
+      "bytes": 286880,
+      "mtime": 1792797805.462943,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1k84fya47owyql8altw8epd2v.05w24un.rcgu.o",
+      "bytes": 354416,
+      "mtime": 1792797814.3509674,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.a6eynjfi227v77lc3ppv100a6.05w24un.rcgu.o",
+      "bytes": 154304,
+      "mtime": 1792797819.8739824,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.endj4jwvydwn211a1azfbo08t.05w24un.rcgu.o",
+      "bytes": 3043088,
+      "mtime": 1792797692.5896354,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2rezls52v7s6y5xqte4qid7fs.1p3kxaw.rcgu.o",
+      "bytes": 0,
+      "mtime": 1792796516.6755147,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.54zfl0lwnn2wfakutuljvx31t.05w24un.rcgu.o",
+      "bytes": 749400,
+      "mtime": 1792797796.1829178,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.19i8r51j70a56poinxfh8s135.05w24un.rcgu.o",
+      "bytes": 1324456,
+      "mtime": 1792797765.073833,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3kcv3d207hwm1s036if4m0dr1.05w24un.rcgu.o",
+      "bytes": 461184,
+      "mtime": 1792797730.9477398,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.09bxc91pwelicps318866hw75.05w24un.rcgu.o",
+      "bytes": 358536,
+      "mtime": 1792797815.4279704,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dcs0ea0t9lm573uds569bs24l.05w24un.rcgu.o",
+      "bytes": 483664,
+      "mtime": 1792797806.579946,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8y5be0bjve8ebtlplqahqp1ol.05w24un.rcgu.o",
+      "bytes": 1512408,
+      "mtime": 1792797764.2178307,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.c96e4vnppndvp6avese233vzk.05w24un.rcgu.o",
+      "bytes": 718720,
+      "mtime": 1792797810.8139577,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.5luo1hurive9yl4rm92ugt1oh.05w24un.rcgu.o",
+      "bytes": 664912,
+      "mtime": 1792797789.7239,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cz503bwowxyeqxx8xzm9xmar4.05w24un.rcgu.o",
+      "bytes": 584184,
+      "mtime": 1792797817.488976,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.5jn3bpxjgvszc6lc8c61aufwx.05w24un.rcgu.o",
+      "bytes": 253816,
+      "mtime": 1792797806.7359467,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.e3qdf53o84rj7ppyq7uzoftz7.05w24un.rcgu.o",
+      "bytes": 422400,
+      "mtime": 1792797801.1569314,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3xecqt82eiohiqvoke48q655j.05w24un.rcgu.o",
+      "bytes": 364968,
+      "mtime": 1792797819.6059816,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.11jof1786jyqntj672mcs8ryt.05w24un.rcgu.o",
+      "bytes": 555800,
+      "mtime": 1792797807.9019496,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ay43ik9q3a41bx2ldrxcn9so4.05w24un.rcgu.o",
+      "bytes": 966672,
+      "mtime": 1792797787.6768947,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.e0uzw93r812hhe7dkbak2mcks.05w24un.rcgu.o",
+      "bytes": 3145600,
+      "mtime": 1792797744.591777,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.5ii0fu8kkskmc4vinrfmt8bov.05w24un.rcgu.o",
+      "bytes": 406688,
+      "mtime": 1792797812.340962,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bgwi48lu74hwxmphr2mo5klx0.05w24un.rcgu.o",
+      "bytes": 13433424,
+      "mtime": 1792797605.687399,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9towpuxr6j314awslxosfjhqn.05w24un.rcgu.o",
+      "bytes": 1352752,
+      "mtime": 1792797781.1858768,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.a32uqfukaz0y0169l8o8ygpiq.05w24un.rcgu.o",
+      "bytes": 3298904,
+      "mtime": 1792797722.4537168,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7404v2xag7ehs4ejrjq61ego8.05w24un.rcgu.o",
+      "bytes": 206080,
+      "mtime": 1792797814.0759666,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2rezls52v7s6y5xqte4qid7fs.05w24un.rcgu.o",
+      "bytes": 30396648,
+      "mtime": 1792797483.2000663,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.d1sga77a9kq514d9ra47p4hmx.05w24un.rcgu.o",
+      "bytes": 3440224,
+      "mtime": 1792797750.8847942,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.291ppbhhjgv6vmv0p4vd7eczs.05w24un.rcgu.o",
+      "bytes": 1685072,
+      "mtime": 1792797751.9487972,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.90lcyhdtd1grbo4uhj32oeuk0.05w24un.rcgu.o",
+      "bytes": 2941480,
+      "mtime": 1792797714.097694,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.25sk99byxqdir4tpgqf4kmtqy.05w24un.rcgu.o",
+      "bytes": 3067752,
+      "mtime": 1792797702.669663,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.4nocn4usg0ihbhuffcikoeyzo.05w24un.rcgu.o",
+      "bytes": 20904968,
+      "mtime": 1792797511.490143,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3msga9lrxf0ikz6jpvgy36bcd.05w24un.rcgu.o",
+      "bytes": 1995944,
+      "mtime": 1792797741.7277694,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dww9a0kp2l3c5whrmt1bdp1kl.05w24un.rcgu.o",
+      "bytes": 1057912,
+      "mtime": 1792797791.8999062,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6r1jygdm1zcl9jr8zybcrygyi.05w24un.rcgu.o",
+      "bytes": 292840,
+      "mtime": 1792797733.9507482,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2nko8n8003gt1rhbflqc13uik.05w24un.rcgu.o",
+      "bytes": 1222720,
+      "mtime": 1792797774.7918594,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cssyzdon2z3jshuykqlb3b94n.05w24un.rcgu.o",
+      "bytes": 26675256,
+      "mtime": 1792797435.7719378,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0aa1hhp1uh8th5wvihgb2ah0w.05w24un.rcgu.o",
+      "bytes": 4545760,
+      "mtime": 1792797701.3456593,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dqro76z85epix81uroeew44wa.05w24un.rcgu.o",
+      "bytes": 2489216,
+      "mtime": 1792797696.9976475,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1ct48rf681ixuk8vku3xe3gyq.05w24un.rcgu.o",
+      "bytes": 1293832,
+      "mtime": 1792797747.9287863,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7jz1dkc0mau3phvnlyxvccss1.05w24un.rcgu.o",
+      "bytes": 510232,
+      "mtime": 1792797817.092975,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6i0j8o0ko5koklf6vm7msw16i.05w24un.rcgu.o",
+      "bytes": 2231784,
+      "mtime": 1792797736.0307539,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.de1iaxkkbw712cfxydy2rv9oo.05w24un.rcgu.o",
+      "bytes": 554776,
+      "mtime": 1792797812.724963,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.97erxm4ffwygveqx2way6jua4.05w24un.rcgu.o",
+      "bytes": 25290048,
+      "mtime": 1792797570.5263033,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.eswi5z41hyurh1kbucgzjeryh.05w24un.rcgu.o",
+      "bytes": 1590184,
+      "mtime": 1792797767.8188405,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bq0n3vprtcupg5ilireket7ue.05w24un.rcgu.o",
+      "bytes": 12063656,
+      "mtime": 1792797591.5363605,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.72qkvx76ygkr1l7yxsl9kotn7.05w24un.rcgu.o",
+      "bytes": 1475552,
+      "mtime": 1792797766.7248375,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2nvc2b9vv7ilsqibfzbv324hg.05w24un.rcgu.o",
+      "bytes": 2765296,
+      "mtime": 1792797729.0187347,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.d4xqlbw1z3yen6h9qbzalgqs0.05w24un.rcgu.o",
+      "bytes": 68192832,
+      "mtime": 1792797407.5268612,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2miijv6ohurlof8h9xjfi4a2x.05w24un.rcgu.o",
+      "bytes": 901096,
+      "mtime": 1792797798.4969242,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1hak5mw1buk89560naxwfw974.05w24un.rcgu.o",
+      "bytes": 407360,
+      "mtime": 1792797815.9659717,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.an4r0y9j744n1v5lhsgtlgppq.05w24un.rcgu.o",
+      "bytes": 12259144,
+      "mtime": 1792797460.1610038,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.eioh0piv9n674qots7zgh5hbp.05w24un.rcgu.o",
+      "bytes": 410216,
+      "mtime": 1792797808.341951,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2kdkdyicl6xbow9a5s3klk1d4.05w24un.rcgu.o",
+      "bytes": 4172416,
+      "mtime": 1792797656.439537,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1oikkqdeg96jyxhrfb8cgq9b2.05w24un.rcgu.o",
+      "bytes": 6687496,
+      "mtime": 1792797682.887609,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.74yh23igiryiwm84d2j27gh1l.05w24un.rcgu.o",
+      "bytes": 384808,
+      "mtime": 1792797810.0969558,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9404mtaeox1j4itaxjwdd1iy3.05w24un.rcgu.o",
+      "bytes": 516784,
+      "mtime": 1792797733.7457476,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bg7sw75qk8qw3h6zq16ud0nb8.05w24un.rcgu.o",
+      "bytes": 4298200,
+      "mtime": 1792797695.705644,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2nr95lxyf3uj24yaklleq2k1i.05w24un.rcgu.o",
+      "bytes": 227200,
+      "mtime": 1792797818.4679785,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cjics19pfaod5i1m6hoebps7u.05w24un.rcgu.o",
+      "bytes": 450104,
+      "mtime": 1792797818.3739784,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0ykt59ck2ze0qd7j7d69o6fbf.1p3kxaw.rcgu.o",
+      "bytes": 37015328,
+      "mtime": 1792796499.2794712,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0w5qp4mgb529e2u1xgtwffnri.05w24un.rcgu.o",
+      "bytes": 4805176,
+      "mtime": 1792797689.3516266,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dq80w3k6sdsth7qa9z2q2671x.05w24un.rcgu.o",
+      "bytes": 489904,
+      "mtime": 1792797805.804944,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.388n76hw6ry8zl8wv8gk516ci.05w24un.rcgu.o",
+      "bytes": 3575024,
+      "mtime": 1792797717.2187026,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ai4ihnj6v11xniraqn4v52pkh.05w24un.rcgu.o",
+      "bytes": 911008,
+      "mtime": 1792797790.3409019,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6a65cmpongme1m10t99znsxjj.05w24un.rcgu.o",
+      "bytes": 276600,
+      "mtime": 1792797821.1559858,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cssyzdon2z3jshuykqlb3b94n.1p3kxaw.rcgu.o",
+      "bytes": 26675256,
+      "mtime": 1792796481.6914272,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.b537otjpu6mxdecpz3qabhrxb.05w24un.rcgu.o",
+      "bytes": 5313856,
+      "mtime": 1792797711.8756878,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.a8ilqrddrzt2d1b3vq9cfp6im.05w24un.rcgu.o",
+      "bytes": 970760,
+      "mtime": 1792797794.6349134,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.4vgfd3qkgsldwk76ea29k147l.05w24un.rcgu.o",
+      "bytes": 1398144,
+      "mtime": 1792797776.5388641,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.17q3vdwn32wwxiqwrh6nhsi01.05w24un.rcgu.o",
+      "bytes": 492128,
+      "mtime": 1792797817.7659767,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8w97yw6tpxh9cqtt2hvi2pkyd.05w24un.rcgu.o",
+      "bytes": 886464,
+      "mtime": 1792797819.3969812,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.65dsggs5y3tufe69lwfbyi2is.05w24un.rcgu.o",
+      "bytes": 313784,
+      "mtime": 1792797819.8009822,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.an4r0y9j744n1v5lhsgtlgppq.1p3kxaw.rcgu.o",
+      "bytes": 12259144,
+      "mtime": 1792796505.3564863,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.5d0hrbv14nbpeuk6ng61u62qm.05w24un.rcgu.o",
+      "bytes": 529512,
+      "mtime": 1792797807.0709474,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.af2hbny6atnllz6ysx55gpipu.05w24un.rcgu.o",
+      "bytes": 2253264,
+      "mtime": 1792797712.5016897,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7cnpkhkxdrc9eqfr5ixqybw1x.05w24un.rcgu.o",
+      "bytes": 1172560,
+      "mtime": 1792797772.4858532,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8es00hg8hpsdpbkcxljti0ay5.05w24un.rcgu.o",
+      "bytes": 618632,
+      "mtime": 1792797806.2139452,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.e6sq4ey9n1bc9i7y4yvgano2r.05w24un.rcgu.o",
+      "bytes": 318864,
+      "mtime": 1792797808.5359514,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.b4e90ak3zut1t3bn0svm21e3l.05w24un.rcgu.o",
+      "bytes": 15795152,
+      "mtime": 1792797549.0132449,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.d4xqlbw1z3yen6h9qbzalgqs0.1p3kxaw.rcgu.o",
+      "bytes": 68192832,
+      "mtime": 1792796451.5663524,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.a4r45c5wb649ptr878zo1367g.05w24un.rcgu.o",
+      "bytes": 11087176,
+      "mtime": 1792797615.667426,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6a33xpyb2u1x5uncbzf1gpsgz.05w24un.rcgu.o",
+      "bytes": 837960,
+      "mtime": 1792797795.116915,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.0ykt59ck2ze0qd7j7d69o6fbf.05w24un.rcgu.o",
+      "bytes": 37015328,
+      "mtime": 1792797453.951987,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7kow4rl5nqwtxtydpskdustz8.05w24un.rcgu.o",
+      "bytes": 1195864,
+      "mtime": 1792797797.9099226,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.22wfqlrac39ymqslihazhhvty.05w24un.rcgu.o",
+      "bytes": 759352,
+      "mtime": 1792797803.7879386,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.d4ykc30cfytjcehipy88ul824.05w24un.rcgu.o",
+      "bytes": 428632,
+      "mtime": 1792797812.023961,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ei46l8bdiz6gjs5stern03p61.05w24un.rcgu.o",
+      "bytes": 2780136,
+      "mtime": 1792797659.738546,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.4wze887lltba5q701e52rvecj.05w24un.rcgu.o",
+      "bytes": 429784,
+      "mtime": 1792797809.781955,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2im1lth0to420r65t8viuybzj.05w24un.rcgu.o",
+      "bytes": 653072,
+      "mtime": 1792797807.5319488,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.6939scd809bawl6o83j8w1ysp.05w24un.rcgu.o",
+      "bytes": 1179568,
+      "mtime": 1792797788.7638977,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2t0b8dja5qkix2sjh209vv5kq.05w24un.rcgu.o",
+      "bytes": 639496,
+      "mtime": 1792797801.7059329,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.916ee27ut9qxjv6tujyruagz1.05w24un.rcgu.o",
+      "bytes": 16232960,
+      "mtime": 1792797536.0632098,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.33rb6kttbwtbb0indotjrxy2y.05w24un.rcgu.o",
+      "bytes": 650528,
+      "mtime": 1792797795.6229162,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1hub7kn247bahj5zyxoaaj0ka.05w24un.rcgu.o",
+      "bytes": 1286288,
+      "mtime": 1792797791.1479042,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.av0flmstb3r970pffpj8qaji1.05w24un.rcgu.o",
+      "bytes": 858016,
+      "mtime": 1792797798.9159253,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.70ipcq4g5zv9uobf29cj8caom.05w24un.rcgu.o",
+      "bytes": 1362040,
+      "mtime": 1792797797.1659205,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bk3dj3tfb4m9tcdr2i2gityae.05w24un.rcgu.o",
+      "bytes": 1178008,
+      "mtime": 1792797805.2359426,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cgq9ji4kayrj0dhlnkyjwmsu7.05w24un.rcgu.o",
+      "bytes": 216641640,
+      "mtime": 1792797342.4336853,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2f2gccwrg6rqvxlwchyemypc3.05w24un.rcgu.o",
+      "bytes": 1494792,
+      "mtime": 1792797761.393823,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3azvydbplpenpcpq3xj048d89.05w24un.rcgu.o",
+      "bytes": 434664,
+      "mtime": 1792797813.9509664,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.96jnh8rgv1bfw0yoxx736lkb3.05w24un.rcgu.o",
+      "bytes": 556968,
+      "mtime": 1792797809.2439535,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3d3bme2tdd6aq98vpm8n4u3mg.05w24un.rcgu.o",
+      "bytes": 676280,
+      "mtime": 1792797794.055912,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.1czzufkp77aaghdk4w3hy7de1.05w24un.rcgu.o",
+      "bytes": 18217552,
+      "mtime": 1792797521.747171,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2m7qetaj3txkgchrt82i5uoei.05w24un.rcgu.o",
+      "bytes": 193008,
+      "mtime": 1792797801.2399316,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8cyj4spg8ee003gzrfphje2hl.05w24un.rcgu.o",
+      "bytes": 457656,
+      "mtime": 1792797810.3299563,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.7w0bqvcaernhkqwal99k2x1yo.05w24un.rcgu.o",
+      "bytes": 207288,
+      "mtime": 1792797820.1629832,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.82zv4qsfrszrck66vl21k2syl.05w24un.rcgu.o",
+      "bytes": 325616,
+      "mtime": 1792797818.7279792,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dh8662w6765s8h2fepy95as9r.05w24un.rcgu.o",
+      "bytes": 1832488,
+      "mtime": 1792797743.137773,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.76jdauinvfagggmc673gmdrv4.05w24un.rcgu.o",
+      "bytes": 983288,
+      "mtime": 1792797792.4899077,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dm560500m368ywas68s1q903d.05w24un.rcgu.o",
+      "bytes": 5999440,
+      "mtime": 1792797677.2265935,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.e31oo0rczhqzji46dphprqz93.05w24un.rcgu.o",
+      "bytes": 9519752,
+      "mtime": 1792797638.9814894,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.678vpeym31v9vwd9lqr5r9hvl.05w24un.rcgu.o",
+      "bytes": 976552,
+      "mtime": 1792797777.4698668,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ccl7m0423mbyazx9xpvr1rcc1.05w24un.rcgu.o",
+      "bytes": 1217672,
+      "mtime": 1792797765.809835,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.djpc2yeqkcrx9p2ndpyp4iuyi.05w24un.rcgu.o",
+      "bytes": 7745104,
+      "mtime": 1792797652.9435275,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.02izhid8ui7krtup33sebajcs.05w24un.rcgu.o",
+      "bytes": 2158624,
+      "mtime": 1792797740.6717665,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.ctiulrnml0ez7skya3f1f63fs.05w24un.rcgu.o",
+      "bytes": 3882328,
+      "mtime": 1792797661.5645509,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.bmhtmnxzasklhsao67kyl6b0f.05w24un.rcgu.o",
+      "bytes": 384304,
+      "mtime": 1792797816.731974,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9tjddou4vpmsgnz0famiycubg.05w24un.rcgu.o",
+      "bytes": 1577568,
+      "mtime": 1792797723.8267205,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.dttwcy3zq3d1pmo49czf8h842.05w24un.rcgu.o",
+      "bytes": 9553080,
+      "mtime": 1792797630.7654672,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8vavj7hs4dpbbesdttz3jn7ke.05w24un.rcgu.o",
+      "bytes": 1464480,
+      "mtime": 1792797758.076814,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3mr2g5oywou0quhorv0rlfw6p.05w24un.rcgu.o",
+      "bytes": 4774120,
+      "mtime": 1792797727.1117294,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.cgq9ji4kayrj0dhlnkyjwmsu7.1p3kxaw.rcgu.o",
+      "bytes": 216641640,
+      "mtime": 1792796381.1311793,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.8onoqs7g0q0a5fygfpdzl9d1r.05w24un.rcgu.o",
+      "bytes": 391592,
+      "mtime": 1792797811.8499606,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.3dt1boejic73oantes64bam6f.05w24un.rcgu.o",
+      "bytes": 389176,
+      "mtime": 1792797815.2269697,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.9sybnpzzeyp88amn6u76zqgcb.05w24un.rcgu.o",
+      "bytes": 1097424,
+      "mtime": 1792797799.9029279,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.2yc9suxz0xi03gq91ocj89awq.05w24un.rcgu.o",
+      "bytes": 1119512,
+      "mtime": 1792797777.0348656,
+      "new_since_start": false
+    },
+    {
+      "path": "target/cargo-build/debug/deps/symbolica-09563b0bee1a5a34.e8v7pgalt6fobl0a7k86ik2m8.05w24un.rcgu.o",
+      "bytes": 421624,
+      "mtime": 1792797814.964969,
+      "new_since_start": false
+    }
+  ]
+}

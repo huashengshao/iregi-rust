@@ -1,0 +1,75 @@
+{
+  "captured_unix": 1792797798.2713206,
+  "scope": "read-only active codegen/jobserver sample before wheel002 terminal; no command/profile changes",
+  "cpu_count": 384,
+  "allowed_cpus": 384,
+  "memory": {
+    "MemTotal": "1188445264 kB",
+    "MemAvailable": "566993636 kB",
+    "SwapTotal": "524287996 kB",
+    "SwapFree": "507123684 kB"
+  },
+  "rustc_jobs": [
+    {
+      "pid": 4068835,
+      "selected_jobserver_environment_only": {
+        "CARGO_MAKEFLAGS": "-j --jobserver-fds=3,5 --jobserver-auth=3,5"
+      },
+      "thread_count": 6,
+      "sample_seconds": 1.0001866817474365,
+      "threads": [
+        {
+          "tid": 4068835,
+          "comm": "rustc",
+          "state": "S",
+          "wchan": "futex_do_wait",
+          "cpu_seconds_delta": 0.0
+        },
+        {
+          "tid": 4068850,
+          "comm": "ctrl-c",
+          "state": "S",
+          "wchan": "futex_do_wait",
+          "cpu_seconds_delta": 0.0
+        },
+        {
+          "tid": 4068851,
+          "comm": "rustc",
+          "state": "S",
+          "wchan": "futex_do_wait",
+          "cpu_seconds_delta": 0.0
+        },
+        {
+          "tid": 4122230,
+          "comm": "coordinator",
+          "state": "S",
+          "wchan": "futex_do_wait",
+          "cpu_seconds_delta": 0.01
+        },
+        {
+          "tid": 303308,
+          "comm": "coordinator",
+          "state": "S",
+          "wchan": "anon_pipe_read",
+          "cpu_seconds_delta": 0.0
+        },
+        {
+          "tid": 1049847,
+          "comm": "lto 2miijv6ohur",
+          "state": "R",
+          "wchan": "0",
+          "cpu_seconds_delta": 0.0
+        }
+      ],
+      "ps_threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n4068835 4068835  0.0 5769584 Sl futex_do_wait                rustc\n4068835 4068850  0.0 5769584 Sl futex_do_wait                ctrl-c\n4068835 4068851  9.3 5769584 Sl futex_do_wait                rustc\n4068835 4122230  0.0 5769584 Sl futex_do_wait                coordinator\n4068835  303308  0.0 5769584 Sl anon_pipe_read               coordinator\n4068835 1049847  100 5769584 Rl -                            lto 2miijv6ohur\n"
+    },
+    {
+      "pid": 474924,
+      "selected_jobserver_environment_only": {},
+      "thread_count": 0,
+      "sample_seconds": 1.0001866817474365,
+      "threads": [],
+      "ps_threads": "    PID     TID %CPU   RSS STAT WCHAN                        COMMAND\n"
+    }
+  ]
+}

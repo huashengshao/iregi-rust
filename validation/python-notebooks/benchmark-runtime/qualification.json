@@ -1,0 +1,105 @@
+{
+  "status": "ACTUAL_BENCHMARK_NOTEBOOK_EXECUTION_AND_EXPORT_PASS",
+  "recorded_utc": "2026-10-23T23:13:24.539463+00:00",
+  "scope": "Actual03-only marimo execution. Firsttwo native graph/numerical notebooks and browservisual review remainpending.",
+  "runtime_tests": 3,
+  "cohort_selections": [
+    {
+      "choice": "selected-collier",
+      "rows": 8,
+      "gates": {
+        "inconclusive-short-block": 1,
+        "regression": 7
+      },
+      "numerator": "TIRust (selected)",
+      "denominator": "COLLIER"
+    },
+    {
+      "choice": "selected-iregi",
+      "rows": 8,
+      "gates": {
+        "inconclusive-short-block": 1,
+        "regression": 6,
+        "improvement": 1
+      },
+      "numerator": "TIRust (selected)",
+      "denominator": "IREGI"
+    },
+    {
+      "choice": "baseline-collier",
+      "rows": 8,
+      "gates": {
+        "inconclusive-short-block": 1,
+        "regression": 7
+      },
+      "numerator": "TIRust (baseline)",
+      "denominator": "COLLIER"
+    },
+    {
+      "choice": "baseline-iregi",
+      "rows": 8,
+      "gates": {
+        "inconclusive-short-block": 1,
+        "regression": 7
+      },
+      "numerator": "TIRust (baseline)",
+      "denominator": "IREGI"
+    },
+    {
+      "choice": "selected-baseline",
+      "rows": 8,
+      "gates": {
+        "inconclusive-short-block": 1,
+        "improvement": 7
+      },
+      "numerator": "TIRust (selected)",
+      "denominator": "TIRust (baseline)"
+    },
+    {
+      "choice": "historical",
+      "rows": 8,
+      "gates": {
+        "regression": 7,
+        "inconclusive-noise": 1
+      },
+      "numerator": "TIRust",
+      "denominator": "IREGI"
+    }
+  ],
+  "actual_app_executed": true,
+  "native_extension_imported": false,
+  "numerical_reduction_executed": false,
+  "notebooks_executed": [
+    "examples/notebooks/03_benchmark_explorer.py"
+  ],
+  "total_seconds": 2.7346971289953217,
+  "total_cap_seconds": 120,
+  "commands_successful": 2,
+  "source_checkpoint": "validation/python-notebooks/benchmark-posthoc/qualification.json",
+  "source_checkpoint_sha256": "af4122012bba5aaeebba67edc1eca7dc07842071257a25e483dd5d7c3e767aa2",
+  "source_hashes_verified_after_execution": {
+    "examples/notebooks/01_numerator_to_integral.py": "b1a719bb48fd76414a4f7b45907747c7841ffafc2a6770358334857a5e0df51d",
+    "examples/notebooks/02_dots_and_derivatives.py": "3af4c4513afa29be85af18ae396812e15355e0a0f3f49b553b9ccae8ce5dfa11",
+    "examples/notebooks/03_benchmark_explorer.py": "d609a10e27bc5c1d6d0d68bb8311346663cac7ff951fc410e77dd5e537c774fe",
+    "examples/notebooks/_presentation.py": "b24a8c78c14018c9cccf2d602a61eaf375c33e154352cde4e10adfee270e8f50",
+    "examples/notebooks/README.md": "deda9493beac579ee06fffee2c966cd504ad92a7084836ce882ba67e2a498fe8",
+    "tests/python/test_gallery_evidence.py": "3f793ccc1f30730d2f28ce4f15550300b615e777a7eecea97ad579278ea23b57",
+    "tests/python/test_gallery_runtime.py": "85855a722469f2355ab19de0fc6cc8cd3f666299ab2d4ef974ac26a39c53c73b",
+    "validation/python-notebooks/review_source.py": "81fc1f1d5b319630ea33057534d82a44fb87ed76a4d04ebf73a76d102303f1e7",
+    "validation/python-notebooks/benchmark-posthoc/validate_source.py": "e86229b4a06beec0d6b1313f16353fe000b71b91196f22a7711a477126de4e45"
+  },
+  "before_after_process_source_guard": false,
+  "export": {
+    "sha256": "fa3c7faf775f19d074f8c7e63ad0dcd53c465b91c4623d2ed1ad74b676bb4c2c",
+    "gzip_sha256": "cf12c3b566a121f16ad06250cf763e034078aa9f464d8673ce244a5464590c36",
+    "cells": 11,
+    "rows": 8,
+    "error_cells": 0,
+    "ratio_label": "TIRust(selected)/COLLIER",
+    "CDN_asset_urls": 195,
+    "offline_self_contained": false,
+    "browser_visual_review": "pending"
+  },
+  "execution_script_sha256": "97cf8a49d699a8eea2da422dd62474bb89a1ef83e379e0f4c68246e20c4e8b0e",
+  "inspection_script_sha256": "fbd216170d9b40c6e358c9edbd7882ae6a14de47482c196a16d33546c08fa5fe"
+}

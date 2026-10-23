@@ -1,7 +1,7 @@
 # Pinned Symbolica source for iregi-rust
 
 This directory retains Symbolica, Numerica, and Graphica from upstream revision
-`9cdc2949cdb153478c1eca0d40690dc0abfc616e`, with the three patches recorded in
+`9cdc2949cdb153478c1eca0d40690dc0abfc616e`, with the four patches recorded in
 `../symbolica-patches/provenance.json`. `IREGI_PROVENANCE.json` lists all retained
 upstream/patched files, their hashes, and omitted assets. Upstream `License.md`,
 `Readme.md`, and license implementation are unchanged.
@@ -9,7 +9,9 @@ upstream/patched files, their hashes, and omitted assets. Upstream `License.md`,
 The conditional-cache patch replaces repeated cache copies with reversible
 branch-local insertions. The second patch sets an explicit source-version
 display label. The third avoids Git-metadata rebuild triggers when that explicit
-label is used. These patches do not change algebra rules, numerical operations,
+label is used. The fourth validates polynomial exponent bounds against the
+existing signed conversion, avoiding wraparound for compact oversized powers.
+These patches do not change algebra rules, numerical operations,
 precision types, or license checks. Patch rationale and validation limits are documented
 in `../symbolica-patches/README.md`.
 

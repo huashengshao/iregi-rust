@@ -1,7 +1,7 @@
 # Symbolica evaluator patch series
 
 The series applies to `alphal00p/symbolica` revision
-`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all three patches
+`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all four patches
 and their source hashes. The retained source is in `dependencies/symbolica`;
 its `IREGI_PROVENANCE.json` inventories every upstream or patched file.
 
@@ -78,3 +78,13 @@ benchmark fixtures. The script locates a local checkout containing the exact
 revision; an explicit checkout can be supplied with `--source`. It refuses an
 existing output directory and verifies patch and retained-source hashes.
 Cargo's cached checkout and the supplied reference remain untouched.
+
+`0004-check-polynomial-exponent-conversion.patch` makes the polynomial fast-path
+acceptance bound match its existing later signed-i32 conversion. Compact powers
+above i32::MAX previously passed a u32 bound and could wrap during conversion.
+They now follow the existing general coefficient path. TIRust's preparation uses
+Symbolica u32 polynomials with checked public u16 output conversion and rejects
+residual loop dependence. Compact regression tests cover the conversion boundary
+without expanding powers of sums. This validation repair changes no algebra
+rule, numerical operation, precision conversion, or license handling. Its new
+Python-build qualification is recorded separately when run.

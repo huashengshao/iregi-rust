@@ -1,0 +1,39 @@
+warning: fields `owner`, `active`, `expression`, and `label` are never read
+  --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-source/core/crates/iregi-rust/src/pv.rs:52:9
+   |
+50 | pub(crate) struct CoordinateConstraint {
+   |                   -------------------- fields in this struct
+51 |     /// Alias whose graph reachability determines whether this topology is used.
+52 |     pub owner: Atom,
+   |         ^^^^^
+53 |     /// Nonzero only when the rank-deficient identity branch is selected.
+54 |     pub active: Atom,
+   |         ^^^^^^
+55 |     /// Raw-coordinate polynomial, without aliases or master dependence.
+56 |     pub expression: Atom,
+   |         ^^^^^^^^^^
+57 |     pub label: String,
+   |         ^^^^^
+   |
+   = note: `CoordinateConstraint` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `coordinate_constraints` is never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-source/core/crates/iregi-rust/src/pv.rs:275:19
+    |
+ 91 | impl PvCompiler {
+    | --------------- method in this implementation
+...
+275 |     pub(crate) fn coordinate_constraints(&self) -> &[CoordinateConstraint] {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused array of `symbolica::atom::Atom` that must be used
+    --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-source/core/crates/iregi-rust/src/pv.rs:2490:9
+     |
+2490 |         compiler.compile_moment([1,0,0,0]).unwrap();
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+
+warning: 3 warnings emitted
+

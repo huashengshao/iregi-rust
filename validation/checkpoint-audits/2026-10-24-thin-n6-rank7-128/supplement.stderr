@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-audit/supplement_saved.py", line 102, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-audit/supplement_saved.py", line 68, in main
+    value=load(path)
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-audit/supplement_saved.py", line 22, in load
+    def load(path):return json.loads(bind(path).read_text(),parse_float=D)
+                                     ~~~~^^^^^^
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-audit/supplement_saved.py", line 18, in bind
+    actual=digest(p)
+  File "/shared/external/iregi/iregi-rust/target/guard-performance-review/rank7-audit/supplement_saved.py", line 14, in digest
+    with Path(path).open('rb') as f:return hashlib.file_digest(f,'sha256').hexdigest()
+         ~~~~~~~~~~~~~~~^^^^^^
+  File "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/shared/external/iregi/iregi-rust/validation/public-highpoint/simplex-n6-order8-map1.json'

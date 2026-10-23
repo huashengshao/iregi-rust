@@ -1,0 +1,11 @@
+{
+  "status": "failed_source_provenance_preflight",
+  "reported_by": "/root/highpoint_coverage",
+  "scope": "Parent ran read/hash-only provenance preflight; no numerical comparator loop or numerical capture executed.",
+  "failure": "Primary audit input_sha256 includes repository-relative keys for four direct evidence bindings; comparator line128 looked up absolute keys. Hashes agree; schema lookup failed.",
+  "planned_correction": "Normalize every primary audit input key against repository root with add_binding, then check the normalized audit_inputs map.",
+  "preserved_sha256": {
+    "diagnostic-compare.py": "2e480fc8b7324d64d4869d6a2029023bc3a9eee3688c7a7faf02888e0ca4d5fb",
+    "diagnostic-protocol.json": "d2ff79964bafd8902f7427879cc73f59e4c981aec5d5ac69498e5fa782087cff"
+  }
+}

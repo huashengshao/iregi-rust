@@ -1,0 +1,63 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.4.2, pluggy-1.7.0 -- /shared/external/iregi/iregi-rust/.local/tirust-wheel-003-env/bin/python
+cachedir: .pytest_cache
+rootdir: /shared/external/iregi/iregi-rust
+configfile: pyproject.toml
+collecting ... collected 29 items
+
+tests/python/test_tirust_interop.py::test_packaged_owner_assets_and_actual_svg_rendering FAILED [  3%]
+tests/python/test_tirust_interop.py::test_tensor_preparation_reuses_upstream_expression_and_coefficients PASSED [  6%]
+tests/python/test_tirust_interop.py::test_actual_tensor_component_selection_preserves_metric_sign_and_sparse_zero PASSED [ 10%]
+tests/python/test_tirust_interop.py::test_prepared_graph_retains_the_actual_diagram_and_does_not_mutate_it PASSED [ 13%]
+tests/python/test_tirust_interop.py::test_physical_preparation_matches_explicit_upstream_feynman_rules PASSED [ 17%]
+tests/python/test_tirust_interop.py::test_standalone_aliases_are_owner_classes_with_owner_metadata PASSED [ 20%]
+tests/python/test_tirust_interop.py::test_repeated_initialization_keeps_classes_and_existing_objects PASSED [ 24%]
+tests/python/test_tirust_interop.py::test_installed_stub_surface_and_signatures_match_native_api PASSED [ 27%]
+tests/python/test_tirust_interop.py::test_container_shapes_match_typed_public_contract PASSED [ 31%]
+tests/python/test_tirust_interop.py::test_native_operations_work_with_canonical_symbolica_imports_blocked PASSED [ 34%]
+tests/python/test_tirust_interop.py::test_unknown_graph_preparation_source_is_an_explicit_error[unknown] PASSED [ 37%]
+tests/python/test_tirust_interop.py::test_unknown_graph_preparation_source_is_an_explicit_error[SUPPLIED] PASSED [ 41%]
+tests/python/test_tirust_numerics.py::test_batch_metadata_lane_failure_and_empty[f64-53-40] PASSED [ 44%]
+tests/python/test_tirust_numerics.py::test_batch_metadata_lane_failure_and_empty[double-double-106-70] PASSED [ 48%]
+tests/python/test_tirust_numerics.py::test_batch_metadata_lane_failure_and_empty[float-128-70] PASSED [ 51%]
+tests/python/test_tirust_numerics.py::test_reordered_chunked_batches_and_independent_workspaces PASSED [ 55%]
+tests/python/test_tirust_numerics.py::test_dotted_propagator_matches_dual_mass_derivative_all_laurent_slots PASSED [ 58%]
+tests/python/test_tirust_numerics.py::test_float_inputs_beyond_binary64_remain_distinct PASSED [ 62%]
+tests/python/test_tirust_numerics.py::test_double_float_transport_keeps_representable_wide_gap_tail PASSED [ 65%]
+tests/python/test_tirust_numerics.py::test_coefficient_batch_and_core_contraction[f64-53] PASSED [ 68%]
+tests/python/test_tirust_numerics.py::test_coefficient_batch_and_core_contraction[double-double-106] PASSED [ 72%]
+tests/python/test_tirust_numerics.py::test_coefficient_batch_and_core_contraction[float-128] PASSED [ 75%]
+tests/python/test_tirust_numerics.py::test_zero_numerator_preserves_nonzero_batch_length PASSED [ 79%]
+tests/python/test_tirust_numerics.py::test_parameter_coefficient_duals_keep_mixed_components PASSED [ 82%]
+tests/python/test_tirust_numerics.py::test_nonfinite_coefficient_isolated_to_its_contraction_lane[f64-53] PASSED [ 86%]
+tests/python/test_tirust_numerics.py::test_nonfinite_coefficient_isolated_to_its_contraction_lane[double-double-106] PASSED [ 89%]
+tests/python/test_tirust_numerics.py::test_nonfinite_coefficient_isolated_to_its_contraction_lane[float-128] PASSED [ 93%]
+tests/python/test_tirust_numerics.py::test_invalid_shapes_and_polynomial_inputs_are_explicit_errors PASSED [ 96%]
+tests/python/test_tirust_numerics.py::test_input_layout_and_kinematic_shape_errors PASSED [100%]
+
+=================================== FAILURES ===================================
+_____________ test_packaged_owner_assets_and_actual_svg_rendering ______________
+
+    def test_packaged_owner_assets_and_actual_svg_rendering() -> None:
+        data = Path(tirust.__file__).with_name("data")
+        manifest = json.loads((data / "manifest.json").read_text())
+        assert manifest["feynkit_revision"] == "865afdc43fb4e6b950439d34b4ec2c38352873e7"
+        assert len(manifest["assets"]) == 18
+        for asset in manifest["assets"]:
+            payload = (data / asset["name"]).read_bytes()
+            assert len(payload) == asset["bytes"]
+            assert hashlib.sha256(payload).hexdigest() == asset["sha256"]
+        for license in manifest["licenses"]:
+            assert hashlib.sha256((data / license["name"]).read_bytes()).hexdigest() == license["sha256"]
+        # The actual upstream registry validates these against compiled constants.
+        configure_data_directory(data, validate=True)
+        diagram = FeynmanDiagram.from_dot(Model.phi3(), BUBBLE_DOT)
+>       rendered = diagram._repr_svg_()
+                   ^^^^^^^^^^^^^^^^^^^^
+E       RuntimeError: painted coordinates must be numbers
+
+tests/python/test_tirust_interop.py:66: RuntimeError
+- generated xml file: /shared/external/iregi/iregi-rust/target/python-interface-build/wheel-003-runtime.junit.xml -
+=========================== short test summary info ============================
+FAILED tests/python/test_tirust_interop.py::test_packaged_owner_assets_and_actual_svg_rendering - RuntimeError: painted coordinates must be numbers
+========================= 1 failed, 28 passed in 6.59s =========================

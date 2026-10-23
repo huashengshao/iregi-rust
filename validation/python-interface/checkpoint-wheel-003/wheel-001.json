@@ -1,0 +1,42 @@
+{
+  "command": [
+    "/shared/external/iregi/iregi-rust/.local/python-interface-env/bin/python",
+    "-m",
+    "maturin",
+    "build",
+    "--manifest-path",
+    "crates/iregi-python/Cargo.toml",
+    "--features",
+    "standalone,native",
+    "--profile",
+    "dev",
+    "--compatibility",
+    "linux",
+    "--jobs",
+    "2",
+    "--locked",
+    "--offline",
+    "--interpreter",
+    "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+    "--out",
+    "target/python-interface-build/wheels"
+  ],
+  "seconds": 1200.027940748958,
+  "status": "timeout",
+  "exit_code": null,
+  "cap_seconds": 1200,
+  "jobs": 2,
+  "whole_owned_process_group_bounded": true,
+  "scope": "local linux dev wheel, no release/ThinLTO or publication",
+  "source_before": {
+    "Cargo.lock": "91354e6885584a6a105887918b326fa5a8b8295a653d68970b7b0a2dd196fbeb",
+    "Cargo.toml": "78bb9abab779010fc841aaa5b1a3f2212d8b9f6eb01991d27752189c7b634dc1",
+    "crates/iregi-python/src/lib.rs": "f31aa7f03a7aa27e6811dfef16fb4b4ccb2fa86fd97f19a796ef9c00d2c53474",
+    "crates/iregi-python/src/numerator.rs": "8ba6b532b7478efcc7148a4927e0a88b4cdf6edad6cd2aee3dc0d4eaf75d8cc7",
+    "crates/iregi-python/src/standalone.rs": "3e32937b3358d1c8764975e504e2af60d471d5cb014443d7b8908354ccf9e5ef",
+    "crates/iregi-python/src/scalar.rs": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+    "crates/iregi-python/src/numerical.rs": "abdb3554ceb5db02c6c9bc63f9c02a8b065f72e253c6db0a7f10cc6325c216f8",
+    "crates/iregi-python/Cargo.toml": "eef69df5d6ed40e6fb8ec755df52923cee0bfc81c67336963ee078a204a1b251"
+  },
+  "source_unchanged": true
+}

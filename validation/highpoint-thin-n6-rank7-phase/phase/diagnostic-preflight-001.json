@@ -1,0 +1,16 @@
+{
+  "status": "failed_read_only_schema_preflight",
+  "utc": "2026-10-23T23:28:42.313705+00:00",
+  "protocol_sha256": "d2ff79964bafd8902f7427879cc73f59e4c981aec5d5ac69498e5fa782087cff",
+  "comparator_sha256": "2e480fc8b7324d64d4869d6a2029023bc3a9eee3688c7a7faf02888e0ca4d5fb",
+  "kernel_build_or_numerical_comparison_executed": false,
+  "disk_approval_written": false,
+  "simulated_approval_in_memory_only": true,
+  "error": "ValueError: failure audit binds different evidence",
+  "location": "diagnostic-compare.py:128",
+  "diagnosis": "Primary audit input_sha256 has repository-relative keys; direct lookup incorrectly used absolute keys. Actual four file hashes agree. Normalize with existing add_binding helper.",
+  "prior_preflight_attempts": [
+    "Shell lacked sourced scripts/env.sh; python3 unavailable, exit127, no Python code executed.",
+    "Caller passed validate_build return tuple instead of (build,exact), TypeError before new protocol validation."
+  ]
+}

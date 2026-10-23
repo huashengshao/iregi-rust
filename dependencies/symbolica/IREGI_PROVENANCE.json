@@ -13,6 +13,10 @@
     {
       "path": "0003-limit-git-watches-to-version-fallback.patch",
       "sha256": "81d2b29c1789541b5e2aca7ebb0749b1e1818c94ea309876f12389fc33d7057d"
+    },
+    {
+      "path": "0004-check-polynomial-exponent-conversion.patch",
+      "sha256": "6834ad46cc3e0959cc0fe179862d937522f24cc814c3b565cc9f36166765cd74"
     }
   ],
   "included_paths": [
@@ -436,6 +440,11 @@
       "bytes": 14116
     },
     {
+      "path": "lib/numerica/src/domains.rs",
+      "sha256": "46c5a10816ed9952bdd1c72646ab15a23b29cf22c4967a8d5e434e208b962e07",
+      "bytes": 27830
+    },
+    {
       "path": "lib/numerica/src/domains/backend/float.rs",
       "sha256": "e43181cdab8f71c69b8df8ac1963ec83a0a779708add600f1cc4f77810f7b6f0",
       "bytes": 51518
@@ -456,6 +465,11 @@
       "bytes": 77109
     },
     {
+      "path": "lib/numerica/src/domains/finite_field.rs",
+      "sha256": "31ef452b2687f885fca6c956c3a0327ec6b526640592c0c12c86db957d8f8686",
+      "bytes": 148249
+    },
+    {
       "path": "lib/numerica/src/domains/finite_field/geometric_sequence_kernels.rs",
       "sha256": "b061a81a9da5340352f949b248d8dc1bbcd53588240363316901fc3782e6343c",
       "bytes": 2332
@@ -471,9 +485,9 @@
       "bytes": 57806
     },
     {
-      "path": "lib/numerica/src/domains/finite_field.rs",
-      "sha256": "31ef452b2687f885fca6c956c3a0327ec6b526640592c0c12c86db957d8f8686",
-      "bytes": 148249
+      "path": "lib/numerica/src/domains/float.rs",
+      "sha256": "fdbeec28e72c2e5685a8653fab5ec5add8d16e2914c3bd5b5cc76b595a52995f",
+      "bytes": 8669
     },
     {
       "path": "lib/numerica/src/domains/float/complex.rs",
@@ -536,9 +550,9 @@
       "bytes": 19081
     },
     {
-      "path": "lib/numerica/src/domains/float.rs",
-      "sha256": "fdbeec28e72c2e5685a8653fab5ec5add8d16e2914c3bd5b5cc76b595a52995f",
-      "bytes": 8669
+      "path": "lib/numerica/src/domains/integer.rs",
+      "sha256": "e96b804e1bb41065e2eaba0cdbaae24e47602f3187c15b56ba027bb19a12af6e",
+      "bytes": 170763
     },
     {
       "path": "lib/numerica/src/domains/integer/polynomial_kernels.rs",
@@ -546,19 +560,9 @@
       "bytes": 132636
     },
     {
-      "path": "lib/numerica/src/domains/integer.rs",
-      "sha256": "e96b804e1bb41065e2eaba0cdbaae24e47602f3187c15b56ba027bb19a12af6e",
-      "bytes": 170763
-    },
-    {
       "path": "lib/numerica/src/domains/polynomial_layouts.rs",
       "sha256": "515908cf22e030001a958a2b896ce402c7fb34e46e5a83fc55e67b465b594ad4",
       "bytes": 3845
-    },
-    {
-      "path": "lib/numerica/src/domains/rational/polynomial_kernels.rs",
-      "sha256": "63986d0d6b728c765bb09fffba12f0926c525bd3bf3f30cf91203a6a91e922ff",
-      "bytes": 18589
     },
     {
       "path": "lib/numerica/src/domains/rational.rs",
@@ -566,9 +570,9 @@
       "bytes": 46065
     },
     {
-      "path": "lib/numerica/src/domains.rs",
-      "sha256": "46c5a10816ed9952bdd1c72646ab15a23b29cf22c4967a8d5e434e208b962e07",
-      "bytes": 27830
+      "path": "lib/numerica/src/domains/rational/polynomial_kernels.rs",
+      "sha256": "63986d0d6b728c765bb09fffba12f0926c525bd3bf3f30cf91203a6a91e922ff",
+      "bytes": 18589
     },
     {
       "path": "lib/numerica/src/kernels.rs",
@@ -591,6 +595,11 @@
       "bytes": 19135
     },
     {
+      "path": "lib/numerica/src/tensors.rs",
+      "sha256": "924b93596832d300704f6de9d3768401a51c043ba68478bd6d6d92907b8be7e9",
+      "bytes": 88
+    },
+    {
       "path": "lib/numerica/src/tensors/matrix.rs",
       "sha256": "0d9eeea1d66ceb6ef24b2c2f1affd3c18f1bba5dd460a9bdf34229a6bd7d157c",
       "bytes": 71813
@@ -599,11 +608,6 @@
       "path": "lib/numerica/src/tensors/sparse.rs",
       "sha256": "15e91fb0dc9171603cae673c657184eb8c8c424aa7fe3747e780cc3a8fb66eb6",
       "bytes": 106858
-    },
-    {
-      "path": "lib/numerica/src/tensors.rs",
-      "sha256": "924b93596832d300704f6de9d3768401a51c043ba68478bd6d6d92907b8be7e9",
-      "bytes": 88
     },
     {
       "path": "lib/numerica/src/utils.rs",
@@ -626,6 +630,11 @@
       "bytes": 23596
     },
     {
+      "path": "src/api.rs",
+      "sha256": "882db524039b3cddee91e9a80dad8babf8c18eebf4dbbcb2857f6808bfb02ea4",
+      "bytes": 226
+    },
+    {
       "path": "src/api/cpp.rs",
       "sha256": "ebcd2420b27e3699e2a4e494d5a3fbb43e5d0fe330aefaf32171209f84ba2ea2",
       "bytes": 19030
@@ -634,6 +643,11 @@
       "path": "src/api/mathematica.rs",
       "sha256": "b5a62a4ee55891198d4246863acfab2dfcbad4dd162e82aeac1ef7f007d08b56",
       "bytes": 4610
+    },
+    {
+      "path": "src/api/python.rs",
+      "sha256": "e13f688bc676fe242a0e9864a9e9fcbb962d27043de187d021435d444b8e7400",
+      "bytes": 125671
     },
     {
       "path": "src/api/python/array.rs",
@@ -706,14 +720,9 @@
       "bytes": 9012
     },
     {
-      "path": "src/api/python.rs",
-      "sha256": "e13f688bc676fe242a0e9864a9e9fcbb962d27043de187d021435d444b8e7400",
-      "bytes": 125671
-    },
-    {
-      "path": "src/api.rs",
-      "sha256": "882db524039b3cddee91e9a80dad8babf8c18eebf4dbbcb2857f6808bfb02ea4",
-      "bytes": 226
+      "path": "src/atom.rs",
+      "sha256": "453d52e3894a8eb4746c55ddb9df7b025ccacc22c2c22a31648afb1621e56582",
+      "bytes": 157645
     },
     {
       "path": "src/atom/alias.rs",
@@ -751,11 +760,6 @@
       "bytes": 128688
     },
     {
-      "path": "src/atom.rs",
-      "sha256": "453d52e3894a8eb4746c55ddb9df7b025ccacc22c2c22a31648afb1621e56582",
-      "bytes": 157645
-    },
-    {
       "path": "src/coefficient.rs",
       "sha256": "fdf0423303170496a7aa9ee397abd33349494c9036c7f32771c0bc02fa293a3b",
       "bytes": 152894
@@ -771,6 +775,16 @@
       "bytes": 41830
     },
     {
+      "path": "src/domains.rs",
+      "sha256": "1614cde1aae3f5aad7e452a9cc3788d4c542a760c7a2d45c0d20309ddf1fdd65",
+      "bytes": 1467
+    },
+    {
+      "path": "src/domains/algebraic.rs",
+      "sha256": "fe4657fdb0dd14544b38977f38e079c233d88d55370f8582a8d990fc28e9e12e",
+      "bytes": 156501
+    },
+    {
       "path": "src/domains/algebraic/kernels.rs",
       "sha256": "4877eaeecf427b29ebf43b9e1cbc5457fce7e5a36815f3f9eeed8398e787510c",
       "bytes": 7412
@@ -781,14 +795,19 @@
       "bytes": 33872
     },
     {
-      "path": "src/domains/algebraic.rs",
-      "sha256": "fe4657fdb0dd14544b38977f38e079c233d88d55370f8582a8d990fc28e9e12e",
-      "bytes": 156501
-    },
-    {
       "path": "src/domains/atom.rs",
       "sha256": "a87dde57ce4c3c84ca853b8e15024fcfd690bf1ba0452bc262e1b7f7e544eb70",
       "bytes": 9532
+    },
+    {
+      "path": "src/domains/factorized_rational_polynomial.rs",
+      "sha256": "52127d7ff58b68fffb158ec59c42d859c57a863ea51d23f79d868614d71985be",
+      "bytes": 56325
+    },
+    {
+      "path": "src/domains/factorized_rational_polynomial/apart.rs",
+      "sha256": "6df76a90009488fcc1a20c1ac74113ff5848deefee0aa28a599ebd8c09bab764",
+      "bytes": 4381
     },
     {
       "path": "src/domains/factorized_rational_polynomial/apart/linear.rs",
@@ -801,24 +820,9 @@
       "bytes": 7454
     },
     {
-      "path": "src/domains/factorized_rational_polynomial/apart.rs",
-      "sha256": "6df76a90009488fcc1a20c1ac74113ff5848deefee0aa28a599ebd8c09bab764",
-      "bytes": 4381
-    },
-    {
       "path": "src/domains/factorized_rational_polynomial/constructor_tests.rs",
       "sha256": "2cefec8e84c7c156375d7894230162d1f4a6aa69ae81404720e3a3f532a96632",
       "bytes": 13533
-    },
-    {
-      "path": "src/domains/factorized_rational_polynomial.rs",
-      "sha256": "52127d7ff58b68fffb158ec59c42d859c57a863ea51d23f79d868614d71985be",
-      "bytes": 56325
-    },
-    {
-      "path": "src/domains/rational_polynomial/arithmetic_tests.rs",
-      "sha256": "6f1bfacde0816b871de4d9ddd9b2cacc0bce9a78197af2a41b7ca8e4cfcd6dbb",
-      "bytes": 9259
     },
     {
       "path": "src/domains/rational_polynomial.rs",
@@ -826,19 +830,24 @@
       "bytes": 73537
     },
     {
-      "path": "src/domains.rs",
-      "sha256": "1614cde1aae3f5aad7e452a9cc3788d4c542a760c7a2d45c0d20309ddf1fdd65",
-      "bytes": 1467
+      "path": "src/domains/rational_polynomial/arithmetic_tests.rs",
+      "sha256": "6f1bfacde0816b871de4d9ddd9b2cacc0bce9a78197af2a41b7ca8e4cfcd6dbb",
+      "bytes": 9259
     },
     {
-      "path": "src/evaluate/backend/tests.rs",
-      "sha256": "83970365c409009fee0033e2061d8cf8cc62bd1c60736119ebb6334916e2e383",
-      "bytes": 7445
+      "path": "src/evaluate.rs",
+      "sha256": "38c15b58af1e260ec04898d69070f1ebedfbfca39c563c142f35fe3a3a8b6ff7",
+      "bytes": 64546
     },
     {
       "path": "src/evaluate/backend.rs",
       "sha256": "bc06d55e2f5ca05f798e1ab748c3bf461b8e8fc5457ff7d78b3f322315984f22",
       "bytes": 119003
+    },
+    {
+      "path": "src/evaluate/backend/tests.rs",
+      "sha256": "83970365c409009fee0033e2061d8cf8cc62bd1c60736119ebb6334916e2e383",
+      "bytes": 7445
     },
     {
       "path": "src/evaluate/batch.rs",
@@ -891,11 +900,6 @@
       "bytes": 183073
     },
     {
-      "path": "src/evaluate.rs",
-      "sha256": "38c15b58af1e260ec04898d69070f1ebedfbfca39c563c142f35fe3a3a8b6ff7",
-      "bytes": 64546
-    },
-    {
       "path": "src/expand.rs",
       "sha256": "29c6af5f56a52d0d4f9b501d8a45cc3fd12b8c36c1ea6222de7931a02c3ee101",
       "bytes": 26080
@@ -926,6 +930,11 @@
       "bytes": 89421
     },
     {
+      "path": "src/poly.rs",
+      "sha256": "0f246ceca41a50213458c51d0c103e36f85d023616120d5789482fd35a65d6d2",
+      "bytes": 110959
+    },
+    {
       "path": "src/poly/benchmark_capture.rs",
       "sha256": "9d9a43f9b8d3a19e541d08b547cbdfc9906fdc87762735e6f3b8f62fe6b94565",
       "bytes": 4136
@@ -946,6 +955,11 @@
       "bytes": 134172
     },
     {
+      "path": "src/poly/polynomial.rs",
+      "sha256": "27b6ad4c342a7b7efe01df1c2e40b3a1e3db7ac113e7dfa447cd93f4d2fb45da",
+      "bytes": 333902
+    },
+    {
       "path": "src/poly/polynomial/division_tests.rs",
       "sha256": "e2e0b83cbad69be875a3218879796d249a3cd4271486b6a555b4a542a173c69a",
       "bytes": 9623
@@ -961,11 +975,6 @@
       "bytes": 11295
     },
     {
-      "path": "src/poly/polynomial.rs",
-      "sha256": "27b6ad4c342a7b7efe01df1c2e40b3a1e3db7ac113e7dfa447cd93f4d2fb45da",
-      "bytes": 333902
-    },
-    {
       "path": "src/poly/resultant.rs",
       "sha256": "30062803132a6fc9f3dd132c97c790791f92ccba9c6e83445730e53290ecad3b",
       "bytes": 70149
@@ -976,9 +985,9 @@
       "bytes": 60590
     },
     {
-      "path": "src/poly/univariate/roots/tests.rs",
-      "sha256": "2f5763a1657b2edd9356b0004090b24547b194c781a4dfdbf5a2ee2044e1eb8b",
-      "bytes": 26523
+      "path": "src/poly/univariate.rs",
+      "sha256": "283300e622f13d8320d6336b1f472f0904e4eba1adf6798d291811048df3288b",
+      "bytes": 76745
     },
     {
       "path": "src/poly/univariate/roots.rs",
@@ -986,19 +995,14 @@
       "bytes": 102579
     },
     {
+      "path": "src/poly/univariate/roots/tests.rs",
+      "sha256": "2f5763a1657b2edd9356b0004090b24547b194c781a4dfdbf5a2ee2044e1eb8b",
+      "bytes": 26523
+    },
+    {
       "path": "src/poly/univariate/tests.rs",
       "sha256": "bfcc6f69879171aa9499777accb6acb779b5fe562da2c7e2ee65c918e31e7f0c",
       "bytes": 8270
-    },
-    {
-      "path": "src/poly/univariate.rs",
-      "sha256": "283300e622f13d8320d6336b1f472f0904e4eba1adf6798d291811048df3288b",
-      "bytes": 76745
-    },
-    {
-      "path": "src/poly.rs",
-      "sha256": "04d32da6ac2caa940fc5baa9ac7f1b095183467012be65880428da9ecf32695c",
-      "bytes": 110959
     },
     {
       "path": "src/printer.rs",
@@ -1006,14 +1010,14 @@
       "bytes": 100881
     },
     {
-      "path": "src/solve/solution_set.rs",
-      "sha256": "5858008efbb58451c1dfc37ae42d95db2089ea0c1738f3405ea94316d6ebd1de",
-      "bytes": 79878
-    },
-    {
       "path": "src/solve.rs",
       "sha256": "f82742a8299d3404a7ab9f311ece6c56bb2875370e648bb0ad30cd6070d596a4",
       "bytes": 77227
+    },
+    {
+      "path": "src/solve/solution_set.rs",
+      "sha256": "5858008efbb58451c1dfc37ae42d95db2089ea0c1738f3405ea94316d6ebd1de",
+      "bytes": 79878
     },
     {
       "path": "src/state.rs",
@@ -1031,14 +1035,14 @@
       "bytes": 35533
     },
     {
-      "path": "src/transcendental/cpp.rs",
-      "sha256": "2d23105bcf2723a4999775e9369111f294b488ae8635f4369d522f2f379d4a1c",
-      "bytes": 4682
-    },
-    {
       "path": "src/transcendental.rs",
       "sha256": "43bb2ca615264e165796557227793e3cc39de6a4ebdbf3ce6988e100db681f53",
       "bytes": 251777
+    },
+    {
+      "path": "src/transcendental/cpp.rs",
+      "sha256": "2d23105bcf2723a4999775e9369111f294b488ae8635f4369d522f2f379d4a1c",
+      "bytes": 4682
     },
     {
       "path": "src/transformer.rs",
@@ -1081,6 +1085,11 @@
       "bytes": 3991
     },
     {
+      "path": "tests/polynomial_exponent_bounds.rs",
+      "sha256": "e375973f1a250099d6a0b752e78cbede665968b61c3cf63cc7654c772a3a049c",
+      "bytes": 1345
+    },
+    {
       "path": "tests/properties.rs",
       "sha256": "d708d0980a1e268ccf607c3bc605c39a778ab31f89b0e6e6270069ade009c771",
       "bytes": 6541
@@ -1116,8 +1125,8 @@
       "bytes": 44840
     }
   ],
-  "file_count": 217,
-  "total_bytes": 9585965,
+  "file_count": 218,
+  "total_bytes": 9587310,
   "original_license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
   "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
   "metadata": "IREGI_UPSTREAM_VERSION is read by the build.rs metadata-only patch; displayed version9cdc2949-iregi-scope-cache cannot inherit the embedding repository Git label. Git metadata is watched only when the explicit version cannot be used.",

@@ -1,0 +1,64 @@
+{
+  "status": "NUMERICAL_AND_INTEROP_API_PASS_WITH_ONE_REAL_UPSTREAM_SVG_FAILURE",
+  "scope": "Fresh installed local dev wheel on CPython 3.13/Linux, actual shared upstream types and numerical batch core; not a release/Community-host/performance qualification.",
+  "context_head": "1e06fc546d0c0fafe4b44d532900921c6a566731",
+  "context_note": "Python/Cargo/owner patch implementation was uncommitted at capture; the source archive and hashes are authoritative. Earlier compile capsule remains historical and unchanged.",
+  "wheel_sha256": "cdb52418ca8dd2909d6d2b88b6aed82c4d3ff64e9eb09a935336fbb2345d8ce0",
+  "native_sha256": "941411cc8e8b33490743c51a1f5ed9080fbf9e3540e293bab082c40404994e29",
+  "no_wheel_or_native_library_in_capsule": true,
+  "source_archive_sha256": "c9f76a82144b424ff4245d256a02467d33993f56e7971f5c6efa73db030b1958",
+  "source_archive_files": 415,
+  "source_archive_note": "Contains Rust/Python sources, manifests/lock, patches/provenance and the owner's serialized scalar expression evaluator assets; font binaries omitted and bound by packaged asset manifests/hashes.",
+  "guarded_build_and_package_inputs": 380,
+  "build_inputs_unchanged": true,
+  "stages": {
+    "native_wheel_build": "PASS",
+    "package_assets_stubs_credential_scan": "PASS",
+    "fresh_install": "PASS",
+    "real_owner_identity_and_initialization": "PASS",
+    "focused_runtime_tests": {
+      "tests": 29,
+      "passed": 28,
+      "failed": 1,
+      "errors": 0,
+      "skipped": 0,
+      "groups": {
+        "tests.python.test_tirust_interop": {
+          "tests": 12,
+          "passed": 11,
+          "failed": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        "tests.python.test_tirust_numerics": {
+          "tests": 17,
+          "passed": 17,
+          "failed": 0,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    },
+    "installed_wheel_consumer_typing": {
+      "errors": 0,
+      "warnings": 0
+    }
+  },
+  "known_failure": {
+    "class": "tests.python.test_tirust_interop",
+    "test": "test_packaged_owner_assets_and_actual_svg_rendering",
+    "message": "RuntimeError: painted coordinates must be numbers"
+  },
+  "failed_checks_retained": [
+    "wheel001/002 timeouts",
+    "real upstream SVG failure in the focused 29-test run"
+  ],
+  "not_claimed": [
+    "All tests pass",
+    "SVG rendering passes",
+    "Full Symbolica Community wheel integration",
+    "Other Python/platform versions",
+    "Release wheel performance",
+    "Physical ggH/MadLoop agreement from this Python checkpoint"
+  ]
+}
