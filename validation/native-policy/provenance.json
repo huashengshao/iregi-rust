@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "status": "passed_parity_and_completed_timing",
+  "backend_source_revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+  "backend_build_evidence": "target/benchmark/rust-build-native-4c32ece.json",
+  "probe_source_revision": "working tree",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
+  "rustc_flags": [
+    "--edition=2024",
+    "-C",
+    "opt-level=3"
+  ],
+  "feature": "native-batch",
+  "families": [
+    "C0",
+    "D0"
+  ],
+  "numeric_domain": "f64",
+  "rows": 32,
+  "policies": [
+    "Whole",
+    "FixedRows4",
+    "FixedRows8",
+    "FixedRows16",
+    "FixedRows32"
+  ],
+  "orderings": [
+    "homogeneous",
+    "interleaved",
+    "grouped"
+  ],
+  "blocks": 21,
+  "minimum_block_milliseconds": 30,
+  "setup_timed": false,
+  "parity": "All five public Laurent/UV/IR arrays and lane errors required bitwise identical across policies before timing. The four physical rows are additionally checked against Symbolica by the separately hashed native physical batch test before benchmark runtime.",
+  "input_status": "all32lanesvalid",
+  "timing_protocol": "Exclusive quiet runtime lease, one pinned CPU, fresh evaluator per policy configured before warmup; rotated policy order per block.",
+  "source_and_artifact_sha256": {
+    "crates/iregi-masters/examples/native_policy_probe.rs": "2fc3c9565493d8da93c7ab84dcb551396b0483f1293d70da9244e10437b25d21",
+    "target/optimized/cargo-build/release/deps/libiregi_masters-98c3fb3df7acb709.rlib": "5e3a90965fe85bbc4cc72d92d5cca752b1224aefce87b28c0af17a77734c2699",
+    "target/optimized/cargo-build/release/deps/liboneloop-a456c0aae6140e9c.rlib": "8f85c82405630ae5c60e4df86ec2f30c9fe7b1d27043dd36e725f1cd5819efae",
+    "target/optimized/cargo-build/release/deps/libsymbolica-cc061ba4139ebf45.rlib": "c6c89b5e2cc78096d628c15d6e9ffb64327c791ff2e625de5f92c384cb2c9ff1",
+    "target/native-physical-batch-checked-tests": "62c03a47f6a1b243f5a09c48389bd4f7483e92bdd5da9295de3d699015d19381",
+    "target/native-policy-probe-baseline": "4d1a439127564a50cce1a5fc0b141f8b4a9c838ff57449857366d533d5de56f7",
+    "validation/native-policy/physical-parity.log": "042de7ef79c38bbd80a1c24676946eced3afd4dd7f8de600f4ee92c2831eacaf",
+    "validation/native-policy/raw.csv": "90f918950606422600804851045580d5b5830c02f1cff46f975387dc78be2dbe",
+    "validation/native-policy/probe.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/native-policy/summary.json": "e704484c3f5b3ab62f2ba294e7c3a6ac11235f88237e6bf68aa5f57dcbfbeccc"
+  },
+  "initial_link_failure": "Snapshot release rlibs contain LLVM bitcode; ld.bfd does not accept raw bitcode objects. Preserved emitted native objects for lld relink.",
+  "relink_command": "target/native-policy-relink-command.json",
+  "relink_log": "target/native-policy-relink.log",
+  "relink_note": "Reused emitted native objects; LLVM21 lld consumes the snapshot release archives containing LLVM bitcode.",
+  "runtime_utc": "2026-10-23T12:10:10.671840+00:00",
+  "cpu_affinity": [
+    0
+  ],
+  "physical_parity_log": "validation/native-policy/physical-parity.log",
+  "raw_csv": "validation/native-policy/raw.csv",
+  "probe_log": "validation/native-policy/probe.log",
+  "runtime_commands": [
+    "timeout20s taskset -c0 target/native-physical-batch-checked-tests --test-threads=1 --nocapture",
+    "timeout40s taskset -c0 target/native-policy-probe-baseline"
+  ],
+  "physical_parity": "1/1passed1.63seconds",
+  "policy_parity": "allphysicalarraysbitwiseidenticalandall32lanesvalidforall30family_layout_policycombinations",
+  "uncertainty": "validation/native-policy/summary.json"
+}

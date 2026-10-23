@@ -1,0 +1,377 @@
+{
+  "status": "complete",
+  "method": "Paired block log-speedup, median statistic; percentile bootstrap20000 resamples, seed20261023, 99%interval; no pooling across family or ordering. FixedRows32 is a same-stride noise control. Intervals are per-comparison, not simultaneous across the full matrix.",
+  "backend_source_revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+  "rows_per_batch": 32,
+  "cpu_affinity": [
+    0
+  ],
+  "results": [
+    {
+      "family": "C0",
+      "ordering": "homogeneous",
+      "comparisons": [
+        {
+          "policy": "whole",
+          "median_ns_per_batch": 255515.033898,
+          "minimum_ns_per_batch": 254435.70339,
+          "maximum_ns_per_batch": 354081.612613,
+          "blocks": 21
+        },
+        {
+          "policy": "4",
+          "median_ns_per_batch": 351954.825581,
+          "minimum_ns_per_batch": 347341.666667,
+          "maximum_ns_per_batch": 362675.108434,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.7278744101857361,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.7182140016577461,
+            0.7383057128911149
+          ]
+        },
+        {
+          "policy": "8",
+          "median_ns_per_batch": 310359.628866,
+          "minimum_ns_per_batch": 308557.091837,
+          "maximum_ns_per_batch": 315278.791667,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.8256875121610553,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.8208848085079467,
+            0.8336467685531717
+          ]
+        },
+        {
+          "policy": "16",
+          "median_ns_per_batch": 278819.574074,
+          "minimum_ns_per_batch": 277303.33945,
+          "maximum_ns_per_batch": 282211.148148,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.9163158641744099,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.9139339932775857,
+            0.9304059311901237
+          ]
+        },
+        {
+          "policy": "32",
+          "median_ns_per_batch": 251454.116667,
+          "minimum_ns_per_batch": 250341.441667,
+          "maximum_ns_per_batch": 255829.432203,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 1.0171989921647988,
+          "paired_bootstrap_99pct_speedup_interval": [
+            1.0146561281525472,
+            1.031594631420271
+          ]
+        }
+      ]
+    },
+    {
+      "family": "C0",
+      "ordering": "interleaved",
+      "comparisons": [
+        {
+          "policy": "whole",
+          "median_ns_per_batch": 599122.647059,
+          "minimum_ns_per_batch": 596639.901961,
+          "maximum_ns_per_batch": 610392.7,
+          "blocks": 21
+        },
+        {
+          "policy": "4",
+          "median_ns_per_batch": 1293784.833333,
+          "minimum_ns_per_batch": 1288395.666667,
+          "maximum_ns_per_batch": 1338049.391304,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.46300523844148167,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.4585817299322555,
+            0.46511121562151647
+          ]
+        },
+        {
+          "policy": "8",
+          "median_ns_per_batch": 930869.272727,
+          "minimum_ns_per_batch": 927262.909091,
+          "maximum_ns_per_batch": 960796.40625,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.6430352719789612,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.6352877379268873,
+            0.6455055333100428
+          ]
+        },
+        {
+          "policy": "16",
+          "median_ns_per_batch": 729872.738095,
+          "minimum_ns_per_batch": 726610.119048,
+          "maximum_ns_per_batch": 745863.292683,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.8206863392436505,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.8184657442931381,
+            0.823080080381611
+          ]
+        },
+        {
+          "policy": "32",
+          "median_ns_per_batch": 606816.7,
+          "minimum_ns_per_batch": 605333.7,
+          "maximum_ns_per_batch": 608530.1,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.9881038089494368,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.98516925599279,
+            0.989910160944286
+          ]
+        }
+      ]
+    },
+    {
+      "family": "C0",
+      "ordering": "grouped",
+      "comparisons": [
+        {
+          "policy": "whole",
+          "median_ns_per_batch": 611372.7,
+          "minimum_ns_per_batch": 607926.9,
+          "maximum_ns_per_batch": 622188.673469,
+          "blocks": 21
+        },
+        {
+          "policy": "4",
+          "median_ns_per_batch": 898339.558824,
+          "minimum_ns_per_batch": 894184.823529,
+          "maximum_ns_per_batch": 927231.666667,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.6803102913023975,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.6776680066798375,
+            0.6814095992138803
+          ]
+        },
+        {
+          "policy": "8",
+          "median_ns_per_batch": 700078.0,
+          "minimum_ns_per_batch": 693769.886364,
+          "maximum_ns_per_batch": 725940.119048,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.8743298603869855,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.8618175944164314,
+            0.8769143957444722
+          ]
+        },
+        {
+          "policy": "16",
+          "median_ns_per_batch": 691078.045455,
+          "minimum_ns_per_batch": 685540.772727,
+          "maximum_ns_per_batch": 720856.090909,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.8843601934536546,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.8710342313695919,
+            0.8882412535787719
+          ]
+        },
+        {
+          "policy": "32",
+          "median_ns_per_batch": 612918.040816,
+          "minimum_ns_per_batch": 609408.9,
+          "maximum_ns_per_batch": 622261.734694,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.9968268236376716,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.9934730937944779,
+            1.000589467558442
+          ]
+        }
+      ]
+    },
+    {
+      "family": "D0",
+      "ordering": "homogeneous",
+      "comparisons": [
+        {
+          "policy": "whole",
+          "median_ns_per_batch": 11130571.0,
+          "minimum_ns_per_batch": 11041281.0,
+          "maximum_ns_per_batch": 11793913.0,
+          "blocks": 21
+        },
+        {
+          "policy": "4",
+          "median_ns_per_batch": 28826475.5,
+          "minimum_ns_per_batch": 28588585.0,
+          "maximum_ns_per_batch": 30217214.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.38584121566818713,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.38461902843446816,
+            0.38785438642657805
+          ]
+        },
+        {
+          "policy": "8",
+          "median_ns_per_batch": 19033943.0,
+          "minimum_ns_per_batch": 18923898.0,
+          "maximum_ns_per_batch": 19356474.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.585525339571193,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.5840057654799039,
+            0.5867988581111013
+          ]
+        },
+        {
+          "policy": "16",
+          "median_ns_per_batch": 13711328.333333,
+          "minimum_ns_per_batch": 13564968.0,
+          "maximum_ns_per_batch": 14340223.666667,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.8132886832278909,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.8049484554472603,
+            0.8171290332014227
+          ]
+        },
+        {
+          "policy": "32",
+          "median_ns_per_batch": 10942960.333333,
+          "minimum_ns_per_batch": 10849463.666667,
+          "maximum_ns_per_batch": 11234798.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 1.0167789828161933,
+          "paired_bootstrap_99pct_speedup_interval": [
+            1.0120639909512898,
+            1.0211057611734413
+          ]
+        }
+      ]
+    },
+    {
+      "family": "D0",
+      "ordering": "interleaved",
+      "comparisons": [
+        {
+          "policy": "whole",
+          "median_ns_per_batch": 12584298.666667,
+          "minimum_ns_per_batch": 12507401.333333,
+          "maximum_ns_per_batch": 13227330.333333,
+          "blocks": 21
+        },
+        {
+          "policy": "4",
+          "median_ns_per_batch": 34588616.0,
+          "minimum_ns_per_batch": 34304406.0,
+          "maximum_ns_per_batch": 35264358.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.3635912378102269,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.36121527356664623,
+            0.36657791770347986
+          ]
+        },
+        {
+          "policy": "8",
+          "median_ns_per_batch": 23844871.5,
+          "minimum_ns_per_batch": 23669831.0,
+          "maximum_ns_per_batch": 24334158.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.5280268040608584,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.5267295001163643,
+            0.5321358052420713
+          ]
+        },
+        {
+          "policy": "16",
+          "median_ns_per_batch": 16687521.5,
+          "minimum_ns_per_batch": 16594686.5,
+          "maximum_ns_per_batch": 16941212.5,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.7545258406278945,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.751472402807454,
+            0.758784881007747
+          ]
+        },
+        {
+          "policy": "32",
+          "median_ns_per_batch": 12505218.0,
+          "minimum_ns_per_batch": 12437974.666667,
+          "maximum_ns_per_batch": 12759385.666667,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 1.0083546980738343,
+          "paired_bootstrap_99pct_speedup_interval": [
+            1.0032174921313275,
+            1.0117642947442351
+          ]
+        }
+      ]
+    },
+    {
+      "family": "D0",
+      "ordering": "grouped",
+      "comparisons": [
+        {
+          "policy": "whole",
+          "median_ns_per_batch": 12312921.0,
+          "minimum_ns_per_batch": 12154260.666667,
+          "maximum_ns_per_batch": 13041156.666667,
+          "blocks": 21
+        },
+        {
+          "policy": "4",
+          "median_ns_per_batch": 28932301.0,
+          "minimum_ns_per_batch": 28481289.5,
+          "maximum_ns_per_batch": 31207748.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.42534275530809196,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.4219702284094299,
+            0.4267420298227978
+          ]
+        },
+        {
+          "policy": "8",
+          "median_ns_per_batch": 18988338.0,
+          "minimum_ns_per_batch": 18779077.5,
+          "maximum_ns_per_batch": 20677493.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.6433563006240625,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.6343927067818041,
+            0.650411696394437
+          ]
+        },
+        {
+          "policy": "16",
+          "median_ns_per_batch": 14139029.333333,
+          "minimum_ns_per_batch": 13915578.666667,
+          "maximum_ns_per_batch": 15137437.5,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.8691410250889935,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.861323931524952,
+            0.8743883830542774
+          ]
+        },
+        {
+          "policy": "32",
+          "median_ns_per_batch": 12364171.333333,
+          "minimum_ns_per_batch": 12159670.666667,
+          "maximum_ns_per_batch": 13658288.0,
+          "blocks": 21,
+          "paired_median_speedup_vs_whole": 0.9962842401484608,
+          "paired_bootstrap_99pct_speedup_interval": [
+            0.9885107428501987,
+            1.0031196294460496
+          ]
+        }
+      ]
+    }
+  ]
+}

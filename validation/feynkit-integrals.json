@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T12:32:11.478209+00:00",
+  "status": "passed",
+  "tests_passed": 9,
+  "tests_failed": 0,
+  "runtime_seconds": 0.34,
+  "command": "cargo test -p feynkit-integrals --test affine -- --test-threads=1",
+  "executed_binary": "target/cargo-build/debug/deps/affine-b9d31b5142781143",
+  "binary_sha256": "fecc798927248c464b4678d27f1a8f89eeef68c91fa25a3b6177d045e85f6232",
+  "source_sha256": {
+    "dependencies/feynkit-integrals/Cargo.toml": "97d639a9e434fadc6c3bd08028510f444e204c9e0a2167211589cd77b8c10ac0",
+    "dependencies/feynkit-integrals/LICENSE": "00c7803634d51517a40dbe797e226e0b73c76a789de93db4279b606a3cdeba3d",
+    "dependencies/feynkit-integrals/README.md": "3cfdf80017c64076c2dd89150222a36f50a2c0bbfdd96a50607f6da38c598811",
+    "dependencies/feynkit-integrals/UPSTREAM.md": "093905fdc6ac4cb62d3cd8fdf3b06d1e85c3cc8b955612335929353b85d5d556",
+    "dependencies/feynkit-integrals/VALIDATION.md": "6d175d87d6c23b4a9de6eec0c0ab0be7da4dcd45903b8d900c137ea136870389",
+    "dependencies/feynkit-integrals/scripts/verify_upstream.py": "7a66ecaaaf4c4f7cb2529df4f3f7e3c21745449a57d48e9f54db036ba2c655dd",
+    "dependencies/feynkit-integrals/src/affine_helpers.rs": "aa2429b94a7c1939b004f748abb395e2e3416a0edc694cca8da165f645c52f5b",
+    "dependencies/feynkit-integrals/src/lib.rs": "1d25574b65dd181644305d2f5dd99c87d0b4fa116e8279f9c66c1c513157a3e6",
+    "dependencies/feynkit-integrals/src/partial_fraction.rs": "253c9b98067957535d1eb7865368933cfb1cde4149872af35ee729fe5cd8cf83",
+    "dependencies/feynkit-integrals/tests/affine.rs": "59bd3caf84fbe428c49658f32c9c556571106d946af4b9721a3113e887d80b28",
+    "dependencies/feynkit-integrals/upstream/Cargo.toml": "79d20aaddf39916a161293cd78d69c3600c8b1b48ed7b66de2a1b2c9f9348873",
+    "dependencies/feynkit-integrals/upstream/integrals.rs": "9ff281c3d7cbfc058d78b0695a15c450230d07ed0399ca13d1553ac753a634b7",
+    "dependencies/feynkit-integrals/upstream/partial_fraction.rs": "228f154bdfcdf8885f7dd139c6bd88122bc46087f53f3f9efc0f76f65207c5dc"
+  },
+  "test_output": "\nrunning 9 tests\ntest budgets_invalid_powers_and_overflow_return_errors_without_partial_results ... ok\ntest constructor_rejects_duplicate_or_ambiguous_variables ... ok\ntest expanded_tiny_symbolic_coefficients_keep_original_order_and_weights ... ok\ntest floating_coefficients_are_not_silently_converted_to_exact_rationals ... ok\ntest fractional_propagator_coefficients_reconstruct_exactly ... ok\ntest gaussian_homogeneous_relations_and_raised_powers_reconstruct_exactly ... ok\ntest homogeneous_and_inhomogeneous_multivariate_relations_preserve_negative_powers ... ok\ntest mass_shifts_repeated_and_constant_propagators_preserve_the_rational_function ... ok\ntest tiny_hidden_dependence_and_nonlinear_terms_are_rejected_exactly ... ok\n\ntest result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.34s\n\n",
+  "scope": "Extracted upstream affine partial-fraction API and exact reconstruction tests. Not yet used by the production reduction planner.",
+  "build_note": "The initially isolated build had no arithmetic backend selected. The package now inherits the workspace Symbolica dependency and its pinned GMP/MPFR features; isolated compilation succeeds."
+}

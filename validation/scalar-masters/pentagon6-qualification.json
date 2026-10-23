@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T12:43:28.316576+00:00",
+  "status": "passed",
+  "tests_passed": 13,
+  "test_wall_seconds": 113.72,
+  "binary": "target/checkpoint-exact-zero-tests/iregi_masters-05f248b3db8d8d7f",
+  "binary_sha256": "9a7012c886984ce3df20389c10306b3e653d48d56a6e3e43639a055cd6397519",
+  "source_sha256": {
+    "crates/iregi-masters/src/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e"
+  },
+  "log": "validation/scalar-masters/pentagon6.log",
+  "log_sha256": "decd923260782948cf1e4ad84dbb93a22a21e4f8576d3fdd40591879b52ed2a4",
+  "command": "RUST_MIN_STACK=67108864 cargo test -p iregi-masters pentagon6::tests:: -- --test-threads=1 --nocapture",
+  "qualification": "Standalone typed D6 pentagon master: exact Gauss integration checks, independent positive-F and negative-width parameter oracles, DoubleFloat/Float and common-mass Dual identities, endpoint and overflow diagnostics. This does not qualify all generalized core reduction domains or native-feature E6 execution.",
+  "build": "Consolidated workspace test build completed successfully with exact_rational NativeFloat extension. Source dependencies pinned in Cargo.lock."
+}
