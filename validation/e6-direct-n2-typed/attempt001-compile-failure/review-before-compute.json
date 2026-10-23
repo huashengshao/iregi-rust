@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_only_review_before_compute",
+  "reviewed_at_utc": "2026-10-23T21:07:13.678085+00:00",
+  "reviewer": "/root/pentagon_precision/e6_series_review",
+  "scope": "Private typed direct-E6 N2 driver source review; no builds, type checking, Symbolica execution, integral runtime, production changes, numerical qualification or timing claim.",
+  "source_sha256": {
+    "target/e6-direct-n2-typed/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+    "target/e6-direct-n2-typed/source/typed.rs": "9e12fbe6f9cf37a320473a987057c4e79b435d6e7379a618c2c7c95704d9f3c8"
+  },
+  "candidate_byte_identical_to_prior_reviewed_engine": true,
+  "prior_engine_review": "target/e6-direct-n2/review-before-compute.json",
+  "reviewed_shapes": {
+    "Mixed4": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "Mixed6": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ]
+  },
+  "requested_runs": [
+    {
+      "kind": "f64",
+      "working_bits": 53,
+      "requested_bits": 40
+    },
+    {
+      "kind": "dd",
+      "working_bits": 106,
+      "requested_bits": 80
+    },
+    {
+      "kind": "float128",
+      "working_bits": 128,
+      "requested_bits": 80
+    },
+    {
+      "kind": "float256",
+      "working_bits": 256,
+      "requested_bits": 128
+    },
+    {
+      "kind": "float384",
+      "working_bits": 384,
+      "requested_bits": 128
+    }
+  ],
+  "expected_primary_counts_per_group": {
+    "physical_rows": 13,
+    "scale_valid_packed_rows": 12,
+    "candidate_active_rows": 7,
+    "numeric_batch_calls": 1,
+    "enclosure_batch_calls": 1,
+    "tail_batch_calls": 1,
+    "success_rows_Mixed4": 7,
+    "success_rows_Mixed6": 6
+  },
+  "mathematical_findings": [
+    "Both shapes are ancestor-closed and within the unchanged candidate degree/component limits; declared order is the authoritative component ordering.",
+    "The independent Identity differentiates -1/(24*m(x,y)^2) with Symbolica, divides by each multi-index factorial and evaluates exactly over Complex<Rational>. It does not reuse the candidate integrated polynomial or Dualizer.",
+    "The oracle asserts all ten invariants and their jets vanish and all five mass component vectors agree.",
+    "For linear common mass M+a*x+b*y, the native [2,1] coefficient is a^2*b/(2*M^5); N2 has an omitted cubic remainder. Large-seed row6 should succeed in Mixed4 and fail only its last component in Mixed6.",
+    "The numeric and complete returned rectangle are compared against the exact independent center using the same explicit requested budgets, and the center must lie inside both interval coordinates.",
+    "All seven active rows and all invalid/outside fixtures have mathematically consistent expected statuses; no expected rejection is converted to success."
+  ],
+  "api_and_batch_findings": [
+    "Physical sixteen-argument scale validation is distinct from the candidate fifteen-argument input and its prepared auxiliary-M slot.",
+    "Static and dynamic metadata plans are independently constructed and compared; actual typed carriers preserve values and get_shape ordering. The report correctly describes metadata/component transport with Symbolica Dualizer arithmetic.",
+    "The beyond53 fixture differs by exact 2^-80 for DD and arbitrary precision; f64 is explicitly expected to round it away.",
+    "The arbitrary-precision mixed-input row uses53-bit and working-bit components with exactly the same represented physical values as row0; the oracle is built from exact_rational() of actual stored inputs.",
+    "Empty, malformed, odd-size, reordered, chunked, singleton, fresh static/dynamic and scoped concurrent independent workspace checks are present.",
+    "Primary, fresh dynamic and both concurrent workspaces assert all three instruction-major batch calls and seven active rows; chunk calls assert the three batch calls and record their counters."
+  ],
+  "resolved_source_issue": {
+    "location": "carriers",
+    "original": "HyperDual::<Complex<T>>::new required T:Default, not implied by NativeFloat.",
+    "fix": "HyperDual::from_values(shape.to_vec(), components.to_vec()) removes the extra bound and preserves component precision directly."
+  },
+  "precision_convergence_boundary": "Float256 and Float384 use the same128-bit requested budget. Compare identical exact inputs and rounding-only widths after subtracting twice the analytic tail. N2 truncation-dominated mixed cubic errors may remain unchanged and must not be reported as failed arithmetic convergence or hidden.",
+  "unresolved_material_source_findings": [],
+  "limitations": [
+    "Compilation and all runtime assertions remain untested by this review.",
+    "The new fixture family is common complex masses and zero invariants; retained tiny nonzero routing remains a separate earlier checkpoint.",
+    "No heterogeneous mass jets, generic routing, additional numeric domains, upstream input rectangles, N4, public/core/default integration or performance parity is established.",
+    "Equality of static/dynamic metadata and transported values does not claim Workspace<StaticDual<T>> support; NativeFloat remains the base numeric type."
+  ]
+}

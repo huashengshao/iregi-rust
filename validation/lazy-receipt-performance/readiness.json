@@ -1,0 +1,163 @@
+{
+  "status": "optimized_correctness_passed_independent_review_pending",
+  "recorded_utc": "2026-10-23T21:36:45.387251+00:00",
+  "production_adopted": false,
+  "timing_started": false,
+  "scope": "New matched optimized eager-final-e23 versus private lazy receipt capture, both using the single accepted current shared master adapter, unchanged audited Symbolica/Numerica/Graphica/OneLoop opt3 runtime closure, and default Symbolica master backend. Not the independent Symbolica arity2 candidate; no native selection in receipt cores.",
+  "source_manifest": {
+    "path": "target/raw-distance-lazy-capture-optimized/source-manifest.json",
+    "sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0"
+  },
+  "source_review": {
+    "path": "target/raw-distance-lazy-capture-optimized/review/source-review.json",
+    "sha256": "0f8876b41ce0a0b082baba0345eab9afe7a2bd35932f212d586109ca794ff9dd"
+  },
+  "shared_adapter": {
+    "path": "target/selected-native-optimized/shared/accepted.json",
+    "sha256": "4ddae0375567918948aa7f1b074c8ae5ee6f725859c4094d78b7dbc1b5e45db7"
+  },
+  "shared_closure_audit": {
+    "path": "target/selected-native-optimized/closure-audit.json",
+    "sha256": "7faf196a9b4befa33cb7d55d3dc3dd4d8917c6ddba0ee1a5a93716b6086c72c8"
+  },
+  "build": {
+    "record": {
+      "path": "target/raw-distance-lazy-capture-optimized/build-001/build.json",
+      "sha256": "2c0b18fa418314c5449a093c0d1ab219d57c1549a346387d985804bf2aa750ac"
+    },
+    "steps": [
+      {
+        "label": "eager",
+        "seconds": 29.194029417005368,
+        "bound_seconds": 180,
+        "log": {
+          "path": "target/raw-distance-lazy-capture-optimized/build-001/eager.log",
+          "sha256": "0b461929d14b21ff83590326cd29e89b180cf6b35008f434832f282e368b8af6"
+        }
+      },
+      {
+        "label": "lazy",
+        "seconds": 33.89429040602408,
+        "bound_seconds": 180,
+        "log": {
+          "path": "target/raw-distance-lazy-capture-optimized/build-001/lazy.log",
+          "sha256": "d5a19e6cf965ffdc5cb210dd2c92781b7ba3802fbcdcd26a9c4878f6beba8ff5"
+        }
+      },
+      {
+        "label": "probe",
+        "seconds": 312.34465372399427,
+        "bound_seconds": 600,
+        "log": {
+          "path": "target/raw-distance-lazy-capture-optimized/build-001/probe.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "inputs_unchanged": true,
+    "outputs": {
+      "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_eager.rlib": "6c1347cd64458df3bc816ecef353a376b9233391d282f5da17003000a7dbc240",
+      "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_lazy.rlib": "4f74449a1f2970760bc9c35d1d767dda96cd3e051e34f208666b5cdc0bb851bc",
+      "target/raw-distance-lazy-capture-optimized/build-001/probe": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c"
+    }
+  },
+  "preflight": {
+    "record": {
+      "path": "target/raw-distance-lazy-capture-optimized/preflight.json",
+      "sha256": "83c0ec37961d9b2a9e6bf5eb3ea55b947dc98bfc7ffebcff51361cc926fedbaa"
+    },
+    "log": {
+      "path": "target/raw-distance-lazy-capture-optimized/preflight.log",
+      "sha256": "cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd"
+    },
+    "cases_passed": 14,
+    "seconds": 12.84947105194442,
+    "bound_seconds": 120,
+    "calls_per_implementation_per_case": 7,
+    "unique_complex_output_values": 10560,
+    "pairs": [
+      [
+        "bubble-ordinary",
+        "1"
+      ],
+      [
+        "bubble-ordinary",
+        "32"
+      ],
+      [
+        "triangle-ordinary",
+        "1"
+      ],
+      [
+        "triangle-ordinary",
+        "32"
+      ],
+      [
+        "bubble-zero-real",
+        "1"
+      ],
+      [
+        "bubble-zero-real",
+        "32"
+      ],
+      [
+        "bubble-zero-complex",
+        "1"
+      ],
+      [
+        "bubble-zero-complex",
+        "32"
+      ],
+      [
+        "bubble-mixed-dual",
+        "1"
+      ],
+      [
+        "bubble-mixed-dual",
+        "32"
+      ],
+      [
+        "ggh-zero-real",
+        "1"
+      ],
+      [
+        "ggh-zero-real",
+        "32"
+      ],
+      [
+        "ggh-mixed-complex",
+        "1"
+      ],
+      [
+        "ggh-mixed-complex",
+        "32"
+      ]
+    ],
+    "exact_scope": "Represented input/output bits, ordered Dual shape/precision context, basis/metadata/status/flags, public statistics/diagnostics, four private proof counters on every cold/warm/final snapshot. Both variants assert inactive N5 counters; default master backend is asserted SymbolicaBatch.",
+    "inputs_unchanged": true
+  },
+  "flags": {
+    "retained_numerical_closure": "completed Cargo release opt3/cgu1/ThinLTO, unchanged runtime sources/features, host opt0 variants excluded",
+    "new_shared_adapter_and_cores": "opt3/cgu16/embed-bitcode=yes/debuginfo0/debug-assertions=no/overflow-checks=no",
+    "new_paired_probe": "same flags plus ThinLTO; default target CPU/no fast-math override; compiler and linker executables explicitly pinned",
+    "source_namespace": "both core CARGO_CRATE_NAME=iregi_rust; actual Rust crate names/disambiguators differ"
+  },
+  "prior_evidence": {
+    "debug_correctness": {
+      "path": "validation/raw-distance-lazy-capture/qualification.json",
+      "sha256": "5fe79a951cd5193cd13f47760cbc0333c529201bafdf22664b8217a385b0ea38"
+    },
+    "eager_final_performance": {
+      "path": "validation/raw-distance-final-performance/performance-qualification.json",
+      "sha256": "6b8b339ae45f911ff92237cab3ce9d3b4354c1acf9795b4f5574a047887cb2d3"
+    }
+  },
+  "limitations": [
+    "No new timing, statistical result, reference comparison or production adoption is qualified.",
+    "Debug26unit+14paired qualification remains separate from this optimized14paired qualification; unit26 were not rerun in this build.",
+    "Prior eager-final performance cohort and its two regressions remain unchanged.",
+    "Preflight fixed_iterations fields are inert inherited labels; no timed loops or calibration were executed.",
+    "Shared adapter contains independently qualified opt-in native capability, but it is not selected by either receipt core.",
+    "Future measurement still requires a frozen runner/parser/statistical protocol and ROOT quiet-window grant."
+  ]
+}

@@ -1,0 +1,60 @@
+error[E0599]: the method `evaluate` exists for mutable reference `&mut ExpressionEvaluator<iregi_masters::Complex<Fraction<IntegerRing>>>`, but its trait bounds were not satisfied
+   --> /shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/source/typed.rs:76:65
+    |
+ 76 |         self.programs.iter_mut().map(|p|{let mut out=[zero()];p.evaluate(&mass,&mut out);out[0].clone()}).collect()
+    |                                                                 ^^^^^^^^
+    |
+   ::: dependencies/symbolica/src/evaluate/evaluator.rs:8:1
+    |
+  8 | pub struct ExpressionEvaluator<T> {
+    | --------------------------------- doesn't satisfy `_: AsRef<Atom>` or `_: AtomCore`
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float/complex.rs:18:1
+    |
+ 18 | pub struct Complex<T> {
+    | --------------------- doesn't satisfy `_: Real`
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/rational.rs:137:1
+    |
+137 | pub struct Fraction<R: Ring> {
+    | ---------------------------- doesn't satisfy `Fraction<IntegerRing>: symbolica::prelude::Real`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Fraction<IntegerRing>: symbolica::prelude::Real`
+            which is required by `iregi_masters::Complex<Fraction<IntegerRing>>: symbolica::prelude::Real`
+            `&mut ExpressionEvaluator<iregi_masters::Complex<Fraction<IntegerRing>>>: AsRef<symbolica::atom::Atom>`
+            which is required by `&mut ExpressionEvaluator<iregi_masters::Complex<Fraction<IntegerRing>>>: AtomCore`
+            `ExpressionEvaluator<iregi_masters::Complex<Fraction<IntegerRing>>>: AsRef<symbolica::atom::Atom>`
+            which is required by `ExpressionEvaluator<iregi_masters::Complex<Fraction<IntegerRing>>>: AtomCore`
+
+error[E0308]: mismatched types
+   --> /shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/source/typed.rs:107:83
+    |
+107 |             if d.as_slice()==[1,0] {common[i*c+j]=Complex::new(seed.clone(),&seed/Rational::from(2));}
+    |                                                                                   ^^^^^^^^^^^^^^^^^ expected `&Fraction<IntegerRing>`, found `Fraction<IntegerRing>`
+    |
+    = note: expected reference `&Fraction<_>`
+                  found struct `Fraction<_>`
+help: consider dereferencing the borrow
+    |
+107 |             if d.as_slice()==[1,0] {common[i*c+j]=Complex::new(seed.clone(),*&seed/Rational::from(2));}
+    |                                                                             +
+
+error[E0600]: cannot apply unary operator `-` to type `&Fraction<IntegerRing>`
+   --> /shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/source/typed.rs:108:64
+    |
+108 |             if d.as_slice()==[0,1] {common[i*c+j]=Complex::new(-&seed/Rational::from(2),seed.clone());}
+    |                                                                ^^^^^^ cannot apply unary operator `-`
+
+warning: unused import: `SingleFloat`
+ --> /shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/source/typed.rs:8:49
+  |
+8 |     float::{Complex,DoubleFloat,Float,FloatLike,SingleFloat},integer::Integer,rational::Rational},
+  |                                                 ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+Some errors have detailed explanations: E0308, E0599, E0600.
+For more information about an error, try `rustc --explain E0308`.

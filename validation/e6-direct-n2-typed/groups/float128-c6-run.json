@@ -1,0 +1,32 @@
+{
+  "scope": "Private typed correctness only; unchanged N2 engine; not benchmark/public E6",
+  "kind": "float128",
+  "component_count": 6,
+  "command": [
+    "taskset",
+    "-c",
+    "18,19",
+    "/shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/validate",
+    "float128",
+    "6",
+    "/shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/groups/float128-c6.json"
+  ],
+  "timeout_seconds": 120,
+  "build_sha256": "af41c70cf1eb7fee367a3673326aa499179ac4cb4af254267c8160a8aaf92928",
+  "binary_sha256": "1e4ef5cdbcd2bfcaad1120256774907118c52adb86718fb44f9110c112994ccc",
+  "source_manifest_sha256": "d5f123778e83b99b893c1de77f398d9a83d7a67e9417924568ad45ccce2aca20",
+  "runner_sha256": "5b398292070cb1a4c691da28c7d9c3c0a5ca0f41c3356b6ef8ddb9e17c994fef",
+  "started_unix_time": 1792789878.2503364,
+  "environment_overrides": {
+    "RAYON_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1"
+  },
+  "concurrency": "Two explicitly independent evaluator workspaces in scoped threads; Symbolica preparation cores1",
+  "pid": 1773996,
+  "exit_code": 0,
+  "elapsed_seconds_diagnostic": 1.919840172980912,
+  "sources_unchanged": true,
+  "closure_unchanged": true,
+  "log_sha256": "3f1d1733deb5c2ca07090b95d58deefda61f8bba50eecab66ecb13d1b2ba6167",
+  "output_sha256": "ff13000d409d18e4725993f554f83966421e8ed48830384f116c9652cf9dff85"
+}

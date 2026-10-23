@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_only_review_before_corrected_compute",
+  "reviewed_at_utc": "2026-10-23T21:10:50.487606+00:00",
+  "reviewer": "/root/pentagon_precision/e6_series_review",
+  "scope": "Private typed direct-E6 N2 driver source review; no builds, type checking, Symbolica execution, integral runtime, production changes, numerical qualification or timing claim.",
+  "source_sha256": {
+    "target/e6-direct-n2-typed/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+    "target/e6-direct-n2-typed/source/typed.rs": "6e33c98c01d9448e79a0ebe927aaf31804428bd1642fffa7db7e90b3865e3c97"
+  },
+  "candidate_byte_identical_to_prior_reviewed_engine": true,
+  "prior_engine_review": "target/e6-direct-n2/review-before-compute.json",
+  "reviewed_shapes": {
+    "Mixed4": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "Mixed6": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ]
+  },
+  "requested_runs": [
+    {
+      "kind": "f64",
+      "working_bits": 53,
+      "requested_bits": 40
+    },
+    {
+      "kind": "dd",
+      "working_bits": 106,
+      "requested_bits": 80
+    },
+    {
+      "kind": "float128",
+      "working_bits": 128,
+      "requested_bits": 80
+    },
+    {
+      "kind": "float256",
+      "working_bits": 256,
+      "requested_bits": 128
+    },
+    {
+      "kind": "float384",
+      "working_bits": 384,
+      "requested_bits": 128
+    }
+  ],
+  "expected_primary_counts_per_group": {
+    "physical_rows": 13,
+    "scale_valid_packed_rows": 12,
+    "candidate_active_rows": 7,
+    "numeric_batch_calls": 1,
+    "enclosure_batch_calls": 1,
+    "tail_batch_calls": 1,
+    "success_rows_Mixed4": 7,
+    "success_rows_Mixed6": 6
+  },
+  "mathematical_findings": [
+    "Both shapes are ancestor-closed and within the unchanged candidate degree/component limits; declared order is the authoritative component ordering.",
+    "The independent Identity differentiates -1/(24*m(x,y)^2) with Symbolica, divides by each multi-index factorial and evaluates exactly over Complex<Rational>. It does not reuse the candidate integrated polynomial or Dualizer.",
+    "The oracle asserts all ten invariants and their jets vanish and all five mass component vectors agree.",
+    "For linear common mass M+a*x+b*y, the native [2,1] coefficient is a^2*b/(2*M^5); N2 has an omitted cubic remainder. Large-seed row6 should succeed in Mixed4 and fail only its last component in Mixed6.",
+    "The numeric and complete returned rectangle are compared against the exact independent center using the same explicit requested budgets, and the center must lie inside both interval coordinates.",
+    "All seven active rows and all invalid/outside fixtures have mathematically consistent expected statuses; no expected rejection is converted to success."
+  ],
+  "api_and_batch_findings": [
+    "Physical sixteen-argument scale validation is distinct from the candidate fifteen-argument input and its prepared auxiliary-M slot.",
+    "Static and dynamic metadata plans are independently constructed and compared; actual typed carriers preserve values and get_shape ordering. The report correctly describes metadata/component transport with Symbolica Dualizer arithmetic.",
+    "The beyond53 fixture differs by exact 2^-80 for DD and arbitrary precision; f64 is explicitly expected to round it away.",
+    "The arbitrary-precision mixed-input row uses53-bit and working-bit components with exactly the same represented physical values as row0; the oracle is built from exact_rational() of actual stored inputs.",
+    "Empty, malformed, odd-size, reordered, chunked, singleton, fresh static/dynamic and scoped concurrent independent workspace checks are present.",
+    "Primary, fresh dynamic and both concurrent workspaces assert all three instruction-major batch calls and seven active rows; chunk calls assert the three batch calls and record their counters."
+  ],
+  "resolved_source_issue": {
+    "location": "carriers",
+    "original": "HyperDual::<Complex<T>>::new required T:Default, not implied by NativeFloat.",
+    "fix": "HyperDual::from_values(shape.to_vec(), components.to_vec()) removes the extra bound and preserves component precision directly."
+  },
+  "precision_convergence_boundary": "Float256 and Float384 use the same128-bit requested budget. Compare identical exact inputs and rounding-only widths after subtracting twice the analytic tail. N2 truncation-dominated mixed cubic errors may remain unchanged and must not be reported as failed arithmetic convergence or hidden.",
+  "unresolved_material_source_findings": [],
+  "limitations": [
+    "The initial attempt failed compilation before numerical execution. This corrected revision has only a source review; no compilation or runtime assertion is claimed by this receipt.",
+    "The new fixture family is common complex masses and zero invariants; retained tiny nonzero routing remains a separate earlier checkpoint.",
+    "No heterogeneous mass jets, generic routing, additional numeric domains, upstream input rectangles, N4, public/core/default integration or performance parity is established.",
+    "Equality of static/dynamic metadata and transported values does not claim Workspace<StaticDual<T>> support; NativeFloat remains the base numeric type."
+  ],
+  "review_revision": 2,
+  "prior_failed_attempt": {
+    "path": "target/e6-direct-n2-typed/attempt001-compile-failure",
+    "status": "compile_failed_no_numeric_runtime",
+    "review_sha256": "74a6c1ffa5453785846901e14db85e67f3ae5844b003b9051656254e666d2240",
+    "build_log_sha256": "cb185224821c751fa7357c849cf1a27b1fdd69b9631fb516e1536590a4e070dd",
+    "preservation_manifest_sha256": "23fd02edceeec0b04d0925487d972adc375e1653e73b9b7532e1e89fbc7e4719",
+    "driver_sha256": "9e12fbe6f9cf37a320473a987057c4e79b435d6e7379a618c2c7c95704d9f3c8",
+    "errors": [
+      "ExpressionEvaluator<Complex<Rational>>::evaluate requires unsupported Real trait bound.",
+      "Two Rational seed expressions used unsupported borrowed division/negation forms."
+    ],
+    "review_limit": "The first source-only review did not identify these compiler errors; its original receipt and all failed build evidence remain preserved."
+  },
+  "corrected_oracle_evaluation": {
+    "existing_source": "crates/iregi-rust/examples/support/d0_near_vacuum_oracle.rs:121",
+    "existing_source_sha256": "3b8986901c845e75fecbc7f374cb03fb9ef1fa2a0f9d8dffbba18225edf93cb1",
+    "api": "AtomCore::try_to_rational_polynomial::<_,_,u16>(&Q,&Z,Some(variables.clone())); polynomial numerator.evaluate and denominator.evaluate over Complex<Rational>.",
+    "checks": [
+      "Both polynomial variable maps equal the explicit parameter order.",
+      "The exact mass vector length equals that variable map length.",
+      "Integer coefficients map exactly to real Complex<Rational> values.",
+      "The exact complex denominator must be nonzero before Symbolica numeric division."
+    ],
+    "independence": "The oracle retains independently differentiated common-mass identity expressions and does not use the candidate polynomial, candidate truncation or candidate Dualizer."
+  },
+  "narrow_diff_verification": {
+    "candidate_byte_identical": true,
+    "physical_adapter_and_serialization_helpers_byte_identical": true,
+    "derivative_factorial_and_zero_substitution_block_byte_identical": true,
+    "all_comparison_fixture_batching_budget_run_code_byte_identical_after_two_seed_ownership_substitutions": true,
+    "other_changes": "Required imports, exact oracle expression/variable storage and replacement of unsupported ExpressionEvaluator execution with existing exact rational-polynomial evaluation; unused SingleFloat import removed.",
+    "unified_diff_sha256": "fe2cd417648d6ac5d9165a04b400fc3a85d66dc472f5205c326894a8bc1926dc"
+  }
+}

@@ -1,0 +1,78 @@
+--- attempt001/source/typed.rs
++++ corrected/source/typed.rs
+@@ -3,10 +3,10 @@
+ use candidate::{AccuracyContext, Exact, Lane, NearVacuumPlan, Status, abs, pow2_minus, zero};
+ use iregi_masters::NativeFloat;
+ use serde_json::{Value,json};
+-use std::{error::Error,path::PathBuf,time::Instant};
++use std::{error::Error,path::PathBuf,time::Instant,sync::Arc};
+ use symbolica::{atom::{Atom,AtomCore},domains::{dual::{DualNumber,DualNumberStructure,HyperDual},
+-    float::{Complex,DoubleFloat,Float,FloatLike,SingleFloat},integer::Integer,rational::Rational},
+-    evaluate::{EvaluationDomain,ExpressionEvaluator}};
++    float::{Complex,DoubleFloat,Float,FloatLike},integer::{Integer,Z},rational::{Q,Rational}},
++    evaluate::EvaluationDomain,poly::PolyVariable};
+ 
+ symbolica::create_hyperdual_from_components!(Mixed4,[[0,0],[1,0],[0,1],[1,1]]);
+ symbolica::create_hyperdual_from_components!(Mixed6,[[0,0],[1,0],[0,1],[2,0],[1,1],[2,1]]);
+@@ -48,7 +48,7 @@
+     Ok(out)
+ }
+ 
+-struct Identity {programs:Vec<ExpressionEvaluator<Exact>>}
++struct Identity {expressions:Vec<Atom>,variables:Arc<Vec<PolyVariable>>}
+ impl Identity {
+     fn new(shape:&[Vec<usize>])->Result<Self,Box<dyn Error>> {
+         let x_symbol=symbolica::symbol!("iregi_e6_typed_identity::x");
+@@ -57,7 +57,7 @@
+         let parameters:Vec<_>=(0..shape.len()).map(|i|Atom::var(symbolica::symbol!(format!("iregi_e6_typed_identity::m{i}")))).collect();
+         let mass:Atom=shape.iter().zip(&parameters).map(|(degree,p)|p*vars[0].pow(degree[0] as i64)*vars[1].pow(degree[1] as i64)).sum();
+         let identity=-Atom::num(1)/(Atom::num(24)*mass.pow(2));
+-        let mut programs=Vec::new();
++        let mut expressions=Vec::new();
+         for degree in shape {
+             let mut expression=identity.clone();
+             for (axis,&symbol) in [x_symbol,y_symbol].iter().enumerate(){
+@@ -65,15 +65,28 @@
+                 expression/=Atom::num(Integer::factorial(degree[axis] as u32));
+             }
+             expression=expression.replace(x_symbol).with(Atom::num(0)).replace(y_symbol).with(Atom::num(0));
+-            programs.push(expression.evaluator(&parameters).direct_translation(true).horner_iterations(0).cores(1).build()?);
+-        }
+-        Ok(Self{programs})
++            expressions.push(expression);
++        }
++        let variables=Arc::new(parameters.into_iter().map(PolyVariable::try_from).collect::<Result<Vec<_>,_>>()?);
++        Ok(Self{expressions,variables})
+     }
+     fn evaluate<T:NativeFloat>(&mut self,row:&[Complex<T>],c:usize)->Vec<Exact> {
+         assert!(row[..10*c].iter().all(|v|exact(v)==zero()),"common-mass oracle requires zero invariants and jets");
+         let mass:Vec<_>=row[10*c..11*c].iter().map(exact).collect();
+         for i in 11..15 {assert_eq!(row[i*c..(i+1)*c].iter().map(exact).collect::<Vec<_>>(),mass);}
+-        self.programs.iter_mut().map(|p|{let mut out=[zero()];p.evaluate(&mass,&mut out);out[0].clone()}).collect()
++        // Reuse the exact rational-polynomial evaluation pattern in
++        // examples/support/d0_near_vacuum_oracle.rs::evaluate_exact.
++        self.expressions.iter().map(|expression|{
++            let rational=expression.try_to_rational_polynomial::<_,_,u16>(&Q,&Z,Some(self.variables.clone())).unwrap();
++            assert_eq!(rational.numerator.get_vars_ref(),self.variables.as_slice());
++            assert_eq!(rational.denominator.get_vars_ref(),self.variables.as_slice());
++            assert_eq!(mass.len(),self.variables.len());
++            let map=|value:&Integer|Complex::new(Rational::from(value),Rational::from(0));
++            let numerator=rational.numerator.evaluate(map,&mass);
++            let denominator=rational.denominator.evaluate(map,&mass);
++            assert_ne!(denominator,zero());
++            numerator/denominator
++        }).collect()
+     }
+ }
+ 
+@@ -104,8 +117,8 @@
+     for i in 10..15 {
+         common[i*c]=Complex::new(Rational::from(2),Rational::from(-1));
+         for (j,d) in shape.iter().enumerate(){
+-            if d.as_slice()==[1,0] {common[i*c+j]=Complex::new(seed.clone(),&seed/Rational::from(2));}
+-            if d.as_slice()==[0,1] {common[i*c+j]=Complex::new(-&seed/Rational::from(2),seed.clone());}
++            if d.as_slice()==[1,0] {common[i*c+j]=Complex::new(seed.clone(),seed.clone()/Rational::from(2));}
++            if d.as_slice()==[0,1] {common[i*c+j]=Complex::new(-seed.clone()/Rational::from(2),seed.clone());}
+         }
+     }
+     common[15*c]=real(Rational::from(1));

@@ -1,0 +1,22 @@
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+ --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6/mixed-cofactor/proof.rs:7:18
+  |
+7 |  let x=Atom::var(symbolica::symbol!("thin_cofactor::x"));let y=Atom::var(symbolica::symbol!("thin_cofactor::y"));
+  |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+  = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+  = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+ --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6/mixed-cofactor/proof.rs:7:74
+  |
+7 |  let x=Atom::var(symbolica::symbol!("thin_cofactor::x"));let y=Atom::var(symbolica::symbol!("thin_cofactor::y"));
+  |                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+  = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+  = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 2 previous errors
+

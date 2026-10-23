@@ -1,0 +1,50 @@
+{
+  "scope": "Typed validation of unchanged E6 N2 candidate; retained native-object dependencies; no production change",
+  "command": [
+    "taskset",
+    "-c",
+    "18,19",
+    "rustc",
+    "--edition=2024",
+    "--crate-name",
+    "e6_direct_n2_typed",
+    "/shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/source/typed.rs",
+    "-C",
+    "opt-level=0",
+    "-C",
+    "debuginfo=0",
+    "-C",
+    "strip=debuginfo",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/e6-direct-n2/native",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps/libiregi_masters-f07797f04e91954e.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps/libsymbolica-06e42762cabb77d9.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps/libserde_json-d657c5438f354a41.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/validate"
+  ],
+  "compile_environment_overrides": {
+    "CARGO_CRATE_NAME": "e6_direct_n2_typed"
+  },
+  "sources": {
+    "target/e6-direct-n2-typed/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+    "target/e6-direct-n2-typed/source/typed.rs": "6e33c98c01d9448e79a0ebe927aaf31804428bd1642fffa7db7e90b3865e3c97"
+  },
+  "preparation_sha256": "1538dbc24bd16330a878be45965cd5b5d148a8fc8f062348e550275dcffcbc88",
+  "runner_sha256": "3ed0c93d982340630718de78ac3d76e0c6f6edf121c7cd23cfd4d0f5a45838b8",
+  "timeout_seconds": 180,
+  "started_unix_time": 1792789838.3292189,
+  "pid": 1742887,
+  "exit_code": 0,
+  "elapsed_seconds_diagnostic": 6.8785126799484715,
+  "sources_unchanged": true,
+  "closure_unchanged": true,
+  "build_log_sha256": "87a58604679aab6d94a2c51dd42859acf05676d734fb02791ec90a84aca559c7",
+  "binary_sha256": "1e4ef5cdbcd2bfcaad1120256774907118c52adb86718fb44f9110c112994ccc",
+  "binary_bytes": 50032904
+}

@@ -1,0 +1,426 @@
+{
+  "status": "completed_private_lazy_vs_eager_cohort_with_three_qualified_regressions",
+  "recorded_utc": "2026-10-23T22:10:05.846681+00:00",
+  "production_adopted": false,
+  "recommendation": "Do not adopt this lazy-capture patch under the all-family no-regression criterion: three retained cases have qualified regressions. No repeat is authorized or recommended from these observations alone.",
+  "ratio_definition": "TIRust(lazy) / TIRust(eager), below one is faster",
+  "baseline": "Final reviewed eager automatic-planar/accounting/checked-receipt implementation, e23ce191 patch over the common 06706e2-equivalent core and collector",
+  "candidate": "Same baseline plus the qualified lazy receipt capture patch; no numerical operation, threshold, conditioning or result changes",
+  "scope": "New optimized eager-final-e23 versus lazy-receipt f64 cohort with identical accepted current shared masters and unchanged opt3 numerical closure; includes flattened mixed Dual; N5 retry remains inactive; not an IREGI reference performance benchmark",
+  "correctness": {
+    "optimized_preflight_pairs_passed": 14,
+    "unique_complex_output_slots": 10560,
+    "snapshot_calls_per_side_per_case": 7,
+    "parser_admission_tests_passed": 9,
+    "exact_inputs_outputs_context_metadata_status_flags_statistics_and_proof_counters": true,
+    "warm_and_post_timing_snapshot_checks_passed": true,
+    "n5_automatic_fallback_inactive": true,
+    "default_master_backend": "SymbolicaBatch",
+    "prior_debug_tests_passed": 26,
+    "prior_debug_pairs_passed": 14,
+    "debug_tests_rerun_in_optimized_binary": false
+  },
+  "build": {
+    "flags": {
+      "retained_numerical_closure": "completed Cargo release opt3/cgu1/ThinLTO, unchanged runtime sources/features, host opt0 variants excluded",
+      "new_shared_adapter_and_cores": "opt3/cgu16/embed-bitcode=yes/debuginfo0/debug-assertions=no/overflow-checks=no",
+      "new_paired_probe": "same flags plus ThinLTO; default target CPU/no fast-math override; compiler and linker executables explicitly pinned",
+      "source_namespace": "both core CARGO_CRATE_NAME=iregi_rust; actual Rust crate names/disambiguators differ"
+    },
+    "steps": [
+      {
+        "label": "eager",
+        "seconds": 29.194029417005368,
+        "bound_seconds": 180,
+        "log": {
+          "path": "target/raw-distance-lazy-capture-optimized/build-001/eager.log",
+          "sha256": "0b461929d14b21ff83590326cd29e89b180cf6b35008f434832f282e368b8af6"
+        }
+      },
+      {
+        "label": "lazy",
+        "seconds": 33.89429040602408,
+        "bound_seconds": 180,
+        "log": {
+          "path": "target/raw-distance-lazy-capture-optimized/build-001/lazy.log",
+          "sha256": "d5a19e6cf965ffdc5cb210dd2c92781b7ba3802fbcdcd26a9c4878f6beba8ff5"
+        }
+      },
+      {
+        "label": "probe",
+        "seconds": 312.34465372399427,
+        "bound_seconds": 600,
+        "log": {
+          "path": "target/raw-distance-lazy-capture-optimized/build-001/probe.log",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      }
+    ],
+    "outputs": {
+      "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_eager.rlib": "6c1347cd64458df3bc816ecef353a376b9233391d282f5da17003000a7dbc240",
+      "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_lazy.rlib": "4f74449a1f2970760bc9c35d1d767dda96cd3e051e34f208666b5cdc0bb851bc",
+      "target/raw-distance-lazy-capture-optimized/build-001/probe": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c"
+    },
+    "source_files_in_archive": 87
+  },
+  "performance": {
+    "exit_code": 0,
+    "timed_out": false,
+    "seconds_including_preparation_and_calibration": 256.6845246719895,
+    "bound_seconds": 600,
+    "cases": 14,
+    "paired_blocks_per_case": 41,
+    "observations": 1148,
+    "calibration_min_faster_side_seconds": 0.2,
+    "warm_calls_per_side": 5,
+    "baseline_first_blocks": 21,
+    "candidate_first_blocks": 20,
+    "measurement_scope": "Entire reduce_batch call including result construction/drop; preparation, calibration and snapshots excluded from block latency",
+    "timed_status_scope": "Top-level Result unwrap each iteration; full lane status and output parity before/after, not inside every timed iteration",
+    "no_case_omitted": true,
+    "no_ci_adaptive_stopping_or_retry": true,
+    "counts": {
+      "improvement": 5,
+      "parity": 6,
+      "regression": 3,
+      "inconclusive-noise": 0
+    },
+    "all_intervals_pass_width_gate": true,
+    "method": "41 alternating paired blocks after retained200ms calibration, median log ratio, 20000 paired bootstrap resamples, deterministic seed14050301, percentile99 interval",
+    "classification_gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise",
+    "results": [
+      {
+        "workload": "bubble-mixed-dual",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 478517.219907,
+        "candidate_median_ns_per_batch": 475876.19213,
+        "median_paired_speedup": 1.005541895909034,
+        "candidate_over_baseline_latency_ratio": 0.9944886474332091,
+        "latency_ratio_ci99": [
+          0.9931510276942472,
+          0.9968932665946532
+        ],
+        "relative_ci_width": 0.003762977998858713,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0031164152767922,
+          1.006896204217453
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-mixed-dual",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 15384123.0,
+        "candidate_median_ns_per_batch": 15389506.571429,
+        "median_paired_speedup": 1.000443708458635,
+        "candidate_over_baseline_latency_ratio": 0.9995564883312439,
+        "latency_ratio_ci99": [
+          0.995835019556916,
+          1.00206185175332
+        ],
+        "relative_ci_width": 0.00622959509452001,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9979423907319569,
+          1.0041824000575288
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "bubble-ordinary",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 16449.485756,
+        "candidate_median_ns_per_batch": 16338.851119,
+        "median_paired_speedup": 1.0087683464053392,
+        "candidate_over_baseline_latency_ratio": 0.9913078692084417,
+        "latency_ratio_ci99": [
+          0.9870722728603066,
+          0.9976250475590109
+        ],
+        "relative_ci_width": 0.010645305082800042,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0023806062676555,
+          1.0130970421266436
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-ordinary",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 327002.732057,
+        "candidate_median_ns_per_batch": 325506.521531,
+        "median_paired_speedup": 1.0042736006951225,
+        "candidate_over_baseline_latency_ratio": 0.9957445852483183,
+        "latency_ratio_ci99": [
+          0.9935279117461792,
+          0.9968312018960198
+        ],
+        "relative_ci_width": 0.0033174070929212047,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0031788713053453,
+          1.0065142490485706
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-zero-complex",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 86012.627642,
+        "candidate_median_ns_per_batch": 85857.690194,
+        "median_paired_speedup": 1.0027600823833247,
+        "candidate_over_baseline_latency_ratio": 0.9972475147028543,
+        "latency_ratio_ci99": [
+          0.9952723919519367,
+          0.9979390452764824
+        ],
+        "relative_ci_width": 0.002674013507409144,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0020652110299448,
+          1.0047500644911806
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-zero-complex",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 2682195.871795,
+        "candidate_median_ns_per_batch": 2685571.653846,
+        "median_paired_speedup": 0.9991780310765411,
+        "candidate_over_baseline_latency_ratio": 1.0008226451121762,
+        "latency_ratio_ci99": [
+          0.9987261167001708,
+          1.0031124896120356
+        ],
+        "relative_ci_width": 0.004382767449644578,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9968971679205796,
+          1.0012755081483582
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "bubble-zero-real",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 87487.898934,
+        "candidate_median_ns_per_batch": 87410.022601,
+        "median_paired_speedup": 1.0015560509338146,
+        "candidate_over_baseline_latency_ratio": 0.99844636659889,
+        "latency_ratio_ci99": [
+          0.9940316508412931,
+          1.004514222044826
+        ],
+        "relative_ci_width": 0.010498882618242944,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9955060645775262,
+          1.0060041842265843
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "bubble-zero-real",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 2666040.831169,
+        "candidate_median_ns_per_batch": 2695881.844156,
+        "median_paired_speedup": 0.9911407370565606,
+        "candidate_over_baseline_latency_ratio": 1.0089384510314339,
+        "latency_ratio_ci99": [
+          1.0037734485220828,
+          1.0158932623855548
+        ],
+        "relative_ci_width": 0.0120124412456299,
+        "ci_width_qualified": true,
+        "classification": "regression",
+        "paired_bootstrap_99_percent_interval": [
+          0.9843553816389788,
+          0.9962407368638424
+        ],
+        "direction_without_width_gate": "candidate slower"
+      },
+      {
+        "workload": "ggh-mixed-complex",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 355891.670139,
+        "candidate_median_ns_per_batch": 355469.34375,
+        "median_paired_speedup": 1.0020600158010162,
+        "candidate_over_baseline_latency_ratio": 0.9979442191400387,
+        "latency_ratio_ci99": [
+          0.9957379170591955,
+          1.0019095168250989
+        ],
+        "relative_ci_width": 0.006184313358938733,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9980941224800919,
+          1.0042803260454238
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "ggh-mixed-complex",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 9263465.818182,
+        "candidate_median_ns_per_batch": 9263978.090909,
+        "median_paired_speedup": 1.0001211258032159,
+        "candidate_over_baseline_latency_ratio": 0.9998788888664675,
+        "latency_ratio_ci99": [
+          0.9975024685908808,
+          1.0017476116029986
+        ],
+        "relative_ci_width": 0.004245657208474978,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9982554372151663,
+          1.0025037846900242
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 368594.434211,
+        "candidate_median_ns_per_batch": 365997.977444,
+        "median_paired_speedup": 1.004931679458611,
+        "candidate_over_baseline_latency_ratio": 0.9950925226466462,
+        "latency_ratio_ci99": [
+          0.9889607773124948,
+          0.9973275593791624
+        ],
+        "relative_ci_width": 0.008408044353920492,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.002679601697261,
+          1.0111624474304273
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 9270375.347826,
+        "candidate_median_ns_per_batch": 9310865.913043,
+        "median_paired_speedup": 0.9978048369958538,
+        "candidate_over_baseline_latency_ratio": 1.0021999923459535,
+        "latency_ratio_ci99": [
+          1.0002193635514376,
+          1.0060512633093082
+        ],
+        "relative_ci_width": 0.005819097787278207,
+        "ci_width_qualified": true,
+        "classification": "regression",
+        "paired_bootstrap_99_percent_interval": [
+          0.9939851342272529,
+          0.9997806845583767
+        ],
+        "direction_without_width_gate": "candidate slower"
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 99640.735996,
+        "candidate_median_ns_per_batch": 100381.303945,
+        "median_paired_speedup": 0.9923715010203646,
+        "candidate_over_baseline_latency_ratio": 1.007687140321736,
+        "latency_ratio_ci99": [
+          1.0053138988633246,
+          1.0108178754864448
+        ],
+        "relative_ci_width": 0.005461989543066779,
+        "ci_width_qualified": true,
+        "classification": "regression",
+        "paired_bootstrap_99_percent_interval": [
+          0.9892978985148647,
+          0.9947141893996165
+        ],
+        "direction_without_width_gate": "candidate slower"
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 2133377.731959,
+        "candidate_median_ns_per_batch": 2138119.28866,
+        "median_paired_speedup": 0.9981542843119259,
+        "candidate_over_baseline_latency_ratio": 1.0018491286538398,
+        "latency_ratio_ci99": [
+          0.9981430121454532,
+          1.0034117832483807
+        ],
+        "relative_ci_width": 0.005259046449445905,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9965998174375273,
+          1.0018604426739965
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      }
+    ]
+  },
+  "provenance": {
+    "qualified": true,
+    "run_sha256": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+    "analysis_sha256": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+    "raw_csv_sha256": "296ac0f440daea2a42b3616aa638b6af19a4009a99c9d7c218b003f3f1f9a640",
+    "log_sha256": "9f73a4f776c2a1d4fa2dcb6ffc3a5a3a896f979ebde518717c4dc7e22228eac7",
+    "probe_sha256": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c",
+    "source_manifest_sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+    "shared_master_artifact": {
+      "path": "target/selected-native-optimized/shared/build-001/libiregi_masters_selected.rlib",
+      "sha256": "6926f3342ac36e0dead8f3d0534da6dd44609d0281a8c9e79c4b5b8b3b302572",
+      "bytes": 54833794
+    },
+    "independent_statistics_review": {
+      "path": "review/statistics-review.json",
+      "sha256": "c38fcdee0e9ca34e7c50eacabe757e3827468e64b5d2af8d46a67a40f8d27585"
+    },
+    "committed_pause_copies_byte_identical": true,
+    "quiet_window_sha256": "fea087f50a1aed956f9326dfde916639c5b99ea11f791de17635e011ec3584fd",
+    "quiet_completion_sha256": "d2c1901b9c8b8009efeacad791ebd856b51e26ff70573283d89d787584944ed9"
+  },
+  "host_context": {
+    "cpu": 254,
+    "pre_window_cpu_busy_fraction": 0.006644518272425293,
+    "project_policy": "No concurrent project compiler, reference kernel, benchmark or long numerical work. Every owner requires a separate explicit ROOT start grant. Source writing and small read-only review may continue.",
+    "external_host_policy": "Shared host uncontrolled; unrelated processes are unchanged. Preserve every failed, short, noisy, unsupported and unrun case; no CI-dependent repeat or omission."
+  },
+  "limitations": [
+    "This is an internal eager/lazy comparison, not an original IREGI or COLLIER performance comparison; overall user performance acceptance remains open.",
+    "All cases are N2/N3 with binary64 base values, including flattened mixed Dual. No higher-point automatic fallback, DoubleFloat or arbitrary-precision performance is measured.",
+    "The previous eager-final-versus-core-baseline cohort and its two regressions remain unchanged. Ratios from different cohorts must not be multiplied or relabeled as direct comparisons.",
+    "The shared adapter includes separately qualified opt-in native capability, but neither receipt variant selects it. The separate Symbolica arity-two candidate is excluded.",
+    "External host activity was uncontrolled. Classifications are conditional on this single fixed run; percentile bootstrap intervals are not simultaneous familywise guarantees.",
+    "Parity means the interval includes one; it is not a proof of equivalence or satisfaction of the user's overall performance requirement.",
+    "Build and numerical preparation seconds are validation measurements, not performance comparisons.",
+    "Historical readiness, source and quiet-completion records retain their original pending/unmeasured labels; this append-only qualification records the later analysis.",
+    "Full runtime binaries and dependency archives remain external hash-bound artifacts; source snapshots, commands, features, compiler/linker identities and raw-analysis inputs are retained here."
+  ]
+}

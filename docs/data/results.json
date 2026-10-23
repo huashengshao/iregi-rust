@@ -1,11 +1,11 @@
 {
   "schema_version": 1,
   "status": "qualified-kernel-snapshots-with-full-acceptance-incomplete",
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "revision": null,
   "host": "AMD EPYC 9754 \u00b7 CPUs 0 / 254 \u00b7 identified kernel snapshots",
   "batch_width": null,
-  "measurement_note": "Latest optimized TIRust 6b24 passes eight numerical comparisons but has seven timing regressions and one noisy row; it predates later APIs/preparation. The archival original-IREGI/COLLIER absolute-time table has seven COLLIER gains and one short-block inconclusive row. Private optimization cohorts do not close TIRust performance acceptance. Historical sessions and80949 physical comparisons remain separate.",
+  "measurement_note": "Measured TIRust6b24 passes eight numerical cases but retains seven timing regressions/one noisy row. It predates later APIs/preparation. Original-IREGI/COLLIER and physical sessions remain separate; private improvements, including the new unadopted lazy/eager cohort, do not close performance acceptance.",
   "timing_provenance": {
     "source": "validation/benchmark/baseline-4c32ece/results.json",
     "revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
@@ -11448,9 +11448,9 @@
     "qualification": "All 37 Python ledger, protocol, provenance, transport and physical comparison boundary tests pass; generated Fortran separately compiles. The identified ggH debug binary passes numerical/protocol smoke at batches 1/3, but its timing/source provenance is unqualified. Matching optimized physical workloads remains pending."
   },
   "report_refresh": {
-    "date": "2026-10-23",
-    "recorded_utc": "2026-10-23T21:57:52.041957+00:00",
-    "scope": "Presentation-only checkpoint: label the implementation TIRust, put TIRust in every displayed timing-ratio numerator, and retain original IREGI/COLLIER absolute timings/outcomes while keeping reference/reference ratios in archival metadata. All measured inputs, values, uncertainties, gates and source scopes are unchanged. Original dotted-integral coverage and failed/noisy rows remain explicit. PyO3 and marimo work is planned, without an executed qualification claim; newly active private cohorts are excluded.",
+    "date": "2026-10-24",
+    "recorded_utc": "2026-10-23T22:14:28.608077+00:00",
+    "scope": "Append frozen private lazy/eager timing with all14 families, five gains/six parity/three regressions and no adoption; add independently audited typed directE6 common-mass/zero-invariant evidence and exact child localization/mixed-cofactor counterexample. TIRust remains in every displayed timing-ratio numerator. Original timing cohorts and historical source scopes remain unchanged. New Python binding/notebook source is not runtime-qualified; highpoint-mask and four-engine timing work remain excluded.",
     "new_evidence": [
       "stack_reuse_factory_qualification",
       "stack_reuse_integration",
@@ -11586,7 +11586,16 @@
       "core_fused_cse_exact_census",
       "private_thin_n6_rejection",
       "private_thin_n6_independent_audit",
-      "collier_n4_independent_audit"
+      "collier_n4_independent_audit",
+      "lazy_receipt_capture_performance",
+      "lazy_receipt_capture_statistics_audit",
+      "lazy_receipt_capture_finalization",
+      "private_direct_e6_n2_typed",
+      "private_direct_e6_n2_typed_audit",
+      "private_n6_child_localization",
+      "private_n6_mixed_cofactor_counterexample",
+      "resumed_evidence_integrity_audit",
+      "resumed_typed_e6_audit_receipt"
     ]
   },
   "stack_reuse_integration": {
@@ -48810,5 +48819,2080 @@
     "plan": "PLAN.md",
     "scope": "Friendly documented PyO3 bindings and reactive marimo notebooks following the pinned Symbolica Community extension guide; core remains Python-free.",
     "executed_binding_or_notebook_validation_claimed": false
+  },
+  "lazy_receipt_capture_performance": {
+    "source": "validation/lazy-receipt-performance/qualification.json",
+    "sha256": "41321652868eb4284f0c68cc30f4df163bdeec3e589bd025fe29e79d227780d5",
+    "snapshot": {
+      "status": "completed_private_lazy_vs_eager_cohort_with_three_qualified_regressions",
+      "recorded_utc": "2026-10-23T22:10:05.846681+00:00",
+      "production_adopted": false,
+      "recommendation": "Do not adopt this lazy-capture patch under the all-family no-regression criterion: three retained cases have qualified regressions. No repeat is authorized or recommended from these observations alone.",
+      "ratio_definition": "TIRust(lazy) / TIRust(eager), below one is faster",
+      "baseline": "Final reviewed eager automatic-planar/accounting/checked-receipt implementation, e23ce191 patch over the common 06706e2-equivalent core and collector",
+      "candidate": "Same baseline plus the qualified lazy receipt capture patch; no numerical operation, threshold, conditioning or result changes",
+      "scope": "New optimized eager-final-e23 versus lazy-receipt f64 cohort with identical accepted current shared masters and unchanged opt3 numerical closure; includes flattened mixed Dual; N5 retry remains inactive; not an IREGI reference performance benchmark",
+      "correctness": {
+        "optimized_preflight_pairs_passed": 14,
+        "unique_complex_output_slots": 10560,
+        "snapshot_calls_per_side_per_case": 7,
+        "parser_admission_tests_passed": 9,
+        "exact_inputs_outputs_context_metadata_status_flags_statistics_and_proof_counters": true,
+        "warm_and_post_timing_snapshot_checks_passed": true,
+        "n5_automatic_fallback_inactive": true,
+        "default_master_backend": "SymbolicaBatch",
+        "prior_debug_tests_passed": 26,
+        "prior_debug_pairs_passed": 14,
+        "debug_tests_rerun_in_optimized_binary": false
+      },
+      "build": {
+        "flags": {
+          "retained_numerical_closure": "completed Cargo release opt3/cgu1/ThinLTO, unchanged runtime sources/features, host opt0 variants excluded",
+          "new_shared_adapter_and_cores": "opt3/cgu16/embed-bitcode=yes/debuginfo0/debug-assertions=no/overflow-checks=no",
+          "new_paired_probe": "same flags plus ThinLTO; default target CPU/no fast-math override; compiler and linker executables explicitly pinned",
+          "source_namespace": "both core CARGO_CRATE_NAME=iregi_rust; actual Rust crate names/disambiguators differ"
+        },
+        "steps": [
+          {
+            "label": "eager",
+            "seconds": 29.194029417005368,
+            "bound_seconds": 180,
+            "log": {
+              "path": "target/raw-distance-lazy-capture-optimized/build-001/eager.log",
+              "sha256": "0b461929d14b21ff83590326cd29e89b180cf6b35008f434832f282e368b8af6"
+            }
+          },
+          {
+            "label": "lazy",
+            "seconds": 33.89429040602408,
+            "bound_seconds": 180,
+            "log": {
+              "path": "target/raw-distance-lazy-capture-optimized/build-001/lazy.log",
+              "sha256": "d5a19e6cf965ffdc5cb210dd2c92781b7ba3802fbcdcd26a9c4878f6beba8ff5"
+            }
+          },
+          {
+            "label": "probe",
+            "seconds": 312.34465372399427,
+            "bound_seconds": 600,
+            "log": {
+              "path": "target/raw-distance-lazy-capture-optimized/build-001/probe.log",
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          }
+        ],
+        "outputs": {
+          "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_eager.rlib": "6c1347cd64458df3bc816ecef353a376b9233391d282f5da17003000a7dbc240",
+          "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_lazy.rlib": "4f74449a1f2970760bc9c35d1d767dda96cd3e051e34f208666b5cdc0bb851bc",
+          "target/raw-distance-lazy-capture-optimized/build-001/probe": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c"
+        },
+        "source_files_in_archive": 87
+      },
+      "performance": {
+        "exit_code": 0,
+        "timed_out": false,
+        "seconds_including_preparation_and_calibration": 256.6845246719895,
+        "bound_seconds": 600,
+        "cases": 14,
+        "paired_blocks_per_case": 41,
+        "observations": 1148,
+        "calibration_min_faster_side_seconds": 0.2,
+        "warm_calls_per_side": 5,
+        "baseline_first_blocks": 21,
+        "candidate_first_blocks": 20,
+        "measurement_scope": "Entire reduce_batch call including result construction/drop; preparation, calibration and snapshots excluded from block latency",
+        "timed_status_scope": "Top-level Result unwrap each iteration; full lane status and output parity before/after, not inside every timed iteration",
+        "no_case_omitted": true,
+        "no_ci_adaptive_stopping_or_retry": true,
+        "counts": {
+          "improvement": 5,
+          "parity": 6,
+          "regression": 3,
+          "inconclusive-noise": 0
+        },
+        "all_intervals_pass_width_gate": true,
+        "method": "41 alternating paired blocks after retained200ms calibration, median log ratio, 20000 paired bootstrap resamples, deterministic seed14050301, percentile99 interval",
+        "classification_gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise",
+        "results": [
+          {
+            "workload": "bubble-mixed-dual",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 478517.219907,
+            "candidate_median_ns_per_batch": 475876.19213,
+            "median_paired_speedup": 1.005541895909034,
+            "candidate_over_baseline_latency_ratio": 0.9944886474332091,
+            "latency_ratio_ci99": [
+              0.9931510276942472,
+              0.9968932665946532
+            ],
+            "relative_ci_width": 0.003762977998858713,
+            "ci_width_qualified": true,
+            "classification": "improvement",
+            "paired_bootstrap_99_percent_interval": [
+              1.0031164152767922,
+              1.006896204217453
+            ],
+            "direction_without_width_gate": "candidate faster"
+          },
+          {
+            "workload": "bubble-mixed-dual",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 15384123.0,
+            "candidate_median_ns_per_batch": 15389506.571429,
+            "median_paired_speedup": 1.000443708458635,
+            "candidate_over_baseline_latency_ratio": 0.9995564883312439,
+            "latency_ratio_ci99": [
+              0.995835019556916,
+              1.00206185175332
+            ],
+            "relative_ci_width": 0.00622959509452001,
+            "ci_width_qualified": true,
+            "classification": "parity",
+            "paired_bootstrap_99_percent_interval": [
+              0.9979423907319569,
+              1.0041824000575288
+            ],
+            "direction_without_width_gate": "unresolved at 99 percent"
+          },
+          {
+            "workload": "bubble-ordinary",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 16449.485756,
+            "candidate_median_ns_per_batch": 16338.851119,
+            "median_paired_speedup": 1.0087683464053392,
+            "candidate_over_baseline_latency_ratio": 0.9913078692084417,
+            "latency_ratio_ci99": [
+              0.9870722728603066,
+              0.9976250475590109
+            ],
+            "relative_ci_width": 0.010645305082800042,
+            "ci_width_qualified": true,
+            "classification": "improvement",
+            "paired_bootstrap_99_percent_interval": [
+              1.0023806062676555,
+              1.0130970421266436
+            ],
+            "direction_without_width_gate": "candidate faster"
+          },
+          {
+            "workload": "bubble-ordinary",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 327002.732057,
+            "candidate_median_ns_per_batch": 325506.521531,
+            "median_paired_speedup": 1.0042736006951225,
+            "candidate_over_baseline_latency_ratio": 0.9957445852483183,
+            "latency_ratio_ci99": [
+              0.9935279117461792,
+              0.9968312018960198
+            ],
+            "relative_ci_width": 0.0033174070929212047,
+            "ci_width_qualified": true,
+            "classification": "improvement",
+            "paired_bootstrap_99_percent_interval": [
+              1.0031788713053453,
+              1.0065142490485706
+            ],
+            "direction_without_width_gate": "candidate faster"
+          },
+          {
+            "workload": "bubble-zero-complex",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 86012.627642,
+            "candidate_median_ns_per_batch": 85857.690194,
+            "median_paired_speedup": 1.0027600823833247,
+            "candidate_over_baseline_latency_ratio": 0.9972475147028543,
+            "latency_ratio_ci99": [
+              0.9952723919519367,
+              0.9979390452764824
+            ],
+            "relative_ci_width": 0.002674013507409144,
+            "ci_width_qualified": true,
+            "classification": "improvement",
+            "paired_bootstrap_99_percent_interval": [
+              1.0020652110299448,
+              1.0047500644911806
+            ],
+            "direction_without_width_gate": "candidate faster"
+          },
+          {
+            "workload": "bubble-zero-complex",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 2682195.871795,
+            "candidate_median_ns_per_batch": 2685571.653846,
+            "median_paired_speedup": 0.9991780310765411,
+            "candidate_over_baseline_latency_ratio": 1.0008226451121762,
+            "latency_ratio_ci99": [
+              0.9987261167001708,
+              1.0031124896120356
+            ],
+            "relative_ci_width": 0.004382767449644578,
+            "ci_width_qualified": true,
+            "classification": "parity",
+            "paired_bootstrap_99_percent_interval": [
+              0.9968971679205796,
+              1.0012755081483582
+            ],
+            "direction_without_width_gate": "unresolved at 99 percent"
+          },
+          {
+            "workload": "bubble-zero-real",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 87487.898934,
+            "candidate_median_ns_per_batch": 87410.022601,
+            "median_paired_speedup": 1.0015560509338146,
+            "candidate_over_baseline_latency_ratio": 0.99844636659889,
+            "latency_ratio_ci99": [
+              0.9940316508412931,
+              1.004514222044826
+            ],
+            "relative_ci_width": 0.010498882618242944,
+            "ci_width_qualified": true,
+            "classification": "parity",
+            "paired_bootstrap_99_percent_interval": [
+              0.9955060645775262,
+              1.0060041842265843
+            ],
+            "direction_without_width_gate": "unresolved at 99 percent"
+          },
+          {
+            "workload": "bubble-zero-real",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 2666040.831169,
+            "candidate_median_ns_per_batch": 2695881.844156,
+            "median_paired_speedup": 0.9911407370565606,
+            "candidate_over_baseline_latency_ratio": 1.0089384510314339,
+            "latency_ratio_ci99": [
+              1.0037734485220828,
+              1.0158932623855548
+            ],
+            "relative_ci_width": 0.0120124412456299,
+            "ci_width_qualified": true,
+            "classification": "regression",
+            "paired_bootstrap_99_percent_interval": [
+              0.9843553816389788,
+              0.9962407368638424
+            ],
+            "direction_without_width_gate": "candidate slower"
+          },
+          {
+            "workload": "ggh-mixed-complex",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 355891.670139,
+            "candidate_median_ns_per_batch": 355469.34375,
+            "median_paired_speedup": 1.0020600158010162,
+            "candidate_over_baseline_latency_ratio": 0.9979442191400387,
+            "latency_ratio_ci99": [
+              0.9957379170591955,
+              1.0019095168250989
+            ],
+            "relative_ci_width": 0.006184313358938733,
+            "ci_width_qualified": true,
+            "classification": "parity",
+            "paired_bootstrap_99_percent_interval": [
+              0.9980941224800919,
+              1.0042803260454238
+            ],
+            "direction_without_width_gate": "unresolved at 99 percent"
+          },
+          {
+            "workload": "ggh-mixed-complex",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 9263465.818182,
+            "candidate_median_ns_per_batch": 9263978.090909,
+            "median_paired_speedup": 1.0001211258032159,
+            "candidate_over_baseline_latency_ratio": 0.9998788888664675,
+            "latency_ratio_ci99": [
+              0.9975024685908808,
+              1.0017476116029986
+            ],
+            "relative_ci_width": 0.004245657208474978,
+            "ci_width_qualified": true,
+            "classification": "parity",
+            "paired_bootstrap_99_percent_interval": [
+              0.9982554372151663,
+              1.0025037846900242
+            ],
+            "direction_without_width_gate": "unresolved at 99 percent"
+          },
+          {
+            "workload": "ggh-zero-real",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 368594.434211,
+            "candidate_median_ns_per_batch": 365997.977444,
+            "median_paired_speedup": 1.004931679458611,
+            "candidate_over_baseline_latency_ratio": 0.9950925226466462,
+            "latency_ratio_ci99": [
+              0.9889607773124948,
+              0.9973275593791624
+            ],
+            "relative_ci_width": 0.008408044353920492,
+            "ci_width_qualified": true,
+            "classification": "improvement",
+            "paired_bootstrap_99_percent_interval": [
+              1.002679601697261,
+              1.0111624474304273
+            ],
+            "direction_without_width_gate": "candidate faster"
+          },
+          {
+            "workload": "ggh-zero-real",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 9270375.347826,
+            "candidate_median_ns_per_batch": 9310865.913043,
+            "median_paired_speedup": 0.9978048369958538,
+            "candidate_over_baseline_latency_ratio": 1.0021999923459535,
+            "latency_ratio_ci99": [
+              1.0002193635514376,
+              1.0060512633093082
+            ],
+            "relative_ci_width": 0.005819097787278207,
+            "ci_width_qualified": true,
+            "classification": "regression",
+            "paired_bootstrap_99_percent_interval": [
+              0.9939851342272529,
+              0.9997806845583767
+            ],
+            "direction_without_width_gate": "candidate slower"
+          },
+          {
+            "workload": "triangle-ordinary",
+            "rows": 1,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 99640.735996,
+            "candidate_median_ns_per_batch": 100381.303945,
+            "median_paired_speedup": 0.9923715010203646,
+            "candidate_over_baseline_latency_ratio": 1.007687140321736,
+            "latency_ratio_ci99": [
+              1.0053138988633246,
+              1.0108178754864448
+            ],
+            "relative_ci_width": 0.005461989543066779,
+            "ci_width_qualified": true,
+            "classification": "regression",
+            "paired_bootstrap_99_percent_interval": [
+              0.9892978985148647,
+              0.9947141893996165
+            ],
+            "direction_without_width_gate": "candidate slower"
+          },
+          {
+            "workload": "triangle-ordinary",
+            "rows": 32,
+            "paired_blocks": 41,
+            "baseline_median_ns_per_batch": 2133377.731959,
+            "candidate_median_ns_per_batch": 2138119.28866,
+            "median_paired_speedup": 0.9981542843119259,
+            "candidate_over_baseline_latency_ratio": 1.0018491286538398,
+            "latency_ratio_ci99": [
+              0.9981430121454532,
+              1.0034117832483807
+            ],
+            "relative_ci_width": 0.005259046449445905,
+            "ci_width_qualified": true,
+            "classification": "parity",
+            "paired_bootstrap_99_percent_interval": [
+              0.9965998174375273,
+              1.0018604426739965
+            ],
+            "direction_without_width_gate": "unresolved at 99 percent"
+          }
+        ]
+      },
+      "provenance": {
+        "qualified": true,
+        "run_sha256": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+        "analysis_sha256": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+        "raw_csv_sha256": "296ac0f440daea2a42b3616aa638b6af19a4009a99c9d7c218b003f3f1f9a640",
+        "log_sha256": "9f73a4f776c2a1d4fa2dcb6ffc3a5a3a896f979ebde518717c4dc7e22228eac7",
+        "probe_sha256": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c",
+        "source_manifest_sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+        "shared_master_artifact": {
+          "path": "target/selected-native-optimized/shared/build-001/libiregi_masters_selected.rlib",
+          "sha256": "6926f3342ac36e0dead8f3d0534da6dd44609d0281a8c9e79c4b5b8b3b302572",
+          "bytes": 54833794
+        },
+        "independent_statistics_review": {
+          "path": "review/statistics-review.json",
+          "sha256": "c38fcdee0e9ca34e7c50eacabe757e3827468e64b5d2af8d46a67a40f8d27585"
+        },
+        "committed_pause_copies_byte_identical": true,
+        "quiet_window_sha256": "fea087f50a1aed956f9326dfde916639c5b99ea11f791de17635e011ec3584fd",
+        "quiet_completion_sha256": "d2c1901b9c8b8009efeacad791ebd856b51e26ff70573283d89d787584944ed9"
+      },
+      "host_context": {
+        "cpu": 254,
+        "pre_window_cpu_busy_fraction": 0.006644518272425293,
+        "project_policy": "No concurrent project compiler, reference kernel, benchmark or long numerical work. Every owner requires a separate explicit ROOT start grant. Source writing and small read-only review may continue.",
+        "external_host_policy": "Shared host uncontrolled; unrelated processes are unchanged. Preserve every failed, short, noisy, unsupported and unrun case; no CI-dependent repeat or omission."
+      },
+      "limitations": [
+        "This is an internal eager/lazy comparison, not an original IREGI or COLLIER performance comparison; overall user performance acceptance remains open.",
+        "All cases are N2/N3 with binary64 base values, including flattened mixed Dual. No higher-point automatic fallback, DoubleFloat or arbitrary-precision performance is measured.",
+        "The previous eager-final-versus-core-baseline cohort and its two regressions remain unchanged. Ratios from different cohorts must not be multiplied or relabeled as direct comparisons.",
+        "The shared adapter includes separately qualified opt-in native capability, but neither receipt variant selects it. The separate Symbolica arity-two candidate is excluded.",
+        "External host activity was uncontrolled. Classifications are conditional on this single fixed run; percentile bootstrap intervals are not simultaneous familywise guarantees.",
+        "Parity means the interval includes one; it is not a proof of equivalence or satisfaction of the user's overall performance requirement.",
+        "Build and numerical preparation seconds are validation measurements, not performance comparisons.",
+        "Historical readiness, source and quiet-completion records retain their original pending/unmeasured labels; this append-only qualification records the later analysis.",
+        "Full runtime binaries and dependency archives remain external hash-bound artifacts; source snapshots, commands, features, compiler/linker identities and raw-analysis inputs are retained here."
+      ]
+    }
+  },
+  "lazy_receipt_capture_statistics_audit": {
+    "source": "validation/lazy-receipt-performance/review/statistics-review.json",
+    "sha256": "c38fcdee0e9ca34e7c50eacabe757e3827468e64b5d2af8d46a67a40f8d27585",
+    "snapshot": {
+      "status": "passed",
+      "recorded_utc": "2026-10-23T22:08:34Z",
+      "reviewer": "/root/numeric_batch_audit/lazy_capture_implementation_review",
+      "review_kind": "independent frozen timing statistics and provenance audit",
+      "scope": "One retained optimized TIRust lazy-receipt versus TIRust eager-final-e23 cohort. Same accepted shared current master adapter and default Symbolica numerical closure. This review validates the retained result and does not adopt the private candidate.",
+      "production_adoption": false,
+      "ratio_definition": "TIRust(lazy) / TIRust(eager); below 1 means lower lazy latency",
+      "inputs": {
+        "target/raw-distance-lazy-capture-optimized/source-manifest.json": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+        "target/raw-distance-lazy-capture-optimized/review/source-review.json": "0f8876b41ce0a0b082baba0345eab9afe7a2bd35932f212d586109ca794ff9dd",
+        "target/raw-distance-lazy-capture-optimized/review/runtime-review.json": "2db359d80b1ece960abe270713af7a7da2e2c65345c9393069dade2cba65cd80",
+        "target/raw-distance-lazy-capture-optimized/review/protocol-review.json": "f4d68176a544a7b984db3b4193c7d84559549d3dde36560f2c1f66af36e00d6a",
+        "target/raw-distance-lazy-capture-optimized/build-001/build.json": "2c0b18fa418314c5449a093c0d1ab219d57c1549a346387d985804bf2aa750ac",
+        "target/raw-distance-lazy-capture-optimized/preflight.json": "83c0ec37961d9b2a9e6bf5eb3ea55b947dc98bfc7ffebcff51361cc926fedbaa",
+        "target/raw-distance-lazy-capture-optimized/preflight.log": "cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd",
+        "target/raw-distance-lazy-capture-optimized/readiness.json": "b96c5ba933979f86217a30a09fbd00f79b3c2aa856fdbc6cd1e757c25cbfe0dc",
+        "target/raw-distance-lazy-capture-optimized/readiness-qualified.json": "a9ab9d5bddf664a6dcf54b3609c43f6de6f7ba9d8defbcb49bda25a7d755320a",
+        "target/raw-distance-lazy-capture-optimized/timing-ready.json": "70c3cd43599dea2b9b51f3e2e2c12b4de56e1daf6999a8294b0bdd1cda51930e",
+        "target/raw-distance-lazy-capture-optimized/protocol/manifest.json": "c7ac191fa03def94d6e7f8a869f30c6c7f0f61597f6b00f61483ae841469ddcb",
+        "target/raw-distance-lazy-capture-optimized/protocol/analyze.py": "23746be2261e58380f4ab02d41e1ac1797c7219980bbfd11d1e61b2626b7ba71",
+        "target/raw-distance-lazy-capture-optimized/protocol/protocol.py": "b3fe96558d76e25fdc12adc71f33cb044566ad0a0817b466eb0723f4625e510a",
+        "target/raw-distance-lazy-capture-optimized/protocol/preregistration.json": "e5f52a4e4645412c698d582de1c8bf98d31c0ccecfcee474a57e055517294f3e",
+        "target/raw-distance-lazy-capture-optimized/protocol/run_timing.py": "9d25397978968e78d2313eab6ea9ae0000ce5728fd6896de5ab456ea6553f568",
+        "target/raw-distance-lazy-capture-optimized/protocol/performance-run.json": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+        "target/raw-distance-lazy-capture-optimized/protocol/performance.csv": "296ac0f440daea2a42b3616aa638b6af19a4009a99c9d7c218b003f3f1f9a640",
+        "target/raw-distance-lazy-capture-optimized/protocol/performance.log": "9f73a4f776c2a1d4fa2dcb6ffc3a5a3a896f979ebde518717c4dc7e22228eac7",
+        "target/raw-distance-lazy-capture-optimized/protocol/performance-analysis.json": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+        "target/raw-distance-lazy-capture-optimized/protocol/analysis.stdout.json": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+        "target/raw-distance-lazy-capture-optimized/protocol/executed-1oeg27nu": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c",
+        "validation/benchmark-quiet/20261023e/window.json": "fea087f50a1aed956f9326dfde916639c5b99ea11f791de17635e011ec3584fd",
+        "validation/benchmark-quiet/20261023e/completion.json": "d2c1901b9c8b8009efeacad791ebd856b51e26ff70573283d89d787584944ed9",
+        "validation/benchmark-quiet/20261023e/selected-native-terminal.json": "e744f9005eb60aec4082f5c4bbbd207d9588660f11c81dcba11b80c0023c6013",
+        "validation/benchmark-quiet/20261023e/cpu-survey-v2.json": "50d3e7bf52976fbfac838cfde4e0a0b925df0800f8e678c6e1179fc1187df1e4"
+      },
+      "identical_checkpoint_copies": {
+        "validation/benchmark-quiet/20261023e/lazy-capture/performance-run.json": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+        "validation/benchmark-quiet/20261023e/lazy-capture/performance.csv": "296ac0f440daea2a42b3616aa638b6af19a4009a99c9d7c218b003f3f1f9a640",
+        "validation/benchmark-quiet/20261023e/lazy-capture/performance.log": "9f73a4f776c2a1d4fa2dcb6ffc3a5a3a896f979ebde518717c4dc7e22228eac7",
+        "validation/benchmark-quiet/20261023e/lazy-capture/analyze.py": "23746be2261e58380f4ab02d41e1ac1797c7219980bbfd11d1e61b2626b7ba71",
+        "validation/benchmark-quiet/20261023e/lazy-capture/run_timing.py": "9d25397978968e78d2313eab6ea9ae0000ce5728fd6896de5ab456ea6553f568"
+      },
+      "provenance": {
+        "bound_entries_verified": 591,
+        "distinct_bound_files_verified": 588,
+        "bound_distinct_bytes": 642243806,
+        "all_binding_hashes_currently_match": true,
+        "executed_copy_matches_preflight_and_build_probe": true,
+        "probe_sha256": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c",
+        "protocol_manifest_sha256": "c7ac191fa03def94d6e7f8a869f30c6c7f0f61597f6b00f61483ae841469ddcb",
+        "run_manifest_sha256": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+        "analysis_sha256": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+        "exact_manifest_readiness_run_binding_chain": true,
+        "original_source_preflight_readiness_protocol_reviews_unchanged": true,
+        "frozen_analyzer_stdout_equals_analysis_artifact": true,
+        "current_hash_scope": "Fresh read-only hashing of all 591 run bindings, deduplicated to 588 files, plus the executed copy, raw/analysis/quiet records and checkpoint copies. Prior build/runtime reviews remain separately retained.",
+        "runtime_scope": "Runner records unchanged provenance before/after execution, exit 0, no timeout, complete protocol validation. The independently reviewed immutable runner and binary match retained bytes; current hashes do not independently observe every instant of execution."
+      },
+      "quiet_window": {
+        "cpu": 254,
+        "quiet_manifest_sha256": "fea087f50a1aed956f9326dfde916639c5b99ea11f791de17635e011ec3584fd",
+        "initial_final_and_current_hash_equal": true,
+        "readiness_and_process_cap_match_window": true,
+        "previous_cohort_terminal_utc": "2026-10-23T21:54:37.612510+00:00",
+        "lazy_process_started_utc": "2026-10-23T21:54:55.548317+00:00",
+        "lazy_process_seconds": 256.6845246719895,
+        "cap_seconds": 600,
+        "exit_code": 0,
+        "timed_out": false,
+        "coordinator_scope": "Window binds CPU, readiness and 600-second cap. Retained preceding terminal event states the earlier owner was idle before lazy launch; completion preserves the original raw pause checkpoint. Separate conversational ROOT start authorization remains coordinator evidence rather than something inferred from these files.",
+        "external_host_scope": "Shared host was not fully controlled. CPU survey and project hold policy are retained; no independent continuous host-isolation claim is made."
+      },
+      "matrix": {
+        "cases": 14,
+        "rows_per_workload": [
+          1,
+          32
+        ],
+        "pairs_per_case": 41,
+        "measurement_rows": 1148,
+        "total_pairs": 574,
+        "per_case_order": {
+          "baseline_first": 21,
+          "candidate_first": 20
+        },
+        "warm_calls_per_implementation_per_case": 5,
+        "calibration_records": 29,
+        "exact_complete_matrix": true,
+        "no_missing_duplicate_extra_or_dropped_measurements": true,
+        "count_order_calibration_transitions_passed": true,
+        "measured_counts_frozen_to_final_calibration": true,
+        "all_final_faster_side_durations_at_least_200ms": true,
+        "preparation_markers": 14,
+        "parity_markers": 14,
+        "final_marker": "PASS 14 fixed-loop cases; mode=timing",
+        "proof_counters_match_expected_case_metadata": true,
+        "calibration": [
+          {
+            "workload": "bubble-mixed-dual",
+            "rows": 1,
+            "calibration_rounds": 2,
+            "shared_iterations": 432,
+            "final_faster_side_ns": 203516966
+          },
+          {
+            "workload": "bubble-mixed-dual",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 14,
+            "final_faster_side_ns": 215341672
+          },
+          {
+            "workload": "bubble-ordinary",
+            "rows": 1,
+            "calibration_rounds": 2,
+            "shared_iterations": 12426,
+            "final_faster_side_ns": 203523537
+          },
+          {
+            "workload": "bubble-ordinary",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 627,
+            "final_faster_side_ns": 203482866
+          },
+          {
+            "workload": "bubble-zero-complex",
+            "rows": 1,
+            "calibration_rounds": 2,
+            "shared_iterations": 2366,
+            "final_faster_side_ns": 203770578
+          },
+          {
+            "workload": "bubble-zero-complex",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 78,
+            "final_faster_side_ns": 208296415
+          },
+          {
+            "workload": "bubble-zero-real",
+            "rows": 1,
+            "calibration_rounds": 2,
+            "shared_iterations": 2345,
+            "final_faster_side_ns": 202845964
+          },
+          {
+            "workload": "bubble-zero-real",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 77,
+            "final_faster_side_ns": 203889748
+          },
+          {
+            "workload": "ggh-mixed-complex",
+            "rows": 1,
+            "calibration_rounds": 2,
+            "shared_iterations": 576,
+            "final_faster_side_ns": 204097949
+          },
+          {
+            "workload": "ggh-mixed-complex",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 22,
+            "final_faster_side_ns": 205165873
+          },
+          {
+            "workload": "ggh-zero-real",
+            "rows": 1,
+            "calibration_rounds": 2,
+            "shared_iterations": 532,
+            "final_faster_side_ns": 207917274
+          },
+          {
+            "workload": "ggh-zero-real",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 23,
+            "final_faster_side_ns": 211874939
+          },
+          {
+            "workload": "triangle-ordinary",
+            "rows": 1,
+            "calibration_rounds": 3,
+            "shared_iterations": 2053,
+            "final_faster_side_ns": 203851218
+          },
+          {
+            "workload": "triangle-ordinary",
+            "rows": 32,
+            "calibration_rounds": 2,
+            "shared_iterations": 97,
+            "final_faster_side_ns": 204292409
+          }
+        ]
+      },
+      "independent_reconstruction": {
+        "execution": "Lightweight Python analysis of retained text files only, pinned to CPU 10 and bounded by 120 seconds; bootstrap reconstruction completed in approximately 2.14 seconds. No Rust build, numerical probe, benchmark rerun or source mutation.",
+        "method": "Parsed CSV independently without importing the analyzer or protocol module. For each sorted case, reconstructed 41 paired log(eager/lazy) values; sampled indices with floor(Random(14050301).random()*41), sorted each 41-element resample and selected index 20. Repeated 20000 times, used sorted bootstrap endpoints 100 and 19899 and inverted in reverse order for lazy/eager latency intervals.",
+        "all_13_fields_per_case_match_exactly": true,
+        "compared_fields": "Workload, row count, pair count, eager and lazy medians, paired median speedup, lazy/eager ratio, latency CI, relative CI width, width-gate boolean, classification, bootstrap speedup endpoints and ungated direction.",
+        "random_stream": "One deterministic seed 14050301 continued across the same lexicographically sorted 14 cases.",
+        "classification": "First require (upper-lower)/median_ratio <= 0.02. If qualified, upper < 1 is improvement, lower > 1 is regression, otherwise parity. Wider intervals are inconclusive-noise.",
+        "independent_row_audit": "Child /root/numeric_batch_audit/lazy_capture_implementation_review/timing_rows_review independently reconstructed all CSV/log records, calibration transitions and expected proof counters without bootstrapping or modifying files; no discrepancies."
+      },
+      "outcome": {
+        "counts": {
+          "improvement": 5,
+          "parity": 6,
+          "regression": 3,
+          "inconclusive-noise": 0
+        },
+        "all_14_relative_interval_widths_at_most_2_percent": true,
+        "minimum_relative_interval_width": 0.002674013507409144,
+        "maximum_relative_interval_width": 0.0120124412456299,
+        "regressions": [
+          {
+            "workload": "bubble-zero-real",
+            "rows": 32,
+            "ratio": 1.0089384510314339,
+            "ci99": [
+              1.0037734485220828,
+              1.0158932623855548
+            ],
+            "latency_change_percent": 0.8938451031433869
+          },
+          {
+            "workload": "ggh-zero-real",
+            "rows": 32,
+            "ratio": 1.0021999923459535,
+            "ci99": [
+              1.0002193635514376,
+              1.0060512633093082
+            ],
+            "latency_change_percent": 0.2199992345953472
+          },
+          {
+            "workload": "triangle-ordinary",
+            "rows": 1,
+            "ratio": 1.007687140321736,
+            "ci99": [
+              1.0053138988633246,
+              1.0108178754864448
+            ],
+            "latency_change_percent": 0.7687140321736008
+          }
+        ],
+        "assessment": "Mixed outcome: five small improvements, six cases without a detected difference and three retained regressions. This cohort does not establish a general no-regression improvement and supplies no basis for unconditional production adoption."
+      },
+      "results": [
+        {
+          "workload": "bubble-mixed-dual",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 478517.219907,
+          "tirust_lazy_median_ns_per_batch": 475876.19213,
+          "tirust_lazy_over_tirust_eager": 0.9944886474332091,
+          "ci99": [
+            0.9931510276942472,
+            0.9968932665946532
+          ],
+          "relative_ci_width": 0.003762977998858713,
+          "latency_change_percent": -0.5511352566790917,
+          "classification": "improvement"
+        },
+        {
+          "workload": "bubble-mixed-dual",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 15384123,
+          "tirust_lazy_median_ns_per_batch": 15389506.571429,
+          "tirust_lazy_over_tirust_eager": 0.9995564883312439,
+          "ci99": [
+            0.995835019556916,
+            1.00206185175332
+          ],
+          "relative_ci_width": 0.00622959509452001,
+          "latency_change_percent": -0.04435116687561136,
+          "classification": "parity"
+        },
+        {
+          "workload": "bubble-ordinary",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 16449.485756,
+          "tirust_lazy_median_ns_per_batch": 16338.851119,
+          "tirust_lazy_over_tirust_eager": 0.9913078692084417,
+          "ci99": [
+            0.9870722728603066,
+            0.9976250475590109
+          ],
+          "relative_ci_width": 0.010645305082800042,
+          "latency_change_percent": -0.8692130791558283,
+          "classification": "improvement"
+        },
+        {
+          "workload": "bubble-ordinary",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 327002.732057,
+          "tirust_lazy_median_ns_per_batch": 325506.521531,
+          "tirust_lazy_over_tirust_eager": 0.9957445852483183,
+          "ci99": [
+            0.9935279117461792,
+            0.9968312018960198
+          ],
+          "relative_ci_width": 0.0033174070929212047,
+          "latency_change_percent": -0.4255414751681674,
+          "classification": "improvement"
+        },
+        {
+          "workload": "bubble-zero-complex",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 86012.627642,
+          "tirust_lazy_median_ns_per_batch": 85857.690194,
+          "tirust_lazy_over_tirust_eager": 0.9972475147028543,
+          "ci99": [
+            0.9952723919519367,
+            0.9979390452764824
+          ],
+          "relative_ci_width": 0.002674013507409144,
+          "latency_change_percent": -0.2752485297145668,
+          "classification": "improvement"
+        },
+        {
+          "workload": "bubble-zero-complex",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 2682195.871795,
+          "tirust_lazy_median_ns_per_batch": 2685571.653846,
+          "tirust_lazy_over_tirust_eager": 1.0008226451121762,
+          "ci99": [
+            0.9987261167001708,
+            1.0031124896120356
+          ],
+          "relative_ci_width": 0.004382767449644578,
+          "latency_change_percent": 0.08226451121762235,
+          "classification": "parity"
+        },
+        {
+          "workload": "bubble-zero-real",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 87487.898934,
+          "tirust_lazy_median_ns_per_batch": 87410.022601,
+          "tirust_lazy_over_tirust_eager": 0.99844636659889,
+          "ci99": [
+            0.9940316508412931,
+            1.004514222044826
+          ],
+          "relative_ci_width": 0.010498882618242944,
+          "latency_change_percent": -0.15536334011100328,
+          "classification": "parity"
+        },
+        {
+          "workload": "bubble-zero-real",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 2666040.831169,
+          "tirust_lazy_median_ns_per_batch": 2695881.844156,
+          "tirust_lazy_over_tirust_eager": 1.0089384510314339,
+          "ci99": [
+            1.0037734485220828,
+            1.0158932623855548
+          ],
+          "relative_ci_width": 0.0120124412456299,
+          "latency_change_percent": 0.8938451031433869,
+          "classification": "regression"
+        },
+        {
+          "workload": "ggh-mixed-complex",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 355891.670139,
+          "tirust_lazy_median_ns_per_batch": 355469.34375,
+          "tirust_lazy_over_tirust_eager": 0.9979442191400387,
+          "ci99": [
+            0.9957379170591955,
+            1.0019095168250989
+          ],
+          "relative_ci_width": 0.006184313358938733,
+          "latency_change_percent": -0.2055780859961276,
+          "classification": "parity"
+        },
+        {
+          "workload": "ggh-mixed-complex",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 9263465.818182,
+          "tirust_lazy_median_ns_per_batch": 9263978.090909,
+          "tirust_lazy_over_tirust_eager": 0.9998788888664675,
+          "ci99": [
+            0.9975024685908808,
+            1.0017476116029986
+          ],
+          "relative_ci_width": 0.004245657208474978,
+          "latency_change_percent": -0.012111113353252545,
+          "classification": "parity"
+        },
+        {
+          "workload": "ggh-zero-real",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 368594.434211,
+          "tirust_lazy_median_ns_per_batch": 365997.977444,
+          "tirust_lazy_over_tirust_eager": 0.9950925226466462,
+          "ci99": [
+            0.9889607773124948,
+            0.9973275593791624
+          ],
+          "relative_ci_width": 0.008408044353920492,
+          "latency_change_percent": -0.49074773533538396,
+          "classification": "improvement"
+        },
+        {
+          "workload": "ggh-zero-real",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 9270375.347826,
+          "tirust_lazy_median_ns_per_batch": 9310865.913043,
+          "tirust_lazy_over_tirust_eager": 1.0021999923459535,
+          "ci99": [
+            1.0002193635514376,
+            1.0060512633093082
+          ],
+          "relative_ci_width": 0.005819097787278207,
+          "latency_change_percent": 0.2199992345953472,
+          "classification": "regression"
+        },
+        {
+          "workload": "triangle-ordinary",
+          "rows": 1,
+          "tirust_eager_median_ns_per_batch": 99640.735996,
+          "tirust_lazy_median_ns_per_batch": 100381.303945,
+          "tirust_lazy_over_tirust_eager": 1.007687140321736,
+          "ci99": [
+            1.0053138988633246,
+            1.0108178754864448
+          ],
+          "relative_ci_width": 0.005461989543066779,
+          "latency_change_percent": 0.7687140321736008,
+          "classification": "regression"
+        },
+        {
+          "workload": "triangle-ordinary",
+          "rows": 32,
+          "tirust_eager_median_ns_per_batch": 2133377.731959,
+          "tirust_lazy_median_ns_per_batch": 2138119.28866,
+          "tirust_lazy_over_tirust_eager": 1.0018491286538398,
+          "ci99": [
+            0.9981430121454532,
+            1.0034117832483807
+          ],
+          "relative_ci_width": 0.005259046449445905,
+          "latency_change_percent": 0.18491286538397933,
+          "classification": "parity"
+        }
+      ],
+      "limitations": [
+        "The inherited parity label means the per-case 99% interval includes 1; it is not an equivalence test.",
+        "The 2% rule limits interval width, not the minimum practical effect size. All measured improvements and regressions here have median magnitude below 1%.",
+        "Intervals are per-case bootstrap intervals, with no simultaneous-family correction across 14 cases. The inherited bootstrap treats the observed paired blocks as resampling units; it does not separately model serial dependence or the 21/20 order imbalance.",
+        "Pre/post snapshots and five warm snapshots assert exact bits, shape/precision context, metadata/status/flags and public/private counters. Timed iterations check top-level Result; full per-lane status and metadata are not inspected inside every measured iteration.",
+        "This is optimized TIRust lazy versus optimized TIRust eager using the same default Symbolica closure. It establishes no IREGI/COLLIER parity or performance claim and no selected-native or Symbolica-arity2 outcome.",
+        "Do not combine these ratios with prior eager-final or independent engine cohorts. The prior eager-final cohort and its two regressions remain unchanged.",
+        "The raw pause checkpoint remains immutable. Its analysis-pending statement describes its historical creation time; this new review and analysis are subsequent append-only evidence."
+      ],
+      "blocking_findings": []
+    }
+  },
+  "lazy_receipt_capture_finalization": {
+    "source": "validation/lazy-receipt-performance/finalization.json",
+    "sha256": "f1e7302fa338aec3203fabe3adbcf9cffeb36b94e1aa88154bdcd55ccf75aa3d",
+    "snapshot": {
+      "status": "frozen_independently_reviewed_private_performance_package",
+      "recorded_utc": "2026-10-23T22:12:52.489246+00:00",
+      "qualification_sha256": "41321652868eb4284f0c68cc30f4df163bdeec3e589bd025fe29e79d227780d5",
+      "reviewed_payload_inventory_sha256": "8ce89eb7d393bc9b0335e61a9cf5c27f3f6ba14055fdf3fc4db3609f8ef3496f",
+      "package_review_sha256": "2d2e31464e8c2d5e5ce24f569b1a36fc4137bc939a172cdfa64e47a7022a5b6e",
+      "statistics_review_sha256": "c38fcdee0e9ca34e7c50eacabe757e3827468e64b5d2af8d46a67a40f8d27585",
+      "reviewed_payload_files": 57,
+      "source_archive_members": 87,
+      "append_only_note": "The original57-file payload and files.json remain byte-identical to the independently reviewed package. final-files.json additionally binds this finalization, the package review, the original inventory and verify-final.py. It is a distinct final inventory, not a replacement for the reviewed inventory.",
+      "verify_command": "python3 validation/lazy-receipt-performance/verify-final.py",
+      "production_adopted": false,
+      "timing_repeated": false,
+      "recommendation": "Do not adopt under all-family no-regression criterion; five improvements, six parity results and three qualified regressions retained."
+    }
+  },
+  "private_direct_e6_n2_typed": {
+    "source": "validation/e6-direct-n2-typed/qualification.json",
+    "sha256": "65d60be9347114c7543f3ba686ae5857d5443a383642d55f8f310ed52f0c9883",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "passed_private_typed_validation",
+      "scope": "Unchanged private N2 direct genuine D6 pentagon engine; typed common-complex-mass zero-invariant fixtures, independent exact identities and full component enclosures; no production or default dispatch integration",
+      "numeric_domain": {
+        "groups": [
+          {
+            "group": "f64-c4",
+            "physical_rows": 13,
+            "successful_rows": 7,
+            "rejected_rows": 6,
+            "successful_components": 28,
+            "working_bits": 53,
+            "requested_bits": 40
+          },
+          {
+            "group": "f64-c6",
+            "physical_rows": 13,
+            "successful_rows": 6,
+            "rejected_rows": 7,
+            "successful_components": 36,
+            "working_bits": 53,
+            "requested_bits": 40
+          },
+          {
+            "group": "dd-c4",
+            "physical_rows": 13,
+            "successful_rows": 7,
+            "rejected_rows": 6,
+            "successful_components": 28,
+            "working_bits": 106,
+            "requested_bits": 80
+          },
+          {
+            "group": "dd-c6",
+            "physical_rows": 13,
+            "successful_rows": 6,
+            "rejected_rows": 7,
+            "successful_components": 36,
+            "working_bits": 106,
+            "requested_bits": 80
+          },
+          {
+            "group": "float128-c4",
+            "physical_rows": 13,
+            "successful_rows": 7,
+            "rejected_rows": 6,
+            "successful_components": 28,
+            "working_bits": 128,
+            "requested_bits": 80
+          },
+          {
+            "group": "float128-c6",
+            "physical_rows": 13,
+            "successful_rows": 6,
+            "rejected_rows": 7,
+            "successful_components": 36,
+            "working_bits": 128,
+            "requested_bits": 80
+          },
+          {
+            "group": "float256-c4",
+            "physical_rows": 13,
+            "successful_rows": 7,
+            "rejected_rows": 6,
+            "successful_components": 28,
+            "working_bits": 256,
+            "requested_bits": 128
+          },
+          {
+            "group": "float256-c6",
+            "physical_rows": 13,
+            "successful_rows": 6,
+            "rejected_rows": 7,
+            "successful_components": 36,
+            "working_bits": 256,
+            "requested_bits": 128
+          },
+          {
+            "group": "float384-c4",
+            "physical_rows": 13,
+            "successful_rows": 7,
+            "rejected_rows": 6,
+            "successful_components": 28,
+            "working_bits": 384,
+            "requested_bits": 128
+          },
+          {
+            "group": "float384-c6",
+            "physical_rows": 13,
+            "successful_rows": 6,
+            "rejected_rows": 7,
+            "successful_components": 36,
+            "working_bits": 384,
+            "requested_bits": 128
+          }
+        ],
+        "accuracy": "Per component: absolute=relative=2^-requested_bits; squared error <= max(absolute^2, relative^2*|returned|^2)",
+        "dual": "Static Mixed4/Mixed6 and dynamic HyperDual metadata plus component transport; NativeFloat workspaces and Symbolica Dualizer arithmetic, not Workspace<StaticDual<T>>",
+        "shapes": [
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        ]
+      },
+      "coverage": {
+        "groups": 10,
+        "physical_rows": 130,
+        "successful_rows": 65,
+        "rejected_rows": 65,
+        "successful_components": 320
+      },
+      "independent_audit": {
+        "path": "audit/result.json",
+        "sha256": "14692f726442b2e7d42d5692dae9daa62e47d4dcae705bf2f8dc54f69663d0f3",
+        "checks": 24889,
+        "hashes": 166,
+        "failures": 0,
+        "checker": "audit/audit_typed.py",
+        "checker_sha256": "03e53de5d59b609bdfb5618d99a27308136eac43ce8dd23c34377ff76ccafeab",
+        "review": "audit/review.json",
+        "review_sha256": "80567ec0ea5ca011fc73734b2ea793a3c97f852837b41c2b2abd1d26cb92782d"
+      },
+      "working_precision_convergence": {
+        "from": 256,
+        "to": 384,
+        "requested_bits": 128,
+        "identical_represented_inputs": true,
+        "coordinate_widths": 128,
+        "strictly_shrunk_positive_widths": 102,
+        "zero_to_zero_widths": 26,
+        "scope": "Arithmetic coordinate widths after removing twice the retained truncation bound; N2 mixed cubic truncation error remains visible"
+      },
+      "batch_execution": {
+        "primary_physical_rows_per_group": 13,
+        "primary_packed_rows_per_group": 12,
+        "active_rows_per_group": 7,
+        "numeric_batch_calls": 1,
+        "enclosure_batch_calls": 1,
+        "tail_batch_calls": 1,
+        "instruction_lane_visits_kind": "structural estimate: exported numeric instructions times active rows",
+        "four_component_instruction_lane_visits": 19166,
+        "six_component_instruction_lane_visits": 36295,
+        "controls": [
+          "empty",
+          "malformed length",
+          "odd rows",
+          "reverse",
+          "chunks5and8",
+          "fresh dynamic plan",
+          "singleton invalid-neighbor isolation",
+          "two concurrent independent workspaces"
+        ],
+        "transport_evidence": "Successful compiled equality assertions; serialized counters independently audited; repeated complete arrays not serialized"
+      },
+      "input_integrity": [
+        "2^-80 mass difference preserved in DoubleFloat/Float, expected f64 rounding retained",
+        "mixed53-bit/working-bit Float input components with exact represented-value contract",
+        "physical mu_squared/scale-jet independence",
+        "upper-half-plane and boundary mass controls",
+        "nonreal invariant and invalid scale controls",
+        "positive cubic tail at zero primal deviation with hidden rejection"
+      ],
+      "source_identity": {
+        "path": "source-identity.json",
+        "sha256": "6fecb8395c6c6287fa0c55e9c9feb560e749f2807a773c8205aad4821f010400",
+        "engine_sha256": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+        "driver_sha256": "6e33c98c01d9448e79a0ebe927aaf31804428bd1642fffa7db7e90b3865e3c97",
+        "scope_review": "scope-review.json",
+        "scope_review_sha256": "74eb817e870c1e15b7a40fc3d12846f910c2b46e0cf43992c8bade64737e3f47",
+        "precompute_review": "review-before-compute.json",
+        "precompute_review_sha256": "94129ed67f04853ebb6e32423551019042f3bc7c2fe212acdb943eda95c37e2b"
+      },
+      "preserved_failure": {
+        "path": "attempt001-compile-failure",
+        "kind": "compiler/API errors in new validation driver before any numerical execution",
+        "correction": "oracle-api-correction.diff",
+        "engine_fixtures_budgets_unchanged": true
+      },
+      "binary": {
+        "path": "target/e6-direct-n2-typed/validate",
+        "sha256": "1e4ef5cdbcd2bfcaad1120256774907118c52adb86718fb44f9110c112994ccc",
+        "bytes": 50032904
+      },
+      "closure": {
+        "path": "target/e6-direct-n2",
+        "files": 116,
+        "manifest": "closure-preparation.json",
+        "manifest_sha256": "8a3fe8b1000030cb3ccdcc65ea3c63b6598ce5857aafb5111637b04095a61c2e",
+        "completed_cargo_revision": "06706e2a1e4f0082889a53187c80bbe97803340f",
+        "source_and_closure_verified_before_after": true
+      },
+      "diagnostic_observations_not_benchmarks": {
+        "build_seconds": 6.8785126799484715,
+        "run_seconds_min": 1.619382007047534,
+        "run_seconds_max": 2.1237073480151594,
+        "build_timeout_seconds": 180,
+        "group_timeout_seconds": 120,
+        "cpu_affinity": [
+          18,
+          19
+        ],
+        "optimized": false,
+        "performance_qualified": false
+      },
+      "prior_evidence_unchanged": {
+        "qualification": "validation/e6-direct-n2/qualification.json",
+        "sha256": "107eea7992f1afeac3770fc12837f6567bf2c741174addd2a15083d432db206d",
+        "files_verified": 23
+      },
+      "limitations": [
+        "Accepted typed fixtures have common complex masses and zero invariants; earlier nonzero-routing Float256 checkpoint remains separate",
+        "No unequal-mass, generalized-power/dimension or N4 qualification",
+        "No production/core/public/default E6 integration or contour geometry/quadrature certificate",
+        "Prior production E6 Unstable outcomes remain unchanged",
+        "Exact represented input values are certified; low-precision scientific input uncertainty is not inferred",
+        "No performance qualification"
+      ],
+      "files": [
+        {
+          "path": "AUDIT.md",
+          "sha256": "2227ee3fa6e43504a26beda09da9037eddc5be56e535d8db91632949f3e8d6d5",
+          "bytes": 2327
+        },
+        {
+          "path": "README.md",
+          "sha256": "271509cddfd3a27ffaa20c82588ec54e93a6023805ef7b0d7673b06db500c9da",
+          "bytes": 6071
+        },
+        {
+          "path": "attempt001-compile-failure/audit/review-before-compute.json",
+          "sha256": "f807207e275f3db5cfc4aa04b100f15c827ae91e1959f55b9c479adf7ca5a0db",
+          "bytes": 2442
+        },
+        {
+          "path": "attempt001-compile-failure/audit/strategy.md",
+          "sha256": "64198670283cc75124cd0f6ca7f47ebf642cb9466ac93bd4e92dd0367dde1076",
+          "bytes": 7489
+        },
+        {
+          "path": "attempt001-compile-failure/build.json",
+          "sha256": "bc91aa01c9a86db849c2989fc43446b6d007b98b7021c9db617e86b432680614",
+          "bytes": 1915
+        },
+        {
+          "path": "attempt001-compile-failure/build.log",
+          "sha256": "cb185224821c751fa7357c849cf1a27b1fdd69b9631fb516e1536590a4e070dd",
+          "bytes": 3472
+        },
+        {
+          "path": "attempt001-compile-failure/build.py",
+          "sha256": "3ed0c93d982340630718de78ac3d76e0c6f6edf121c7cd23cfd4d0f5a45838b8",
+          "bytes": 2735
+        },
+        {
+          "path": "attempt001-compile-failure/preparation.json",
+          "sha256": "1538dbc24bd16330a878be45965cd5b5d148a8fc8f062348e550275dcffcbc88",
+          "bytes": 646
+        },
+        {
+          "path": "attempt001-compile-failure/preservation.json",
+          "sha256": "23fd02edceeec0b04d0925487d972adc375e1653e73b9b7532e1e89fbc7e4719",
+          "bytes": 1715
+        },
+        {
+          "path": "attempt001-compile-failure/review-before-compute.json",
+          "sha256": "74a6c1ffa5453785846901e14db85e67f3ae5844b003b9051656254e666d2240",
+          "bytes": 5472
+        },
+        {
+          "path": "attempt001-compile-failure/run.py",
+          "sha256": "5b398292070cb1a4c691da28c7d9c3c0a5ca0f41c3356b6ef8ddb9e17c994fef",
+          "bytes": 3426
+        },
+        {
+          "path": "attempt001-compile-failure/source/near_vacuum_e6.rs",
+          "sha256": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+          "bytes": 21914
+        },
+        {
+          "path": "attempt001-compile-failure/source/typed.rs",
+          "sha256": "9e12fbe6f9cf37a320473a987057c4e79b435d6e7379a618c2c7c95704d9f3c8",
+          "bytes": 18013
+        },
+        {
+          "path": "attempt001-compile-failure/source-manifest.json",
+          "sha256": "efe61624cff61e4a8d7fa3d6f8da44dd5b1994f0438d03d50425ef52cebf4fcb",
+          "bytes": 242
+        },
+        {
+          "path": "audit/audit_typed.py",
+          "sha256": "03e53de5d59b609bdfb5618d99a27308136eac43ce8dd23c34377ff76ccafeab",
+          "bytes": 22590
+        },
+        {
+          "path": "audit/result.json",
+          "sha256": "14692f726442b2e7d42d5692dae9daa62e47d4dcae705bf2f8dc54f69663d0f3",
+          "bytes": 26296
+        },
+        {
+          "path": "audit/review-before-compute.json",
+          "sha256": "449b205e3d4bbf10ab20c8a066dad7766225a0b4db11ab756bceec7e1f6ee5c1",
+          "bytes": 3978
+        },
+        {
+          "path": "audit/review.json",
+          "sha256": "80567ec0ea5ca011fc73734b2ea793a3c97f852837b41c2b2abd1d26cb92782d",
+          "bytes": 1977
+        },
+        {
+          "path": "audit/strategy.md",
+          "sha256": "8d59abfda8459587acda46ea51939dfde0d5b84a2244f4bb0792ae8ee62f859a",
+          "bytes": 8485
+        },
+        {
+          "path": "build.json",
+          "sha256": "af41c70cf1eb7fee367a3673326aa499179ac4cb4af254267c8160a8aaf92928",
+          "bytes": 2031
+        },
+        {
+          "path": "build.log",
+          "sha256": "87a58604679aab6d94a2c51dd42859acf05676d734fb02791ec90a84aca559c7",
+          "bytes": 794
+        },
+        {
+          "path": "build.py",
+          "sha256": "3ed0c93d982340630718de78ac3d76e0c6f6edf121c7cd23cfd4d0f5a45838b8",
+          "bytes": 2735
+        },
+        {
+          "path": "closure-preparation.json",
+          "sha256": "8a3fe8b1000030cb3ccdcc65ea3c63b6598ce5857aafb5111637b04095a61c2e",
+          "bytes": 42973
+        },
+        {
+          "path": "groups/dd-c4-run.json",
+          "sha256": "fe05a58fce1737ebaa4cb5b76107f3f576865374b6ad49c47c6bb4796d9ab211",
+          "bytes": 1318
+        },
+        {
+          "path": "groups/dd-c4.json",
+          "sha256": "756b97ee5774385635f34cae98eb5d77f815849b1a59a843ebdb0a73ee049f6e",
+          "bytes": 171351
+        },
+        {
+          "path": "groups/dd-c4.log",
+          "sha256": "83045a60df6d81c2294d44f452557456eedf18617372c503be4f5d0efea19366",
+          "bytes": 1058
+        },
+        {
+          "path": "groups/dd-c6-run.json",
+          "sha256": "df7e041ed283e3175f39353144bc6d30f8bf3bb03d8891afc5222e398a6f0949",
+          "bytes": 1318
+        },
+        {
+          "path": "groups/dd-c6.json",
+          "sha256": "a57b345fa5028436635d20dda781bcbfebce0284c9a3550501d972c319a7e6b5",
+          "bytes": 250602
+        },
+        {
+          "path": "groups/dd-c6.log",
+          "sha256": "ee1990af5a4f1cf311cfadef0f3c952a6de8656ae6d0cf9718ddbca87b0b480a",
+          "bytes": 1074
+        },
+        {
+          "path": "groups/f64-c4-run.json",
+          "sha256": "0533bbadc359a4bbe9338e03a2a1447d1f8d707c35c2d3c31503f50d172596e2",
+          "bytes": 1322
+        },
+        {
+          "path": "groups/f64-c4.json",
+          "sha256": "b5daeac7baaeffe54b7339bad3f3f227f675ed079861ae2febb2bf53eeeb6938",
+          "bytes": 155671
+        },
+        {
+          "path": "groups/f64-c4.log",
+          "sha256": "f48ac1bbd9e4f18b3d5776a9146824fc02c0c7eea704df443f93c6aadf3ea89a",
+          "bytes": 1071
+        },
+        {
+          "path": "groups/f64-c6-run.json",
+          "sha256": "0ca4494eb22e2f97dc63da736f7bc5fa74c53abc22e4771b4c5ba1c785fbb8c3",
+          "bytes": 1321
+        },
+        {
+          "path": "groups/f64-c6.json",
+          "sha256": "13138927f30fed71eacc99d514de1cb67411d4b11fb1f6357b515cbd39d70db1",
+          "bytes": 227936
+        },
+        {
+          "path": "groups/f64-c6.log",
+          "sha256": "51d8877bf8be002be8791834f9f49af53c6191db96538b486312b4b89ec67eb5",
+          "bytes": 1087
+        },
+        {
+          "path": "groups/float128-c4-run.json",
+          "sha256": "3f4303ea79ffa95594d2ece18addebb948c1cf81ce30b43a2749383ed0d8ee20",
+          "bytes": 1338
+        },
+        {
+          "path": "groups/float128-c4.json",
+          "sha256": "7ea543d62b7f1cd3b573b4df2075aacf2db9972cd5ab80b3013f4b8710733002",
+          "bytes": 174491
+        },
+        {
+          "path": "groups/float128-c4.log",
+          "sha256": "6571da026076613c9aae0f2e4a1935b9ce166c61292d498915dcb1fe0bc934c6",
+          "bytes": 1136
+        },
+        {
+          "path": "groups/float128-c6-run.json",
+          "sha256": "b63db7a0496d2309c10b57c654180a96323935ac5d52563ce7a50f4f8448b83b",
+          "bytes": 1337
+        },
+        {
+          "path": "groups/float128-c6.json",
+          "sha256": "ff13000d409d18e4725993f554f83966421e8ed48830384f116c9652cf9dff85",
+          "bytes": 254817
+        },
+        {
+          "path": "groups/float128-c6.log",
+          "sha256": "3f1d1733deb5c2ca07090b95d58deefda61f8bba50eecab66ecb13d1b2ba6167",
+          "bytes": 1152
+        },
+        {
+          "path": "groups/float256-c4-run.json",
+          "sha256": "0f931f84d4b606abf6712031607334b9e5c78f524fc91e3fa99b05d5764bcb93",
+          "bytes": 1337
+        },
+        {
+          "path": "groups/float256-c4.json",
+          "sha256": "f3ef6ae26761ea6c1bdbb83e58c2bc2650e005a72db05dca745b5bdd8ba476ed",
+          "bytes": 195270
+        },
+        {
+          "path": "groups/float256-c4.log",
+          "sha256": "facb2c847718219dbb7b57f9ce7beb4f0d3cd249b76f2a3093b353a43233a407",
+          "bytes": 1136
+        },
+        {
+          "path": "groups/float256-c6-run.json",
+          "sha256": "d2088242da7fe01738818fa95f4afc073df0e11a054512b291c1e647769a6f86",
+          "bytes": 1338
+        },
+        {
+          "path": "groups/float256-c6.json",
+          "sha256": "033a33291904f6b311e39a23231d97ce8b766843864290b486e4c5982c509e7e",
+          "bytes": 283026
+        },
+        {
+          "path": "groups/float256-c6.log",
+          "sha256": "d76b3a5714f9aa42673b33fb5c2ec8975673a33f7fbcbb4dc40c77388ab4d649",
+          "bytes": 1152
+        },
+        {
+          "path": "groups/float384-c4-run.json",
+          "sha256": "34383663aefb30bdc4c453a2c1beaeb2d94837957e7f067829f8d1bf8976059b",
+          "bytes": 1338
+        },
+        {
+          "path": "groups/float384-c4.json",
+          "sha256": "147654bc57785028be794afb06d604b805a0118f00c961427b707e236ae67402",
+          "bytes": 214600
+        },
+        {
+          "path": "groups/float384-c4.log",
+          "sha256": "2558455f1d70c8508005a13610546cd195a160e09f85c0022254cf4434acc41e",
+          "bytes": 1136
+        },
+        {
+          "path": "groups/float384-c6-run.json",
+          "sha256": "080cacec99488828d77613a472f435c9684a4832809538ed26a029fba8f4292d",
+          "bytes": 1338
+        },
+        {
+          "path": "groups/float384-c6.json",
+          "sha256": "e9223dbe890940662bcdd9634a405671b855322b2d7decb60a8c9ef5c4b92688",
+          "bytes": 309044
+        },
+        {
+          "path": "groups/float384-c6.log",
+          "sha256": "942f3fb18a13d5722aef287b370ed820ca47c804c02133a15abbb55bb0aaad2c",
+          "bytes": 1152
+        },
+        {
+          "path": "oracle-api-correction.diff",
+          "sha256": "8b32e4484b47b543741fe1022deab52c2fea0ba5e5b72d47a3341e693d80d1ec",
+          "bytes": 4500
+        },
+        {
+          "path": "preparation.json",
+          "sha256": "1538dbc24bd16330a878be45965cd5b5d148a8fc8f062348e550275dcffcbc88",
+          "bytes": 646
+        },
+        {
+          "path": "review-before-compute.json",
+          "sha256": "94129ed67f04853ebb6e32423551019042f3bc7c2fe212acdb943eda95c37e2b",
+          "bytes": 8099
+        },
+        {
+          "path": "run-summary.json",
+          "sha256": "86d1ba0d247a4304b667d0f31001127e73d8d1b05a4cf2952dd3e7a6199f516c",
+          "bytes": 14662
+        },
+        {
+          "path": "run.py",
+          "sha256": "5b398292070cb1a4c691da28c7d9c3c0a5ca0f41c3356b6ef8ddb9e17c994fef",
+          "bytes": 3426
+        },
+        {
+          "path": "scope-review.json",
+          "sha256": "74eb817e870c1e15b7a40fc3d12846f910c2b46e0cf43992c8bade64737e3f47",
+          "bytes": 9635
+        },
+        {
+          "path": "source/near_vacuum_e6.rs",
+          "sha256": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+          "bytes": 21914
+        },
+        {
+          "path": "source/typed.rs",
+          "sha256": "6e33c98c01d9448e79a0ebe927aaf31804428bd1642fffa7db7e90b3865e3c97",
+          "bytes": 18839
+        },
+        {
+          "path": "source-identity.json",
+          "sha256": "6fecb8395c6c6287fa0c55e9c9feb560e749f2807a773c8205aad4821f010400",
+          "bytes": 1398
+        },
+        {
+          "path": "source-manifest.json",
+          "sha256": "d5f123778e83b99b893c1de77f398d9a83d7a67e9417924568ad45ccce2aca20",
+          "bytes": 242
+        },
+        {
+          "path": "upstream-preparation.json",
+          "sha256": "db1bde1af308160a782a5de34b4f0aa2f9615cd68969718dcaf9c6669985966a",
+          "bytes": 16235
+        }
+      ]
+    }
+  },
+  "private_direct_e6_n2_typed_audit": {
+    "source": "validation/e6-direct-n2-typed/audit/result.json",
+    "sha256": "14692f726442b2e7d42d5692dae9daa62e47d4dcae705bf2f8dc54f69663d0f3",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "passed",
+      "checks": 24889,
+      "checks_by_category": {
+        "provenance": 206,
+        "numerical": 3434,
+        "transport": 81,
+        "inputs": 20970,
+        "convergence": 198
+      },
+      "failures": [],
+      "input_hashes": {
+        "target/e6-direct-n2-typed/validate": "1e4ef5cdbcd2bfcaad1120256774907118c52adb86718fb44f9110c112994ccc",
+        "target/e6-direct-n2-typed/build.json": "af41c70cf1eb7fee367a3673326aa499179ac4cb4af254267c8160a8aaf92928",
+        "target/e6-direct-n2-typed/source-manifest.json": "d5f123778e83b99b893c1de77f398d9a83d7a67e9417924568ad45ccce2aca20",
+        "target/e6-direct-n2-typed/run.py": "5b398292070cb1a4c691da28c7d9c3c0a5ca0f41c3356b6ef8ddb9e17c994fef",
+        "target/e6-direct-n2-typed/review-before-compute.json": "94129ed67f04853ebb6e32423551019042f3bc7c2fe212acdb943eda95c37e2b",
+        "target/e6-direct-n2-typed/audit/review-before-compute.json": "449b205e3d4bbf10ab20c8a066dad7766225a0b4db11ab756bceec7e1f6ee5c1",
+        "target/e6-direct-n2-typed/audit/strategy.md": "8d59abfda8459587acda46ea51939dfde0d5b84a2244f4bb0792ae8ee62f859a",
+        "target/e6-direct-n2-typed/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+        "target/e6-direct-n2-typed/source/typed.rs": "6e33c98c01d9448e79a0ebe927aaf31804428bd1642fffa7db7e90b3865e3c97",
+        "validation/e6-direct-n2/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+        "validation/e6-direct-n2/qualification.json": "107eea7992f1afeac3770fc12837f6567bf2c741174addd2a15083d432db206d",
+        "target/e6-direct-n2/preparation.json": "8a3fe8b1000030cb3ccdcc65ea3c63b6598ce5857aafb5111637b04095a61c2e",
+        "target/e6-direct-n2-typed/preparation.json": "1538dbc24bd16330a878be45965cd5b5d148a8fc8f062348e550275dcffcbc88",
+        "target/e6-direct-n2-typed/build.py": "3ed0c93d982340630718de78ac3d76e0c6f6edf121c7cd23cfd4d0f5a45838b8",
+        "target/e6-direct-n2-typed/build.log": "87a58604679aab6d94a2c51dd42859acf05676d734fb02791ec90a84aca559c7",
+        "target/e6-direct-n2/deps/libahash-ebfed175e70519ca.rlib": "0be6c0e7d23f91178f5ce7bca1b0fcd5903d1a5622d9092b59d925ae4e83208c",
+        "target/e6-direct-n2/deps/liballoc_no_stdlib-9f89c93de65557ff.rlib": "3359cd8cf2a96c1a5b3aac8de7eb5678159c28ecda90f12a2a32a12bfaa24750",
+        "target/e6-direct-n2/deps/liballoc_stdlib-2cd7aa7821bd4671.rlib": "315743184d9ab2a0f1aa07ed0ab19514ef353ae2f063913700b10a6a2af332de",
+        "target/e6-direct-n2/deps/liballocator_api2-19391c22f254789e.rlib": "eb438cfb2e3b163c4aaf2b1f70654b304b55049f2492d6a28ec63fad8d1a7cf0",
+        "target/e6-direct-n2/deps/libanyhow-e7060099e57a7694.rlib": "9119c45061a58ba3f8f183170affa3ea585ff5d68687e5ed2adc9a97ab52d402",
+        "target/e6-direct-n2/deps/libappend_only_vec-3331ff3972d77b07.rlib": "1931e037373750262c842870109e0da918ef76b9d5bea19fefad97542c7be5c8",
+        "target/e6-direct-n2/deps/libapprox-fe681f86c5d97d39.rlib": "a9cbac67913c20e97af68c1427dfa45df40a39706fa8b1a3ec6ab9d54b40acb6",
+        "target/e6-direct-n2/deps/libautocfg-c8730f2d31f3a843.rlib": "f04b8ca537602ecd3c248fd3baa61125b3f49a18fe557eedf2b213086e0dc92e",
+        "target/e6-direct-n2/deps/libaz-6fb73786f048369c.rlib": "11833d9839682f9c1e09af17910b212bdbb6db3f6ac090d896d269f43685d6aa",
+        "target/e6-direct-n2/deps/libbincode-50a95f034bb03d2d.rlib": "71e582ef0b60d14917a938d6ba87ffd8279b41cddef227cf6bbd8f0fb1d086b1",
+        "target/e6-direct-n2/deps/libbincode_derive-00171ee1a9b97e1f.so": "70179ff04814ee4fed27d5d2e6611a5f44e2a670a3236f21dae8987c786681c1",
+        "target/e6-direct-n2/deps/libbincode_trait_derive-7deaa0b38b0c0f1c.so": "94fb4ffb9d033b696abf88f8c23c3f778b215a2b5eeb8b055e83ff692f065119",
+        "target/e6-direct-n2/deps/libbitflags-1a27ba3e9cd6fd79.rlib": "9a3c2b7762096975f631a79c21c418a620299390fc0643bb4f15abbe813614e2",
+        "target/e6-direct-n2/deps/libbrotli-3709e0f26c4c7465.rlib": "f724d90d3ba549f212df630ad7dc8daa64eca2d8bfb6899181319506cd105c47",
+        "target/e6-direct-n2/deps/libbrotli_decompressor-1692de5ee7204844.rlib": "e4bead3ac33d6daf1a78fa51a48c8bfc9cc0cff6f1fe57a7e1f6387f7a56a039",
+        "target/e6-direct-n2/deps/libbytemuck-16d3cbc4548cdf30.rlib": "18b34a989e46324cd238ee5e844638bedc1a98a482e0eb4bb4060804e81ae308",
+        "target/e6-direct-n2/deps/libbyteorder-1fa702c4820b7fe0.rlib": "d1b9873b0e6c9f39288c0b5405a9da76464cc2060da6dd7bacf7d6cd467eb8cf",
+        "target/e6-direct-n2/deps/libbytes-8c7b35ffbb0c95dc.rlib": "bad78e933c647f6af48c8411116e639c8225275a802539a9e1b6c95e7a4572b3",
+        "target/e6-direct-n2/deps/libcfg_if-c4373be3a48af75c.rlib": "8c402a92d873bd2dcdb564d8ddca800d97078dd97216e94fb7d7b4fcba9520c4",
+        "target/e6-direct-n2/deps/libcolored-10be27f8db242b0c.rlib": "7c99b55f8592849936717f2f8ae17ad5a81adb5f47fb476ecd3de0839645fe1b",
+        "target/e6-direct-n2/deps/libcorosensei-4ca1037ced8fdfcc.rlib": "ab5d07fc478c7163048d57ec46a51df401ae7f2845896a9050ed6c459459b399",
+        "target/e6-direct-n2/deps/libcrossbeam_deque-5832f3300025c6cf.rlib": "362531477047f0d415e11361ec33c4f3255b34e85438413e550c78ea3bfc1f5b",
+        "target/e6-direct-n2/deps/libcrossbeam_epoch-26b3de69e035f7b1.rlib": "c8afed4f34193749856498aee5899a4edae938eb6f8864fff8a4a22af3ffaa79",
+        "target/e6-direct-n2/deps/libcrossbeam_utils-88eec418c1acd048.rlib": "4a022996ef27e2584a7b2f4df036c264bc1ce3461a21bd4d2ee4ffd92c73555e",
+        "target/e6-direct-n2/deps/libdata_encoding-76cfb28a2826e244.rlib": "9694ead014be5d951c953b04a3749a63154a6ed58a006d1b4d0d05e0c9eca1ab",
+        "target/e6-direct-n2/deps/libdirectories-001f272c0b7d094c.rlib": "052c737d2be27d8c8ff719162154f478fe2de2e446feddaa08ad9e42c65b7a7a",
+        "target/e6-direct-n2/deps/libdirs_sys-cb2a051496b779f6.rlib": "d16e54959cb10c0986f0a68796806233074233ba7baecbbcae2ddbc45cab51a8",
+        "target/e6-direct-n2/deps/libdyn_clone-55d8556e8e6136a2.rlib": "f7efc4773526ce04ff6d21d5beb68a8ea1b69e35ed76075245b9dfcd86a175bf",
+        "target/e6-direct-n2/deps/libed25519_compact-beccfa49df7566b1.rlib": "e6c420dc77b990509c68f38c81883396b39485767ace9ceb6d1619d973ee3ff8",
+        "target/e6-direct-n2/deps/libeither-c92ec40946327730.rlib": "e47c5e55aa5f27592f34e5fa3f681a7eec88f7bc0a1ff7a3b944926ca4135e92",
+        "target/e6-direct-n2/deps/libequivalent-260d4791905c30e2.rlib": "5db3895b52def1249fc4320a9d490af15be2757ebe1af8d0da71d7c024513f16",
+        "target/e6-direct-n2/deps/libfoldhash-cf3e408b6e71953e.rlib": "7d4ac7edb0bf70c12615ef3ae6950f3a6009cfdf0469bb372ef4b32db3bf3229",
+        "target/e6-direct-n2/deps/libgetrandom-64dadf5b70e11b8d.rlib": "85ecbecaf5d16ebf19ac61096ab4cc500a340ae9bf63d35c6df6a086467b5f0a",
+        "target/e6-direct-n2/deps/libgmp_mpfr_sys-049de296b2017f48.rlib": "9a1d585df7364bacf768574ba27861d3b29f263e1226def046ce6644e0ea6a8b",
+        "target/e6-direct-n2/deps/libgraphica-39e368da9e5aec31.rlib": "e43b25e48e028ff19b6d7bdab3668d3783e15732ab9b8ddd33b354ef76d672f5",
+        "target/e6-direct-n2/deps/libhashbrown-455fddf0c9f89ad8.rlib": "d98767000735a83a0c33cf687705bd688f6b96b27909a2f15d8ce714bbe69ef7",
+        "target/e6-direct-n2/deps/libhugepage_rs-d4c0deb440684102.rlib": "ebe57f4a297c4874c2a1b5e6e3d02f371cdb97b22531a15f100eee469fb56437",
+        "target/e6-direct-n2/deps/libinventory-16243963384d172e.rlib": "fad6f73dcd8728b5480b325edbfb2f9eeaa326957badf21aa95c723d31c260df",
+        "target/e6-direct-n2/deps/libiregi_masters-f07797f04e91954e.rlib": "6abb9aa84afadd9fca0b858a3747b7e8ae75732495622894a2dd45670ff2d237",
+        "target/e6-direct-n2/deps/libitertools-ac7d406b79036013.rlib": "2bf1f2e38dba91be90bf26a5ba39e9d17d2c08d2716dcde39530e4fae4962f58",
+        "target/e6-direct-n2/deps/libitoa-3165824dfe1eeb47.rlib": "5d95adef67d11f89e1730782748a6777b7fd4738914b6d2eeadf7a5c23350458",
+        "target/e6-direct-n2/deps/liblazy_static-15d3ec7843affcef.rlib": "20bcf604aee5856051fd0286824a153a192f0e3278c9d139d55c649a8bd9662e",
+        "target/e6-direct-n2/deps/liblibc-2aba1ce4d1b221ab.rlib": "cc302a35d465fc34de18b09153cabfbce65dcf6c5cf7ca7e7ce7962ac874428b",
+        "target/e6-direct-n2/deps/liblibloading-92f3e006835656fa.rlib": "89d1d6f9d792a957e5784294f13cc93e3bc72a63b8e787b11f22de21813d5654",
+        "target/e6-direct-n2/deps/liblibm-da9eb2fffd892070.rlib": "842a0cd70d928a3b081e77625494e7b2297bf25c72a32d4b3cf22ae3e12cd3ba",
+        "target/e6-direct-n2/deps/liblog-5165a8fee86feed2.rlib": "feba5811a6d64991146ee14855b5750d78d545d0eeb86fc93fc66aece5820174",
+        "target/e6-direct-n2/deps/libmatchers-bd3348eba975ee2b.rlib": "4f4bb7774055ce04eb57f744d91182f0e67cf3a7e64dca648b3002315727951e",
+        "target/e6-direct-n2/deps/libmemchr-b2189ded5df7004a.rlib": "a05e02d71d8e75cab56fa301e9397c89b661c3bf637d8c90a70b32a0b133cbba",
+        "target/e6-direct-n2/deps/libnu_ansi_term-c868977821057230.rlib": "a203195407f3243886c0923e0f0e149d417bf31122d82c245a824a800cb4f047",
+        "target/e6-direct-n2/deps/libnum_bigint-91cf1268c6827cdc.rlib": "1830050f92212be8c44675df84a10c6da5067de5424fc761029336a3b34a39f2",
+        "target/e6-direct-n2/deps/libnum_complex-3a7042e4cebcee2f.rlib": "41423bef6abb7cbc7d7a0cac59c04108b14940e6740b18bf75dcb62c1f9f9b2c",
+        "target/e6-direct-n2/deps/libnum_integer-5e5b3065dc270ae5.rlib": "d0d69f7adcdb71b9935b1eef14eb0962e1748ed29790cd9bb780bd7224e98dd7",
+        "target/e6-direct-n2/deps/libnum_rational-3f289a8fe8ff73df.rlib": "bf26b724b3707153034eeb91775b50c1c0fe0b721d3a0d0454015ed651d7f17c",
+        "target/e6-direct-n2/deps/libnum_traits-0976da312c10164f.rlib": "6dd0887020dc66873cd70bc2781bd35a3b8ef31c5af65574e06f7f23312d4ebc",
+        "target/e6-direct-n2/deps/libnumerica-a42d8352dc361490.rlib": "c82ad1f40671d6580a3f2f0dcc8d83c4017f72b92d4063d9c69e81a35552189c",
+        "target/e6-direct-n2/deps/libonce_cell-55a71cdad673103e.rlib": "57e1ac67185db677943d5af260845410bffef0fd0c31eb21ca213f029cd56dc4",
+        "target/e6-direct-n2/deps/liboneloop-ad2b1eccf125afee.rlib": "c15f470c10ce0a6ce9cddbf3b07282b79f1918d0cdfb5b7849f5f65d6f9b6211",
+        "target/e6-direct-n2/deps/liboption_ext-2eec73a783e02c86.rlib": "15f064040c4361ef0a64e3001f2539c5dbd2a6787afaf120ed536fb4b9e8d2e8",
+        "target/e6-direct-n2/deps/libpaste-77f6ea20dafbd80f.so": "b5995117a38e6af2eb1adaaf6ec6041cb5e83a8a3a83eff30350b026d09fdc53",
+        "target/e6-direct-n2/deps/libpin_project_lite-6191bce0060b7b75.rlib": "1bb4b4789717c78e0a23196e554ab92bcd21ff81586fba9acc73cb5d5ff4d48c",
+        "target/e6-direct-n2/deps/libppv_lite86-38965320148cb4b6.rlib": "7c28632fc5f1d8b92190bc25492d4f923e2dc7131a54ed2ce0a177d087239795",
+        "target/e6-direct-n2/deps/libproc_macro2-50e15d6e1a3866bf.rlib": "852a4468c8ef98919885b16d509667494e2f42fb60d609a0c1caf05a3915246d",
+        "target/e6-direct-n2/deps/libquote-c68334def9a64aa3.rlib": "817b83c6f3516a4d67c7c9e584a62833c4157f5450567f9ef428a7aaf12b16f0",
+        "target/e6-direct-n2/deps/librand-7b1618b1570764e5.rlib": "9d920b730c3ef184206cdb941f0d59e37c8c561199e8b6149a92461bec9087c3",
+        "target/e6-direct-n2/deps/librand_chacha-c312819a484301bb.rlib": "acbb6fd5cff3f3ce82bb0c3ba0dfc10b1cac55218ec4a9adb55b6326de91d814",
+        "target/e6-direct-n2/deps/librand_core-a63546efadde4d3b.rlib": "d19143589c15c0ce572182fd64548262ca5e9a36334de6b808ea9e2ffc22bc17",
+        "target/e6-direct-n2/deps/librayon-a82ea2e0b23df0ed.rlib": "ad4d98f0f21014f948a7c99939165717f8b31ea9afcabaa38d52b9b3a6271f5c",
+        "target/e6-direct-n2/deps/librayon_core-bb33a9e9be9d33c4.rlib": "3be25ce38901e296691eae30830dbfa0537fcc8b41105a6f6479b1bac45c0519",
+        "target/e6-direct-n2/deps/libregex_automata-c7ace803e51cc391.rlib": "dd4d3816bdf481dec97eb3f5adf9be1ee06182a8b14944c740bbfe283a31bf8f",
+        "target/e6-direct-n2/deps/libregex_syntax-3a487bebff223736.rlib": "571750c2e57077cc7e53989bb3d706d6d9205f70c4851768086b28f17d4a2218",
+        "target/e6-direct-n2/deps/libregion-f895766a3aaaff5d.rlib": "fe22426081910aa8ea6b4eca3504633fccf37b8fef21d96df9ab08e0d2dc45f7",
+        "target/e6-direct-n2/deps/librug-b5f01bccb2b6157c.rlib": "2c63d753e42eefb468bd384dba5f6210857801772ec7957b68b116f8ec458646",
+        "target/e6-direct-n2/deps/libsafe_arch-aef48cfc976656e6.rlib": "5c7aed5dabeefab34dc35f33fb3789109b29a79716dbe16b040ad25b98dd19d5",
+        "target/e6-direct-n2/deps/libsafe_arch-e73b55fdc1202d80.rlib": "6c37d50bb008dd666bd5fc26551a3cda6002d2c60f4d733fa8e268e83a81b520",
+        "target/e6-direct-n2/deps/libscopeguard-5fab1ba2c7de4a8c.rlib": "d57ea510606592cb458d9882e88aa03bb9f66f0259d79a7982f59fb10ac0e23c",
+        "target/e6-direct-n2/deps/libself_cell-cd3afeacf9d97dbe.rlib": "a7b3959ccfccd8adcce3330f1c1861bf46ad98fdbbc3d14efebdeec24e7bfb51",
+        "target/e6-direct-n2/deps/libserde-b04ba25115fa19f8.rlib": "adaa86ac08864276f18e080cfdcc8f02a7741bf10692447eb3acac74db52e25c",
+        "target/e6-direct-n2/deps/libserde_core-da57fafc121cc44b.rlib": "c8c3313df4222e0e7ebb0ce836e37ed9347159a2f4d7bd4490097b52af21156c",
+        "target/e6-direct-n2/deps/libserde_derive-fee99db1ceda721b.so": "c997685c44cf452fc4d59560371be07f88bc8b000caeaa01203cb26c37f5e203",
+        "target/e6-direct-n2/deps/libserde_json-d657c5438f354a41.rlib": "6d0d95fa0c2917355f4d4dd8e56e439f1464c07acc175aa8b60badbda2440e16",
+        "target/e6-direct-n2/deps/libserde_spanned-b4cf7e38fb92e2c2.rlib": "f8bd74a91a82b1740259a5d91554a3dd50a6862cf60dbc830a438edbb8660e46",
+        "target/e6-direct-n2/deps/libsharded_slab-cfb407181d14c68c.rlib": "8bd2ec5ff24e0c442267012b00e6ddb89e59fd6c29b429f56129fbf46ee28ef6",
+        "target/e6-direct-n2/deps/libsimba-f40599283281efd0.rlib": "f8ec39eb04eed09a91a7a2a637c7a93cd9f5c67c4a0e53dd8df788c623b1d22c",
+        "target/e6-direct-n2/deps/libsmallvec-e39896b7a50acfaa.rlib": "35b999f1bcc0c6bf2672c82f8f3ce87b0c644649382ff88802340eacdbcbc3b0",
+        "target/e6-direct-n2/deps/libsmartstring-79d344efb0860ada.rlib": "b6d66ec707305566c9a8db9a09b962affd19dc44a403d17c40488c42595af654",
+        "target/e6-direct-n2/deps/libspec_math-77f5c8f4cba5c419.rlib": "f927d94d1259f131b1e5e394effb9fabba993049799e0474257c68741cdbde30",
+        "target/e6-direct-n2/deps/libstatic_assertions-78ca1681a1159f88.rlib": "b8aeb8824ee92945df40132a9b08a699400742c92747b39ed2996f6389ce92d0",
+        "target/e6-direct-n2/deps/libsymbolica-06e42762cabb77d9.rlib": "390aa4bc596f65e636539828b9731b5aa918aa0562853a06a2b70acf8add6d2a",
+        "target/e6-direct-n2/deps/libsymjit-73a4e3b3b3f8339e.rlib": "e2f18c91bd50253f539f17031fbefc3b7c55e34d509ed0cc7cc248cb49062948",
+        "target/e6-direct-n2/deps/libsyn-286acef7b8c94c2d.rlib": "42e71a1d1e4b4135af071b2a9349108c7a97e5ff6c769932e5025635096b538b",
+        "target/e6-direct-n2/deps/libsyn-d4e5a1b1dde66ec8.rlib": "3f277988483eac4f75dc12d2f686fb47a9414bad89fff871b890321d210f59f2",
+        "target/e6-direct-n2/deps/libthread_local-46b7a03ae4ac4316.rlib": "26e2d709b443bf32fdd940760d6d9ed6803b8a08a17fd23a88113f9a704455e9",
+        "target/e6-direct-n2/deps/libtinyjson-4933151ccf2fa2e3.rlib": "531e9fc18a0f6c02ead3b6d3e15cf82169167ea5d1f41d9e17a9fb6ed988fc29",
+        "target/e6-direct-n2/deps/libtoml-4c26734cb4d2cede.rlib": "4e1b931ec332171a586dc60dc5d2af345665050a439a7c9166f6adadb75a4a84",
+        "target/e6-direct-n2/deps/libtoml_datetime-8391070fef83d0d8.rlib": "016dbc96e33f72fd9e68fbccc72b232e32d392c4a3b2485fd447124489ece81d",
+        "target/e6-direct-n2/deps/libtoml_parser-db22d56989a70f3d.rlib": "19a4f5ceb2081fc51c50fb6a28063f7b413d2e96fd100ea614fba8de9fd583c0",
+        "target/e6-direct-n2/deps/libtoml_writer-0d4275ada1431aa3.rlib": "7efbc1c622a4cb9d52a87eba1c6362360fa9c29f460124772476ef4de9b6144b",
+        "target/e6-direct-n2/deps/libtracing-04fa2f8410a80d7d.rlib": "8982702aa62e4d9798481a7db5d6fcad992a3ae8632df4a47a7965ac94df6584",
+        "target/e6-direct-n2/deps/libtracing_attributes-3cd01adb1c1e7b99.so": "05766a213cf375feb6309dbcd6271577b753118e15ab8da0198d19faadfb85e8",
+        "target/e6-direct-n2/deps/libtracing_core-5aafe11f40afcbbf.rlib": "94f6d1dcc4c63481481bad75a221256b143057803ae65eedbf1d3c758ed714ba",
+        "target/e6-direct-n2/deps/libtracing_log-c92d461cd93c2534.rlib": "bad4f488e212b242555827d5dafe95a0587f5a0dc384f9bf124a874dfeb2ae87",
+        "target/e6-direct-n2/deps/libtracing_subscriber-6b94e3448cfef28b.rlib": "5f546b1e7aa01f90ec255ae0628aaa3940575697a8d0e7361449b43ded8e8eda",
+        "target/e6-direct-n2/deps/libunicode_ident-90a0552b0af6d449.rlib": "fc66b939da31ff2a845902ec347c1892188799dcd82ea39360bfe08c6ba36cb2",
+        "target/e6-direct-n2/deps/libunty-7082572cfc7cb73c.rlib": "257d41bca4f62dc37cfc49ffbb797d46c4839126f2f47a23067945c166f76b42",
+        "target/e6-direct-n2/deps/libversion_check-4abe5daca2cc8522.rlib": "22609fecf9e2e302d5f0ae0a2dbb999bad00cebedb4b11f427692abd92f62783",
+        "target/e6-direct-n2/deps/libvirtue-1435433af6ba4617.rlib": "f204a5e154d34afb880a49770c3ce855fdf958290604d961bb56516f9b492d80",
+        "target/e6-direct-n2/deps/libwasmtime_jit_icache_coherence-ea8e845a92ac0622.rlib": "2f9c1ab8c954faa0d11b665bf0572c2d41abec71557b03c75642c3169dab63dd",
+        "target/e6-direct-n2/deps/libwide-4f0a92ace5b58b78.rlib": "e9b860c26d7804aad7cbfbfe243cd70260c16e0c1a5d8b1f0108609e970c2c94",
+        "target/e6-direct-n2/deps/libwide-9a299eddcb796173.rlib": "5aa4cab4164f1c759163fec61f2040ab2da79d1c54847c2ad4c00203c1d6ebd3",
+        "target/e6-direct-n2/deps/libwinnow-b527b93b7cdf783f.rlib": "d9324f7ad5264dd030ae56bc777c755307f13cc23c861288b66b3d2a20740086",
+        "target/e6-direct-n2/deps/libxprec-73c39dc13fbc6296.rlib": "ebb929e160490d85d1b5d393d589123f444d719af91f006ea3b45c0caad438fd",
+        "target/e6-direct-n2/deps/libzerocopy-df5dee8384b6482e.rlib": "05504dd3938676230946096eb8aeee83780a6007550c9e16cebd8f91e7caa974",
+        "target/e6-direct-n2/deps/libzmij-0b158727156e2679.rlib": "f844c33cb82e5e075a411727e8e570bcb8db4e65b1745a323957a55b1af5e3e2",
+        "target/e6-direct-n2/native/libgmp.a": "f60f181732c103eae5119f29e3119aa25f8d7285f700a73919ae966fe03899b6",
+        "target/e6-direct-n2/native/libmpc.a": "b8f8330d0cc6482672977583000447e566ef5cfb4ea834d7470f346920c57b4e",
+        "target/e6-direct-n2/native/libmpfr.a": "b97f4d08e4a86e88dc370c76b3b9ed99ecd5420fde0130539e9436eecb0b53f0",
+        "target/e6-direct-n2/upstream-preparation.json": "db1bde1af308160a782a5de34b4f0aa2f9615cd68969718dcaf9c6669985966a",
+        "validation/near-vacuum-production/attempt004/build.log": "02496767db43887dbb974e1a426059d984c2a52c04af28a24018ac574546f2e7",
+        "validation/near-vacuum-production/attempt004/qualification.json": "5380c48cdb9df6cb14e8b6007c0a15a0ff0241be44ba6d0f17717d5527ba5127",
+        "target/e6-direct-n2-typed/groups/f64-c4.json": "b5daeac7baaeffe54b7339bad3f3f227f675ed079861ae2febb2bf53eeeb6938",
+        "target/e6-direct-n2-typed/groups/f64-c4.log": "f48ac1bbd9e4f18b3d5776a9146824fc02c0c7eea704df443f93c6aadf3ea89a",
+        "target/e6-direct-n2-typed/groups/f64-c4-run.json": "0533bbadc359a4bbe9338e03a2a1447d1f8d707c35c2d3c31503f50d172596e2",
+        "target/e6-direct-n2-typed/groups/f64-c6.json": "13138927f30fed71eacc99d514de1cb67411d4b11fb1f6357b515cbd39d70db1",
+        "target/e6-direct-n2-typed/groups/f64-c6.log": "51d8877bf8be002be8791834f9f49af53c6191db96538b486312b4b89ec67eb5",
+        "target/e6-direct-n2-typed/groups/f64-c6-run.json": "0ca4494eb22e2f97dc63da736f7bc5fa74c53abc22e4771b4c5ba1c785fbb8c3",
+        "target/e6-direct-n2-typed/groups/dd-c4.json": "756b97ee5774385635f34cae98eb5d77f815849b1a59a843ebdb0a73ee049f6e",
+        "target/e6-direct-n2-typed/groups/dd-c4.log": "83045a60df6d81c2294d44f452557456eedf18617372c503be4f5d0efea19366",
+        "target/e6-direct-n2-typed/groups/dd-c4-run.json": "fe05a58fce1737ebaa4cb5b76107f3f576865374b6ad49c47c6bb4796d9ab211",
+        "target/e6-direct-n2-typed/groups/dd-c6.json": "a57b345fa5028436635d20dda781bcbfebce0284c9a3550501d972c319a7e6b5",
+        "target/e6-direct-n2-typed/groups/dd-c6.log": "ee1990af5a4f1cf311cfadef0f3c952a6de8656ae6d0cf9718ddbca87b0b480a",
+        "target/e6-direct-n2-typed/groups/dd-c6-run.json": "df7e041ed283e3175f39353144bc6d30f8bf3bb03d8891afc5222e398a6f0949",
+        "target/e6-direct-n2-typed/groups/float128-c4.json": "7ea543d62b7f1cd3b573b4df2075aacf2db9972cd5ab80b3013f4b8710733002",
+        "target/e6-direct-n2-typed/groups/float128-c4.log": "6571da026076613c9aae0f2e4a1935b9ce166c61292d498915dcb1fe0bc934c6",
+        "target/e6-direct-n2-typed/groups/float128-c4-run.json": "3f4303ea79ffa95594d2ece18addebb948c1cf81ce30b43a2749383ed0d8ee20",
+        "target/e6-direct-n2-typed/groups/float128-c6.json": "ff13000d409d18e4725993f554f83966421e8ed48830384f116c9652cf9dff85",
+        "target/e6-direct-n2-typed/groups/float128-c6.log": "3f1d1733deb5c2ca07090b95d58deefda61f8bba50eecab66ecb13d1b2ba6167",
+        "target/e6-direct-n2-typed/groups/float128-c6-run.json": "b63db7a0496d2309c10b57c654180a96323935ac5d52563ce7a50f4f8448b83b",
+        "target/e6-direct-n2-typed/groups/float256-c4.json": "f3ef6ae26761ea6c1bdbb83e58c2bc2650e005a72db05dca745b5bdd8ba476ed",
+        "target/e6-direct-n2-typed/groups/float256-c4.log": "facb2c847718219dbb7b57f9ce7beb4f0d3cd249b76f2a3093b353a43233a407",
+        "target/e6-direct-n2-typed/groups/float256-c4-run.json": "0f931f84d4b606abf6712031607334b9e5c78f524fc91e3fa99b05d5764bcb93",
+        "target/e6-direct-n2-typed/groups/float256-c6.json": "033a33291904f6b311e39a23231d97ce8b766843864290b486e4c5982c509e7e",
+        "target/e6-direct-n2-typed/groups/float256-c6.log": "d76b3a5714f9aa42673b33fb5c2ec8975673a33f7fbcbb4dc40c77388ab4d649",
+        "target/e6-direct-n2-typed/groups/float256-c6-run.json": "d2088242da7fe01738818fa95f4afc073df0e11a054512b291c1e647769a6f86",
+        "target/e6-direct-n2-typed/groups/float384-c4.json": "147654bc57785028be794afb06d604b805a0118f00c961427b707e236ae67402",
+        "target/e6-direct-n2-typed/groups/float384-c4.log": "2558455f1d70c8508005a13610546cd195a160e09f85c0022254cf4434acc41e",
+        "target/e6-direct-n2-typed/groups/float384-c4-run.json": "34383663aefb30bdc4c453a2c1beaeb2d94837957e7f067829f8d1bf8976059b",
+        "target/e6-direct-n2-typed/groups/float384-c6.json": "e9223dbe890940662bcdd9634a405671b855322b2d7decb60a8c9ef5c4b92688",
+        "target/e6-direct-n2-typed/groups/float384-c6.log": "942f3fb18a13d5722aef287b370ed820ca47c804c02133a15abbb55bb0aaad2c",
+        "target/e6-direct-n2-typed/groups/float384-c6-run.json": "080cacec99488828d77613a472f435c9684a4832809538ed26a029fba8f4292d",
+        "target/e6-direct-n2-typed/run-summary.json": "86d1ba0d247a4304b667d0f31001127e73d8d1b05a4cf2952dd3e7a6199f516c",
+        "target/e6-direct-n2-typed/audit/audit_typed.py": "03e53de5d59b609bdfb5618d99a27308136eac43ce8dd23c34377ff76ccafeab"
+      },
+      "totals": {
+        "groups": 10,
+        "physical_rows": 130,
+        "successful_rows": 65,
+        "rejected_rows": 65,
+        "successful_components": 320
+      },
+      "groups": [
+        {
+          "group": "f64-c4",
+          "physical_rows": 13,
+          "successful_rows": 7,
+          "rejected_rows": 6,
+          "successful_components": 28,
+          "working_bits": 53,
+          "requested_bits": 40
+        },
+        {
+          "group": "f64-c6",
+          "physical_rows": 13,
+          "successful_rows": 6,
+          "rejected_rows": 7,
+          "successful_components": 36,
+          "working_bits": 53,
+          "requested_bits": 40
+        },
+        {
+          "group": "dd-c4",
+          "physical_rows": 13,
+          "successful_rows": 7,
+          "rejected_rows": 6,
+          "successful_components": 28,
+          "working_bits": 106,
+          "requested_bits": 80
+        },
+        {
+          "group": "dd-c6",
+          "physical_rows": 13,
+          "successful_rows": 6,
+          "rejected_rows": 7,
+          "successful_components": 36,
+          "working_bits": 106,
+          "requested_bits": 80
+        },
+        {
+          "group": "float128-c4",
+          "physical_rows": 13,
+          "successful_rows": 7,
+          "rejected_rows": 6,
+          "successful_components": 28,
+          "working_bits": 128,
+          "requested_bits": 80
+        },
+        {
+          "group": "float128-c6",
+          "physical_rows": 13,
+          "successful_rows": 6,
+          "rejected_rows": 7,
+          "successful_components": 36,
+          "working_bits": 128,
+          "requested_bits": 80
+        },
+        {
+          "group": "float256-c4",
+          "physical_rows": 13,
+          "successful_rows": 7,
+          "rejected_rows": 6,
+          "successful_components": 28,
+          "working_bits": 256,
+          "requested_bits": 128
+        },
+        {
+          "group": "float256-c6",
+          "physical_rows": 13,
+          "successful_rows": 6,
+          "rejected_rows": 7,
+          "successful_components": 36,
+          "working_bits": 256,
+          "requested_bits": 128
+        },
+        {
+          "group": "float384-c4",
+          "physical_rows": 13,
+          "successful_rows": 7,
+          "rejected_rows": 6,
+          "successful_components": 28,
+          "working_bits": 384,
+          "requested_bits": 128
+        },
+        {
+          "group": "float384-c6",
+          "physical_rows": 13,
+          "successful_rows": 6,
+          "rejected_rows": 7,
+          "successful_components": 36,
+          "working_bits": 384,
+          "requested_bits": 128
+        }
+      ],
+      "float256_to_float384_rounding_convergence": [
+        {
+          "components": 28,
+          "shape_components": 4,
+          "coordinate_widths": 56,
+          "strictly_shrunk_positive_widths": 50,
+          "zero_to_zero_widths": 6,
+          "positive_to_zero_widths": 0,
+          "minimum_positive_width_ratio_exact": "1/510423550381407695195061911147652317184",
+          "maximum_positive_width_ratio_exact": "1/297747071055821155530452781502797185024",
+          "scope": "Arithmetic width after subtracting2*tail, not convergence of fixed N2 truncation error."
+        },
+        {
+          "components": 36,
+          "shape_components": 6,
+          "coordinate_widths": 72,
+          "strictly_shrunk_positive_widths": 52,
+          "zero_to_zero_widths": 20,
+          "positive_to_zero_widths": 0,
+          "minimum_positive_width_ratio_exact": "1/510423550381407695195061911147652317184",
+          "maximum_positive_width_ratio_exact": "1/297747071055821155530452781502797185024",
+          "scope": "Arithmetic width after subtracting2*tail, not convergence of fixed N2 truncation error."
+        }
+      ],
+      "scope": "Exact Fraction audit of ten private typed E6 N2 output groups, represented fixtures, independent scalar common-mass identities, all accepted budgets and rectangles, failures, batching/transport evidence, precision convergence and frozen provenance. No Symbolica evaluation or build.",
+      "limits": [
+        "Common complex masses and zero invariants only; no public/core/default E6 or performance qualification.",
+        "Static/dynamic Dual coverage is metadata/component transport with Symbolica Dualizer arithmetic; not Workspace<StaticDual<T>> support.",
+        "Full concurrent/reverse/chunk/singleton/static-dynamic arrays are checked by compiled assertions and successful run; serialized counters are independently checked but full traces are absent.",
+        "Instruction-lane visit counts are structural estimates.",
+        "Float256\u2192384 convergence concerns arithmetic widths after removing the retained truncation radius; omitted N2 mixed cubic error remains visible."
+      ]
+    }
+  },
+  "private_n6_child_localization": {
+    "source": "validation/highpoint-child-localization/qualification.json",
+    "sha256": "2ca62382c8ea00aef13e4936f886f5d5ed85df7ae90d402d16a709050b111e89",
+    "snapshot": {
+      "status": "exact_localization_passed",
+      "source": "Frozen thin prototype from validation/highpoint-thin-n6; no core changes.",
+      "scope": "Exact retained ordinary input only, Symbolica matrices/expressions and preparation feasibility. No scalar master evaluation or numeric integral agreement.",
+      "chart_records": [
+        {
+          "omitted_original": 3,
+          "omitted_coordinate": 3,
+          "determinant": "1/2",
+          "weights": [
+            "1",
+            "-1",
+            "-1",
+            "0",
+            "1"
+          ]
+        },
+        {
+          "omitted_original": 4,
+          "omitted_coordinate": 0,
+          "determinant": "1",
+          "weights": [
+            "1",
+            "-1",
+            "-1",
+            "0",
+            "1"
+          ]
+        }
+      ],
+      "singular_child_original_lines": [
+        0,
+        1,
+        2,
+        5
+      ],
+      "singular_child_gram_rank": 2,
+      "singular_child_gram_determinant": "0",
+      "singular_child_cayley_rank": 4,
+      "singular_child_cayley_determinant": "-4",
+      "zero_multiplier_scope": "Full requested shape is ordinary singleton component; no arbitrary Dual zero-pruning permission.",
+      "pv_rank_one_directions_rejected_per_chart": 4,
+      "ibp_raised_h1_requests_prepared_per_chart": 4,
+      "independent_regular_box_children": 8,
+      "inference": "Generic certified-planar code requests the box because its symbolic chart coefficient alias is not structurally zero; this exact input makes that coefficient zero while the box PV Gram denominator vanishes. The preceding runtime log does not identify the first nonfinite evaluator instruction.",
+      "next_required_proof": "Mixed-Dual counterexample and exact full-shape cofactor-zero certificate before dead-child pruning; retain fallback or rejection for nonzero jets.",
+      "input_sha256": {
+        "exact.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "run.py": "f18c00a6ec010b4b393168723b4c8cf89ce0a3ae9552c987a3ebcd66ee7eda19",
+        "run.json": "bb8059c24ce59adc0dab1ac6892a701f204e1a52ea91bec7374fd8d2112c16c2",
+        "compile.log": "eff5b110756860bec0cd41b296aa77b856473d25deaf199dee761512de686c06",
+        "result.json": "ed3e6c778cc2707bfb0caef5ff9be9a84412f5c18127454e49c428264c60171e",
+        "census.rs": "49a2ebdc27d7b26dd7b03351fba5a7fc172d2f831469a517f29c25f08c3e1a29"
+      },
+      "parent_qualification_sha256": "44f0ae089eb9fb43934d9003fc14d8a6584035d4cd90fb613ff67c2d25f1ca7f"
+    }
+  },
+  "private_n6_mixed_cofactor_counterexample": {
+    "source": "validation/highpoint-child-localization/mixed-cofactor/qualification.json",
+    "sha256": "041c1e3479af35d72b4b739952902fb496f47f391e27cebd7628c0732634a7e3",
+    "snapshot": {
+      "status": "exact_mixed_dual_counterexample_passed",
+      "scope": "Two exact regular planar charts, two controls each, ordered four-component mixed Dual shape. Source-only pruning design; no core implementation or numeric master evaluation.",
+      "shape": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "first_compile_failure": "Missing CARGO_CRATE_NAME for Symbolica symbol macro; preserved. run_v2 adds compile environment only, proof source unchanged.",
+      "source_design": "design.md",
+      "cofactor_mixed_coefficients": [
+        "-1",
+        "-1"
+      ],
+      "weight_mixed_coefficients": [
+        "-2",
+        "-1"
+      ],
+      "zero_primal_and_first_components": true,
+      "full_planar_constraint_zero": true,
+      "unit_chart_denominator_primal": [
+        "1/2",
+        "1"
+      ],
+      "conclusion": "A zero primal multiplier is insufficient. Mask authorization must certify the complete requested cofactor jet exactly zero while preserving full planar constraint and regular chart checks.",
+      "files": {
+        "run_v2.py": "53ae12f10f622ba001a8c97c8ba7994a8a7494cd7f54705a7cf1450430ae9698",
+        "run.py": "617dc7694a95469f8b97d132fb89fc9ba333f64feeec0aa5e0cf180a374d38d4",
+        "proof.rs": "9078a979cb69a878038ecac4b6bfe3ac2d03663eb4dbb77b6f521238a4cd5abf",
+        "design.md": "0ff8de60c6fb5f58a366c13f701c18846be70996330ec51bd20f70a7319522f0",
+        "attempt-002/result.json": "b91b69c723085a058d02d5ed9c2dd73da97cdd38c92ca684a1e6e9f5e03c772e",
+        "attempt-002/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "attempt-002/run.json": "c4b84ade8244c414ece1dc4dbe8ab40fafec2ca600f777d898760978f94069c6",
+        "attempt-002/exact.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "attempt-001/compile.log": "c7ef70d3946dd8f35df40917c9db914505b795b9b6d08fad4619496664a70c9b",
+        "attempt-001/run.json": "7b3e3574b1aec6d880136c9169aee88f04600fd0494d3e7f60d8bb843e877769"
+      }
+    }
+  },
+  "resumed_evidence_integrity_audit": {
+    "source": "validation/checkpoint-audits/2026-10-24-resumed-evidence/integrity.json",
+    "sha256": "01223220f466b027bce55237ed729104bdd9e9a67ea527027587b208c0dab69f",
+    "snapshot": {
+      "status": "passed-integrity-only",
+      "files_scanned": 87,
+      "bytes_scanned": 2758806,
+      "qualification_bound_files": 83,
+      "paths": [
+        "validation/e6-direct-n2-typed/AUDIT.md",
+        "validation/e6-direct-n2-typed/README.md",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/audit/review-before-compute.json",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/audit/strategy.md",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/build.json",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/build.log",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/build.py",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/preparation.json",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/preservation.json",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/review-before-compute.json",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/run.py",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/source/near_vacuum_e6.rs",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/source/typed.rs",
+        "validation/e6-direct-n2-typed/attempt001-compile-failure/source-manifest.json",
+        "validation/e6-direct-n2-typed/audit/audit_typed.py",
+        "validation/e6-direct-n2-typed/audit/result.json",
+        "validation/e6-direct-n2-typed/audit/review-before-compute.json",
+        "validation/e6-direct-n2-typed/audit/review.json",
+        "validation/e6-direct-n2-typed/audit/strategy.md",
+        "validation/e6-direct-n2-typed/build.json",
+        "validation/e6-direct-n2-typed/build.log",
+        "validation/e6-direct-n2-typed/build.py",
+        "validation/e6-direct-n2-typed/closure-preparation.json",
+        "validation/e6-direct-n2-typed/groups/dd-c4-run.json",
+        "validation/e6-direct-n2-typed/groups/dd-c4.json",
+        "validation/e6-direct-n2-typed/groups/dd-c4.log",
+        "validation/e6-direct-n2-typed/groups/dd-c6-run.json",
+        "validation/e6-direct-n2-typed/groups/dd-c6.json",
+        "validation/e6-direct-n2-typed/groups/dd-c6.log",
+        "validation/e6-direct-n2-typed/groups/f64-c4-run.json",
+        "validation/e6-direct-n2-typed/groups/f64-c4.json",
+        "validation/e6-direct-n2-typed/groups/f64-c4.log",
+        "validation/e6-direct-n2-typed/groups/f64-c6-run.json",
+        "validation/e6-direct-n2-typed/groups/f64-c6.json",
+        "validation/e6-direct-n2-typed/groups/f64-c6.log",
+        "validation/e6-direct-n2-typed/groups/float128-c4-run.json",
+        "validation/e6-direct-n2-typed/groups/float128-c4.json",
+        "validation/e6-direct-n2-typed/groups/float128-c4.log",
+        "validation/e6-direct-n2-typed/groups/float128-c6-run.json",
+        "validation/e6-direct-n2-typed/groups/float128-c6.json",
+        "validation/e6-direct-n2-typed/groups/float128-c6.log",
+        "validation/e6-direct-n2-typed/groups/float256-c4-run.json",
+        "validation/e6-direct-n2-typed/groups/float256-c4.json",
+        "validation/e6-direct-n2-typed/groups/float256-c4.log",
+        "validation/e6-direct-n2-typed/groups/float256-c6-run.json",
+        "validation/e6-direct-n2-typed/groups/float256-c6.json",
+        "validation/e6-direct-n2-typed/groups/float256-c6.log",
+        "validation/e6-direct-n2-typed/groups/float384-c4-run.json",
+        "validation/e6-direct-n2-typed/groups/float384-c4.json",
+        "validation/e6-direct-n2-typed/groups/float384-c4.log",
+        "validation/e6-direct-n2-typed/groups/float384-c6-run.json",
+        "validation/e6-direct-n2-typed/groups/float384-c6.json",
+        "validation/e6-direct-n2-typed/groups/float384-c6.log",
+        "validation/e6-direct-n2-typed/oracle-api-correction.diff",
+        "validation/e6-direct-n2-typed/preparation.json",
+        "validation/e6-direct-n2-typed/review-before-compute.json",
+        "validation/e6-direct-n2-typed/run-summary.json",
+        "validation/e6-direct-n2-typed/run.py",
+        "validation/e6-direct-n2-typed/scope-review.json",
+        "validation/e6-direct-n2-typed/source/near_vacuum_e6.rs",
+        "validation/e6-direct-n2-typed/source/typed.rs",
+        "validation/e6-direct-n2-typed/source-identity.json",
+        "validation/e6-direct-n2-typed/source-manifest.json",
+        "validation/e6-direct-n2-typed/upstream-preparation.json",
+        "validation/highpoint-child-localization/exact.log",
+        "validation/highpoint-child-localization/run.py",
+        "validation/highpoint-child-localization/run.json",
+        "validation/highpoint-child-localization/compile.log",
+        "validation/highpoint-child-localization/result.json",
+        "validation/highpoint-child-localization/census.rs",
+        "validation/e6-direct-n2-expansion-design/oracle-reuse.md",
+        "validation/e6-direct-n2-expansion-design/review.json",
+        "validation/e6-direct-n2-expansion-design/source-inspection.json",
+        "validation/highpoint-child-localization/mixed-cofactor/run_v2.py",
+        "validation/highpoint-child-localization/mixed-cofactor/run.py",
+        "validation/highpoint-child-localization/mixed-cofactor/proof.rs",
+        "validation/highpoint-child-localization/mixed-cofactor/design.md",
+        "validation/highpoint-child-localization/mixed-cofactor/attempt-002/result.json",
+        "validation/highpoint-child-localization/mixed-cofactor/attempt-002/compile.log",
+        "validation/highpoint-child-localization/mixed-cofactor/attempt-002/run.json",
+        "validation/highpoint-child-localization/mixed-cofactor/attempt-002/exact.log",
+        "validation/highpoint-child-localization/mixed-cofactor/attempt-001/compile.log",
+        "validation/highpoint-child-localization/mixed-cofactor/attempt-001/run.json"
+      ],
+      "scope": "No numerical or performance claim; source/qualification inventories, license and compiled-artifact scan only. Existing independent typed numerical audit rerun separately."
+    }
+  },
+  "resumed_typed_e6_audit_receipt": {
+    "source": "validation/checkpoint-audits/2026-10-24-resumed-evidence/typed-recheck-receipt.json",
+    "sha256": "8f95b760ac0e0aba62a1f300e6e0d8b2b7391931a5e7b26fc1c2466bec2e88f6",
+    "snapshot": {
+      "status": "numerical-audit-passed-final-print-raised",
+      "checker": "validation/e6-direct-n2-typed/audit/audit_typed.py",
+      "result": "target/resume-evidence-audit/typed-recheck.json",
+      "sha256": "3f800a3b55fa49693cfe5e4e4a36f7cb2c3aad2bff9923f811618b4c2913962a",
+      "checks": 24889,
+      "failures": 0,
+      "equal_summary_keys": [
+        "schema_version",
+        "status",
+        "checks",
+        "checks_by_category",
+        "failures",
+        "totals",
+        "groups",
+        "float256_to_float384_rounding_convergence",
+        "scope",
+        "limits"
+      ],
+      "different_summary_keys": [],
+      "invocation_issue": "Passed relative --output to frozen checker; result saved successfully, then final print destination.relative_to(ROOT) raised ValueError. Frozen source unchanged; no audit calculations failed."
+    }
+  },
+  "resumed_bounded_checkpoint": {
+    "production_changed": false,
+    "production_adopted": false,
+    "measured_primary_rust_revision": "6b24c03",
+    "new_private_timing_record": "lazy_receipt_capture_performance",
+    "typed_scope": "Common complex masses/zero invariants only; Static/Dynamic metadata plus Dualizer component transport, not Workspace<StaticDual<T>>.",
+    "child_scope": "Exact preparation identities and mixed-cofactor counterexample only; no new numeric N6 array or pruning implementation.",
+    "records": [
+      "lazy_receipt_capture_performance",
+      "lazy_receipt_capture_statistics_audit",
+      "lazy_receipt_capture_finalization",
+      "private_direct_e6_n2_typed",
+      "private_direct_e6_n2_typed_audit",
+      "private_n6_child_localization",
+      "private_n6_mixed_cofactor_counterexample",
+      "resumed_evidence_integrity_audit",
+      "resumed_typed_e6_audit_receipt"
+    ],
+    "excluded_pending": [
+      "highpoint masking candidate",
+      "new four-engine comparison",
+      "Python wheel and notebook runtime qualification"
+    ]
   }
 }

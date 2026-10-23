@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "status": "sequential_timing_authorized_only_on_explicit_owner_grant",
+  "created_utc": "2026-10-23T21:52:47.990629+00:00",
+  "project_head": "e3669d08e81e24efdb5f98d32eb0aa2b410b8c74",
+  "production_numerical_revision": "06706e2a1e4f0082889a53187c80bbe97803340f",
+  "cpu": 254,
+  "scope": "Two independently qualified private cohorts; four-engine TIRust/IREGI/COLLIER whole reductions followed by eager/lazy TIRust receipts. No production adoption or composable ratios.",
+  "project_policy": "No concurrent project compiler, reference kernel, benchmark or long numerical work. Every owner requires a separate explicit ROOT start grant. Source writing and small read-only review may continue.",
+  "external_host_policy": "Shared host uncontrolled; unrelated processes are unchanged. Preserve every failed, short, noisy, unsupported and unrun case; no CI-dependent repeat or omission.",
+  "survey": {
+    "path": "validation/benchmark-quiet/20261023e/cpu-survey-v2.json",
+    "sha256": "50d3e7bf52976fbfac838cfde4e0a0b925df0800f8e678c6e1179fc1187df1e4",
+    "cpu_busy_fraction": 0.006644518272425293
+  },
+  "cohorts": {
+    "selected_native_four_engine": {
+      "path": "target/selected-native-optimized/four-engine-v2/timing-ready.json",
+      "sha256": "43a3fb5a008398871242441dcd603fa3e9912da4367f8d23ccf3f769a34fe618",
+      "owner": "/root/native_stack_batch",
+      "runtime_cap_seconds": 700
+    },
+    "lazy_receipt_capture": {
+      "path": "target/raw-distance-lazy-capture-optimized/timing-ready.json",
+      "sha256": "70c3cd43599dea2b9b51f3e2e2c12b4de56e1daf6999a8294b0bdd1cda51930e",
+      "owner": "/root/numeric_batch_audit",
+      "runtime_cap_seconds": 600
+    }
+  },
+  "order": [
+    "selected_native_four_engine",
+    "lazy_receipt_capture"
+  ],
+  "ratio_policy": "Every displayed ratio has TIRust in the numerator; both eager/lazy or candidate/baseline implementations are labelled TIRust. Never combine medians/ratios across sessions.",
+  "holds_acknowledged": [
+    "batch_execution: first Symbolica witness completed; all compute idle",
+    "highpoint_coverage: phase-only diagnostic completed; all compute idle",
+    "collier_research: shared attempt002 captured; all compute idle",
+    "python_interface/marimo_notebooks: source-only, no build/install allowed",
+    "native_stack_batch and numeric_batch_audit: optimized preflights complete; all compute idle"
+  ],
+  "immutability": "Never rewrite this manifest. Append coordinator events/completion separately, binding this exact hash."
+}

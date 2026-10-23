@@ -1,0 +1,66 @@
+{
+  "status": "new_lazy_vs_eager_final_cohort_preregistered_build_and_preflight_passed_not_timed",
+  "recorded_utc": "2026-10-23T21:38:19.182980+00:00",
+  "parent_authorization": "ROOT authorized optimized pair and preflight; source-only timing protocol freeze/review now; separate immutable quiet-window start grant required",
+  "scope": "New lazy versus eager final-e23 pair using one accepted current shared adapter and common unchanged opt3 numerical closure; prior eager-final cohort and two regressions remain unchanged",
+  "original_qualification": "validation/raw-distance-final-performance/performance-qualification.json",
+  "original_qualification_sha256": "6b8b339ae45f911ff92237cab3ce9d3b4354c1acf9795b4f5574a047887cb2d3",
+  "matrix": {
+    "workloads": [
+      "bubble-ordinary",
+      "triangle-ordinary",
+      "bubble-zero-real",
+      "bubble-zero-complex",
+      "bubble-mixed-dual",
+      "ggh-zero-real",
+      "ggh-mixed-complex"
+    ],
+    "rows": [
+      1,
+      32
+    ]
+  },
+  "correctness": "Exact represented input/output bits, ordered Taylor/precision context, metadata/status/flags/public statistics/diagnostics and private four proof-work counters before/after every case and during5warm calls. Both N5 certificate counters inactive; default Symbolica master backend asserted. No expected deltas.",
+  "warmup": {
+    "calls_per_implementation_per_case": 5,
+    "before_calibration": true,
+    "exact_output_parity_each_call": true,
+    "included_in_timing": false
+  },
+  "calibration": {
+    "target_faster_side_seconds": 0.2,
+    "one_shared_iteration_count_for_both_implementations": true,
+    "initial_iterations": "same original predeclared workload/row counts",
+    "order": "alternatebaseline/candidatefirsteachcalibrationround",
+    "rule": "measure both at identical count; when min(elapsed)>=0.2 freeze count; otherwise count=max(count+1,ceil(count*0.2/minelapsed*1.02))",
+    "maximum_rounds": 12,
+    "failure": "Nonfinite/nonpositive duration,iterationoverflow,maximumrounds or totaldeadline producesretainedfailure;no rowdropping",
+    "excluded_from_reported_pairs": true,
+    "calibration_records_retained": true
+  },
+  "measurement": {
+    "blocks_per_case": 41,
+    "order": "baseline-first on even blocks, candidate-first on odd blocks;41fixed blocks give21/20 positions percase, retainedexactlyasprior reviewedprotocol",
+    "iterations": "calibratedsharedcount,frozenbeforeblock0",
+    "deadline_seconds_total_includingprep": 600,
+    "cpu": "explicitrequiredavailableCPUfromcoordinatorquietgrant",
+    "no_early_stopping_for_ci": true,
+    "no_case_omission": true,
+    "status_check_scope": "Timed iterations unwrap top-level Result; full lane statuses/metadata/outputs are compared by exact pre/post snapshots, not inside every measured iteration."
+  },
+  "analysis": {
+    "statistic": "median pairedloglatencyratio",
+    "resamples": 20000,
+    "random_seed": 14050301,
+    "interval": "99%pairedbootstrappercentile",
+    "width_gate": "(upper\u2212lower)/medianlatencyratio<=0.02;otherwiseinconclusive",
+    "decision": "Per case, no pooling; retain all14 new outcomes and historical all14 eager-final outcomes separately; do not multiply independent-cohort ratios",
+    "independent_review_required": true
+  },
+  "build_hold": "Build/preflight complete. No timing before source review and explicit ROOT quiet-window grant",
+  "source_manifest_sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+  "historical_protocol_source_review": "validation/raw-distance-final-performance/source-review.json",
+  "candidate_source": "validation/raw-distance-lazy-capture/candidate.patch",
+  "same_common_collector": true,
+  "library_scope": "Identical accepted shared current master adapter6926f334 and audited unchanged runtime numerical closure; both opt3/cgu16, one ThinLTO pair; no native selection or arity2 candidate"
+}

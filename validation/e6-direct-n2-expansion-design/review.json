@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "status": "source_review_passed",
+  "reviewer": "/root/pentagon_precision/nondyadic_oracle",
+  "reviewed_document": "docs/research/e6-n2-heterogeneous-validation.md",
+  "reviewed_document_sha256": "1574bd87d8c0a805602bccb640cca09ce70df985ee45861dc8012876175f3b23",
+  "scope": "Source-only mathematical and reference-evidence review; no builds, numerical execution, new certificates, or benchmark claims",
+  "findings": [],
+  "checks": {
+    "routing": "Displayed lexicographic distances match q0=0 and Cartesian axis shifts with lengths 1,2,3,4 in metric (+---). All ten are nonzero; four shifts are independent.",
+    "normalization": "E6=-integral_Delta4 F^-2 and volume=1/24 agree with independent existing E6 oracle. This is a five-parameter, four-dimensional simplex.",
+    "component_majorants": {"00": "120", "10": "5/2", "01": "7/2", "20": "1/2", "11": "1/4", "21": "1/8", "sum_at_one": "1015/8"},
+    "tail_preflight": "1015/8<128 and L>2 imply eta*B(1,1)/L<2^-58. For 0<=r<1/2, H4(r)=r^5*(5/(1-r)+1/(1-r)^2)<14*r^5. Thus H4(2^-58)/96<2^-290<2^-256. Positive coefficientwise majorization bounds every requested component by this common preflight bound. Future execution must emit and check exact individual radii.",
+    "independence": "Vacuum coefficients derive from differentiating the unexpanded physical parameter integrand and have zero remainder. The nonzero-row oracle integrates order four about M with an independent positive tail; candidate N2 freezes m0=M-2eta. No candidate integrated polynomial or bound helper is reused.",
+    "rectangle_gate": "Numeric and worst candidate-corner coordinate distances to the oracle center enlarged by its complex-modulus radius give conservative exact squared distance bounds. Complete oracle coordinate-interval containment is an additional explicit requirement; mere intersection is insufficient.",
+    "accuracy_gate": "Conditional on the proposed exact gates, true nonprimal magnitude >=eta/2^15 and absolute allowed error eta*2^-96 imply relative error <=2^-81. The new absolute budgets 2^-160 strengthen the old uniform2^-128 budgets. Actual allowed_error_squared must equal2^-320 on these nonprimal rows and is checked from the emitted returned value and relative budget.",
+    "batch_counts": "Five scale-valid packed rows, four analytically active rows, three successful rows and two hidden failures are consistent source expectations. They remain unobserved until execution; rejected rows and components may not be excluded.",
+    "original_iregi": "Read si_reduce.f90 matrix entry point and both real D6 shortcuts, csi_reduce.f90 complex shortcut, reference driver scalar/general protocols, shifted-pentagon adjudication source and recorded disagreement. These support treating original IREGI D6 results as diagnostic, not the independent correctness oracle here.",
+    "derivative_identity": "Read ignored second-order public-core identity test at crates/iregi-rust/tests/shifted_pentagon.rs:196-217. The separate first-derivative master test is not ignored; the revised note correctly identifies the higher-derivative test.",
+    "reuse_and_caps": "Available Symbolica differentiation, series, Q polynomial integration, endpoint substitution and exact evaluation cover the required algebra. Current quadrature successive-order estimates do not supply certified component tails. Runtime/term limits and fixed source evidence are requirements, not measured successes. A post-conversion term cap alone does not prevent memory exhaustion during conversion."
+  },
+  "wording_refinements_verified": [
+    "Heading identifies heterogeneous higher jets rather than implying five differential axes; there are two jet axes.",
+    "Five-parameter simplex wording replaces ambiguous five-simplex wording.",
+    "Ignored higher-derivative test has its exact source pointer."
+  ],
+  "limitations": [
+    "No proposed fixture, 81-bit gate, expected status, runtime, memory bound, or component interval was numerically tested in this review.",
+    "Order-four preparation and candidate rounding can still fail; preserve failures and do not weaken frozen acceptance gates.",
+    "This design does not qualify public/default E6 dispatch or general kinematics, masses, derivative shapes, powers, or dimensions."
+  ]
+}

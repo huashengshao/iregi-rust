@@ -1,0 +1,63 @@
+{
+  "status": "passed",
+  "review_kind": "independent_source_and_build_recipe_review_before_optimized_compilation",
+  "reviewer": "numeric_batch_audit/lazy_capture_implementation_review",
+  "source_manifest_sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+  "scope": "Frozen eager-final-e23 and lazy receipt source copies, accepted shared current master adapter, matched optimized core commands, one ThinLTO paired probe, and correctness-only preflight. This review does not grant or qualify timing.",
+  "reviewer_builds_numerical_runs_tests_or_timings_performed": false,
+  "reviewer_source_edits": false,
+  "reviewer_written_file": "target/raw-distance-lazy-capture-optimized/review/source-review.json",
+  "hash_verification": {
+    "all_source_manifest_binding_entries_checked": 570,
+    "all_shared_build_input_entries_checked_and_carried_forward": 489,
+    "source_files_compared_to_prior_reviewed_trees": 61,
+    "eager_tree_matches_reviewed_baseline_byte_for_byte": true,
+    "lazy_tree_matches_reviewed_candidate_byte_for_byte": true,
+    "shared_accepted_receipt_sha256": "4ddae0375567918948aa7f1b074c8ae5ee6f725859c4094d78b7dbc1b5e45db7",
+    "shared_build_record_sha256": "ab65012bc366649903e9957256966d84a8b602ff37dd61deb187354e1d21ea5b",
+    "shared_adapter_sha256": "6926f3342ac36e0dead8f3d0534da6dd44609d0281a8c9e79c4b5b8b3b302572",
+    "shared_compiler_log_sha256": "55c152d0818fd4be2d8d0a1f9693194b5f4571763cd7f5c20129da7c44f6eed5",
+    "closure_audit_sha256": "7faf196a9b4befa33cb7d55d3dc3dd4d8917c6ddba0ee1a5a93716b6086c72c8",
+    "shared_source_qualification_sha256": "7cac5462f7f4bd991982ea9625664d638affbbcfe9ae65153e9fd7bddc878b9b",
+    "compiler_sha256": "9ea4b7398bce9713ac47ea137032cf985ec6b5ea21be152beda9bd77320dc13f",
+    "linker_sha256": "3c48a46fb1dc134c0f10c2da6ec1a8d34a381b93c2ac588b7d19dd3e804eeeef",
+    "probe_sha256": "d9edce503c12c92aaf90fe5e306aad8c6b611a8fc62ecf1fbc6be5c182d3a768",
+    "build_script_sha256": "0d6800b2866994a5d7efc813a10afb24f1e7802ee8bd71b354617e9fc989f787",
+    "preflight_script_sha256": "0ff9f1dec2f4f460f84b7fa75f1d54e1af81ee2c1cecfc679287964a864dbaca",
+    "freeze_script_sha256": "e884afb383fe88144a616c11c6c5f835bc6da4376605389bcfac077453b84959"
+  },
+  "findings": [
+    {
+      "id": "unchanged_receipt_implementation",
+      "result": "Both optimized trees exactly match the previously source-reviewed and opt0 correctness-qualified eager/lazy copies. The lazy implementation, strict provenance, Taylor selection, row clearing, and proof-work/error harvesting have no new source changes. cfg(test)-only observation and tests remain excluded from normal optimized library builds."
+    },
+    {
+      "id": "shared_default_symbolica_adapter",
+      "result": "The accepted receipt resolves one shared opt3 adapter artifact and binds its build record and prior selected-adapter source qualification. Both receipt cores explicitly link that identical artifact. Neither source tree calls private_select_f64; no native-batch or private-selected cfg is passed. default_master_backend therefore selects SymbolicaBatch, and the probe asserts that default before preparing cases. The unrelated opt-in selected native path is not activated by this experiment."
+    },
+    {
+      "id": "matched_release_flags_and_closure",
+      "result": "Both core commands use opt-level=3, codegen-units=16, embed-bitcode=yes, debuginfo=0, debug-assertions=no and overflow-checks=no. The probe uses the same flags plus lto=thin. Each command invokes the resolved hash-bound rustc and explicitly selects the resolved hash-bound linker. Both cores use CARGO_CRATE_NAME=iregi_rust while Rust crate names/metadata disambiguate eager and lazy. There is no arity2/binary-fold dependency, target-native, fast-math, panic-mode override, or numerical dependency rebuild. Retained numerical archives have their separately recorded original opt3/cgu1 profile."
+    },
+    {
+      "id": "provenance_and_build_bounds",
+      "result": "The manifest carries all shared build input bindings, the accepted adapter/build/artifact chain, shared compiler log, compiler/linker executables, current source copies, prior receipt qualifications, scripts, and probe. The build requires a passed review bound to this manifest. It verifies frozen inputs and already-built outputs before and after each subsequent step and at completion; it retains terminal status and log hashes on failure. Exactly two core steps are capped at 180 seconds each and the ThinLTO probe step at 600 seconds, all on CPUs 6 and 7."
+    },
+    {
+      "id": "complete_exact_preflight",
+      "result": "The probe retains the prior seven workload generators at singleton and batch32, including ordered complex Dual seeds. Every Snapshot equality includes represented input/output bits, context, basis, metadata, statuses, analytic/fallback flags, public statistics, diagnostics and four private proof counters. Both sides require inactive N5 certificate work. The no-argument path performs one cold, five repeated, and one final snapshot per implementation per case. The preflight runner rejects options, invokes the probe without --time, enforces 120 seconds, verifies exactly fourteen distinct expected pairs and fourteen snapshots, and rejects calibration output or a non-correctness completion mode."
+    },
+    {
+      "id": "timing_is_separate",
+      "result": "The inherited fixed-41-pair timing code remains available only through the explicit --time branch. The current runner never supplies it and the manifest marks future timing authorized=false. This source review covers build and correctness admission only; it does not approve execution of calibration or timing blocks. The fixed_iterations text in correctness logs remains an unused label, not an executed correctness repetition count."
+    }
+  ],
+  "resolved_review_findings": [
+    "The stale probe header now identifies eager-final versus lazy capture accurately.",
+    "Already-built core outputs are rehashed before the dependent probe link and during final verification.",
+    "The resolved compiler executable and shared compiler log are now explicitly hash-bound.",
+    "The resolved linker is both hash-bound and explicitly selected in all three frozen command lists."
+  ],
+  "remaining_source_review_blockers": [],
+  "pending": "The authorized bounded optimized core/probe builds and fourteen-case exact preflight have not been performed by this reviewer. Their results must be checked against this frozen recipe. Any later timing requires its separate grant and qualification; older optimized regressions, the separate opt0 receipt qualification, and original-IREGI acceptance remain distinct and unchanged."
+}

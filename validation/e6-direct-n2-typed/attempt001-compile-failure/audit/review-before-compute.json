@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_only_review_before_compute",
+  "reviewer": "/root/pentagon_precision/nondyadic_oracle",
+  "reviewed_at_utc": "2026-10-23T21:07:11.758923+00:00",
+  "source_sha256": {
+    "target/e6-direct-n2-typed/source/typed.rs": "9e12fbe6f9cf37a320473a987057c4e79b435d6e7379a618c2c7c95704d9f3c8",
+    "target/e6-direct-n2-typed/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513"
+  },
+  "strategy_sha256": "64198670283cc75124cd0f6ca7f47ebf642cb9466ac93bd4e92dd0367dde1076",
+  "engine_unchanged_from_prior_checkpoint": true,
+  "unresolved_material_findings": [],
+  "findings": [
+    "Independent Symbolica identity evaluates exact represented common-complex-mass jets, with explicit zero-invariant/equal-mass preconditions.",
+    "Worst candidate rectangle and numeric distances are compared to the requested budget; exact identity containment is required.",
+    "Mixed low/high Float inputs retain their exact represented values and are normalized at workspace precision; source makes no scientific-uncertainty claim.",
+    "Static/dynamic Dual metadata and component transport are checked, while derivative arithmetic remains in Symbolica Dualizer.",
+    "Two scoped threads own separate workspaces and immutable shared inputs; joined results are compared with primary outputs.",
+    "Thirteen physical rows give twelve packed and seven active rows. Expected acceptance differs only for the large mixed cubic control.",
+    "Higher-working-precision audit compares Float256/384 arithmetic widths after exactly removing twice the truncation radius, with identical represented inputs and unchanged128-bit budgets."
+  ],
+  "expected_total_groups": 10,
+  "expected_total_physical_rows": 130,
+  "expected_total_success_rows": 65,
+  "expected_total_rejected_rows": 65,
+  "expected_total_success_components": 320,
+  "scope": "Read-only source review and exact-rational output audit design; no candidate build, Symbolica runtime, numerical evaluation, or change to the existing qualification bundle.",
+  "limits": [
+    "All planned numeric checks remain unexecuted until runtime outputs exist.",
+    "Concurrency/reverse/chunk/static-dynamic control arrays are checked by compiled assertions but not fully serialized.",
+    "Instruction-lane visits are a structural estimate, not a hardware trace.",
+    "No public/core/default E6 or performance qualification."
+  ]
+}

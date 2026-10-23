@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "recorded_utc": "2026-10-23T21:43:00Z",
+  "reviewer": "/root/numeric_batch_audit/lazy_capture_implementation_review",
+  "review_kind": "independent source-only timing protocol review during HOLD",
+  "protocol_manifest_sha256": "c7ac191fa03def94d6e7f8a869f30c6c7f0f61597f6b00f61483ae841469ddcb",
+  "scope": "New private optimized eager-final-e23 versus lazy receipt cohort using the accepted shared current master adapter and unchanged default Symbolica numerical closure. This review grants no timing authority, establishes no performance result and does not adopt the candidate.",
+  "verification_performed": {
+    "source_reviewed": [
+      "probe.rs timing branch and snapshots",
+      "protocol/run_timing.py",
+      "protocol/freeze_readiness.py",
+      "protocol/protocol.py",
+      "protocol/test_protocol.py",
+      "protocol/analyze.py",
+      "protocol/preregistration.json",
+      "protocol/manifest.json"
+    ],
+    "protocol_file_hashes_checked": 7,
+    "small_readiness_preflight_and_prior_review_record_hashes_checked": true,
+    "timing_manifest_binding_count": 588,
+    "prior_source_bindings_carried_forward_unchanged": 570,
+    "archive_or_executable_rehash_during_this_review": false,
+    "builds_or_numerical_execution_or_timing_performed": false,
+    "parser_tests_rerun_by_reviewer": false,
+    "parser_admission_evidence": "Parent-retained, explicitly labeled transcription reports nine pure parser tests passed. Source was reviewed independently; this reviewer did not rerun tests during HOLD."
+  },
+  "protocol_files": {
+    "run_timing.py": "9d25397978968e78d2313eab6ea9ae0000ce5728fd6896de5ab456ea6553f568",
+    "freeze_readiness.py": "62007fc0e9daa1fe0a6244c3b0e6d28ebaf7d304408167c1573eb0b4ff1de4e0",
+    "analyze.py": "23746be2261e58380f4ab02d41e1ac1797c7219980bbfd11d1e61b2626b7ba71",
+    "protocol.py": "b3fe96558d76e25fdc12adc71f33cb044566ad0a0817b466eb0723f4625e510a",
+    "test_protocol.py": "ee7f7e16d1e12e52e26b6edd0f2a50ffb216e9144f41f631c6f6d813e25e572e",
+    "preregistration.json": "e5f52a4e4645412c698d582de1c8bf98d31c0ccecfcee474a57e055517294f3e",
+    "parser-admission.json": "a3828f1186bb9a4ef7f77b70a1d623516e93653a4b9b5e416e59d7bab32c73cb"
+  },
+  "preserved_evidence": {
+    "source_manifest_sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+    "optimized_runtime_review_sha256": "2db359d80b1ece960abe270713af7a7da2e2c65345c9393069dade2cba65cd80",
+    "preflight_sha256": "83c0ec37961d9b2a9e6bf5eb3ea55b947dc98bfc7ffebcff51361cc926fedbaa",
+    "initial_readiness_sha256": "b96c5ba933979f86217a30a09fbd00f79b3c2aa856fdbc6cd1e757c25cbfe0dc",
+    "qualified_readiness_sha256": "a9ab9d5bddf664a6dcf54b3609c43f6de6f7ba9d8defbcb49bda25a7d755320a",
+    "prior_complete_hash_audit": "The prior optimized runtime review verified 581 binding entries / 578 resolved files. This source-only review carries that evidence forward; it does not claim a fresh archive/binary scan.",
+    "readiness_append": "freeze_readiness.py requires this passed review bound to the exact protocol manifest, checks all seven small protocol-file hashes, copies the complete manifest bindings and adds manifest/review hashes. It refuses to overwrite timing-ready.json and modifies no prior preflight/readiness record. The resulting timing-ready hash is necessarily generated after this review."
+  },
+  "findings": {
+    "inherited_protocol": "protocol.py and test_protocol.py are byte-identical to the prior final-performance cohort. analyze.py differs only in its output scope text. Probe calibration, timed loop and paired measurement bodies are unchanged; namespace and stronger correctness observations are outside those bodies.",
+    "matrix_and_warmup": "Exactly seven declared workloads at rows 1 and 32, totaling 14 cases. Each case compares cold snapshots, performs five exact warm comparisons per implementation, calibrates, measures and compares final snapshots.",
+    "snapshot_scope": "Snapshots include represented input/output bits, ordered Taylor shape/precision context, metadata/status/flags, public statistics/diagnostics and four private proof-work counters. Both implementations assert inactive N5 work; the probe asserts default SymbolicaBatch.",
+    "calibration": "Starts from the inherited per-case iteration table. Both implementations use one shared count. Each trial alternates execution order; the minimum elapsed duration must reach 200 ms before measurement. Below target, the count uses the inherited 2% headroom formula. The strict parser validates every transition, initial count, round index/order, positive duration, maximum 12 rounds and final target.",
+    "order_and_counts": "Exactly 41 fixed alternating pairs per case: 21 baseline-first and 20 candidate-first positions, explicitly acknowledged in preregistration and manifest. No extra balancing block, adaptive CI stopping, case omission or pair dropping. Total 574 pairs / 1148 measurement rows.",
+    "measurement_scope": "Measured blocks include repeated reduce_batch calls and result construction/drop. Preparation, exact snapshots and calibration are outside each reported block. The child-process deadline is 600 seconds including its preparation/calibration; wrapper provenance hashing is outside that process deadline.",
+    "measurement_parser": "Requires the exact CSV schema, all 14 cases, each block 0 through 40 exactly once per implementation, parity-correct order labels, the frozen calibrated shared iteration count and finite positive values. Missing/duplicate/incomplete rows fail admission.",
+    "estimator": "Per-case median paired log latency ratio, 20000 bootstrap resamples of whole pairs with deterministic seed 14050301, retained 99% percentile endpoints and candidate/baseline reciprocal transform. A relative interval width above 2% is inconclusive-noise. No pooling or multiplying independent cohort ratios.",
+    "readiness_and_provenance": "Runner requires a passed exact-manifest review; exact manifest/review hashes in timing-ready; matching probe metadata; and every reviewed manifest binding in timing-ready. Build/preflight must pass and bind the same probe. Full bindings, executed binary copy and quiet-grant hash are checked before launch and after exit.",
+    "attempt_retention": "Runner refuses existing record/CSV/log outputs, copies the hash-checked executable to a private executable file and retains that file. It records an owned process group, enforces a 600-second wait and kills that group on timeout. Ordinary execution exceptions retain type/repr. Terminal state is written before post-run validation; CSV/log/executable/quiet-file hashes are attempted independently, so a provenance failure does not prevent binding other retained artifacts.",
+    "success_gate": "Pass requires successful exit without timeout, unchanged bound provenance, exactly one final PASS 14 timing marker and the complete strict calibration/measurement matrix. Analyzer rechecks the retained CSV/log and its own, parser and preregistration hashes before analysis."
+  },
+  "limitations_and_conditions": [
+    "ROOT must separately grant the quiet window and selected CPU. The runner binds the supplied immutable grant file and explicit SHA, but does not interpret its authorization/CPU semantics or establish external machine quietness.",
+    "Timed iterations unwrap the top-level Result. Full lane statuses, metadata and outputs are checked in exact pre/post snapshots rather than inside every measured iteration; the preregistration now states this.",
+    "The historical 21/20 order split is preserved rather than exactly balanced. The inherited bootstrap treats the 41 observed pairs as resampling units and is not a separate time-series or order-stratified analysis.",
+    "Ordinary failure and timeout paths are retained; no source-level runner can guarantee a terminal record after external SIGKILL, host loss or an unwritable output filesystem.",
+    "The prior eager-final performance cohort and its two regressions remain separate and unchanged. No new outcome can be inferred until an authorized complete cohort and independent result review exist."
+  ],
+  "blocking_findings": []
+}

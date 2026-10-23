@@ -1,0 +1,536 @@
+--- baseline/crates/iregi-rust/src/execution.rs
++++ candidate/crates/iregi-rust/src/execution.rs
+@@ -207,7 +207,7 @@
+         }
+     }
+ 
+-    fn failures(
++    fn failures<'source>(
+         &mut self,
+         input: &[Complex<T>],
+         arguments: &[Complex<T>],
+@@ -218,7 +218,8 @@
+         accuracy_bits: u32,
+         original_lanes: &[usize],
+         incoming: Option<&IncomingDistanceReceipts<'_, '_, T>>,
+-        mut outgoing: Option<&mut RawDistanceReceipts<'_, T>>,
++        outgoing_source: Option<&'source KinematicsBatch<T>>,
++        outgoing: &mut Option<RawDistanceReceipts<'source, T>>,
+         work: &mut DistanceProofWork,
+     ) -> Result<Vec<(usize, String)>, ReductionError> {
+         let incoming = incoming
+@@ -296,14 +297,18 @@
+             if let Some(incoming) = incoming {
+                 let covered = incoming.coverage(original);
+                 let before = selected.len();
+-                if let Some(outgoing) = outgoing.as_mut() {
+-                    outgoing.proven[original].extend(
+-                        selected
+-                            .iter()
+-                            .copied()
+-                            .filter(|pair| covered.binary_search(pair).is_ok()),
+-                    );
+-                }
++                RawDistanceReceipts::record(
++                    outgoing,
++                    outgoing_source,
++                    &self.domain,
++                    prototype.get_precision(),
++                    accuracy_bits,
++                    original,
++                    selected
++                        .iter()
++                        .copied()
++                        .filter(|pair| covered.binary_search(pair).is_ok()),
++                );
+                 selected.retain(|pair| covered.binary_search(pair).is_err());
+                 work.add(DistanceProofWork {
+                     reused_pairs: before - selected.len(),
+@@ -355,8 +360,16 @@
+             let original = original_lanes[compact];
+             let reason = match certificate {
+                 ExactZeroCertificate::Zero => {
++                    RawDistanceReceipts::record(
++                        outgoing,
++                        outgoing_source,
++                        &self.domain,
++                        prototype.get_precision(),
++                        accuracy_bits,
++                        original,
++                        selected.iter().copied(),
++                    );
+                     if let Some(outgoing) = outgoing.as_mut() {
+-                        outgoing.proven[original].extend_from_slice(selected);
+                         outgoing.proven[original].sort_unstable();
+                     }
+                     continue;
+@@ -1054,6 +1067,8 @@
+     lightlike_unequal: Option<Box<Workspace<T>>>,
+     stats: ExecutionStats,
+     proof_work: DistanceProofWork,
++    #[cfg(test)]
++    last_outgoing_receipt_present: bool,
+     profiling: bool,
+     profile: ExecutionProfile,
+     diagnostics: Vec<Vec<String>>,
+@@ -1252,6 +1267,8 @@
+             primal_output: Vec::new(),
+             stats: ExecutionStats::default(),
+             proof_work: DistanceProofWork::default(),
++            #[cfg(test)]
++            last_outgoing_receipt_present: false,
+             profiling: false,
+             profile: ExecutionProfile::default(),
+             diagnostics: Vec::new(),
+@@ -1380,6 +1397,10 @@
+                     .all(|&lane| lane < proof.receipt.source.rows)
+         });
+         self.proof_work = DistanceProofWork::default();
++        #[cfg(test)]
++        {
++            self.last_outgoing_receipt_present = false;
++        }
+         self.profile = ExecutionProfile::default();
+         let started = self.profiling.then(Instant::now);
+         if let Some(state) = &mut self.planar_fallback {
+@@ -1542,21 +1563,14 @@
+         record_time(started, &mut self.profile.arguments);
+         evaluated.map_err(|error| ReductionError::Evaluation(error.to_string()))?;
+ 
+-        let mut receipts = self
++        let capture_receipts = self
+             .distance_zeros
+             .as_ref()
+-            .filter(|checks| {
++            .is_some_and(|checks| {
+                 checks.domain.reusable()
+                     && (self.classification_offset.is_some() || self.zero_profile_offset.is_some())
+-            })
+-            .map(|checks| {
+-                RawDistanceReceipts::new(
+-                    batch,
+-                    checks.domain.clone(),
+-                    self.prototype.get_precision(),
+-                    self.accuracy_bits,
+-                )
+             });
++        let mut receipts = None;
+         if let Some(checks) = &mut self.distance_zeros {
+             let started = self.profiling.then(Instant::now);
+             let checked = checks.failures(
+@@ -1569,10 +1583,15 @@
+                 self.accuracy_bits,
+                 &self.valid_lanes,
+                 incoming,
+-                receipts.as_mut(),
++                capture_receipts.then_some(batch),
++                &mut receipts,
+                 &mut self.proof_work,
+             );
+             record_time(started, &mut self.profile.arguments);
++            #[cfg(test)]
++            {
++                self.last_outgoing_receipt_present = receipts.is_some();
++            }
+             let failures = checked?;
+             if !failures.is_empty() {
+                 for (compact, reason) in failures {
+--- baseline/crates/iregi-rust/src/execution/lazy_capture_tests.rs
++++ candidate/crates/iregi-rust/src/execution/lazy_capture_tests.rs
+@@ -0,0 +1,302 @@
++// Test-only lifecycle probes for the single lazy-capture change. No numerical
++// tolerances, production counters, or public API are altered.
++
++#[test]
++fn lazy_capture_empty_or_disabled_record_has_no_arc_or_storage() {
++    let batch = lightlike_batch();
++    let domain = domain(None);
++    let initial = Arc::strong_count(&domain);
++    let mut receipt = None;
++    RawDistanceReceipts::record(&mut receipt, Some(&batch), &domain, 53, 53, 0, []);
++    assert!(receipt.is_none());
++    assert_eq!(Arc::strong_count(&domain), initial);
++    RawDistanceReceipts::record(&mut receipt, None, &domain, 53, 53, 0, [(0, 0)]);
++    assert!(receipt.is_none());
++    assert_eq!(Arc::strong_count(&domain), initial);
++}
++
++#[test]
++fn lazy_capture_first_evidence_creates_one_context_and_preserves_identity() {
++    let batch = KinematicsBatch {
++        rows: 3,
++        components: 1,
++        values: lightlike_batch().values.repeat(3),
++    };
++    let domain = domain(None);
++    let initial = Arc::strong_count(&domain);
++    let mut receipt = None;
++    RawDistanceReceipts::record(&mut receipt, Some(&batch), &domain, 128, 53, 2, [(0, 0)]);
++    let outer = receipt.as_ref().unwrap().proven.as_ptr();
++    assert_eq!(Arc::strong_count(&domain), initial + 1);
++    RawDistanceReceipts::record(&mut receipt, Some(&batch), &domain, 128, 53, 0, [(0, 1)]);
++    let captured = receipt.as_ref().unwrap();
++    assert_eq!(captured.proven.as_ptr(), outer);
++    assert_eq!(Arc::strong_count(&domain), initial + 1);
++    assert!(std::ptr::eq(captured.source, &batch));
++    assert!(Arc::ptr_eq(&captured.domain, &domain));
++    assert_eq!((captured.working_bits, captured.accuracy_bits), (128, 53));
++    assert_eq!(captured.proven, [vec![(0, 1)], vec![], vec![(0, 0)]]);
++    drop(receipt);
++    assert_eq!(Arc::strong_count(&domain), initial);
++}
++
++#[test]
++fn lazy_capture_ordinary_calls_stay_empty_after_an_earlier_proved_call() {
++    let mut workspace = Workspace::new(&plan(), 0.).unwrap();
++    let ordinary = KinematicsBatch {
++        rows: 2,
++        components: 1,
++        values: row([0., 1., 0., 0.], [4., 9.]).repeat(2),
++    };
++    let zero = lightlike_batch();
++    let (failures, receipt, work) = check_lazy(&mut workspace, &ordinary, None);
++    assert!(failures.is_empty());
++    assert!(receipt.is_none());
++    assert_eq!(work, DistanceProofWork::default());
++    let (failures, receipt, work) = check_lazy(&mut workspace, &zero, None);
++    assert!(failures.is_empty());
++    assert_eq!(receipt.unwrap().proven, [vec![(0, 0)]]);
++    assert!(work.certificate_rows > 0);
++    let (failures, receipt, work) = check_lazy(&mut workspace, &ordinary, None);
++    assert!(failures.is_empty());
++    assert!(receipt.is_none());
++    assert_eq!(work, DistanceProofWork::default());
++}
++
++#[test]
++fn lazy_capture_public_calls_reset_capture_for_ordinary_invalid_and_empty_batches() {
++    let mut workspace = Workspace::new(&plan(), 0.).unwrap();
++    let ordinary = KinematicsBatch {
++        rows: 1,
++        components: 1,
++        values: row([0., 1., 0., 0.], [4., 9.]),
++    };
++    assert_eq!(
++        workspace.reduce_batch(&ordinary).unwrap().statuses,
++        [LaneStatus::Success]
++    );
++    assert!(!workspace.last_outgoing_receipt_present);
++    assert_eq!(workspace.proof_work, DistanceProofWork::default());
++    assert_eq!(
++        workspace.reduce_batch(&lightlike_batch()).unwrap().statuses,
++        [LaneStatus::Success]
++    );
++    assert!(workspace.last_outgoing_receipt_present);
++    assert!(workspace.proof_work.reused_pairs > 0);
++    assert_eq!(
++        workspace.reduce_batch(&ordinary).unwrap().statuses,
++        [LaneStatus::Success]
++    );
++    assert!(!workspace.last_outgoing_receipt_present);
++    assert_eq!(workspace.proof_work, DistanceProofWork::default());
++    assert_eq!(
++        workspace.reduce_batch(&lightlike_batch()).unwrap().statuses,
++        [LaneStatus::Success]
++    );
++    assert!(workspace.last_outgoing_receipt_present);
++    assert!(workspace.proof_work.reused_pairs > 0);
++    let mut invalid = lightlike_batch();
++    invalid.values[10] = c(-1.);
++    assert!(matches!(
++        workspace.reduce_batch(&invalid).unwrap().statuses[0],
++        LaneStatus::InvalidInput(_)
++    ));
++    assert!(!workspace.last_outgoing_receipt_present);
++    assert_eq!(workspace.proof_work, DistanceProofWork::default());
++    assert_eq!(
++        workspace.reduce_batch(&lightlike_batch()).unwrap().statuses,
++        [LaneStatus::Success]
++    );
++    assert!(workspace.last_outgoing_receipt_present);
++    assert!(workspace.proof_work.reused_pairs > 0);
++    let empty = KinematicsBatch {
++        rows: 0,
++        components: 1,
++        values: Vec::new(),
++    };
++    assert!(workspace.reduce_batch(&empty).unwrap().statuses.is_empty());
++    assert!(!workspace.last_outgoing_receipt_present);
++    assert_eq!(workspace.proof_work, DistanceProofWork::default());
++}
++
++fn lazy_capture_false_zero_jet() -> (Workspace<f64>, KinematicsBatch<f64>) {
++    let mut p = plan();
++    p.special_kinematics = true;
++    let dual = HyperDual::<Complex<Rational>>::new(vec![vec![0], vec![1], vec![2]]);
++    let workspace = Workspace::new_dual(&p, 0., dual).unwrap();
++    let large = 134_217_728.;
++    let tangent = [large, large - 2_f64.powi(-26), 2., 0.];
++    let values = row([0.; 4], [4., 4.])
++        .into_iter()
++        .enumerate()
++        .flat_map(|(i, value)| {
++            [
++                value,
++                c(if (4..8).contains(&i) {
++                    tangent[i - 4]
++                } else {
++                    0.
++                }),
++                c(0.),
++            ]
++        })
++        .collect();
++    (
++        workspace,
++        KinematicsBatch {
++            rows: 1,
++            components: 3,
++            values,
++        },
++    )
++}
++
++#[test]
++fn lazy_capture_failed_fresh_proof_and_empty_incoming_do_not_allocate() {
++    let (mut workspace, batch) = lazy_capture_false_zero_jet();
++    let domain = workspace.distance_zeros.as_ref().unwrap().domain.clone();
++    let empty = RawDistanceReceipts::new(&batch, domain, 53, 53);
++    let incoming = IncomingDistanceReceipts {
++        receipt: &empty,
++        source_lanes: &[0],
++    };
++    for incoming in [None, Some(&incoming)] {
++        let (failures, receipt, work) = check_lazy(&mut workspace, &batch, incoming);
++        assert_eq!(failures.len(), 1);
++        assert!(failures[0].1.contains("Taylor component 2"), "{failures:?}");
++        assert!(receipt.is_none());
++        assert_eq!(work.reused_pairs, 0);
++        assert_eq!(work.covered_rows, 0);
++        assert!(work.certificate_rows > 0);
++    }
++}
++
++#[test]
++fn lazy_capture_partial_valid_coverage_is_cleared_after_fresh_failure() {
++    let (mut workspace, mut batch) = lazy_capture_false_zero_jet();
++    batch.rows = 2;
++    batch.values.extend(
++        lightlike_batch()
++            .values
++            .into_iter()
++            .flat_map(|x| [x, c(0.), c(0.)]),
++    );
++    let exact = batch
++        .values
++        .iter()
++        .map(|value| {
++            Complex::new(
++                value.re.exact_rational().unwrap(),
++                value.im.exact_rational().unwrap(),
++            )
++        })
++        .collect::<Vec<_>>();
++    let checks = workspace.distance_zeros.as_mut().unwrap();
++    assert_eq!(
++        checks
++            .certificate
++            .check_selected_batch(
++                &exact,
++                2,
++                &[vec![(0, 0), (0, 1)], vec![(0, 0), (0, 1), (0, 2)]]
++            )
++            .unwrap(),
++        [ExactZeroCertificate::Zero, ExactZeroCertificate::Zero]
++    );
++    let mut partial = RawDistanceReceipts::new(&batch, checks.domain.clone(), 53, 53);
++    partial.proven[0] = vec![(0, 0), (0, 1)];
++    partial.proven[1] = vec![(0, 0), (0, 1), (0, 2)];
++    let incoming = IncomingDistanceReceipts {
++        receipt: &partial,
++        source_lanes: &[0, 1],
++    };
++    let (failures, receipt, work) = check_lazy(&mut workspace, &batch, Some(&incoming));
++    assert_eq!(failures.len(), 1);
++    assert!(failures[0].1.contains("Taylor component 2"), "{failures:?}");
++    let receipt = receipt.expect("valid partial evidence was captured before fresh failure");
++    assert!(receipt.proven[0].is_empty());
++    assert_eq!(receipt.proven[1], [(0, 0), (0, 1), (0, 2)]);
++    assert_eq!(work.reused_pairs, 5);
++    assert_eq!(work.covered_rows, 1);
++    assert!(work.certificate_rows > 0);
++}
++
++#[test]
++fn lazy_capture_ordinary_primal_does_not_skip_zero_taylor_components() {
++    let mut p = plan();
++    p.special_kinematics = true;
++    let dual = HyperDual::<Complex<Rational>>::new(vec![vec![0], vec![1], vec![2]]);
++    let mut workspace = Workspace::new_dual(&p, 0., dual).unwrap();
++    let batch = KinematicsBatch {
++        rows: 1,
++        components: 3,
++        values: row([0., 1., 0., 0.], [4., 9.])
++            .into_iter()
++            .flat_map(|x| [x, c(0.), c(0.)])
++            .collect(),
++    };
++    let (failures, receipt, work) = check_lazy(&mut workspace, &batch, None);
++    assert!(failures.is_empty());
++    assert_eq!(receipt.unwrap().proven, [vec![(0, 1), (0, 2)]]);
++    assert!(work.certificate_rows > 0);
++    assert_eq!(work.reused_pairs, 0);
++}
++
++#[test]
++fn lazy_capture_compacted_reordered_rows_keep_original_source_indices() {
++    let mut workspace = Workspace::new(&plan(), 0.).unwrap();
++    let ordinary = row([0., 1., 0., 0.], [4., 9.]);
++    let zero = lightlike_batch().values;
++    let mut invalid = zero.clone();
++    invalid[10] = c(-1.);
++    let batch = KinematicsBatch {
++        rows: 5,
++        components: 1,
++        values: [invalid, ordinary.clone(), zero.clone(), ordinary, zero].concat(),
++    };
++    let width = workspace.parameters;
++    let lanes = [4, 2];
++    let packed = lanes
++        .iter()
++        .flat_map(|&lane| {
++            batch.values[lane * width..(lane + 1) * width]
++                .iter()
++                .cloned()
++        })
++        .collect::<Vec<_>>();
++    let argument_width = workspace.argument_count;
++    let mut arguments = vec![c(0.); lanes.len() * argument_width];
++    workspace
++        .arguments
++        .evaluate_batch(&packed, &mut arguments, lanes.len())
++        .unwrap();
++    let mut receipt = None;
++    let mut work = DistanceProofWork::default();
++    let failures = workspace
++        .distance_zeros
++        .as_mut()
++        .unwrap()
++        .failures(
++            &packed,
++            &arguments,
++            width,
++            argument_width,
++            1,
++            &workspace.prototype,
++            workspace.accuracy_bits,
++            &lanes,
++            None,
++            Some(&batch),
++            &mut receipt,
++            &mut work,
++        )
++        .unwrap();
++    assert!(failures.is_empty());
++    let receipt = receipt.unwrap();
++    assert!(std::ptr::eq(receipt.source, &batch));
++    assert_eq!(
++        receipt.proven,
++        [vec![], vec![], vec![(0, 0)], vec![], vec![(0, 0)]]
++    );
++    assert_eq!(work.certificate_rows, 2);
++}
+--- baseline/crates/iregi-rust/src/execution/proof_receipt_tests.rs
++++ candidate/crates/iregi-rust/src/execution/proof_receipt_tests.rs
+@@ -109,6 +109,29 @@
+     RawDistanceReceipts<'a, f64>,
+     DistanceProofWork,
+ ) {
++    let (failures, receipt, work) = check_lazy(workspace, batch, incoming);
++    // Preserve the original twelve tests' empty-coverage return convention.
++    // New lifecycle tests inspect the option before this test-only fallback.
++    let receipt = receipt.unwrap_or_else(|| {
++        RawDistanceReceipts::new(
++            batch,
++            workspace.distance_zeros.as_ref().unwrap().domain.clone(),
++            workspace.prototype.get_precision(),
++            workspace.accuracy_bits,
++        )
++    });
++    (failures, receipt, work)
++}
++
++fn check_lazy<'a>(
++    workspace: &mut Workspace<f64>,
++    batch: &'a KinematicsBatch<f64>,
++    incoming: Option<&IncomingDistanceReceipts<'_, '_, f64>>,
++) -> (
++    Vec<(usize, String)>,
++    Option<RawDistanceReceipts<'a, f64>>,
++    DistanceProofWork,
++) {
+     let width = workspace.parameters * workspace.components;
+     let argument_width = workspace.argument_count * workspace.components;
+     let mut arguments = vec![c(0.); batch.rows * argument_width];
+@@ -116,12 +139,7 @@
+         .arguments
+         .evaluate_batch(&batch.values, &mut arguments, batch.rows)
+         .unwrap();
+-    let mut receipt = RawDistanceReceipts::new(
+-        batch,
+-        workspace.distance_zeros.as_ref().unwrap().domain.clone(),
+-        workspace.prototype.get_precision(),
+-        workspace.accuracy_bits,
+-    );
++    let mut receipt = None;
+     let lanes = (0..batch.rows).collect::<Vec<_>>();
+     let mut work = DistanceProofWork::default();
+     let failures = workspace
+@@ -138,7 +156,8 @@
+             workspace.accuracy_bits,
+             &lanes,
+             incoming,
+-            Some(&mut receipt),
++            Some(batch),
++            &mut receipt,
+             &mut work,
+         )
+         .unwrap();
+@@ -551,3 +570,4 @@
+ }
+ 
+ include!("proof_receipt_accounting_tests.rs");
++include!("lazy_capture_tests.rs");
+--- baseline/crates/iregi-rust/src/execution/proof_receipts.rs
++++ candidate/crates/iregi-rust/src/execution/proof_receipts.rs
+@@ -63,6 +63,30 @@
+             proven: vec![Vec::new(); source.rows],
+         }
+     }
++
++    /// Materialize call-local coverage only when there is evidence to retain.
++    /// An empty selection or intersection must not allocate a receipt.
++    pub(super) fn record(
++        outgoing: &mut Option<Self>,
++        source: Option<&'source KinematicsBatch<T>>,
++        domain: &Arc<RawDistanceProofDomain>,
++        working_bits: u32,
++        accuracy_bits: u32,
++        original_row: usize,
++        pairs: impl IntoIterator<Item = (usize, usize)>,
++    ) {
++        let Some(source) = source else {
++            return;
++        };
++        let mut pairs = pairs.into_iter();
++        let Some(first) = pairs.next() else {
++            return;
++        };
++        let receipt = outgoing
++            .get_or_insert_with(|| Self::new(source, domain.clone(), working_bits, accuracy_bits));
++        receipt.proven[original_row].push(first);
++        receipt.proven[original_row].extend(pairs);
++    }
+ }
+ 
+ /// Only dispatch_profile constructs this view, immediately after cloning exactly

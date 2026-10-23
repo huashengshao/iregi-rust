@@ -1,0 +1,48 @@
+{
+  "scope": "Typed validation of unchanged E6 N2 candidate; retained native-object dependencies; no production change",
+  "command": [
+    "taskset",
+    "-c",
+    "18,19",
+    "rustc",
+    "--edition=2024",
+    "--crate-name",
+    "e6_direct_n2_typed",
+    "/shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/source/typed.rs",
+    "-C",
+    "opt-level=0",
+    "-C",
+    "debuginfo=0",
+    "-C",
+    "strip=debuginfo",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/e6-direct-n2/native",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps/libiregi_masters-f07797f04e91954e.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps/libsymbolica-06e42762cabb77d9.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/e6-direct-n2/deps/libserde_json-d657c5438f354a41.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/e6-direct-n2-typed/validate"
+  ],
+  "compile_environment_overrides": {
+    "CARGO_CRATE_NAME": "e6_direct_n2_typed"
+  },
+  "sources": {
+    "target/e6-direct-n2-typed/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+    "target/e6-direct-n2-typed/source/typed.rs": "9e12fbe6f9cf37a320473a987057c4e79b435d6e7379a618c2c7c95704d9f3c8"
+  },
+  "preparation_sha256": "1538dbc24bd16330a878be45965cd5b5d148a8fc8f062348e550275dcffcbc88",
+  "runner_sha256": "3ed0c93d982340630718de78ac3d76e0c6f6edf121c7cd23cfd4d0f5a45838b8",
+  "timeout_seconds": 180,
+  "started_unix_time": 1792789666.925249,
+  "pid": 1586692,
+  "exit_code": 1,
+  "elapsed_seconds_diagnostic": 1.0674358690157533,
+  "sources_unchanged": true,
+  "closure_unchanged": true,
+  "build_log_sha256": "cb185224821c751fa7357c849cf1a27b1fdd69b9631fb516e1536590a4e070dd"
+}

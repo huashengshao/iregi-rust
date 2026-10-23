@@ -1,0 +1,112 @@
+{
+  "status": "passed",
+  "qualification": "optimized_paired_correctness_readiness_only",
+  "review_kind": "independent_read_only_audit_of_completed_build_and_preflight",
+  "reviewer": "numeric_batch_audit/lazy_capture_implementation_review",
+  "source_manifest_sha256": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+  "source_review_sha256": "0f8876b41ce0a0b082baba0345eab9afe7a2bd35932f212d586109ca794ff9dd",
+  "scope": "Completed optimized eager-final-e23 versus lazy capture build and fourteen-case exact preflight, using one accepted shared master adapter with default Symbolica and the frozen optimized dependency closure. No performance or production-adoption qualification.",
+  "reviewer_new_builds_reruns_or_timing_measurements": false,
+  "reviewer_modified_sources_or_existing_records": false,
+  "reviewer_written_file": "target/raw-distance-lazy-capture-optimized/review/runtime-review.json",
+  "provenance": {
+    "source_manifest_binding_entries": 570,
+    "build_input_entries": 572,
+    "preflight_input_entries": 576,
+    "all_verified_binding_entries": 581,
+    "distinct_resolved_files_verified": 578,
+    "all_hashes_match_current_files": true,
+    "no_conflicting_alias_bindings": true,
+    "build_inputs_equal_frozen_manifest_plus_manifest_and_source_review": true,
+    "preflight_inputs_equal_build_inputs_plus_three_outputs_and_build_record": true,
+    "executed_step_specs_exactly_match_frozen_command_environment_output_and_timeout_specs": true,
+    "all_steps_and_preflight_report_inputs_unchanged": true,
+    "canonical_verified_binding_map_sha256": "ce9a97a79987189f1041a1ce4b7f4eff9ca8e8b75ce4700bdba5000d953eca6e",
+    "canonical_binding_map_encoding": "JSON::PP canonical compact encoding of merged source/build input bindings, outputs, build/preflight records, and build/preflight logs"
+  },
+  "input_and_receipt_hashes": {
+    "target/raw-distance-lazy-capture-optimized/source-manifest.json": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+    "target/raw-distance-lazy-capture-optimized/review/source-review.json": "0f8876b41ce0a0b082baba0345eab9afe7a2bd35932f212d586109ca794ff9dd",
+    "target/selected-native-optimized/closure-audit.json": "7faf196a9b4befa33cb7d55d3dc3dd4d8917c6ddba0ee1a5a93716b6086c72c8",
+    "target/selected-native-optimized/shared/accepted.json": "4ddae0375567918948aa7f1b074c8ae5ee6f725859c4094d78b7dbc1b5e45db7",
+    "target/selected-native-optimized/shared/build-001/build.json": "ab65012bc366649903e9957256966d84a8b602ff37dd61deb187354e1d21ea5b",
+    "target/selected-native-optimized/shared/build-001/libiregi_masters_selected.rlib": "6926f3342ac36e0dead8f3d0534da6dd44609d0281a8c9e79c4b5b8b3b302572",
+    "target/raw-distance-lazy-capture-optimized/probe.rs": "d9edce503c12c92aaf90fe5e306aad8c6b611a8fc62ecf1fbc6be5c182d3a768",
+    "target/raw-distance-lazy-capture-optimized/build.py": "0d6800b2866994a5d7efc813a10afb24f1e7802ee8bd71b354617e9fc989f787",
+    "target/raw-distance-lazy-capture-optimized/preflight.py": "0ff9f1dec2f4f460f84b7fa75f1d54e1af81ee2c1cecfc679287964a864dbaca"
+  },
+  "record_hashes": {
+    "target/raw-distance-lazy-capture-optimized/build-001/build.json": "2c0b18fa418314c5449a093c0d1ab219d57c1549a346387d985804bf2aa750ac",
+    "target/raw-distance-lazy-capture-optimized/preflight.json": "83c0ec37961d9b2a9e6bf5eb3ea55b947dc98bfc7ffebcff51361cc926fedbaa"
+  },
+  "output_hashes": {
+    "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_eager.rlib": "6c1347cd64458df3bc816ecef353a376b9233391d282f5da17003000a7dbc240",
+    "target/raw-distance-lazy-capture-optimized/build-001/libreceipt_opt_lazy.rlib": "4f74449a1f2970760bc9c35d1d767dda96cd3e051e34f208666b5cdc0bb851bc",
+    "target/raw-distance-lazy-capture-optimized/build-001/probe": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c"
+  },
+  "log_hashes": {
+    "target/raw-distance-lazy-capture-optimized/build-001/eager.log": "0b461929d14b21ff83590326cd29e89b180cf6b35008f434832f282e368b8af6",
+    "target/raw-distance-lazy-capture-optimized/build-001/lazy.log": "d5a19e6cf965ffdc5cb210dd2c92781b7ba3802fbcdcd26a9c4878f6beba8ff5",
+    "target/raw-distance-lazy-capture-optimized/build-001/probe.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/raw-distance-lazy-capture-optimized/preflight.log": "cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd"
+  },
+  "build_results": [
+    {"label": "eager", "status": "passed", "returncode": 0, "timeout": false, "recorded_seconds": 29.194029417005368, "bound_seconds": 180},
+    {"label": "lazy", "status": "passed", "returncode": 0, "timeout": false, "recorded_seconds": 33.89429040602408, "bound_seconds": 180},
+    {"label": "probe", "status": "passed", "returncode": 0, "timeout": false, "recorded_seconds": 312.34465372399427, "bound_seconds": 600}
+  ],
+  "build_configuration": {
+    "core_flags": "opt-level=3, codegen-units=16, embed-bitcode=yes, debuginfo=0, debug-assertions=no, overflow-checks=no",
+    "probe_additional_flag": "lto=thin",
+    "compiler_and_linker": "Explicit frozen executable paths and hashes, with explicit -C linker in every step",
+    "matching_namespace_environment": "CARGO_CRATE_NAME=iregi_rust on both core builds; distinct Rust crate/metadata disambiguators",
+    "shared_master_adapter": "Identical accepted artifact for both cores and probe; native selection is not invoked",
+    "numerical_dependency_profile": "Retained frozen opt3/cgu1 closure, distinct from new cgu16 core/adapter/probe code generation",
+    "logs": "Six retained dead-code warnings on each core build; probe build log empty; all three exit codes zero"
+  },
+  "preflight_result": {
+    "status": "passed",
+    "returncode": 0,
+    "timeout": false,
+    "recorded_seconds": 12.84947105194442,
+    "bound_seconds": 120,
+    "distinct_expected_pairs": 14,
+    "snapshot_log_entries": 14,
+    "parity_pass_entries": 14,
+    "actual_calls_per_implementation_per_case": 7,
+    "command_has_no_time_argument": true,
+    "no_calibration_or_timing_csv_in_log": true,
+    "completion_mode": "correctness-only",
+    "default_symbolica_assertion_completed": true,
+    "both_inactive_N5_assertions_completed": true,
+    "compared_fields": ["input_bits", "output_bits", "rows_components_ordered_Dual_shape_accuracy_and_prototype_precision", "basis", "metadata", "statuses", "analytic_flags", "fallback_flags", "public_execution_statistics", "diagnostics", "four_private_proof_counters"],
+    "total_recorded_input_bit_patterns_per_corpus": 8250,
+    "total_recorded_output_bit_patterns_per_corpus": 21120,
+    "proof_counter_order": ["certificate_rows", "certificate_passes", "reused_pairs", "covered_rows"],
+    "cases": [
+      {"family": "bubble-ordinary", "rows": 1, "proof_work": [0, 0, 0, 0]},
+      {"family": "bubble-ordinary", "rows": 32, "proof_work": [0, 0, 0, 0]},
+      {"family": "triangle-ordinary", "rows": 1, "proof_work": [0, 0, 0, 0]},
+      {"family": "triangle-ordinary", "rows": 32, "proof_work": [0, 0, 0, 0]},
+      {"family": "bubble-zero-real", "rows": 1, "proof_work": [1, 1, 1, 1]},
+      {"family": "bubble-zero-real", "rows": 32, "proof_work": [32, 1, 32, 32]},
+      {"family": "bubble-zero-complex", "rows": 1, "proof_work": [1, 1, 1, 1]},
+      {"family": "bubble-zero-complex", "rows": 32, "proof_work": [32, 1, 32, 32]},
+      {"family": "bubble-mixed-dual", "rows": 1, "proof_work": [1, 1, 2, 1]},
+      {"family": "bubble-mixed-dual", "rows": 32, "proof_work": [32, 1, 48, 24]},
+      {"family": "ggh-zero-real", "rows": 1, "proof_work": [1, 1, 2, 1]},
+      {"family": "ggh-zero-real", "rows": 32, "proof_work": [32, 1, 64, 32]},
+      {"family": "ggh-mixed-complex", "rows": 1, "proof_work": [1, 1, 2, 1]},
+      {"family": "ggh-mixed-complex", "rows": 32, "proof_work": [32, 1, 64, 32]}
+    ]
+  },
+  "observed_cross_record_equality": "The optimized preflight log SHA-256 equals the previously reviewed opt0 snapshot-log SHA-256 cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd. This is an artifact equality observation for the recorded correctness corpus, not performance evidence or a general compiler-equivalence claim.",
+  "retained_scope_and_limits": [
+    "The frozen future fixed41-pair timing protocol remains authorized=false. Its --time/calibration branch was not executed by this preflight.",
+    "fixed_iterations log values are unused correctness labels; the executed preflight sequence is one cold call, five repeated calls, and one final call per implementation per case.",
+    "Recorded elapsed durations establish compliance with build/preflight bounds only. They are not benchmarks and this reviewer collected no new timings.",
+    "This audit establishes readiness of the named optimized paired correctness artifact. It does not qualify speedup, resolve prior ordinary-control regressions, justify production adoption, or satisfy original-IREGI acceptance.",
+    "The earlier opt0 26-test qualification and older optimized performance cohort remain separately frozen; no optimized rerun of those 26 unit tests is claimed here."
+  ],
+  "remaining_review_blockers": []
+}

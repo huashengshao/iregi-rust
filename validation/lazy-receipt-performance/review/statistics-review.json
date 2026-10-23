@@ -1,0 +1,459 @@
+{
+  "status": "passed",
+  "recorded_utc": "2026-10-23T22:08:34Z",
+  "reviewer": "/root/numeric_batch_audit/lazy_capture_implementation_review",
+  "review_kind": "independent frozen timing statistics and provenance audit",
+  "scope": "One retained optimized TIRust lazy-receipt versus TIRust eager-final-e23 cohort. Same accepted shared current master adapter and default Symbolica numerical closure. This review validates the retained result and does not adopt the private candidate.",
+  "production_adoption": false,
+  "ratio_definition": "TIRust(lazy) / TIRust(eager); below 1 means lower lazy latency",
+  "inputs": {
+    "target/raw-distance-lazy-capture-optimized/source-manifest.json": "6aa038216a6d2a4a6976a0806e042ab65f0a88198bd168efcea59d179bbb1ee0",
+    "target/raw-distance-lazy-capture-optimized/review/source-review.json": "0f8876b41ce0a0b082baba0345eab9afe7a2bd35932f212d586109ca794ff9dd",
+    "target/raw-distance-lazy-capture-optimized/review/runtime-review.json": "2db359d80b1ece960abe270713af7a7da2e2c65345c9393069dade2cba65cd80",
+    "target/raw-distance-lazy-capture-optimized/review/protocol-review.json": "f4d68176a544a7b984db3b4193c7d84559549d3dde36560f2c1f66af36e00d6a",
+    "target/raw-distance-lazy-capture-optimized/build-001/build.json": "2c0b18fa418314c5449a093c0d1ab219d57c1549a346387d985804bf2aa750ac",
+    "target/raw-distance-lazy-capture-optimized/preflight.json": "83c0ec37961d9b2a9e6bf5eb3ea55b947dc98bfc7ffebcff51361cc926fedbaa",
+    "target/raw-distance-lazy-capture-optimized/preflight.log": "cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd",
+    "target/raw-distance-lazy-capture-optimized/readiness.json": "b96c5ba933979f86217a30a09fbd00f79b3c2aa856fdbc6cd1e757c25cbfe0dc",
+    "target/raw-distance-lazy-capture-optimized/readiness-qualified.json": "a9ab9d5bddf664a6dcf54b3609c43f6de6f7ba9d8defbcb49bda25a7d755320a",
+    "target/raw-distance-lazy-capture-optimized/timing-ready.json": "70c3cd43599dea2b9b51f3e2e2c12b4de56e1daf6999a8294b0bdd1cda51930e",
+    "target/raw-distance-lazy-capture-optimized/protocol/manifest.json": "c7ac191fa03def94d6e7f8a869f30c6c7f0f61597f6b00f61483ae841469ddcb",
+    "target/raw-distance-lazy-capture-optimized/protocol/analyze.py": "23746be2261e58380f4ab02d41e1ac1797c7219980bbfd11d1e61b2626b7ba71",
+    "target/raw-distance-lazy-capture-optimized/protocol/protocol.py": "b3fe96558d76e25fdc12adc71f33cb044566ad0a0817b466eb0723f4625e510a",
+    "target/raw-distance-lazy-capture-optimized/protocol/preregistration.json": "e5f52a4e4645412c698d582de1c8bf98d31c0ccecfcee474a57e055517294f3e",
+    "target/raw-distance-lazy-capture-optimized/protocol/run_timing.py": "9d25397978968e78d2313eab6ea9ae0000ce5728fd6896de5ab456ea6553f568",
+    "target/raw-distance-lazy-capture-optimized/protocol/performance-run.json": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+    "target/raw-distance-lazy-capture-optimized/protocol/performance.csv": "296ac0f440daea2a42b3616aa638b6af19a4009a99c9d7c218b003f3f1f9a640",
+    "target/raw-distance-lazy-capture-optimized/protocol/performance.log": "9f73a4f776c2a1d4fa2dcb6ffc3a5a3a896f979ebde518717c4dc7e22228eac7",
+    "target/raw-distance-lazy-capture-optimized/protocol/performance-analysis.json": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+    "target/raw-distance-lazy-capture-optimized/protocol/analysis.stdout.json": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+    "target/raw-distance-lazy-capture-optimized/protocol/executed-1oeg27nu": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c",
+    "validation/benchmark-quiet/20261023e/window.json": "fea087f50a1aed956f9326dfde916639c5b99ea11f791de17635e011ec3584fd",
+    "validation/benchmark-quiet/20261023e/completion.json": "d2c1901b9c8b8009efeacad791ebd856b51e26ff70573283d89d787584944ed9",
+    "validation/benchmark-quiet/20261023e/selected-native-terminal.json": "e744f9005eb60aec4082f5c4bbbd207d9588660f11c81dcba11b80c0023c6013",
+    "validation/benchmark-quiet/20261023e/cpu-survey-v2.json": "50d3e7bf52976fbfac838cfde4e0a0b925df0800f8e678c6e1179fc1187df1e4"
+  },
+  "identical_checkpoint_copies": {
+    "validation/benchmark-quiet/20261023e/lazy-capture/performance-run.json": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+    "validation/benchmark-quiet/20261023e/lazy-capture/performance.csv": "296ac0f440daea2a42b3616aa638b6af19a4009a99c9d7c218b003f3f1f9a640",
+    "validation/benchmark-quiet/20261023e/lazy-capture/performance.log": "9f73a4f776c2a1d4fa2dcb6ffc3a5a3a896f979ebde518717c4dc7e22228eac7",
+    "validation/benchmark-quiet/20261023e/lazy-capture/analyze.py": "23746be2261e58380f4ab02d41e1ac1797c7219980bbfd11d1e61b2626b7ba71",
+    "validation/benchmark-quiet/20261023e/lazy-capture/run_timing.py": "9d25397978968e78d2313eab6ea9ae0000ce5728fd6896de5ab456ea6553f568"
+  },
+  "provenance": {
+    "bound_entries_verified": 591,
+    "distinct_bound_files_verified": 588,
+    "bound_distinct_bytes": 642243806,
+    "all_binding_hashes_currently_match": true,
+    "executed_copy_matches_preflight_and_build_probe": true,
+    "probe_sha256": "ee0ae08015f4f910f0668b29a2378d7eb8ca3eb6a582bc79834606638d82711c",
+    "protocol_manifest_sha256": "c7ac191fa03def94d6e7f8a869f30c6c7f0f61597f6b00f61483ae841469ddcb",
+    "run_manifest_sha256": "606431af02bf35bb55fc39e68df246607098a8f64af4303a3407d8f8bf8ae9de",
+    "analysis_sha256": "3dddb3d070e29f4facd7ab9a8b1fb7adc9b68919b9dc44b5431f96f2b26328a4",
+    "exact_manifest_readiness_run_binding_chain": true,
+    "original_source_preflight_readiness_protocol_reviews_unchanged": true,
+    "frozen_analyzer_stdout_equals_analysis_artifact": true,
+    "current_hash_scope": "Fresh read-only hashing of all 591 run bindings, deduplicated to 588 files, plus the executed copy, raw/analysis/quiet records and checkpoint copies. Prior build/runtime reviews remain separately retained.",
+    "runtime_scope": "Runner records unchanged provenance before/after execution, exit 0, no timeout, complete protocol validation. The independently reviewed immutable runner and binary match retained bytes; current hashes do not independently observe every instant of execution."
+  },
+  "quiet_window": {
+    "cpu": 254,
+    "quiet_manifest_sha256": "fea087f50a1aed956f9326dfde916639c5b99ea11f791de17635e011ec3584fd",
+    "initial_final_and_current_hash_equal": true,
+    "readiness_and_process_cap_match_window": true,
+    "previous_cohort_terminal_utc": "2026-10-23T21:54:37.612510+00:00",
+    "lazy_process_started_utc": "2026-10-23T21:54:55.548317+00:00",
+    "lazy_process_seconds": 256.6845246719895,
+    "cap_seconds": 600,
+    "exit_code": 0,
+    "timed_out": false,
+    "coordinator_scope": "Window binds CPU, readiness and 600-second cap. Retained preceding terminal event states the earlier owner was idle before lazy launch; completion preserves the original raw pause checkpoint. Separate conversational ROOT start authorization remains coordinator evidence rather than something inferred from these files.",
+    "external_host_scope": "Shared host was not fully controlled. CPU survey and project hold policy are retained; no independent continuous host-isolation claim is made."
+  },
+  "matrix": {
+    "cases": 14,
+    "rows_per_workload": [
+      1,
+      32
+    ],
+    "pairs_per_case": 41,
+    "measurement_rows": 1148,
+    "total_pairs": 574,
+    "per_case_order": {
+      "baseline_first": 21,
+      "candidate_first": 20
+    },
+    "warm_calls_per_implementation_per_case": 5,
+    "calibration_records": 29,
+    "exact_complete_matrix": true,
+    "no_missing_duplicate_extra_or_dropped_measurements": true,
+    "count_order_calibration_transitions_passed": true,
+    "measured_counts_frozen_to_final_calibration": true,
+    "all_final_faster_side_durations_at_least_200ms": true,
+    "preparation_markers": 14,
+    "parity_markers": 14,
+    "final_marker": "PASS 14 fixed-loop cases; mode=timing",
+    "proof_counters_match_expected_case_metadata": true,
+    "calibration": [
+      {
+        "workload": "bubble-mixed-dual",
+        "rows": 1,
+        "calibration_rounds": 2,
+        "shared_iterations": 432,
+        "final_faster_side_ns": 203516966
+      },
+      {
+        "workload": "bubble-mixed-dual",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 14,
+        "final_faster_side_ns": 215341672
+      },
+      {
+        "workload": "bubble-ordinary",
+        "rows": 1,
+        "calibration_rounds": 2,
+        "shared_iterations": 12426,
+        "final_faster_side_ns": 203523537
+      },
+      {
+        "workload": "bubble-ordinary",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 627,
+        "final_faster_side_ns": 203482866
+      },
+      {
+        "workload": "bubble-zero-complex",
+        "rows": 1,
+        "calibration_rounds": 2,
+        "shared_iterations": 2366,
+        "final_faster_side_ns": 203770578
+      },
+      {
+        "workload": "bubble-zero-complex",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 78,
+        "final_faster_side_ns": 208296415
+      },
+      {
+        "workload": "bubble-zero-real",
+        "rows": 1,
+        "calibration_rounds": 2,
+        "shared_iterations": 2345,
+        "final_faster_side_ns": 202845964
+      },
+      {
+        "workload": "bubble-zero-real",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 77,
+        "final_faster_side_ns": 203889748
+      },
+      {
+        "workload": "ggh-mixed-complex",
+        "rows": 1,
+        "calibration_rounds": 2,
+        "shared_iterations": 576,
+        "final_faster_side_ns": 204097949
+      },
+      {
+        "workload": "ggh-mixed-complex",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 22,
+        "final_faster_side_ns": 205165873
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 1,
+        "calibration_rounds": 2,
+        "shared_iterations": 532,
+        "final_faster_side_ns": 207917274
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 23,
+        "final_faster_side_ns": 211874939
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 1,
+        "calibration_rounds": 3,
+        "shared_iterations": 2053,
+        "final_faster_side_ns": 203851218
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 32,
+        "calibration_rounds": 2,
+        "shared_iterations": 97,
+        "final_faster_side_ns": 204292409
+      }
+    ]
+  },
+  "independent_reconstruction": {
+    "execution": "Lightweight Python analysis of retained text files only, pinned to CPU 10 and bounded by 120 seconds; bootstrap reconstruction completed in approximately 2.14 seconds. No Rust build, numerical probe, benchmark rerun or source mutation.",
+    "method": "Parsed CSV independently without importing the analyzer or protocol module. For each sorted case, reconstructed 41 paired log(eager/lazy) values; sampled indices with floor(Random(14050301).random()*41), sorted each 41-element resample and selected index 20. Repeated 20000 times, used sorted bootstrap endpoints 100 and 19899 and inverted in reverse order for lazy/eager latency intervals.",
+    "all_13_fields_per_case_match_exactly": true,
+    "compared_fields": "Workload, row count, pair count, eager and lazy medians, paired median speedup, lazy/eager ratio, latency CI, relative CI width, width-gate boolean, classification, bootstrap speedup endpoints and ungated direction.",
+    "random_stream": "One deterministic seed 14050301 continued across the same lexicographically sorted 14 cases.",
+    "classification": "First require (upper-lower)/median_ratio <= 0.02. If qualified, upper < 1 is improvement, lower > 1 is regression, otherwise parity. Wider intervals are inconclusive-noise.",
+    "independent_row_audit": "Child /root/numeric_batch_audit/lazy_capture_implementation_review/timing_rows_review independently reconstructed all CSV/log records, calibration transitions and expected proof counters without bootstrapping or modifying files; no discrepancies."
+  },
+  "outcome": {
+    "counts": {
+      "improvement": 5,
+      "parity": 6,
+      "regression": 3,
+      "inconclusive-noise": 0
+    },
+    "all_14_relative_interval_widths_at_most_2_percent": true,
+    "minimum_relative_interval_width": 0.002674013507409144,
+    "maximum_relative_interval_width": 0.0120124412456299,
+    "regressions": [
+      {
+        "workload": "bubble-zero-real",
+        "rows": 32,
+        "ratio": 1.0089384510314339,
+        "ci99": [
+          1.0037734485220828,
+          1.0158932623855548
+        ],
+        "latency_change_percent": 0.8938451031433869
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 32,
+        "ratio": 1.0021999923459535,
+        "ci99": [
+          1.0002193635514376,
+          1.0060512633093082
+        ],
+        "latency_change_percent": 0.2199992345953472
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 1,
+        "ratio": 1.007687140321736,
+        "ci99": [
+          1.0053138988633246,
+          1.0108178754864448
+        ],
+        "latency_change_percent": 0.7687140321736008
+      }
+    ],
+    "assessment": "Mixed outcome: five small improvements, six cases without a detected difference and three retained regressions. This cohort does not establish a general no-regression improvement and supplies no basis for unconditional production adoption."
+  },
+  "results": [
+    {
+      "workload": "bubble-mixed-dual",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 478517.219907,
+      "tirust_lazy_median_ns_per_batch": 475876.19213,
+      "tirust_lazy_over_tirust_eager": 0.9944886474332091,
+      "ci99": [
+        0.9931510276942472,
+        0.9968932665946532
+      ],
+      "relative_ci_width": 0.003762977998858713,
+      "latency_change_percent": -0.5511352566790917,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-mixed-dual",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 15384123,
+      "tirust_lazy_median_ns_per_batch": 15389506.571429,
+      "tirust_lazy_over_tirust_eager": 0.9995564883312439,
+      "ci99": [
+        0.995835019556916,
+        1.00206185175332
+      ],
+      "relative_ci_width": 0.00622959509452001,
+      "latency_change_percent": -0.04435116687561136,
+      "classification": "parity"
+    },
+    {
+      "workload": "bubble-ordinary",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 16449.485756,
+      "tirust_lazy_median_ns_per_batch": 16338.851119,
+      "tirust_lazy_over_tirust_eager": 0.9913078692084417,
+      "ci99": [
+        0.9870722728603066,
+        0.9976250475590109
+      ],
+      "relative_ci_width": 0.010645305082800042,
+      "latency_change_percent": -0.8692130791558283,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-ordinary",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 327002.732057,
+      "tirust_lazy_median_ns_per_batch": 325506.521531,
+      "tirust_lazy_over_tirust_eager": 0.9957445852483183,
+      "ci99": [
+        0.9935279117461792,
+        0.9968312018960198
+      ],
+      "relative_ci_width": 0.0033174070929212047,
+      "latency_change_percent": -0.4255414751681674,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-zero-complex",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 86012.627642,
+      "tirust_lazy_median_ns_per_batch": 85857.690194,
+      "tirust_lazy_over_tirust_eager": 0.9972475147028543,
+      "ci99": [
+        0.9952723919519367,
+        0.9979390452764824
+      ],
+      "relative_ci_width": 0.002674013507409144,
+      "latency_change_percent": -0.2752485297145668,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-zero-complex",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 2682195.871795,
+      "tirust_lazy_median_ns_per_batch": 2685571.653846,
+      "tirust_lazy_over_tirust_eager": 1.0008226451121762,
+      "ci99": [
+        0.9987261167001708,
+        1.0031124896120356
+      ],
+      "relative_ci_width": 0.004382767449644578,
+      "latency_change_percent": 0.08226451121762235,
+      "classification": "parity"
+    },
+    {
+      "workload": "bubble-zero-real",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 87487.898934,
+      "tirust_lazy_median_ns_per_batch": 87410.022601,
+      "tirust_lazy_over_tirust_eager": 0.99844636659889,
+      "ci99": [
+        0.9940316508412931,
+        1.004514222044826
+      ],
+      "relative_ci_width": 0.010498882618242944,
+      "latency_change_percent": -0.15536334011100328,
+      "classification": "parity"
+    },
+    {
+      "workload": "bubble-zero-real",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 2666040.831169,
+      "tirust_lazy_median_ns_per_batch": 2695881.844156,
+      "tirust_lazy_over_tirust_eager": 1.0089384510314339,
+      "ci99": [
+        1.0037734485220828,
+        1.0158932623855548
+      ],
+      "relative_ci_width": 0.0120124412456299,
+      "latency_change_percent": 0.8938451031433869,
+      "classification": "regression"
+    },
+    {
+      "workload": "ggh-mixed-complex",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 355891.670139,
+      "tirust_lazy_median_ns_per_batch": 355469.34375,
+      "tirust_lazy_over_tirust_eager": 0.9979442191400387,
+      "ci99": [
+        0.9957379170591955,
+        1.0019095168250989
+      ],
+      "relative_ci_width": 0.006184313358938733,
+      "latency_change_percent": -0.2055780859961276,
+      "classification": "parity"
+    },
+    {
+      "workload": "ggh-mixed-complex",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 9263465.818182,
+      "tirust_lazy_median_ns_per_batch": 9263978.090909,
+      "tirust_lazy_over_tirust_eager": 0.9998788888664675,
+      "ci99": [
+        0.9975024685908808,
+        1.0017476116029986
+      ],
+      "relative_ci_width": 0.004245657208474978,
+      "latency_change_percent": -0.012111113353252545,
+      "classification": "parity"
+    },
+    {
+      "workload": "ggh-zero-real",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 368594.434211,
+      "tirust_lazy_median_ns_per_batch": 365997.977444,
+      "tirust_lazy_over_tirust_eager": 0.9950925226466462,
+      "ci99": [
+        0.9889607773124948,
+        0.9973275593791624
+      ],
+      "relative_ci_width": 0.008408044353920492,
+      "latency_change_percent": -0.49074773533538396,
+      "classification": "improvement"
+    },
+    {
+      "workload": "ggh-zero-real",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 9270375.347826,
+      "tirust_lazy_median_ns_per_batch": 9310865.913043,
+      "tirust_lazy_over_tirust_eager": 1.0021999923459535,
+      "ci99": [
+        1.0002193635514376,
+        1.0060512633093082
+      ],
+      "relative_ci_width": 0.005819097787278207,
+      "latency_change_percent": 0.2199992345953472,
+      "classification": "regression"
+    },
+    {
+      "workload": "triangle-ordinary",
+      "rows": 1,
+      "tirust_eager_median_ns_per_batch": 99640.735996,
+      "tirust_lazy_median_ns_per_batch": 100381.303945,
+      "tirust_lazy_over_tirust_eager": 1.007687140321736,
+      "ci99": [
+        1.0053138988633246,
+        1.0108178754864448
+      ],
+      "relative_ci_width": 0.005461989543066779,
+      "latency_change_percent": 0.7687140321736008,
+      "classification": "regression"
+    },
+    {
+      "workload": "triangle-ordinary",
+      "rows": 32,
+      "tirust_eager_median_ns_per_batch": 2133377.731959,
+      "tirust_lazy_median_ns_per_batch": 2138119.28866,
+      "tirust_lazy_over_tirust_eager": 1.0018491286538398,
+      "ci99": [
+        0.9981430121454532,
+        1.0034117832483807
+      ],
+      "relative_ci_width": 0.005259046449445905,
+      "latency_change_percent": 0.18491286538397933,
+      "classification": "parity"
+    }
+  ],
+  "limitations": [
+    "The inherited parity label means the per-case 99% interval includes 1; it is not an equivalence test.",
+    "The 2% rule limits interval width, not the minimum practical effect size. All measured improvements and regressions here have median magnitude below 1%.",
+    "Intervals are per-case bootstrap intervals, with no simultaneous-family correction across 14 cases. The inherited bootstrap treats the observed paired blocks as resampling units; it does not separately model serial dependence or the 21/20 order imbalance.",
+    "Pre/post snapshots and five warm snapshots assert exact bits, shape/precision context, metadata/status/flags and public/private counters. Timed iterations check top-level Result; full per-lane status and metadata are not inspected inside every measured iteration.",
+    "This is optimized TIRust lazy versus optimized TIRust eager using the same default Symbolica closure. It establishes no IREGI/COLLIER parity or performance claim and no selected-native or Symbolica-arity2 outcome.",
+    "Do not combine these ratios with prior eager-final or independent engine cohorts. The prior eager-final cohort and its two regressions remain unchanged.",
+    "The raw pause checkpoint remains immutable. Its analysis-pending statement describes its historical creation time; this new review and analysis are subsequent append-only evidence."
+  ],
+  "blocking_findings": []
+}

@@ -1,0 +1,200 @@
+{
+  "status": "correctness_qualified_private_unmeasured",
+  "recorded_utc": "2026-10-23T21:09:17.846142+00:00",
+  "production_adopted": false,
+  "performance_measured": false,
+  "scope": "One private lazy outgoing raw-distance proof-receipt capture change against frozen final e23 eager implementation. No arithmetic, conditioning, certificate policy, counters or error-harvest changes. No global/persistent sample cache. Debug native dependency closure is separate from earlier opt3 performance cohort.",
+  "change": {
+    "allocation": "Outgoing context starts None and is created only for a first nonempty independently certified Zero selection or a validated incoming-covered pair. Empty/disabled capture creates nothing.",
+    "lifecycle": "Context borrows the current source batch, preserves full domain and precision identity, and is dropped after each call. Partial evidence on a failed row is cleared without clearing other already-covered rows.",
+    "profiling_caveat": "New lazy allocation happens inside the existing arguments stage timer. Earlier eager setup happened just outside it; future performance decisions must use total time, not infer speed from a stage shift.",
+    "test_only_observation": "cfg(test) last_outgoing_receipt_present records actual per-call creation and resets before early returns; absent from generic baseline/candidate library artifacts."
+  },
+  "inputs": {
+    "final_patch": {
+      "path": "validation/raw-distance-lazy-capture/upstream/adoption.patch",
+      "sha256": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3"
+    },
+    "source_manifest": {
+      "path": "validation/raw-distance-lazy-capture/source-manifest.json",
+      "sha256": "b3fae612aaa754ed1577c63fe955703230ba6eb7073654f37f2542768371de45"
+    },
+    "source_review": {
+      "path": "validation/raw-distance-lazy-capture/review/final-review.json",
+      "sha256": "c9c4fd61e04e7f9138cb85971afb56afb97cc3342d8bb27a2e5c4e876be4ff1b"
+    },
+    "candidate_patch": {
+      "path": "validation/raw-distance-lazy-capture/candidate.patch",
+      "sha256": "75789128caa16c2492390b7f91355c5d3517e981e1e86c379bddd4f812619b59"
+    },
+    "historical_frozen_performance_qualification": {
+      "path": "validation/raw-distance-final-performance/performance-qualification.json",
+      "sha256": "6b8b339ae45f911ff92237cab3ce9d3b4354c1acf9795b4f5574a047887cb2d3"
+    }
+  },
+  "build": {
+    "record": {
+      "path": "validation/raw-distance-lazy-capture/build/build.json",
+      "sha256": "e713c1d12419a77c0d1779b51d2cfc44bc6b5ad047ad51374159cabd2868599a"
+    },
+    "seconds": 25.83920851093717,
+    "bound_seconds": 180,
+    "all_four_steps_passed": true,
+    "inputs_unchanged": true,
+    "outputs": {
+      "target/raw-distance-lazy-capture-candidate/build-001/libreceipt_lazy_baseline.rlib": "deb9dd10e1c053147ad33fee17dfa057491b7d81eac413291297af446733234c",
+      "target/raw-distance-lazy-capture-candidate/build-001/libreceipt_lazy_candidate.rlib": "b89619ea48db4d56579ff7b7a145c54938d1334beae0248e2184ff00aa82f640",
+      "target/raw-distance-lazy-capture-candidate/build-001/receipt-tests": "59d792157727f969c9d743c341316357076eae443714b0520f631af1ff949576",
+      "target/raw-distance-lazy-capture-candidate/build-001/snapshots": "8ee1bd80719a572ee396de4745f5499dec38851e9c5590dad04b58e799c54f32"
+    }
+  },
+  "correctness": {
+    "unit_tests_passed": 26,
+    "original_receipt_tests": 12,
+    "new_lazy_capture_tests": 8,
+    "accounting_tests": 6,
+    "paired_workload_cases": 14,
+    "calls_per_implementation_per_case": 7,
+    "unique_output_complex_values": 10560,
+    "lane_instances_per_single_corpus": 231,
+    "comparisons": "Exact represented input/output bits, ordered Dual shape and precision context, full basis/metadata/status/flags, public statistics/diagnostics, private four proof counters on every cold/warm/final snapshot. Both variants assert no N5 automatic fallback work in these N2/N3 cases.",
+    "cases": [
+      {
+        "family": "bubble-ordinary",
+        "rows": 1,
+        "scalar_output_bit_patterns": 40
+      },
+      {
+        "family": "bubble-ordinary",
+        "rows": 32,
+        "scalar_output_bit_patterns": 1280
+      },
+      {
+        "family": "triangle-ordinary",
+        "rows": 1,
+        "scalar_output_bit_patterns": 120
+      },
+      {
+        "family": "triangle-ordinary",
+        "rows": 32,
+        "scalar_output_bit_patterns": 3840
+      },
+      {
+        "family": "bubble-zero-real",
+        "rows": 1,
+        "scalar_output_bit_patterns": 40
+      },
+      {
+        "family": "bubble-zero-real",
+        "rows": 32,
+        "scalar_output_bit_patterns": 1280
+      },
+      {
+        "family": "bubble-zero-complex",
+        "rows": 1,
+        "scalar_output_bit_patterns": 40
+      },
+      {
+        "family": "bubble-zero-complex",
+        "rows": 32,
+        "scalar_output_bit_patterns": 1280
+      },
+      {
+        "family": "bubble-mixed-dual",
+        "rows": 1,
+        "scalar_output_bit_patterns": 160
+      },
+      {
+        "family": "bubble-mixed-dual",
+        "rows": 32,
+        "scalar_output_bit_patterns": 5120
+      },
+      {
+        "family": "ggh-zero-real",
+        "rows": 1,
+        "scalar_output_bit_patterns": 120
+      },
+      {
+        "family": "ggh-zero-real",
+        "rows": 32,
+        "scalar_output_bit_patterns": 3840
+      },
+      {
+        "family": "ggh-mixed-complex",
+        "rows": 1,
+        "scalar_output_bit_patterns": 120
+      },
+      {
+        "family": "ggh-mixed-complex",
+        "rows": 32,
+        "scalar_output_bit_patterns": 3840
+      }
+    ],
+    "groups": {
+      "receipts": {
+        "record": {
+          "path": "validation/raw-distance-lazy-capture/runs/receipts.json",
+          "sha256": "f4dd35a0d21b30416e79c2697ffc3d642f993573d475f8a53ec532ba29114fe4"
+        },
+        "log": {
+          "path": "validation/raw-distance-lazy-capture/runs/receipts.log",
+          "sha256": "469069dd7028ae3cbfa60a8ed614ea671d2635f8aaa88e7772db8648516a980f"
+        },
+        "passed": 20,
+        "failed": 0,
+        "seconds": 16.575626995996572,
+        "bound_seconds": 120,
+        "inputs_unchanged": true
+      },
+      "accounting": {
+        "record": {
+          "path": "validation/raw-distance-lazy-capture/runs/accounting.json",
+          "sha256": "431f3fad4df4b17ae663c89b812fdbee9077c71942e4aeac63bfb3492ccd18ad"
+        },
+        "log": {
+          "path": "validation/raw-distance-lazy-capture/runs/accounting.log",
+          "sha256": "85962a43f05dc062eef13c3c58ec11bd2f07c65ea1818d7a646e9e63804254fa"
+        },
+        "passed": 6,
+        "failed": 0,
+        "seconds": 1.7189310499234125,
+        "bound_seconds": 120,
+        "inputs_unchanged": true
+      },
+      "snapshots": {
+        "record": {
+          "path": "validation/raw-distance-lazy-capture/runs/snapshots.json",
+          "sha256": "2b281fa36745cafa4fb9c6d1ab72494df143c94aece519629ea518ea732c6f2d"
+        },
+        "log": {
+          "path": "validation/raw-distance-lazy-capture/runs/snapshots.log",
+          "sha256": "cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd"
+        },
+        "passed": 14,
+        "failed": 0,
+        "seconds": 16.819951893063262,
+        "bound_seconds": 120,
+        "inputs_unchanged": true
+      }
+    }
+  },
+  "limitations": [
+    "Elapsed times above are correctness-run diagnostics, not benchmarks.",
+    "No new optimized build, timing, reference comparison, or production adoption is qualified.",
+    "Earlier final14 performance cohort and its two measured regressions remain unchanged.",
+    "Supplemental thiserror native archive has completed metadata/proc-macro events, cached source/fingerprint and native ELF evidence; no completed rlib Cargo event. This approved reuse limitation is retained in build provenance.",
+    "No broader numeric-domain regression claim beyond the named focused tests and 14 paired shared-dependency f64/flattened-Dual cases.",
+    "The PARITY_PASS fixed_iterations labels are inert legacy labels; exactly seven snapshot calls run per implementation per case, with no timed mode.",
+    "The PARITY_PASS fixed_iterations fields are inert labels inherited from the earlier probe. This driver has no timed mode and makes exactly seven snapshot calls per implementation per case."
+  ],
+  "independent_runtime_review": {
+    "path": "validation/raw-distance-lazy-capture/review/runtime-review.json",
+    "sha256": "7afd757176cd3a3adb94653b438c6ac355ad37979da4051d120be70a94eef0da"
+  },
+  "source_archive": {
+    "path": "validation/raw-distance-lazy-capture/source-snapshots.tar.gz",
+    "sha256": "d63411237a43c9bfdddbe8f9dec35e6587e5e46f193ff35049cfad588b09bdcf",
+    "files": 92,
+    "verified_against_source_manifest": true
+  }
+}
