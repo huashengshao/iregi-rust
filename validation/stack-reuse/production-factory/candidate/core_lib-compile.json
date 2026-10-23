@@ -1,0 +1,60 @@
+{
+  "stage": "core_lib",
+  "variant": "candidate",
+  "command": [
+    "rustc",
+    "--crate-name",
+    "iregi_rust",
+    "--edition=2024",
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-production/snapshot/crates/iregi-rust/src/lib.rs",
+    "-C",
+    "opt-level=2",
+    "-C",
+    "metadata=stack_reuse_candidate_core_lib",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/stack-reuse-production/candidate",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--crate-type",
+    "rlib",
+    "--extern",
+    "oneloop=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/stack-reuse-production/candidate/libiregi_masters.rlib",
+    "--extern",
+    "serde=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+    "--extern",
+    "thiserror=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-production/candidate/libiregi_rust.rlib"
+  ],
+  "environment": {
+    "CARGO_CRATE_NAME": "iregi_rust",
+    "CARGO_MANIFEST_DIR": "/shared/external/iregi/iregi-rust/target/stack-reuse-production/snapshot/crates/iregi-rust"
+  },
+  "extern_hashes_before": {
+    "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib": "6ed89303becc04ef2611b24f3282e155900e2ce51a94161c748c86eb5000f67e",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "3bc0b1d5a75326f74538dd7caeaaae0d4eb6df3479b2fc37f9cbd9a45feeb526",
+    "target/stack-reuse-production/candidate/libiregi_masters.rlib": "8e6f752abdc0d16992eb8671870e9b21cb410e028dc6da71a81e60b5dd747245",
+    "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+    "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+    "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 10.165338175953366,
+  "extern_hashes_after": {
+    "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib": "6ed89303becc04ef2611b24f3282e155900e2ce51a94161c748c86eb5000f67e",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "3bc0b1d5a75326f74538dd7caeaaae0d4eb6df3479b2fc37f9cbd9a45feeb526",
+    "target/stack-reuse-production/candidate/libiregi_masters.rlib": "8e6f752abdc0d16992eb8671870e9b21cb410e028dc6da71a81e60b5dd747245",
+    "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+    "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+    "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411"
+  },
+  "output_sha256": "eabe759e7920219215dcdb834f17d22679c85b541c3d88641f19be0128df0c33"
+}

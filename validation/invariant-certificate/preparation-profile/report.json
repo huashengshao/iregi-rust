@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "scope": "Single-run bounded preparation diagnosis; not a performance benchmark or complete numerical qualification",
+  "focused_test": {
+    "command": [
+      "target/certified-scalar-alias-candidate/candidate-tests",
+      "plan::tests::certified_covector_aliases_preserve_exact_inputs_and_mixed_dual_components",
+      "--exact",
+      "--nocapture",
+      "--test-threads=1"
+    ],
+    "binary_sha256": "793132b15032c73a5529df96dcd093d4842f9d94a7cdf7a5bea002f177de666f",
+    "code": 0,
+    "status": "passed",
+    "capture_seconds_including_binary_hash": 2.0035859290510416,
+    "test_reported_seconds": 0.05
+  },
+  "runs": {
+    "baseline": {
+      "command": [
+        "target/symbolica-production-qualification/core-baseline-tests",
+        "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256": "05aa51bce29c6473acf4b5954729201dcb405a1b525dc37f4107dbfaa4d5ca57",
+      "code": 124,
+      "seconds": 90.04486492997967,
+      "timeout_seconds": 90,
+      "status": "timeout",
+      "log": "validation/invariant-certificate/preparation-profile/baseline.log",
+      "profile_environment": {
+        "IREGI_PREPARATION_PROFILE": "1"
+      },
+      "log_sha256": "13ccf0d87bf3c2379d21a226a1b6963cc02dd1b5854153b27a47ad5723fe9d8d",
+      "phases": [
+        {
+          "propagators": 6,
+          "phase": "chart_prepare_end",
+          "elapsed_seconds": 84.017117796
+        },
+        {
+          "propagators": 6,
+          "phase": "certificate_prepare_begin",
+          "elapsed_seconds": 84.017258846
+        },
+        {
+          "propagators": 6,
+          "phase": "certificate_prepare_end",
+          "elapsed_seconds": 84.060047293
+        },
+        {
+          "propagators": 6,
+          "phase": "certified_reduce_begin",
+          "elapsed_seconds": 84.060192863
+        },
+        {
+          "propagators": 6,
+          "phase": "certified_reduce_end",
+          "elapsed_seconds": 85.945047015
+        },
+        {
+          "propagators": 6,
+          "phase": "coordinate_plan_prepare_begin",
+          "elapsed_seconds": 85.945524266
+        }
+      ]
+    },
+    "candidate": {
+      "command": [
+        "target/certified-scalar-alias-candidate/candidate-tests",
+        "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+        "--exact",
+        "--nocapture",
+        "--test-threads=1"
+      ],
+      "binary_sha256": "793132b15032c73a5529df96dcd093d4842f9d94a7cdf7a5bea002f177de666f",
+      "code": 124,
+      "seconds": 90.04418679198716,
+      "timeout_seconds": 90,
+      "status": "timeout",
+      "log": "validation/invariant-certificate/preparation-profile/candidate.log",
+      "profile_environment": {
+        "IREGI_PREPARATION_PROFILE": "1",
+        "IREGI_PV_PREPARATION_PROFILE": "1"
+      },
+      "log_sha256": "d9ecd7f8c9e13e08690e4d7dcf763d8e8ada0dac310973a073987dd25eef893b",
+      "phases": [
+        {
+          "propagators": 6,
+          "phase": "chart_prepare_end",
+          "elapsed_seconds": 77.615978123
+        },
+        {
+          "propagators": 6,
+          "phase": "certificate_prepare_begin",
+          "elapsed_seconds": 77.616070893
+        },
+        {
+          "propagators": 6,
+          "phase": "certificate_prepare_end",
+          "elapsed_seconds": 77.666341074
+        },
+        {
+          "propagators": 6,
+          "phase": "certified_reduce_begin",
+          "elapsed_seconds": 77.666896905
+        },
+        {
+          "propagators": 6,
+          "phase": "certified_reduce_end",
+          "elapsed_seconds": 79.755275047
+        },
+        {
+          "propagators": 6,
+          "phase": "coordinate_plan_prepare_begin",
+          "elapsed_seconds": 79.755369488
+        }
+      ]
+    }
+  },
+  "candidate_first_chart": {
+    "propagators": 6,
+    "cayley_inverse_count": 6,
+    "cayley_inverse_seconds_sum": 67.164212,
+    "cayley_geometry_seconds_sum": 77.155672,
+    "routing_relation_seconds": 0.445231
+  },
+  "limits": [
+    "Both full integration tests timed out in subsequent coordinate-reference plan preparation. No complete tensor/scalar agreement claim follows.",
+    "N7 was not reached.",
+    "No CPU pinning, warmup, repeated samples or uncertainty analysis; build activity may affect elapsed times.",
+    "The alias change preserves exact symbolic identities and mixed second-order Dual components in its focused regression.",
+    "Production matrix algorithms are unchanged; solve(ones) is a separate pending experiment."
+  ]
+}

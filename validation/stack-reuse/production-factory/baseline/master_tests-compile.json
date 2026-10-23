@@ -1,0 +1,43 @@
+{
+  "stage": "master_tests",
+  "variant": "baseline",
+  "command": [
+    "rustc",
+    "--crate-name",
+    "iregi_masters",
+    "--edition=2024",
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-production/snapshot/crates/iregi-masters/src/lib.rs",
+    "-C",
+    "opt-level=2",
+    "-C",
+    "metadata=stack_reuse_baseline_master_tests",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/stack-reuse-production/baseline",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--test",
+    "--extern",
+    "oneloop=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-production/baseline/master_tests"
+  ],
+  "environment": {
+    "CARGO_CRATE_NAME": "iregi_masters",
+    "CARGO_MANIFEST_DIR": "/shared/external/iregi/iregi-rust/target/stack-reuse-production/snapshot/crates/iregi-masters"
+  },
+  "extern_hashes_before": {
+    "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib": "ef3ab91a609b41f76b64ff7d7cb4fc9071ac9e5c4f10a9b996ab81940109e499",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 15.964368248009123,
+  "extern_hashes_after": {
+    "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib": "ef3ab91a609b41f76b64ff7d7cb4fc9071ac9e5c4f10a9b996ab81940109e499",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc"
+  },
+  "output_sha256": "cfea0c6eb96d5a5bcafc48baad03f2c21847cb841bd8da9884b7efb0a85ec6de"
+}

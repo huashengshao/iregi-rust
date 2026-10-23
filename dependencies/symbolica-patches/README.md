@@ -33,8 +33,15 @@ direct translation.
 Three isolated public regression tests passed, covering conditional reuse,
 captured mixed-Dual components, lazy siblings, nested branches, and an
 alias-valued constant condition. Existing serialization and JIT assertions
-passed. A separate internal journal unit test is included in the patch but was
-not run by that external probe. See `validation/symbolica-scoped-cache.json`.
+passed. See `validation/symbolica-scoped-cache.json` for that original probe.
+The vendored Symbolica library unit suite now compiles with the production
+features, and all four focused scope tests pass, including the internal journal
+test for nested overwrites and removed temporaries. Its saved IREGI baseline
+also passes 57 focused core tests and the full 1,320-coefficient rank-seven
+rescue in 109.44 seconds. This later diagnostic run used a preserved source
+snapshot and concurrent workspace compilation; it is not a benchmark. Current
+integration status, source/archive hashes, and limitations are recorded in
+`validation/symbolica-production-qualification.json`.
 
 `0002-identify-vendored-source-version.patch` changes only build metadata. An
 explicit `IREGI_UPSTREAM_VERSION` file supplies the display label

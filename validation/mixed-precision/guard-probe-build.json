@@ -1,0 +1,35 @@
+{
+  "status": "compiled_not_run",
+  "recorded_utc": "2026-10-23T14:00:37.272389+00:00",
+  "scope": "Isolated mixed-precision guard overhead in f64, not full IREGI versus Fortran acceptance benchmark",
+  "flags": [
+    "--edition=2024",
+    "-C",
+    "opt-level=3",
+    "-C",
+    "codegen-units=16"
+  ],
+  "dependencies": "Same vendored Symbolica/masters archives linked by both variants",
+  "workloads": [
+    "N1 rank0",
+    "N1 rank7",
+    "N2 rank3",
+    "N3 rank3"
+  ],
+  "rows": [
+    1,
+    32
+  ],
+  "blocks": 21,
+  "order": "alternating paired baseline/candidate; calibration and preparation excluded",
+  "parity": "all tensor/Laurent output bit patterns before and after timings; every lane must succeed",
+  "sha256": {
+    "target/mixed-precision-guard-probe/libiregi_guard_baseline.rlib": "4038a8f3cb96f9705b5acc82dd27de5d9ee366de666c71ec00ec1bc0b5c6b46a",
+    "target/mixed-precision-guard-probe/libiregi_guard_candidate.rlib": "1a9c71b6d834e169d5523f3d3c9409dc5909311cd127faf01fb8c23ad9ba3472",
+    "target/mixed-precision-guard-probe/probe": "3af4073af65c039c50ecd05a90ed0cb5455f8a8776436a7c773060d67ed0ee87",
+    "validation/mixed-precision/guard_probe.rs": "7c7729a2ab9d99d23680a87d6a5936b3989c07c294e408f94224397a389b1c53",
+    "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib": "5a51209413e9bb69460b3f55c97e4f08ab694596f2fbdb0d01d5517f9ef70c58",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc"
+  },
+  "source_manifest_sha256": "cdfc74e0ecc63dd7b98cbc7f767dbb5e0ad336244dcf8441050d2827356f1ac3"
+}

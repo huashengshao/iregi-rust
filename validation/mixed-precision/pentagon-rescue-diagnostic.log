@@ -1,0 +1,17 @@
+
+running 1 test
+test stability::tests::pentagon_master_cancellation_triggers_precision_rescue ... 
+thread 'stability::tests::pentagon_master_cancellation_triggers_precision_rescue' (11) panicked at crates/iregi-rust/src/stability.rs:1823:9:
+assertion `left == right` failed: rescue statuses=[Rejected("128-bit reduction returned Unstable(\"operand roundoff unit is outside the supported numeric range for recurrence pv_node_47\")")]; final statuses=[Unstable("precision rescue rejected: 128-bit reduction returned Unstable(\"operand roundoff unit is outside the supported numeric range for recurrence pv_node_47\")")]
+  left: 0
+ right: 1
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+FAILED
+
+failures:
+
+failures:
+    stability::tests::pentagon_master_cancellation_triggers_precision_rescue
+
+test result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 147 filtered out; finished in 15.25s
+

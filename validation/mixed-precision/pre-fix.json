@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T13:20:36.182678+00:00",
+  "status": "reproduced_accuracy_failure",
+  "workspace_revision": "4d9fe5f00232cd95dd674b8b12dcf1c6010d530a",
+  "description": "Public N1 rank0 PV OneLoop workspace uses Float256 constants, Float80 exact dyadic mass squared2 and scale1. Float80 finite result passes existing monitors at requested128/256 despite insufficient accuracy.",
+  "command": "source scripts/env.sh; RUST_MIN_STACK=67108864 timeout60s target/mixed-precision-pre-fix-tests --test-threads=1 --nocapture",
+  "compile_command": "rustc --test --crate-name mixed_precision_accuracy --edition=2024 crates/iregi-rust/tests/mixed_precision_accuracy.rs -L dependency=target/cargo-build/debug/deps -L native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib --extern iregi_rust=target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib --extern iregi_masters=target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib --extern symbolica=target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib -o target/mixed-precision-pre-fix-tests",
+  "test_wall_seconds": 0.88,
+  "exit_code": 101,
+  "reference": "2*(1-log(2)), evaluated at512bits from exactly represented dyadic inputs; scaled absolute error divides by natural mass-squared scale2",
+  "result": {
+    "input_bits": 80,
+    "output_bits": 80,
+    "scaled_error": "2.468817141934586165466594129949434451111464074034209302843941366730035813124579985189794293142663144797642418694429673292483649241e-25",
+    "reported_status_by_requested_bits": {
+      "53": "Success",
+      "128": "Success",
+      "256": "Success"
+    },
+    "expected_status_by_requested_bits": {
+      "53": "Success",
+      "128": "Unstable",
+      "256": "Unstable"
+    }
+  },
+  "controls": {
+    "input256_output_bits": 255,
+    "input256_scaled_error": "8.190679738016092463898905608457081208377030545582398120058081637304655274559e-79",
+    "input256_status": "Success at all requested targets",
+    "scaleless_input80_status": "Success at all requested targets"
+  },
+  "sha256": {
+    "crates/iregi-rust/tests/mixed_precision_accuracy.rs": "56b2ecc861e402391ec891351b874d6f425ebdc818722287b2a2615b278028ff",
+    "target/mixed-precision-pre-fix-tests": "9720c1c99b34696c3acbac56eac7f8b1829f60696dde43c72352daabaea28895",
+    "target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib": "49640023e87e0345ace509446ede2338d5ece5989c4395fbc6e100841789db25",
+    "target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib": "aa0b0f0ef0bb9b344d765a50bf961fd747b15ba12b008e41ca942521b5fb547f",
+    "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5",
+    "validation/mixed-precision/pre-fix.log": "a31fd0ee797c1b983c6bcd8e3260d5a66b99b73862808ec4c31ced49d4261240",
+    "validation/mixed-precision/pre-fix-test.rs": "56b2ecc861e402391ec891351b874d6f425ebdc818722287b2a2615b278028ff"
+  },
+  "scope": "Reproduction against preserved pre-vendor dependency artifacts; not a timing benchmark. Production fix pending.",
+  "source_snapshot": "validation/mixed-precision/pre-fix-test.rs"
+}

@@ -1,5 +1,5 @@
 {
-  "status": "Vendored source reproduced byte-for-byte; manifest target and metadata-script compile checks pass. Main workspace integration and vendored test runtime pending.",
+  "status": "Vendored219-file tree reproduces byte-for-byte; current workspace test targets compile; four internal scope regressions and saved-core fullrank7 rescue pass. Current-tree numerical-change runtime evidence remains separate.",
   "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
   "patches": [
     {
@@ -15,8 +15,8 @@
   "retained_upstream_or_patched_bytes": 9585843,
   "total_files_with_local_documentation": 219,
   "inventory": "dependencies/symbolica/IREGI_PROVENANCE.json",
-  "inventory_sha256": "29dadd0720e30300a9866b9dbe7696c7a02307efc7ec4f2b51b70ccfed77563e",
-  "reproduction_command": "python3 scripts/prepare-symbolica-patch.py --vendor --output target/symbolica-vendor-reproduced",
+  "inventory_sha256": "0cfefbda257d0b899f1b8bf86e192e395ab2c0c3d253771b447fc3dd0ae81b4f",
+  "reproduction_command": "python3 scripts/prepare-symbolica-patch.py --vendor --output target/symbolica-vendor-final",
   "reproduction_result": "All 219 files, including local provenance and README, are byte-identical.",
   "manifest_command": "cargo metadata --manifest-path dependencies/symbolica/Cargo.toml --offline --no-deps --format-version 1",
   "manifest_packages": [
@@ -34,8 +34,9 @@
   "scope_evidence": "validation/symbolica-scoped-cache.json",
   "rank7_evidence": "validation/rescue-pentagon-rank7.json",
   "limits": [
-    "No new Symbolica runtime performed for this vendoring preparation.",
-    "The qualified scope/rank7 experimental binary predates the metadata-only build version patch.",
+    "The complete source/inventory reproduction was rerun after documentation status updates.",
+    "Saved-core runtime and current-tree integration qualification are separated in the production artifact.",
     "Fixture-driven optional upstream benchmarks require omitted assets restored from the pinned revision."
-  ]
+  ],
+  "production_qualification": "validation/symbolica-production-qualification.json"
 }

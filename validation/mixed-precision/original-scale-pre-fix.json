@@ -1,0 +1,21 @@
+{
+  "status": "reproduced_accuracy_failure",
+  "recorded_utc": "2026-10-23T14:00:40.732587+00:00",
+  "fixture": "N1 rank0 OneLoop A0, mass\u00b22; mu=[1+2^-100,3,-9/2], last coefficient80bits instead of256; workspace256,target128",
+  "observed_statuses": [
+    "Success",
+    "Success"
+  ],
+  "returned_weak_bits": 256,
+  "scaled_weak_strong_difference": "7.099748146989106248705557087533874639558707860908347727635706152343500046096301899160417990093378542098736309805868899318374e-30",
+  "requested_dimensional_tolerance": "2^-109",
+  "explanation": "Squaring mu can round the weak second component to zero, erasing original-scale precision provenance. Computed mu\u00b2 and final output metadata alone are insufficient.",
+  "log": "validation/mixed-precision/original-scale-pre-fix.log",
+  "exit_code": 101,
+  "seconds": 4.197868025046773,
+  "sha256": {
+    "validation/mixed-precision/original-scale-pre-fix.log": "783988e73db842235ee39754594ccd2629307fd17c34dd4ef982d3537ea12c60",
+    "target/mixed-precision-original-scale-pre-fix-tests": "73fdb1d8a4fbd0f4adbd28c64362459ae9f5a69ef4ee876a0a766d72fa8f1f67",
+    "crates/iregi-rust/tests/mixed_precision_accuracy.rs": "792762a7b42fea764899695cd2300cd09a1e57ec30b73467017b0208bbbb3000"
+  }
+}

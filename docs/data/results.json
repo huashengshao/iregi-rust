@@ -475,7 +475,7 @@
       "source": "crates/iregi-rust/tests/shifted_pentagon.rs",
       "evidence": "validation/shifted-pentagon/core-qualification.log",
       "scope": "Mixed three lanes: positive-F and negative-width success, rejected unqualified endpoint, finite poles, factor3 covariance, empty batch and internal box count.",
-      "limitations": "Only the retained finite fixtures are qualified. Native-feature E6 explicit run, broader endpoints, higher/mixed Dual and performance remain pending."
+      "limitations": "Retained f64 finite fixtures pass; separate pre-vendor DD/Float128 and first common-mass Dual tests now pass. Current vendor build, full128-bit requested accuracy, higher/mixed Dual, broad endpoints, native E6 and performance remain unqualified."
     },
     {
       "component": "Final frozen scalar masters",
@@ -518,6 +518,35 @@
       "evidence": "validation/core-checkpoint/argument_guards.log",
       "scope": "Requested accuracy, mixed Float80/256 inputs, higher Taylor precision, internal monomial cancellation, and subnormal-error underflow.",
       "limitations": "Bounded argument guard checks; not a full arbitrary mixed-precision recurrence uncertainty qualification."
+    },
+    {
+      "component": "Pre-vendor E6 public numeric/first-Dual integration",
+      "tests_passed": 3,
+      "tests_failed": 0,
+      "evidence": "validation/shifted-pentagon/public-core-qualification.json",
+      "lanes_per_test": 3,
+      "domain": [
+        "DoubleFloat",
+        "Float128",
+        "first common-mass Dual<f64>"
+      ],
+      "requested_accuracy_bits": [
+        80,
+        80,
+        53
+      ],
+      "independent_normalized_oracle_threshold": [
+        "1e-23",
+        "1e-23",
+        "2e-14"
+      ],
+      "limitations": [
+        "This artifact uses qualified pre-vendor library objects, with only the integration-test driver recompiled. The new Symbolica scoped-cache vendor wiring is not qualified by these results.",
+        "Timing is diagnostic validation duration on a shared host, without paired reference measurement or controlled CPU affinity; it is not a performance-parity result.",
+        "The DD and Float128 tests request80accuracybits and use a1e-23 dimensionally normalized absolute oracle threshold. They do not qualify full128-bit requested accuracy or convergence as precision increases.",
+        "The current E6 quadrature caps its order at128; stricter requested precision can report NonConvergent.",
+        "General complex-mass/endpoint domains, native-feature execution, second-order and mixed E6 Dual components remain separate qualification work."
+      ]
     }
   ],
   "known_issues": [
@@ -4473,7 +4502,9 @@
     {
       "source": "crates/iregi-masters/src/pentagon6.rs",
       "description": "GenuineD6coreintegration",
-      "status": "pending;prototype8 andtypedE6leaf1pass"
+      "status": "selected_public_finite_fixtures_qualified_with_provenance_limits",
+      "evidence": "validation/shifted-pentagon/public-core-qualification.json",
+      "qualification": "Pre-vendor DD/Float128 request80bits and first common-mass Dual only; current-vendor/higher-Dual/native-feature/broader domains remain unqualified."
     }
   ],
   "resolved_accuracy_issues": [
@@ -4509,13 +4540,15 @@
     "limitations": [
       {
         "path": "CertifiedScalarWorkspace rank-six integrated fixture",
-        "status": "preparation_timeout",
+        "status": "chart_and_workspace_reduction_complete_coordinate_comparator_preparation_timeout",
         "timeout_seconds": 90,
-        "evidence": "validation/invariant-certificate/zero-preflight-qualification/report.json"
+        "evidence": "validation/invariant-certificate/preparation-profile/report.json",
+        "historical_evidence": "validation/invariant-certificate/zero-preflight-qualification/report.json",
+        "qualification": "No complete numerical agreement; N7 not reached."
       },
       {
         "path": "public shifted pentagon DD/Float batch-3 test",
-        "status": "timeout",
+        "status": "historical_timeout_followed_by_pre_vendor_split_success",
         "timeout_seconds": 150,
         "log": "validation/core-checkpoint/e6-core-precision-timeout.log",
         "note": "Earlier guard build, no numeric result; standalone master13 tests pass separately.",
@@ -4526,7 +4559,8 @@
           ],
           "path": "target/checkpoint-guarded-tests/shifted_pentagon-107fba42771912f7",
           "sha256": "77b32c9330357e7476c2746678933bb15ac4d8a1c13637d6db5707862fdec39a"
-        }
+        },
+        "follow_up": "validation/shifted-pentagon/public-core-qualification.json"
       },
       {
         "path": "mixed-precision recurrence uncertainty beyond argument guards",
@@ -4538,9 +4572,19 @@
       },
       {
         "path": "N5 rank-seven full rescue",
-        "status": "passed_experimental_symbolica_patch_main_dependency_integration_pending"
+        "status": "passed_saved_production_vendored_baseline",
+        "evidence": "validation/symbolica-production-qualification.json",
+        "qualification": "1320 slots and one independent coefficient. Saved source predates later precision/routing edits; broader domain and timing qualification remain open."
+      },
+      {
+        "path": "Mixed-precision A0 output accuracy",
+        "status": "three_false_success_fixtures_repaired_in_targeted_slice",
+        "evidence": "validation/mixed-precision/qualification.json",
+        "historical_evidence": "validation/mixed-precision/pre-fix.json",
+        "qualification": "29 stability+6 public pass, unchanged requested targets. Conservative noncertified estimates; broader recurrence audit and guard overhead remain open."
       }
-    ]
+    ],
+    "scope_note": "The counts above belong to the source-identified core checkpoint. Later qualification is retained separately in symbolica_production_qualification, mixed_precision_qualification, stack_reuse_factory_qualification and e6_exact_series_oracle; counts from distinct binaries are not combined."
   },
   "numeric_boundary_validation": {
     "schema_version": 1,
@@ -7099,7 +7143,6 @@
   },
   "rank7_rescue_experimental": {
     "source": "validation/rescue-pentagon-rank7.json",
-    "sha256": "4581df7416f8247bd7476053cd638ce50e0227c6148a576ac075a5f37ba41d8f",
     "status": "passed_with_experimental_symbolica_patch",
     "case": {
       "propagators": 5,
@@ -7260,7 +7303,11 @@
       "This single full-array sample does not qualify the broader high-point kinematic or physical domain.",
       "The full1320 coefficients converge numerically; only the selected component has an independent quadrature assertion in this test."
     ],
-    "timing_scope": "Single cold validation run, not a comparative performance benchmark. The prior timeout left about149 seconds for lowering/setup; it establishes no exact lowering duration or isolated patch speedup."
+    "timing_scope": "Single cold validation run, not a comparative performance benchmark. The prior timeout left about149 seconds for lowering/setup; it establishes no exact lowering duration or isolated patch speedup.",
+    "historical_snapshot_sha256": "4581df7416f8247bd7476053cd638ce50e0227c6148a576ac075a5f37ba41d8f",
+    "current_source_sha256": "a5bee81306d9296089fdd02cd8e31dd7c2424f0df8471f80dc73eb55b44a220f",
+    "follow_up": "validation/symbolica-production-qualification.json",
+    "snapshot_scope": "Earlier isolated-patch snapshot, preserved as history. Current source appends the production-vendored qualification."
   },
   "native_batch_policy": {
     "source": "validation/native-policy/summary.json",
@@ -7741,7 +7788,7 @@
       "last_rule_difference": "1.0159e-15",
       "qualification": "Negative-width lane succeeded and unqualified zero-width endpoint was rejected. A backend budget-allocation change is pending requalification; no complete public-core success is claimed."
     },
-    "limitations": "Only the retained finite fixtures are qualified. Native-feature E6 explicit run, broader endpoints, higher/mixed Dual and performance remain pending.",
+    "limitations": "Retained f64 finite fixtures pass; separate pre-vendor DD/Float128 and first common-mass Dual tests now pass. Current vendor build, full128-bit requested accuracy, higher/mixed Dual, broad endpoints, native E6 and performance remain unqualified.",
     "latest_core_recheck": {
       "name": "e6_public_f64",
       "command": [
@@ -8551,7 +8598,7 @@
     }
   },
   "e6_public_precision_attempt": {
-    "status": "timeout_without_numerical_result",
+    "status": "historical_combined_timeout_followed_by_split_test_success",
     "timeout_seconds": 150,
     "source": "validation/core-checkpoint/e6-core-precision-timeout.log",
     "sha256": "0e2c5048675396d69214fefc74c7859a6f35a2ec989b222ba904552669316f10",
@@ -8563,6 +8610,2849 @@
       ],
       "path": "target/checkpoint-guarded-tests/shifted_pentagon-107fba42771912f7",
       "sha256": "77b32c9330357e7476c2746678933bb15ac4d8a1c13637d6db5707862fdec39a"
+    },
+    "follow_up": "validation/shifted-pentagon/public-core-qualification.json",
+    "qualification": "Earlier150scombined timeout remains retained. The same scaled DD/Float fixtures and tolerances pass as separate tests in the documented pre-vendor build. Current vendor wiring is not qualified by this evidence."
+  },
+  "e6_public_generic_qualification": {
+    "source": "validation/shifted-pentagon/public-core-qualification.json",
+    "sha256": "286cb488bc6c66ccb879f069feee08329b0de9c64061438cd514be2158f94ff1",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T13:25:18.798277+00:00",
+      "status": "passed_bounded_scope",
+      "qualification": "Public instruction-major reduction API for a positive-F massive D6 pentagon at three dimensionally related input scales: DoubleFloat, Float128 and first-order common-mass HyperDual. Native slots remain [UV, IR, IR2, finite].",
+      "oracle": {
+        "files": [
+          "validation/shifted-pentagon/evidence.json",
+          "validation/shifted-pentagon/contours.json"
+        ],
+        "finite_j6": "-0.0001771401382640081806076521310069008176",
+        "common_mass_derivative_j6": "0.0000236059994160983338257",
+        "preparation": "Four-dimensional numerator rank0, five unit powers, IBP, dimension shift1, OneLoop convention; exact integer inputs and exact rational decimal expectations."
+      },
+      "build": {
+        "recorded_utc": "2026-10-23T13:19:20.772510+00:00",
+        "scope": "Pre-vendor diagnostic binary, linked to exact library artifacts from target/checkpoint-mixed-guard-no-run.jsonl. Current Cargo.toml and Cargo.lock already point to vendored Symbolica and are not this binary dependency provenance. Only the integration-test driver is rebuilt.",
+        "head": "4d9fe5f00232cd95dd674b8b12dcf1c6010d530a",
+        "sha256": {
+          "crates/iregi-rust/tests/shifted_pentagon.rs": "e398883b649f1d14ba84c671d5a4b76a24d5923cdff1e7bf1ba38e5448f8bfde",
+          "crates/iregi-rust/src/execution.rs": "958df5ecb53d43473c5106108467f698e496897fc4270d3640147bf51a159851",
+          "crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+          "crates/iregi-masters/src/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+          "target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib": "49640023e87e0345ace509446ede2338d5ece5989c4395fbc6e100841789db25",
+          "target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib": "aa0b0f0ef0bb9b344d765a50bf961fd747b15ba12b008e41ca942521b5fb547f",
+          "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5"
+        },
+        "source_build_manifest": "target/checkpoint-mixed-guard-no-run.jsonl",
+        "source_build_manifest_sha256": "c4579e77d37410becb774668a703a1f5abb6a2f56b85e725731a5e18a4a14231",
+        "binary": "target/e6-public-profile/shifted_pentagon-tests",
+        "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+        "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+        "qualified_library_sources": "validation/core-checkpoint/qualification.json",
+        "qualified_library_sources_sha256": "9396c74208d726815537bacaed67b57555e612e17efdc1bca5898bd8c5e33823",
+        "symbolica_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+        "symbolica_scoped_cache_patch_active": false,
+        "compile_command": [
+          "rustc",
+          "--test",
+          "--crate-name",
+          "shifted_pentagon",
+          "--edition=2024",
+          "crates/iregi-rust/tests/shifted_pentagon.rs",
+          "-L",
+          "dependency=target/cargo-build/debug/deps",
+          "-L",
+          "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+          "--extern",
+          "iregi_rust=target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib",
+          "--extern",
+          "iregi_masters=target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib",
+          "--extern",
+          "symbolica=target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib",
+          "-o",
+          "target/e6-public-profile/shifted_pentagon-tests"
+        ]
+      },
+      "checks": [
+        {
+          "label": "doublefloat",
+          "test": "shifted_pentagon_core_preserves_doublefloat_precision",
+          "status": "passed",
+          "returncode": 0,
+          "timeout_seconds": 180,
+          "wall_seconds": 48.6990823718952,
+          "started_utc": "2026-10-23T13:19:30.985900+00:00",
+          "command": [
+            "target/e6-public-profile/shifted_pentagon-tests",
+            "--exact",
+            "shifted_pentagon_core_preserves_doublefloat_precision",
+            "--test-threads=1",
+            "--nocapture"
+          ],
+          "environment": {
+            "RUST_MIN_STACK": "67108864",
+            "IREGI_PREPARATION_PROFILE": "1"
+          },
+          "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+          "log": "validation/shifted-pentagon/public-core-doublefloat.log",
+          "log_sha256": "5d506d2c74366fba2a0418701e736f049ad0fd1d139205890845e18ccc0cb073",
+          "working_bits": 106,
+          "requested_accuracy_bits": 80,
+          "components": 1,
+          "normalized_absolute_error_bound": "1e-23",
+          "test_wall_seconds": 48.62,
+          "plan_seconds": 0.113558629,
+          "workspace_seconds": 1.593345234,
+          "reduction_seconds": 46.729966495,
+          "scalar_master_seconds": 45.850290533,
+          "quadrature_order": 128,
+          "internal_d0_rows": 3720,
+          "rows": 3,
+          "scales": [
+            1,
+            2,
+            3
+          ],
+          "fallback_rows": 0,
+          "master_family_batches": 1,
+          "master_rows": 3,
+          "analytic_rows": 3
+        },
+        {
+          "label": "float128",
+          "test": "shifted_pentagon_core_preserves_float_precision",
+          "status": "passed",
+          "returncode": 0,
+          "timeout_seconds": 180,
+          "wall_seconds": 117.58003363199532,
+          "started_utc": "2026-10-23T13:20:40.840068+00:00",
+          "command": [
+            "target/e6-public-profile/shifted_pentagon-tests",
+            "--exact",
+            "shifted_pentagon_core_preserves_float_precision",
+            "--test-threads=1",
+            "--nocapture"
+          ],
+          "environment": {
+            "RUST_MIN_STACK": "67108864",
+            "IREGI_PREPARATION_PROFILE": "1"
+          },
+          "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+          "log": "validation/shifted-pentagon/public-core-float128.log",
+          "log_sha256": "425f7732fdb0f8bb33a22d8cb4464e75e8d4818f0ea19928c6544afe52421ffc",
+          "working_bits": 128,
+          "requested_accuracy_bits": 80,
+          "components": 1,
+          "normalized_absolute_error_bound": "1e-23",
+          "test_wall_seconds": 117.07,
+          "plan_seconds": 0.087070343,
+          "workspace_seconds": 1.604483001,
+          "reduction_seconds": 106.49444513,
+          "scalar_master_seconds": 105.557781252,
+          "quadrature_order": 128,
+          "internal_d0_rows": 3720,
+          "rows": 3,
+          "scales": [
+            1,
+            2,
+            3
+          ],
+          "fallback_rows": 0,
+          "master_family_batches": 1,
+          "master_rows": 3,
+          "analytic_rows": 3
+        },
+        {
+          "label": "common_mass_dual",
+          "test": "shifted_pentagon_core_common_mass_dual_matches_independent_d4",
+          "status": "passed",
+          "returncode": 0,
+          "timeout_seconds": 180,
+          "wall_seconds": 28.79836826096289,
+          "started_utc": "2026-10-23T13:23:08.985438+00:00",
+          "command": [
+            "target/e6-public-profile/shifted_pentagon-tests",
+            "--exact",
+            "shifted_pentagon_core_common_mass_dual_matches_independent_d4",
+            "--test-threads=1",
+            "--nocapture"
+          ],
+          "environment": {
+            "RUST_MIN_STACK": "67108864",
+            "IREGI_PREPARATION_PROFILE": "1"
+          },
+          "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+          "log": "validation/shifted-pentagon/public-core-common_mass_dual.log",
+          "log_sha256": "fdb0bc09fe62beace4da3226ec3f4809e9d0bcfcdc211f7bddb897853acde063",
+          "working_bits": 53,
+          "requested_accuracy_bits": 53,
+          "components": 2,
+          "normalized_absolute_error_bound": "2e-14",
+          "test_wall_seconds": 28.68,
+          "plan_seconds": 0.086603062,
+          "workspace_seconds": 4.825212781,
+          "reduction_seconds": 23.671469888,
+          "scalar_master_seconds": 19.719392187,
+          "quadrature_order": 64,
+          "internal_d0_rows": 1800,
+          "dual_shape": [
+            [
+              0
+            ],
+            [
+              1
+            ]
+          ],
+          "identity": "sum_i d/d(m_i^2) J6 = -J4; the primal and common-mass first derivative are checked independently against parameter-integral values",
+          "rows": 3,
+          "scales": [
+            1,
+            2,
+            3
+          ],
+          "fallback_rows": 0,
+          "master_family_batches": 1,
+          "master_rows": 3,
+          "analytic_rows": 3
+        }
+      ],
+      "historical_timeout": {
+        "log": "validation/core-checkpoint/e6-core-precision-timeout.log",
+        "log_sha256": "0e2c5048675396d69214fefc74c7859a6f35a2ec989b222ba904552669316f10",
+        "timeout_seconds": 150,
+        "interpretation": "The combined DD/Float three-lane test had no stage instrumentation. Splitting without changing samples or tolerances passed both domains; their observed validation durations total165.69 seconds. Scalar-master evaluation dominates. The historical timeout remains visible and was not numerical disagreement."
+      },
+      "limits": [
+        "This artifact uses qualified pre-vendor library objects, with only the integration-test driver recompiled. The new Symbolica scoped-cache vendor wiring is not qualified by these results.",
+        "Timing is diagnostic validation duration on a shared host, without paired reference measurement or controlled CPU affinity; it is not a performance-parity result.",
+        "The DD and Float128 tests request80accuracybits and use a1e-23 dimensionally normalized absolute oracle threshold. They do not qualify full128-bit requested accuracy or convergence as precision increases.",
+        "The current E6 quadrature caps its order at128; stricter requested precision can report NonConvergent.",
+        "General complex-mass/endpoint domains, native-feature execution, second-order and mixed E6 Dual components remain separate qualification work."
+      ],
+      "reproduction": [
+        "source scripts/env.sh",
+        "RUST_MIN_STACK=67108864 IREGI_PREPARATION_PROFILE=1 cargo test -p iregi-rust --test shifted_pentagon shifted_pentagon_core_preserves_doublefloat_precision -- --exact --test-threads=1 --nocapture",
+        "RUST_MIN_STACK=67108864 IREGI_PREPARATION_PROFILE=1 cargo test -p iregi-rust --test shifted_pentagon shifted_pentagon_core_preserves_float_precision -- --exact --test-threads=1 --nocapture",
+        "RUST_MIN_STACK=67108864 IREGI_PREPARATION_PROFILE=1 cargo test -p iregi-rust --test shifted_pentagon shifted_pentagon_core_common_mass_dual_matches_independent_d4 -- --exact --test-threads=1 --nocapture"
+      ]
+    },
+    "qualification": "Three passing pre-vendor public tests:3 scaled lanes each in DD,Float128 and first common-mass Dual. DD/Float request80accuracybits with1e-23 normalized independent-oracle tolerance; Dual uses2e-14. No current vendor/full128-bit accuracy/higher-Dual/native-feature or performance qualification."
+  },
+  "mixed_precision_accuracy_failure": {
+    "source": "validation/mixed-precision/pre-fix.json",
+    "sha256": "2c21babab8245ee5463ca76a6a465e0d46b03056a03b216924fde3078ba61552",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T13:20:36.182678+00:00",
+      "status": "reproduced_accuracy_failure",
+      "workspace_revision": "4d9fe5f00232cd95dd674b8b12dcf1c6010d530a",
+      "description": "Public N1 rank0 PV OneLoop workspace uses Float256 constants, Float80 exact dyadic mass squared2 and scale1. Float80 finite result passes existing monitors at requested128/256 despite insufficient accuracy.",
+      "command": "source scripts/env.sh; RUST_MIN_STACK=67108864 timeout60s target/mixed-precision-pre-fix-tests --test-threads=1 --nocapture",
+      "compile_command": "rustc --test --crate-name mixed_precision_accuracy --edition=2024 crates/iregi-rust/tests/mixed_precision_accuracy.rs -L dependency=target/cargo-build/debug/deps -L native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib --extern iregi_rust=target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib --extern iregi_masters=target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib --extern symbolica=target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib -o target/mixed-precision-pre-fix-tests",
+      "test_wall_seconds": 0.88,
+      "exit_code": 101,
+      "reference": "2*(1-log(2)), evaluated at512bits from exactly represented dyadic inputs; scaled absolute error divides by natural mass-squared scale2",
+      "result": {
+        "input_bits": 80,
+        "output_bits": 80,
+        "scaled_error": "2.468817141934586165466594129949434451111464074034209302843941366730035813124579985189794293142663144797642418694429673292483649241e-25",
+        "reported_status_by_requested_bits": {
+          "53": "Success",
+          "128": "Success",
+          "256": "Success"
+        },
+        "expected_status_by_requested_bits": {
+          "53": "Success",
+          "128": "Unstable",
+          "256": "Unstable"
+        }
+      },
+      "controls": {
+        "input256_output_bits": 255,
+        "input256_scaled_error": "8.190679738016092463898905608457081208377030545582398120058081637304655274559e-79",
+        "input256_status": "Success at all requested targets",
+        "scaleless_input80_status": "Success at all requested targets"
+      },
+      "sha256": {
+        "crates/iregi-rust/tests/mixed_precision_accuracy.rs": "56b2ecc861e402391ec891351b874d6f425ebdc818722287b2a2615b278028ff",
+        "target/mixed-precision-pre-fix-tests": "9720c1c99b34696c3acbac56eac7f8b1829f60696dde43c72352daabaea28895",
+        "target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib": "49640023e87e0345ace509446ede2338d5ece5989c4395fbc6e100841789db25",
+        "target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib": "aa0b0f0ef0bb9b344d765a50bf961fd747b15ba12b008e41ca942521b5fb547f",
+        "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5",
+        "validation/mixed-precision/pre-fix.log": "a31fd0ee797c1b983c6bcd8e3260d5a66b99b73862808ec4c31ced49d4261240",
+        "validation/mixed-precision/pre-fix-test.rs": "56b2ecc861e402391ec891351b874d6f425ebdc818722287b2a2615b278028ff"
+      },
+      "scope": "Reproduction against preserved pre-vendor dependency artifacts; not a timing benchmark. Production fix pending.",
+      "source_snapshot": "validation/mixed-precision/pre-fix-test.rs"
+    },
+    "qualification": "Preserved pre-vendor public A0 reproduction. At requested128/256-bit targets Float80 output incorrectly reports Success; production fix and requalification pending. Separate bounded argument-guard tests do not qualify this output-accuracy path.",
+    "status": "historical_false_success_repaired_in_targeted_qualification",
+    "follow_up": "validation/mixed-precision/qualification.json"
+  },
+  "mixed_precision_qualification": {
+    "source": "validation/mixed-precision/qualification.json",
+    "sha256": "8c754f214927f8687b712bdf4eee6857e78fd54c2a26ed4f08df922d68f76ba6",
+    "snapshot": {
+      "schema_version": 1,
+      "recorded_utc": "2026-10-23T14:06:49.252786+00:00",
+      "status": "targeted_runtime_qualification_passed",
+      "workspace_revision": "69f23e8fd76cb422ddcf50282de32a4c097a092b",
+      "scope": "Mixed precision accuracy monitoring, active scalar-master precision provenance, full returned Taylor coefficient checks, and raw-distance precision relevance. Validation times are not benchmarks.",
+      "behavior": {
+        "requested_accuracy": "Unchanged; no silent promotion or target cap",
+        "master_gate": "Inspect nonzero components of actual active requests plus original mu jets; require effective bits +15 >= requested bits. Full constant scaleless jets exempt.",
+        "weighted_estimates": "Each nonzero real/imag operand contributes at its actual tracked precision, capped by prototype. Dynamic Float reserves3 guard bits. Every returned Laurent/Taylor coefficient is checked.",
+        "range_policy": "Underflowed or subnormal error estimates use positive magnitude only when unit<=1; otherwise reject. Finite normal unit>1 remains magnitude weighted under unchanged dimensional target.",
+        "relevance": "Raw distances scan only original shifts or authoritative supplied scalar products, excluding masses and scale."
+      },
+      "final_source_tests": {
+        "stability": {
+          "passed": 29,
+          "seconds": 15.55,
+          "log": "validation/mixed-precision/revised-stability.log"
+        },
+        "public_mixed_precision": {
+          "passed": 6,
+          "seconds": 5.8,
+          "log": "validation/mixed-precision/revised-public.log"
+        }
+      },
+      "earlier_unchanged_execution_plumbing": {
+        "passed": 30,
+        "seconds": 34.28,
+        "log": "validation/mixed-precision/final-execution.log",
+        "source_note": "Same execution.rs and all guard logic except later finite-unit>1 range correction; final stability tests include the corrected helper."
+      },
+      "retained_failures": [
+        {
+          "fixture": "Float256 prototype, Float80 A0 arithmetic",
+          "evidence": "validation/mixed-precision/pre-fix.json",
+          "result": "Previously Success at128/256 despite scaled error2.468817e-25"
+        },
+        {
+          "fixture": "Equal-mass lightlike B0 finite part rounded tozero",
+          "evidence": "validation/mixed-precision/rounded-zero-bubble-pre-fix.json",
+          "result": "Previously Success with256-bit zero-output metadata"
+        },
+        {
+          "fixture": "Original weak mu second jet erased by squaring",
+          "evidence": "validation/mixed-precision/original-scale-pre-fix.json",
+          "result": "Previously Success with256-bit output metadata; scaled error versus strong control7.099748e-30 at target128"
+        },
+        {
+          "fixture": "First implementation rejected harmless tiny intermediate before magnitude weighting",
+          "evidence": "validation/mixed-precision/pentagon-rescue-diagnostic.json",
+          "result": "Corrected; original full-DAG pentagon rescue now passes unchanged thresholds"
+        }
+      ],
+      "limitations": [
+        "Conditioning monitors are estimates, not certified error bounds. Symbolica tracks relative precision and clamps it at1 after severe cancellation; no separate absolute-error metadata is retained.",
+        "Active-request gate is conservative for exact coincidences, analytically unused scale, and tiny weak nonzero seeds.",
+        "Scalar backend correctness and full performance acceptance are separate qualifications."
+      ],
+      "sha256": {
+        "crates/iregi-rust/src/stability.rs": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "crates/iregi-rust/src/stability/quadrature.rs": "f696fcda8faa03cf8f1224b5f7e1996da82af1f789b170838688057fa5dc1cd9",
+        "crates/iregi-rust/src/execution.rs": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5",
+        "crates/iregi-rust/tests/mixed_precision_accuracy.rs": "792762a7b42fea764899695cd2300cd09a1e57ec30b73467017b0208bbbb3000",
+        "target/libiregi_rust_mixed_precision_revised.rlib": "b8256bf7508d204d7ebcc302bad73cfe0f469419d7a7868f225f6fb83e5c6906",
+        "target/mixed-precision-core-revised-tests": "1093d3bd0032cbf82f51ada0fa0b1acabc8a7a4eb1d5a6d7e578e93e0548176f",
+        "target/mixed-precision-public-revised-tests": "75313aa9b0ad6a3e931cd1d932651025becc3df6361512afe855e14b97237a6b",
+        "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib": "5a51209413e9bb69460b3f55c97e4f08ab694596f2fbdb0d01d5517f9ef70c58",
+        "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc",
+        "validation/mixed-precision/revised-stability.log": "2d736713d71dba12098566f2a6d03fb8ea9e3e43d6fb668ec1905068fe285cc1",
+        "validation/mixed-precision/revised-public.log": "dee80ac2aa354700a4ea5282bb3b04caa91223c30a84ee41cf2e568c32fb591f",
+        "validation/mixed-precision/final-execution.log": "2d1592bcde64d8a602f5134fb618a19f7db8ad77af82322501f6ffa5b6efde1e"
+      },
+      "independent_review": {
+        "agent": "checkpoint_audit",
+        "status": "accepted final narrow correction; no concrete new false acceptance found",
+        "reviewed_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "coverage": "Reachable recurrence alias bodies receive local contribution checks subject to existing bounded expansion; master amplitudes recursively carry uncancelled primal contributions. Clamped1-bit relative metadata does not independently certify absolute accuracy."
+      }
+    },
+    "qualification": "Final stability29 and public6 tests pass. Earlier execution30 checks cover unchanged plumbing. Three retained false-Success fixtures are repaired; estimates remain noncertified and the active-master gate conservative. Guard overhead is unmeasured."
+  },
+  "symbolica_production_qualification": {
+    "source": "validation/symbolica-production-qualification.json",
+    "sha256": "9664f888003663e0ca204992afeef8c6fb5881c00a71f63f4052106fb46d5661",
+    "snapshot": {
+      "status": "PASS: coherent vendored integration compiles across the current frozen workspace; all before/after Rust/manifest hashes match, including final stability08cad15c. Four internal Symbolica scope regressions and preserved baseline57 core tests/full1320-coefficient rank7 rescue pass. Later numerical-change runtime evidence remains separate.",
+      "git_head_at_build_start": "4d9fe5f00232cd95dd674b8b12dcf1c6010d530a",
+      "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+      "dependency_selection": [
+        {
+          "name": "symbolica",
+          "version": "3.0.1",
+          "manifest_path": "/shared/external/iregi/iregi-rust/dependencies/symbolica/Cargo.toml",
+          "source": null
+        },
+        {
+          "name": "numerica",
+          "version": "3.0.1",
+          "manifest_path": "/shared/external/iregi/iregi-rust/dependencies/symbolica/lib/numerica/Cargo.toml",
+          "source": null
+        },
+        {
+          "name": "graphica",
+          "version": "3.0.1",
+          "manifest_path": "/shared/external/iregi/iregi-rust/dependencies/symbolica/lib/graphica/Cargo.toml",
+          "source": null
+        }
+      ],
+      "root_manifest_sha256": "92eea8006cdb0d2735b27e4b0ddb4c9f2471b4cd97ae1738019e41490f893f07",
+      "root_lock_sha256": "2e234642a80b8224de28f6bae3b6fc11cfe783de9b928c1929263fb376da0682",
+      "lock_change": "Only the three pinned Symbolica/Numerica/Graphica git source lines were removed; package versions and other lock entries unchanged.",
+      "vendor_inventory": "dependencies/symbolica/IREGI_PROVENANCE.json",
+      "vendor_inventory_sha256": "0cfefbda257d0b899f1b8bf86e192e395ab2c0c3d253771b447fc3dd0ae81b4f",
+      "qualification_limits": [
+        "This baseline predates the subsequently started mixed-precision guard and K-alias production changes. It does not qualify those later edits.",
+        "Single diagnostic cold runtime with concurrent workspace compilation; no pinned-core repeated benchmark, uncertainty estimate, or performance-parity claim.",
+        "All1320 coefficient slots compare128/256; full arrays are asserted internally rather than printed. One selected coefficient has independent simplex verification.",
+        "One stable massive input and its rejection/rescue behavior; this does not establish full high-point domain coverage.",
+        "This saved baseline predates the fix for the separately identified mixed-input-precision false-success case; that later fix is qualified separately and is not exercised by this baseline."
+      ],
+      "core_baseline": {
+        "status": "Preserved source baseline compiled and passed57 focused core tests plus full1320-coefficient rank7 rescue; later production changes are outside this snapshot.",
+        "binary": "target/symbolica-production-qualification/core-baseline-tests",
+        "binary_sha256": "05aa51bce29c6473acf4b5954729201dcb405a1b525dc37f4107dbfaa4d5ca57",
+        "source_root": "target/symbolica-production-qualification/source-snapshot",
+        "archives_unchanged_through_compile": true,
+        "rustc_mode": "edition2024 --test -C opt-level=2; direct from preserved source snapshot with explicit --extern paths and project GMP native library directory",
+        "cargo_manifest_dir": "/shared/external/iregi/iregi-rust/target/symbolica-production-qualification/source-snapshot/crates/iregi-rust",
+        "limits": [
+          "Direct baseline is independent of subsequent production source edits. Workspace Cargo build still ongoing.",
+          "Older already compiled serde/serde_json/thiserror archives were explicitly reused and hashed; Symbolica/oneloop/iregi-masters are new vendored artifacts."
+        ]
+      },
+      "runtime_runs": [
+        {
+          "name": "execution",
+          "exit_code": 0,
+          "passed": 30,
+          "elapsed_seconds": 30.51,
+          "log_path": "target/symbolica-production-qualification/execution.log",
+          "log_sha256": "148bcc38fb6ca0ba35f77b11b37ea71cbe083324122f6d8e6796bcee6e282b25"
+        },
+        {
+          "name": "stability",
+          "exit_code": 0,
+          "passed": 24,
+          "elapsed_seconds": 14.86,
+          "log_path": "target/symbolica-production-qualification/stability.log",
+          "log_sha256": "58d972a334801a7ef3640ad034040b414aabf963873a6411a0fbe67a52d9275f"
+        },
+        {
+          "name": "rescue",
+          "exit_code": 0,
+          "passed": 3,
+          "elapsed_seconds": 3.04,
+          "log_path": "target/symbolica-production-qualification/rescue.log",
+          "log_sha256": "25dd15dbbc07dfc19358c06cbb53dfd734a69b65288ebebfc5d3aa05b9c92aad"
+        },
+        {
+          "name": "rank7",
+          "exit_code": 0,
+          "passed": 1,
+          "elapsed_seconds": 109.44,
+          "log_path": "target/symbolica-production-qualification/rank7.log",
+          "log_sha256": "7e7880db87d28ed4b70c300b083fd2e55721aaf1b87c39114f4361743944b621"
+        }
+      ],
+      "rank7": {
+        "rows": 1,
+        "propagators": 5,
+        "maximum_rank": 7,
+        "tensor_moments": 330,
+        "laurent_slots": 4,
+        "verified_coefficient_slots": 1320,
+        "working_bits": 128,
+        "verification_bits": 256,
+        "plan_seconds": 21.389870891,
+        "plan_aliases": 9381,
+        "master_leaves": 30,
+        "preparation_stages_seconds": {
+          "stability expressions": 75.198808,
+          "quadrature-stability exact evaluators": 1e-06,
+          "argument exact evaluator": 0.001319,
+          "snapping diagnostic exact evaluator": 8e-06,
+          "reduction exact evaluator": 3.304193,
+          "primal exact evaluator": 0.0,
+          "scalar master exact evaluators": 0.84615
+        },
+        "numeric_mapping_seconds_f64_128_256": [
+          0.313929,
+          0.704746,
+          0.6633
+        ],
+        "all_workspaces_seconds_since_test_start": 102.906399857,
+        "batch_seconds_since_test_start": 108.785659321,
+        "reduction_scope_profile": {
+          "root_seconds": 2.948196,
+          "branch_scopes": 9760,
+          "parent_entries_not_copied": 11521552966,
+          "reverted_entries": 34643,
+          "final_entries": 1994989
+        },
+        "primary_status": "Unstable: estimated cancellation at recurrence pv_node_12, Taylor component0; no primary success claimed.",
+        "rescue_status": "Converged128/256; requested1, accepted1; full coefficient comparison and rounded-output check passed.",
+        "execution_per_precision": {
+          "input_rows": 1,
+          "argument_rows": 1,
+          "master_family_batches": 4,
+          "master_rows": 30,
+          "reduction_rows": 1,
+          "fallback_rows": 0,
+          "analytic_rows": 0
+        },
+        "optional_profile": "Exact-zero optional profile preparation fails with the documented unsupported shifted-scalar divisor; all3 workspaces retain the ordinary reduction path and expose the diagnostic.",
+        "independent_coefficient": {
+          "moment": [
+            5,
+            0,
+            0,
+            1
+          ],
+          "laurent_slot": "finite",
+          "working_real": "2e-32",
+          "working_imaginary": "-2.4383789354471229393924987498457e-3",
+          "verification_real": "1e-71",
+          "verification_imaginary": "-2.4383789354471229393924987498432753476200154688257048533643618299719415e-3",
+          "returned_real": "1.245155873338673e-71",
+          "returned_imaginary": "-0.002438378935447123",
+          "independent_artifact": "validation/pv-high-rank/pentagon-simplex-oracle.json",
+          "absolute_test_tolerance": 1e-13
+        }
+      },
+      "symbolica_internal_tests": {
+        "status": "compiled and all4 focused scope regressions passed",
+        "command": "CARGO_BUILD_JOBS=2 cargo test -p symbolica --lib --no-run --locked --offline",
+        "log_path": "target/symbolica-production-qualification/symbolica-unit-build.log",
+        "initial_attempt": "Cargo rejects explicit feature flags for a package outside the root workspace; selected dependency test command uses the existing root resolution.",
+        "build_exit_code": 0,
+        "build_manifest": {
+          "path": "target/cargo-build/debug/deps/symbolica-13f9b6208fdad259",
+          "bytes": 616063024,
+          "sha256": "0f6f671ccb4daef21b344b4bc4e4cfa13feadfa9941d3842b7c590767fd58b7d",
+          "fingerprint": {
+            "rustc": 5453380456741987221,
+            "features": "[\"bincode\", \"float-mpfr\", \"integer-gmp\", \"native_code_generation\", \"serde\", \"tracing_max_level_info\"]",
+            "declared_features": "[\"binary_size\", \"bincode\", \"c_api\", \"default\", \"faster_alloc\", \"faster_alloc_dynamic_tls\", \"flint_benchmarks\", \"flint_system_benchmarks\", \"float-astro\", \"float-mpfr\", \"full_fn_cmp\", \"integer-gmp\", \"integer-malachite\", \"mathematica_api\", \"mimalloc\", \"native_code_generation\", \"numpy\", \"polynomial_benchmark_capture\", \"pyo3\", \"pyo3-log\", \"pyo3-stub-gen\", \"pyo3-stub-gen-derive\", \"python_abi3\", \"python_api\", \"python_export\", \"python_stubgen\", \"serde\", \"symbolica_benchmarks\", \"tracing_max_level_info\", \"wasm\", \"wolfram-library-link\"]",
+            "target": 1116247301497558914,
+            "profile": 2794506303087527702,
+            "path": 12741758118447601301,
+            "deps": [
+              [
+                295930454691973822,
+                "brotli",
+                false,
+                10071765593214901068
+              ],
+              [
+                500864814328762103,
+                "data_encoding",
+                false,
+                7846744002394415902
+              ],
+              [
+                966925859616469517,
+                "ahash",
+                false,
+                6888780787228240257
+              ],
+              [
+                1982453702243488956,
+                "numerica",
+                false,
+                18039250711774830257
+              ],
+              [
+                2528587820129791182,
+                "directories",
+                false,
+                18217372282761115612
+              ],
+              [
+                3419428956812390430,
+                "smartstring",
+                false,
+                18384200292819315557
+              ],
+              [
+                3712811570531045576,
+                "byteorder",
+                false,
+                11599785706346160405
+              ],
+              [
+                4400376593911872699,
+                "graphica",
+                false,
+                15368634869157914357
+              ],
+              [
+                4867706717905752343,
+                "append_only_vec",
+                false,
+                15536004084112719776
+              ],
+              [
+                5380358770761950913,
+                "tracing_subscriber",
+                false,
+                6383029386214960997
+              ],
+              [
+                5855319743879205494,
+                "once_cell",
+                false,
+                13599726284135380473
+              ],
+              [
+                6557439603276904804,
+                "serde",
+                false,
+                15300461565246979087
+              ],
+              [
+                6713745942865468566,
+                "rug",
+                false,
+                18410878114553473102
+              ],
+              [
+                6887128979345976232,
+                "self_cell",
+                false,
+                15463820670017587751
+              ],
+              [
+                6982418085031928086,
+                "dyn_clone",
+                false,
+                4074864547919373145
+              ],
+              [
+                7350845333435588724,
+                "libloading",
+                false,
+                14112734231351001410
+              ],
+              [
+                9841471176381971897,
+                "build_script_build",
+                false,
+                5327042614544666413
+              ],
+              [
+                10833681465073002954,
+                "inventory",
+                false,
+                9794998313683965092
+              ],
+              [
+                10871205611723305250,
+                "ed25519_compact",
+                false,
+                563863938318952658
+              ],
+              [
+                11862723254873017773,
+                "bincode",
+                false,
+                18116614193595051680
+              ],
+              [
+                11910974697091955563,
+                "rayon",
+                false,
+                7318755573979652733
+              ],
+              [
+                11926622812581095017,
+                "bytes",
+                false,
+                15680876857943463488
+              ],
+              [
+                12405394076909343869,
+                "bincode_trait_derive",
+                false,
+                8069274469395326204
+              ],
+              [
+                12477616144595846051,
+                "tinyjson",
+                false,
+                12770125349804087927
+              ],
+              [
+                14668903365372062426,
+                "rand",
+                false,
+                13048264823690659733
+              ],
+              [
+                14739046195986019181,
+                "smallvec",
+                false,
+                1051332981680761447
+              ],
+              [
+                14757622794040968908,
+                "tracing",
+                false,
+                2175645354027483446
+              ],
+              [
+                15780794698220467170,
+                "wide",
+                false,
+                11632289121153136545
+              ],
+              [
+                17754512149979144716,
+                "symjit",
+                false,
+                9165360212064179791
+              ]
+            ],
+            "local": [
+              {
+                "CheckDepInfo": {
+                  "dep_info": "debug/.fingerprint/symbolica-13f9b6208fdad259/dep-test-lib-symbolica",
+                  "checksum": false
+                }
+              }
+            ],
+            "rustflags": [],
+            "config": 9396254390672932401,
+            "compile_kind": 0
+          },
+          "command": "CARGO_BUILD_JOBS=2 cargo test -p symbolica --lib --no-run --locked --offline",
+          "build_seconds": 1093,
+          "status": "Compiled with production features and all4 focused internal scope tests passed."
+        },
+        "build_log_sha256": "80924f1cb47380b7e0123239d5726e69fbe9baa86cf8ef444562ec0df2791588",
+        "build_log": "    Blocking waiting for file lock on build directory\nwarning: unused import: `ComplexField`\n --> dependencies/symbolica/lib/numerica/src/domains/float/double.rs:9:21\n  |\n9 | use simba::scalar::{ComplexField, RealField};\n  |                     ^^^^^^^^^^^^\n  |\n  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default\n\nwarning: unnecessary `unsafe` block\n  --> dependencies/symbolica/lib/numerica/src/domains/float/double.rs:48:28\n   |\n48 |             Ok(DoubleFloat(unsafe { Df64::new_full(hi, lo) }))\n   |                            ^^^^^^ unnecessary `unsafe` block\n   |\n   = note: `#[warn(unused_unsafe)]` (part of `#[warn(unused)]`) on by default\n\nwarning: unnecessary `unsafe` block\n  --> dependencies/symbolica/lib/numerica/src/domains/float/double.rs:75:35\n   |\n75 |             return Ok(DoubleFloat(unsafe { Df64::new_full(hi, lo) }));\n   |                                   ^^^^^^ unnecessary `unsafe` block\n\nwarning: `numerica` (lib) generated 3 warnings\n   Compiling symbolica v3.0.1 (/shared/external/iregi/iregi-rust/dependencies/symbolica)\nwarning: unused `Result` that must be used\n   --> dependencies/symbolica/src/atom.rs:776:9\n    |\n776 |         self.export(&mut data);\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n    |\n    = note: this `Result` may be an `Err` variant, which should be handled\n    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default\nhelp: use `let _ = ...` to ignore the resulting value\n    |\n776 |         let _ = self.export(&mut data);\n    |         +++++++\n\nwarning: `symbolica` (lib test) generated 1 warning\n    Finished `test` profile [unoptimized + debuginfo] target(s) in 18m 13s\n  Executable unittests src/lib.rs (target/cargo-build/debug/deps/symbolica-13f9b6208fdad259)\n",
+        "runtime_runs": [
+          {
+            "filter": "journal_",
+            "command": [
+              "target/cargo-build/debug/deps/symbolica-13f9b6208fdad259",
+              "journal_",
+              "--test-threads=1",
+              "--nocapture"
+            ],
+            "exit_code": 0,
+            "expected_tests": 2,
+            "passed_tests": 2,
+            "wall_seconds": 0.04643265006598085,
+            "log_path": "target/symbolica-production-qualification/unit-journal.log",
+            "log_sha256": "62c528df1a733cca4a8aa837e5afe4cc4c254b94b28dce92407029314c4cdaf2"
+          },
+          {
+            "filter": "completed_conditionals_reuse_only_their_parent_scope",
+            "command": [
+              "target/cargo-build/debug/deps/symbolica-13f9b6208fdad259",
+              "completed_conditionals_reuse_only_their_parent_scope",
+              "--test-threads=1",
+              "--nocapture"
+            ],
+            "exit_code": 0,
+            "expected_tests": 1,
+            "passed_tests": 1,
+            "wall_seconds": 0.015585509943775833,
+            "log_path": "target/symbolica-production-qualification/unit-completed_conditionals_reuse_only_their_parent_scope.log",
+            "log_sha256": "85b82bc8292b0bf88c741be91458258a184e0cf5ce465fe7d514076d537a90ce"
+          },
+          {
+            "filter": "completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+            "command": [
+              "target/cargo-build/debug/deps/symbolica-13f9b6208fdad259",
+              "completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+              "--test-threads=1",
+              "--nocapture"
+            ],
+            "exit_code": 0,
+            "expected_tests": 1,
+            "passed_tests": 1,
+            "wall_seconds": 0.009838111931458116,
+            "log_path": "target/symbolica-production-qualification/unit-completed_shared_conditionals_keep_captures_and_mixed_dual_components.log",
+            "log_sha256": "0b8f2b183297fc85d900fbe56bdb0afd401c3b3110936ba34e0b658179b0628c"
+          }
+        ]
+      },
+      "latest_workspace_refresh": {
+        "status": "current-tree full workspace test targets compile successfully; runtime evidence is separate",
+        "command": "CARGO_BUILD_JOBS=2 cargo test --workspace --no-run --locked --offline",
+        "exit_code": 0,
+        "git_head": "69f23e8fd76cb422ddcf50282de32a4c097a092b",
+        "root_cargo_sha256": "92eea8006cdb0d2735b27e4b0ddb4c9f2471b4cd97ae1738019e41490f893f07",
+        "root_lock_sha256": "2e234642a80b8224de28f6bae3b6fc11cfe783de9b928c1929263fb376da0682",
+        "source_files": [
+          {
+            "path": "crates/iregi-cli/Cargo.toml",
+            "sha256": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac"
+          },
+          {
+            "path": "crates/iregi-cli/examples/physical_benchmark.rs",
+            "sha256": "ea76ce7fe1fa30171892642bcaa475b889668dabcb83cbc5e6ee11ba5231aace"
+          },
+          {
+            "path": "crates/iregi-cli/src/input.rs",
+            "sha256": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb"
+          },
+          {
+            "path": "crates/iregi-cli/src/lib.rs",
+            "sha256": "82fe8a6a1abfd780a63dff5cb42fc683f389565ef8a8e90a53930638790ff94c"
+          },
+          {
+            "path": "crates/iregi-cli/src/main.rs",
+            "sha256": "800bc31da2e4f67c32c3ca94fabf24c5ed7c81e035e9d3a2abc1541ef7696276"
+          },
+          {
+            "path": "crates/iregi-cli/src/numerator.rs",
+            "sha256": "3060fff5fea11f95774595113b82a98613a882614417db745eaca6c15c25d828"
+          },
+          {
+            "path": "crates/iregi-masters/Cargo.toml",
+            "sha256": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1"
+          },
+          {
+            "path": "crates/iregi-masters/examples/complex_box_oracle.rs",
+            "sha256": "f08b775b16f6330eade5bfaf78031ad91c0e2cd93c582492fecb2a1b95baab51"
+          },
+          {
+            "path": "crates/iregi-masters/examples/generate_batch.rs",
+            "sha256": "55aab093697f757d8b546bb3cb378eae03ccd19ae21bab954993cbbb4f141364"
+          },
+          {
+            "path": "crates/iregi-masters/examples/native_policy_probe.rs",
+            "sha256": "2fc3c9565493d8da93c7ab84dcb551396b0483f1293d70da9244e10437b25d21"
+          },
+          {
+            "path": "crates/iregi-masters/src/bubble_neighborhood.rs",
+            "sha256": "5e00cd3d1785e3ca50695969761131a769226e0fe497f7656fa993cb37d14da9"
+          },
+          {
+            "path": "crates/iregi-masters/src/derivative_domain.rs",
+            "sha256": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e"
+          },
+          {
+            "path": "crates/iregi-masters/src/dual_validation.rs",
+            "sha256": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c"
+          },
+          {
+            "path": "crates/iregi-masters/src/exact_plan.rs",
+            "sha256": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507"
+          },
+          {
+            "path": "crates/iregi-masters/src/generated/a0.rs",
+            "sha256": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53"
+          },
+          {
+            "path": "crates/iregi-masters/src/generated/b0.rs",
+            "sha256": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9"
+          },
+          {
+            "path": "crates/iregi-masters/src/generated/c0.rs",
+            "sha256": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9"
+          },
+          {
+            "path": "crates/iregi-masters/src/generated/constants.rs",
+            "sha256": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47"
+          },
+          {
+            "path": "crates/iregi-masters/src/generated/d0.rs",
+            "sha256": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667"
+          },
+          {
+            "path": "crates/iregi-masters/src/generated/db0.rs",
+            "sha256": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85"
+          },
+          {
+            "path": "crates/iregi-masters/src/lib.rs",
+            "sha256": "27762fc54b1f67421ba1d0b3943a91842c923d5f182cf579d6e38c5ed4bd11ac"
+          },
+          {
+            "path": "crates/iregi-masters/src/native_batch.rs",
+            "sha256": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4"
+          },
+          {
+            "path": "crates/iregi-masters/src/normalization.rs",
+            "sha256": "8c0eb611f7ec8019b4fcd2cc0800165aa026e2e70107bad1af7f290ac8bbed2d"
+          },
+          {
+            "path": "crates/iregi-masters/src/pentagon6.rs",
+            "sha256": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e"
+          },
+          {
+            "path": "crates/iregi-masters/src/scale_transport.rs",
+            "sha256": "bf3b94f71dec9f33a610e5ebf854644e291ccfb1e3a04c8f5451ee04721af6dc"
+          },
+          {
+            "path": "crates/iregi-masters/tests/masters.rs",
+            "sha256": "103f15512011708ac66b99d8cd45a33e5fd63aba6ec2408f3cc629c0cc0a6c77"
+          },
+          {
+            "path": "crates/iregi-masters/tests/native_batch.rs",
+            "sha256": "fa5ce237a01139414e86360d2f8913cbeaf0053dbc2f20cdd5a7781382eeb79c"
+          },
+          {
+            "path": "crates/iregi-masters/tests/numeric_boundaries.rs",
+            "sha256": "c23dc36532548a233b3405b1d17d8eafb44e0c9919682439f4529236c54779a2"
+          },
+          {
+            "path": "crates/iregi-masters/tests/physical_derivatives.rs",
+            "sha256": "06cda25481407dbf51b7de141cf31f82dba654e7587936580adcae1152aa0ffb"
+          },
+          {
+            "path": "crates/iregi-masters/tests/pseudothreshold.rs",
+            "sha256": "677dbe2627ad588ec4f1967e35a8a14b138c0f0b60f487ef1f08371ad4733b6e"
+          },
+          {
+            "path": "crates/iregi-masters/tests/validation_evidence.json",
+            "sha256": "c5e08cf12ca5360d5fa88b071e7c04940f877dea223268c06ff5c2f9c30c3179"
+          },
+          {
+            "path": "crates/iregi-prepare/Cargo.toml",
+            "sha256": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1"
+          },
+          {
+            "path": "crates/iregi-prepare/src/lib.rs",
+            "sha256": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d"
+          },
+          {
+            "path": "crates/iregi-prepare/src/model.rs",
+            "sha256": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf"
+          },
+          {
+            "path": "crates/iregi-prepare/tests/madloop_numerator.rs",
+            "sha256": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948"
+          },
+          {
+            "path": "crates/iregi-prepare/tests/preparation.rs",
+            "sha256": "64e5e2d681eba046b94cf571a3ea4b52586aa04f16eaf686531ea773ba08829f"
+          },
+          {
+            "path": "crates/iregi-rust/Cargo.toml",
+            "sha256": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3"
+          },
+          {
+            "path": "crates/iregi-rust/examples/e6_parameter_series.rs",
+            "sha256": "ebcc78fd7614a7476507da3591350c2f46c02eb168a1266df14584940e0ea8dc"
+          },
+          {
+            "path": "crates/iregi-rust/examples/kernel_benchmark.rs",
+            "sha256": "710c736c8636838eff225b3611d5ac412da49eacbb0932548bb037d46e7da069"
+          },
+          {
+            "path": "crates/iregi-rust/examples/pv_physical_precision.rs",
+            "sha256": "38b0b469b39aa792ffe5468e1797787d08322a620fddd847892f322a9e48302a"
+          },
+          {
+            "path": "crates/iregi-rust/examples/pv_precision_probe.rs",
+            "sha256": "3067200c081a33fc9752446e32d4b45cf3760e033bc2995b64809cc1e1216cd3"
+          },
+          {
+            "path": "crates/iregi-rust/src/basis.rs",
+            "sha256": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178"
+          },
+          {
+            "path": "crates/iregi-rust/src/certified_scalar.rs",
+            "sha256": "6ae742c16cc9334acbdd91361244f5e0b56148f4019fe2881b0af9e7c3289d05"
+          },
+          {
+            "path": "crates/iregi-rust/src/contraction.rs",
+            "sha256": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b"
+          },
+          {
+            "path": "crates/iregi-rust/src/convention.rs",
+            "sha256": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb"
+          },
+          {
+            "path": "crates/iregi-rust/src/exact_zero_certificate.rs",
+            "sha256": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337"
+          },
+          {
+            "path": "crates/iregi-rust/src/execution.rs",
+            "sha256": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5"
+          },
+          {
+            "path": "crates/iregi-rust/src/ibp.rs",
+            "sha256": "b0638fbeb6fca534840de7ef9360026a25d942b291ac656ffd189add0a3687e5"
+          },
+          {
+            "path": "crates/iregi-rust/src/invariant_certificate.rs",
+            "sha256": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9"
+          },
+          {
+            "path": "crates/iregi-rust/src/lib.rs",
+            "sha256": "9d1303770c6bf0fb231612ce6f28a0cb4c0c28bc1ed51ef31d6b317fbbb237f8"
+          },
+          {
+            "path": "crates/iregi-rust/src/plan.rs",
+            "sha256": "079469fbcd6abf5fc95bca93543faccaafa6b646f8e9caa569cd99d7fb451b73"
+          },
+          {
+            "path": "crates/iregi-rust/src/pv.rs",
+            "sha256": "e4258e232a997afd2b41969be14c8188621db0b5e880736f1179278bb90b392d"
+          },
+          {
+            "path": "crates/iregi-rust/src/rescue.rs",
+            "sha256": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d"
+          },
+          {
+            "path": "crates/iregi-rust/src/scalar.rs",
+            "sha256": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd"
+          },
+          {
+            "path": "crates/iregi-rust/src/snapping.rs",
+            "sha256": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452"
+          },
+          {
+            "path": "crates/iregi-rust/src/stability/arguments.rs",
+            "sha256": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c"
+          },
+          {
+            "path": "crates/iregi-rust/src/stability/quadrature.rs",
+            "sha256": "f696fcda8faa03cf8f1224b5f7e1996da82af1f789b170838688057fa5dc1cd9"
+          },
+          {
+            "path": "crates/iregi-rust/src/stability.rs",
+            "sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53"
+          },
+          {
+            "path": "crates/iregi-rust/src/types.rs",
+            "sha256": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30"
+          },
+          {
+            "path": "crates/iregi-rust/tests/legacy_rescue.rs",
+            "sha256": "0820b9679665d40d75ecb4b42e9718003750b70e38c1eacfdb2f7347526b615f"
+          },
+          {
+            "path": "crates/iregi-rust/tests/mixed_precision_accuracy.rs",
+            "sha256": "792762a7b42fea764899695cd2300cd09a1e57ec30b73467017b0208bbbb3000"
+          },
+          {
+            "path": "crates/iregi-rust/tests/oracle.rs",
+            "sha256": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe"
+          },
+          {
+            "path": "crates/iregi-rust/tests/physical_box.rs",
+            "sha256": "3429378abd89d3d9770ea712e0062bf9d5423e6a7b21e905cbc4e4c45bd64135"
+          },
+          {
+            "path": "crates/iregi-rust/tests/shifted_pentagon.rs",
+            "sha256": "e398883b649f1d14ba84c671d5a4b76a24d5923cdff1e7bf1ba38e5448f8bfde"
+          },
+          {
+            "path": "crates/iregi-rust/tests/triangle_gamma.rs",
+            "sha256": "3690d0535b9b60f10823b869cf098957aa2739a49669e2ca9147d658882a0f6b"
+          },
+          {
+            "path": "dependencies/oneloopmaster/Cargo.toml",
+            "sha256": "e57fb4f25291257c9cad3fc635edb965edda1e682d67d8dd18a62d6822a617c9"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/arbitrary_precision.rs",
+            "sha256": "cd60964e71870c0524d3961f752ed85c074c69bea22cab157d39fb6f0a0fd23a"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/basic.rs",
+            "sha256": "55aacdbf20b92bbfbff6ccf96048e8972f2a897776d9528f506a26fe8ff56e3e"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/complex_branch_probe.rs",
+            "sha256": "0646ea0d2de9b47d2d2b38ab0525e867517342825116b5ead5a77c7bd9eeb2be"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/expansion_survey.rs",
+            "sha256": "0d7a9eabf064de0805906a17dea1adfab28075358c978310c98c4dfa00bf588c"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/generate_native.rs",
+            "sha256": "17dedd3bf246e19d0950159ebf44ca074a4a4d5c1a7dd5604445aad5dc4798a8"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/get_expression.rs",
+            "sha256": "ec2b4b9b207190ac32f6bd9a2399393b4387966268766f79041e4b9fbc873bf4"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/jit_probe.rs",
+            "sha256": "b66c9977eb0743bcc4d7f69b91995709cd59e2fc525926f7671653c795591b55"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/numeric_performance.rs",
+            "sha256": "e187d4fc6507050edb127e7f9b6c6f691f89dbc71aa7cabcd198aa0f9acce907"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/oracle_sweep.rs",
+            "sha256": "377b19e926d16d408728245ade35323b4a5230cdf5f7d02941dad14b8a7a9b57"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/performance_survey.rs",
+            "sha256": "7c2ffef66f531caa35bbe6b2e3027b7cb0fc400a81791903a3c89ce0534fe85b"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/power_branch_probe.rs",
+            "sha256": "790131ee02e3f5aed7a701a14dbe0149c52af7054e9ddf19f2cc6cccdbb6716b"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/rebuild_evaluators.rs",
+            "sha256": "58637aa0cfd492a2fe246ef7431598aaa470f9006a9e70dd04b5cd1efa1b0045"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/rows_survey.rs",
+            "sha256": "16e820bea0f8c8edeeb8343e2301bef3a1aa9b22f7cb1eba1d221ed1e881242d"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/select_branch.rs",
+            "sha256": "2cabc4f8538d9332e5755446777436535be2c77ee7e0edd517b2bb6f5479a92a"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/simd_probe.rs",
+            "sha256": "cfcfe4efde1bc0bea190599c9d76e250932237f7f52b8cb1dcce9291b2718bfb"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/stack_reuse_probe.rs",
+            "sha256": "47cb3a1cac1ba88ae69c274a1d196d0114af7d145b8ecb8e41701bd286496798"
+          },
+          {
+            "path": "dependencies/oneloopmaster/examples/triangle_branch_probe.rs",
+            "sha256": "d791526c87266d20c97ad8987858e66a4c3593db6fa658f6ed373099ff74261e"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/analytic_continuation_tests.rs",
+            "sha256": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/backend.rs",
+            "sha256": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/box_complex.rs",
+            "sha256": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/box_integral.rs",
+            "sha256": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/branch_selection.rs",
+            "sha256": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/coincident_dilog_tests.rs",
+            "sha256": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/definitions.rs",
+            "sha256": "83ab0ca0f2a77cb7a37a0eccacac62d01d9c9a1cf9c7207261561eaab84f2c22"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/epsilon.rs",
+            "sha256": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/evaluators.rs",
+            "sha256": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/expressions.rs",
+            "sha256": "1dd7d7901446506a5d7e46d179e3df28f9f3956f7f0ed1a323b74e5a3f80baed"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/initialization.rs",
+            "sha256": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/inspection.rs",
+            "sha256": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/inspection_formulas.rs",
+            "sha256": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/inspection_graph.rs",
+            "sha256": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/inspection_sheet.rs",
+            "sha256": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/jit_primitives.rs",
+            "sha256": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/labelling.rs",
+            "sha256": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/lib.rs",
+            "sha256": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/masters.rs",
+            "sha256": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/batch.rs",
+            "sha256": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/constants.rs",
+            "sha256": "0297975c8a0f37c44c33ffb78522ef2243bd310fd85e008ba07061158616ca98"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/disabled.rs",
+            "sha256": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/generated_a0.rs",
+            "sha256": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/generated_b0.rs",
+            "sha256": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/generated_c0.rs",
+            "sha256": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/generated_constants.rs",
+            "sha256": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/generated_d0.rs",
+            "sha256": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/generated_db0.rs",
+            "sha256": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/handwritten/box_contour/vertex.rs",
+            "sha256": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/handwritten/box_contour.rs",
+            "sha256": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/handwritten/boxes.rs",
+            "sha256": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/handwritten/mod.rs",
+            "sha256": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/handwritten/sheet.rs",
+            "sha256": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/handwritten/triangle.rs",
+            "sha256": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/mod.rs",
+            "sha256": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/primitives.rs",
+            "sha256": "b610c92e859565e71cdb3a9e6091e86298a2a02faa5cf8545709ae57d42167cc"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/simple.rs",
+            "sha256": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/tensor/binary64.rs",
+            "sha256": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/native/tensor.rs",
+            "sha256": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/precision.rs",
+            "sha256": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/quotient_tests.rs",
+            "sha256": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/removable_log_tests.rs",
+            "sha256": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/rust_codegen/batch.rs",
+            "sha256": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/rust_codegen.rs",
+            "sha256": "c281c6c05ae8a7aefdfac2d2c0b3adcf3be1b9f471fdb16cfaa0ce27a5d88681"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/sheet_exact.rs",
+            "sha256": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/tests.rs",
+            "sha256": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/triangle.rs",
+            "sha256": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/triangle_hv.rs",
+            "sha256": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2"
+          },
+          {
+            "path": "dependencies/oneloopmaster/src/two_point.rs",
+            "sha256": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/Cargo.toml",
+            "sha256": "97d639a9e434fadc6c3bd08028510f444e204c9e0a2167211589cd77b8c10ac0"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/src/affine_helpers.rs",
+            "sha256": "aa2429b94a7c1939b004f748abb395e2e3416a0edc694cca8da165f645c52f5b"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/src/lib.rs",
+            "sha256": "1d25574b65dd181644305d2f5dd99c87d0b4fa116e8279f9c66c1c513157a3e6"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/src/partial_fraction.rs",
+            "sha256": "253c9b98067957535d1eb7865368933cfb1cde4149872af35ee729fe5cd8cf83"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/tests/affine.rs",
+            "sha256": "59bd3caf84fbe428c49658f32c9c556571106d946af4b9721a3113e887d80b28"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/upstream/Cargo.toml",
+            "sha256": "79d20aaddf39916a161293cd78d69c3600c8b1b48ed7b66de2a1b2c9f9348873"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/upstream/integrals.rs",
+            "sha256": "9ff281c3d7cbfc058d78b0695a15c450230d07ed0399ca13d1553ac753a634b7"
+          },
+          {
+            "path": "dependencies/feynkit-integrals/upstream/partial_fraction.rs",
+            "sha256": "228f154bdfcdf8885f7dd139c6bd88122bc46087f53f3f9efc0f76f65207c5dc"
+          },
+          {
+            "path": "dependencies/symbolica/Cargo.toml",
+            "sha256": "378529a82470f23f6a2671dda81f85fe3f4ffd07eb5935b85e50f5fc5a284d46"
+          },
+          {
+            "path": "dependencies/symbolica/IREGI_PROVENANCE.json",
+            "sha256": "0cfefbda257d0b899f1b8bf86e192e395ab2c0c3d253771b447fc3dd0ae81b4f"
+          },
+          {
+            "path": "dependencies/symbolica/IREGI_UPSTREAM_VERSION",
+            "sha256": "9789fecdea50e43f2203df34a1cea9ad989aee6d6527b599d93dc11628fd84e8"
+          },
+          {
+            "path": "dependencies/symbolica/benches/flint_comparison.rs",
+            "sha256": "b5b6104ee72f11a99f0b1fe7c51fb556639d4a35a323c0edfc76d64614653ed4"
+          },
+          {
+            "path": "dependencies/symbolica/benches/slow_fac_operations.rs",
+            "sha256": "57864e0828b9a0a0d0206a3d49dfc6ada80fec907cc664952dfb69115d30c47b"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/cases.rs",
+            "sha256": "0979b50737df8ae75d796a1a2aff47c4aaa30a58029357d79d825b716d2dd206"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/flint.rs",
+            "sha256": "01a8fcca4b8b2c6e4cc153ae46b8e1d85c0145b726b44e610826c0ca70d450b5"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/mod.rs",
+            "sha256": "18cf92e2e70d885e16df587d7b783650882cc7081987e6b40d9d5051c006b169"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/paired.rs",
+            "sha256": "c4bc35f8bb2f4f792c71e1e5a11821fbea644bd5142b2653037a857b2369688a"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/polybench_cases.rs",
+            "sha256": "313cf257903f38307847dfbda90dc7f1b716270d7cac98bd35a0439cdb11455a"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/rational_shapes.rs",
+            "sha256": "99f23465e64636b3cf264f62c377b6a96fa08d1a38c0321eab554eb58b230c75"
+          },
+          {
+            "path": "dependencies/symbolica/benches/support/symbolica.rs",
+            "sha256": "202828443a5a5a9e64ceb21646edfcf1d50c909ca93aaf26f47f134c83b5c346"
+          },
+          {
+            "path": "dependencies/symbolica/benches/symbolica_polynomial.rs",
+            "sha256": "f089a417db448be65a4db2d57cd94869ee73c6ddce41949aa831e8edc283e131"
+          },
+          {
+            "path": "dependencies/symbolica/build.rs",
+            "sha256": "b28c9ce48f266efb5e305e6c15f920a85c00cd54e6dba50b7de0be050c57c406"
+          },
+          {
+            "path": "dependencies/symbolica/examples/algebraic_factor_expression.rs",
+            "sha256": "f77361c2b0473f180e0b697fbf39b90f74945b38999bacd0b6da9939db51e338"
+          },
+          {
+            "path": "dependencies/symbolica/examples/builder.rs",
+            "sha256": "7f5dc5b306f6d0f94a3bf0411b2a079a43264b96d3a00f4ac3dbaf1d60bea92e"
+          },
+          {
+            "path": "dependencies/symbolica/examples/coefficient_ring.rs",
+            "sha256": "e8acc1d2af97105514d6b6e50c9039d139f4570161ad22b526339bfedd18d536"
+          },
+          {
+            "path": "dependencies/symbolica/examples/collect.rs",
+            "sha256": "46e925662d838b4f1794043313afda709f529188aab842c216317d7cacbe2272"
+          },
+          {
+            "path": "dependencies/symbolica/examples/derivative.rs",
+            "sha256": "dc3ed6621081534230764378f80fdbcba3bf41ea3b7a65fb6f805b92aaa85fbf"
+          },
+          {
+            "path": "dependencies/symbolica/examples/dual.rs",
+            "sha256": "c88e28b8c576b2bbad190b39b08c37c8a7d5e870bf4827d88f5445861b87466e"
+          },
+          {
+            "path": "dependencies/symbolica/examples/evaluate.rs",
+            "sha256": "edaf8acb91721b33fecd24c8261576a4f440a952d767fb40be8cf3db4b10bad7"
+          },
+          {
+            "path": "dependencies/symbolica/examples/expansion.rs",
+            "sha256": "a0dc37d5db83f54c2ce1001d25d0a71a2a79ea355cad33688270506c57a9927b"
+          },
+          {
+            "path": "dependencies/symbolica/examples/factorization.rs",
+            "sha256": "03a7b1624bf10d44c3d498835d829e22942cabf8e93ceb94b517d0ae6e4873c3"
+          },
+          {
+            "path": "dependencies/symbolica/examples/fibonacci.rs",
+            "sha256": "c9979d0fa9ba655a368f66593f94ea48df982269a8379375a3b6965f35cdcb3a"
+          },
+          {
+            "path": "dependencies/symbolica/examples/fuel_backend.rs",
+            "sha256": "4d1a48a1212b7f3264b6feb56894cd75136646b915e671f2927369bb6931e222"
+          },
+          {
+            "path": "dependencies/symbolica/examples/generate_python_stubs.rs",
+            "sha256": "9934b40c5e6f2ddd6ade728fc64d04bcb707f57ee253b364ec255212ef031abe"
+          },
+          {
+            "path": "dependencies/symbolica/examples/groebner_basis.rs",
+            "sha256": "901b8f339c966c87fffe793647497b92b7fd1df987b034705a6be41cbbc044e1"
+          },
+          {
+            "path": "dependencies/symbolica/examples/nested_evaluation.rs",
+            "sha256": "25bf7fb7e9e894a08ed08a06c64d15f6caa2e42e658c1b18501f492f5ab3fade"
+          },
+          {
+            "path": "dependencies/symbolica/examples/numerical_integration.rs",
+            "sha256": "8f93082de28f6331d9ab038a4721501a03090cf806576cc68ec3578a8fc25856"
+          },
+          {
+            "path": "dependencies/symbolica/examples/optimize.rs",
+            "sha256": "4575ff58289e472546a4ad12abf134578cb1684e63ca1a819ba0d978d8d2634a"
+          },
+          {
+            "path": "dependencies/symbolica/examples/optimize_multiple.rs",
+            "sha256": "5fc629984f1b5b00a98289adae4142c0786b0705f05dd136544d27740c0dd1eb"
+          },
+          {
+            "path": "dependencies/symbolica/examples/partial_fraction.rs",
+            "sha256": "98f78da7e29e07172490f0262b7a5583d4c47623eb00be91e3b4699eb0f473fd"
+          },
+          {
+            "path": "dependencies/symbolica/examples/partition.rs",
+            "sha256": "1701756bdc6bb52cda043779366ed912d1b57eec88edd81cbfadce8b54f5f354"
+          },
+          {
+            "path": "dependencies/symbolica/examples/pattern_match.rs",
+            "sha256": "775ef736be1d751195d7bea0bb012cb310a0b6a5c31bc7c2245f75b0dcd4b289"
+          },
+          {
+            "path": "dependencies/symbolica/examples/pattern_restrictions.rs",
+            "sha256": "23de124bb8c62d1632a64b14349b2edae526bef0cdc87169a729b82005db3ffa"
+          },
+          {
+            "path": "dependencies/symbolica/examples/polynomial.rs",
+            "sha256": "5e6476a6172ca7b5dfe38c49317e43e5b40cd5d3c8792c6456f61ab8e635fad8"
+          },
+          {
+            "path": "dependencies/symbolica/examples/polynomial_gcd.rs",
+            "sha256": "fa54e2ff4a5f25978f02d7160381a1f748ddb68ec7603a0ce509ec85b79e4850"
+          },
+          {
+            "path": "dependencies/symbolica/examples/rational_polynomial.rs",
+            "sha256": "f66122f3b59eac82d5cb0ee3884202717595e989fab9d9c8b26987bad55c53eb"
+          },
+          {
+            "path": "dependencies/symbolica/examples/rational_polynomial_exact_division.rs",
+            "sha256": "071d6d6a184499a8b477dd39007349c6da3cf051ee508cf47b20cf418e3174a9"
+          },
+          {
+            "path": "dependencies/symbolica/examples/rational_polynomial_shapes.rs",
+            "sha256": "739d8f28a81edb55a7fb97f9c2e70ad6b45c1a3f6e6399068a95d9a1a7dc1521"
+          },
+          {
+            "path": "dependencies/symbolica/examples/rational_reconstruction.rs",
+            "sha256": "8c4eced3d6a73a029d10dd17135047a122bcf04be87f6d85570fd3fe1ba24ea4"
+          },
+          {
+            "path": "dependencies/symbolica/examples/replace_all.rs",
+            "sha256": "d556ad20a9b0ffa8994e84433e29070b8feab70548d15370ca65255c2a6bb0b0"
+          },
+          {
+            "path": "dependencies/symbolica/examples/replace_once.rs",
+            "sha256": "ed440d5617f7cc8ec4ac6d6ea9ed0ca8f87aeee972727119168d231667966185"
+          },
+          {
+            "path": "dependencies/symbolica/examples/series.rs",
+            "sha256": "3875f2fd16cba1f324d4213bc73c22a9055906dc065bae510e5180ecdcf474f1"
+          },
+          {
+            "path": "dependencies/symbolica/examples/solve_linear_system.rs",
+            "sha256": "562e42e38344e8114ceac275fdaf5d0481c39680b32f5f20076bf991bad071de"
+          },
+          {
+            "path": "dependencies/symbolica/examples/streaming.rs",
+            "sha256": "56eff5ae5a7df8b046efdd2e608817119eba4ad7493722eb686a0b49b1ce400a"
+          },
+          {
+            "path": "dependencies/symbolica/examples/tree_replace.rs",
+            "sha256": "56d38782012cbc10cfe6034e4694e7f161baff46928c3ac06442bbee95c6923e"
+          },
+          {
+            "path": "dependencies/symbolica/examples/tree_walk.rs",
+            "sha256": "c3265c2254bcf1a3ed694303a8ab75009cc379f50d7c99184f52e618136a670a"
+          },
+          {
+            "path": "dependencies/symbolica/examples/typst-plugin/.cargo/config.toml",
+            "sha256": "88c0639af8f446ea706d7fb527c556858024e92fd6aba318a06eb76b495ce13b"
+          },
+          {
+            "path": "dependencies/symbolica/examples/typst-plugin/Cargo.toml",
+            "sha256": "f5e5b20dbfa211e3fc60fb3c030fafc468dfcd2fb06cdf11cce29ad7cdb952db"
+          },
+          {
+            "path": "dependencies/symbolica/examples/typst-plugin/src/lib.rs",
+            "sha256": "f4657d66f4b5096de67fba8257e75e2843522e6cc195eba7dcfe6a1533f3beea"
+          },
+          {
+            "path": "dependencies/symbolica/examples/wasm/.cargo/config.toml",
+            "sha256": "88c0639af8f446ea706d7fb527c556858024e92fd6aba318a06eb76b495ce13b"
+          },
+          {
+            "path": "dependencies/symbolica/examples/wasm/Cargo.toml",
+            "sha256": "661fc29c508585b6516a8aecfd6b6cc5f4af453c154996110b9157984896bd57"
+          },
+          {
+            "path": "dependencies/symbolica/examples/wasm/src/lib.rs",
+            "sha256": "2fdc5b08d524b91cf30fb79dd727c2daa19b5d6f9f71e2e8e2e0270c2a723a22"
+          },
+          {
+            "path": "dependencies/symbolica/lib/graphica/Cargo.toml",
+            "sha256": "3730f1242f2cc8f91fcc4212397f54c402db7505b0a5d83b22a0a61a0e34b4e9"
+          },
+          {
+            "path": "dependencies/symbolica/lib/graphica/src/lib.rs",
+            "sha256": "76a86f7fbd7dfd6a75ff967b1d8b2d55e968eb55ee004a24f60e5ed94ee86c1f"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/Cargo.toml",
+            "sha256": "d926d83fa3cfa1cd4cf82b5e7f73800113e0fafc0809831b39b789b8b94492d8"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/examples/dual.rs",
+            "sha256": "8bf09988dff05cbb99d7c4c4fd25a57333a7b60b52720fd888498cdb92b44f09"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/examples/fraction_polynomial_kernels.rs",
+            "sha256": "7229b7f59d61fac0750bb64a43c49be71c11c5a1fc932a991d4bb8c4b9c60ac6"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/examples/integration.rs",
+            "sha256": "779874c95b7845b2612f448d18bc6cbc762325595d4bd2f813d150d02118c2db"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/examples/rational_fastpaths.rs",
+            "sha256": "9ead92fa79aeff572b2de869583e31250486f1c254bd7c7432d03d3593d7fd01"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/combinatorics.rs",
+            "sha256": "da6700e1dc7b1c52b3165c4861f410b79257556f8a75894b5d2ee58c729fe985"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/backend/float.rs",
+            "sha256": "e43181cdab8f71c69b8df8ac1963ec83a0a779708add600f1cc4f77810f7b6f0"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/backend/integer.rs",
+            "sha256": "252d420cca0aac216e048977b02f528c3a42231c64b2bccaeed872d4acf14baf"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/backend/mod.rs",
+            "sha256": "748ccb85f51ca86a6dc62d9808bd4ff46f46de4a4a73efff1aeab635c70b8219"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/dual.rs",
+            "sha256": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/finite_field/geometric_sequence_kernels.rs",
+            "sha256": "b061a81a9da5340352f949b248d8dc1bbcd53588240363316901fc3782e6343c"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/finite_field/montgomery.rs",
+            "sha256": "21dd3ce525006caf698244d73f8a58fd6350e5617ee436556839f62188fb2e8e"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/finite_field/polynomial_kernels.rs",
+            "sha256": "aa22c57a691f96e01c73476f8f216001a3349fcd60b7c1cb39a154d64d76888f"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/finite_field.rs",
+            "sha256": "31ef452b2687f885fca6c956c3a0327ec6b526640592c0c12c86db957d8f8686"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/complex.rs",
+            "sha256": "97ab86b7514906abdd56802ca9c749633be96053fd81a90a7f178ebeee08790a"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/complex_tests.rs",
+            "sha256": "1d3665b4f310b4462e045164426fefcd4ad3d0b66735807d7619a4796dd5bfaf"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/double.rs",
+            "sha256": "dad8abd1088732fe6067b6867bee1c9e1f5453e7f8ad187326b1bc601686cdda"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/error.rs",
+            "sha256": "a6554e129a77aacaff09f00ac48e5eeb4afc46295a7b59a12e42aca78dc80b74"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/field.rs",
+            "sha256": "658d6ef4c43b3fdb4d9b4bd2ef4d8f703e31d6155eb0418e2b102a196e81cc15"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/interval.rs",
+            "sha256": "8be20f987408e84fddef1e4447e08fa21436f3968950027c080761205c5998ab"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs",
+            "sha256": "8bd257589a36a5b93a8d45996c799d300dad1f6103103483301b25a4dc4f1c1f"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/native.rs",
+            "sha256": "b2d32f1c422755ebd87c3e083f7face7be2341f4fa3f970a1ef48269196b3d31"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/python.rs",
+            "sha256": "ff8c9874fc5838bce7119df16a48748726e745d2862a9caf5a7f9fc419403ce5"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/rational.rs",
+            "sha256": "2ed5a7da0a62cfc17ddbbb0c176a37c990532246aed6d5530231cdb4282dedc8"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/simd.rs",
+            "sha256": "bebf1cc5c2b1e0a2ec6d31aa003d5d8ac7bbfd55a028e2b6ead6c95fffb61813"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float/tests.rs",
+            "sha256": "8292ac3462e9297091d5d15a57877eaecadcd745b62fa0043a4095945bd332de"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/float.rs",
+            "sha256": "fdbeec28e72c2e5685a8653fab5ec5add8d16e2914c3bd5b5cc76b595a52995f"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/integer/polynomial_kernels.rs",
+            "sha256": "ad64cde79f6f418149dec56fb9bdb8689b952f17d587a447d4c7a11bd6d7f7db"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/integer.rs",
+            "sha256": "e96b804e1bb41065e2eaba0cdbaae24e47602f3187c15b56ba027bb19a12af6e"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/polynomial_layouts.rs",
+            "sha256": "515908cf22e030001a958a2b896ce402c7fb34e46e5a83fc55e67b465b594ad4"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/rational/polynomial_kernels.rs",
+            "sha256": "63986d0d6b728c765bb09fffba12f0926c525bd3bf3f30cf91203a6a91e922ff"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains/rational.rs",
+            "sha256": "d66ab7ac0bfbe637dec9824b8e3125d4553acdad3f635638b385336674356af3"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/domains.rs",
+            "sha256": "46c5a10816ed9952bdd1c72646ab15a23b29cf22c4967a8d5e434e208b962e07"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/kernels.rs",
+            "sha256": "95b390ebabc232b61a51ceb2efad42583db2694548085eae1c342957328ca40b"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/lib.rs",
+            "sha256": "8309706c276da709c37d307b0f2acbbcd1a80e1c913b23c8d65602d2a1e0a48c"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/numerical_integration.rs",
+            "sha256": "09e9d2751987ee1e16c7c45d75c39e6c3b04b107f5f043e48e5f6009932a35d6"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/printer.rs",
+            "sha256": "bbac6bd85ad5e238976cf97391dc08739313738731c1bf2cdff583954c438056"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/tensors/matrix.rs",
+            "sha256": "0d9eeea1d66ceb6ef24b2c2f1affd3c18f1bba5dd460a9bdf34229a6bd7d157c"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/tensors/sparse.rs",
+            "sha256": "15e91fb0dc9171603cae673c657184eb8c8c424aa7fe3747e780cc3a8fb66eb6"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/tensors.rs",
+            "sha256": "924b93596832d300704f6de9d3768401a51c043ba68478bd6d6d92907b8be7e9"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/src/utils.rs",
+            "sha256": "604178168b43ac441831cdd00dabc2cda69934bc9471fcdcdceb6019be5dc78e"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/tests/api_regressions.rs",
+            "sha256": "63b11a0912093486245902f7e4eb1f4f9ed386356a1b4f11f535444e5cdcdb17"
+          },
+          {
+            "path": "dependencies/symbolica/lib/numerica/tests/matrix_determinant.rs",
+            "sha256": "339e21b273a892447e9c144a6e0fb0f84dbe2a958814d0d520abc5bff1fc557a"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/cpp.rs",
+            "sha256": "ebcd2420b27e3699e2a4e494d5a3fbb43e5d0fe330aefaf32171209f84ba2ea2"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/mathematica.rs",
+            "sha256": "b5a62a4ee55891198d4246863acfab2dfcbad4dd162e82aeac1ef7f007d08b56"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/array.rs",
+            "sha256": "136a058793239cb82fcc9c800759655c044a07e89dbe23ecf0cd4d49224abb14"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/atom.rs",
+            "sha256": "dda0a441381ff9dca2c3f0bff50128be9d750e8813ff62ace7b77467ec51818f"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/citation.rs",
+            "sha256": "03d412077e3bdcd2ce47493df915ca6cadaed6307c3d9f657c35a89d9dea9e90"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/condition.rs",
+            "sha256": "74f476a9c82d4066dba7c88d0695083932f1ec03f411eb47baf5f76cc0cdc016"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/evaluator.rs",
+            "sha256": "da7f0737f1990324afe7c47b91e90a121e01e41799cb4611e5af2a00e2cd3680"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/expression.rs",
+            "sha256": "56b135a588267fa15f6ca933cabfffa9bfaf732e93864ad230a542a769d8d07f"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/graph.rs",
+            "sha256": "3e642e8b2dab00fd5c96695109b4394c99a8c33d1e3b79e9f94f354ace352c6d"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/integer.rs",
+            "sha256": "24f4080fc35b26373236074b2e05b81d059fb2f610a8a82ceedaa9f1c583a104"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/integration.rs",
+            "sha256": "acdcae8b9d13a6c8b7e33c643eef564f49a456e51fa10c8bfd3f1c3c3d818bcc"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/matrix.rs",
+            "sha256": "0bcd823ba0f50cc728efb61913cbba44d43495cc34d2db99b992b4d14f164d37"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/polynomial.rs",
+            "sha256": "8b7924bd5a7c12e5f7dc605904ae3aa8cdae7aa2fbf48ef98e779a34050bb580"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/series.rs",
+            "sha256": "28a36c45f2306e057a825223d1336714ae3f2f5ad9178bb335f9c9380f4d1164"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/solution.rs",
+            "sha256": "68fac9a1440735bab97c185d78f995c9ed5cab2bd592cc227f506bac8497780f"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python/symbolic_integration.rs",
+            "sha256": "28d9fe3322638ac68197c7bd7b52cc53f371233869b7b89010610bb8689ad6cc"
+          },
+          {
+            "path": "dependencies/symbolica/src/api/python.rs",
+            "sha256": "e13f688bc676fe242a0e9864a9e9fcbb962d27043de187d021435d444b8e7400"
+          },
+          {
+            "path": "dependencies/symbolica/src/api.rs",
+            "sha256": "882db524039b3cddee91e9a80dad8babf8c18eebf4dbbcb2857f6808bfb02ea4"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/alias.rs",
+            "sha256": "e72a91fbd2e3df316295e2f78b2a5de3433c75d514c82c13fe5205a072f683df"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/coefficient.rs",
+            "sha256": "e146af99e697482a040ccc7d4b68aa96eec0445c6c082148000887636e577a57"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/core.rs",
+            "sha256": "a6cafe76319b1f6d84e1478917448656b8ad29aaa46ceef91625ac5f3d7a354a"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/ops.rs",
+            "sha256": "de1d6e78fd654877f216dda8bbc13c581a0a4820a07684feea26cf0ec5e6e5e1"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/properties.rs",
+            "sha256": "b10705cdecfd2b2c24bfc79b66064f01d9ac06d5d5e347cc68afe8ad6aba3ec0"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/representation.rs",
+            "sha256": "06f93d659eae99c42c455c773b1293d3a0f9df70fb40a343df9df566885e9a7d"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom/zero_test.rs",
+            "sha256": "2b18092efe53f064204f79aeb2af9e97e980e71840f66d8a4f7a41c39d71ba65"
+          },
+          {
+            "path": "dependencies/symbolica/src/atom.rs",
+            "sha256": "453d52e3894a8eb4746c55ddb9df7b025ccacc22c2c22a31648afb1621e56582"
+          },
+          {
+            "path": "dependencies/symbolica/src/coefficient.rs",
+            "sha256": "fdf0423303170496a7aa9ee397abd33349494c9036c7f32771c0bc02fa293a3b"
+          },
+          {
+            "path": "dependencies/symbolica/src/collect.rs",
+            "sha256": "44c099895657452c82255d425a9e99da5616d5db06ef471c6722eabcb347e819"
+          },
+          {
+            "path": "dependencies/symbolica/src/derivative.rs",
+            "sha256": "b960b70928943b7a74bb7822d1d2c5d843a755c7b125e8cda13769f00b141a35"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/algebraic/kernels.rs",
+            "sha256": "4877eaeecf427b29ebf43b9e1cbc5457fce7e5a36815f3f9eeed8398e787510c"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/algebraic/tests.rs",
+            "sha256": "dc79061bd145bbe0ffcec659a26fb61794ec0bc5b68a18f5e9b6fabc6584dc06"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/algebraic.rs",
+            "sha256": "fe4657fdb0dd14544b38977f38e079c233d88d55370f8582a8d990fc28e9e12e"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/atom.rs",
+            "sha256": "a87dde57ce4c3c84ca853b8e15024fcfd690bf1ba0452bc262e1b7f7e544eb70"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/factorized_rational_polynomial/apart/linear.rs",
+            "sha256": "078ab190558257b79f4224e78e9f6795f2682e4e2d44f752a5ded08c72e1065e"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/factorized_rational_polynomial/apart/tests.rs",
+            "sha256": "8b12b82db9a4180ef5fae59abab9763f8a5c46415ee1037980bb879ce35d7145"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/factorized_rational_polynomial/apart.rs",
+            "sha256": "6df76a90009488fcc1a20c1ac74113ff5848deefee0aa28a599ebd8c09bab764"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/factorized_rational_polynomial/constructor_tests.rs",
+            "sha256": "2cefec8e84c7c156375d7894230162d1f4a6aa69ae81404720e3a3f532a96632"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/factorized_rational_polynomial.rs",
+            "sha256": "52127d7ff58b68fffb158ec59c42d859c57a863ea51d23f79d868614d71985be"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/rational_polynomial/arithmetic_tests.rs",
+            "sha256": "6f1bfacde0816b871de4d9ddd9b2cacc0bce9a78197af2a41b7ca8e4cfcd6dbb"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains/rational_polynomial.rs",
+            "sha256": "df3f5748f6d5957969c8af1c138696d4d9ac931b9c3dc4429bfe962574baffda"
+          },
+          {
+            "path": "dependencies/symbolica/src/domains.rs",
+            "sha256": "1614cde1aae3f5aad7e452a9cc3788d4c542a760c7a2d45c0d20309ddf1fdd65"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/backend/tests.rs",
+            "sha256": "83970365c409009fee0033e2061d8cf8cc62bd1c60736119ebb6334916e2e383"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/backend.rs",
+            "sha256": "bc06d55e2f5ca05f798e1ab748c3bf461b8e8fc5457ff7d78b3f322315984f22"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/batch.rs",
+            "sha256": "eb73974b0c176422863e4fbe512d392813d83085b2ae5c476db24d028012efcf"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/domain.rs",
+            "sha256": "9548271ea5a544599a712e5d6c9120b53bb8b91c674f0c1406c38b0edd6dabf7"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/dual.rs",
+            "sha256": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/evaluator.rs",
+            "sha256": "7ab103a6720528435e480442bb29b805d377759d554787578b7ed85973b3ebf9"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/export.rs",
+            "sha256": "6efd92ee139b2d058b1d8d6f3ff6260e8943d757e2a8098d9d766bce674e9ca9"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/external.rs",
+            "sha256": "025b9a73d310afd29993e079af59a90e5a264656dc174b6f794bd1121a4a11e0"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/function_map.rs",
+            "sha256": "9ebc261953a132f7045db29c20887af0bda50764f55859b2a21186af06644b7e"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/instruction.rs",
+            "sha256": "4f6b10ad349d3f9e3f25355b2b572390fd61c90c13e1ed16349c77c9f652d7f5"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/optimize.rs",
+            "sha256": "899d86347eb9efc9ae39d85e94d0c5a35fbc6de8a1efa13b9ccc95464f92e0f6"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate/tree.rs",
+            "sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa"
+          },
+          {
+            "path": "dependencies/symbolica/src/evaluate.rs",
+            "sha256": "38c15b58af1e260ec04898d69070f1ebedfbfca39c563c142f35fe3a3a8b6ff7"
+          },
+          {
+            "path": "dependencies/symbolica/src/expand.rs",
+            "sha256": "29c6af5f56a52d0d4f9b501d8a45cc3fd12b8c36c1ea6222de7931a02c3ee101"
+          },
+          {
+            "path": "dependencies/symbolica/src/id.rs",
+            "sha256": "2a4102f0516861703093282144da822fc3518938beea8689f5f833828cf0f63e"
+          },
+          {
+            "path": "dependencies/symbolica/src/lib.rs",
+            "sha256": "fee8a9ac282cd2a4cfc568fe8d15de9c11c5eb8226a483fc699c022f1ae51591"
+          },
+          {
+            "path": "dependencies/symbolica/src/license.rs",
+            "sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b"
+          },
+          {
+            "path": "dependencies/symbolica/src/normalize.rs",
+            "sha256": "80a79f2b90cc702eeb6c8c0c768619337ed12ea3e974125ac49172baf1da57ad"
+          },
+          {
+            "path": "dependencies/symbolica/src/parser.rs",
+            "sha256": "c64ef9826fcc62e6306a63c6a0672c0c797f5ccc4a8475b9e280536995cda61e"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/benchmark_capture.rs",
+            "sha256": "9d9a43f9b8d3a19e541d08b547cbdfc9906fdc87762735e6f3b8f62fe6b94565"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/factor.rs",
+            "sha256": "640d671a16540f613a857d98bdefe8540533487635f0bffe809050c9aca005fe"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/gcd.rs",
+            "sha256": "e3f3d764d94330f40a17bdd0b62c7f100e7a9c1d3f70bf711e48d1578f66d25a"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/groebner.rs",
+            "sha256": "aac8253a1346d525ee7abcf6d4b1a7b0dc55fc44452045754af1913f727d0608"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/polynomial/division_tests.rs",
+            "sha256": "e2e0b83cbad69be875a3218879796d249a3cd4271486b6a555b4a542a173c69a"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/polynomial/homogeneous.rs",
+            "sha256": "96cedf821226683348902fd4d8a09c56a5f4640f354d890ee5abc4e32d8e09df"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/polynomial/rational_division.rs",
+            "sha256": "264f1d780f9253b3e0d8b6cf71b527696302f673116f169a6d0a23364e26ab91"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/polynomial.rs",
+            "sha256": "27b6ad4c342a7b7efe01df1c2e40b3a1e3db7ac113e7dfa447cd93f4d2fb45da"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/resultant.rs",
+            "sha256": "30062803132a6fc9f3dd132c97c790791f92ccba9c6e83445730e53290ecad3b"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/series.rs",
+            "sha256": "501b544d5c926abaab271e283b2e0cabd83e60442553f519b0a2c7babc0541ee"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/univariate/roots/tests.rs",
+            "sha256": "2f5763a1657b2edd9356b0004090b24547b194c781a4dfdbf5a2ee2044e1eb8b"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/univariate/roots.rs",
+            "sha256": "8891edefea3980a17f88630610bf9020a9adc121e26bfee05939c3f3534eebe3"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/univariate/tests.rs",
+            "sha256": "bfcc6f69879171aa9499777accb6acb779b5fe562da2c7e2ee65c918e31e7f0c"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly/univariate.rs",
+            "sha256": "283300e622f13d8320d6336b1f472f0904e4eba1adf6798d291811048df3288b"
+          },
+          {
+            "path": "dependencies/symbolica/src/poly.rs",
+            "sha256": "04d32da6ac2caa940fc5baa9ac7f1b095183467012be65880428da9ecf32695c"
+          },
+          {
+            "path": "dependencies/symbolica/src/printer.rs",
+            "sha256": "5b018afe84995ef04a667a7c7167e96da09b3081dbdc6f637cb01ac4f6ca3c48"
+          },
+          {
+            "path": "dependencies/symbolica/src/solve/solution_set.rs",
+            "sha256": "5858008efbb58451c1dfc37ae42d95db2089ea0c1738f3405ea94316d6ebd1de"
+          },
+          {
+            "path": "dependencies/symbolica/src/solve.rs",
+            "sha256": "f82742a8299d3404a7ab9f311ece6c56bb2875370e648bb0ad30cd6070d596a4"
+          },
+          {
+            "path": "dependencies/symbolica/src/state.rs",
+            "sha256": "13c27c7acb4bb8705814615144f35304f682d66bd23c8e252b80134975c73ce1"
+          },
+          {
+            "path": "dependencies/symbolica/src/streaming.rs",
+            "sha256": "9e0a2f19a932e6dc2b7a966a72cacf4f77cb52b6be65bad4735844e045b8dcba"
+          },
+          {
+            "path": "dependencies/symbolica/src/tensors.rs",
+            "sha256": "f1e071d7397a4c1618bdb0cff3e9474d456709b8513dcff76b7772ad2a497629"
+          },
+          {
+            "path": "dependencies/symbolica/src/transcendental/cpp.rs",
+            "sha256": "2d23105bcf2723a4999775e9369111f294b488ae8635f4369d522f2f379d4a1c"
+          },
+          {
+            "path": "dependencies/symbolica/src/transcendental.rs",
+            "sha256": "43bb2ca615264e165796557227793e3cc39de6a4ebdbf3ce6988e100db681f53"
+          },
+          {
+            "path": "dependencies/symbolica/src/transformer.rs",
+            "sha256": "9f4b1c559a2c46f505c6e1cc863bf15cd20941800fc68cf9f7b49c673eaa38c0"
+          },
+          {
+            "path": "dependencies/symbolica/src/utils.rs",
+            "sha256": "3ff8e3f88c70c37e5d3c619b939999ff6565dcd9ec56630348290ccb1c293b1c"
+          },
+          {
+            "path": "dependencies/symbolica/tests/cpp_transcendentals.rs",
+            "sha256": "06e20a66572e6578d50e5bdb987bed2bad6dcb04e0e250a183380df49e7e4d00"
+          },
+          {
+            "path": "dependencies/symbolica/tests/evaluation.rs",
+            "sha256": "d4477abe1cad945da09ab60642a75f864374fcfddc0c5a3ef1358e0f6cd26f2e"
+          },
+          {
+            "path": "dependencies/symbolica/tests/import_export.rs",
+            "sha256": "d561e6bf32d456ade8052c2a1cf04b4ddc933808a3a146251416f5ceb8f17b7e"
+          },
+          {
+            "path": "dependencies/symbolica/tests/pattern_matching.rs",
+            "sha256": "412061f1ababc6a8bd66fb08ae6818f733b4b6794732429b956d42a1603ec70e"
+          },
+          {
+            "path": "dependencies/symbolica/tests/properties.rs",
+            "sha256": "d708d0980a1e268ccf607c3bc605c39a778ab31f89b0e6e6270069ade009c771"
+          },
+          {
+            "path": "dependencies/symbolica/tests/rational_polynomial.rs",
+            "sha256": "3502919b3be8582e0e47c620e91228112fc39a0f5a596e32f9c6c8eb74ba3a2e"
+          },
+          {
+            "path": "dependencies/symbolica/tests/root_scaling.rs",
+            "sha256": "762506e375891b3258bb19c8ebb6c74338effee88f0d035d7680b52521881cd6"
+          }
+        ],
+        "changes_since_pre_refresh_hashes": [
+          "crates/iregi-rust/src/stability.rs",
+          "crates/iregi-rust/tests/mixed_precision_accuracy.rs",
+          "dependencies/symbolica/IREGI_PROVENANCE.json"
+        ],
+        "log_path": "target/symbolica-production-qualification/workspace-refresh.log",
+        "log_sha256": "4c2870b5efc90799f9628ec6889935b94633e3974a48307e76034e1516ab97ac",
+        "executables": [
+          {
+            "path": "target/cargo-build/debug/deps/feynkit_integrals-b5f47f839a39c0f5",
+            "bytes": 337947936,
+            "sha256": "ae89e8b6c969433dfc5bf816e95f544d8c97e6762afb803145b43612bdb04b75"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/affine-480db77e4c7c47cd",
+            "bytes": 350466048,
+            "sha256": "ab862e7662e6dc2525136a751f420123903eca687dcb8d24b45996e45552380e"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/iregi_cli-60696bb6ab5d6c07",
+            "bytes": 801053928,
+            "sha256": "259073b9f12fb2f48e427945128ac9d5502f666b74f99b1c7ffa2203a5bd5485"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/iregi_rust-82e4cda0b88d85b9",
+            "bytes": 988474120,
+            "sha256": "a0c42f54b81fbfcd5f15271cacc42821e1f720efd548fdaf5cd4416666cd978a"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/iregi_masters-8ec9ec718be6b935",
+            "bytes": 527392856,
+            "sha256": "ee3d11b1a3fb38cea59d58c4c0267ec8e3f088b3c1cca1122eb070103ee3eff4"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/masters-d21e6bd3224ea761",
+            "bytes": 571363968,
+            "sha256": "ce127e10546a1ca9c5d2a994e00731d5ca9a106a326c4b10c9d7726c16ae8010"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/native_batch-4ac35a4d2477da3c",
+            "bytes": 1307008,
+            "sha256": "c49025d94e1cc9bc5aa88075f560a0f84742490e0b31e3244ccaa112d8ca1ce8"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/numeric_boundaries-611e144c3615ae28",
+            "bytes": 524356808,
+            "sha256": "c72fbf00b50794f34d9a00afb3a1d4d629df9a21aaeb02d58133e065cf384fd4"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/physical_derivatives-fe53319b8320af1e",
+            "bytes": 542029408,
+            "sha256": "94fd55e7ce43b7be59ed9ac3c74eea48eb4696356e1f7df5c8c7dc865c212211"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/pseudothreshold-65f8b3e1e67a4ed6",
+            "bytes": 535785560,
+            "sha256": "304bcd7dd42c35831ad28df8f6a896d83227fe12d4fa1a745b82af370e28a2e8"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/iregi_prepare-9602fdd061681eab",
+            "bytes": 639753600,
+            "sha256": "c659f17fd2570e540821cdcd4d28d8486fbe09cc11ff1121cb4eaf1be01992c4"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/madloop_numerator-830a7de568daaf00",
+            "bytes": 806955240,
+            "sha256": "afb9dc50a7e18dca1eb165740774d8855b4f516b486c84e3fba7b0b619954517"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/preparation-f5976e5d0a966286",
+            "bytes": 801949112,
+            "sha256": "1a3851dda1bcd8b24359b1be2a839f4d120621eb2a1ab04816d48d943cd50db9"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/iregi_rust-c5ff865b3918ff79",
+            "bytes": 609130640,
+            "sha256": "d0e697b9a5945b7349fb1db8da75285347c9f2c87db4f21547d0b887aa3a08d1"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/legacy_rescue-5b5a472fc61c95f4",
+            "bytes": 564234632,
+            "sha256": "3f83da918972ea8f2d616739e4a82095f580322257bb05955247772855cea8ae"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/mixed_precision_accuracy-abbca953c533a11d",
+            "bytes": 566136288,
+            "sha256": "92dd9b459184524fcaf07520b5bba6c826cb7324f7c5f5ccf56b088e96d8ca5c"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/oracle-8b9d04fb23118e79",
+            "bytes": 563049352,
+            "sha256": "f466b597da766f1eefe69a9550d56387418fab98b63955c180b3f0083c606aa3"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/physical_box-0bb9115753a7c177",
+            "bytes": 562984104,
+            "sha256": "f8866b231a3eff7d7a42b876f72985bd262616ca92bcdf8f0055b9654996ab61"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/shifted_pentagon-aaf9744bf5da4b74",
+            "bytes": 565313352,
+            "sha256": "f1c9892146e21bc530e59dc2acc2a915735de246804334931486c0695649be5d"
+          },
+          {
+            "path": "target/cargo-build/debug/deps/triangle_gamma-72e61435ea191597",
+            "bytes": 530184888,
+            "sha256": "3449e6ccef4d95d07bf33f9d226c9e7110c472f2bcb4ec66dafe81a04b1e427d"
+          }
+        ],
+        "provenance_note": "This first refresh succeeded, but stability.rs and mixed_precision_accuracy.rs changed relative to its initial source snapshot; a separate frozen-source fullworkspace rerun verifies the final tree."
+      },
+      "frozen_workspace_verification": {
+        "status": "PASS: full current workspace test targets compile with unchanged frozen source/manifest hashes",
+        "exit_code": 0,
+        "command": "CARGO_BUILD_JOBS=2 cargo test --workspace --no-run --locked --offline",
+        "before_after_source_hashes_unchanged": true,
+        "stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "root_cargo_sha256": "92eea8006cdb0d2735b27e4b0ddb4c9f2471b4cd97ae1738019e41490f893f07",
+        "root_lock_sha256": "2e234642a80b8224de28f6bae3b6fc11cfe783de9b928c1929263fb376da0682",
+        "log_path": "target/symbolica-production-qualification/frozen-workspace-build.log",
+        "log_sha256": "f76a32ceeef558b5c4b97fb4bd50faf8d50e719cf49559d280c3aae5ca422479",
+        "scope": "Compile-only latest-source integration; saved baseline and Symbolica regression runtime results are separate fields.",
+        "source_hash_count": 329,
+        "source_hashes_retained_in": "validation/symbolica-production-qualification.json",
+        "final_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53"
+      },
+      "qualification": "Full current workspace test targets compile with329 unchanged before/after Rust and manifest hashes, including final stability08cad15c. The saved earlier core baseline separately passes57 tests plus1320 rank-seven coefficients. Later numerical changes retain separate runtime evidence. No comparative timing claim."
     }
+  },
+  "e6_exact_series_oracle": {
+    "source": "validation/shifted-pentagon/series-oracle-qualification.json",
+    "sha256": "c1d80c4f827c289638d5a4a4eaf214baf837522304f663110069ff8f1bdaece3",
+    "snapshot": {
+      "schema_version": 1,
+      "started_utc": "2026-10-23T13:43:59.131267+00:00",
+      "status": "passed",
+      "returncode": 0,
+      "timeout_seconds": 60,
+      "wall_seconds": 10.83572012593504,
+      "command": [
+        "target/e6-parameter-series/e6_parameter_series",
+        "validation/shifted-pentagon/series-oracle.json"
+      ],
+      "environment": {
+        "RUST_MIN_STACK": "67108864"
+      },
+      "binary": "target/e6-parameter-series/e6_parameter_series",
+      "binary_sha256": "5e8c86d9b5d515077930d20c54419677507a83bec25a403b2d749e5c3bae08c7",
+      "source_and_dependency_sha256": {
+        "crates/iregi-rust/examples/e6_parameter_series.rs": "ebcc78fd7614a7476507da3591350c2f46c02eb168a1266df14584940e0ea8dc",
+        "validation/shifted-pentagon/series-oracle.md": "ac477eeaa0b99478d37d28456ba2c1de126b5fcd5593926d6df817c7006b7cc2",
+        "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5",
+        "target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rlib": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4"
+      },
+      "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+      "symbolica_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+      "symbolica_scoped_cache_patch_active": false,
+      "build_scope": "Direct rustc compilation of the independent validation example against qualified pre-vendor Symbolica and serde_json artifacts. No iregi-rust or oneloopmaster library is linked by the example. Current Cargo vendor wiring is outside this binary provenance.",
+      "log": "validation/shifted-pentagon/series-oracle.log",
+      "log_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+      "output": "validation/shifted-pentagon/series-oracle.json",
+      "output_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+      "independent_review": {
+        "agent": "/root/pentagon_precision/e6_series_review",
+        "result": "No actionable math or source defect. Confirmed Symanzik sign, simplex Jacobian, exact integration, inclusive series order, coefficients -1/24 and +1/45, and exact rational remainder. Suggested machine-readable kinematics were added.",
+        "artifact_audit": "Passed after generation: source, proof, binary, dependency, output and log hashes match; kinematics, orders0..4, exact remainder bounds and qualification limits match the reviewed implementation."
+      },
+      "qualification": "Independent exact rational primal D6 oracle at one special equal-mass, small-invariant, nonzero-Gram positive-F fixture. No production E6 agreement or performance qualification. Timing is diagnostic.",
+      "compile_environment": {
+        "CARGO_CRATE_NAME": "e6_parameter_series"
+      },
+      "compile_command": [
+        "rustc",
+        "--crate-name",
+        "e6_parameter_series",
+        "--edition=2024",
+        "crates/iregi-rust/examples/e6_parameter_series.rs",
+        "-L",
+        "dependency=target/cargo-build/debug/deps",
+        "-L",
+        "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+        "--extern",
+        "symbolica=target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib",
+        "--extern",
+        "serde_json=target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+        "-o",
+        "target/e6-parameter-series/e6_parameter_series"
+      ],
+      "repository_head_at_generation": "69f23e8fd76cb422ddcf50282de32a4c097a092b"
+    },
+    "oracle": {
+      "source": "validation/shifted-pentagon/series-oracle.json",
+      "sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+      "snapshot": {
+        "approximations": [
+          {
+            "absolute_remainder_bound_exact_rational": "36893488147419103231/8166776806102523122235546862824378597400",
+            "center_exact_rational": "-1/24",
+            "integrated_series": "-1/24",
+            "lower_bound_exact_rational": "-42535295865117307932921825928971026432/1020847100762815390279443357853047324675",
+            "order_in_eta_inclusive": 0,
+            "proves_absolute_error_less_than_2_pow_minus_256": false,
+            "upper_bound_exact_rational": "-170141183460469231694793815568465002497/4083388403051261561117773431412189298700"
+          },
+          {
+            "absolute_remainder_bound_exact_rational": "27670116110564327423/75325220824640169157862696272389473870328635684090491699200",
+            "center_exact_rational": "-34587645138205409279/830103483316929822720",
+            "integrated_series": "-1/24+1/45*eta",
+            "lower_bound_exact_rational": "-3138550867693340381486870380170644487710968304471841719363/75325220824640169157862696272389473870328635684090491699200",
+            "order_in_eta_inclusive": 1,
+            "proves_absolute_error_less_than_2_pow_minus_256": false,
+            "upper_bound_exact_rational": "-3138550867693340381486870380170644487655628072250713064517/75325220824640169157862696272389473870328635684090491699200"
+          },
+          {
+            "absolute_remainder_bound_exact_rational": "73786976294838206461/2779010141695588689864402756909949111822528516467508072097189945434003891814400",
+            "center_exact_rational": "-17864824263349269331310658056103963656207/428755782320382463963852005364027946434560",
+            "integrated_series": "-1/24+1/45*eta-1/84*eta^2",
+            "lower_bound_exact_rational": "-810544624661213367853682957619958216099805209863232783862725407389166658912237/19453070991869120829050819298369643782757699615272556504680329618038027242700800",
+            "order_in_eta_inclusive": 2,
+            "proves_absolute_error_less_than_2_pow_minus_256": false,
+            "upper_bound_exact_rational": "-810544624661213367853682957619958216099805209863232783861692389721038924021783/19453070991869120829050819298369643782757699615272556504680329618038027242700800"
+          },
+          {
+            "absolute_remainder_bound_exact_rational": "23058430092136939519/12815922215525460492980625166169518342571037924447981810026024567484877584706966424709599173017600",
+            "center_exact_rational": "-4943217616617011101377765576669243148030138094810669179207561/118637222798808266436496420098624895264334517900370252293734400",
+            "integrated_series": "-1/24+1/45*eta-1/84*eta^2+17/2700*eta^3",
+            "lower_bound_exact_rational": "-830661625080353920817320679298803200193201988754733583348489336986495063056336821688252796981123/19935879001928494100192083591819250755110503438030193926707149327198698465099725549548265380249600",
+            "order_in_eta_inclusive": 3,
+            "proves_absolute_error_less_than_2_pow_minus_256": true,
+            "upper_bound_exact_rational": "-299038185028927411494235444547569152069552715951704090005456161315138222700255430366067813540943/7176916440694257876069150093054930271839781237690869813614573757791531447435901197837375536889856"
+          },
+          {
+            "absolute_remainder_bound_exact_rational": "110680464442257309691/945648148713467500992169584679243047369731710736727807219994928268986499346953537130451216816714210994446806705766400",
+            "center_exact_rational": "-12036587676219018513932201371443270439810465126668255478157473736166297438919860467/288878104229256444342724893399674592512337957743840079165638780582941675825712332800",
+            "integrated_series": "-1/24+1/45*eta-1/84*eta^2+17/2700*eta^3-241/71280*eta^4",
+            "lower_bound_exact_rational": "-18203726862734249393572957299424516417637548980637307806843801068181177917405811767751909002171447007027844785245441869/436889444705621985458382348121810287884816050360368246935637656860271762698292534154268462169321965479434424698064076800",
+            "order_in_eta_inclusive": 4,
+            "proves_absolute_error_less_than_2_pow_minus_256": true,
+            "upper_bound_exact_rational": "-3640745372546849878714591459884903283527509796127461561368760213636235583481162353550381800434268947655740027898257477/87377888941124397091676469624362057576963210072073649387127531372054352539658506830853692433864393095886884939612815360"
+          }
+        ],
+        "elapsed_seconds": 10.801060114,
+        "fixture": {
+          "delta_exact_rational": "1/4294967296",
+          "domain": "Full external Gram rank, equal masses, positive F; three pair distances are exactly zero. This is a special family, not a generic-point qualification. Its dyadic inputs are individually representable in binary64, so it does not test parsing beyond 53 bits.",
+          "doubled_external_gram_determinant_exact_rational": "-1/7237005577332262213973186563042994240829374041602535252466099000494570602496",
+          "eta_exact_rational": "1/18446744073709551616",
+          "mass_squared": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "metric": [
+            1,
+            -1,
+            -1,
+            -1
+          ],
+          "momentum_shifts": [
+            [
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "1/4294967296",
+              "0",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1/4294967296",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1/4294967296",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "0",
+              "1/4294967296"
+            ]
+          ],
+          "mu": "1",
+          "mu_squared": "1",
+          "routing": "q0=0; q1..q4=delta times the four Cartesian basis vectors",
+          "squared_distances_lexicographic_i_less_than_j": [
+            "1/18446744073709551616",
+            "-1/18446744073709551616",
+            "-1/18446744073709551616",
+            "-1/18446744073709551616",
+            "0",
+            "0",
+            "0",
+            "-1/9223372036854775808",
+            "-1/9223372036854775808",
+            "-1/9223372036854775808"
+          ]
+        },
+        "limits": "No production agreement, generic E6 coverage, physical contour coverage or performance claim. Exact rational bounds do not infer unverified digits for the existing generic-point quadrature oracle.",
+        "normalization": "J1 = - integral_simplex F^-2 dx; native OneLoop slots [UV,IR,IR2,finite]=[0,0,0,J1]",
+        "proof": {
+          "cube_jacobian": "(1-u0)^3*(1-u1)^2*(1-u2)",
+          "final_absolute_remainder_less_than": "2^-321",
+          "first_symanzik": "x0+x1+x2+x3+x4",
+          "proof_notes": "validation/shifted-pentagon/series-oracle.md",
+          "remainder": "eta^(N+1)*((N+2)-(N+1)*eta)/(24*(1-eta)^2)",
+          "second_symanzik": "-eta*x0*x1+eta*x0*x2+eta*x0*x3+eta*x0*x4+2*eta*x2*x3+2*eta*x2*x4+2*eta*x3*x4+(x0+x1+x2+x3+x4)^2",
+          "uniform_bound": "F=1-eta*Q, Q=x1*(1-x1)-sum_(i=2..4) xi*(1-xi), |Q|<=sum_(i=1..4) xi<=1, so F>=1-eta>0"
+        },
+        "qualification": "Independent exact rational D6 parameter-series oracle with an analytic uniform remainder bound; no production reduction or scalar-master evaluation.",
+        "schema_version": 1,
+        "status": "exact_oracle_generated"
+      }
+    }
+  },
+  "certificate_wrapper_preparation_profile": {
+    "source": "validation/invariant-certificate/preparation-profile/report.json",
+    "sha256": "a3c12f0580eba20320327609a9d50f5109394c074cdff44e921235c97bf240f9",
+    "snapshot": {
+      "schema_version": 1,
+      "scope": "Single-run bounded preparation diagnosis; not a performance benchmark or complete numerical qualification",
+      "focused_test": {
+        "command": [
+          "target/certified-scalar-alias-candidate/candidate-tests",
+          "plan::tests::certified_covector_aliases_preserve_exact_inputs_and_mixed_dual_components",
+          "--exact",
+          "--nocapture",
+          "--test-threads=1"
+        ],
+        "binary_sha256": "793132b15032c73a5529df96dcd093d4842f9d94a7cdf7a5bea002f177de666f",
+        "code": 0,
+        "status": "passed",
+        "capture_seconds_including_binary_hash": 2.0035859290510416,
+        "test_reported_seconds": 0.05
+      },
+      "runs": {
+        "baseline": {
+          "command": [
+            "target/symbolica-production-qualification/core-baseline-tests",
+            "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+            "--exact",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "binary_sha256": "05aa51bce29c6473acf4b5954729201dcb405a1b525dc37f4107dbfaa4d5ca57",
+          "code": 124,
+          "seconds": 90.04486492997967,
+          "timeout_seconds": 90,
+          "status": "timeout",
+          "log": "validation/invariant-certificate/preparation-profile/baseline.log",
+          "profile_environment": {
+            "IREGI_PREPARATION_PROFILE": "1"
+          },
+          "log_sha256": "13ccf0d87bf3c2379d21a226a1b6963cc02dd1b5854153b27a47ad5723fe9d8d",
+          "phases": [
+            {
+              "propagators": 6,
+              "phase": "chart_prepare_end",
+              "elapsed_seconds": 84.017117796
+            },
+            {
+              "propagators": 6,
+              "phase": "certificate_prepare_begin",
+              "elapsed_seconds": 84.017258846
+            },
+            {
+              "propagators": 6,
+              "phase": "certificate_prepare_end",
+              "elapsed_seconds": 84.060047293
+            },
+            {
+              "propagators": 6,
+              "phase": "certified_reduce_begin",
+              "elapsed_seconds": 84.060192863
+            },
+            {
+              "propagators": 6,
+              "phase": "certified_reduce_end",
+              "elapsed_seconds": 85.945047015
+            },
+            {
+              "propagators": 6,
+              "phase": "coordinate_plan_prepare_begin",
+              "elapsed_seconds": 85.945524266
+            }
+          ]
+        },
+        "candidate": {
+          "command": [
+            "target/certified-scalar-alias-candidate/candidate-tests",
+            "certified_scalar::tests::certified_scalar_batch_matches_coordinate_interface_and_isolates_failures",
+            "--exact",
+            "--nocapture",
+            "--test-threads=1"
+          ],
+          "binary_sha256": "793132b15032c73a5529df96dcd093d4842f9d94a7cdf7a5bea002f177de666f",
+          "code": 124,
+          "seconds": 90.04418679198716,
+          "timeout_seconds": 90,
+          "status": "timeout",
+          "log": "validation/invariant-certificate/preparation-profile/candidate.log",
+          "profile_environment": {
+            "IREGI_PREPARATION_PROFILE": "1",
+            "IREGI_PV_PREPARATION_PROFILE": "1"
+          },
+          "log_sha256": "d9ecd7f8c9e13e08690e4d7dcf763d8e8ada0dac310973a073987dd25eef893b",
+          "phases": [
+            {
+              "propagators": 6,
+              "phase": "chart_prepare_end",
+              "elapsed_seconds": 77.615978123
+            },
+            {
+              "propagators": 6,
+              "phase": "certificate_prepare_begin",
+              "elapsed_seconds": 77.616070893
+            },
+            {
+              "propagators": 6,
+              "phase": "certificate_prepare_end",
+              "elapsed_seconds": 77.666341074
+            },
+            {
+              "propagators": 6,
+              "phase": "certified_reduce_begin",
+              "elapsed_seconds": 77.666896905
+            },
+            {
+              "propagators": 6,
+              "phase": "certified_reduce_end",
+              "elapsed_seconds": 79.755275047
+            },
+            {
+              "propagators": 6,
+              "phase": "coordinate_plan_prepare_begin",
+              "elapsed_seconds": 79.755369488
+            }
+          ]
+        }
+      },
+      "candidate_first_chart": {
+        "propagators": 6,
+        "cayley_inverse_count": 6,
+        "cayley_inverse_seconds_sum": 67.164212,
+        "cayley_geometry_seconds_sum": 77.155672,
+        "routing_relation_seconds": 0.445231
+      },
+      "limits": [
+        "Both full integration tests timed out in subsequent coordinate-reference plan preparation. No complete tensor/scalar agreement claim follows.",
+        "N7 was not reached.",
+        "No CPU pinning, warmup, repeated samples or uncertainty analysis; build activity may affect elapsed times.",
+        "The alias change preserves exact symbolic identities and mixed second-order Dual components in its focused regression.",
+        "Production matrix algorithms are unchanged; solve(ones) is a separate pending experiment."
+      ]
+    }
+  },
+  "stack_reuse_factory_qualification": {
+    "source": "validation/stack-reuse/production-factory/qualification.json",
+    "sha256": "ec358abca86774bf56b1c0afc95619c8e5d7a35a759d830144e31f71576c9b54",
+    "snapshot": {
+      "schema": 1,
+      "status": "actual_six_output_master_factory_interpreter_qualification_passed",
+      "outputs": [
+        "finite",
+        "total_single",
+        "ir_double",
+        "uv",
+        "ir",
+        "derivative_boundary"
+      ],
+      "normalization": "Production exact_scalar_master_evaluator with existing UV/IR separation and scaleless wrapper; squared scale last",
+      "comparison": "Identical ordered instruction/operand/branch/constant/output provenance; unchanged shared bodies; exact represented numerical output, precision metadata and signed-zero parity",
+      "domains": [
+        "f64",
+        "Symbolica DoubleFloat",
+        "Symbolica Float256"
+      ],
+      "batch_policy": "Whole",
+      "results": [
+        {
+          "family": "C0",
+          "status": "passed",
+          "root_instructions": 223,
+          "root_temporary_slots_before": 220,
+          "root_temporary_slots_after": 8,
+          "unique_helpers": 41,
+          "helper_temporary_slots_before": 439,
+          "helper_temporary_slots_after": 439,
+          "batch_configurations": 40,
+          "compared_complex_outputs": 1440,
+          "controls": [
+            "massive real",
+            "massive complex",
+            "massless",
+            "scaleless"
+          ],
+          "artifact_hashes": {
+            "target/stack-reuse-production/actual-c0/C0-root-provenance.txt": "534b0d64576191a9bee0529f5272f76dc00e8d8375cdc90541586cf5334e222a",
+            "target/stack-reuse-production/actual-c0/c0_baseline.rs": "42ae46af9b13f31bbd089d94393c7b1858d3e1bde154454f21c3c4e0814dcfff",
+            "target/stack-reuse-production/actual-c0/c0_candidate.rs": "fc09afea180313cd0c8d1b6e802b9aaf0db4bed1de8c7d99688c569de05dc241",
+            "target/stack-reuse-production/actual-c0/constants.rs": "f4d4a131b5b941926f8d003293e2ef638573ad8277d017b1095a56e2000be2fb",
+            "target/stack-reuse-production/actual-c0/inputs.csv": "0cd15c6427cda461f99402cf2914e8eeac1f6a5e515fc9a122cffcc3ade5a8c1",
+            "target/stack-reuse-production/actual-c0/parity.csv": "acfd1c186e9bda2df41cf866ef1be37107867dcfde4f6fac21dcfb2667573b46",
+            "target/stack-reuse-production/actual-c0/semantics.txt": "a2c087bdc1ff2467f4bf6f5ca5b8ea92a30da3787dbfe731e983f85df75c0cad",
+            "target/stack-reuse-production/actual-c0/slots.csv": "6edd5909c9089a72bca78de565d071c5db7c9c56150a7df7618f14929da918f2"
+          }
+        },
+        {
+          "family": "D0",
+          "status": "passed",
+          "root_instructions": 25013,
+          "root_temporary_slots_before": 25010,
+          "root_temporary_slots_after": 25,
+          "unique_helpers": 82,
+          "helper_temporary_slots_before": 1608,
+          "helper_temporary_slots_after": 1608,
+          "batch_configurations": 40,
+          "compared_complex_outputs": 1440,
+          "controls": [
+            "massive real",
+            "massive complex",
+            "massless",
+            "scaleless"
+          ],
+          "artifact_hashes": {
+            "target/stack-reuse-production/actual-d0/D0-root-provenance.txt": "13f5c4bb244207da484957078c8cf49f6a80d1f65ee374bf57dda46e42e1657a",
+            "target/stack-reuse-production/actual-d0/constants.rs": "1879a0125e1e03d1624795abfe1736d39885254cdacd9886ae927f6fbf531025",
+            "target/stack-reuse-production/actual-d0/d0_baseline.rs": "12d56f753ca99f379b45427e4cfcd0b7313e59f5b49c69764f01e441c49dd541",
+            "target/stack-reuse-production/actual-d0/d0_candidate.rs": "b7f2449e898a6c9293e2a1ac328a2635ae3a08445fa9863dcd3211116af66730",
+            "target/stack-reuse-production/actual-d0/inputs.csv": "3dae01c87c0affe9084443dab190a03d059cf993dceb3021fe76356599cfea4d",
+            "target/stack-reuse-production/actual-d0/parity.csv": "b2fb791a2ed75c08d0b570103766ae31dae9366ba01cf563e2bcb665dc49eff3",
+            "target/stack-reuse-production/actual-d0/semantics.txt": "7b429d1b2f6bd27d120fae940a13e94a8054252b9a9d1413fd5ff25e876c26a3",
+            "target/stack-reuse-production/actual-d0/slots.csv": "bd4659b07de9ac4b5a5325253f46f9128ffeeb718573357d76d5b2df94eed383"
+          }
+        },
+        {
+          "family": "A0",
+          "status": "passed",
+          "root_instructions": 43,
+          "root_temporary_slots_before": 38,
+          "root_temporary_slots_after": 6,
+          "unique_helpers": 0,
+          "helper_temporary_slots_before": 0,
+          "helper_temporary_slots_after": 0,
+          "batch_configurations": 40,
+          "compared_complex_outputs": 1248,
+          "artifact_hashes": {
+            "target/stack-reuse-production/actual-A0/semantics.txt": "e41119d17758ef88f06440863e7f7c32870616ae0165db09e692c919a677b53e",
+            "target/stack-reuse-production/actual-A0/slots.csv": "f97210bbd6a2b0f62972f371af55e041ee94159e05ba4d6819fd1880b4052da2",
+            "target/stack-reuse-production/actual-A0/parity.csv": "f48495790b44794a685549c7b4c27c9e2382771cd799b9c797709386037db9e8",
+            "target/stack-reuse-production/actual-A0/inputs.csv": "56e83f8a913bd1a49a4930f4bfac2d44e3d17ed26c049992da6298dfc291fde1",
+            "target/stack-reuse-production/actual-A0/A0-root-provenance.txt": "66f326bcbe95b5d3a23928f4b391e0eb97eb9f4df9bcc765a0879026b7010d02"
+          }
+        },
+        {
+          "family": "B0",
+          "status": "passed",
+          "root_instructions": 506,
+          "root_temporary_slots_before": 503,
+          "root_temporary_slots_after": 13,
+          "unique_helpers": 0,
+          "helper_temporary_slots_before": 0,
+          "helper_temporary_slots_after": 0,
+          "batch_configurations": 40,
+          "compared_complex_outputs": 1344,
+          "artifact_hashes": {
+            "target/stack-reuse-production/actual-B0/B0-root-provenance.txt": "bb376cc646d6975d08530e2f922e9d8e9d962d9fcdd244cd9d888221e4bbfe41",
+            "target/stack-reuse-production/actual-B0/semantics.txt": "194a171b5ff4eb6d11e94ab52489406010f32993ece50433a823e33f77e59268",
+            "target/stack-reuse-production/actual-B0/inputs.csv": "481b950d90d49fc337b56a6090a89fe1ce6a6cfd57829d0712d076ac303d8a47",
+            "target/stack-reuse-production/actual-B0/parity.csv": "de9ca9b582dbe68826176c80a16cb725df14f6d8994a095c74b54c5efc1b8a97",
+            "target/stack-reuse-production/actual-B0/slots.csv": "79e4b1852f230b1b611dcf73efba80cd5a31d483742dd26b732a7d86811e67df"
+          }
+        },
+        {
+          "family": "dB0",
+          "status": "passed",
+          "root_instructions": 1955,
+          "root_temporary_slots_before": 1951,
+          "root_temporary_slots_after": 24,
+          "unique_helpers": 0,
+          "helper_temporary_slots_before": 0,
+          "helper_temporary_slots_after": 0,
+          "batch_configurations": 40,
+          "compared_complex_outputs": 1344,
+          "artifact_hashes": {
+            "target/stack-reuse-production/actual-dB0/inputs.csv": "6f87a10e13431ba5f959ec7aa3bf8a4e708d52f53ee2904afcfcbd6605e04a48",
+            "target/stack-reuse-production/actual-dB0/slots.csv": "1be06137c3659c5babe9a55458d45a6ce2026e0f25e96298bfa7467cba042ca3",
+            "target/stack-reuse-production/actual-dB0/dB0-root-provenance.txt": "55181e5219db32edf84dcb8bb8bb1ffd75017495d5de29b7d2c1cc2c938bead0",
+            "target/stack-reuse-production/actual-dB0/parity.csv": "615018266251c1f12be7e1f76a45f23ce61c793d0baceaddb3c62917f2986c77",
+            "target/stack-reuse-production/actual-dB0/semantics.txt": "7b776fe78b9f8c4e40a74276db368d0b290047163ebcf2e0a24634c5cc0ac55f"
+          }
+        }
+      ],
+      "factory_probe_sha256": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c",
+      "candidate_source_change": "Only ordinary exact_scalar_master_evaluator calls evaluator_with_stack_reuse; Dual and production files unchanged",
+      "snapshot_manifest": "manifest.json",
+      "native_status": "paired modules exported but not compiled or timed",
+      "core_and_e6_status": "all paired binaries compiled, runtime qualification pending",
+      "performance_status": "unmeasured; storage-slot counts do not establish runtime improvement",
+      "remaining_pitfalls": [
+        "Stack allocation is valid exactly once on fresh SSA root; do not reapply to loaded/allocated graphs or Dualized graphs",
+        "Existing native-batch kernels bypass this interpreter constructor and require separate regeneration and parity/timing",
+        "Focused core/master/E6 runtime qualification is in progress; compiled-native parity remains pending",
+        "Pointwise parity preserves baseline behavior; this storage-only experiment does not broaden master mathematical coverage"
+      ],
+      "paired_core_guard_scope": {
+        "frozen_stability_sha256": "a889713285db129ccb0e477c37c6d4a21f04872bba7b19ec51a12007ff88b9d0",
+        "current_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+        "difference": "Frozen snapshot rejects any operand roundoff unit>1; later current source accepts finite units>1 outside underflow fallback. Both variants use the identical frozen source. Fixed-precision f64/DD unaffected; current-source Float tests remain required before adoption.",
+        "unchanged_files": [
+          "execution.rs",
+          "stability/quadrature.rs",
+          "stability/arguments.rs"
+        ]
+      }
+    }
+  },
+  "benchmark_harness_qualification": {
+    "transport_and_validation": {
+      "source": "validation/benchmark/harness-qualification/results.json",
+      "sha256": "a2f200d9462fbafc32070df4dfcd8e8afaf06c22ef82df6d28a2447f2f15a994",
+      "snapshot": {
+        "schema_version": 1,
+        "status": "passed",
+        "recorded_at_utc": "2026-10-23T13:23:31.477463+00:00",
+        "scope": "Python transport and validation-boundary regression tests only; no Rust, Fortran or Symbolica execution",
+        "command": "python3 -B -m unittest discover -s validation/benchmark -p 'test_*.py' -v",
+        "tests": 21,
+        "failures": 0,
+        "observed_suite_seconds": 0.298,
+        "duration_qualification": "validation observation, not a performance benchmark",
+        "independent_root_rerun": {
+          "tests": 21,
+          "status": "passed",
+          "duration_recorded": false
+        },
+        "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+        "file_sha256": {
+          "validation/benchmark/run.py": "513b443db0af895b287f5a6635becd1807ecf1c65b87ae588542a59b3fbaa644",
+          "validation/benchmark/physical_run.py": "6bd2e419fd0da97648de183b60b1bd40d0bb67873f98d395400d92320d6cab09",
+          "validation/benchmark/build_physical.py": "99ca5a6ab2091887e14f9491848e4d71fae4fa9776d467ef30701b4021e80b87",
+          "validation/benchmark/test_physical_harness.py": "d403176bdc7252a52c8c2b3bd0f0cd5bc3342cc62c89b37576ace14616fa9f9b",
+          "validation/benchmark/test_process_transport.py": "882cb1de09412703870675a327993bad9ee629093658181b1e47c37559c6dace",
+          "validation/benchmark/test_physical_reference_shape.py": "ba434feed2c7b0e557647bc5302cee8923969960dd11dd08153295f831a9d75c",
+          "validation/physical/compare_cli.py": "bd15231de5b8adeb70524e5b92e7f8133afd7139aa59977395acb3474e8bae5b",
+          "validation/benchmark/PHYSICAL.md": "a3b8eb5fd0b1ed4f3d206c9410474f05ae5ec4b488797f2233094d3c4157802f"
+        },
+        "fixes": [
+          {
+            "issue": "A large prepare request could block in stdin.write before its timeout began.",
+            "change": "Use nonblocking stdin/stdout with a shared monotonic deadline, drain both pipe directions, and kill/reap a timed-out child.",
+            "regressions": [
+              "4 MiB input to a child that never reads times out",
+              "large duplex traffic and persistent second response",
+              "EOF without a result exits promptly"
+            ]
+          },
+          {
+            "issue": "Interruption between configurations could leave an incomplete run marked complete.",
+            "change": "Record all configurations before execution; retain interrupted and not_run rows; require normal completion of all rows.",
+            "regressions": [
+              "interrupt between configurations",
+              "interrupt during a configuration",
+              "completion requires all requested configurations"
+            ]
+          },
+          {
+            "issue": "zip could silently compare fewer than three MadLoop Laurent coefficients.",
+            "change": "Require exactly three finite real/imaginary pairs and strict pairing.",
+            "regressions": [
+              "missing/short/long/nonarray reference",
+              "malformed pairs in every slot",
+              "nonfinite either component",
+              "selected graph, color factor and all Laurent slots",
+              "all four retained fixture shapes"
+            ]
+          }
+        ],
+        "runtime_smoke": "pending on a provenance-identified Rust binary",
+        "matched_physical_timings": "not qualified; routing, snapping, effective/generated rank and stage boundaries still require alignment",
+        "performance_parity_claim": false
+      }
+    },
+    "actual_madloop_mode": {
+      "source": "validation/benchmark/madloop-mode-qualification/results.json",
+      "sha256": "ab68473e49f590166734410f483d90857280d002ac901f21d6c2db4abb3e5f6d",
+      "snapshot": {
+        "schema_version": 1,
+        "recorded_utc": "2026-10-23T14:08:51.038033+00:00",
+        "status": "passed",
+        "tests_passed": 4,
+        "generated_fortran_compile_returncode": 0,
+        "compile_command": [
+          "gfortran",
+          "-c",
+          "-O3",
+          "-ffixed-line-length-132",
+          "-I",
+          "target/physical/ggh/SubProcesses/P0_gg_h",
+          "target/benchmark/physical/mode-qualification/timer.f",
+          "-o",
+          "target/benchmark/physical/mode-qualification/timer.o"
+        ],
+        "compiler": "GNU Fortran (GCC) 15.2.0",
+        "sha256": {
+          "validation/physical/madloop/benchmark.py": "d2673a39554e89b817dd23e00bf4e551e9ed37003a532922735555928d893299",
+          "validation/benchmark/test_madloop_benchmark_modes.py": "2fda471a944212d7e01ee23a5ec8cb3991f2a221cc3af9f3362934c7f06642d5",
+          "validation/benchmark/madloop-mode-qualification/qualification.log": "d3b7a04085d6ce295683684f305d14ffff94f7d27933e4589d76f11dd7a99712",
+          "validation/benchmark/madloop-mode-qualification/compile.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "target/benchmark/physical/mode-qualification/timer.f": "240087e43b9aad3ad7fd4995172fc792980f823e02198f0512536fc6bd994381"
+        },
+        "scope": "Actual-mode export and fail-closed parser; generated Fortran syntax compiles. No numerical runtime or timing qualification."
+      }
+    },
+    "qualification": "21 transport/boundary checks plus4 actual-mode export/parser checks pass; generated Fortran compiles. These are harness checks, not matched physical runtime measurements. Routing, snapping, effective/generated rank and stage boundaries still require alignment."
+  },
+  "report_refresh": {
+    "date": "2026-10-23",
+    "scope": "Latest source-identified evidence and historical measurements, with distinct binary/source scopes preserved. No new comparative performance results.",
+    "new_evidence": [
+      "symbolica_production_qualification",
+      "mixed_precision_qualification",
+      "e6_exact_series_oracle",
+      "certificate_wrapper_preparation_profile",
+      "stack_reuse_factory_qualification",
+      "benchmark_harness_qualification"
+    ]
   }
 }

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "started_utc": "2026-10-23T13:43:59.131267+00:00",
+  "status": "passed",
+  "returncode": 0,
+  "timeout_seconds": 60,
+  "wall_seconds": 10.83572012593504,
+  "command": [
+    "target/e6-parameter-series/e6_parameter_series",
+    "validation/shifted-pentagon/series-oracle.json"
+  ],
+  "environment": {
+    "RUST_MIN_STACK": "67108864"
+  },
+  "binary": "target/e6-parameter-series/e6_parameter_series",
+  "binary_sha256": "5e8c86d9b5d515077930d20c54419677507a83bec25a403b2d749e5c3bae08c7",
+  "source_and_dependency_sha256": {
+    "crates/iregi-rust/examples/e6_parameter_series.rs": "ebcc78fd7614a7476507da3591350c2f46c02eb168a1266df14584940e0ea8dc",
+    "validation/shifted-pentagon/series-oracle.md": "ac477eeaa0b99478d37d28456ba2c1de126b5fcd5593926d6df817c7006b7cc2",
+    "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5",
+    "target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rlib": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4"
+  },
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+  "symbolica_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+  "symbolica_scoped_cache_patch_active": false,
+  "build_scope": "Direct rustc compilation of the independent validation example against qualified pre-vendor Symbolica and serde_json artifacts. No iregi-rust or oneloopmaster library is linked by the example. Current Cargo vendor wiring is outside this binary provenance.",
+  "log": "validation/shifted-pentagon/series-oracle.log",
+  "log_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+  "output": "validation/shifted-pentagon/series-oracle.json",
+  "output_sha256": "0cf780289cf24e409aebc27d4cc51ccca3e4c02d386b4198cf16f0656cc974c3",
+  "independent_review": {
+    "agent": "/root/pentagon_precision/e6_series_review",
+    "result": "No actionable math or source defect. Confirmed Symanzik sign, simplex Jacobian, exact integration, inclusive series order, coefficients -1/24 and +1/45, and exact rational remainder. Suggested machine-readable kinematics were added.",
+    "artifact_audit": "Passed after generation: source, proof, binary, dependency, output and log hashes match; kinematics, orders0..4, exact remainder bounds and qualification limits match the reviewed implementation."
+  },
+  "qualification": "Independent exact rational primal D6 oracle at one special equal-mass, small-invariant, nonzero-Gram positive-F fixture. No production E6 agreement or performance qualification. Timing is diagnostic.",
+  "compile_environment": {
+    "CARGO_CRATE_NAME": "e6_parameter_series"
+  },
+  "compile_command": [
+    "rustc",
+    "--crate-name",
+    "e6_parameter_series",
+    "--edition=2024",
+    "crates/iregi-rust/examples/e6_parameter_series.rs",
+    "-L",
+    "dependency=target/cargo-build/debug/deps",
+    "-L",
+    "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "symbolica=target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib",
+    "--extern",
+    "serde_json=target/cargo-build/debug/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+    "-o",
+    "target/e6-parameter-series/e6_parameter_series"
+  ],
+  "repository_head_at_generation": "69f23e8fd76cb422ddcf50282de32a4c097a092b"
+}

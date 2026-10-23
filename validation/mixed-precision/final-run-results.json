@@ -1,0 +1,45 @@
+[
+  {
+    "name": "final-public",
+    "command": [
+      "target/mixed-precision-final-tests",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 0,
+    "seconds": 5.580259485985152
+  },
+  {
+    "name": "final-stability",
+    "command": [
+      "target/mixed-precision-core-unit-tests",
+      "stability::",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 101,
+    "seconds": 15.931635216926225
+  },
+  {
+    "name": "final-execution",
+    "command": [
+      "target/mixed-precision-core-unit-tests",
+      "execution::tests",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 0,
+    "seconds": 34.40337272803299
+  },
+  {
+    "name": "original-scale-pre-fix",
+    "command": [
+      "target/mixed-precision-original-scale-pre-fix-tests",
+      "original_scale_jet_precision_survives_a_rounded_zero_square_coefficient",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 101,
+    "seconds": 4.197868025046773
+  }
+]

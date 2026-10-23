@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T13:25:18.798277+00:00",
+  "status": "passed_bounded_scope",
+  "qualification": "Public instruction-major reduction API for a positive-F massive D6 pentagon at three dimensionally related input scales: DoubleFloat, Float128 and first-order common-mass HyperDual. Native slots remain [UV, IR, IR2, finite].",
+  "oracle": {
+    "files": [
+      "validation/shifted-pentagon/evidence.json",
+      "validation/shifted-pentagon/contours.json"
+    ],
+    "finite_j6": "-0.0001771401382640081806076521310069008176",
+    "common_mass_derivative_j6": "0.0000236059994160983338257",
+    "preparation": "Four-dimensional numerator rank0, five unit powers, IBP, dimension shift1, OneLoop convention; exact integer inputs and exact rational decimal expectations."
+  },
+  "build": {
+    "recorded_utc": "2026-10-23T13:19:20.772510+00:00",
+    "scope": "Pre-vendor diagnostic binary, linked to exact library artifacts from target/checkpoint-mixed-guard-no-run.jsonl. Current Cargo.toml and Cargo.lock already point to vendored Symbolica and are not this binary dependency provenance. Only the integration-test driver is rebuilt.",
+    "head": "4d9fe5f00232cd95dd674b8b12dcf1c6010d530a",
+    "sha256": {
+      "crates/iregi-rust/tests/shifted_pentagon.rs": "e398883b649f1d14ba84c671d5a4b76a24d5923cdff1e7bf1ba38e5448f8bfde",
+      "crates/iregi-rust/src/execution.rs": "958df5ecb53d43473c5106108467f698e496897fc4270d3640147bf51a159851",
+      "crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+      "crates/iregi-masters/src/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+      "target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib": "49640023e87e0345ace509446ede2338d5ece5989c4395fbc6e100841789db25",
+      "target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib": "aa0b0f0ef0bb9b344d765a50bf961fd747b15ba12b008e41ca942521b5fb547f",
+      "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5"
+    },
+    "source_build_manifest": "target/checkpoint-mixed-guard-no-run.jsonl",
+    "source_build_manifest_sha256": "c4579e77d37410becb774668a703a1f5abb6a2f56b85e725731a5e18a4a14231",
+    "binary": "target/e6-public-profile/shifted_pentagon-tests",
+    "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+    "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+    "qualified_library_sources": "validation/core-checkpoint/qualification.json",
+    "qualified_library_sources_sha256": "9396c74208d726815537bacaed67b57555e612e17efdc1bca5898bd8c5e33823",
+    "symbolica_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+    "symbolica_scoped_cache_patch_active": false,
+    "compile_command": [
+      "rustc",
+      "--test",
+      "--crate-name",
+      "shifted_pentagon",
+      "--edition=2024",
+      "crates/iregi-rust/tests/shifted_pentagon.rs",
+      "-L",
+      "dependency=target/cargo-build/debug/deps",
+      "-L",
+      "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+      "--extern",
+      "iregi_rust=target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib",
+      "--extern",
+      "iregi_masters=target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib",
+      "--extern",
+      "symbolica=target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib",
+      "-o",
+      "target/e6-public-profile/shifted_pentagon-tests"
+    ]
+  },
+  "checks": [
+    {
+      "label": "doublefloat",
+      "test": "shifted_pentagon_core_preserves_doublefloat_precision",
+      "status": "passed",
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "wall_seconds": 48.6990823718952,
+      "started_utc": "2026-10-23T13:19:30.985900+00:00",
+      "command": [
+        "target/e6-public-profile/shifted_pentagon-tests",
+        "--exact",
+        "shifted_pentagon_core_preserves_doublefloat_precision",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "environment": {
+        "RUST_MIN_STACK": "67108864",
+        "IREGI_PREPARATION_PROFILE": "1"
+      },
+      "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+      "log": "validation/shifted-pentagon/public-core-doublefloat.log",
+      "log_sha256": "5d506d2c74366fba2a0418701e736f049ad0fd1d139205890845e18ccc0cb073",
+      "working_bits": 106,
+      "requested_accuracy_bits": 80,
+      "components": 1,
+      "normalized_absolute_error_bound": "1e-23",
+      "test_wall_seconds": 48.62,
+      "plan_seconds": 0.113558629,
+      "workspace_seconds": 1.593345234,
+      "reduction_seconds": 46.729966495,
+      "scalar_master_seconds": 45.850290533,
+      "quadrature_order": 128,
+      "internal_d0_rows": 3720,
+      "rows": 3,
+      "scales": [
+        1,
+        2,
+        3
+      ],
+      "fallback_rows": 0,
+      "master_family_batches": 1,
+      "master_rows": 3,
+      "analytic_rows": 3
+    },
+    {
+      "label": "float128",
+      "test": "shifted_pentagon_core_preserves_float_precision",
+      "status": "passed",
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "wall_seconds": 117.58003363199532,
+      "started_utc": "2026-10-23T13:20:40.840068+00:00",
+      "command": [
+        "target/e6-public-profile/shifted_pentagon-tests",
+        "--exact",
+        "shifted_pentagon_core_preserves_float_precision",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "environment": {
+        "RUST_MIN_STACK": "67108864",
+        "IREGI_PREPARATION_PROFILE": "1"
+      },
+      "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+      "log": "validation/shifted-pentagon/public-core-float128.log",
+      "log_sha256": "425f7732fdb0f8bb33a22d8cb4464e75e8d4818f0ea19928c6544afe52421ffc",
+      "working_bits": 128,
+      "requested_accuracy_bits": 80,
+      "components": 1,
+      "normalized_absolute_error_bound": "1e-23",
+      "test_wall_seconds": 117.07,
+      "plan_seconds": 0.087070343,
+      "workspace_seconds": 1.604483001,
+      "reduction_seconds": 106.49444513,
+      "scalar_master_seconds": 105.557781252,
+      "quadrature_order": 128,
+      "internal_d0_rows": 3720,
+      "rows": 3,
+      "scales": [
+        1,
+        2,
+        3
+      ],
+      "fallback_rows": 0,
+      "master_family_batches": 1,
+      "master_rows": 3,
+      "analytic_rows": 3
+    },
+    {
+      "label": "common_mass_dual",
+      "test": "shifted_pentagon_core_common_mass_dual_matches_independent_d4",
+      "status": "passed",
+      "returncode": 0,
+      "timeout_seconds": 180,
+      "wall_seconds": 28.79836826096289,
+      "started_utc": "2026-10-23T13:23:08.985438+00:00",
+      "command": [
+        "target/e6-public-profile/shifted_pentagon-tests",
+        "--exact",
+        "shifted_pentagon_core_common_mass_dual_matches_independent_d4",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "environment": {
+        "RUST_MIN_STACK": "67108864",
+        "IREGI_PREPARATION_PROFILE": "1"
+      },
+      "binary_sha256": "77047bd2ced343cd14de2160b5e79131c1d103b0d483dfc8321889f765b5b7e1",
+      "log": "validation/shifted-pentagon/public-core-common_mass_dual.log",
+      "log_sha256": "fdb0bc09fe62beace4da3226ec3f4809e9d0bcfcdc211f7bddb897853acde063",
+      "working_bits": 53,
+      "requested_accuracy_bits": 53,
+      "components": 2,
+      "normalized_absolute_error_bound": "2e-14",
+      "test_wall_seconds": 28.68,
+      "plan_seconds": 0.086603062,
+      "workspace_seconds": 4.825212781,
+      "reduction_seconds": 23.671469888,
+      "scalar_master_seconds": 19.719392187,
+      "quadrature_order": 64,
+      "internal_d0_rows": 1800,
+      "dual_shape": [
+        [
+          0
+        ],
+        [
+          1
+        ]
+      ],
+      "identity": "sum_i d/d(m_i^2) J6 = -J4; the primal and common-mass first derivative are checked independently against parameter-integral values",
+      "rows": 3,
+      "scales": [
+        1,
+        2,
+        3
+      ],
+      "fallback_rows": 0,
+      "master_family_batches": 1,
+      "master_rows": 3,
+      "analytic_rows": 3
+    }
+  ],
+  "historical_timeout": {
+    "log": "validation/core-checkpoint/e6-core-precision-timeout.log",
+    "log_sha256": "0e2c5048675396d69214fefc74c7859a6f35a2ec989b222ba904552669316f10",
+    "timeout_seconds": 150,
+    "interpretation": "The combined DD/Float three-lane test had no stage instrumentation. Splitting without changing samples or tolerances passed both domains; their observed validation durations total165.69 seconds. Scalar-master evaluation dominates. The historical timeout remains visible and was not numerical disagreement."
+  },
+  "limits": [
+    "This artifact uses qualified pre-vendor library objects, with only the integration-test driver recompiled. The new Symbolica scoped-cache vendor wiring is not qualified by these results.",
+    "Timing is diagnostic validation duration on a shared host, without paired reference measurement or controlled CPU affinity; it is not a performance-parity result.",
+    "The DD and Float128 tests request80accuracybits and use a1e-23 dimensionally normalized absolute oracle threshold. They do not qualify full128-bit requested accuracy or convergence as precision increases.",
+    "The current E6 quadrature caps its order at128; stricter requested precision can report NonConvergent.",
+    "General complex-mass/endpoint domains, native-feature execution, second-order and mixed E6 Dual components remain separate qualification work."
+  ],
+  "reproduction": [
+    "source scripts/env.sh",
+    "RUST_MIN_STACK=67108864 IREGI_PREPARATION_PROFILE=1 cargo test -p iregi-rust --test shifted_pentagon shifted_pentagon_core_preserves_doublefloat_precision -- --exact --test-threads=1 --nocapture",
+    "RUST_MIN_STACK=67108864 IREGI_PREPARATION_PROFILE=1 cargo test -p iregi-rust --test shifted_pentagon shifted_pentagon_core_preserves_float_precision -- --exact --test-threads=1 --nocapture",
+    "RUST_MIN_STACK=67108864 IREGI_PREPARATION_PROFILE=1 cargo test -p iregi-rust --test shifted_pentagon shifted_pentagon_core_common_mass_dual_matches_independent_d4 -- --exact --test-threads=1 --nocapture"
+  ]
+}

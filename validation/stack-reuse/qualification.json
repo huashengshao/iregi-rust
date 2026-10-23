@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "base_commit": "69f23e8fd76cb422ddcf50282de32a4c097a092b",
+  "status": "ordinary_transparent_laurent_root_interpreter_qualification_passed",
+  "scope": "The same public transparent Laurent constructors used by the scalar adapter. Three outputs: finite,total_single,ir_double. Additional IREGI adapter UV/IR/scaleless wrappers are not present in this probe.",
+  "normalization": "Unmodified OneLoop expressions, squared scale last; exact represented inputs retained in CSV",
+  "candidate_change": "Symbolica optimize_stack exactly once on fresh ordinary direct_translation(true),horner_iterations(0) root; shared functions and Dualizer unchanged",
+  "domains": [
+    "f64",
+    "Symbolica DoubleFloat",
+    "Symbolica Float256"
+  ],
+  "batch_policy": "Whole",
+  "native_status": "paired sources exported, not compiled or timed",
+  "performance_status": "unmeasured; slot counts are storage requirements, not runtime measurements",
+  "results": [
+    {
+      "family": "C0",
+      "status": "passed",
+      "root_instructions": 132,
+      "root_temporary_slots_before": 132,
+      "root_temporary_slots_after": 7,
+      "unique_helpers": 41,
+      "helper_temporary_slots_before": 439,
+      "helper_temporary_slots_after": 439,
+      "batch_configurations": 40,
+      "compared_complex_outputs": 672,
+      "provenance": "ordered instructions, operand definitions, exact constants, registered metadata, branches, output ordering and helpers equal",
+      "artifact_hashes": {
+        "target/stack-reuse-direct-c0/C0-root-provenance.txt": "8a8a9f0b27dd6f11728ca6b9efc42140ca7dc5aa572b4a03749085d6b76bb4f2",
+        "target/stack-reuse-direct-c0/c0_baseline.rs": "0c3d87bd58a83e9631555b51acc7b939d4c19765037559adcd74b7f0851b593c",
+        "target/stack-reuse-direct-c0/c0_candidate.rs": "d4b6f8fd824bf72bc9f1aa72f11203d6bcd8e66af4b8d16acadbaefb87362981",
+        "target/stack-reuse-direct-c0/constants.rs": "f4d4a131b5b941926f8d003293e2ef638573ad8277d017b1095a56e2000be2fb",
+        "target/stack-reuse-direct-c0/inputs.csv": "8aafea5e26e5ac9ee5d3f994d998f7ebbd068294ff847a877f51f9f8e009e988",
+        "target/stack-reuse-direct-c0/parity.csv": "dd371b77a4fe0ad3d7caf3ca7bbf6b0eeebf0ac311a005f25b254653d4a0c9f1",
+        "target/stack-reuse-direct-c0/semantics.txt": "d4156c4bb8d6f552ab9313fe425f1f793a938ba6eaa74776e28c47c98e131b1f",
+        "target/stack-reuse-direct-c0/slots.csv": "f263460982e08403244bd774b00c67ddf2e02d1b1b3076e062fd42893e398388"
+      }
+    },
+    {
+      "family": "D0",
+      "status": "passed",
+      "root_instructions": 24777,
+      "root_temporary_slots_before": 24777,
+      "root_temporary_slots_after": 24,
+      "unique_helpers": 82,
+      "helper_temporary_slots_before": 1608,
+      "helper_temporary_slots_after": 1608,
+      "batch_configurations": 40,
+      "compared_complex_outputs": 672,
+      "provenance": "ordered instructions, operand definitions, exact constants, registered metadata, branches, output ordering and helpers equal",
+      "artifact_hashes": {
+        "target/stack-reuse-direct-d0/D0-root-provenance.txt": "646e624945d79c4c568cc94770cc0fe7bd2ae0ad08a48c9bc4eaea523e3b538d",
+        "target/stack-reuse-direct-d0/constants.rs": "1879a0125e1e03d1624795abfe1736d39885254cdacd9886ae927f6fbf531025",
+        "target/stack-reuse-direct-d0/d0_baseline.rs": "3cd89ea1ec7d54f0f05c9b91a975e90951eae56fdac6d80215b9da2585c1646c",
+        "target/stack-reuse-direct-d0/d0_candidate.rs": "9fbdd8ea3540e31a860137cff40ec3394ff4a5679130dddb0bf20660d30493ab",
+        "target/stack-reuse-direct-d0/inputs.csv": "39d84a46c942ce2d38e18b359fec42c5b81b40b682302b6c6f397529e02d76f2",
+        "target/stack-reuse-direct-d0/parity.csv": "223c9883baa1d23a6825f73dd1a6df8a07711ecab5beedc577e4f46de1acce7c",
+        "target/stack-reuse-direct-d0/semantics.txt": "18cec4044bf49a411fc11d9f11575f6f29736d02014328c8a6c522aa16d576b1",
+        "target/stack-reuse-direct-d0/slots.csv": "c731d1bef6b0b349bfda9d67e431a2351fbb0d2f0d806bd37b86aeb86bf50df2"
+      }
+    }
+  ],
+  "binary": {
+    "path": "target/stack_reuse_probe_direct",
+    "sha256": "63410ee50a99a8ed6b8bfe556c90c267bc8756600bd236545bf2ebdd095b6c85"
+  },
+  "artifact_hashes": {
+    "dependencies/oneloopmaster/examples/stack_reuse_probe.rs": "47cb3a1cac1ba88ae69c274a1d196d0114af7d145b8ecb8e41701bd286496798",
+    "dependencies/oneloopmaster/src/expressions.rs": "1dd7d7901446506a5d7e46d179e3df28f9f3956f7f0ed1a323b74e5a3f80baed",
+    "dependencies/symbolica/src/evaluate/optimize.rs": "899d86347eb9efc9ae39d85e94d0c5a35fbc6de8a1efa13b9ccc95464f92e0f6",
+    "dependencies/symbolica/src/evaluate/tree.rs": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
+    "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib": "6ed89303becc04ef2611b24f3282e155900e2ce51a94161c748c86eb5000f67e",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "3bc0b1d5a75326f74538dd7caeaaae0d4eb6df3479b2fc37f9cbd9a45feeb526"
+  },
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
+  "compile_command": "CARGO_CRATE_NAME=stack_reuse_probe rustc --edition=2024 --crate-name stack_reuse_probe dependencies/oneloopmaster/examples/stack_reuse_probe.rs -L dependency=target/cargo-build/debug/deps -L native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib --extern oneloop=target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib --extern symbolica=target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib -o target/stack_reuse_probe_direct",
+  "runtime_commands": [
+    "timeout 180s target/stack_reuse_probe_direct target/stack-reuse-direct-c0 C0 --emit",
+    "timeout 180s target/stack_reuse_probe_direct target/stack-reuse-direct-d0 D0 --emit"
+  ],
+  "initial_wrapper_probe": {
+    "binary_sha256": "b9c647cfd240a3f4bd0d425f3c3ab4ef4c21a864036e3a7ccc3f8bcb51cf8c96",
+    "result_directory": "target/stack-reuse-c0",
+    "status": "passed but measured three-call symbol wrapper, not hot transparent master root",
+    "root_slots_before": 3,
+    "root_slots_after": 3
+  },
+  "e6_implication": {
+    "observed_baseline": "validation/shifted-pentagon/public-core-qualification.json",
+    "hypothesis": "Reduced ordinary D0 root scratch may reduce E6 master memory and runtime. No E6 candidate run or performance claim is made."
+  }
+}

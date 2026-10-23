@@ -1,0 +1,34 @@
+[
+  {
+    "name": "revised-low-relative",
+    "command": [
+      "target/mixed-precision-core-revised-tests",
+      "tiny_low_relative_precision_terms_use_the_unchanged_absolute_budget",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 0,
+    "seconds": 0.01634815300349146
+  },
+  {
+    "name": "revised-stability",
+    "command": [
+      "target/mixed-precision-core-revised-tests",
+      "stability::",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 0,
+    "seconds": 15.632610388915055
+  },
+  {
+    "name": "revised-public",
+    "command": [
+      "target/mixed-precision-public-revised-tests",
+      "--test-threads=1",
+      "--nocapture"
+    ],
+    "exit_code": 0,
+    "seconds": 5.926565991947427
+  }
+]

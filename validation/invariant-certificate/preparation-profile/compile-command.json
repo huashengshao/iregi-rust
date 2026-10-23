@@ -1,0 +1,74 @@
+{
+  "args": [
+    "rustc",
+    "--edition=2024",
+    "--crate-name",
+    "iregi_rust",
+    "--test",
+    "target/certified-scalar-alias-candidate/source-snapshot/crates/iregi-rust/src/lib.rs",
+    "-C",
+    "opt-level=2",
+    "-L",
+    "dependency=target/cargo-build/debug/deps",
+    "-L",
+    "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "-o",
+    "target/certified-scalar-alias-candidate/candidate-tests",
+    "--extern",
+    "iregi_masters=target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib",
+    "--extern",
+    "symbolica=target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "oneloop=target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib",
+    "--extern",
+    "serde=target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+    "--extern",
+    "serde_json=target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+    "--extern",
+    "thiserror=target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib"
+  ],
+  "cargo_manifest_dir": "/shared/external/iregi/iregi-rust/target/certified-scalar-alias-candidate/source-snapshot/crates/iregi-rust",
+  "linked_archives": [
+    {
+      "path": "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib",
+      "bytes": 36757082,
+      "sha256": "9e7a2e2e5d8f3fcdf9740c47eba4e3b158af24f96d7d8c9851aa52e9f5e92e3b"
+    },
+    {
+      "path": "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib",
+      "bytes": 583990864,
+      "sha256": "3bc0b1d5a75326f74538dd7caeaaae0d4eb6df3479b2fc37f9cbd9a45feeb526"
+    },
+    {
+      "path": "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib",
+      "bytes": 398454164,
+      "sha256": "6ed89303becc04ef2611b24f3282e155900e2ce51a94161c748c86eb5000f67e"
+    },
+    {
+      "path": "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+      "bytes": 1220868,
+      "sha256": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a"
+    },
+    {
+      "path": "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+      "bytes": 6909176,
+      "sha256": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689"
+    },
+    {
+      "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+      "bytes": 35944,
+      "sha256": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411"
+    }
+  ],
+  "candidate_sources": {
+    "crates/iregi-rust/src/plan.rs": "079469fbcd6abf5fc95bca93543faccaafa6b646f8e9caa569cd99d7fb451b73",
+    "crates/iregi-rust/src/ibp.rs": "b0638fbeb6fca534840de7ef9360026a25d942b291ac656ffd189add0a3687e5",
+    "crates/iregi-rust/src/certified_scalar.rs": "6ae742c16cc9334acbdd91361244f5e0b56148f4019fe2881b0af9e7c3289d05"
+  },
+  "cargo_env": {
+    "CARGO_MANIFEST_DIR": "/shared/external/iregi/iregi-rust/target/certified-scalar-alias-candidate/source-snapshot/crates/iregi-rust",
+    "CARGO_CRATE_NAME": "iregi_rust",
+    "CARGO_PKG_NAME": "iregi-rust",
+    "CARGO_PKG_VERSION": "0.1.0"
+  }
+}

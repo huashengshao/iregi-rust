@@ -68,3 +68,54 @@ uses its existing exact conversion. Nonfinite inputs return `None`. A default
 `None` preserves custom numeric implementations while allowing callers to report
 that a required certificate is unavailable. IREGI uses this before treating a
 rounded scalar invariant as exactly zero; no scalar-master arithmetic changes.
+
+## Opt-in ordinary-root stack-allocation experiment
+
+`OneLoopExpressions::evaluator_with_stack_reuse` builds the same exact ordinary
+graph as `evaluator`, then calls Symbolica's existing `optimize_stack` once.
+Default compilation, Dual compilation, prebuilt assets and generated production
+kernels remain unchanged. The allocator only reassigns temporary storage; it
+does not simplify expressions or reorder arithmetic. This is an experimental
+entry point whose correctness and performance evidence must be recorded before
+any default adoption.
+
+Reuse checks: Symbolica's `src/evaluate/tree.rs` returns fresh root SSA directly
+from `linearize_multiple` for direct translation with zero Horner iterations;
+`src/evaluate/optimize.rs` provides the existing lifetime allocator. Its branch
+test `nested_multi_result_branches_keep_common_operations_in_scope`, and the
+shared-function tests in `src/evaluate.rs`, exercise allocation with lazy
+branches. FeynKit's `soft-ct-evaluator-memory` reproduction programs likewise
+apply it to freshly compiled zero-Horner graphs. No alternative algebra or
+allocator is implemented here. Already allocated graphs must not be allocated
+again: Dualizer and shared-body compilation already perform this step.
+
+`examples/stack_reuse_probe.rs` qualifies the opt-in in an explicit artifact
+directory. It records original exact represented inputs, Laurent output order,
+scale/normalization conventions, root and deduplicated helper slot counts,
+ordered instruction provenance, and numerical batch parity. Its C0/D0 inputs
+are copied from the recorded `validation/native-policy` experiment. It checks
+empty, singleton, odd, batch-32, reordered and reused batches, plus DoubleFloat
+and Float256. `--emit` exports paired baseline/candidate Rust batch modules and
+one exact constant table to that artifact directory only. These modules retain
+the Whole batch policy. The probe reports no timing measurements; compiled
+native parity and controlled timing remain separate qualification steps.
+
+The transparent C0/D0 root probe passed 40 batch/domain configurations per
+family, comparing 672 complex outputs each with identical represented values,
+precision metadata and signed zeros. Root temporary counts changed from 132 to
+7 for C0 and from 24,777 to 24 for D0; shared helpers were unchanged. Exact
+instruction provenance also agreed. The evidence in
+`../../validation/stack-reuse/qualification.json` explicitly separates these
+three Laurent outputs from the complete IREGI scalar adapter and records the
+initial three-call wrapper probe, which showed no root allocation reduction.
+These are correctness and storage results, not runtime measurements.
+
+The complete six-output IREGI scalar factory also passed the paired C0/D0
+probe: 40 configurations and 1,440 complex outputs per family, including
+massless and scaleless controls. The actual factory root uses 220 to 8
+slots for C0 and 25,010 to 25 for D0; shared helpers are unchanged. This
+candidate changes only the ordinary factory call in an isolated source
+snapshot. The default remains unchanged. Exact source, binary and dependency
+hashes, inputs, instruction provenance and parity records are in
+`../../validation/stack-reuse/production-factory/qualification.json`.
+Core/E6 qualification and compiled-native parity remain separate checks.

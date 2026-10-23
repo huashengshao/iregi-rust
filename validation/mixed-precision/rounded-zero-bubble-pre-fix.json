@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T13:40:27.851654+00:00",
+  "status": "reproduced_rounded_zero_failure",
+  "test_wall_seconds": 1.05,
+  "exit_code": 101,
+  "command": [
+    "target/mixed-precision-public-four-pre-fix-tests",
+    "low_precision_scale_cannot_hide_a_nonzero_bubble_finite_part",
+    "--test-threads=1",
+    "--nocapture"
+  ],
+  "timeout_seconds": 120,
+  "fixture": {
+    "family": "N2 rank0 equal-mass lightlike B0",
+    "algorithm": "PassarinoVeltman",
+    "convention": "OneLoop",
+    "workspace_bits": 256,
+    "requested_accuracy_bits": 256,
+    "shifts": "both zero at256bits",
+    "mass_squared": "4+2^-100 at256bits, both propagators",
+    "scale_mu": "2 at80bits",
+    "expected_finite": "-log(1+2^-102)",
+    "observed_finite": "-0",
+    "observed_finite_bits": 256,
+    "observed_status": "Success"
+  },
+  "controls": "same positive masses with scale256 and fully scaleless masses with scale80 both report Success; their assertions follow the failing lowprecision assertion",
+  "source": "crates/iregi-rust/tests/mixed_precision_accuracy.rs::low_precision_scale_cannot_hide_a_nonzero_bubble_finite_part",
+  "source_note": "Public regression was compiled before later additional test cases; the failing fixture body is unchanged. The preserved executable hash identifies the reproduction exactly.",
+  "sha256": {
+    "target/mixed-precision-public-four-pre-fix-tests": "d6de00ebc2cf0478c00b62069afe83f6eae471aa04cfff5418317a5177ad7a55",
+    "validation/mixed-precision/rounded-zero-bubble-pre-fix.log": "1df5c9bb2ad634b66c940996f9f7ca32b3080b543378fa4c109ad3d55e69ce7c",
+    "target/cargo-build/debug/deps/libiregi_rust-a974b00e93df0451.rlib": "49640023e87e0345ace509446ede2338d5ece5989c4395fbc6e100841789db25",
+    "target/cargo-build/debug/deps/libiregi_masters-d0b09f8327239f15.rlib": "aa0b0f0ef0bb9b344d765a50bf961fd747b15ba12b008e41ca942521b5fb547f",
+    "target/cargo-build/debug/deps/libsymbolica-e528825bda4c847c.rlib": "40c95d46d6c283dbcfdff20b35dcf356dc9cf8cec23679192e08b4a295728fd5"
+  },
+  "scope": "Preserved pre-vendor dependency artifacts. Correctness reproduction only; not a benchmark."
+}

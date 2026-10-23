@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T14:06:49.252786+00:00",
+  "status": "targeted_runtime_qualification_passed",
+  "workspace_revision": "69f23e8fd76cb422ddcf50282de32a4c097a092b",
+  "scope": "Mixed precision accuracy monitoring, active scalar-master precision provenance, full returned Taylor coefficient checks, and raw-distance precision relevance. Validation times are not benchmarks.",
+  "behavior": {
+    "requested_accuracy": "Unchanged; no silent promotion or target cap",
+    "master_gate": "Inspect nonzero components of actual active requests plus original mu jets; require effective bits +15 >= requested bits. Full constant scaleless jets exempt.",
+    "weighted_estimates": "Each nonzero real/imag operand contributes at its actual tracked precision, capped by prototype. Dynamic Float reserves3 guard bits. Every returned Laurent/Taylor coefficient is checked.",
+    "range_policy": "Underflowed or subnormal error estimates use positive magnitude only when unit<=1; otherwise reject. Finite normal unit>1 remains magnitude weighted under unchanged dimensional target.",
+    "relevance": "Raw distances scan only original shifts or authoritative supplied scalar products, excluding masses and scale."
+  },
+  "final_source_tests": {
+    "stability": {
+      "passed": 29,
+      "seconds": 15.55,
+      "log": "validation/mixed-precision/revised-stability.log"
+    },
+    "public_mixed_precision": {
+      "passed": 6,
+      "seconds": 5.8,
+      "log": "validation/mixed-precision/revised-public.log"
+    }
+  },
+  "earlier_unchanged_execution_plumbing": {
+    "passed": 30,
+    "seconds": 34.28,
+    "log": "validation/mixed-precision/final-execution.log",
+    "source_note": "Same execution.rs and all guard logic except later finite-unit>1 range correction; final stability tests include the corrected helper."
+  },
+  "retained_failures": [
+    {
+      "fixture": "Float256 prototype, Float80 A0 arithmetic",
+      "evidence": "validation/mixed-precision/pre-fix.json",
+      "result": "Previously Success at128/256 despite scaled error2.468817e-25"
+    },
+    {
+      "fixture": "Equal-mass lightlike B0 finite part rounded tozero",
+      "evidence": "validation/mixed-precision/rounded-zero-bubble-pre-fix.json",
+      "result": "Previously Success with256-bit zero-output metadata"
+    },
+    {
+      "fixture": "Original weak mu second jet erased by squaring",
+      "evidence": "validation/mixed-precision/original-scale-pre-fix.json",
+      "result": "Previously Success with256-bit output metadata; scaled error versus strong control7.099748e-30 at target128"
+    },
+    {
+      "fixture": "First implementation rejected harmless tiny intermediate before magnitude weighting",
+      "evidence": "validation/mixed-precision/pentagon-rescue-diagnostic.json",
+      "result": "Corrected; original full-DAG pentagon rescue now passes unchanged thresholds"
+    }
+  ],
+  "limitations": [
+    "Conditioning monitors are estimates, not certified error bounds. Symbolica tracks relative precision and clamps it at1 after severe cancellation; no separate absolute-error metadata is retained.",
+    "Active-request gate is conservative for exact coincidences, analytically unused scale, and tiny weak nonzero seeds.",
+    "Scalar backend correctness and full performance acceptance are separate qualifications."
+  ],
+  "sha256": {
+    "crates/iregi-rust/src/stability.rs": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+    "crates/iregi-rust/src/stability/quadrature.rs": "f696fcda8faa03cf8f1224b5f7e1996da82af1f789b170838688057fa5dc1cd9",
+    "crates/iregi-rust/src/execution.rs": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5",
+    "crates/iregi-rust/tests/mixed_precision_accuracy.rs": "792762a7b42fea764899695cd2300cd09a1e57ec30b73467017b0208bbbb3000",
+    "target/libiregi_rust_mixed_precision_revised.rlib": "b8256bf7508d204d7ebcc302bad73cfe0f469419d7a7868f225f6fb83e5c6906",
+    "target/mixed-precision-core-revised-tests": "1093d3bd0032cbf82f51ada0fa0b1acabc8a7a4eb1d5a6d7e578e93e0548176f",
+    "target/mixed-precision-public-revised-tests": "75313aa9b0ad6a3e931cd1d932651025becc3df6361512afe855e14b97237a6b",
+    "target/cargo-build/debug/deps/libiregi_masters-0d5459afd211649c.rlib": "5a51209413e9bb69460b3f55c97e4f08ab694596f2fbdb0d01d5517f9ef70c58",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc",
+    "validation/mixed-precision/revised-stability.log": "2d736713d71dba12098566f2a6d03fb8ea9e3e43d6fb668ec1905068fe285cc1",
+    "validation/mixed-precision/revised-public.log": "dee80ac2aa354700a4ea5282bb3b04caa91223c30a84ee41cf2e568c32fb591f",
+    "validation/mixed-precision/final-execution.log": "2d1592bcde64d8a602f5134fb618a19f7db8ad77af82322501f6ffa5b6efde1e"
+  },
+  "independent_review": {
+    "agent": "checkpoint_audit",
+    "status": "accepted final narrow correction; no concrete new false acceptance found",
+    "reviewed_stability_sha256": "08cad15c8acfe48a394ece25d8d7bb6837ab9da161164e2781a134159f73fa53",
+    "coverage": "Reachable recurrence alias bodies receive local contribution checks subject to existing bounded expansion; master amplitudes recursively carry uncancelled primal contributions. Clamped1-bit relative metadata does not independently certify absolute accuracy."
+  }
+}

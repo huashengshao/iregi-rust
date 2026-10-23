@@ -1,0 +1,165 @@
+{
+  "status": "all_paired_binaries_compiled_runtime_pending",
+  "commit": "69f23e8fd76cb422ddcf50282de32a4c097a092b",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8\n",
+  "scope": "Baseline and candidate use the same frozen core source. Only candidate exact_scalar_master_evaluator calls evaluator_with_stack_reuse; ordinary scalar all-six-output graph changes storage allocation only. Dual constructor unchanged. Native-batch feature OFF.",
+  "sources": {
+    "candidate/crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+    "candidate/crates/iregi-masters/src/bubble_neighborhood.rs": "5e00cd3d1785e3ca50695969761131a769226e0fe497f7656fa993cb37d14da9",
+    "candidate/crates/iregi-masters/src/derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
+    "candidate/crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+    "candidate/crates/iregi-masters/src/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+    "candidate/crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+    "candidate/crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+    "candidate/crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+    "candidate/crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "candidate/crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+    "candidate/crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+    "candidate/crates/iregi-masters/src/lib.rs": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+    "candidate/crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+    "candidate/crates/iregi-masters/src/normalization.rs": "8c0eb611f7ec8019b4fcd2cc0800165aa026e2e70107bad1af7f290ac8bbed2d",
+    "candidate/crates/iregi-masters/src/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+    "candidate/crates/iregi-masters/src/scale_transport.rs": "bf3b94f71dec9f33a610e5ebf854644e291ccfb1e3a04c8f5451ee04721af6dc",
+    "candidate/crates/iregi-masters/tests/masters.rs": "103f15512011708ac66b99d8cd45a33e5fd63aba6ec2408f3cc629c0cc0a6c77",
+    "candidate/crates/iregi-masters/tests/native_batch.rs": "fa5ce237a01139414e86360d2f8913cbeaf0053dbc2f20cdd5a7781382eeb79c",
+    "candidate/crates/iregi-masters/tests/numeric_boundaries.rs": "c23dc36532548a233b3405b1d17d8eafb44e0c9919682439f4529236c54779a2",
+    "candidate/crates/iregi-masters/tests/physical_derivatives.rs": "06cda25481407dbf51b7de141cf31f82dba654e7587936580adcae1152aa0ffb",
+    "candidate/crates/iregi-masters/tests/pseudothreshold.rs": "677dbe2627ad588ec4f1967e35a8a14b138c0f0b60f487ef1f08371ad4733b6e",
+    "candidate/crates/iregi-masters/tests/validation_evidence.json": "c5e08cf12ca5360d5fa88b071e7c04940f877dea223268c06ff5c2f9c30c3179",
+    "snapshot/Cargo.lock": "2e234642a80b8224de28f6bae3b6fc11cfe783de9b928c1929263fb376da0682",
+    "snapshot/Cargo.toml": "92eea8006cdb0d2735b27e4b0ddb4c9f2471b4cd97ae1738019e41490f893f07",
+    "snapshot/crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
+    "snapshot/crates/iregi-masters/src/bubble_neighborhood.rs": "5e00cd3d1785e3ca50695969761131a769226e0fe497f7656fa993cb37d14da9",
+    "snapshot/crates/iregi-masters/src/derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
+    "snapshot/crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+    "snapshot/crates/iregi-masters/src/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+    "snapshot/crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+    "snapshot/crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+    "snapshot/crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+    "snapshot/crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "snapshot/crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+    "snapshot/crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+    "snapshot/crates/iregi-masters/src/lib.rs": "27762fc54b1f67421ba1d0b3943a91842c923d5f182cf579d6e38c5ed4bd11ac",
+    "snapshot/crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+    "snapshot/crates/iregi-masters/src/normalization.rs": "8c0eb611f7ec8019b4fcd2cc0800165aa026e2e70107bad1af7f290ac8bbed2d",
+    "snapshot/crates/iregi-masters/src/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+    "snapshot/crates/iregi-masters/src/scale_transport.rs": "bf3b94f71dec9f33a610e5ebf854644e291ccfb1e3a04c8f5451ee04721af6dc",
+    "snapshot/crates/iregi-masters/tests/masters.rs": "103f15512011708ac66b99d8cd45a33e5fd63aba6ec2408f3cc629c0cc0a6c77",
+    "snapshot/crates/iregi-masters/tests/native_batch.rs": "fa5ce237a01139414e86360d2f8913cbeaf0053dbc2f20cdd5a7781382eeb79c",
+    "snapshot/crates/iregi-masters/tests/numeric_boundaries.rs": "c23dc36532548a233b3405b1d17d8eafb44e0c9919682439f4529236c54779a2",
+    "snapshot/crates/iregi-masters/tests/physical_derivatives.rs": "06cda25481407dbf51b7de141cf31f82dba654e7587936580adcae1152aa0ffb",
+    "snapshot/crates/iregi-masters/tests/pseudothreshold.rs": "677dbe2627ad588ec4f1967e35a8a14b138c0f0b60f487ef1f08371ad4733b6e",
+    "snapshot/crates/iregi-masters/tests/validation_evidence.json": "c5e08cf12ca5360d5fa88b071e7c04940f877dea223268c06ff5c2f9c30c3179",
+    "snapshot/crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+    "snapshot/crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+    "snapshot/crates/iregi-rust/src/certified_scalar.rs": "6ae742c16cc9334acbdd91361244f5e0b56148f4019fe2881b0af9e7c3289d05",
+    "snapshot/crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+    "snapshot/crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+    "snapshot/crates/iregi-rust/src/exact_zero_certificate.rs": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+    "snapshot/crates/iregi-rust/src/execution.rs": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5",
+    "snapshot/crates/iregi-rust/src/ibp.rs": "b0638fbeb6fca534840de7ef9360026a25d942b291ac656ffd189add0a3687e5",
+    "snapshot/crates/iregi-rust/src/invariant_certificate.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+    "snapshot/crates/iregi-rust/src/lib.rs": "9d1303770c6bf0fb231612ce6f28a0cb4c0c28bc1ed51ef31d6b317fbbb237f8",
+    "snapshot/crates/iregi-rust/src/plan.rs": "079469fbcd6abf5fc95bca93543faccaafa6b646f8e9caa569cd99d7fb451b73",
+    "snapshot/crates/iregi-rust/src/pv.rs": "e4258e232a997afd2b41969be14c8188621db0b5e880736f1179278bb90b392d",
+    "snapshot/crates/iregi-rust/src/rescue.rs": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+    "snapshot/crates/iregi-rust/src/scalar.rs": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+    "snapshot/crates/iregi-rust/src/snapping.rs": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+    "snapshot/crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+    "snapshot/crates/iregi-rust/src/stability/quadrature.rs": "f696fcda8faa03cf8f1224b5f7e1996da82af1f789b170838688057fa5dc1cd9",
+    "snapshot/crates/iregi-rust/src/stability.rs": "a889713285db129ccb0e477c37c6d4a21f04872bba7b19ec51a12007ff88b9d0",
+    "snapshot/crates/iregi-rust/src/types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+    "snapshot/crates/iregi-rust/tests/legacy_rescue.rs": "0820b9679665d40d75ecb4b42e9718003750b70e38c1eacfdb2f7347526b615f",
+    "snapshot/crates/iregi-rust/tests/mixed_precision_accuracy.rs": "0c705918f7d58bbec28a7e66679ce620f2140f1504da1d499e99217dd040ad28",
+    "snapshot/crates/iregi-rust/tests/oracle.rs": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe",
+    "snapshot/crates/iregi-rust/tests/physical_box.rs": "3429378abd89d3d9770ea712e0062bf9d5423e6a7b21e905cbc4e4c45bd64135",
+    "snapshot/crates/iregi-rust/tests/shifted_pentagon.rs": "e398883b649f1d14ba84c671d5a4b76a24d5923cdff1e7bf1ba38e5448f8bfde",
+    "snapshot/crates/iregi-rust/tests/triangle_gamma.rs": "3690d0535b9b60f10823b869cf098957aa2739a49669e2ca9147d658882a0f6b",
+    "snapshot/validation/pv-high-rank/lightlike-feynman-parameters.json": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+    "snapshot/validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+    "snapshot/validation/reference/snapping/reductions.json": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305"
+  },
+  "dependencies": {
+    "target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib": "6ed89303becc04ef2611b24f3282e155900e2ce51a94161c748c86eb5000f67e",
+    "target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib": "3bc0b1d5a75326f74538dd7caeaaae0d4eb6df3479b2fc37f9cbd9a45feeb526",
+    "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+    "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+    "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411"
+  },
+  "shared_snapshot_corrections": [
+    {
+      "file": "snapshot/crates/iregi-rust/src/stability.rs",
+      "before_sha256": "6eecc18303876a00f954c11b484087ab16aa860b0445fed2274403507a1379fb",
+      "after_sha256": "a889713285db129ccb0e477c37c6d4a21f04872bba7b19ec51a12007ff88b9d0",
+      "reason": "Synchronize test-only Real trait import already fixed by source owner; both baseline and candidate share this corrected core file. Core libraries compiled before correction had cfg(test) disabled."
+    }
+  ],
+  "compilations": [
+    {
+      "variant": "baseline",
+      "stage": "masters",
+      "report": "target/stack-reuse-production/baseline/masters-compile.json",
+      "output_sha256": "aaf29b8083cfd48aeca42694cd9fe467b443497aa0d346106800e5e02ed47a4d"
+    },
+    {
+      "variant": "baseline",
+      "stage": "master_tests",
+      "report": "target/stack-reuse-production/baseline/master_tests-compile.json",
+      "output_sha256": "cfea0c6eb96d5a5bcafc48baad03f2c21847cb841bd8da9884b7efb0a85ec6de"
+    },
+    {
+      "variant": "baseline",
+      "stage": "core_lib",
+      "report": "target/stack-reuse-production/baseline/core_lib-compile.json",
+      "output_sha256": "2e6b7c414e31f658b44625cc4618fa747968d3af6a45825b958c6ef7105a53d0"
+    },
+    {
+      "variant": "baseline",
+      "stage": "core_tests",
+      "report": "target/stack-reuse-production/baseline/core_tests-compile.json",
+      "output_sha256": "507c85cad573ee7364bf35b1822cd84748390a5777c6150017a124dd5017fa0f"
+    },
+    {
+      "variant": "baseline",
+      "stage": "e6",
+      "report": "target/stack-reuse-production/baseline/e6-compile.json",
+      "output_sha256": "4bce668b6c1b85f05b7a235aa6dfa313f3acf510c16dfa506e7aa1e7e80738a1"
+    },
+    {
+      "variant": "candidate",
+      "stage": "masters",
+      "report": "target/stack-reuse-production/candidate/masters-compile.json",
+      "output_sha256": "8e6f752abdc0d16992eb8671870e9b21cb410e028dc6da71a81e60b5dd747245"
+    },
+    {
+      "variant": "candidate",
+      "stage": "master_tests",
+      "report": "target/stack-reuse-production/candidate/master_tests-compile.json",
+      "output_sha256": "4a2dbebb9cdca6c5bfd0ded54aed50af554f29ee1a41400b6c33893f291b40ce"
+    },
+    {
+      "variant": "candidate",
+      "stage": "core_lib",
+      "report": "target/stack-reuse-production/candidate/core_lib-compile.json",
+      "output_sha256": "eabe759e7920219215dcdb834f17d22679c85b541c3d88641f19be0128df0c33"
+    },
+    {
+      "variant": "candidate",
+      "stage": "core_tests",
+      "report": "target/stack-reuse-production/candidate/core_tests-compile.json",
+      "output_sha256": "c4a95ed87635d73e027c3de923c36c7d5d82f7d6dcc556cd34e7644f89c7938d"
+    },
+    {
+      "variant": "candidate",
+      "stage": "e6",
+      "report": "target/stack-reuse-production/candidate/e6-compile.json",
+      "output_sha256": "d78330103c7db57bb9c86c80173ba765a78e152b98a21442f9b8bce295d6696a"
+    }
+  ],
+  "experiment_files": {
+    "compile.py": "f1a85dadb947b7a335bdbddceec1f15a9c356746765ec6a335f2a5c81520a031",
+    "run.py": "69f3e0e23fb98caf95917891256d71a7bfa22e19cf6f4c475a66523dca68e27b",
+    "factory_probe.rs": "a0e1d738ca8983311ab003fbbc08c0725004bdda694d838812b147b9cbc78b22",
+    "factory_probe": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c"
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "status": "Three public scope regression tests and the full five-point rank-seven 1320-coefficient rescue pass; main workspace integration pending",
+  "status": "Original isolated3 public scope regressions and experimental rank7 pass; subsequent production-vendored4 internal regressions and saved-core rank7 pass are recorded separately.",
   "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
   "command": "CARGO_TARGET_DIR=\"$PWD/target/symbolica-scope-build\" CARGO_BUILD_BUILD_DIR=\"$PWD/target/symbolica-scope-cargo-build\" CARGO_BUILD_JOBS=2 cargo test --manifest-path target/symbolica-scoped-probe/Cargo.toml --no-run --offline",
   "files": [
@@ -63,5 +63,6 @@
   },
   "historical_snapshot_note": "patch_provenance_at_probe_build is the immutable pre-compilation provenance captured for this isolated probe. Its pending status describes that historical point; top-level status and rank7_evidence describe completed validation.",
   "rank7_evidence": "validation/rescue-pentagon-rank7.json",
-  "current_patch_series": "dependencies/symbolica-patches/provenance.json"
+  "current_patch_series": "dependencies/symbolica-patches/provenance.json",
+  "production_evidence": "validation/symbolica-production-qualification.json"
 }

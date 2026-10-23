@@ -1,0 +1,18 @@
+{
+  "status": "compiled_only_runtime_pending",
+  "optimization_level": 2,
+  "source_derivation": "Copied from dependencies/oneloopmaster/examples/stack_reuse_probe.rs; replaced transparent constructors with the two exact_scalar_master_evaluator factories, output width from evaluator, added massless/scaleless samples. Both archives link the same vendored oneloop/Symbolica.",
+  "artifact_hashes": {
+    "factory_probe.rs": "a0e1d738ca8983311ab003fbbc08c0725004bdda694d838812b147b9cbc78b22",
+    "factory_probe": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c",
+    "baseline/libiregi_masters.rlib": "aaf29b8083cfd48aeca42694cd9fe467b443497aa0d346106800e5e02ed47a4d",
+    "candidate/libiregi_masters.rlib": "8e6f752abdc0d16992eb8671870e9b21cb410e028dc6da71a81e60b5dd747245"
+  },
+  "runtime_commands": [
+    "timeout 180s target/stack-reuse-production/factory_probe target/stack-reuse-production/actual-c0 C0 --emit",
+    "timeout 180s target/stack-reuse-production/factory_probe target/stack-reuse-production/actual-d0 D0 --emit"
+  ],
+  "compile_command": "CARGO_CRATE_NAME=stack_reuse_factory_probe rustc --edition=2024 --crate-name stack_reuse_factory_probe target/stack-reuse-production/factory_probe.rs -C opt-level=2 -L dependency=target/cargo-build/debug/deps -L dependency=target/stack-reuse-production/baseline -L dependency=target/stack-reuse-production/candidate -L native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib --extern oneloop=target/cargo-build/debug/deps/liboneloop-8562c3cbbf948c0e.rlib --extern symbolica=target/cargo-build/debug/deps/libsymbolica-5cca42ee48491872.rlib --extern iregi_masters_baseline=target/stack-reuse-production/baseline/libiregi_masters.rlib --extern iregi_masters_candidate=target/stack-reuse-production/candidate/libiregi_masters.rlib -o target/stack-reuse-production/factory_probe",
+  "compile_exit_code": 0,
+  "compile_output": "empty (no compiler diagnostics)"
+}
