@@ -1,0 +1,20 @@
+{
+  "status": "source_review_passed",
+  "reviewer": "/root",
+  "utc": "2026-10-23T20:55:42.207252+00:00",
+  "scope": "Read-only diagnostic-driver delta review; no compilation/numerical execution",
+  "sources_sha256": {
+    "validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+    "validation/collier-reference/n4/diagnostic-driver.f90": "eba91f6aa481858bc2164f4f6bb0d2ea08948ba70fa7349101c12e2a48e374e7",
+    "target/reference/collier/source/collier-COLLIER-1.2.10/manual/collier_manual-1.2.10.tex": "f4ace8a990cef3218128cb06e2647493bb2603bbe553bdbede45f9793fa71534",
+    "target/reference/collier/source/collier-COLLIER-1.2.10/src/collier_init.F90": "4c45df4e4f85f862c334c810fccff4c1d1d4f633ae675faec9878df72a408395"
+  },
+  "findings": [
+    "Tensor calls, input routing, accuracy thresholds, accepted stable flag logic and numerical conversion are unchanged.",
+    "New fields retain last/worst per-lane ErrFlag/AccFlag and maximum absolute error estimates across calls. The exact1.2.10 manual/source define nonpositive severities, so min aggregation is correct.",
+    "Unsuccessful primary moments remain null; separately labelled diagnostic_moments uses null for nonfinite complex entries. Diagnostic estimates use finite HUGE sentinel for nonfinite estimates.",
+    "New allocations are initialized and deallocated per request. Existing i loop variable is not active in any caller of tensor_call.",
+    "This diagnostic binary is not performance-qualified. Initial8 successful output identity and unchanged N4 failures must be rechecked after the bounded relink."
+  ],
+  "blockers": []
+}

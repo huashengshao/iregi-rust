@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "recorded_utc": "2026-10-23T20:44:28.779360+00:00",
+  "recorded_utc": "2026-10-23T21:19:56.924641+00:00",
   "status": "passed",
-  "scope": "Five completed timing cohorts after production 06706e2: original IREGI/COLLIER eight-family comparison (seven COLLIER gains, one short-block inconclusive row), and separately scoped private receipt, RealBall, native-master and CLI-coefficient experiments. All controls, regressions and noisy rows remain visible. No production adoption; measured Rust 6b24 remains seven regressions and one noisy row. Negative exact CSE, E6 design notes and a private direct N2 Float256/request128 bounded-fixture certificate, restricted private N6 rank1 correctness and the rank2 rejection remain separate from broader coverage or performance claims.",
+  "scope": "Evidence-only extension after the five completed timing cohorts: private selected-native whole-reduction correctness, private lazy receipt capture, a stopped exact fused-core CSE census incomplete N4 COLLIER correctness and a private thin-N6 rank2 rejection. No new timing, backend or production adoption. The initial eight IREGI/COLLIER timing rows remain unchanged, including one short-block inconclusive row. Primary measured Rust6b24 remains seven regressions and one noisy row; production remains06706e2.",
   "report_artifacts": {
-    "docs/benchmark.typ": "802ce72424dbcf1da66f63af3699b3b4d9961c7e94dc7f23fdd6e2af709e708d",
-    "docs/data/results.json": "3c14037ce375f3a4d6749d0663cea6d8ccb544d27ce4b6c7fc2c1bc4aeeb3da8",
-    "docs/benchmark.pdf": "dc4b641a82854bb861c803dcaee21bc5a68df2f06a07d508f32dcdf2e6d2c9f9",
+    "docs/benchmark.typ": "9742a739b5e9fc32ae82e282b228a68f9d929c608bfa36a2cf195c67a24514f4",
+    "docs/data/results.json": "d9375e138324f207780e7de5ebe38088637f201f3229b62c1569d314d1049b1f",
+    "docs/benchmark.pdf": "cd2ed260e97badd02b3b2a1c92c9b27d03884384cbb7182042dd1355b0df9995",
     "scripts/build-benchmark-report.sh": "c0e6106dee393689921cb7b19afb7a5ff0241071cf022b28b6e6174d56bec1b7"
   },
   "typst_version": "typst 0.15.1 (9dfd3a08)",
@@ -22,12 +22,12 @@
     "--creation-timestamp",
     "1792713600",
     "docs/benchmark.typ",
-    "target/report-next/reproduced.pdf"
+    "target/report-next/bounded-reproduced.pdf"
   ],
   "byte_identical_rebuild": true,
-  "page_count": 16,
-  "render_check": "All16 pages rendered. Final pages4 and13 visually inspected: complete large eight-row IREGI/COLLIER table, amber short-block row, private optimization controls, E6 narrow scope and N6 rank2 rejection fit cleanly without overflow. ROOT independently reviewed page4. Fixed-date independent PDF rebuild is byte-identical.",
-  "source_ledger_count": 127,
+  "page_count": 17,
+  "render_check": "All17 pages rendered. Report agent inspected unchanged timing page4 and new bounded-correctness page14; ROOT independently approved page14 as clear and legible. The new table fits without overflow. Final audit-only data binding leaves the visually inspected PDF byte-identical, and independent fixed-date rebuild matches exactly.",
+  "source_ledger_count": 135,
   "source_ledger": [
     {
       "key": "stack_reuse_factory_qualification",
@@ -663,6 +663,46 @@
       "key": "private_direct_e6_n2",
       "source": "validation/e6-direct-n2/qualification.json",
       "sha256": "107eea7992f1afeac3770fc12837f6567bf2c741174addd2a15083d432db206d"
+    },
+    {
+      "key": "selected_native_whole_reduction",
+      "source": "validation/selected-native-reduction/qualification.json",
+      "sha256": "7cac5462f7f4bd991982ea9625664d638affbbcfe9ae65153e9fd7bddc878b9b"
+    },
+    {
+      "key": "lazy_receipt_capture_correctness",
+      "source": "validation/raw-distance-lazy-capture/qualification.json",
+      "sha256": "5fe79a951cd5193cd13f47760cbc0333c529201bafdf22664b8217a385b0ea38"
+    },
+    {
+      "key": "collier_n4_diagnostic_qualification",
+      "source": "validation/collier-reference/n4/diagnostics-v1/qualification.json",
+      "sha256": "a39c832456cdf0be48121df8c4eb7dbfc9380c93b806a977f63a2acdad7dd138"
+    },
+    {
+      "key": "collier_n4_diagnostic_summary",
+      "source": "validation/collier-reference/n4/diagnostics-v1/summary.json",
+      "sha256": "a7f26d937aa23231d893a738469455f842f7db03cd7ec9e0799d6184a02137e5"
+    },
+    {
+      "key": "core_fused_cse_exact_census",
+      "source": "validation/core-fused-cse-census/qualification.json",
+      "sha256": "e5131221d9c73d8cb1ec361539f7eecadf22d5ee3c68025cc6b0937bfaa0cacb"
+    },
+    {
+      "key": "private_thin_n6_rejection",
+      "source": "validation/highpoint-thin-n6/qualification.json",
+      "sha256": "44f0ae089eb9fb43934d9003fc14d8a6584035d4cd90fb613ff67c2d25f1ca7f"
+    },
+    {
+      "key": "private_thin_n6_independent_audit",
+      "source": "validation/checkpoint-audits/2026-10-23-thin-n6-rejection-independent.json",
+      "sha256": "d1050cf97700e68cc92c54e8e510ba42dff4a63f9973d94f2427a6c3fdbe4768"
+    },
+    {
+      "key": "collier_n4_independent_audit",
+      "source": "validation/checkpoint-audits/2026-10-23-collier-n4-diagnostics-independent.json",
+      "sha256": "90c2ad10cd7db4496862f3589185993dc7e007eccd0da9fe8869a27bfd2d2f2f"
     }
   ],
   "independent_arithmetic_review": {
@@ -702,7 +742,8 @@
     "Production finiteD0 certificates cover exact represented inputs; ordinary evaluation/defaultE6 remain unchanged. The new private directN2 E6 fixture is Float256/request128 with16 certified one-axis common-mass components and5expected hidden rejections; no general geometry, mixed-axis, convergence or performance qualification.",
     "Explicit standalone N5 planar API is production; automatic-planar/receipt integration remains private.69 combined tests and separate18shared accounting checks are not double-counted. No automaticrank7 qualification.",
     "Private N6 rank1 lowering agrees with originalIBP on20complex slots; old public path rejects. Rank2 candidate rejects nonfinite coefficients without arrays. Prior N6rank7 preparation timeouts and physical binary64 failures remain visible.",
-    "Public API tests3/3 and core Cargo checking pass; retained interruption, storage failures and compile-only continuation do not qualify build/runtime performance."
+    "Public API tests3/3 and core Cargo checking pass; retained interruption, storage failures and compile-only continuation do not qualify build/runtime performance.",
+    "New bounded studies add no timing or adoption: selected-native whole reduction is privateopt0; lazy receipts use a separate debug closure; fused-core CSE has no structural savings. N4 COLI accepts only2 scalar rows and rejects6 tensor rows; DD rejectsall8. ThinN6 rank2 has no parent evaluation or arrays."
   ],
   "durable_path_repair": "optimized_5c9_build now points to committed validation/benchmark/baseline-5c9e3dd/build-verification.json; identical bytes and SHA256 preserved.",
   "additional_root_checks": {
@@ -823,7 +864,7 @@
     "source_verification_revision": "21622ec9abfdedcf18993768845a29a9bb1c1e1d",
     "source_verification_method": "git show21622ec:path; historical planar promotion is not compared with later live stability.rs"
   },
-  "all_bound_source_records_verified": 145,
+  "all_bound_source_records_verified": 153,
   "certified_master_and_collector_promotion_checks": {
     "manifest": "validation/near-vacuum-production/promotion.json",
     "sha256": "9f67af4c9134bfecc1262b512447253607a2527dd11d3ac289aef4e27e32dffe",
@@ -977,5 +1018,93 @@
       "target/report-next/frozen-13.png"
     ],
     "no_new_numerical_runtime": true
+  },
+  "bounded_correctness_checkpoint_review": {
+    "status": "passed",
+    "reviewer": "/root/report_update/report_review2",
+    "source_bindings": {
+      "report_records": 153,
+      "refresh_records": 135,
+      "exact_json_snapshots": 128,
+      "historical_condensed_snapshot_exception": "symbolica_production_qualification",
+      "historical_planar_git21622ec": 7,
+      "production_git06706e2": 5
+    },
+    "unchanged_timing_record_objects": [
+      "qualified_collier_benchmark",
+      "qualified_6b24_benchmark",
+      "latest_isolated_timing_cohorts",
+      "physical_80949_benchmark"
+    ],
+    "independent_scope_review": "Four studies reviewed read-only. NativeD0 wording corrected to preserve unchanged D0 fallback coverage. No blocking count/hash defects; all five initial snapshots matched exactly.",
+    "selected_native": {
+      "families": 8,
+      "whole_complex_values_per_backend": 1584,
+      "master_rows": 297,
+      "six_output_master_values": 1782,
+      "selected_adapter_cases": 34,
+      "unchanged_master_paths": 10,
+      "unchanged_master_cases": 33,
+      "unchanged_core_paths": 3,
+      "timing_qualified": false
+    },
+    "lazy_capture": {
+      "unit_tests": 26,
+      "paired_cases": 14,
+      "calls_per_implementation_per_case": 7,
+      "lane_instances_per_corpus": 231,
+      "timing_qualified": false
+    },
+    "fused_core_cse": {
+      "exact_roots": 422,
+      "control_checks": 730,
+      "instructions": [
+        1013,
+        850
+      ],
+      "slots": [
+        237,
+        147
+      ],
+      "structural_savings": false,
+      "candidate_stopped": true
+    },
+    "collier_n4": {
+      "accepted_scalar_rows": 2,
+      "rejected_coli_tensor_rows": 6,
+      "rejected_dd_rows": 8,
+      "symbolica_prepared_polynomials": 238,
+      "independent_identity_checks": 5742,
+      "independent_assertions": 96796,
+      "identity_limit": "Specified contractions and symmetries do not independently determine all spatial tensor components. Rejected outputs remain diagnostic only.",
+      "audit": {
+        "source": "validation/checkpoint-audits/2026-10-23-collier-n4-diagnostics-independent.json",
+        "sha256": "90c2ad10cd7db4496862f3589185993dc7e007eccd0da9fe8869a27bfd2d2f2f"
+      },
+      "timing_performed": false
+    },
+    "thin_n6": {
+      "exact_tests": 7,
+      "packed_children": 6,
+      "failed_planar_retries": 2,
+      "parent_calls": 0,
+      "numerical_comparisons": 0,
+      "successful_arrays": 0,
+      "audit": {
+        "source": "validation/checkpoint-audits/2026-10-23-thin-n6-rejection-independent.json",
+        "sha256": "d1050cf97700e68cc92c54e8e510ba42dff4a63f9973d94f2427a6c3fdbe4768"
+      },
+      "hash_bindings": 641,
+      "archive_members": 57
+    },
+    "additional_root_checks": "186 manifest payloads across selected-native/lazy/coreCSE and12 COLLIER protocol tests passed; root verified thinN6 finalbuild/fixtures and independently approved new page14.",
+    "excluded_pending_scope": [
+      "new typed E6 extension",
+      "new generic COLLIER shared-domain driver",
+      "new arity-two candidates"
+    ],
+    "production_revision": "06706e2a1e4f0082889a53187c80bbe97803340f",
+    "primary_rust_timing_revision": "6b24c03",
+    "new_numerical_or_timing_runs_by_report_agent": false
   }
 }

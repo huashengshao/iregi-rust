@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "scope": "Independent ROOT review of frozen thin N6 rejected probe and exact-test accounting; no numerical agreement or timing qualification",
+  "qualification_sha256": "44f0ae089eb9fb43934d9003fc14d8a6584035d4cd90fb613ff67c2d25f1ca7f",
+  "verified_hash_bindings": 641,
+  "source_archive_regular_files": 57,
+  "exact_tests_passed": 7,
+  "packed_child_rows": 6,
+  "parent_evaluations": 0,
+  "successful_tensor_arrays": 0,
+  "compared_numerical_slots": 0,
+  "source_review": "Read parent packing, precision/context checks, RHS-before-import assembly, fallback rejection and private sidecar validation. Exact assembly/integrand tests are distinct from numerical validation. Failed child lanes remain inaccessible.",
+  "reproduction_note": "All three include_str fixtures are hash-bound build inputs and archived under candidate/validation. snapshot.json records the initial preparation stage; final candidate source is bound by build002 inputs and archived verbatim.",
+  "limitations": [
+    "One Float128/request53 rank2 fixture only",
+    "Ordinary primal sensitivity envelope is not a rigorous integral error bound",
+    "No convergence/reference/performance conclusion",
+    "No rerun of the 39.66s numerical probe in this review"
+  ],
+  "archived_compile_time_fixtures": [
+    "candidate/validation/pv-high-rank/lightlike-feynman-parameters.json",
+    "candidate/validation/reference/fixtures.json",
+    "candidate/validation/reference/snapping/reductions.json"
+  ]
+}

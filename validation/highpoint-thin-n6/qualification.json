@@ -1,0 +1,71 @@
+{
+  "status": "first_numerical_probe_rejected",
+  "scope": "Private thin N6 rank<=2 native/raw coordinate-input prototype. Exact assembly/identity/sidecar tests pass; retained rank2 Float128/request53 has no successful tensor arrays. No production adoption, convergence, original-reference agreement, N7/rank7 or performance claim.",
+  "source_base": "b71d5f898882d4d959a16fa667e66c746f483492",
+  "automatic_planar_patch_sha256": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3",
+  "build_failure_history": "Build001 compiled core but test build lacked three preexisting include_str fixture files; copied exact fixtures for successful build002. No mathematical or numerical tolerance changes.",
+  "build_seconds": 55.14956958999392,
+  "exact_tests": 7,
+  "actual_assembly_complex_slots": 60,
+  "mixed_taylor_components": 6,
+  "exact_integrand_fixtures": 5,
+  "right_hand_sides_per_fixture": 5,
+  "numeric_bound_seconds": 180,
+  "numeric_process_seconds": 39.6557045300724,
+  "driver_seconds": 39.542452191,
+  "numeric_statuses": [
+    "Unstable(\"N5 subset 3: Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\")"
+  ],
+  "diagnostics": [
+    [
+      "N5 subset 3: exact full-Taylor planar identity with regular constant-one chart omitting coordinate row 3",
+      "N5 subset 3: planar fallback returned Unstable(\"reduction has nonfinite coefficients at this kinematic point\"); original failure retained",
+      "N5 subset 4: exact full-Taylor planar identity with regular constant-one chart omitting coordinate row 0",
+      "N5 subset 4: planar fallback returned Unstable(\"reduction has nonfinite coefficients at this kinematic point\"); original failure retained",
+      "N5 subset 3: Unstable(\"reduction has nonfinite coefficients at this kinematic point\")"
+    ]
+  ],
+  "execution": {
+    "child_batch_calls": 1,
+    "child_execution": "ExecutionStats { input_rows: 6, argument_rows: 8, master_family_batches: 5, master_rows: 60, pentagon_box_rows: 0, reduction_rows: 8, fallback_rows: 2, fallback_successes: 0, analytic_rows: 2 }",
+    "packed_child_rows": 6,
+    "packed_parent_rows": 0,
+    "parent_batch_calls": 0,
+    "parent_execution": "ExecutionStats { input_rows: 0, argument_rows: 0, master_family_batches: 0, master_rows: 0, pentagon_box_rows: 0, reduction_rows: 0, fallback_rows: 0, fallback_successes: 0, analytic_rows: 0 }",
+    "parent_input_rows": 1
+  },
+  "compared_numerical_slots": 0,
+  "production_unchanged_during_build_and_run": true,
+  "limitations": [
+    "Envelope is an ordinary primal sensitivity estimate, not a rigorous or compounded-Taylor bound.",
+    "Quadrature imports are explicitly unsupported.",
+    "Native IREGI raw components only; no second convention conversion.",
+    "All six child subsets use one generic rank-one plan/batch; each child checks its own packed inputs, with no cross-layout receipt transfer.",
+    "N5 subsets3 and4 have certified regular planar charts but their selected reductions remain nonfinite; deeper node localization is not yet established."
+  ],
+  "written_utc": "2026-10-23T21:12:07.943113+00:00",
+  "files": {
+    "build.py": "24fa70dc9b505c70b2421f08676b7f51399e1362bc29119faf25c93e484f4c1b",
+    "snapshot.json": "44fc9506c3a444fc19b720f1ffb00b25b77a5f51404a56a4af33f4678474b3b5",
+    "run.py": "664915e9418f6340a7c19cb099d3c9c6d9e3935c553d7a5afac74fdf5a96370e",
+    "driver.rs": "389cfda9c1cf1c95bbd290c6304a16c9cfd2210609c6e4dafd3979e66e8586a9",
+    "compare.py": "3f2b074901d807cdd71517c16664d1e2a7157594ef69fedff365498dd7aad162",
+    "sources.tar.gz": "c6dbb7d4fef80ec29eb0ffa6f9d226be3a5ced912f22da0e47271319a468aa9c",
+    "n6-rank2-128-001/run.json": "251978cd8a9a10f342d9782bdd3eebb7b95dfd04af1906b88da59aabed288603",
+    "n6-rank2-128-001/result.json": "1ca5b42d26a1b5d776d6b36682f1de82be7f61dcaf2cdc690581661313499a18",
+    "n6-rank2-128-001/step-0.log": "446d22c2317d2b30f804f3e094312d755bec16a4e7df9489612b3e9eb5b8379c",
+    "build-001/build.json": "e43b94fdee5f316c57c4bcfc09bca33965e26526cf854b6f8f0a8a5b505e338f",
+    "build-001/driver-source.rs": "2ddfe2b5cfb5ec3887783071ad62a2ff4a50e7a285b55113de608886a228a5a9",
+    "build-001/tests.log": "9d29b6bc0ac9f7c5327da2c092a85719bd1e4d7c7c84a01f4ce739dca8f1e9ee",
+    "build-001/build-script.py": "6f66531852cd25f8fc1e96268e3fd0f02034026d7de1358d96375c27764a0b0c",
+    "build-001/core.log": "dd756557320b136ab60be41c81e396aaa1975bf161a8fbef1f536b9cf47b821d",
+    "exact-001/run.json": "d994794849177cfda82743cb410844327c09c5c35f0ac892107d63aa1d1bde04",
+    "exact-001/step-0.log": "e06c6b66633ccfd26c409607b7084598752b6b1af47b4b683d6dc84e372e3e75",
+    "exact-001/step-1.log": "eccbaeaf119d7aab24c7642c1e8c97d3c2f024f583f9aa8a6bba2f5bb994ccdb",
+    "build-002/build.json": "3651ecb9e9308b8ce7763e9eeddb25fdd8bf1ce9ecf195ec7c82cfcc4b0c4fc6",
+    "build-002/core.log": "dd756557320b136ab60be41c81e396aaa1975bf161a8fbef1f536b9cf47b821d",
+    "build-002/tests.log": "7040703394fca649744c4761954d47820713f3aa2a242fc766263cf27983bfc0",
+    "build-002/driver.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "design/actual-route-primal-export-audit.md": "b88a772294f44fc68fdcfdd6a5d9800a956d923a70845453055273ce15a90d60"
+  }
+}

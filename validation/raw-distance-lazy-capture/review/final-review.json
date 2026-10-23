@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "review_kind": "independent_source_only_before_compilation",
+  "reviewer": "numeric_batch_audit/lazy_capture_implementation_review",
+  "additional_test_reviewer": "numeric_batch_audit/lazy_capture_implementation_review/lazy_tests_review",
+  "source_manifest_sha256": "b3fae612aaa754ed1577c63fe955703230ba6eb7073654f37f2542768371de45",
+  "candidate_patch_sha256": "75789128caa16c2492390b7f91355c5d3517e981e1e86c379bddd4f812619b59",
+  "scope": "One private lazy outgoing raw-distance receipt capture implementation, its eight new tests, retained twelve receipt and six accounting tests, compact test-source mapping, correctness-only fourteen-case paired snapshot driver, and bounded build/run provenance scripts. This is a source-review pass, not a test, numerical, optimization, or performance qualification.",
+  "reviewer_compilation_tests_numerical_runtime_or_timing_performed": false,
+  "reviewer_source_or_production_modifications": false,
+  "reviewer_written_files": [
+    "target/raw-distance-lazy-capture-candidate/review/final-review.json"
+  ],
+  "verified_provenance": {
+    "all_source_manifest_bindings_checked": true,
+    "binding_count": 329,
+    "baseline_files_match_frozen_input_manifest": 30,
+    "candidate_to_test_source_exact_mapping_checked_read_only": true,
+    "candidate_to_test_source_files_checked": 31,
+    "changed_source_files": [
+      "crates/iregi-rust/src/execution.rs",
+      "crates/iregi-rust/src/execution/lazy_capture_tests.rs",
+      "crates/iregi-rust/src/execution/proof_receipt_tests.rs",
+      "crates/iregi-rust/src/execution/proof_receipts.rs"
+    ],
+    "candidate_changed_source_sha256": {
+      "execution.rs": "fb8216582b1b20da1a1110d18d6f817aeaf15de1328489deef7c58dcb159fc75",
+      "execution/lazy_capture_tests.rs": "7bd0b7c9f4038ce1259e790b71299bb851d7a66addd85f7e39c2412775b7d66d",
+      "execution/proof_receipt_tests.rs": "9d5bcccd367ce15ea36b02cbbd14ff9d72a7ff989d7a6f64a836c05ef8d4955c",
+      "execution/proof_receipts.rs": "a5a9fee580c655eac40277da42f41a589e1122ff5e0be3380af11ae78b3b1403"
+    },
+    "snapshots_sha256": "77f5124b49df699e4112cc8d0efcf8f4d37e559dc3e72e7bb626c80f4f5f7f9c",
+    "test_harness_mapping_sha256": "a8c39efa1daa3866efa25929ea956246b4ffdc58f028cea8cbb1abfb9c1d808b"
+  },
+  "findings": [
+    {
+      "id": "bounded_lazy_creation",
+      "result": "The public call preserves the original Preserve-plus-analytic-dispatch eligibility predicate and initializes a local None. The private record helper returns for disabled capture or an empty iterator before cloning the domain Arc or constructing coverage storage. Its two production call sites retain only matched incoming selected pairs or fresh ExactZeroCertificate::Zero pairs. get_or_insert_with retains one object for the rest of the call; no receipt is stored on Workspace."
+    },
+    {
+      "id": "strict_provenance_preserved",
+      "result": "The immutable original batch borrow, dispatch source pointer check, lane bounds/source map, full ordered domain equality, layout, invariant authority, ordered Taylor shape, Preserve policy, and exact working/requested precision equality remain intact. The helper receives stable source/domain/precision metadata throughout each production call. No numeric equality cache, algebra, conversion, or cross-call receipt is introduced."
+    },
+    {
+      "id": "conditioning_taylor_and_row_isolation",
+      "result": "Conditioning and effective represented-input precision remain before incoming reuse. Every constraint and Taylor component remains selected independently, including zero higher components under a nonzero primal. Original-row indexing remains original_lanes[compact]; incoming coverage continues through source_lanes. Rational-conversion and fresh Nonzero/Unresolved failures clear only that original row when storage exists. Existing ordering and fresh-success sorting are preserved."
+    },
+    {
+      "id": "accounting_and_error_harvest",
+      "result": "Per-call work reset and checked arithmetic are unchanged. Certificate row/pass harvesting remains before certificate-error propagation. Analytic and fallback child work/profile/diagnostic harvesting remains before child-error propagation. Passing None instead of an empty outgoing receipt supplies no proof and does not suppress child conditioning or certification."
+    },
+    {
+      "id": "meaningful_lifecycle_tests",
+      "result": "The helper probes inspect absence, Arc ownership, source/domain identity, precision metadata, persistent outer storage, earlier-row evidence, and release. failures-path probes require real fresh certification, component-2 false-zero rejection, matched empty incoming intersection, and higher Taylor-zero proofs. A cfg(test)-only public observation is initialized/reset before early returns and sampled immediately after failures; public ordinary/proved/ordinary and separately reseeded invalid/empty calls inspect actual capture presence and work resets. This instrumentation is absent from normal paired-library builds."
+    },
+    {
+      "id": "partial_failure_and_compaction_tests",
+      "result": "The revised partial-coverage fixture independently certifies its supplied pairs, records full healthy-row incoming coverage before a failing row's fresh certificate is processed, and requires the failing row empty while healthy evidence remains; reuse=5 and covered_rows=1 guard the intended route. The new manually packed [4,2] test detects compact-index storage. Retained public compaction/reordering/repeated-call/clone tests and recursive-transfer tests with distinct Taylor masks supply complementary end-to-end coverage."
+    },
+    {
+      "id": "compact_harness",
+      "result": "Read-only mechanical reconstruction matches all 31 test-source files exactly: disable only cfg(test) module declarations and append the declared receipt/accounting harness. Non-module cfg(test) instrumentation remains active. Original receipt tests retain their assertions through a test-only empty-receipt fallback, while new lifecycle tests inspect the lazy Option before that fallback. The intended suite is 12 retained receipt tests, including both child-error harvest fixtures, plus 8 lazy tests and 6 accounting tests."
+    },
+    {
+      "id": "fourteen_case_snapshot_probe",
+      "result": "Fixture generation, ordered Dual seeds, workload settings, and singleton/batch32 membership match the frozen final cohort. Timing and calibration entry points are removed and command-line arguments are rejected. Every cold, repeated, and final Snapshot comparison now includes input/output bits, context, basis, metadata, statuses, analytic/fallback flags, public statistics, diagnostics, and all four private proof counters. Both implementations require inactive N5 certificate counters. No comparison was executed by this reviewer."
+    },
+    {
+      "id": "bounded_build_and_run_provenance",
+      "result": "build.py requires this passed review bound to the frozen source manifest before rustc, binds review/source/scripts/dependencies, retains per-step outcome/logs, bounds compilation to 180 seconds, and verifies inputs afterward. run.py binds built outputs and inputs, bounds each group to 120 seconds, rejects overwrite, requires exact 20 receipt/lazy and 6 accounting pass counts or all fourteen distinct fixture pairs, and retains terminal results before post-hash verification. The opt0/native-object dependency-reuse scope and supplemental thiserror completed-rlib-event limitation are explicit; these scripts do not establish optimized-code or performance equivalence."
+    }
+  ],
+  "resolved_review_findings": [
+    "Added an actual public-call capture observation and lifecycle test rather than relying solely on a direct failures helper.",
+    "Changed the mixed-row partial-failure fixture to retain healthy evidence before the failure, eliminating a recreate-after-failure false positive.",
+    "Reseeded proved calls immediately before invalid and empty inputs, eliminating already-reset-state false positives.",
+    "Included private proof counters in every Snapshot comparison rather than checking them only after warm calls."
+  ],
+  "coverage_limits": [
+    "The manually packed compaction probe alone does not exercise validation or distinguish swapped identical masks; retained public and recursive-transfer tests cover those complementary behaviors.",
+    "The empty-intersection fixture uses wholly empty incoming coverage. The helper and source ordering additionally establish no creation for any empty filtered intersection.",
+    "Option presence, Arc counts, and storage identity are structural observations, not a cumulative allocator trace. The one-construction invariant is supported by these probes and the single get_or_insert_with production mechanism."
+  ],
+  "remaining_source_review_blockers": [],
+  "qualification_pending": "No Rust compilation, test execution, numerical snapshot comparison, or timing has been performed by this reviewer. The authorized bounded correctness build and 26 tests plus fourteen paired snapshots remain to run. Any optimized/performance qualification requires its separate grant and protocol. The prior final-patch ordinary-control regressions and original-IREGI acceptance requirement remain open.",
+  "profile_attribution": "On evidence-producing calls receipt construction now occurs inside failures and therefore inside arguments timing; the former eager setup was outside that stage timer. Total wall time remains the appropriate performance acceptance quantity."
+}

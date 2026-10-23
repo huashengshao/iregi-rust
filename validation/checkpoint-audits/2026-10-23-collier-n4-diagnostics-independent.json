@@ -1,0 +1,175 @@
+{
+  "kind": "independent-collier-n4-diagnostics-audit",
+  "status": "passed-with-scope-limitations",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "date_utc": "2026-10-23",
+  "package": "validation/collier-reference/n4/diagnostics-v1",
+  "qualification_sha256": "a39c832456cdf0be48121df8c4eb7dbfc9380c93b806a977f63a2acdad7dd138",
+  "summary_sha256": "a7f26d937aa23231d893a738469455f842f7db03cd7ec9e0799d6184a02137e5",
+  "scope": "Source/provenance and arithmetic over retained arrays only; no numerical kernels, build, Symbolica process or timing. Existing reviewed contraction loop and comparison helpers independently replayed against all stored rows. No package mutation or new algebra implementation.",
+  "arithmetic_assertions_passed": 96796,
+  "complex_slot_counts": {
+    "iregi_complex_slots": 22176,
+    "coli_complex_slots": 14784,
+    "dd_complex_slots": 14784,
+    "dd_null_complex_slots": 3432,
+    "initial8_complex_slots_per_binary": 1584,
+    "pinch_complex_slots": 5120
+  },
+  "identity_check_counts": {
+    "iregi": 2871,
+    "diagnostic": 2871
+  },
+  "identity_laurent_slot_counts": {
+    "iregi": 5940,
+    "diagnostic": 5940
+  },
+  "identity_maximum_normalized_error": {
+    "iregi": 7.941870027851076e-15,
+    "diagnostic": 2.882439402258795e-12
+  },
+  "rows": [
+    {
+      "id": "n4-r0-massive",
+      "batch_width": 1,
+      "coli_accepted": true,
+      "coli_raw_maximum": 1.8340193836584182e-14,
+      "dd_raw_maximum": 4.139461475525842,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r0-massive",
+      "batch_width": 32,
+      "coli_accepted": true,
+      "coli_raw_maximum": 2.7540219567423462e-14,
+      "dd_raw_maximum": 4.58447871537411,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r1-massive",
+      "batch_width": 1,
+      "coli_accepted": false,
+      "coli_raw_maximum": 4.756563010195605e-13,
+      "dd_raw_maximum": 4.139461475525842,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r1-massive",
+      "batch_width": 32,
+      "coli_accepted": false,
+      "coli_raw_maximum": 7.337920342508137e-13,
+      "dd_raw_maximum": 4.58447871537411,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r2-massive",
+      "batch_width": 1,
+      "coli_accepted": false,
+      "coli_raw_maximum": 5.977161113790013e-13,
+      "dd_raw_maximum": 4.139461475525842,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r2-massive",
+      "batch_width": 32,
+      "coli_accepted": false,
+      "coli_raw_maximum": 1.1620701118240466e-12,
+      "dd_raw_maximum": 4.58447871537411,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r3-massive",
+      "batch_width": 1,
+      "coli_accepted": false,
+      "coli_raw_maximum": 2.1790982704934575e-12,
+      "dd_raw_maximum": 4.139461475525842,
+      "dd_accepted": false
+    },
+    {
+      "id": "n4-r3-massive",
+      "batch_width": 32,
+      "coli_accepted": false,
+      "coli_raw_maximum": 2.3817743142947722e-12,
+      "dd_raw_maximum": 4.58447871537411,
+      "dd_accepted": false
+    }
+  ],
+  "additional_current_history_and_initial8_bindings": [
+    {
+      "path": "validation/collier-reference/timing-initial8/qualification.json",
+      "sha256": "76c5f7e889e0621b3fc6adbdba199971a9ddbe4e8f19c1b59fafe9e915f30ddf"
+    },
+    {
+      "path": "validation/collier-reference/n4/history/n4-correctness-attempt001/results.json",
+      "sha256": "18f2cfccda8f1ae138eaec71b817b635e86fde16689d9dc87c0bdbed64c6a8d0"
+    },
+    {
+      "path": "validation/collier-reference/n4/history/n4-correctness-attempt002/results.json",
+      "sha256": "ce3b39d5ca79c762488d57dc6d5e548b00b3b702126eeb93a0894d7717992c14"
+    },
+    {
+      "path": "validation/collier-reference/n4/history/n4-correctness-dd-attempt001/results.json",
+      "sha256": "1fb2515aac635795636543b41f2636440afd0169b89be9526e0783e77791bafa"
+    }
+  ],
+  "provenance_review": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+    "status": "all-bindings-match",
+    "package_bound_artifacts": 13,
+    "decompressed_results": 4,
+    "decompressed_archives": 4,
+    "archive_members_matching_original_files": 1470,
+    "current_source_bindings": 10,
+    "binary_records": 6,
+    "run_guards": 58,
+    "run_guards_live": 56,
+    "run_guards_historical_archived": 2,
+    "archived_guard_copies": 38,
+    "polynomial_dot_hashes": 476,
+    "prepared_json_records": 476,
+    "driver_review_source_bindings": 4,
+    "driver_link_artifacts": 3,
+    "driver_source_build_log_bindings": 5,
+    "library_chain": {
+      "upstream_sources": 53,
+      "generated_sources": 53,
+      "objects": 32,
+      "archive": 1,
+      "artifacts": 3,
+      "logs": 3,
+      "build_sources": 3,
+      "flags_files": 3
+    },
+    "input_provenance_links": 3,
+    "compiler": "GNU Fortran 15.2, same compiler and library hash; only CMakeLists differs between upstream/generated source",
+    "failed_startup": "retained failed_before_build, exit 1, compile_started false",
+    "failed_diagnostic": "retained KeyError IntegrationByParts with one partial row",
+    "earlier_identity_attempt": "retained all 16 rows"
+  },
+  "source_identity_review": {
+    "metric": "+---",
+    "denominator": "(q+p_i)^2-m_i^2+i0; p0=0",
+    "invariant_order": [
+      "p1^2",
+      "(p2-p1)^2",
+      "(p3-p2)^2",
+      "p3^2",
+      "p2^2",
+      "(p3-p1)^2"
+    ],
+    "pinch0": "qprime=q+p1; original q=qprime-p1. All 128 translated triangle inputs checked.",
+    "normalization": "Native [UV single, IR single, IR double, finite]; i*pi^2 normalization and finite subtraction (EulerGamma+ln(pi))*UV. No whole odd-rank sign. Scale setter receives mu squared.",
+    "trace_caveat": "Four-dimensional rank2/3 contracted traces differ from D-dimensional traces by +2 epsilon times covariant metric coefficients D_00 or sum p_i^nu D_00i. These coefficients have no UV/IR pole on this massive Euclidean N4 rank<=3 slice, so no finite correction. Covariant D_00 differs from the Cartesian time component. Rank4 and divergent bubble/triangle trace applications excluded.",
+    "executed": "Vector denominator differences, rank2 trace, four rank3 traces, time reflection and UV finiteness. Higher-moment denominator-difference extensions are documented but not claimed executed.",
+    "symbolica_prepared_polynomials": 238,
+    "exact_zero_certificates": 5
+  },
+  "limitations": [
+    "Only two rank0 COLI coordinates qualify; six rank1..3 COLI coordinates retain AccFlag=-1 despite numerical agreement. All eight DD coordinates retain ErrFlag=-10; null finite components are counted and remain failures.",
+    "No N4 timing/performance claim. BENCH single-call total_ns and elapsed correctness times are not benchmark measurements.",
+    "CLI executable is pinned; current CLI source inventory is contextual rather than a source-matched rebuild claim.",
+    "Referenced binaries/library remain external to the package, present and hash verified.",
+    "Earlier history and initial8 timing are path-only references in the package; this receipt binds their current hashes without claiming the package itself froze them.",
+    "The residual helper lacks explicit NaN guards; this audit enforced finite lhs, rhs, residual and normalized error for every actual identity slot. General malformed-data robustness is not qualified."
+  ]
+}

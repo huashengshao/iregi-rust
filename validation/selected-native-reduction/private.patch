@@ -1,0 +1,127 @@
+--- /shared/external/iregi/iregi-rust/crates/iregi-masters/src/lib.rs	2026-10-23 18:42:59.677758456 +0000
++++ /shared/external/iregi/iregi-rust/target/selected-native-reduction/copied/crates/iregi-masters/src/lib.rs	2026-10-23 20:52:38.259027689 +0000
+@@ -19,6 +19,7 @@
+ mod derivative_domain;
+ mod dual_validation;
+ mod exact_plan;
++mod selected_batch;
+ mod normalization;
+ mod pentagon6;
+ mod scale_transport;
+@@ -142,6 +143,9 @@
+         self.errors.len()
+     }
+ 
++    /// Private observational access to all six outputs, including discriminant.
++    pub fn private_six_values(&self) -> &[Complex<T>] { &self.values }
++
+     pub fn component_count(&self) -> usize {
+         self.components
+     }
+@@ -186,6 +190,7 @@
+ 
+ #[derive(Clone)]
+ enum PreparedMaster<T: NativeFloat> {
++    SelectedF64(selected_batch::SelectedBatchEvaluator),
+     Symbolica(BatchExpressionEvaluator<Complex<T>>),
+     #[cfg(feature = "native-batch")]
+     Rust(native_batch::NativeBatchEvaluator<T>),
+@@ -265,9 +270,24 @@
+         }
+     }
+ 
++    /// Private experiment only: keep every other numeric/domain path intact.
++    pub fn private_select_f64(mut self) -> Result<Self, MasterError> {
++        if self.shape.is_none() && self.components == 1
++            && std::any::TypeId::of::<T>() == std::any::TypeId::of::<f64>()
++            && matches!(self.family, ScalarIntegral::A0 | ScalarIntegral::B0 | ScalarIntegral::C0)
++        {
++            self.evaluator = PreparedMaster::SelectedF64(
++                selected_batch::SelectedBatchEvaluator::new(self.family)
++                    .map_err(MasterError::Preparation)?,
++            );
++        }
++        Ok(self)
++    }
++
+     pub fn backend(&self) -> MasterBackend {
+         match &self.evaluator {
+             PreparedMaster::Symbolica(_) => MasterBackend::SymbolicaBatch,
++            PreparedMaster::SelectedF64(_) => MasterBackend::RustBatch,
+             #[cfg(feature = "native-batch")]
+             PreparedMaster::Rust(_) => MasterBackend::RustBatch,
+         }
+@@ -284,6 +304,10 @@
+             evaluator.set_policy(policy);
+             return true;
+         }
++        if let PreparedMaster::SelectedF64(evaluator) = &mut self.evaluator {
++            evaluator.set_policy(policy);
++            return true;
++        }
+         let _ = policy;
+         false
+     }
+@@ -473,6 +497,9 @@
+         let valid = self.valid_lanes.len();
+         self.output_workspace.resize(valid * result_width, zero);
+         match &mut self.evaluator {
++            PreparedMaster::SelectedF64(evaluator) => evaluator
++                .evaluate_batch(&self.input_workspace, &mut self.output_workspace, valid)
++                .map_err(MasterError::Evaluation)?,
+             PreparedMaster::Symbolica(evaluator) => evaluator
+                 .evaluate_batch(&self.input_workspace, &mut self.output_workspace, valid)
+                 .map_err(|error| MasterError::Evaluation(error.to_string()))?,
+--- /shared/external/iregi/iregi-rust/crates/iregi-rust/src/lib.rs	2026-10-23 18:22:20.987765922 +0000
++++ /shared/external/iregi/iregi-rust/target/selected-native-reduction/copied/crates/iregi-rust/src/lib.rs	2026-10-23 20:52:38.262027699 +0000
+@@ -33,3 +33,7 @@
+     RescueTrigger,
+ };
+ pub use types::*;
++
++mod master_capture;
++pub use master_capture::{set_master_capture, take_master_captures};
++pub const PRIVATE_SELECTED_NATIVE: bool = cfg!(private_selected_native);
+--- /shared/external/iregi/iregi-rust/crates/iregi-rust/src/execution.rs	2026-10-23 18:22:20.986765919 +0000
++++ /shared/external/iregi/iregi-rust/target/selected-native-reduction/copied/crates/iregi-rust/src/execution.rs	2026-10-23 20:52:38.262027699 +0000
+@@ -129,7 +129,7 @@
+ }
+ 
+ pub(crate) type ExactExecutionCache = Arc<
+-    Mutex<HashMap<Option<Vec<Vec<usize>>>, Arc<OnceLock<Result<Arc<PreparedExecution>, String>>>>>,
++    Mutex<HashMap<(Option<Vec<Vec<usize>>>, bool), Arc<OnceLock<Result<Arc<PreparedExecution>, String>>>>>,
+ >;
+ 
+ struct PreparedMasterGroup {
+@@ -912,7 +912,7 @@
+         .execution_cache
+         .lock()
+         .map_err(|_| ReductionError::Preparation("exact execution cache lock poisoned".into()))?
+-        .entry(shape)
++        .entry((shape, cfg!(private_selected_native)))
+         .or_default()
+         .clone();
+     entry
+@@ -1065,6 +1065,12 @@
+                     evaluator: match &group.plan {
+                         PreparedMasterPlan::Exact(plan) => plan
+                             .instantiate(prototype.clone())
++                            .and_then(|evaluator| {
++                                #[cfg(private_selected_native)]
++                                { evaluator.private_select_f64() }
++                                #[cfg(not(private_selected_native))]
++                                { Ok(evaluator) }
++                            })
+                             .map(ScalarMasterEvaluator::OneLoop),
+                         PreparedMasterPlan::Native(family) => MasterEvaluator::new_with_backend(
+                             *family,
+@@ -1672,6 +1678,9 @@
+             match &mut group.evaluator {
+                 ScalarMasterEvaluator::OneLoop(evaluator) => {
+                     let evaluated = evaluator.evaluate_batch(&group.input, rows);
++                    if crate::master_capture::enabled() {
++                        crate::master_capture::record(family.name(), evaluator.backend(), self.components, &group.input, &group.requests, &self.valid_lanes, &evaluated);
++                    }
+                     record_time(started, &mut self.profile.scalar_masters);
+                     let values =
+                         evaluated.map_err(|error| ReductionError::Evaluation(error.to_string()))?;

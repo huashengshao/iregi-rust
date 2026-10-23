@@ -1,0 +1,157 @@
+{
+  "status": "passed",
+  "scope": "independent retained-data arithmetic and admission audit; no kernels/builds/timing executed",
+  "results_sha256": "c760b59b9e7259d34f82d12f38b14bb298769d86cc220a501ccd19bc5413533b",
+  "build_sha256": "d0543286975f39421258b02613b9f527644df0ca479d092d96a100a05bcdceae",
+  "control_source_sha256": "0b994d0904fff2571100e303cda33878c2192c65f259afc36a7b813515c1aae1",
+  "counts": {
+    "checks": 169153,
+    "whole_master_groups": 12,
+    "whole_master_rows": 297,
+    "whole_complex_outputs_per_backend": 1584,
+    "whole_cross_and_reference_comparisons": 4752,
+    "whole_master_complex_outputs_per_backend": 1782,
+    "whole_master_represented_component_differences": 249,
+    "whole_lane_samples": 132,
+    "selected_control_cases": 34,
+    "selected_valid_lanes": 57,
+    "selected_complex_outputs": 342,
+    "selected_candidate_valid_lanes": 57,
+    "selected_candidate_complex_outputs": 342,
+    "selected_failed_lanes": 21,
+    "selected_candidate_failed_lanes": 21,
+    "unchanged_master_paths": 10,
+    "unchanged_master_cases": 33,
+    "unchanged_valid_lanes": 49,
+    "unchanged_complex_outputs": 432,
+    "unchanged_failed_lanes": 6,
+    "whole_unchanged_paths": 3,
+    "whole_unchanged_complex_outputs": 80,
+    "whole_unchanged_master_complex_outputs": 72
+  },
+  "max_errors": {
+    "whole_cross_backend": 2.060145367735415e-13,
+    "baseline_IREGI": 2.4583237864622474e-13,
+    "candidate_IREGI": 3.3775669420228794e-13,
+    "whole_master_cross_backend": 1.694832829752953e-14,
+    "selected_public_master_cross": 1.9287122882317084e-15
+  },
+  "whole_rows": [
+    {
+      "id": "n2-r0-massive",
+      "batch": 1,
+      "tensor_complex_outputs": 4,
+      "master_complex_outputs": 6,
+      "cross_max": 1.2014452324872974e-16,
+      "baseline_IREGI_max": 2.4028904649745953e-16,
+      "candidate_IREGI_max": 1.2014452324872977e-16,
+      "master_cross_max": 1.675535050539829e-16
+    },
+    {
+      "id": "n2-r0-massive",
+      "batch": 32,
+      "tensor_complex_outputs": 128,
+      "master_complex_outputs": 192,
+      "cross_max": 6.977920030842799e-16,
+      "baseline_IREGI_max": 1.0332069955332499e-15,
+      "candidate_IREGI_max": 8.395179341322145e-16,
+      "master_cross_max": 9.57330851888936e-16
+    },
+    {
+      "id": "n2-r1-massive",
+      "batch": 1,
+      "tensor_complex_outputs": 20,
+      "master_complex_outputs": 18,
+      "cross_max": 8.43066948366617e-16,
+      "baseline_IREGI_max": 1.433213812223251e-15,
+      "candidate_IREGI_max": 5.901468638566327e-16,
+      "master_cross_max": 1.675535050539829e-16
+    },
+    {
+      "id": "n2-r1-massive",
+      "batch": 32,
+      "tensor_complex_outputs": 640,
+      "master_complex_outputs": 576,
+      "cross_max": 3.4361911156451566e-15,
+      "baseline_IREGI_max": 3.79319046545774e-15,
+      "candidate_IREGI_max": 3.79319046545774e-15,
+      "master_cross_max": 9.57330851888936e-16
+    },
+    {
+      "id": "n3-r0-massive",
+      "batch": 1,
+      "tensor_complex_outputs": 4,
+      "master_complex_outputs": 6,
+      "cross_max": 1.9026154405748568e-14,
+      "baseline_IREGI_max": 1.7149754107884505e-14,
+      "candidate_IREGI_max": 6.784884058720352e-15,
+      "master_cross_max": 9.861643325698268e-15
+    },
+    {
+      "id": "n3-r0-massive",
+      "batch": 32,
+      "tensor_complex_outputs": 128,
+      "master_complex_outputs": 192,
+      "cross_max": 3.307943431470393e-14,
+      "baseline_IREGI_max": 4.0181280252331804e-14,
+      "candidate_IREGI_max": 5.3593360361509914e-14,
+      "master_cross_max": 1.694832829752953e-14
+    },
+    {
+      "id": "n3-r1-massive",
+      "batch": 1,
+      "tensor_complex_outputs": 20,
+      "master_complex_outputs": 24,
+      "cross_max": 1.2644571853614466e-13,
+      "baseline_IREGI_max": 1.1002496593670189e-13,
+      "candidate_IREGI_max": 4.7765413365998006e-14,
+      "master_cross_max": 9.861643325698268e-15
+    },
+    {
+      "id": "n3-r1-massive",
+      "batch": 32,
+      "tensor_complex_outputs": 640,
+      "master_complex_outputs": 768,
+      "cross_max": 2.060145367735415e-13,
+      "baseline_IREGI_max": 2.4583237864622474e-13,
+      "candidate_IREGI_max": 3.3775669420228794e-13,
+      "master_cross_max": 1.694832829752953e-14
+    }
+  ],
+  "limitations": [
+    "All eight whole-family response/repeat pairs were independently compared exactly, excluding only plan_reused metadata.",
+    "Direct-master own repeats and unchanged-control cross-backend equality are supported by frozen reviewed Rust assertions; repeated/second snapshots are not retained, so this audit does not claim independent raw recomputation of absent snapshots.",
+    "This opt0 qualification establishes bounded-corpus semantics only; no optimized-build or performance acceptance."
+  ],
+  "provenance_review": {
+    "status": "passed",
+    "reviewer": "warm_timing_review; source and archive provenance only, no numerical qualification",
+    "counts": {
+      "production_source_hashes": 69,
+      "private_source_hashes": 71,
+      "build_002_input_bindings": 278,
+      "qualification_bindings": 285,
+      "outputs": 4,
+      "reused_original_rlibs": 3,
+      "compile_commands": 5,
+      "verified_ELF_archive_members": 5,
+      "dependency_closure_files": 116,
+      "supplemental_files": 2,
+      "changed_copied_files": 3,
+      "added_copied_files": 2,
+      "unchanged_selected_generated_files": 4
+    },
+    "same_private_master_crate_for_both_cores": true,
+    "normalized_core_commands_differ_only_by_crate_identity_and_policy": true,
+    "new_compilations": "opt-level=0, debuginfo=0, strip=debuginfo; no native-batch cfg or LTO",
+    "reused_dependency_profiles": "Recorded original profiles retained; Symbolica and serde_json opt2, so entire closure is not claimed opt0",
+    "compiler": "rustc 1.99.0 b940084d7 2026-09-28",
+    "reused_build_001": "Three successful libraries reused unchanged; failed probe and original fixture retained; build 002 recompiles only probe",
+    "source_revision_equality": "Production core/masters unchanged between 06706e2a1e4f0082889a53187c80bbe97803340f and b71d5f898882d4d959a16fa667e66c746f483492",
+    "minor_limitation": "Original failed probe.log and repair receipt retained but not transitively hash-bound by qualification results; parent will bind them explicitly in durable package."
+  },
+  "complete_control_coordinate_and_lane_counts_checked": true,
+  "reference_global_scale_matches_all_samples": true,
+  "completed_utc": "2026-10-23T21:08:01.325351+00:00",
+  "results_sha256_after_audit": "c760b59b9e7259d34f82d12f38b14bb298769d86cc220a501ccd19bc5413533b"
+}

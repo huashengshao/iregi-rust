@@ -1,0 +1,42 @@
+{
+  "kind": "collier-diagnostic-driver-only-link",
+  "status": "built",
+  "timeout_seconds": 60,
+  "command": [
+    "/nix/store/5km6kqfhjr16939ak9l1crzsh6x96f68-gfortran-wrapper-15.2.0/bin/gfortran",
+    "-O3",
+    "-std=legacy",
+    "-fallow-argument-mismatch",
+    "-Wtabs",
+    "-I",
+    "/shared/external/iregi/iregi-rust/target/reference/collier/build-attempt001/source/modules",
+    "/shared/external/iregi/iregi-rust/target/reference/collier/n4-diagnostic-build001/driver.f90",
+    "/shared/external/iregi/iregi-rust/target/reference/collier/build-attempt001/source/libcollier.a",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/reference/collier/n4-diagnostic-build001/collier-diagnostic"
+  ],
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "compiler": "GNU Fortran (GCC) 15.2.0",
+  "original_library": {
+    "path": "target/reference/collier/build-attempt001/source/libcollier.a",
+    "sha256": "4f1e6dc1f2eeb399b0835cdd4244d6e51c72b2fcb7d2e1e7e2980288d6c7fe2f"
+  },
+  "original_build_manifest_sha256": "654d6221d0169ba06d0f2ae7f9615737d6b67aae0f0b57539e74ad518902fc80",
+  "review": {
+    "path": "validation/collier-reference/n4/diagnostic-driver-root-review.json",
+    "sha256": "9613a5b6efd196d47f6eea900f8dd2763a250b00285cbed6c877b967a20041fc"
+  },
+  "source_sha256": "eba91f6aa481858bc2164f4f6bb0d2ea08948ba70fa7349101c12e2a48e374e7",
+  "builder_sha256": "fa27eb4ea22ba55453c706d5f4ac424dc186737c37f63cc15517bbb1ca2702ba",
+  "numerical_source_changed": false,
+  "library_rebuilt": false,
+  "performance_claim": null,
+  "exit_code": 0,
+  "elapsed_seconds": 0.8671293199295178,
+  "link_log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "library_unchanged": true,
+  "binary": {
+    "path": "target/reference/collier/n4-diagnostic-build001/collier-diagnostic",
+    "sha256": "be6edd63d912044b70baf2ce5fae3eece28b444a6febfeb694984a4c060f7f66"
+  }
+}

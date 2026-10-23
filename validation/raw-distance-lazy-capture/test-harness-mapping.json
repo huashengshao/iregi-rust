@@ -1,0 +1,78 @@
+{
+  "scope": "Disable unrelated test modules only; retain cfg(test) instrumentation and helper functions. Reenable receipt module (12 frozen plus8 new) and exact6 accounting helpers from qualified compact harness.",
+  "disabled_modules": [
+    {
+      "path": "crates/iregi-rust/src/basis.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/certified_planar.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/certified_scalar.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/contraction.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/convention.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/exact_zero_certificate.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/execution/planar_fallback.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/execution.rs",
+      "disabled_test_modules": 2
+    },
+    {
+      "path": "crates/iregi-rust/src/ibp.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/invariant_certificate.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/plan.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/pv.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/rescue.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/scalar.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/snapping.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/stability/arguments.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/stability/quadrature.rs",
+      "disabled_test_modules": 1
+    },
+    {
+      "path": "crates/iregi-rust/src/stability.rs",
+      "disabled_test_modules": 1
+    }
+  ],
+  "appended_execution_harness": "\n#[cfg(test)]\nmod proof_receipt_tests;\n#[cfg(test)]\nmod accounting_followup_tests {\n    use super::*;\n    use crate::{Algorithm, Convention, ReductionSettings};\n    fn c(value: f64) -> Complex<f64> {\n        Complex::new(value, 0.)\n    }\n    fn plan(propagators: usize, rank: u16) -> ReductionPlan {\n        let mut settings = ReductionSettings::new(propagators, rank);\n        settings.convention = Convention::OneLoop;\n        settings.algorithm = Algorithm::PassarinoVeltman;\n        ReductionPlan::new(settings).unwrap()\n    }\n    fn close(actual: Complex<f64>, expected: Complex<f64>) {\n        assert!(\n            (actual.re - expected.re).abs() <= 1e-11 * (1. + expected.re.abs()),\n            \"{actual:?} != {expected:?}\"\n        );\n        assert!(\n            (actual.im - expected.im).abs() <= 1e-11 * (1. + expected.im.abs()),\n            \"{actual:?} != {expected:?}\"\n        );\n    }\n    include!(\"execution/accounting_tests.rs\");\n}\n"
+}

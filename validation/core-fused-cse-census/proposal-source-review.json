@@ -1,0 +1,27 @@
+{
+  "status": "source_only_proposal",
+  "created_utc": "2026-10-23T20:09:41.436485+00:00",
+  "compiled": false,
+  "numerical_runtime": false,
+  "timing": false,
+  "production_changes": false,
+  "one_candidate": "ordinary fused reduction root merge(empty_same_order_parameters,Some(0)) only",
+  "sources": {
+    "target/core-fused-cse-proposal/design.md": "eab7f18668a18acb0de0c844eed1dc48c6cf91c983627c8618bdc0e5177c4a5c",
+    "target/core-cse0-audit/design.md": "3ce6af81fe8f80459dbd59a23e0a6ae8161b3eaa2d6251ef99da578ca0b697f0",
+    "target/master-cse-census/preparation.json": "db1bde1af308160a782a5de34b4f0aa2f9615cd68969718dcaf9c6669985966a",
+    "validation/benchmark/baseline-6b24c03-licensed/results.json": "6469c9c172f32ce3b9dea53defa9d716856c107bccce7669919ce1edc9609793",
+    "crates/iregi-rust/src/execution.rs": "cfec1ae8b3ea4d057c4f225d565f07c1a2d020155ecff56379093992ca9072dd",
+    "dependencies/symbolica/src/evaluate/optimize.rs": "899d86347eb9efc9ae39d85e94d0c5a35fbc6de8a1efa13b9ccc95464f92e0f6",
+    "dependencies/symbolica/src/evaluate/evaluator.rs": "7ab103a6720528435e480442bb29b805d377759d554787578b7ed85973b3ebf9",
+    "dependencies/symbolica/src/evaluate/instruction.rs": "4f6b10ad349d3f9e3f25355b2b572390fd61c90c13e1ed16349c77c9f652d7f5",
+    "target/cli-coefficient-optimization/source/proof.rs": "eae7eff6a279909ba1a6615de16feb5b72ef8ccd3478e7496aa9c8450cfb111f"
+  },
+  "private_cli_timing_still_unrun": true,
+  "independent_review": {
+    "reviewer": "/root/native_stack_batch",
+    "scope": "source-only seam, empty merge preconditions and proof limits",
+    "outcome": "No seam blocker; clarified that Atom/control equality relies on trusted structured SSA/CSE dominance and does not independently prove branch-local definedness. Numerical lazy-branch witnesses remain required."
+  },
+  "scheduling": "ROOT accepted bounded proposal; no implementation/build until ROOT scheduling grant after pending CLI timing"
+}

@@ -1,0 +1,16 @@
+{
+  "scope": "Independent source-only review by /root/native_stack_batch/peer_cse_review; no numerical or performance inference",
+  "reviewer_findings": "Final delta confirmed read-only by /root/native_stack_batch/peer_cse_review: accessor primal roots and aliases use identical nonempty condition; driver asserts input count, positive moment count=4*basis_count, total moment+local+primal output count and original_outputs length. No remaining finding within bounded source-review scope. Execution counts acknowledged as reported, not independently rerun.",
+  "source_sha256": {
+    "census.rs": "5b0cc81d3c255c79b4dede3ea2ce796a0aca3b074c01d02a077f637d90d4aded",
+    "core/crates/iregi-rust/src/execution.rs": "e5765dbdf3711a4b19efaa34d5b1bf5e68d57d9155e12cabf1b61c487ceec8ab"
+  },
+  "limitations": [
+    "Trusted Symbolica structured SSA/liveness and CSE dominance; symbolic identity alone is not proof of branch-local definedness or eager-domain preservation.",
+    "No floating, Dual, mixed-precision, or timing evaluation."
+  ],
+  "final_delta_reviewed_sha256": {
+    "census.rs": "5b0cc81d3c255c79b4dede3ea2ce796a0aca3b074c01d02a077f637d90d4aded",
+    "core/crates/iregi-rust/src/execution.rs": "e5765dbdf3711a4b19efaa34d5b1bf5e68d57d9155e12cabf1b61c487ceec8ab"
+  }
+}

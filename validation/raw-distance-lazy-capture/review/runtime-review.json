@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "review_kind": "independent_read_only_review_of_completed_correctness_artifacts",
+  "reviewer": "numeric_batch_audit/lazy_capture_implementation_review",
+  "additional_log_reviewer": "numeric_batch_audit/lazy_capture_implementation_review/lazy_tests_review",
+  "source_manifest_sha256": "b3fae612aaa754ed1577c63fe955703230ba6eb7073654f37f2542768371de45",
+  "scope": "Completed build-001 correctness artifacts only: opt-level=0 libraries and compact tests using the recorded native dependency closure. This closure and optimization recipe differ from the earlier opt3 performance cohort. No performance equivalence, speedup, reference comparison, broader numeric-domain qualification, or production adoption is established.",
+  "reviewer_new_builds_test_runs_numerical_runs_or_timings": false,
+  "reviewer_modified_sources_or_existing_artifacts": false,
+  "reviewer_written_file": "target/raw-distance-lazy-capture-candidate/review/runtime-review.json",
+  "provenance_verification": {
+    "result": "passed",
+    "source_bindings_checked": 329,
+    "build_input_bindings_checked": 331,
+    "each_run_input_bindings_checked": 336,
+    "total_unique_file_hashes_checked": 346,
+    "build_inputs_equal_source_bindings_plus_source_manifest_and_source_review": true,
+    "run_inputs_equal_build_inputs_plus_four_outputs_and_build_record": true,
+    "all_recorded_input_output_and_log_hashes_match_current_files": true,
+    "all_records_report_inputs_unchanged": true,
+    "canonical_verified_binding_map_sha256": "c88a066bc0b4de9c9bd0c335e8ea1dc8cfbf3fa50ba3b00f0b5c0ae8510979c4",
+    "canonical_binding_map_encoding": "JSON::PP canonical compact encoding of the merged source-manifest bindings, build inputs/outputs/record, four build logs, and three runtime records/logs"
+  },
+  "input_hashes": {
+    "target/raw-distance-lazy-capture-candidate/input-manifest.json": "90e80b4b20a80d44a338452457d8e1eb94fb931a27baf1a6cbffd73bd8f60629",
+    "target/raw-distance-lazy-capture-candidate/source-manifest.json": "b3fae612aaa754ed1577c63fe955703230ba6eb7073654f37f2542768371de45",
+    "target/raw-distance-lazy-capture-candidate/review/final-review.json": "c9c4fd61e04e7f9138cb85971afb56afb97cc3342d8bb27a2e5c4e876be4ff1b",
+    "target/raw-distance-lazy-capture-candidate/snapshots.rs": "77f5124b49df699e4112cc8d0efcf8f4d37e559dc3e72e7bb626c80f4f5f7f9c",
+    "target/raw-distance-lazy-capture-candidate/build.py": "364cb1523c9e56d40cc8d92b1d4b11c655e433546b9800a044a1de11d37135a4",
+    "target/raw-distance-lazy-capture-candidate/run.py": "efdc9048527ed06bd040c1bbb9076b6b6953cb9ac560054f4cb24426ce33d037",
+    "target/e6-direct-n2/preparation.json": "8a3fe8b1000030cb3ccdcc65ea3c63b6598ce5857aafb5111637b04095a61c2e",
+    "target/core-fused-cse-census/supplemental-deps.json": "1a08840ef5b9fc30a0fd44e84415bf08bf7281c82e8f2cef2378ba54f9fab75d"
+  },
+  "record_hashes": {
+    "target/raw-distance-lazy-capture-candidate/build-001/build.json": "e713c1d12419a77c0d1779b51d2cfc44bc6b5ad047ad51374159cabd2868599a",
+    "target/raw-distance-lazy-capture-candidate/build-001/runs/receipts.json": "f4dd35a0d21b30416e79c2697ffc3d642f993573d475f8a53ec532ba29114fe4",
+    "target/raw-distance-lazy-capture-candidate/build-001/runs/accounting.json": "431f3fad4df4b17ae663c89b812fdbee9077c71942e4aeac63bfb3492ccd18ad",
+    "target/raw-distance-lazy-capture-candidate/build-001/runs/snapshots.json": "2b281fa36745cafa4fb9c6d1ab72494df143c94aece519629ea518ea732c6f2d"
+  },
+  "output_hashes": {
+    "target/raw-distance-lazy-capture-candidate/build-001/libreceipt_lazy_baseline.rlib": "deb9dd10e1c053147ad33fee17dfa057491b7d81eac413291297af446733234c",
+    "target/raw-distance-lazy-capture-candidate/build-001/libreceipt_lazy_candidate.rlib": "b89619ea48db4d56579ff7b7a145c54938d1334beae0248e2184ff00aa82f640",
+    "target/raw-distance-lazy-capture-candidate/build-001/receipt-tests": "59d792157727f969c9d743c341316357076eae443714b0520f631af1ff949576",
+    "target/raw-distance-lazy-capture-candidate/build-001/snapshots": "8ee1bd80719a572ee396de4745f5499dec38851e9c5590dad04b58e799c54f32"
+  },
+  "log_hashes": {
+    "target/raw-distance-lazy-capture-candidate/build-001/baseline.log": "6cd9e3e205eed2b413a56fa1bd4db5fb3ffb5d63b4f5ec2d78ebdd5d2f3504b2",
+    "target/raw-distance-lazy-capture-candidate/build-001/candidate.log": "f92642be89da53bdb4cfdc932baa0b236b160efdae321095271bffcf6d15106d",
+    "target/raw-distance-lazy-capture-candidate/build-001/unit-tests.log": "1fa513da85beb16e13c1f2e84baf4f5877e8a3af492eed56e24533a23aa3c180",
+    "target/raw-distance-lazy-capture-candidate/build-001/snapshots.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/raw-distance-lazy-capture-candidate/build-001/runs/receipts.log": "469069dd7028ae3cbfa60a8ed614ea671d2635f8aaa88e7772db8648516a980f",
+    "target/raw-distance-lazy-capture-candidate/build-001/runs/accounting.log": "85962a43f05dc062eef13c3c58ec11bd2f07c65ea1818d7a646e9e63804254fa",
+    "target/raw-distance-lazy-capture-candidate/build-001/runs/snapshots.log": "cafe928b02ddbe11fd3424cac6e381d1e13d9ad7dfc83c8223edd1e60eaac4cd"
+  },
+  "build_result": {
+    "passed_steps": ["baseline", "candidate", "unit-tests", "snapshots"],
+    "all_return_codes": 0,
+    "any_timeout": false,
+    "overall_limit_seconds": 180,
+    "recorded_elapsed_seconds": 25.83920851093717,
+    "all_step_commands_explicitly_use_opt_level_zero": true,
+    "compiler_record": "rustc 1.99.0 b940084d7eb6a299eb4bfeb8e34901bc051e7ac4, x86_64-unknown-linux-gnu, LLVM 21.1.8",
+    "logs": "Both libraries and the compact test build emit six retained dead-code warnings each; the snapshot build log is empty. No build error appears and all four return codes are zero."
+  },
+  "runtime_results": {
+    "receipts": {"passed": 20, "failed": 0, "ignored": 0, "retained_receipts": 12, "new_lazy_tests": 8, "returncode": 0, "timeout": false, "limit_seconds": 120},
+    "accounting": {"passed": 6, "failed": 0, "ignored": 0, "returncode": 0, "timeout": false, "limit_seconds": 120},
+    "snapshots": {"passed_pairs": 14, "failed": 0, "returncode": 0, "timeout": false, "limit_seconds": 120},
+    "exact_test_name_membership_verified": true,
+    "both_child_error_harvest_fixtures_passed": true,
+    "all_groups_within_recorded_limits": true
+  },
+  "snapshot_checks": {
+    "exact_workloads": ["bubble-ordinary", "triangle-ordinary", "bubble-zero-real", "bubble-zero-complex", "bubble-mixed-dual", "ggh-zero-real", "ggh-mixed-complex"],
+    "rows_per_workload": [1, 32],
+    "all_fourteen_pairs_distinct_and_present": true,
+    "snapshot_log_entries": 14,
+    "actual_calls_per_implementation_per_case": 7,
+    "comparison_sequence": "One cold preflight comparison, five repeated calls per implementation against the expected Snapshot, and one final call per implementation against the expected Snapshot.",
+    "equal_fields": ["input_bits", "output_bits", "rows/components/ordered_Dual_shape/accuracy/prototype_precision_context", "statuses", "basis", "result_metadata", "component_count", "analytic_used", "fallback_used", "public_execution_statistics", "diagnostics", "four_private_proof_counters"],
+    "both_variants_assert_inactive_N5_certificate_counters": true,
+    "private_counter_order": ["certificate_rows", "certificate_passes", "reused_pairs", "covered_rows"],
+    "proof_work_by_case": [
+      {"workload": "bubble-ordinary", "rows": 1, "work": [0, 0, 0, 0]},
+      {"workload": "bubble-ordinary", "rows": 32, "work": [0, 0, 0, 0]},
+      {"workload": "triangle-ordinary", "rows": 1, "work": [0, 0, 0, 0]},
+      {"workload": "triangle-ordinary", "rows": 32, "work": [0, 0, 0, 0]},
+      {"workload": "bubble-zero-real", "rows": 1, "work": [1, 1, 1, 1]},
+      {"workload": "bubble-zero-real", "rows": 32, "work": [32, 1, 32, 32]},
+      {"workload": "bubble-zero-complex", "rows": 1, "work": [1, 1, 1, 1]},
+      {"workload": "bubble-zero-complex", "rows": 32, "work": [32, 1, 32, 32]},
+      {"workload": "bubble-mixed-dual", "rows": 1, "work": [1, 1, 2, 1]},
+      {"workload": "bubble-mixed-dual", "rows": 32, "work": [32, 1, 48, 24]},
+      {"workload": "ggh-zero-real", "rows": 1, "work": [1, 1, 2, 1]},
+      {"workload": "ggh-zero-real", "rows": 32, "work": [32, 1, 64, 32]},
+      {"workload": "ggh-mixed-complex", "rows": 1, "work": [1, 1, 2, 1]},
+      {"workload": "ggh-mixed-complex", "rows": 32, "work": [32, 1, 64, 32]}
+    ]
+  },
+  "limitations": [
+    "PARITY_PASS fixed_iterations values are inherited unused labels. workload.iterations() is printed only; these values are not executed loop counts or performance samples.",
+    "Recorded build and group elapsed durations are administrative bound evidence, not benchmarks. This review collected no new timings.",
+    "Correctness uses opt-level=0 and the recorded native dependency closure, distinct from the prior opt3 performance cohort. An optimized rebuild and separately authorized performance protocol remain unperformed here.",
+    "The supplemental thiserror archive has recorded metadata/proc-macro events, cached-source/fingerprint and native ELF evidence, but no completed rlib Cargo event; the build provenance retains that limitation.",
+    "The scope is the named focused tests and fourteen shared-dependency f64/flattened-Dual cases. No independent reference computation or wider numerical-domain claim follows.",
+    "The earlier final-cohort ordinary-control performance regressions and original-IREGI acceptance requirement remain open."
+  ],
+  "remaining_review_blockers": []
+}

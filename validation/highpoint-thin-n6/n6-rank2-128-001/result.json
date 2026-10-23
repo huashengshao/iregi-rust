@@ -1,0 +1,292 @@
+{
+  "algorithm_used": "PassarinoVeltman",
+  "alias_count": 45,
+  "analytic_used": [
+    true
+  ],
+  "basis": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      2,
+      0,
+      0,
+      0
+    ],
+    [
+      1,
+      1,
+      0,
+      0
+    ],
+    [
+      1,
+      0,
+      1,
+      0
+    ],
+    [
+      1,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      2,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      2
+    ]
+  ],
+  "components": 1,
+  "diagnostic_plan_seconds": 33.700713673,
+  "diagnostic_reduction_seconds": 3.063280786,
+  "diagnostic_workspace_seconds": 2.776809469,
+  "diagnostics": [
+    [
+      "N5 subset 3: exact full-Taylor planar identity with regular constant-one chart omitting coordinate row 3",
+      "N5 subset 3: planar fallback returned Unstable(\"reduction has nonfinite coefficients at this kinematic point\"); original failure retained",
+      "N5 subset 4: exact full-Taylor planar identity with regular constant-one chart omitting coordinate row 0",
+      "N5 subset 4: planar fallback returned Unstable(\"reduction has nonfinite coefficients at this kinematic point\"); original failure retained",
+      "N5 subset 3: Unstable(\"reduction has nonfinite coefficients at this kinematic point\")"
+    ]
+  ],
+  "elapsed_seconds": 39.542452191,
+  "execution": {
+    "child_batch_calls": 1,
+    "child_execution": "ExecutionStats { input_rows: 6, argument_rows: 8, master_family_batches: 5, master_rows: 60, pentagon_box_rows: 0, reduction_rows: 8, fallback_rows: 2, fallback_successes: 0, analytic_rows: 2 }",
+    "packed_child_rows": 6,
+    "packed_parent_rows": 0,
+    "parent_batch_calls": 0,
+    "parent_execution": "ExecutionStats { input_rows: 0, argument_rows: 0, master_family_batches: 0, master_rows: 0, pentagon_box_rows: 0, reduction_rows: 0, fallback_rows: 0, fallback_successes: 0, analytic_rows: 0 }",
+    "parent_input_rows": 1
+  },
+  "fallback_used": [
+    true
+  ],
+  "fixture": "/shared/external/iregi/iregi-rust/validation/public-highpoint/fixture-conditioned_masses.json",
+  "input_exact_rational": [
+    [
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "1/2",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0"
+      ],
+      [
+        "1",
+        "0"
+      ],
+      [
+        "2",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ],
+      [
+        "4",
+        "0"
+      ],
+      [
+        "2",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ]
+    ]
+  ],
+  "interface": "Private ThinSixReductionPlan::new; ThinSixWorkspace<Float>::new; ThinSixWorkspace::reduce_batch",
+  "lane_statuses": [
+    "Unstable(\"N5 subset 3: Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\")"
+  ],
+  "lanes": [
+    {
+      "moments": null,
+      "row": 0,
+      "status": "Unstable(\"N5 subset 3: Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\")"
+    }
+  ],
+  "limitations": "Private thin N6 coordinate-input prototype with actual-route primal envelopes; no numerical specialization, no reference scalars, no disabled guards. Working precision is not a claim of achieved requested precision. Timings are diagnostic, not performance gates.",
+  "preparation_notes": [
+    "Private thin N6 packed-child prototype; native/raw; no quadrature import support"
+  ],
+  "requested_bits": 53,
+  "rows": 1,
+  "schema_version": 1,
+  "settings": {
+    "algorithm": "PassarinoVeltman",
+    "convention": "IregiNative",
+    "dimension_shift": 0,
+    "input_policy": "Preserve",
+    "invariants": "FromShifts",
+    "powers": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "propagators": 6,
+    "rank": 2,
+    "tensor_weights": "Components"
+  },
+  "status": "lanes_rejected",
+  "working_bits": 128
+}
