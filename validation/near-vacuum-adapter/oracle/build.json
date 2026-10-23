@@ -1,0 +1,39 @@
+{
+  "status": "compiled",
+  "scope": "Target-only independent exact oracle; no production or oneloop master linked; retained baseline Symbolica dependencies",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+  "build_command": [
+    "taskset",
+    "-c",
+    "5",
+    "rustc",
+    "--crate-name",
+    "five_pinch_oracle",
+    "--edition=2024",
+    "target/near-vacuum-adapter/oracle/five_pinch_oracle.rs",
+    "-L",
+    "dependency=target/d0-node-probe/deps",
+    "-L",
+    "dependency=target/cargo-build/debug/deps",
+    "-L",
+    "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "serde_json=target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+    "-o",
+    "target/near-vacuum-adapter/oracle/five_pinch_oracle"
+  ],
+  "build_environment": {
+    "CARGO_CRATE_NAME": "five_pinch_oracle"
+  },
+  "sha256": {
+    "target/near-vacuum-adapter/oracle/five_pinch_oracle.rs": "c73dbec8647da6046fe8997c6373980d0ee31b487675e5bbc0b4c6af00bf46d2",
+    "target/near-vacuum-adapter/oracle/README.md": "fc4dd43cae0adfdb475afdb0affbad25a2c9a4aec28ba1b56a157bbfa7c597d4",
+    "target/near-vacuum-adapter/oracle/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/near-vacuum-adapter/oracle/five_pinch_oracle": "74bc5715e922ed39e6f0c38f0e4c9396da0617d63be6a6007bfa3bbfab733de5",
+    "target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc",
+    "target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4"
+  },
+  "parent_dependency_provenance": "target/d0-node-probe/source-inputs.json"
+}

@@ -1,0 +1,188 @@
+--- profiled.rs
++++ candidate.rs
+@@ -11,7 +11,7 @@
+     domains::{
+         atom::AtomField,
+         dual::{DualNumberStructure, HyperDual},
+-        float::{Complex, ComplexBall, DoubleFloat, Float, SingleFloat},
++        float::{Complex, ComplexBall, DoubleFloat, Float, RealBall, SingleFloat},
+         rational::{Q, Rational},
+     },
+     evaluate::{BatchExpressionEvaluator, Dualizer, ExpressionEvaluator},
+@@ -239,6 +239,15 @@
+             input: Vec::new(),
+             output: Vec::new(),
+             trace: CertificateTrace::default(),
++            real_evaluators: Vec::new(),
++            real_input: Vec::new(),
++            real_output: Vec::new(),
++            complex_output: Vec::new(),
++            allow_real: true,
++            // Certified plans are built only from Q polynomials. No callback or
++            // shared function may hide coefficients from this root-IR proof.
++            real_coefficients: self.exact.count_operations().function_calls == 0
++                && self.exact.get_constants().iter().all(|value| value.im.is_zero()),
+         }
+     }
+ }
+@@ -284,6 +293,12 @@
+     input: Vec<ComplexBall>,
+     output: Vec<ComplexBall>,
+     pub(crate) trace: CertificateTrace,
++    real_evaluators: Vec<(u32, BatchExpressionEvaluator<RealBall>)>,
++    real_input: Vec<RealBall>,
++    real_output: Vec<RealBall>,
++    complex_output: Vec<ComplexBall>,
++    allow_real: bool,
++    real_coefficients: bool,
+ }
+ 
+ impl InvariantCertificateWorkspace {
+@@ -391,55 +406,92 @@
+         let mut bits = self.initial_bits;
+         let radius = Rational::from(0);
+         loop {
+-            let mapped_started = std::time::Instant::now();
+-            let index =
+-                if let Some(index) = self.evaluators.iter().position(|entry| entry.0 == bits) {
+-                    index
++            let dispatch_started = std::time::Instant::now();
++            let width = self.exact.get_output_len();
++            let output_len = width.checked_mul(active.len()).ok_or_else(size_error)?;
++            let zero_real = RealBall::from_rational_ball(&radius, &radius, bits);
++            let zero_complex = ComplexBall::new(zero_real.clone(), zero_real.clone());
++            self.output.resize(output_len, zero_complex.clone());
++            let real_lane = |lane: usize| self.allow_real && self.real_coefficients
++                && input[lane * input_width..(lane + 1) * input_width]
++                    .iter().all(|value| value.im.is_zero());
++            let grouped: [Vec<(usize, usize)>; 2] = [
++                active.iter().enumerate().filter(|(_, lane)| real_lane(**lane))
++                    .map(|(slot, &lane)| (slot, lane)).collect(),
++                active.iter().enumerate().filter(|(_, lane)| !real_lane(**lane))
++                    .map(|(slot, &lane)| (slot, lane)).collect(),
++            ];
++            self.trace.packing_ns += dispatch_started.elapsed().as_nanos();
++            for (group, lanes) in grouped.iter().enumerate() {
++                if lanes.is_empty() { continue; }
++                let mapped_started = std::time::Instant::now();
++                if group == 0 {
++                    let index = if let Some(index) = self.real_evaluators.iter().position(|entry| entry.0 == bits) {
++                        index
++                    } else {
++                        let evaluator = self.exact.clone().map_coeff_with_prec(&|value| {
++                            assert!(value.im.is_zero(), "real certificate coefficient proof lost");
++                            RealBall::from_rational_ball(&value.re, &radius, bits)
++                        }, bits).into_batch_evaluator();
++                        self.real_evaluators.push((bits, evaluator));
++                        self.real_evaluators.len() - 1
++                    };
++                    self.trace.mapping_ns += mapped_started.elapsed().as_nanos();
++                    let packing_started = std::time::Instant::now();
++                    self.real_input.clear();
++                    for &(_, lane) in lanes {
++                        self.real_input.extend(input[lane * input_width..(lane + 1) * input_width]
++                            .iter().map(|value| RealBall::from_rational_ball(&value.re, &radius, bits)));
++                    }
++                    self.real_output.resize(width * lanes.len(), zero_real.clone());
++                    self.trace.packing_ns += packing_started.elapsed().as_nanos();
++                    let evaluation_started = std::time::Instant::now();
++                    self.real_evaluators[index].1.evaluate_batch(&self.real_input, &mut self.real_output, lanes.len())
++                        .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
++                    self.trace.evaluation_ns += evaluation_started.elapsed().as_nanos();
++                    let scatter_started = std::time::Instant::now();
++                    for (&(slot, _), point) in lanes.iter().zip(self.real_output.chunks_exact(width)) {
++                        for (destination, value) in self.output[slot * width..(slot + 1) * width].iter_mut().zip(point) {
++                            *destination = ComplexBall::new(value.clone(), zero_real.clone());
++                        }
++                    }
++                    self.trace.packing_ns += scatter_started.elapsed().as_nanos();
++                    self.trace.real_batch_calls += 1;
++                    self.trace.real_rows += lanes.len();
+                 } else {
+-                    let evaluator = self
+-                        .exact
+-                        .clone()
+-                        .map_coeff_with_prec(
+-                            &|value| ComplexBall::from_rational_ball(value, &radius, bits),
+-                            bits,
+-                        )
+-                        .into_batch_evaluator();
+-                    self.evaluators.push((bits, evaluator));
+-                    self.evaluators.len() - 1
+-                };
+-            self.trace.mapping_ns += mapped_started.elapsed().as_nanos();
+-            let packing_started = std::time::Instant::now();
+-            let evaluator = &mut self.evaluators[index].1;
+-            let width = evaluator.get_output_len();
+-            let output_len = width.checked_mul(active.len()).ok_or_else(size_error)?;
+-            self.input.clear();
+-            for &lane in &active {
+-                self.input.extend(
+-                    input[lane * input_width..(lane + 1) * input_width]
+-                        .iter()
+-                        .map(|value| ComplexBall::from_rational_ball(value, &radius, bits)),
+-                );
+-            }
+-            let zero = ComplexBall::from_rational_ball(
+-                &Complex::new(Rational::from(0), Rational::from(0)),
+-                &radius,
+-                bits,
+-            );
+-            self.output.resize(output_len, zero);
+-            self.trace.packing_ns += packing_started.elapsed().as_nanos();
+-            let evaluation_started = std::time::Instant::now();
+-            evaluator
+-                .evaluate_batch(&self.input, &mut self.output, active.len())
+-                .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
+-            self.trace.evaluation_ns += evaluation_started.elapsed().as_nanos();
+-            self.trace.complex_batch_calls += 1;
+-            self.trace.complex_rows += active.len();
++                    let index = if let Some(index) = self.evaluators.iter().position(|entry| entry.0 == bits) {
++                        index
++                    } else {
++                        let evaluator = self.exact.clone().map_coeff_with_prec(
++                            &|value| ComplexBall::from_rational_ball(value, &radius, bits), bits).into_batch_evaluator();
++                        self.evaluators.push((bits, evaluator));
++                        self.evaluators.len() - 1
++                    };
++                    self.trace.mapping_ns += mapped_started.elapsed().as_nanos();
++                    let packing_started = std::time::Instant::now();
++                    self.input.clear();
++                    for &(_, lane) in lanes {
++                        self.input.extend(input[lane * input_width..(lane + 1) * input_width]
++                            .iter().map(|value| ComplexBall::from_rational_ball(value, &radius, bits)));
++                    }
++                    self.complex_output.resize(width * lanes.len(), zero_complex.clone());
++                    self.trace.packing_ns += packing_started.elapsed().as_nanos();
++                    let evaluation_started = std::time::Instant::now();
++                    self.evaluators[index].1.evaluate_batch(&self.input, &mut self.complex_output, lanes.len())
++                        .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
++                    self.trace.evaluation_ns += evaluation_started.elapsed().as_nanos();
++                    let scatter_started = std::time::Instant::now();
++                    for (&(slot, _), point) in lanes.iter().zip(self.complex_output.chunks_exact(width)) {
++                        self.output[slot * width..(slot + 1) * width].clone_from_slice(point);
++                    }
++                    self.trace.packing_ns += scatter_started.elapsed().as_nanos();
++                    self.trace.complex_batch_calls += 1;
++                    self.trace.complex_rows += lanes.len();
++                }
++                self.evaluated_rows = self.evaluated_rows.checked_add(lanes.len()).ok_or_else(size_error)?;
++            }
++            self.passes += 1;
+             let inspection_started = std::time::Instant::now();
+-            self.evaluated_rows = self
+-                .evaluated_rows
+-                .checked_add(active.len())
+-                .ok_or_else(size_error)?;
+-            self.passes += 1;
+             let mut unresolved = Vec::new();
+             for (&lane, point) in active.iter().zip(self.output.chunks_exact(width)) {
+                 result[lane] = inspect(
+@@ -837,3 +889,7 @@
+ impl InvariantCertificatePlan {
+  pub(crate) fn probe_operation_counts(&self)->symbolica::evaluate::OperationCount { self.exact.count_operations() }
+ }
++
++impl InvariantCertificateWorkspace {
++ pub(crate) fn probe_allow_real(&mut self, enabled: bool) { self.allow_real = enabled; }
++}

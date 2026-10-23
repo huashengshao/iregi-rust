@@ -1,0 +1,57 @@
+{
+  "status": "passed",
+  "checked_tests": 26,
+  "records": [
+    {
+      "command": [
+        "taskset",
+        "-c",
+        "15",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/public-highpoint",
+        "-p",
+        "test_compare_use_dedup_full.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "checked_tests": 16,
+      "elapsed_seconds": 2.3931156389880925,
+      "log_path": "validation/public-highpoint/use-dedup-full-comparator-16-tests.log",
+      "log_sha256": "29472e388620090676e33153b0f12da3cb8f2dfcdecf68a4fd9a01d43dd44e8d"
+    },
+    {
+      "command": [
+        "taskset",
+        "-c",
+        "15",
+        "python3",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/public-highpoint",
+        "-p",
+        "test_compare_public.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "checked_tests": 10,
+      "elapsed_seconds": 0.6105209490051493,
+      "log_path": "validation/public-highpoint/use-dedup-full-comparator-10-tests.log",
+      "log_sha256": "8c8b20801b24ebc406a14459a3c37b7abbcfb7461de17c20c35d19ce05845d18"
+    }
+  ],
+  "source_hashes": {
+    "validation/public-highpoint/compare_use_dedup_full.py": "c2f225bc5eb40f52780bd0f64f73963dc66a89e3a080585600be6c01e4e64d62",
+    "validation/public-highpoint/test_compare_use_dedup_full.py": "9a1399d4aeccb5b1f81d197c3ff835f55bd835963c85d9816d7450d7bb1cf6ce",
+    "validation/public-highpoint/compare_public.py": "bd7139b6f846b69706a89c6c72e426605aebd5fa4ffbb75dcf1bcfb83c04da9d",
+    "validation/public-highpoint/test_compare_public.py": "cabad229448584bfeef4f263a5ba5dd3d6f169f3964b623f6785156f942bd6c9"
+  },
+  "scope": "Fail-closed comparator regression qualification only; no real public numerical arrays were compared."
+}

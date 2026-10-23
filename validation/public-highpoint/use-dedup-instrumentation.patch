@@ -1,0 +1,377 @@
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/lib.rs /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup2/source/crates/iregi-rust/src/lib.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/lib.rs	2026-10-23 12:04:55.842282523 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup2/source/crates/iregi-rust/src/lib.rs	2026-10-23 17:00:58.141272917 +0000
+@@ -31,3 +31,5 @@
+     RescueTrigger,
+ };
+ pub use types::*;
++
++pub use stability::diagnostic_alias_use_cases;
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/stability.rs /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup2/source/crates/iregi-rust/src/stability.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/stability.rs	2026-10-23 15:47:45.377529814 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup2/source/crates/iregi-rust/src/stability.rs	2026-10-23 17:00:58.141272917 +0000
+@@ -131,6 +131,20 @@
+             collect_alias_uses(expression.as_view(), &always, &definitions, &mut uses);
+         }
+         eprintln!("HIGHPOINT_PHASE root alias uses END elapsed={:?} uses={}", phase_started.elapsed(), uses.len());
++        let verify_alias_uses = std::env::var_os("IREGI_ALIAS_USE_VERIFY").is_some();
++        let mut reference_monitor = monitor.clone();
++        let mut reference_uses = HashMap::new();
++        let mut reference_indices = HashMap::new();
++        let mut reference_reachable = HashMap::new();
++        if verify_alias_uses {
++            for expression in plan.moments.iter().flatten() {
++                collect_alias_uses_legacy(expression.as_view(), &always, &definitions, &mut reference_uses);
++            }
++            assert_eq!(normalized_use_map(&uses), normalized_use_map(&reference_uses), "initial normalized alias uses differ");
++        }
++        let mut legacy_collect_seconds = 0.0f64;
++        let mut candidate_collect_seconds = 0.0f64;
++        let mut verified_aliases = 0usize;
+         let mut reachable = HashMap::new();
+         eprintln!("HIGHPOINT_PHASE reverse alias uses START");
+         let phase_started = std::time::Instant::now();
+@@ -138,13 +152,42 @@
+             if phase_index % 4096 == 0 {
+                 eprintln!("HIGHPOINT_PHASE reverse alias uses PROGRESS index={} elapsed={:?} uses={} reachable={}", phase_index, phase_started.elapsed(), uses.len(), reachable.len());
+             }
+-            if let Some(paths) = uses.remove(alias) {
+-                let active = monitor.intern_predicate(union_paths(paths), &mut predicate_indices);
++            let candidate_paths = uses.remove(alias);
++            let reference_paths = if verify_alias_uses { reference_uses.remove(alias) } else { None };
++            if verify_alias_uses {
++                assert_eq!(candidate_paths.is_some(), reference_paths.is_some(), "reachable alias presence differs at {phase_index}");
++            }
++            if let Some(paths) = candidate_paths {
++                let union = union_paths(paths);
++                let active = monitor.intern_predicate(union.clone(), &mut predicate_indices);
++                if verify_alias_uses {
++                    let reference_union = union_paths(reference_paths.unwrap());
++                    assert_eq!(union, reference_union, "complete normalized lazy predicate differs at {phase_index}");
++                    let reference_active = reference_monitor.intern_predicate(reference_union, &mut reference_indices);
++                    assert_eq!(active, reference_active, "root predicate identity differs at {phase_index}");
++                    let started = std::time::Instant::now();
++                    collect_alias_uses_legacy(body.as_view(), &reference_active, &definitions, &mut reference_uses);
++                    legacy_collect_seconds += started.elapsed().as_secs_f64();
++                    reference_reachable.insert(alias.clone(), reference_active);
++                    verified_aliases += 1;
++                }
++                let started = std::time::Instant::now();
+                 collect_alias_uses(body.as_view(), &active, &definitions, &mut uses);
++                candidate_collect_seconds += started.elapsed().as_secs_f64();
+                 reachable.insert(alias.clone(), active);
+             }
+         }
+         eprintln!("HIGHPOINT_PHASE reverse alias uses END elapsed={:?} reachable={}", phase_started.elapsed(), reachable.len());
++        if verify_alias_uses {
++            assert_eq!(reachable, reference_reachable, "full reverse reachable maps differ");
++            assert_eq!(monitor.predicate_aliases, reference_monitor.predicate_aliases, "complete predicate alias definitions differ");
++            assert_eq!(predicate_indices, reference_indices, "predicate cache identities differ");
++            assert_eq!(normalized_use_map(&uses), normalized_use_map(&reference_uses), "remaining normalized use maps differ");
++        }
++        eprintln!("HIGHPOINT_USE_DEDUP reverse_verified={} reachable={} predicate_aliases={} legacy_collect_seconds={} candidate_collect_seconds={}", verified_aliases, reachable.len(), monitor.predicate_aliases.len(), legacy_collect_seconds, candidate_collect_seconds);
++        if std::env::var_os("IREGI_DIAGNOSTIC_STOP_AFTER_REVERSE").is_some() {
++            return Err(ReductionError::Preparation("diagnostic stop after alias-use reverse pass".into()));
++        }
+         eprintln!("HIGHPOINT_PHASE local checks START");
+         let phase_started = std::time::Instant::now();
+         let mut denominators = BTreeSet::new();
+@@ -1377,12 +1420,40 @@
+     }
+ }
+ 
++fn record_alias_use(alias: Atom, active: &Atom, uses: &mut HashMap<Atom, BTreeSet<Atom>>) {
++    let paths = uses.entry(alias).or_default();
++    let always = Atom::num(1);
++    if paths.contains(&always) { return; }
++    if active == &always { paths.clear(); }
++    paths.insert(active.clone());
++}
++
+ fn collect_alias_uses(
+     value: AtomView<'_>,
+     active: &Atom,
+     definitions: &HashMap<Atom, Atom>,
+     uses: &mut HashMap<Atom, BTreeSet<Atom>>,
+ ) {
++    match value {
++        AtomView::Num(_) => return,
++        AtomView::Var(_) => {
++            let alias = value.to_owned();
++            if definitions.contains_key(&alias) { record_alias_use(alias, active, uses); }
++            return;
++        }
++        _ => {}
++    }
++    if !value.contains_symbol(Symbol::IF) {
++        // This Symbolica traversal deliberately ignores Num coefficient internals,
++        // matching the prior walker; function names are not variable references.
++        for indeterminate in value.get_all_indeterminates(true) {
++            if matches!(indeterminate, AtomView::Var(_)) {
++                let alias = indeterminate.to_owned();
++                if definitions.contains_key(&alias) { record_alias_use(alias, active, uses); }
++            }
++        }
++        return;
++    }
+     if let Some((condition, yes, no)) = if_parts(value) {
+         collect_alias_uses(condition, active, definitions, uses);
+         collect_alias_uses(
+@@ -1403,7 +1474,7 @@
+         AtomView::Var(_) => {
+             let alias = value.to_owned();
+             if definitions.contains_key(&alias) {
+-                uses.entry(alias).or_default().insert(active.clone());
++                record_alias_use(alias, active, uses);
+             }
+         }
+         AtomView::Pow(power) => {
+@@ -1430,6 +1501,60 @@
+     }
+ }
+ 
++
++fn collect_alias_uses_legacy(
++    value: AtomView<'_>,
++    active: &Atom,
++    definitions: &HashMap<Atom, Atom>,
++    uses: &mut HashMap<Atom, BTreeSet<Atom>>,
++) {
++    if let Some((condition, yes, no)) = if_parts(value) {
++        collect_alias_uses_legacy(condition, active, definitions, uses);
++        collect_alias_uses_legacy(
++            yes,
++            &branch_path(active, condition, true),
++            definitions,
++            uses,
++        );
++        collect_alias_uses_legacy(
++            no,
++            &branch_path(active, condition, false),
++            definitions,
++            uses,
++        );
++        return;
++    }
++    match value {
++        AtomView::Var(_) => {
++            let alias = value.to_owned();
++            if definitions.contains_key(&alias) {
++                uses.entry(alias).or_default().insert(active.clone());
++            }
++        }
++        AtomView::Pow(power) => {
++            for term in power {
++                collect_alias_uses_legacy(term, active, definitions, uses);
++            }
++        }
++        AtomView::Add(sum) => {
++            for term in sum {
++                collect_alias_uses_legacy(term, active, definitions, uses);
++            }
++        }
++        AtomView::Mul(product) => {
++            for term in product {
++                collect_alias_uses_legacy(term, active, definitions, uses);
++            }
++        }
++        AtomView::Fun(function) => {
++            for term in function {
++                collect_alias_uses_legacy(term, active, definitions, uses);
++            }
++        }
++        _ => {}
++    }
++}
++
+ fn collect_denominators(
+     value: AtomView<'_>,
+     active: &Atom,
+@@ -2306,3 +2431,187 @@
+         }
+     }
+ }
++
++fn normalized_use_map(uses: &HashMap<Atom, BTreeSet<Atom>>) -> HashMap<Atom, Atom> {
++    uses.iter().map(|(alias, paths)| (alias.clone(), union_paths(paths.clone()))).collect()
++}
++pub fn diagnostic_alias_use_cases() -> Vec<(String, String)> {
++    let sx=symbolica::symbol!("iregi_use_diagnostic::x");
++    let sy=symbolica::symbol!("iregi_use_diagnostic::y");
++    let sz=symbolica::symbol!("iregi_use_diagnostic::z");
++    let x=Atom::var(sx);let y=Atom::var(sy);let z=Atom::var(sz);
++    let definitions=HashMap::from([(x.clone(), Atom::num(0)),(y.clone(), Atom::num(0)),(z.clone(),Atom::num(0))]);
++    let polynomial_number=(&x+Atom::num(1)).set_coefficient_ring(sx);
++    assert!(matches!(polynomial_number.as_view(), AtomView::Num(_)));
++    assert!(polynomial_number.get_all_symbols(false).contains(&sx));
++    let conditional=Symbol::IF.call((&x,&y,&z));
++    let cases=vec![
++        ("constant", Atom::num(7)),
++        ("variable", x.clone()),
++        ("repeated_variable", &x*&y+&x*&z),
++        ("power_exponent", x.pow(&y)),
++        ("function_name_is_not_variable", sx.call((&y,))),
++        ("function_arguments", Symbol::EXP.call((&x+&y,))),
++        ("polynomial_num_ignored", polynomial_number.clone()),
++        ("polynomial_num_function_argument", sy.call((&polynomial_number,&z))),
++        ("conditional", conditional.clone()),
++        ("nested_conditional", Symbol::IF.call((&x,&conditional,&y))),
++        ("conditional_in_product", &conditional*(&x+&y)),
++        ("conditional_in_power", conditional.pow(-1)),
++        ("condition_with_alias", Symbol::IF.call((&x+&y,&z,Atom::num(0)))),
++        ("inactive_singular_branch", Symbol::IF.call((&x,&y,&z.pow(-1)))),
++    ];
++    let mut results=Vec::new();
++    for (name, expression) in cases {
++        let mut previous=HashMap::new();let mut candidate=HashMap::new();
++        collect_alias_uses_legacy(expression.as_view(), &Atom::num(1), &definitions, &mut previous);
++        collect_alias_uses(expression.as_view(), &Atom::num(1), &definitions, &mut candidate);
++        let expected=normalized_use_map(&previous);let actual=normalized_use_map(&candidate);
++        assert_eq!(expected,actual,"normalized complete predicate maps differ: {name}");
++        if name=="polynomial_num_ignored" { assert!(actual.is_empty()); }
++        if name=="function_name_is_not_variable" { assert!(!actual.contains_key(&x));assert_eq!(actual.len(),1); }
++        if name=="polynomial_num_function_argument" { assert!(!actual.contains_key(&x));assert!(!actual.contains_key(&y));assert_eq!(actual.len(),1); }
++        if name=="power_exponent" { assert!(actual.contains_key(&x)&&actual.contains_key(&y)); }
++        let mut rows=actual.into_iter().map(|(a,p)|format!("{a}={p}")).collect::<Vec<_>>();rows.sort();
++        results.push((name.into(),rows.join("\n")));
++    }
++    for order in [false,true] {
++        let mut previous=HashMap::new();let mut candidate=HashMap::new();
++        let branch=branch_path(&Atom::num(1),y.as_view(),true);
++        let actives=if order {vec![Atom::num(1),branch]}else{vec![branch,Atom::num(1)]};
++        for active in actives {
++            collect_alias_uses_legacy(x.as_view(),&active,&definitions,&mut previous);
++            collect_alias_uses(x.as_view(),&active,&definitions,&mut candidate);
++        }
++        assert_eq!(normalized_use_map(&previous),normalized_use_map(&candidate));
++        assert_eq!(candidate.get(&x),Some(&BTreeSet::from([Atom::num(1)])));
++        results.push((format!("unconditional_order_{order}"),"exact normalized paths; one retained literal1".into()));
++    }
++    let mut previous=HashMap::new();let mut candidate=HashMap::new();
++    collect_alias_uses_legacy(x.as_view(),&Atom::num(0),&definitions,&mut previous);
++    collect_alias_uses(x.as_view(),&Atom::num(0),&definitions,&mut candidate);
++    assert_eq!(normalized_use_map(&previous),normalized_use_map(&candidate));
++    assert_eq!(normalized_use_map(&candidate).get(&x),Some(&Atom::num(0)));
++    results.push(("inactive_zero_path_retained".into(),"exact zero path and alias presence retained".into()));
++    diagnostic_use_semantics::conditional_alias_monitors_preserve_inactive_poles_and_union_paths();
++    results.push(("numeric_lazy_inactive_poles".into(),"original three-lane lazy/unstable status assertions passed".into()));
++    diagnostic_use_semantics::inactive_master_requests_are_skipped_per_sample();
++    results.push(("numeric_master_activation".into(),"original two-lane values and one active scalar-master request passed".into()));
++    diagnostic_use_semantics::master_dependent_activation_is_conservative_and_not_circular();
++    results.push(("master_dependent_activation_closure".into(),"original conservative activation and master-free predicate assertions passed".into()));
++    results
++}
++
++mod diagnostic_use_semantics {
++    use super::*;
++    fn complex(x: f64) -> Complex<f64> { Complex::new(x, 0.0) }
++    pub(super) fn conditional_alias_monitors_preserve_inactive_poles_and_union_paths() {
++        use crate::{Algorithm, KinematicsBatch, LaneStatus, ReductionSettings, Workspace};
++
++        let mut settings = ReductionSettings::new(1, 0);
++        settings.algorithm = Algorithm::PassarinoVeltman;
++        let mut plan = ReductionPlan::new(settings).unwrap();
++        let x = plan.parameters[0].clone();
++        let y = plan.parameters[1].clone();
++        let node = Atom::var(symbolica::symbol!("iregi::stability_test_singular_alias"));
++        plan.aliases.push((node.clone(), Atom::num(1) + x.pow(-1)));
++        plan.moments = vec![[
++            Symbol::IF.call((&x, &node, Atom::num(2))),
++            Symbol::IF.call((&y, Atom::new(), &node)),
++            Atom::new(),
++            Atom::new(),
++        ]];
++        let mut workspace = Workspace::new(&plan, 0.0).unwrap();
++        let mut values = Vec::new();
++        for (x, y) in [(0.0, 1.0), (1.0, 0.0), (0.0, 0.0)] {
++            values.extend([x, y, 0.0, 0.0, 4.0, 3.0].into_iter().map(complex));
++        }
++        let result = workspace
++            .reduce_batch(&KinematicsBatch {
++                rows: 3,
++                components: 1,
++                values,
++            })
++            .unwrap();
++        assert_eq!(result.statuses[0], LaneStatus::Success);
++        assert_eq!(result.statuses[1], LaneStatus::Success);
++        assert_eq!(result.lane(0).unwrap()[0], complex(2.0));
++        assert_eq!(result.lane(1).unwrap()[0], complex(2.0));
++        assert!(matches!(result.statuses[2], LaneStatus::Unstable(_)));
++    }
++
++    pub(super) fn inactive_master_requests_are_skipped_per_sample() {
++        use crate::{Algorithm, KinematicsBatch, LaneStatus, ReductionSettings, Workspace};
++        let mut settings = ReductionSettings::new(1, 0);
++        settings.algorithm = Algorithm::PassarinoVeltman;
++        let mut plan = ReductionPlan::new(settings).unwrap();
++        let x = &plan.parameters[0];
++        plan.moments = vec![[
++            Symbol::IF.call((x, &plan.leaves[0].slots[0], Atom::new())),
++            Atom::new(),
++            Atom::new(),
++            Atom::new(),
++        ]];
++        let mut workspace = Workspace::new(&plan, 0.0).unwrap();
++        let values = [0.0, 0.0, 0.0, 0.0, 4.0, 3.0, 1.0, 0.0, 0.0, 0.0, 4.0, 3.0]
++            .into_iter()
++            .map(complex)
++            .collect();
++        let result = workspace
++            .reduce_batch(&KinematicsBatch {
++                rows: 2,
++                components: 1,
++                values,
++            })
++            .unwrap();
++        assert_eq!(result.statuses, vec![LaneStatus::Success; 2]);
++        assert_eq!(result.lane(0).unwrap()[0], complex(0.0));
++        assert_eq!(result.lane(1).unwrap()[0], complex(4.0));
++        assert_eq!(workspace.last_execution().master_rows, 1);
++    }
++
++    pub(super) fn master_dependent_activation_is_conservative_and_not_circular() {
++        use crate::{Algorithm, ReductionSettings};
++        let mut settings = ReductionSettings::new(2, 0);
++        settings.algorithm = Algorithm::PassarinoVeltman;
++        let mut plan = ReductionPlan::new(settings).unwrap();
++        let slots = std::array::from_fn(|i| {
++            Atom::var(symbolica::symbol!(format!(
++                "iregi::activation_test_master_slot_{i}"
++            )))
++        });
++        let condition = Atom::var(symbolica::symbol!(
++            "iregi::activation_test_master_condition"
++        ));
++        plan.aliases
++            .push((condition.clone(), &slots[0] + &plan.parameters[0]));
++        plan.moments = vec![[
++            Symbol::IF.call((&condition, &plan.leaves[0].slots[3], Atom::new())),
++            Atom::new(),
++            Atom::new(),
++            Atom::new(),
++        ]];
++        plan.leaves.push(crate::ibp::MasterLeaf {
++            kind: crate::ibp::MasterLeafKind::FourDimensional,
++            active: vec![0],
++            slots,
++        });
++        plan.master_arguments.push(vec![
++            plan.parameters[plan.layout.masses.start].clone(),
++            plan.parameters[plan.layout.scale].pow(2),
++        ]);
++        let monitor = StabilityPlan::prepare(&plan).unwrap();
++        assert_eq!(monitor.master_activations(), [Atom::num(1), Atom::num(1)]);
++        let masters: BTreeSet<_> = plan
++            .leaves
++            .iter()
++            .flat_map(|leaf| leaf.slots.iter().cloned())
++            .collect();
++        for (_, body) in monitor.master_activation_aliases() {
++            assert!(
++                body.get_all_symbols(false)
++                    .into_iter()
++                    .all(|symbol| !masters.contains(&Atom::var(symbol)))
++            );
++        }
++    }}

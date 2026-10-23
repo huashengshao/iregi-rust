@@ -1,0 +1,44 @@
+{
+  "status": "qualified_numerical_comparison_per_family_timing_gates_retained",
+  "revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+  "runner_exit_code": 0,
+  "checked_rows": 8,
+  "max_normalized_error": 2.4583237864622474e-13,
+  "tolerance": 1e-10,
+  "timing_gates": {
+    "regression": 7,
+    "inconclusive-noise": 1
+  },
+  "protocol": {
+    "repeats": 41,
+    "warmup": 5,
+    "target_block_ms": 100.0,
+    "paired_random_order_seed": 271828,
+    "transport_timed": false,
+    "cache_policy": "structural plans/evaluators and allocation capacity reused; numerical results recomputed for every sample; original recurrence cache freed after every sample",
+    "outputs": "all Cartesian components through requested rank, all four separated native Laurent coefficients",
+    "kernel_scope": "public reduce_batch including result allocation/disposal; original tensor call plus mass-reference setup/status checking/cache disposal",
+    "stage_scope": "separate instrumented pass: argument evaluator, complete scalar-master calls, recurrence evaluator/stability checks; residual is validation/packing/routing",
+    "preparation_scope": "first Rust plan+workspace compile only; not a repeated timing distribution",
+    "numerator": "not applicable to tensor-array kernel; graph/numerator end-to-end benchmark reported separately"
+  },
+  "cpu": 254,
+  "quiet_window": "All other project builds and numerical tasks reported idle and were held through the run. Other host work was uncontrolled. CPU0 was fully occupied by unrelated work; CPU254 was chosen from a read-only load survey. No system settings or unrelated tasks were modified.",
+  "source_files_rehashed": 414,
+  "source_and_binary_and_harness_unchanged": true,
+  "statistics": "All eight raw41-pair ratio distributions and their99% bootstrap intervals independently recomputed from retained samples. Seven regressions and one inconclusive-noise row; no performance parity.",
+  "historical_comparison": "The80949 session used CPU0 and21blocks of30ms. Only each session paired originalIREGI reference supports a timing conclusion; no causal optimization speedup across sessions is claimed.",
+  "license": "Authorized license capability used; key not retained.",
+  "artifacts": {
+    "validation/benchmark/baseline-6b24c03-licensed/6b24c03-kernel-cpu-selection-full.json": "159a6d4df1d5cd528fdb959c0d082598a45ddf248f339a4e89129705365b609f",
+    "validation/benchmark/baseline-6b24c03-licensed/6b24c03-kernel-cpu-selection.json": "bbdb085cdca755c67b9332ebd14a7c4770a1d529aa8d80d6ce00d8bfcb3d94b7",
+    "validation/benchmark/baseline-6b24c03-licensed/README.md": "b534c08e7a1d47cf046709b64395d42bfa9e63c1754cd6aae0332115f897069a",
+    "validation/benchmark/baseline-6b24c03-licensed/reference-build.json": "488782471657193e0e09f69c283cb82d8534577bb4fccd23f3087192c0f2f782",
+    "validation/benchmark/baseline-6b24c03-licensed/reference.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/baseline-6b24c03-licensed/results-inputs.json": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+    "validation/benchmark/baseline-6b24c03-licensed/results.json": "6469c9c172f32ce3b9dea53defa9d716856c107bccce7669919ce1edc9609793",
+    "validation/benchmark/baseline-6b24c03-licensed/rust-build.json": "925344bbb53a099c2ef34d7d845e8808f8c817902abe8e98837771542e395782",
+    "validation/benchmark/baseline-6b24c03-licensed/rust.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/baseline-6b24c03-licensed/workspace-build.json": "8058e1715f9b013490cc1fc21ff237c284dfe61627d414c95a1faf2d2ee8f765"
+  }
+}

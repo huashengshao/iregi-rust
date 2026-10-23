@@ -1,0 +1,86 @@
+--- original.rs
++++ profiled.rs
+@@ -238,6 +238,7 @@
+             passes: 0,
+             input: Vec::new(),
+             output: Vec::new(),
++            trace: CertificateTrace::default(),
+         }
+     }
+ }
+@@ -282,6 +283,7 @@
+     passes: usize,
+     input: Vec<ComplexBall>,
+     output: Vec<ComplexBall>,
++    pub(crate) trace: CertificateTrace,
+ }
+ 
+ impl InvariantCertificateWorkspace {
+@@ -336,6 +338,7 @@
+     ) -> Result<Vec<InvariantCertificate>, ReductionError> {
+         self.evaluated_rows = 0;
+         self.passes = 0;
++        self.trace = CertificateTrace::default();
+         if let Some(selected) = selected {
+             if selected.len() != rows
+                 || self.charts.len() != 1
+@@ -388,6 +391,7 @@
+         let mut bits = self.initial_bits;
+         let radius = Rational::from(0);
+         loop {
++            let mapped_started = std::time::Instant::now();
+             let index =
+                 if let Some(index) = self.evaluators.iter().position(|entry| entry.0 == bits) {
+                     index
+@@ -403,6 +407,8 @@
+                     self.evaluators.push((bits, evaluator));
+                     self.evaluators.len() - 1
+                 };
++            self.trace.mapping_ns += mapped_started.elapsed().as_nanos();
++            let packing_started = std::time::Instant::now();
+             let evaluator = &mut self.evaluators[index].1;
+             let width = evaluator.get_output_len();
+             let output_len = width.checked_mul(active.len()).ok_or_else(size_error)?;
+@@ -420,9 +426,15 @@
+                 bits,
+             );
+             self.output.resize(output_len, zero);
++            self.trace.packing_ns += packing_started.elapsed().as_nanos();
++            let evaluation_started = std::time::Instant::now();
+             evaluator
+                 .evaluate_batch(&self.input, &mut self.output, active.len())
+                 .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
++            self.trace.evaluation_ns += evaluation_started.elapsed().as_nanos();
++            self.trace.complex_batch_calls += 1;
++            self.trace.complex_rows += active.len();
++            let inspection_started = std::time::Instant::now();
+             self.evaluated_rows = self
+                 .evaluated_rows
+                 .checked_add(active.len())
+@@ -441,6 +453,7 @@
+                     unresolved.push(lane);
+                 }
+             }
++            self.trace.inspection_ns += inspection_started.elapsed().as_nanos();
+             if unresolved.is_empty() || bits == self.maximum_bits {
+                 return Ok(result);
+             }
+@@ -809,3 +822,18 @@
+         assert!(certified_relation_coordinates(7, &original, [0, 2, 3, 4]).is_err());
+     }
+ }
++
++#[derive(Clone,Debug,Default)]
++pub(crate) struct CertificateTrace {
++ pub(crate) mapping_ns:u128,
++ pub(crate) packing_ns:u128,
++ pub(crate) evaluation_ns:u128,
++ pub(crate) inspection_ns:u128,
++ pub(crate) real_batch_calls:usize,
++ pub(crate) complex_batch_calls:usize,
++ pub(crate) real_rows:usize,
++ pub(crate) complex_rows:usize,
++}
++impl InvariantCertificatePlan {
++ pub(crate) fn probe_operation_counts(&self)->symbolica::evaluate::OperationCount { self.exact.count_operations() }
++}

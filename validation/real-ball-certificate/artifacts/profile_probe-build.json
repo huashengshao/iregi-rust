@@ -1,0 +1,57 @@
+{
+  "status": "compiled",
+  "command": [
+    "rustc",
+    "--crate-name",
+    "profile_probe",
+    "--edition=2024",
+    "-C",
+    "opt-level=3",
+    "-C",
+    "codegen-units=1",
+    "-C",
+    "lto=thin",
+    "-C",
+    "embed-bitcode=yes",
+    "/shared/external/iregi/iregi-rust/target/real-ball-certificate/profile_probe.rs",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/build/gmp-mpfr-sys-e9fd89ef30e561a9/out/lib",
+    "--extern",
+    "iregi_rust=/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libiregi_rust-b16ff118efb36669.rlib",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libiregi_masters-736462b347335a0f.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libserde_json-d5ce7f4fcf58bd84.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/real-ball-certificate/profile_probe"
+  ],
+  "cpu_affinity": [
+    12,
+    13
+  ],
+  "source_sha256": {
+    "target/real-ball-certificate/profile_probe.rs": "e17cced7d6d0e47115d4346eb678d00da4b0a237b51597c0dcdeaf6348c6c497",
+    "target/real-ball-certificate/profiled.rs": "46aa29062330dbb3a50603afe271d6f2612ad216f5cd2f19b56aa107888c1746",
+    "target/real-ball-certificate/candidate.rs": "8d92c9f8d7a2b227de7e267d2f140e46766a0df356893ea8bf8cfd7a6a07b8fe",
+    "target/real-ball-certificate/build_probe.py": "0c4345eb8377a282a0a8dbedd5db9d4b669747f8305687deb378ea49ba3eb685"
+  },
+  "extern_sha256": {
+    "target/benchmark/workspace-builds/80949db-default-resume/deps/libiregi_rust-b16ff118efb36669.rlib": "5edc973e99921ca9adc0a03f05d35056e980bcd09902927da63bd20dc58ccf0d",
+    "target/benchmark/workspace-builds/80949db-default-resume/deps/libiregi_masters-736462b347335a0f.rlib": "738a432b25a6431920b4241d921836bd21d2bb4af93527f96ac81089a269c927",
+    "target/benchmark/workspace-builds/80949db-default-resume/deps/libsymbolica-2ae1abcc9fd9c0db.rlib": "9bc81668488576cccd312ac542566bb6bc72d60fb63b77435c6d70d38dc49fb7",
+    "target/optimized/cargo-build/release/deps/libserde_json-d5ce7f4fcf58bd84.rlib": "8a7861923cdbacb4aa5a5bd9c037d5b8d1a5a3198f6ae778971f5e6826791a7f"
+  },
+  "parent_build": "target/benchmark/workspace-builds/80949db-default-resume/workspace-build-recovered.json",
+  "lto_note": "Retained release archives contain LLVM bitcode; matching thinLTO required by linker.",
+  "returncode": 0,
+  "wall_seconds": 278.5128608730156,
+  "sources_unchanged": true,
+  "archives_unchanged": true,
+  "binary_sha256": "42eb397f417c9a42fe8d6d6e365bff15f16edf7cf2588ad2cadab45f61439897"
+}

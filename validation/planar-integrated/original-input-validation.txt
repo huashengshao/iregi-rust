@@ -1,0 +1,37 @@
+            if let Some((slot, _)) = row.iter().enumerate().find(|(_, value)| !finite(value)) {
+                result.statuses[lane] = LaneStatus::InvalidInput(format!(
+                    "nonfinite input at argument {}, Taylor component {}",
+                    slot / self.components,
+                    slot % self.components,
+                ));
+                continue;
+            }
+            // mu, rather than mu², is the public interface. Squaring must not
+            // hide a negative or complex scale before master validation.
+            let scale = &row[self.layout.scale * self.components];
+            if !scale.im.is_zero() || scale.re <= scale.re.zero() {
+                result.statuses[lane] =
+                    LaneStatus::InvalidInput("mu must be positive and real".into());
+                continue;
+            }
+            if self
+                .layout
+                .shifts
+                .clone()
+                .chain(self.layout.scalar_products.clone().into_iter().flatten())
+                .any(|argument| !row[argument * self.components].im.is_zero())
+            {
+                result.statuses[lane] = LaneStatus::InvalidInput(
+                    "momentum-shift and scalar-product primal components must be real".into(),
+                );
+                continue;
+            }
+            if self.layout.masses.clone().any(|argument| {
+                let mass = &row[argument * self.components];
+                mass.im > mass.im.zero()
+            }) {
+                result.statuses[lane] = LaneStatus::InvalidInput(
+                    "squared masses must have nonpositive imaginary parts".into(),
+                );
+                continue;
+            }

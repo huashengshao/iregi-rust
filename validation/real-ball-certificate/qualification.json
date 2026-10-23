@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "status": "isolated_candidate_semantic_tests_passed_diagnostic_profile_only",
+  "source_revision_for_dependencies": "80949dbc4711947971a702643f75d639ef217e82",
+  "core_certificate_source_sha256": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+  "candidate_sha256": "609104338292c4c3b87e1c99269ffa604dc49d70f6494a282e0e8a8cf8bf657e",
+  "production_changed": false,
+  "performance_gate": false,
+  "full_core_candidate_tested": false,
+  "complex_only_performance_tested": false,
+  "paired_tests": {
+    "passed": 4,
+    "failed": 0,
+    "log": "artifacts/paired-tests.log"
+  },
+  "inherited_certificate_tests": {
+    "passed": 8,
+    "failed": 0,
+    "log": "artifacts/candidate-regressions.log"
+  },
+  "profile": {
+    "kind": "isolated-certificate-component-profile",
+    "cpu": 12,
+    "separate_runs": true,
+    "quiet_window": false,
+    "retained_blocks": 21,
+    "warmup_blocks": 3,
+    "invocations_per_block": 32,
+    "working_bits": 128,
+    "operations": {
+      "additions": 33,
+      "function_calls": 0,
+      "inversions": 0,
+      "multiplications": 45
+    },
+    "selected_constraints": [
+      0,
+      1
+    ],
+    "exact_input_conversion_each_invocation": true,
+    "rows": [
+      {
+        "batch_width": 1,
+        "baseline_median_ns": 168820.3125,
+        "candidate_median_ns": 49908.40625,
+        "candidate_over_baseline": 0.2956303392105141,
+        "baseline_component_medians_ns": {
+          "ball_packing_ns": 13073.71875,
+          "evaluation_ns": 152249.96875,
+          "exact_conversion_ns": 2830.6875,
+          "inspection_ns": 233.15625,
+          "mapping_lookup_ns": 29.40625
+        },
+        "candidate_component_medians_ns": {
+          "ball_packing_ns": 7933.4375,
+          "evaluation_ns": 38465.65625,
+          "exact_conversion_ns": 2783.53125,
+          "inspection_ns": 223.1875,
+          "mapping_lookup_ns": 29.09375
+        }
+      },
+      {
+        "batch_width": 3,
+        "baseline_median_ns": 499618.78125,
+        "candidate_median_ns": 147414.375,
+        "candidate_over_baseline": 0.29505371001302805,
+        "baseline_component_medians_ns": {
+          "ball_packing_ns": 37777.96875,
+          "evaluation_ns": 452937.40625,
+          "exact_conversion_ns": 7978.09375,
+          "inspection_ns": 537.875,
+          "mapping_lookup_ns": 29.71875
+        },
+        "candidate_component_medians_ns": {
+          "ball_packing_ns": 23197.0,
+          "evaluation_ns": 115296.0625,
+          "exact_conversion_ns": 8009.40625,
+          "inspection_ns": 522.15625,
+          "mapping_lookup_ns": 29.4375
+        }
+      },
+      {
+        "batch_width": 32,
+        "baseline_median_ns": 5324403.59375,
+        "candidate_median_ns": 1552468.625,
+        "candidate_over_baseline": 0.29157606061688307,
+        "baseline_component_medians_ns": {
+          "ball_packing_ns": 402539.40625,
+          "evaluation_ns": 4830688.96875,
+          "exact_conversion_ns": 82940.65625,
+          "inspection_ns": 4960.0,
+          "mapping_lookup_ns": 38.4375
+        },
+        "candidate_component_medians_ns": {
+          "ball_packing_ns": 246148.25,
+          "evaluation_ns": 1218819.8125,
+          "exact_conversion_ns": 81267.34375,
+          "inspection_ns": 4696.75,
+          "mapping_lookup_ns": 34.375
+        }
+      }
+    ]
+  },
+  "semantics": {
+    "all_argument_taylor_imaginary_components_checked": true,
+    "real_coefficients_and_no_hidden_function_calls_required": true,
+    "both_partitions_instruction_major": true,
+    "same_inspection_and_precision_budget": true,
+    "certificate_enclosure_bounds_need_not_be_bit_identical": true,
+    "zero_claim_requires_exact_zero_enclosure": true,
+    "all_complex_direct_fast_path_in_first_candidate": false
+  },
+  "review": {
+    "status": "passed_read_only",
+    "agent": "/root/precision_rescue/physical_alignment_review",
+    "scope": "Final source and hash bindings, paired refinement/Taylor/mask tests, inherited tests, component accounting, diagnostic-only labels; no independent runtime. Complex-only extra-scatter risk retained."
+  },
+  "builds": {
+    "baseline": "artifacts/profile_probe-build.json",
+    "candidate_tests_and_profile": "artifacts/certificate_tests-build.json",
+    "parent": "artifacts/workspace-build-recovered.json",
+    "note": "Explicit dependency archives and binaries are retained under target, hash-bound but not committed. Link-time transitive archives are resolved by the recorded Cargo dependency directories. The preserved parent identifies the optimized feature set; this is not a clean source-only rebuild claim."
+  },
+  "historical_failures": {
+    "initial_non_lto_link": "artifacts/profile-build.log",
+    "initial_test_typecheck": "artifacts/certificate_tests-initial-typecheck.log",
+    "typecheck_source_snapshot": "Not separately retained. Final corrected source is bound by certificate_tests-build.json.",
+    "unused_baseline_candidate_source": "The baseline manifest listed candidate.rs, which its source does not include. That initial candidate is reconstructed byte-exact as artifacts/candidate-at-profile-build.rs; the final tested candidate has the distinct recorded hash."
+  },
+  "limits": [
+    "Certificate-only component experiment, not physical full-pipeline performance or a per-family timing gate.",
+    "Separate sequential timing runs on CPU12 without a coordinated quiet window; ratios are diagnostic.",
+    "First candidate adds packing/scatter overhead for complex-only lanes; preserve the original direct path in any proposed integration.",
+    "Only stated tests and exact represented ggH inputs are qualified; no claim of universal identical interval bounds or refinement count.",
+    "Kernel counter witness ran concurrently with compilation and provides counters only, not timing evidence."
+  ]
+}

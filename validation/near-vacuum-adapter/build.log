@@ -1,0 +1,17 @@
+error[E0433]: cannot find `rust_codegen` in `oneloop`
+   --> target/near-vacuum-adapter/source/lib.rs:280:26
+    |
+280 |         policy: oneloop::rust_codegen::runtime::BatchExecutionPolicy,
+    |                          ^^^^^^^^^^^^ could not find `rust_codegen` in `oneloop`
+    |
+note: found an item that was configured out
+   --> target/d0-node-probe/baseline/src/lib.rs:23:9
+    |
+ 22 | #[cfg(feature = "rust-codegen")]
+    |       ------------------------ the item is gated behind the `rust-codegen` feature
+ 23 | pub mod rust_codegen;
+    |         ^^^^^^^^^^^^
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0433`.

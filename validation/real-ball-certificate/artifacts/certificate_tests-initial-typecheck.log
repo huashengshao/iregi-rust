@@ -1,0 +1,37 @@
+warning: unused import: `SingleFloat`
+ --> /shared/external/iregi/iregi-rust/target/real-ball-certificate/certificate_tests.rs:2:65
+  |
+2 | use symbolica::{atom::{Atom,AtomCore},domains::{float::{Complex,SingleFloat},rational::Rational}};
+  |                                                                 ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `SingleFloat`
+ --> /shared/external/iregi/iregi-rust/target/real-ball-certificate/candidate_profile.rs:3:65
+  |
+3 | use symbolica::{atom::{Atom,AtomCore},domains::{float::{Complex,SingleFloat},rational::Rational}};
+  |                                                                 ^^^^^^^^^^^
+
+warning: unused import: `iregi_rust::ReductionError`
+ --> /shared/external/iregi/iregi-rust/target/real-ball-certificate/candidate_profile.rs:6:9
+  |
+6 | pub use iregi_rust::ReductionError;
+  |         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0277]: the trait bound `iregi_masters::Complex<Fraction<IntegerRing>>: Copy` is not satisfied
+  --> /shared/external/iregi/iregi-rust/target/real-ball-certificate/certificate_tests.rs:39:40
+   |
+39 |  let row=[c(2),c(1)];let mut input=row.repeat(7);input[4]=c(1);input[5]=c(1);
+   |                                        ^^^^^^ the trait `Copy` is not implemented for `iregi_masters::Complex<Fraction<IntegerRing>>`
+   |
+   = note: required for `iregi_masters::Complex<Fraction<IntegerRing>>` to implement `Copy`
+note: required by a bound in `std::slice::<impl [T]>::repeat`
+  --> /rustc/b940084d7eb6a299eb4bfeb8e34901bc051e7ac4/library/alloc/src/slice.rs:510:4
+help: consider borrowing here
+   |
+39 |  let row=[c(2),c(1)];let mut input=(&row).repeat(7);input[4]=c(1);input[5]=c(1);
+   |                                    ++   +
+
+error: aborting due to 1 previous error; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0277`.

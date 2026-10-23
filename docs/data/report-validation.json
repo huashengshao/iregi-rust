@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "recorded_utc": "2026-10-23T17:08:42.684839+00:00",
+  "recorded_utc": "2026-10-23T17:44:38.324534+00:00",
   "status": "passed",
-  "scope": "Benchmark report checkpoint through production guard-context commit6b24c03. Reference timing evidence remains bound to frozen80949db and historical sources; candidate effects are not multiplied and currentoptimizedreference performance is pending.",
+  "scope": "Latest optimized kernel snapshot is production 6b24c03: eight numerical comparisons pass, seven timing regressions and one noisy row. Historical 80949db, 5c9e3dd, and 4c32ece kernel measurements and physical 80949db measurements remain retained. Different CPUs and timing protocols preclude causal revision-speedup claims. Private proofs and public high-point failures retain their distinct scopes.",
   "report_artifacts": {
-    "docs/benchmark.typ": "6298ddd469be448d910f4ed73ed3401eb880b1cfdc2215a9bd905290f90d850e",
-    "docs/data/results.json": "c658bb749f7392a4ab254ecf24558213ee8339f74c0955428544c05fa81a1cdd",
-    "docs/benchmark.pdf": "b6fe7017cfe43e3cbaa800ed9fb5bbd7ddf1cec69224ebd801d59a6846072373",
+    "docs/benchmark.typ": "f5de8265481827b9ca81160482f40df5f2412b5ea91d91d460bdce9ff6d324aa",
+    "docs/data/results.json": "672100aa4f4f2538fc92702b95962979208968e30023696015737e87df1b1ef1",
+    "docs/benchmark.pdf": "3e18f406649e17399673e75c0a4d370ba4818f12eae766a8877bc31b97276c19",
     "scripts/build-benchmark-report.sh": "c0e6106dee393689921cb7b19afb7a5ff0241071cf022b28b6e6174d56bec1b7"
   },
   "typst_version": "typst 0.15.1 (9dfd3a08)",
@@ -25,9 +25,9 @@
     "target/report-next/reproduced.pdf"
   ],
   "byte_identical_rebuild": true,
-  "page_count": 13,
-  "render_check": "All13pages rendered toPNG. Changed pages2/10 inspected; historical/main comparison tables unchanged. Finalcurrentcommitlabel preserves layout. DeterministicPDFrebuild is byte-identical.",
-  "source_ledger_count": 53,
+  "page_count": 14,
+  "render_check": "All 14 pages rendered to PNG. New primary page 3 and retained historical page 4 are visually clean; pages 1, 10 and 11 inspected after layout adjustment. Prior physical and historical tables remain intact. Fixed-date independent PDF rebuild is byte-identical.",
+  "source_ledger_count": 64,
   "source_ledger": [
     {
       "key": "stack_reuse_factory_qualification",
@@ -277,7 +277,7 @@
     {
       "key": "native_stack_batch_qualification",
       "source": "validation/native-stack-batch/qualification.json",
-      "sha256": "e0eb0086711700601f724541676775e5cc7c5604cf117508d161e2548520de20"
+      "sha256": "ba4fcb842467a56ebabd0a958b55669d176acbb8520487bd8227fa6aa9514aa7"
     },
     {
       "key": "native_stack_batch_corrected_timings",
@@ -293,6 +293,61 @@
       "key": "guard_context_reuse_final_adoption",
       "source": "validation/guard-context-reuse/final-adoption-qualification.json",
       "sha256": "252696b64c427328141668b08993d80129233bdf20d1b222f97258014fa63836"
+    },
+    {
+      "key": "highpoint_alias_use_qualification",
+      "source": "validation/public-highpoint/use-dedup-qualification.json",
+      "sha256": "07a686f045256e2757f29a8bf67a3433c8b54109aa923854ae3b7ff4c7d4c483"
+    },
+    {
+      "key": "near_vacuum_adapter_qualification",
+      "source": "validation/near-vacuum-adapter/qualification.json",
+      "sha256": "d02fabe660b410c840fa601ff12d0ff25f7e14f6165d5e2f94df1ef4ae5dad21"
+    },
+    {
+      "key": "real_ball_certificate_qualification",
+      "source": "validation/real-ball-certificate/qualification.json",
+      "sha256": "69a5ecf3a70d0c91bb247a5cd5a8dc4bba90adfbf3b5ee4a5771eed11e96c1be"
+    },
+    {
+      "key": "planar_integrated_qualification",
+      "source": "validation/planar-integrated/qualification.json",
+      "sha256": "776ec26f6934cd3197f5eab37935fb82b724af0e809ba6bb5ef219d8b2fd2a8e"
+    },
+    {
+      "key": "near_vacuum_box_independent_review",
+      "source": "validation/near-vacuum-box/independent-review.md",
+      "sha256": "f91f1cf1ec866ec7c6ca58b20a3c9910f2c1a1b317da1ed6b0c70f47f1bbc7b4"
+    },
+    {
+      "key": "native_d0_allocator_parity",
+      "source": "validation/native-stack-batch/d0-qualification.json",
+      "sha256": "1893251a76fc1f3f4b82ed1fc8ff7bc39675f1112808382139f2bb346d8a47ad"
+    },
+    {
+      "key": "highpoint_alias_use_full_capture",
+      "source": "validation/public-highpoint/use-dedup-full-capture-qualification.json",
+      "sha256": "382c5c27564dec695ae53f017ffd41c461c1b898cc9de5402a4f6b29e68d5c09"
+    },
+    {
+      "key": "highpoint_alias_use_full_tests",
+      "source": "validation/public-highpoint/use-dedup-full-tests-qualification.json",
+      "sha256": "17833b1e91dbfe2e472c4f7d1f63f1d4c12f3a3b721a69fece6868dfe60c19cd"
+    },
+    {
+      "key": "benchmark_6b24_qualification",
+      "source": "validation/benchmark/baseline-6b24c03-licensed/qualification.json",
+      "sha256": "65bc7ff4ddd140b7bfabf50ffe8b554ad2c4d119a035aa406b7e1b10d0de0059"
+    },
+    {
+      "key": "optimized_6b24_workspace_build",
+      "source": "validation/benchmark/baseline-6b24c03-licensed/workspace-build.json",
+      "sha256": "8058e1715f9b013490cc1fc21ff237c284dfe61627d414c95a1faf2d2ee8f765"
+    },
+    {
+      "key": "qualified_6b24_benchmark",
+      "source": "validation/benchmark/baseline-6b24c03-licensed/results.json",
+      "sha256": "6469c9c172f32ce3b9dea53defa9d716856c107bccce7669919ce1edc9609793"
     }
   ],
   "independent_arithmetic_review": {
@@ -323,10 +378,11 @@
     ]
   },
   "known_limits": [
-    "No overall performance acceptance: latestkernel5regressions/3noise, physical6noise/2failures.",
-    "Optimized80949db benchmarks predate promotedcoreallocator d1a4b8e.",
-    "Privateplanar/near-vacuum evidence does not qualify production fallback.",
-    "Historicalsource snapshots and failed attempts remain visible."
+    "No overall performance acceptance: latest 6b24c03 kernel has seven regressions and one noisy row; physical 80949db has six noisy rows and two failures.",
+    "Historical 80949db benchmarks predate the core allocator and guard-context changes; CPU0/21x30ms and CPU254/41x100ms sessions are not controlled revision comparisons.",
+    "Private planar, near-vacuum and RealBall evidence does not qualify production fallback; planar rank-seven Dual remains pending.",
+    "Latest public N6 rank-seven attempt times out during preparation at a600-second bound without tensor arrays.",
+    "Historical source snapshots, native interpreter differences and failed attempts remain visible."
   ],
   "durable_path_repair": "optimized_5c9_build now points to committed validation/benchmark/baseline-5c9e3dd/build-verification.json; identical bytes and SHA256 preserved.",
   "additional_root_checks": {
@@ -354,5 +410,49 @@
       "inconclusive_noise": 22
     },
     "checks": "Independently recomputed paired ratios,99%bootstrap intervals and width-gated classifications;18guard evidence hashes and132native durable manifest files match. Adoption cleanup is separately bound by final-adoption-qualification.json."
+  },
+  "private_evidence_reviews": {
+    "alias_use_exact": {
+      "status": "passed",
+      "review_scope": "41 artifact bindings, exact-only qualifier reproduced by ROOT; no numerical or controlled performance qualification"
+    },
+    "alias_use_full_capture": {
+      "status": "passed",
+      "review_scope": "Independent owner review: 55 bindings, 73 semantic and 26 Python tests; bounded timeout 601.010 seconds, exit -9, no arrays"
+    },
+    "near_vacuum_adapter": {
+      "status": "passed",
+      "review_scope": "ROOT verified 59 bindings; 96 current component matches and an independent five-box contour probe, no production E6 claim"
+    },
+    "real_ball_certificate": {
+      "status": "passed",
+      "review_scope": "Independent read-only review and 34 retained file bindings; selected real polynomial/jet lanes only, no full-core performance gate"
+    },
+    "planar_integrated": {
+      "status": "passed",
+      "review_scope": "Owner provenance checks and exact-test listing distinguish 10 focused runs/9 functions from all 185 functions in the binary; Float128/256 all 1320 slots and normalized convergence qualify only the private standalone API"
+    },
+    "native_d0": {
+      "status": "passed",
+      "review_scope": "40 configurations and 1488 outputs pass exact old/new native parity; interpreter value/precision differences remain separate, fixed-loop D0 timing unmeasured"
+    }
+  },
+  "latest_private_scope_review": {
+    "reviewer": "/root/report_update/report_review2",
+    "status": "passed",
+    "checks": "Durable source snapshots and report claims agree: planar 10 executions/9 functions/1320 slots per precision; adapter 96 current matches with 48 historical separate; RealBall 4 paired plus 8 inherited tests; native D0 40 configurations/1488 outputs with interpreter differences separate; alias-use 73 tests and 600-second bound/601.010-second timeout without arrays. No unsupported scope or count claim found."
+  },
+  "latest_kernel_arithmetic_review": {
+    "reviewer": "/root/report_update/report_review2",
+    "status": "passed",
+    "rows": 8,
+    "raw_pairs_per_row": 41,
+    "bootstrap_resamples": 10000,
+    "counts": {
+      "numerical_pass": 8,
+      "regression": 7,
+      "inconclusive_noise": 1
+    },
+    "checks": "Independently recomputed all paired ratio samples, medians and 99% bootstrap intervals exactly. Compact rows match both latency unit conversions, named component medians, positive residuals, ratios, intervals and gates. CPU254, 41 blocks targeting100ms and414-source provenance scope agree. The stale introductory five/three count was corrected to seven/one; no cross-session causal claim."
   }
 }
