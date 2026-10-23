@@ -1,0 +1,36 @@
+{
+  "status": "source_review_passed",
+  "reviewer": "ROOT independent source review",
+  "scope": "Optional new generic COLLIER tensor reference driver and fixed-source correctness protocol. No new numerical or timing qualification.",
+  "readiness_sha256": "c4cc71b752de8afdd078fbab376c8030d3bf724b3a7f4d477ba17b309d4e237f",
+  "sources_sha256": {
+    "validation/collier-reference/shared/build.py": "1e0a3d9523a1e635df9a81fb59831d730f27352ad24b70942c2c302ac1e9aab9",
+    "validation/collier-reference/shared/prepare_inputs.py": "23ed32bd3e2d3da761dda32a3b84f303bf9ce39882973a7d794fff92f282eb74",
+    "validation/collier-reference/shared/run_correctness.py": "c5f3c8f842ed01cc92140d9edf5a974f490ed36cba3ac42ff25ead55e30fd114",
+    "validation/collier-reference/shared/support.py": "7ee570960b9b1f7672cd6e3538208dacaac858293e304e5dfd6c40556ab636d8",
+    "validation/collier-reference/shared/test_protocol.py": "4c63d582f52603f1b4f4e3987942212ec306d9621165c481b537f01360a2457e",
+    "validation/collier-reference/shared/driver.f90": "bb5ffcad5e2a2860bb40276c0d66c4da229ca9bde5c37819a38c3d2edba35f83"
+  },
+  "upstream_sources": {
+    "target/reference/collier/source/collier-COLLIER-1.2.10/src/collier_tensors.F90": "84eb74151250657fd7b08510b966b09b6bf84bac2abdb7c484407c95d3cba0db",
+    "target/reference/collier/source/collier-COLLIER-1.2.10/src/COLLIER.F90": "a0fc89d3d04f50d11a4cc09f953461d27861e1f9a1f842310a253531e3b94963",
+    "target/reference/collier/source/collier-COLLIER-1.2.10/demos/demo.f90": "9c28f5b44245a4034141b684bbadf5f60118e75d11365a6d3ac947c3370ec375"
+  },
+  "findings": [
+    "Generic TNten_cll complex momentum/invariant/mass and Cartesian tensor shapes match upstream generic interface and N3..N6 demos. Explicit tensor threshold6 is retained separately from mode1/2.",
+    "Cyclic invariant enumeration covers every unordered pair once and reproduces prior N2/N3/N4 ordering; no change to four-vector metric, q+p routing, native Laurent conversion or tensor index ordering.",
+    "Positive real squared masses and exact Symbolica-prepared F(x)>0 bound are required for IR-finite native adapter; Fortran adds an independent conservative numerical domain check.",
+    "Exact binary64 transport rejects values beyond representability and preserves nonzero time components; generalized powers and shifts are explicitly excluded.",
+    "Every raw reference response is saved before validation; failed tensor data remains separately labelled and cannot qualify as successful zeros.",
+    "All16 prior fixed interface rows must retain native statuses, accepted complete arrays and pole probes before any N5..7 calls. A rejected array numeric match alone cannot open acceptance.",
+    "All original IREGI modes and COLI/DD policies remain visible; deadlines/partial captures and strict failures are preserved."
+  ],
+  "blockers": [],
+  "limitations": [
+    "Source review and14 protocol tests do not establish correctness of a new generic binary.",
+    "Direct N7 DD tensor behavior must be established by capture; coefficient-level unsupported status is not generalized.",
+    "Existing Symbolica CLI executable is hash-bound, with contextual rather than a new source-matched build claim.",
+    "Positive-domain witness producer and captured artifacts require independent package audit after execution.",
+    "No performance cohort or production change is approved by this receipt."
+  ]
+}

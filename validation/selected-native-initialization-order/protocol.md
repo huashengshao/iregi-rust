@@ -1,0 +1,18 @@
+# Untimed initialization-order diagnostic, stage 1
+
+Scope: the previously optimized and qualified selected-native prototype, not current production sources. The failed four-engine-v2 attempt and all its gates remain immutable. This diagnostic cannot qualify timing or authorize a backend change.
+
+Use the existing build-001/probe binary, without rebuilding, and two sequential fresh processes. K means the original four fixed cases in original order, each at batch 1 then 32; each case request is immediately repeated once. All requests omit engine and therefore take the untimed public-call branch with empty timing arrays.
+
+- Process A: CONTROLS, CONTROLS, K, CONTROLS, CONTROLS.
+- Process B: K, CONTROLS, CONTROLS, K, CONTROLS.
+
+There are exactly 55 requests: seven CONTROLS and 48 CASE requests. The single execution has a 120-second total cap, including guards. CPU is supplied by ROOT. Bounded process cleanup and postguards remain inside this deadline; final JSON receipt publication is bookkeeping after the cap. No timing-mode request, independent reference subprocess, calibration, benchmark statistic, source change, or retry is authorized. A timeout preserves all responses and every pending request.
+
+Retain complete request/response JSON and all recursive exact differences, including signed-zero/type differences, against saved qualified records and against earlier matching records in each process and the other process. CASE exact comparison removes only the documented plan_reused field, because repeated preparation changes reuse metadata; complete raw responses retain it. CONTROLS records are compared without exclusions. Exact drift is an observation with an explicit count; it cannot be relabeled as passing. Run the existing interface/status/numerical admission unchanged on every response; compare whole arrays against the saved original-IREGI arrays at the existing threshold. Numerical/interface failures are separately explicit, and all planned requests continue while the process remains healthy and the fixed cap allows them. These observations do not weaken the frozen timing admission gate.
+
+Bind the historical build record and its prior compiled source manifest, immutable prototype source copies, dependency/native archives, both core archives, final executable, saved qualification, failed preflight/raw, input corpus and unchanged Python checks before/after. Do not assert current production Rust matches the compiled binary: ROOT has active unrelated production changes. The build record retains the original full source hash inventory, while new live guards cover immutable closure/prototype paths only.
+
+The source mechanism is a hypothesis: Symbolica canonical sum ordering depends on encoded symbol IDs; direct translation sorts lowered slots and execution folds in that order. A first-use registration schedule could alter floating arithmetic order. Stage 1 can show whether observed outputs are stable within a process and differ by schedule, but two processes alone do not exclude unrelated cross-process nondeterminism and cannot establish an instruction-level cause.
+
+Only after these observations and separate authorization, stage 2 would instrument the actual C0 exact objects during construction, without creating an extra evaluator before them. Use Symbolica export_instructions, preserving every ordered operand, branch/Join/label, all six roots, recursive helper signatures/bodies, exact constants, registered constant descriptors, and mapped-f64 constant bits. Record Symbolica name/ID registration snapshots and input bits. Compare exact graphs, mapped constants, and outputs separately. No custom algebra is needed.

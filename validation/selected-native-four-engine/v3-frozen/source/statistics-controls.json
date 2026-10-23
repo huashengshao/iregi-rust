@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "scope": "synthetic statistics and admission tests; no kernel timing",
+  "constant_ratio_checks": 5,
+  "global_failed_admission_checks": 5,
+  "nested_failed_admission_checks": 15,
+  "mutations": [
+    {
+      "mutation": "missing_engine",
+      "rejected": true
+    },
+    {
+      "mutation": "wrong_order",
+      "rejected": true
+    },
+    {
+      "mutation": "duplicate_index",
+      "rejected": true
+    },
+    {
+      "mutation": "changed_iterations",
+      "rejected": true
+    },
+    {
+      "mutation": "nonfinite_elapsed",
+      "rejected": true
+    },
+    {
+      "mutation": "inconsistent_elapsed",
+      "rejected": true
+    }
+  ],
+  "terminal_mutations": [
+    {
+      "mutation": "preflight_mode",
+      "rejected": true
+    },
+    {
+      "mutation": "incomplete_status",
+      "rejected": true
+    },
+    {
+      "mutation": "cleanup_failure",
+      "rejected": true
+    },
+    {
+      "mutation": "deadline_exceeded",
+      "rejected": true
+    },
+    {
+      "mutation": "nonfinite_elapsed",
+      "rejected": true
+    },
+    {
+      "mutation": "boolean_elapsed",
+      "rejected": true
+    },
+    {
+      "mutation": "over_cap",
+      "rejected": true
+    },
+    {
+      "mutation": "nonchronological_cleanup",
+      "rejected": true
+    },
+    {
+      "mutation": "negative_numerical_elapsed",
+      "rejected": true
+    }
+  ],
+  "source_sha256": {
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/statistics_controls.py": "2e9b3bed97ea8dfc582041e7fa0455c759ff74e157ab77f954aace08d8f008ce",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/analyze.py": "9474275ee8e07a86d317d1c7056256b5c5b993a82924189e1f70fa57390f7379",
+    "/shared/external/iregi/iregi-rust/validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+  }
+}

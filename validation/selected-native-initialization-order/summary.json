@@ -1,0 +1,96 @@
+{
+  "status": "diagnostic_complete_with_exact_schedule_differences",
+  "performance_measured": false,
+  "production_adopted": false,
+  "elapsed_seconds": 74.09699334704783,
+  "processes": [
+    {
+      "name": "A",
+      "status": "completed",
+      "exit_code": 0
+    },
+    {
+      "name": "B",
+      "status": "completed",
+      "exit_code": 0
+    }
+  ],
+  "requests": 55,
+  "controls": 7,
+  "untimed_case_requests": 48,
+  "numeric_admission_failures": 0,
+  "within_process_exact_comparisons": 37,
+  "within_process_differences": 0,
+  "comparison_groups": {
+    "A/saved_qualification/controls": {
+      "comparisons": 4,
+      "different_comparisons": 4,
+      "difference_occurrences": 4
+    },
+    "A/within_process_first/controls": {
+      "comparisons": 3,
+      "different_comparisons": 0,
+      "difference_occurrences": 0
+    },
+    "A/saved_qualification/case": {
+      "comparisons": 16,
+      "different_comparisons": 2,
+      "difference_occurrences": 192
+    },
+    "A/within_process_first/case": {
+      "comparisons": 8,
+      "different_comparisons": 0,
+      "difference_occurrences": 0
+    },
+    "B/saved_qualification/case": {
+      "comparisons": 32,
+      "different_comparisons": 0,
+      "difference_occurrences": 0
+    },
+    "B/across_process_first/case": {
+      "comparisons": 32,
+      "different_comparisons": 4,
+      "difference_occurrences": 384
+    },
+    "B/within_process_first/case": {
+      "comparisons": 24,
+      "different_comparisons": 0,
+      "difference_occurrences": 0
+    },
+    "B/saved_qualification/controls": {
+      "comparisons": 3,
+      "different_comparisons": 0,
+      "difference_occurrences": 0
+    },
+    "B/across_process_first/controls": {
+      "comparisons": 3,
+      "different_comparisons": 3,
+      "difference_occurrences": 3
+    },
+    "B/within_process_first/controls": {
+      "comparisons": 2,
+      "different_comparisons": 0,
+      "difference_occurrences": 0
+    }
+  },
+  "raw_sha256": "c5395738f01bbf91e14b6041d152706dee3ebe3d7c25bcbcb4d11d8a8816b9fc",
+  "receipt_sha256": "ce28d3bb4c606d6b759bfb57c9e0632db11f73b5d82240883d63a57da397cd2f",
+  "all_55_responses_retained": true,
+  "exact_gate_relaxed": false,
+  "instruction_level_cause_established": false,
+  "control_first_vs_saved": {
+    "control_changed_leaf": "/controls/masters/selected_families/2/cases/10/baseline/lanes/1/six_outputs/0/1/rational",
+    "control_ulp_difference": 1,
+    "whole_case": "n3-r1-massive/32",
+    "whole_changed_finite_imaginary_values_per_backend": 24,
+    "whole_max_abs_difference": 2.498001805406602e-16,
+    "whole_max_ulp_difference": 9,
+    "whole_master_captures_exact": true,
+    "whole_status_inputs_diagnostics_exact": true
+  },
+  "case_first_vs_saved": {
+    "all_32_case_responses_exact": true,
+    "all_3_controls_exact": true
+  },
+  "scope_limit": "Two fresh processes establish this schedule-associated observation and within-process stability, not universal cross-process determinism or an instruction-level causal proof."
+}

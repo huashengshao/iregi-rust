@@ -1,0 +1,90 @@
+{
+  "status": "numerically-qualified-timing-ready-awaiting-root-grant",
+  "created_utc": "2026-10-23T21:36:46.259168+00:00",
+  "production_adoption": false,
+  "scope": "Private complete current067 core and public adapter with only A0/B0/C0 plain-f64 evaluator selection; matched default-Symbolica baseline. Current public production6b24 performance gate remains separate.",
+  "production_numerical_revision": "06706e2a1e4f0082889a53187c80bbe97803340f",
+  "bindings": {
+    "target/selected-native-optimized/source/core_probe.rs": "c0233803c9b3ab4576a66f4c226e1af365b5eb7632cd71a6583a475ae39a65d2",
+    "target/selected-native-optimized/source/master_controls.rs": "bedd78115d6020d3b49c2a1bb190ea52a3a8e70564e738f661d403af9b869d4a",
+    "target/selected-native-optimized/source/probe.rs": "171cead1f1ec92ce61db4adea357385fad97a76beeaef053b9dd7e1b8bc469f5",
+    "target/selected-native-optimized/build_whole.py": "d7ff929015ba06034f571ef06ebb0cff7f7cb43efbf3291772e03969db4ad7ce",
+    "target/selected-native-optimized/run.py": "c96db556089e480c0a867b92240219747d6a2c9f1a6b623e2c7110bb80dabce5",
+    "target/selected-native-optimized/run_timing.py": "f62606cd48f35e1144828a40906207a57dbf955576c5273d1765b02cde813641",
+    "target/selected-native-optimized/admission.py": "798817581836811f1987a4028fe9c174461f0028c089071d674dfa038f2a2a6a",
+    "target/selected-native-optimized/admission_controls.py": "da70e4351f9d0c11cb12be3a639d7801b6e42eb9086117b35e2919ff6a987295",
+    "target/selected-native-optimized/admission-controls.json": "8d7a8cc9893797d080f9d1819837fccc1e3643782e2e0a43bd111731f0e2cbc8",
+    "target/selected-native-optimized/control-inventory.json": "598ef503aa007845a8fdf52941434f2f02fdc095650a8a1bfa4e2de0bdaefbf9",
+    "target/selected-native-optimized/adopted-timing-protocol.md": "9033f979f4fc35050c51c5f232ec846dfe0abc38bc1b037908395981b31dd61d",
+    "target/selected-native-optimized/source-review.json": "e3d1a4c9437a5bda5109be2bc3ebf5948bb65b0a0f4d1022d92d80bf03becb82",
+    "target/selected-native-optimized/shared/accepted.json": "4ddae0375567918948aa7f1b074c8ae5ee6f725859c4094d78b7dbc1b5e45db7",
+    "target/selected-native-optimized/closure-audit.json": "7faf196a9b4befa33cb7d55d3dc3dd4d8917c6ddba0ee1a5a93716b6086c72c8",
+    "target/selected-native-optimized/build-001/build.json": "95b0dd15d4e3cd4914ce05c7ad370ace0bbca2f3cea28b8379215fb099a3ef0a",
+    "target/selected-native-optimized/build-001/probe": "fbf0886387c89d2ae0e6f4d0b0c1c26194d293742315c8d477298090d136fb03",
+    "target/selected-native-optimized/build-001/source-qualification-admission.json": "b0f56151b89b31b9fe93dfac39926caad49a8d5c8602405c0cbdb34e813a9443",
+    "target/selected-native-optimized/build-001/toolchain-observation.json": "829779de8c3eda84fd6b632415a74e02513d62f636f01a440d7ef7cfe8a70924",
+    "target/selected-native-optimized/qualification-001/results.json": "75684e3a1cbb4eccd57d40bcdceba21b33884103f55c08837f1429ad0a94777b",
+    "target/benchmark/iregi-benchmark": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389",
+    "target/benchmark/reference-build.json": "488782471657193e0e09f69c283cb82d8534577bb4fccd23f3087192c0f2f782",
+    "validation/native-master-replay/inputs.json": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+    "validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+  },
+  "review_sha256": "e3d1a4c9437a5bda5109be2bc3ebf5948bb65b0a0f4d1022d92d80bf03becb82",
+  "numerical_qualification": {
+    "rows": 8,
+    "lanes": 132,
+    "complex_tensor_coefficients_per_backend": 1584,
+    "master_groups": 12,
+    "master_rows": 297,
+    "six_output_complex_master_coefficients_per_backend": 1782,
+    "elapsed_seconds": 12.112094543059357,
+    "maximum_whole_cross_backend_error": 2.060145367735415e-13,
+    "maximum_baseline_iregi_error": 2.4583237864622474e-13,
+    "maximum_candidate_iregi_error": 3.3775669420228794e-13,
+    "maximum_master_cross_error": 1.694832829752953e-14,
+    "controls": {
+      "status": "passed",
+      "selected_cases": 34,
+      "unchanged_cases": 21,
+      "whole_dual_cases": 1
+    },
+    "prior_higher_precision_evidence": "validation/selected-native-reduction/qualification.json"
+  },
+  "measurement_protocol": {
+    "engines": [
+      "baseline",
+      "candidate",
+      "iregi"
+    ],
+    "families": 8,
+    "triplets_per_family": 42,
+    "orders": "six permutations each7times, Random173 shuffle",
+    "fastest_minimum_block_ns": 100000000,
+    "calibration_margin": 1.1,
+    "maximum_calibration_rounds": 8,
+    "shared_iterations": true,
+    "fixed_total_runtime_cap_seconds": 500,
+    "raw_reference_elapsed": "floating ns/call times integer iterations; reference does not export integer clock ticks",
+    "pre_post": "Every full pair and originalIREGI array, six-output captures, own exact snapshots; all controls before and after",
+    "statistics": "deferred until global quiet release; paired medians10000bootstrap99%CI2%width; short or incomplete families retained inconclusive"
+  },
+  "command_argv_template": [
+    "python",
+    "target/selected-native-optimized/run_timing.py",
+    "001",
+    "quiet254",
+    "254",
+    "ROOT_SUPPLIED_IMMUTABLE_WINDOW_JSON",
+    "ROOT_SUPPLIED_WINDOW_SHA256"
+  ],
+  "environment_setup": [
+    "source scripts/env.sh",
+    "source .local/symbolica-license.env"
+  ],
+  "timing_performed": false,
+  "limitations": [
+    "Current optimized witness is f64 plus unchanged f64/Dual controls; prior DD/Float semantics is distinct evidence.",
+    "Compiler uses ambient default linker; supplementary toolchain observation is explicitly postlaunch, not a pre-pinned explicit-linker claim.",
+    "Private result cannot replace public production gate without later combined-source adoption and benchmarking."
+  ]
+}

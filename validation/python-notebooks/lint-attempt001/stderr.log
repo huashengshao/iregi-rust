@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/bin/marimo", line 7, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/lib/python3.13/site-packages/click/core.py", line 1631, in __call__
+    return self.main(*args, **kwargs)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/lib/python3.13/site-packages/click/core.py", line 1552, in main
+    rv = self.invoke(ctx)
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/lib/python3.13/site-packages/click/core.py", line 2032, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+                           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/lib/python3.13/site-packages/click/core.py", line 1415, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/lib/python3.13/site-packages/click/core.py", line 910, in invoke
+    return callback(*args, **kwargs)
+  File "/shared/external/iregi/iregi-rust/.local/notebooks-env/lib/python3.13/site-packages/marimo/_cli/cli.py", line 1600, in check
+    if linter.errored or (strict and (fixed > 0 or total_issues > 0)):
+                                      ^^^^^
+UnboundLocalError: cannot access local variable 'fixed' where it is not associated with a value

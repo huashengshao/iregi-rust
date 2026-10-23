@@ -1,0 +1,27 @@
+
+==================================== ERRORS ====================================
+_____________ ERROR collecting tests/python/test_tirust_interop.py _____________
+ImportError while importing test module '/shared/external/iregi/iregi-rust/tests/python/test_tirust_interop.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/python/test_tirust_interop.py:18: in <module>
+    import tirust
+E   ModuleNotFoundError: No module named 'tirust'
+____________ ERROR collecting tests/python/test_tirust_numerics.py _____________
+ImportError while importing test module '/shared/external/iregi/iregi-rust/tests/python/test_tirust_numerics.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/lib/python3.13/importlib/__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+tests/python/test_tirust_numerics.py:8: in <module>
+    from tirust import (
+E   ModuleNotFoundError: No module named 'tirust'
+=========================== short test summary info ============================
+ERROR tests/python/test_tirust_interop.py
+ERROR tests/python/test_tirust_numerics.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 2 errors during collection !!!!!!!!!!!!!!!!!!!!
+no tests collected, 2 errors in 0.18s

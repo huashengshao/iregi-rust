@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_and_presentation_helpers_notebook_runtime_pending",
+  "recorded_utc": "2026-10-23T22:23:17.440773+00:00",
+  "implementation": "TIRust",
+  "notebooks": 3,
+  "notebook_cells": 50,
+  "official_lint": {
+    "marimo": "0.24.0",
+    "strict": true,
+    "fixes_enabled": false,
+    "files": 3,
+    "issues": 0,
+    "final_exit_code": 0,
+    "run": "lint-attempt002/run.json",
+    "preserved_initial_cli_failure": "lint-attempt001/run.json"
+  },
+  "evidence_display_tests": {
+    "passed": 9,
+    "failed": 0,
+    "run": "evidence-tests/run.json",
+    "native_reduction_executed": false
+  },
+  "runtime": {
+    "native_wheel_available": false,
+    "notebooks_executed": false,
+    "html_exports_created": false,
+    "wheel_backed_tests_passed": null,
+    "status": "pending_real_standalone_wheel"
+  },
+  "environment": {
+    "python": "3.13.12",
+    "platform": "Linux-6.18.45-x86_64-with-glibc2.42",
+    "environment": ".local/notebooks-env",
+    "marimo": "0.24.0",
+    "requirements": "environment-requirements.txt"
+  },
+  "scope": "Source lint and pure evidence/display-helper checks only. Algorithms, graph preparation, Symbolica algebra, batch reduction and contraction call the actual Rust API when the native wheel is available.",
+  "ratio_direction": "TIRust/reference or TIRust(candidate)/TIRust(baseline), always TIRust in numerator; no cross-session ratio reconstruction.",
+  "source_hashes": {
+    "examples/notebooks/01_numerator_to_integral.py": "b1a719bb48fd76414a4f7b45907747c7841ffafc2a6770358334857a5e0df51d",
+    "examples/notebooks/02_dots_and_derivatives.py": "3af4c4513afa29be85af18ae396812e15355e0a0f3f49b553b9ccae8ce5dfa11",
+    "examples/notebooks/03_benchmark_explorer.py": "dedce0074e01c2d5a86b85228e93ae4a7243ef1903a84b30cc6e814e39be9cdf",
+    "examples/notebooks/_presentation.py": "308d5b08cf682b1aba75b1c7b54cb941e6de870a242bcf4cb1055c20c0e4fcd4",
+    "tests/python/test_gallery_evidence.py": "5f54aff9a1684e3db964e017c1f260555520c7312608eb2a8bb197c632e6a1cf",
+    "tests/python/test_gallery_runtime.py": "d02a131961543894eae8d26035090f28bed916eaef314aee400940b79c26c49c"
+  },
+  "artifact_hashes": {
+    "source-reference.json": "5d5c7a41ac2fc904d5bd31c76a6125f5986a52c54798d6a8c90bb623d30b87b6",
+    "environment-requirements.txt": "05749127a03fb890fd480c7fdeb22b17dde6023b19bcc3f0c2b92816f37b32ea",
+    "review_source.py": "81fc1f1d5b319630ea33057534d82a44fb87ed76a4d04ebf73a76d102303f1e7",
+    "api-source-review.json": "cb3a2bfd9e3617e604ec290e40a9d6960bb15ec16ccce7445367926a7d765516",
+    "README.md": "e524b1b19b7f5771175462f8c656d8797b89fec92c9c41f37c5bc7e4cb4d2e7f",
+    "source-ast-review.json": "50f7121f9623d98d2987b0b192c6d63bcc463f62305f1061725e0cbdde9a7dc9",
+    "evidence-tests/run.json": "e9c6e1ec31127cef773fbf1781b0b2168205ab54edfb63e076560e9e3e7cece3",
+    "evidence-tests/stderr.log": "40544dc02238f1cc958298bdfd89dbdfbcd590841bdf9fc68ccc50fff2a788a3",
+    "evidence-tests/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint-attempt002/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint-attempt002/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "lint-attempt002/run.json": "fe20d3172826b720a86d4ff061a81ea57202a17531f5e9caf5f6bb365f7e0f2a",
+    "lint-attempt001/stdout.json": "13d7e85c054fb0aeec7324a7a7148717fa51a24fcd404fb0ef948794f214a394",
+    "lint-attempt001/stderr.log": "4b13d4cdf1f3768abdd0b42b3215242269f6a79f748d017cbca10a4205ac5f92",
+    "lint-attempt001/run.json": "4616f1af17ad6a387b86c25e1826ed345a5b29b5c7377b5f61686f09ac0e1d40"
+  },
+  "pending": [
+    "Real standalone wheel installation",
+    "Six wheel-backed notebook integration tests",
+    "Headless execution and static HTML export of all three notebooks",
+    "Graph, symbolic math and narrow/dark visual review"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "status": "ready-not-measured",
+  "created_utc": "2026-10-23T22:32:09.834798+00:00",
+  "scope": "private historical optimized TIRust prototype against original IREGI and validated COLLIER; no production adoption",
+  "source_manifest_sha256": "52219aeb2e65fc1c2322896b225d08b3c3ea579a00e1e2e0204c948bcdc54a84",
+  "preflight_receipt_sha256": "c7ea1d013dcd8ead96a5f397a67913be8a491d6c89a76026e4652a0b40fa8c00",
+  "preflight_raw_sha256": "f80e691758af1e43c9cddc76caaa9753a633d5ab007e65abba6e48136b48c1c6",
+  "preflight_independent_audit_sha256": "b1ff2407c75379e7a6e4898d9d8f2701298c084d0107dce7ed9d146dc069c44d",
+  "preflight_ready_sha256": "3c260214acbf229eed24a7b3d8cc4308fca2e0e41a3fcc399b2f45659b555c53",
+  "source_sha256": {
+    "run_timing.py": "da98dcea10a0122efa01506654ba3b15c7e3500d44f2b5d5603f06607a39b46c",
+    "preparation.py": "0b012b436dd4d38b70ac6bafa1a10750e3d501b97af466739be4a7c53daa4db5",
+    "admission_v3.py": "47ba2e26f1e6b46ac51219bb9cb2aafe4af36cfcc3bd6abd33ceb53c4dfbeaac",
+    "analyze.py": "9474275ee8e07a86d317d1c7056256b5c5b993a82924189e1f70fa57390f7379",
+    "interface_controls.py": "d1c93ecbbe9bfe07933fa36c9a5f71e36da8e1114dccbb7f2f1244e37a13b653",
+    "statistics_controls.py": "2e9b3bed97ea8dfc582041e7fa0455c759ff74e157ab77f954aace08d8f008ce",
+    "adopted-timing-protocol.md": "329368e6a70aeaacacc76ddd85da84cdd5a8c6b269287522bea1d3e3f95ea0c1"
+  },
+  "parser_receipt_sha256": {
+    "interface-controls.json": "d86445ae5755e2916668eba7808e32b548232de88842218b3dc7f8cbffc07749",
+    "statistics-controls.json": "edf4bfb0ad38dcfefce0eccf3c0485b49f05a5a3d3d177b433c658eeaac4fbb2"
+  },
+  "initialization_schedule": "original-eight-CASE-each-immediate-repeat-before-CONTROLS",
+  "diagnostic_manifest_sha256": "7a49e5ca89bb8ce38e8960f74b6ca3fdefc635246ca3ac8ae3911dd921a68ac0",
+  "historical_prototype_binary_sha256": "fbf0886387c89d2ae0e6f4d0b0c1c26194d293742315c8d477298090d136fb03",
+  "failed_v2_preserved_raw_sha256": "dc04acc0afce3d1fb86a9a1f36177c25b5251d622945692f554fc4f5d0a5bb17",
+  "preflight_summary": {
+    "families": 8,
+    "responses": 66,
+    "elapsed_seconds": 23.15141777007375,
+    "all_full_arrays_six_master_outputs_statuses_exact": true,
+    "reference_numerical_and_collier_pole_checks_passed": true,
+    "calibration_blocks": 0,
+    "acceptance_blocks": 0,
+    "process_exit_codes": {
+      "probe": 0,
+      "iregi": 0,
+      "collier": 0
+    }
+  },
+  "measurement_protocol": {
+    "engines": [
+      "baselineTIRust",
+      "candidateTIRust",
+      "iregi",
+      "collier"
+    ],
+    "quartets": 48,
+    "permutations": 24,
+    "copies_per_permutation": 2,
+    "shuffle_seed": 173,
+    "minimum_fastest_engine_block_ns": 100000000,
+    "calibration_margin": 1.1,
+    "max_calibration_rounds": 8,
+    "common_iteration_count": true,
+    "runtime_cap_seconds": 700,
+    "bootstrap_resamples": 10000,
+    "confidence_level": 0.99,
+    "maximum_relative_ci_width": 0.02,
+    "ratio_direction": "TIRust/reference; candidateTIRust/baselineTIRust"
+  },
+  "requires_separate_root_quiet_grant": true,
+  "performance_measured": false,
+  "current_production_source_equality_claimed": false,
+  "command_template": "source scripts/env.sh; source .local/symbolica-license.env; python target/selected-native-optimized/four-engine-v3/run_timing.py timing 001 quiet254 254 <quiet-manifest> <quiet-sha256>"
+}

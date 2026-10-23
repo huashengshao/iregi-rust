@@ -1,0 +1,24 @@
+error[E0369]: binary operation `==` cannot be applied to type `&types::ReductionSettings`
+    --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic/core/crates/iregi-rust/src/plan.rs:1899:9
+     |
+1899 |         assert_eq!(rebuilt.settings(),plan.settings());
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |         |
+     |         &types::ReductionSettings
+     |         &types::ReductionSettings
+     |
+note: an implementation of `PartialEq` might be missing for `types::ReductionSettings`
+    --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic/core/crates/iregi-rust/src/types.rs:76:1
+     |
+  76 | pub struct ReductionSettings {
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ must implement `PartialEq`
+help: consider annotating `types::ReductionSettings` with `#[derive(PartialEq)]`
+    -->  /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic/core/crates/iregi-rust/src/types.rs:76:1
+     |
+  76 + #[derive(PartialEq)]
+  77 | pub struct ReductionSettings {
+     |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0369`.

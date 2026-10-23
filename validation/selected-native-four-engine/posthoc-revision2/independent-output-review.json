@@ -1,0 +1,50 @@
+{
+  "status": "independent_saved_output_review_passed",
+  "recorded_utc": "2026-10-23T22:54:40.744954+00:00",
+  "scope": "Read retained JSON and independently reconstruct gate decisions and paired ratios; no bootstrap resampling, corrected analyzer, numerical kernel, build or timing rerun.",
+  "bindings": {
+    "target/selected-native-optimized/four-engine-v3/posthoc-revision2/summary.json": "424cb4028459324b796085e5446c979f75de796eb0aa747e6f2335f654116275",
+    "target/selected-native-optimized/four-engine-v3/timing-quiet254/summary.json": "e4b807914566d52e61798848344a59455f21f839d70f2faa2fca592f3a2513c3",
+    "target/selected-native-optimized/four-engine-v3/timing-quiet254/receipt.json": "1db4c97f2bd0e256e14b9603e840ce22f7cd98e127f0f0673aa6e8f7cfe1e3b3",
+    "target/selected-native-optimized/four-engine-v3/timing-quiet254/raw.jsonl": "c6621c221f1e0526ac50e4b1e5785e5f296e600b6f00277f4882f15ef42547e8",
+    "target/selected-native-optimized/four-engine-v3/posthoc-revision2/analyze_posthoc.py": "bc27a250e261da14f5b70c73b273d8fe073f31a1c503426ad31ec6754d2ce810",
+    "target/selected-native-optimized/four-engine-v3/posthoc-revision2/terminal_admission.py": "9dba093aafd7d5a5ec6fb96ce280e0ad70fb74ad123e162b4013750df29c2a72",
+    "target/performance-next-audit/native-v3-posthoc-revision2-review.json": "71bb8916df7ad61323f2288995b848d843d5a310fbe637ca0c12e997fe59e36a"
+  },
+  "families": 8,
+  "ratios_checked": 40,
+  "all_original_non_gate_statistics_identical": true,
+  "all48_paired_samples_and_medians_reconstructed": true,
+  "all_confidence_intervals_and_order_strata_identical_to_original": true,
+  "original_short_family_retained": {
+    "id": "n2-r0-massive",
+    "batch": 1,
+    "inconclusive_ratios": 5,
+    "short_blocks": 1
+  },
+  "gate_counts": {
+    "baselineTIRust/iregi": {
+      "inconclusive-short-block": 1,
+      "regression": 7
+    },
+    "candidateTIRust/iregi": {
+      "inconclusive-short-block": 1,
+      "regression": 6,
+      "improvement": 1
+    },
+    "baselineTIRust/collier": {
+      "inconclusive-short-block": 1,
+      "regression": 7
+    },
+    "candidateTIRust/collier": {
+      "inconclusive-short-block": 1,
+      "regression": 7
+    },
+    "candidateTIRust/baselineTIRust": {
+      "inconclusive-short-block": 1,
+      "improvement": 7
+    }
+  },
+  "interpretation": "This is explicitly a posthoc admission correction, not a preregistered protocol result or production adoption. Full no-regression acceptance remains unmet.",
+  "new_numerical_or_timing_runs": 0
+}

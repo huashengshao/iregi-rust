@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "source_review_status": "approved_source_only",
+  "reviewers": [
+    "/root/highpoint_coverage",
+    "/root/highpoint_coverage/evidence_review",
+    "/root"
+  ],
+  "rank": 3,
+  "propagators": 6,
+  "working_bits": [
+    128,
+    256
+  ],
+  "requested_bits": 53,
+  "fixture_rows": [
+    0
+  ],
+  "moments": 35,
+  "native_complex_slots": 140,
+  "runtime_bound_seconds": 180,
+  "normalized_original_tolerance": "1e-10",
+  "convergence_tolerance": "2^-80",
+  "scope": "Private generic thin N6 rank3 only. Retained exact base fixture and native Components. All25 exact prerequisites passed. Frozen Float128 capture first; Float256 only after full128 original-reference agreement and ROOT coordination. No numerical Dual/lifecycle/rank7/N7/generalized/SuppliedG qualification, production adoption or performance gate.",
+  "prerequisites": {
+    "build": "passed",
+    "exact_tests": 25,
+    "original_failed_test_compilation": "retained unchanged"
+  },
+  "commands": [
+    "source scripts/env.sh",
+    "source .local/symbolica-license.env",
+    "python3 target/public-highpoint/thin-n6-generic-fixed/run-numeric.py 128",
+    "python3 target/public-highpoint/thin-n6-generic-fixed/compare.py 128",
+    "Conditional only: python3 target/public-highpoint/thin-n6-generic-fixed/run-numeric.py 256",
+    "Conditional only: python3 target/public-highpoint/thin-n6-generic-fixed/compare.py 128 256"
+  ],
+  "artifacts": {
+    "target/public-highpoint/thin-n6-generic-fixed/compare.py": "47a26345e851ba38aa98a52d2b6ac1ce642c170ead611b5db1630d226109f768",
+    "target/public-highpoint/thin-n6-generic-fixed/run-numeric.py": "8d547a3a5a79f5d886c4ed3bef6962bcdeab0a34e22beb2e73e3eff2d8e80a6b",
+    "target/public-highpoint/thin-n6-generic-fixed/build-001/build.json": "0c01555ac79dc9703492a4f4288e471a50eb3d84f98411360a49b3c189ce755a",
+    "target/public-highpoint/thin-n6-generic-fixed/exact-001/run.json": "a19f9624edd2a571fa4a003a56ad4387f3ae03123f94345347bdddd549d2ed6c",
+    "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-0.log": "2c9a055fb7ba90ef9d045f641beee8d1b2db4fb9f703224729a0129bdb8c79fa",
+    "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-1.log": "7f61181ca81d2b91278c748a4bd0fcc19554ab11a786f25eebd9d13a8fd4ea5e",
+    "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-2.log": "ed52cdc430f5fe862d10c74befd1f703a3c54faff1c666665a15756e10348dcf",
+    "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-3.log": "1be9843cae946743ab621315b604a7dd2dc3582c26ed8b761fde672978eb58af",
+    "target/public-highpoint/thin-n6-generic-fixed/exact-001/step-4.log": "2e47e920e0246d36d95106ee49fccf0c1438966d7446bc652985575b63f155e8",
+    "target/public-highpoint/thin-n6-generic-fixed/proposed-protocol.json": "69cda793aa2bf9c0e7b48fa4e079c002b4ff23ad162b6ad07ce1b7fd4a414e4c",
+    "target/public-highpoint/thin-n6-generic-fixed/source-review.json": "7db1c2b0db02f65af824ee585dc06920a90684ea57373017072b4b7b1f603a1b",
+    "target/public-highpoint/thin-n6-generic-fixed/base.json": "b86482bd0d65c39c3b3f00fc100db1a7970e7cc6323c72416fed8749b2e50fd5",
+    "target/public-highpoint/thin-n6-generic-fixed/test-fix.json": "b7a594ca5d42de886fd254d3db1bcb44a394635dd4f4d63438e031cfd1d1f331",
+    "target/public-highpoint/thin-n6-generic-fixed/driver.rs": "d499c9ffb15659a268287560f51ace900cde91fa23b23878813dfdcac1085be9",
+    "target/public-highpoint/thin-n6-generic-fixed/run.py": "0ffb7e8597371c8285b4fe6526503b3c6c9594aed1f976094484c1dae8727e91",
+    "validation/public-highpoint/fixture-conditioned_masses.json": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+    "validation/public-highpoint/reference-conditioned_masses.json": "9bc3f10ad27615f23ddb3c2f62169575378d32e6c35c9d2a9dd51223f9b39ec4",
+    "validation/public-highpoint/compare_public.py": "bd7139b6f846b69706a89c6c72e426605aebd5fa4ffbb75dcf1bcfb83c04da9d"
+  },
+  "root_review": "Approved fixed rank3 Float128 <=180s plus saved-data comparator. Float256 requires explicit subsequent coordination after128 result."
+}

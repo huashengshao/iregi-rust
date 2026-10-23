@@ -1,0 +1,20 @@
+{
+  "status": "approved_source_only_for_reviewed_bounded_gate",
+  "reviewer": "/root/highpoint_coverage/mask_review",
+  "changed_source": {
+    "crates/iregi-rust/src/plan.rs": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+    "crates/iregi-rust/src/thin_n6.rs": "18e513c8fc99389fd6390adfc29396bbde66b146b04ea892c6017bfd09357a45",
+    "crates/iregi-rust/src/thin_n6/generic_tests.rs": "098c6e941bf4b695642a086117eb5e25d72aeeed9354cd58e93ac2fe182b8a39"
+  },
+  "findings": [
+    "Dynamic child rank=max(parentrank-1,0), all requested moments and all four Laurent slots.",
+    "Imported dimensions are per child moment rank minus six, not the maximum rank.",
+    "Same existing Symbolica five weight columns and batched child path; no new algebra.",
+    "Thin analytic variants retain child-rank identity and imported operands; unrelated profiles reject. Full ordered Dual shape remains in existing execution cache keys.",
+    "Existing final UV power-counting rule writes only UV slot; native child output is not convention-converted again. Raw assembly and nonzero child UV cancellation have separate exact tests.",
+    "Complete dynamic result inventories are validated before child indexing and parent scatter.",
+    "Nine generic tests plus one variant test reviewed; no build, execution, numerical integral, production adoption or performance qualification."
+  ],
+  "test_fix_sha256": "b7a594ca5d42de886fd254d3db1bcb44a394635dd4f4d63438e031cfd1d1f331",
+  "narrow_fix_review": "Independent mask_review verified entire source inventory differs solely by settings serde_json equality in cfg(test); ReductionSettings derives Serialize and serde_json is already linked. Original failed source/build preserved."
+}

@@ -1,0 +1,207 @@
+{
+  "status": "audit-passed-frozen-inconclusive-verdict-preserved",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "created_utc": "2026-10-23T22:45:08.262455+00:00",
+  "scope": "Independent saved-data numerical/protocol/provenance audit only; no numerical kernels, compilation, new timings or changed gates. Statistical arithmetic is independently delegated to a separate receipt.",
+  "raw_responses": 1666,
+  "raw_accounting": "All raw serials0..1665 referenced exactly once, complete prescribed chronological sequence; no omission or duplicate.",
+  "counts": {
+    "initialization_paired_responses": 16,
+    "exact_controls": 2,
+    "baseline_qualification_complex_tensors": 3168,
+    "baseline_qualification_master_groups": 24,
+    "baseline_qualification_master_rows": 594,
+    "baseline_qualification_complex_master_outputs": 3564,
+    "candidate_qualification_complex_tensors": 3168,
+    "candidate_qualification_master_groups": 24,
+    "candidate_qualification_master_rows": 594,
+    "candidate_qualification_complex_master_outputs": 3564,
+    "iregi_qualification_complex_tensors": 3168,
+    "collier_qualification_complex_tensors": 3168,
+    "COLLIER_pole_probes": 792,
+    "qualification_responses": 48,
+    "calibration_responses": 64,
+    "calibration_baselineTIRust_responses": 16,
+    "calibration_candidateTIRust_responses": 16,
+    "calibration_iregi_responses": 16,
+    "calibration_collier_responses": 16,
+    "acceptance_responses": 1536,
+    "acceptance_baselineTIRust_responses": 384,
+    "acceptance_candidateTIRust_responses": 384,
+    "acceptance_iregi_responses": 384,
+    "acceptance_collier_responses": 384
+  },
+  "rows": [
+    {
+      "id": "n2-r0-massive",
+      "batch": 1,
+      "producer_status": "short-block-inconclusive",
+      "iterations": 134147,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [
+        {
+          "id": "n2-r0-massive",
+          "batch": 1,
+          "block": 32,
+          "engine": "collier",
+          "elapsed_ns": 99893971.0,
+          "raw_serial": 159
+        }
+      ],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n2-r0-massive",
+      "batch": 32,
+      "producer_status": "completed",
+      "iterations": 4561,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n2-r1-massive",
+      "batch": 1,
+      "producer_status": "completed",
+      "iterations": 88710,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n2-r1-massive",
+      "batch": 32,
+      "producer_status": "completed",
+      "iterations": 2973,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n3-r0-massive",
+      "batch": 1,
+      "producer_status": "completed",
+      "iterations": 28721,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n3-r0-massive",
+      "batch": 32,
+      "producer_status": "completed",
+      "iterations": 912,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n3-r1-massive",
+      "batch": 1,
+      "producer_status": "completed",
+      "iterations": 17832,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    },
+    {
+      "id": "n3-r1-massive",
+      "batch": 32,
+      "producer_status": "completed",
+      "iterations": 569,
+      "calibration_rounds": 2,
+      "quartets": 48,
+      "short_blocks": [],
+      "numerical_and_own_snapshot_checks": "passed",
+      "frozen_performance_gate_preserved": true
+    }
+  ],
+  "short_blocks": [
+    {
+      "id": "n2-r0-massive",
+      "batch": 1,
+      "block": 32,
+      "engine": "collier",
+      "elapsed_ns": 99893971.0,
+      "raw_serial": 159
+    }
+  ],
+  "max_normalized_errors": {
+    "TIRust_vs_IREGI": 3.3775669420228794e-13,
+    "whole_backend": 2.060145367735415e-13,
+    "masters": 1.694832829752953e-14,
+    "COLLIER_vs_TIRust_and_IREGI": 2.488972223388242e-13
+  },
+  "terminal": {
+    "producer_status": "inconclusive-or-failed",
+    "mode": "timing",
+    "cpu": 254,
+    "numerical_elapsed_seconds": 414.27432815602515,
+    "cleanup_finished_elapsed_seconds": 414.3478993510362,
+    "elapsed_seconds": 416.58924018696416,
+    "cleanup_errors": [],
+    "deadline_exceeded": false,
+    "process_exit_codes": {
+      "probe": 0,
+      "iregi": 0,
+      "collier": 0
+    }
+  },
+  "provenance": {
+    "all_producer_input_sha256_rehashed_and_matched": 334,
+    "quiet_manifest_and_completion_bound": true,
+    "quiet_window_contains_saved_run": true,
+    "all_original_evidence_unchanged": true
+  },
+  "frozen_verdict": {
+    "aggregate": "inconclusive-or-failed",
+    "cause": "One COLLIER acceptance block was99.893971ms, below frozen100ms minimum. The frozen analyzer additionally requires aggregate status completed, so it rejects all8 families.",
+    "summary_global_admission_errors": [
+      "global admission: "
+    ],
+    "outer_gates": {
+      "inconclusive-short-block": 5,
+      "correctness-or-cohort-failed": 35
+    },
+    "nested_statistical_gates": "All40 full-family and80 order-stratum gates remain correctness-failed. No corrected gate executed."
+  },
+  "limitations": [
+    "These checks validate saved returned outputs; timed public Rust loops check statuses on every iteration but export numerical arrays only in the existing post-loop untimed evaluation.",
+    "Fortran elapsed blocks are reconstructed from floating ns/call times iterations, not raw integer clock ticks.",
+    "This audit does not authorize performance adoption or any corrected analysis and does not establish the initialization-order mechanism."
+  ],
+  "bindings": {
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/timing-quiet254/receipt.json": "1db4c97f2bd0e256e14b9603e840ce22f7cd98e127f0f0673aa6e8f7cfe1e3b3",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/timing-quiet254/raw.jsonl": "c6621c221f1e0526ac50e4b1e5785e5f296e600b6f00277f4882f15ef42547e8",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/timing-quiet254/summary.json": "e4b807914566d52e61798848344a59455f21f839d70f2faa2fca592f3a2513c3",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/timing-quiet254/frozen-analysis.log": "5f5a1226e11f4903f7fdc9f3cf9b58fea6fe005c63c21ccb9faa36b16f84f9a0",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/analyze.py": "9474275ee8e07a86d317d1c7056256b5c5b993a82924189e1f70fa57390f7379",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/preparation.py": "0b012b436dd4d38b70ac6bafa1a10750e3d501b97af466739be4a7c53daa4db5",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/admission_v3.py": "47ba2e26f1e6b46ac51219bb9cb2aafe4af36cfcc3bd6abd33ceb53c4dfbeaac",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/run_timing.py": "da98dcea10a0122efa01506654ba3b15c7e3500d44f2b5d5603f06607a39b46c",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/admission.py": "798817581836811f1987a4028fe9c174461f0028c089071d674dfa038f2a2a6a",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v2/admission_v2.py": "06ab113c95a660cd06a0e5e66fbaf74413aeaa5b55b86ce173b5603d3258da45",
+    "/shared/external/iregi/iregi-rust/validation/collier-reference/ready-initial8-v3/producer/validation/collier-reference/run.py": "979046300446dc037c52927436696b4bcac2a289439abb699d85f6b19a63d134",
+    "/shared/external/iregi/iregi-rust/validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/qualification-001/results.json": "75684e3a1cbb4eccd57d40bcdceba21b33884103f55c08837f1429ad0a94777b",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v2/qualification-001/results.json": "a7d39fc4b17b045a2b6213ed78c2330d1037f775cc50a58e494b4c14645814e0",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/timing-ready.json": "46aee2336793094a558d8ba4d899a1ea88e94e22d28fa09878a314d1f43d910e",
+    "/shared/external/iregi/iregi-rust/target/selected-native-optimized/four-engine-v3/source-manifest.json": "52219aeb2e65fc1c2322896b225d08b3c3ea579a00e1e2e0204c948bcdc54a84",
+    "/shared/external/iregi/iregi-rust/validation/benchmark-quiet/20261024a/window.json": "b0732ce52571c766fbb019a14ec8370ed6fb8d97fcf4b7f6171337d0dbb201b5",
+    "/shared/external/iregi/iregi-rust/validation/benchmark-quiet/20261024a/completion.json": "ddf52a62db1e3ca37de74b9385ec342d96b3f25baafaf9f6260fcfda12d8e42f"
+  }
+}

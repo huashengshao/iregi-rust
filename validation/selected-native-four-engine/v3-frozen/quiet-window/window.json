@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "single_timing_authorized_on_explicit_root_owner_grant",
+  "created_utc": "2026-10-23T22:32:35.857677+00:00",
+  "project_head": "94db6952b6344cd9e43a4f3cdc32fdf2066df6ab",
+  "production_numerical_revision": "06706e2a1e4f0082889a53187c80bbe97803340f",
+  "cpu": 254,
+  "scope": "One v3 four-engine private whole-reduction cohort; explicit original qualification CASE-first preparation, all exact and numerical gates unchanged; no production adoption or combined-cohort ratios.",
+  "project_policy": "No concurrent project builds, reference/numerical kernels, tests, installations, benchmarks or long analysis. Source writing and small read-only review only. All workers acknowledged holds; only native_stack_batch receives a separate start grant.",
+  "external_host_policy": "Shared host uncontrolled; unrelated processes unchanged. Retain failed, short, noisy, unsupported and unrun cases; no CI-dependent repeats or exclusions.",
+  "survey": {
+    "path": "validation/benchmark-quiet/20261024a/cpu-survey.json",
+    "sha256": "8b4bee85c72b97071f631edb3ec5fd93398d33dcba2b0d94f4beba483dce3e76",
+    "cpu_busy_fraction": 0.04013377926421405
+  },
+  "cohorts": {
+    "selected_native_four_engine_v3": {
+      "path": "target/selected-native-optimized/four-engine-v3/timing-ready.json",
+      "sha256": "46aee2336793094a558d8ba4d899a1ea88e94e22d28fa09878a314d1f43d910e",
+      "owner": "/root/native_stack_batch",
+      "runtime_cap_seconds": 700,
+      "measured_families": 8,
+      "quartets_per_family": 48,
+      "minimum_fastest_block_ns": 100000000
+    }
+  },
+  "order": [
+    "selected_native_four_engine_v3"
+  ],
+  "ratio_policy": "Every displayed ratio has TIRust numerator: baselineTIRust/IREGI, candidateTIRust/IREGI, baselineTIRust/COLLIER, candidateTIRust/COLLIER, candidateTIRust/baselineTIRust. No cross-session synthesis.",
+  "holds_acknowledged": [
+    "python_interface: full native typecheck complete; no further Cargo/build/test/install during hold",
+    "highpoint_coverage: generic source-only; all runtime/builds idle",
+    "collier_extended_resume: saved-data tests finished, reference/CLI/heavy audits held",
+    "marimo_notebooks: strict lint/helper tests finished; actual-wheel execution held",
+    "numeric_batch_audit: statistics/source reviews finished; compute idle",
+    "native_stack_batch: preflight and independent audit passed; no active compute"
+  ],
+  "immutability": "Do not rewrite this manifest. Append events/completion separately and bind this exact hash."
+}

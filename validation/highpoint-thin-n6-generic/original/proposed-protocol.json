@@ -1,0 +1,81 @@
+{
+  "status": "source_only_proposed_unrun",
+  "base_qualification": "validation/highpoint-thin-n6-mask/qualification.json",
+  "base_qualification_sha256": "6ef88dfd99a32746f641b2485b2cd95b7bddfd186dc45148287874af764f4357",
+  "source_review_sha256": "ac9b81db6c71b056544f3e095486a36561389a855918d19073d6890b114b7967",
+  "build_bound_seconds": 180,
+  "exact_bound_seconds": 180,
+  "exact_expected_tests": 25,
+  "exact_filters": [
+    "generic_thin (10)",
+    "planar_mask (7)",
+    "thin_n6::tests (2)",
+    "types::primal_envelope_tests (5)",
+    "plan::tests::final_uv_power_counting_preserves_ir_and_dimension_shifted_residues (1)"
+  ],
+  "next_numerical_gate": {
+    "rank": 3,
+    "propagators": 6,
+    "working_bits": 128,
+    "requested_bits": 53,
+    "bound_seconds": 180,
+    "fixture": "validation/public-highpoint/fixture-conditioned_masses.json",
+    "fixture_rows": [
+      0
+    ],
+    "moments": 35,
+    "native_complex_slots": 140,
+    "tolerance": "dimensionally normalized 1e-10 versus untouched original IREGI IBP",
+    "prerequisites": "Build and all25 exact tests pass with frozen source/dependency guards; separate full-array comparator reviewed before running numerical capture.",
+    "conditional_followup": "Float256/request53 sameinput<=180 and normalized2^-80 convergence only after successful128 comparison and ROOT coordination."
+  },
+  "excluded": [
+    "No rank7 numerical retry or workspace preparation.",
+    "No N7/generalized/SuppliedG or non-native/multinomial interface.",
+    "No production adoption or performance gate.",
+    "No optimization of the frozen certified mask strategy."
+  ],
+  "source_sha256": {
+    "core/crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
+    "core/crates/iregi-rust/src/invariant_certificate.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+    "core/crates/iregi-rust/src/execution.rs": "b3d8eb139efba0e7852fa26adbba7bb0ab92ecbfd70a8fd0d571d9a74ec10532",
+    "core/crates/iregi-rust/src/types.rs": "6389ad02d4da70d37535c6e010f541cd3a049fa16bd02d3031b7296204d9c77b",
+    "core/crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+    "core/crates/iregi-rust/src/exact_zero_certificate.rs": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+    "core/crates/iregi-rust/src/contraction.rs": "7d2a7dc0172b4ebdbe4785324d7597b5547a97975ea3f1e184d48ea69bddebcd",
+    "core/crates/iregi-rust/src/lib.rs": "51fe221eff97db40fd6c54ba4f8dec997d98b0b7f156cc30c99eec23b6308914",
+    "core/crates/iregi-rust/src/stability.rs": "f6c9ad7bed125cd48f71a4d8b8afd09ef64d91bde04def055ba0bc5580151ed5",
+    "core/crates/iregi-rust/src/scalar.rs": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+    "core/crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+    "core/crates/iregi-rust/src/thin_n6.rs": "18e513c8fc99389fd6390adfc29396bbde66b146b04ea892c6017bfd09357a45",
+    "core/crates/iregi-rust/src/certified_scalar.rs": "c869f242023c08717f141a08463ca943315e3d7a6d4fb55875d2301eea7d70d8",
+    "core/crates/iregi-rust/src/rescue.rs": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+    "core/crates/iregi-rust/src/ibp.rs": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+    "core/crates/iregi-rust/src/certified_planar.rs": "65dcbb0e4e63bae1ec7079e9d9113d7efccc08d0c80b4d6902beae5671cfdc9f",
+    "core/crates/iregi-rust/src/plan.rs": "48bb567a9a823993ec6058a0a8341378267506226e778eba7aabd4d36c89526b",
+    "core/crates/iregi-rust/src/snapping.rs": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+    "core/crates/iregi-rust/src/pv.rs": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d",
+    "core/crates/iregi-rust/src/stability/context.rs": "0a6016687b4b2d0e5505cd4a1ca8574dd4d901c5cf003f9fca177f49fe78af4d",
+    "core/crates/iregi-rust/src/stability/context_tests.rs": "9573b774e704aca91c20fd141265bb23fd1a5a3ad079048204f14b66e623c8ab",
+    "core/crates/iregi-rust/src/stability/quadrature.rs": "993dca8bfc6c82cb64a930346ad2eb7724b2cfb7d61e7e7abd3fe5fa8263ba43",
+    "core/crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+    "core/crates/iregi-rust/src/certified_planar/public_api_tests.rs": "c950ebd84a9aa6868c0a7b2b390c92fea76a97f27667865ef2787fb3b687632e",
+    "core/crates/iregi-rust/src/certified_planar/mask_tests.rs": "5677e2db630498a8b8028c6977cfa5151d63c5423720ee3fa10e049ded81f3db",
+    "core/crates/iregi-rust/src/execution/planar_fallback.rs": "bb5d051d68b9d80441cb6e756e6a16742c5ad01e80328ce6450af02e98e2e6ae",
+    "core/crates/iregi-rust/src/execution/guard_context_tests.rs": "25599a2f7378c2354cc394afff7d498eec7c82ff05c926ef206151bef5d8cd31",
+    "core/crates/iregi-rust/src/execution/accounting_tests.rs": "a8aff2f9633870e48602a772682ad1caf711a9f15298873f9c72af24f15c9c65",
+    "core/crates/iregi-rust/src/execution/proof_receipts.rs": "4b946e4879cc2c2468b23922e6740535aced528b97b4433cc5a5f4eca188986b",
+    "core/crates/iregi-rust/src/execution/proof_receipt_accounting_tests.rs": "db2d064748cb48f853840bf1965f6d5b8cade9ee6c195917530789ef15889a06",
+    "core/crates/iregi-rust/src/execution/proof_receipt_tests.rs": "2ba0706e1172addf7e87171c06d5bd728a27c3d90bd63d9835c7c8d55d19b5bd",
+    "core/crates/iregi-rust/src/thin_n6/generic_tests.rs": "098c6e941bf4b695642a086117eb5e25d72aeeed9354cd58e93ac2fe182b8a39",
+    "core/crates/iregi-rust/src/execution/planar_fallback/tests.rs": "f308e26dff0dfac8d437f8472449de10bc9379479b9ea48064d04d2bd5b6bf1a",
+    "core/validation/pv-high-rank/lightlike-feynman-parameters.json": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+    "core/validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+    "core/validation/reference/snapping/reductions.json": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305"
+  },
+  "script_sha256": {
+    "build.py": "f7315841c1a49f203cdfa2b3062346424ed5fe4d8f09f57320cca4e1068e846b",
+    "run.py": "de0465f56fdca0a43fbdc7ff1d65c3cff7b574a2c1d7163cabc059345e6ac1b4",
+    "driver.rs": "d499c9ffb15659a268287560f51ace900cde91fa23b23878813dfdcac1085be9"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "notebook-style-and-extension-standards-provenance",
+  "implementation": "TIRust",
+  "references_executed": false,
+  "hepkit_notebook": {
+    "url": "https://hepkit.org/gallery/notebooks/four_loop_numerator.py",
+    "retrieved_utc_date": "2026-10-23",
+    "bytes": 4960,
+    "sha256": "7ef8b2255087bc3c8c6eafc9acaeab49721e8bce86557bac43f056590f0f650f",
+    "marimo_version": "0.24.0",
+    "inspiration": "Focused reactive controls, real shared graph and symbolic displays, short mathematical explanations, hidden presentation cells. TIRust source is independently written."
+  },
+  "extension_guide": {
+    "url": "https://github.com/symbolica-dev/symbolica-community/blob/cad32c8f589c8a29531414f94b3fbe58020e0308/docs/writing-extensions.md",
+    "revision": "cad32c8f589c8a29531414f94b3fbe58020e0308",
+    "bytes": 12803,
+    "sha256": "85057af0452a5262a7f98b74d72c7931eb1b9c56dc09bcfcfe015598332d1f0c",
+    "constraints": "Actual upstream PyO3 types in one native host; no separately compiled native-kernel object mixing; algorithms and preparation remain Rust; bindings call existing Rust APIs directly."
+  },
+  "feynkit_native_graph_renderer": {
+    "revision": "865afdc43fb4e6b950439d34b4ec2c38352873e7",
+    "sources": [
+      "crates/feynkit-py/src/graph.rs",
+      "crates/feynkit-py/src/display.rs",
+      "crates/linnet-render-py/src/scene.rs"
+    ],
+    "inspection": "The existing _repr_html_ path uses the native SVG renderer; no independent graph drawing or canonical Python constructor lookup is added."
+  },
+  "benchmark_policy": "Every TIRust ratio is TIRust/reference or TIRust(candidate)/TIRust(baseline). Historical reference-only IREGI/COLLIER times remain absolute; no cross-session TIRust/COLLIER ratio is fabricated."
+}

@@ -1,0 +1,111 @@
+{
+  "status": "four-engine-numerically-qualified-timing-ready-awaiting-root-grant",
+  "created_utc": "2026-10-23T21:51:47.228461+00:00",
+  "timing_performed": false,
+  "production_adoption": false,
+  "prior_unrun_proposal": {
+    "path": "target/selected-native-optimized/timing-ready.json",
+    "sha256": "d7aa3a076a1c304754e644f4e858b832637781068cae32bb966e8ab85a86a707",
+    "all_bindings_still_unchanged": true
+  },
+  "scope": "Unchanged optimized complete TIRust baseline/candidate public calls plus unchanged original IREGI and validated COLLIER1.2.10 COLI mode1; Python-only fourth-process orchestration",
+  "bindings": {
+    "target/selected-native-optimized/timing-ready.json": "d7aa3a076a1c304754e644f4e858b832637781068cae32bb966e8ab85a86a707",
+    "target/selected-native-optimized/four-engine-v2/source-review.json": "fce79e10c6b1f7893a5b436efac98eecbd672a0860779aea2044493262f9c860",
+    "target/selected-native-optimized/four-engine-v2/admission_v2.py": "06ab113c95a660cd06a0e5e66fbaf74413aeaa5b55b86ce173b5603d3258da45",
+    "target/selected-native-optimized/four-engine-v2/qualify_collier.py": "1912a160c2e66d488e9f22f63baab3de9ee1a9333ec2b11ee49939647a731009",
+    "target/selected-native-optimized/four-engine-v2/run_timing.py": "79d1fb2a6f0ce6d83f33ace48befd5b239c87a98562fd36ccc256427e4e8fabd",
+    "target/selected-native-optimized/four-engine-v2/analyze.py": "c0d84f8f2038dadb75df9d20fd4f4cc9fc732b60fb9e69f472179eff2d731aca",
+    "target/selected-native-optimized/four-engine-v2/adopted-timing-protocol.md": "5043c31fd59d05d950f09b7d81a498436870d5fef8adcb705cc879c032fa9099",
+    "target/selected-native-optimized/four-engine-v2/interface_controls.py": "01726b60c39af37739823af0a6f0650b9a9b9286306d18e759beedf1c9c04dec",
+    "target/selected-native-optimized/four-engine-v2/interface-controls.json": "50bead97697577075055ef3edf4ffbfcdb1d3a7912d92d0fdf5ecf00eed94d46",
+    "target/selected-native-optimized/four-engine-v2/statistics_controls.py": "ce847e91298a388b9670b04bd179c3d3854e4568050272ee01f1ab0faa03a78c",
+    "target/selected-native-optimized/four-engine-v2/statistics-controls.json": "be5e7bd585565bbb742a38907314521d09c6671fc3617ab6781a1961ed0c8a00",
+    "target/selected-native-optimized/four-engine-v2/qualification-001/results.json": "a7d39fc4b17b045a2b6213ed78c2330d1037f775cc50a58e494b4c14645814e0"
+  },
+  "core_probe_sha256": "fbf0886387c89d2ae0e6f4d0b0c1c26194d293742315c8d477298090d136fb03",
+  "collier_binary": "target/reference/collier/build-attempt001/collier-benchmark",
+  "collier_binary_sha256": "33704d629e547fe817a3982451cde1fc796d832fb51476c6ef07dffbe37c175a",
+  "collier_admission": {
+    "rows": 8,
+    "requests": 24,
+    "check_requests": 16,
+    "bench_control_requests": 8,
+    "native_complex_laurent_slots": 4752,
+    "pole_probe_values": 792,
+    "maximum_numerical_comparison_error": 2.488972223388242e-13,
+    "elapsed_seconds": 0.24408589594531804,
+    "process_exit_code": 0,
+    "source_unchanged": true
+  },
+  "controls": {
+    "new_named_collier_mutations": 19,
+    "collier_mutation_attempts": 152,
+    "pristine_collier_responses": 24,
+    "prior_mutations_preserved": 30,
+    "statistics": "five constant paired-ratio directions, nested failed-admission propagation, six malformed quartet controls"
+  },
+  "protocol": {
+    "engine_labels": [
+      "baselineTIRust",
+      "candidateTIRust",
+      "IREGI",
+      "COLLIER"
+    ],
+    "quartets_per_family": 48,
+    "order_inventory": "all24permutations twice; Random173",
+    "shared_iterations": true,
+    "fastest_minimum_ns": 100000000,
+    "calibration_margin": 1.1,
+    "calibration_max_rounds": 8,
+    "predeclared_cap_seconds": 700,
+    "ratios": [
+      {
+        "numerator": "baselineTIRust",
+        "denominator": "IREGI"
+      },
+      {
+        "numerator": "candidateTIRust",
+        "denominator": "IREGI"
+      },
+      {
+        "numerator": "baselineTIRust",
+        "denominator": "COLLIER"
+      },
+      {
+        "numerator": "candidateTIRust",
+        "denominator": "COLLIER"
+      },
+      {
+        "numerator": "candidateTIRust",
+        "denominator": "baselineTIRust"
+      }
+    ],
+    "cross_cohort_median_combination": false,
+    "pre_post": "All native tensor/Laurent arrays and status; TIRust six-master captures; COLLIER three CHECK pole probes per lane; exact own snapshots",
+    "bootstrap_resamples": 10000,
+    "confidence": 0.99,
+    "maximum_relative_interval_width": 0.02,
+    "short_failed_or_unrun_rows": "retained; cannot qualify as improvement/parity"
+  },
+  "command_argv_template": [
+    "python",
+    "target/selected-native-optimized/four-engine-v2/run_timing.py",
+    "001",
+    "quiet254",
+    "254",
+    "ROOT_SUPPLIED_IMMUTABLE_WINDOW_JSON",
+    "ROOT_SUPPLIED_WINDOW_SHA256"
+  ],
+  "environment_setup": [
+    "source scripts/env.sh",
+    "source .local/symbolica-license.env"
+  ],
+  "limitations": [
+    "Current optimized witness is f64 plus unchanged f64/Dual controls; prior DD/Float semantics is distinct evidence.",
+    "Compiler uses ambient default linker; supplementary toolchain observation is explicitly postlaunch, not a pre-pinned explicit-linker claim.",
+    "Private result cannot replace public production gate without later combined-source adoption and benchmarking.",
+    "COLLIER exposes cumulative stable/success from ErrFlag==0/AccFlag==0 and finite outputs; numeric flags are not exported by this pinned driver.",
+    "Both unchanged Fortran drivers expose floating ns/call; elapsed nanoseconds are reconstructed, not exported raw integer ticks."
+  ]
+}

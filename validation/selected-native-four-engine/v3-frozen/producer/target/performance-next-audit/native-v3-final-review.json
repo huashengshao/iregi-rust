@@ -1,0 +1,56 @@
+{
+  "status": "source_review_passed_no_remaining_blocker_in_reviewed_scope",
+  "recorded_utc": "2026-10-23T22:27:28.402687+00:00",
+  "scope": "Independent source-only runner lifecycle, executed-byte provenance, CASE-first preparation, complete-call cache policy and terminal analyzer admission review. This review does not execute numerical kernels, builds, tests or timings.",
+  "initial_review": {
+    "path": "target/performance-next-audit/native-v3-initial-review.json",
+    "sha256": "e8d55ea89b9160f98dced3fe6a1f1fd8bfdfc94575e2060402da320977f96350",
+    "preserved_unchanged": true
+  },
+  "sources": {
+    "target/selected-native-optimized/four-engine-v3/run_timing.py": "d6777107c4b1ebe2174c101b40c8c6255f04d2e2880f2fd3ce9d786baba48555",
+    "target/selected-native-optimized/four-engine-v3/preparation.py": "0b012b436dd4d38b70ac6bafa1a10750e3d501b97af466739be4a7c53daa4db5",
+    "target/selected-native-optimized/four-engine-v3/admission_v3.py": "47ba2e26f1e6b46ac51219bb9cb2aafe4af36cfcc3bd6abd33ceb53c4dfbeaac",
+    "target/selected-native-optimized/four-engine-v3/adopted-timing-protocol.md": "329368e6a70aeaacacc76ddd85da84cdd5a8c6b269287522bea1d3e3f95ea0c1",
+    "target/selected-native-optimized/four-engine-v3/analyze.py": "9474275ee8e07a86d317d1c7056256b5c5b993a82924189e1f70fa57390f7379"
+  },
+  "helper": {
+    "path": "validation/benchmark/run.py",
+    "sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+  },
+  "closed_findings": [
+    {
+      "id": "launch-cleanup",
+      "evidence": "Raw open and all three launches are inside try. Each owner is registered before Process.__init__, so partially initialized and earlier children are included in finally cleanup."
+    },
+    {
+      "id": "terminal-before-hashes",
+      "evidence": "Each child and raw stream are closed independently with recorded cleanup errors; terminal state is saved before raw hashing and input postguards. Hash failures cannot produce success."
+    },
+    {
+      "id": "executed-byte-binding",
+      "evidence": "Every engine reuses freeze_executable with its qualified digest before Popen. The actual private executable copies are recorded in frozen_executables and input_sha256 and verified afterward."
+    },
+    {
+      "id": "deadline-cleanup-boundary",
+      "evidence": "The fixed deadline includes launch, numerical work, cleanup and postguards for admission. Numerical and cleanup elapsed times are retained; timeout, elapsed overrun or cleanup error disqualifies producer success. This review does not claim OS cleanup itself is instant at the deadline."
+    },
+    {
+      "id": "analyzer-terminal-admission",
+      "evidence": "validate_terminal requires timing mode, completed status, no cleanup errors, deadline_exceeded exactly false, finite int/float durations and 0 <= numerical <= cleanup <= total <= 700. Its failure joins global_admission_errors and prevents any family from qualifying."
+    }
+  ],
+  "preserved_semantics": [
+    "Exactly sixteen untimed CASE requests, each original coordinate immediately repeated, precede CONTROLS and match the original own exact snapshots.",
+    "The original response, reference, control, COLLIER pole and full before/after tensor/Laurent gates remain unchanged.",
+    "The same optimized binaries and per-engine cache policies remain in force; preparation and qualification occur outside acceptance intervals.",
+    "Shared positive iteration counts, ten warm calls, fixed fastest-engine calibration rule and all forty-eight balanced four-engine orders remain unchanged.",
+    "Every reported ratio has TIRust as numerator; no prior cohort is combined and no production adoption or speed claim follows from this source review."
+  ],
+  "limitations": [
+    "Numerical preflight and timing still require ROOT authorization.",
+    "Independent parser/statistics and synthetic-control evidence are owned by the native owner and peer reviewer; this record makes no claim to have rerun them."
+  ],
+  "production_changed": false,
+  "numerical_compute_performed": false
+}

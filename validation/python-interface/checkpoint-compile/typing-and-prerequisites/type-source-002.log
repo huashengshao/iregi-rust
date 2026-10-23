@@ -1,0 +1,24 @@
+python/tirust/_types/symbolica/core.pyi:2678: error: Overloaded function signatures 1 and 2 overlap with incompatible return types  [overload-overlap]
+/shared/external/iregi/iregi-rust/python/tirust/_types/symbolica/community/tensor/__init__.pyi:911: error: INTERNAL ERROR -- Please try using mypy master on GitHub:
+https://mypy.readthedocs.io/en/stable/common_issues.html#using-a-development-mypy-build
+Please report a bug at https://github.com/python/mypy/issues
+version: 1.20.2
+/shared/external/iregi/iregi-rust/python/tirust/_types/symbolica/community/tensor/__init__.pyi:911: note: use --pdb to drop into pdb
+python/tirust/_types/symbolica/community/tensor/__init__.pyi:6541: error: Name "tirust._types.symbolica.core._ExpressionProduct" is not defined  [name-defined]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "mypy/checker.py", line 651, in accept
+  File "mypy/nodes.py", line 802, in accept
+  File "mypy/checker.py", line 726, in visit_overloaded_func_def
+    self._visit_overloaded_func_def(defn)
+  File "mypy/checker.py", line 778, in _visit_overloaded_func_def
+    self.visit_decorator_inner(fdef, allow_empty=True)
+  File "mypy/checker.py", line 5611, in visit_decorator_inner
+    self.check_func_item(e.func, name=e.func.name, allow_empty=allow_empty)
+  File "mypy/checker.py", line 1238, in check_func_item
+    self.check_func_def(defn, typ, name, allow_empty)
+  File "mypy/checker.py", line 1385, in check_func_def
+    store_argument_type(item, i, typ, self.named_generic_type)
+  File "mypy/types_utils.py", line 183, in store_argument_type
+IndexError: list index out of range

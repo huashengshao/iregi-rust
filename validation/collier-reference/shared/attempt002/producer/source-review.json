@@ -1,0 +1,24 @@
+{
+  "status": "source_review_passed",
+  "reviewer": "ROOT independent narrow correction review",
+  "scope": "Official dedicated B/C/D tensor APIs at N<=4, generic TNten only at N5..7; prior failed generic attempt stays unqualified",
+  "blockers": [],
+  "sources_sha256": {
+    "validation/collier-reference/shared/build.py": "1e0a3d9523a1e635df9a81fb59831d730f27352ad24b70942c2c302ac1e9aab9",
+    "validation/collier-reference/shared/prepare_inputs.py": "23ed32bd3e2d3da761dda32a3b84f303bf9ce39882973a7d794fff92f282eb74",
+    "validation/collier-reference/shared/run_correctness.py": "ba160c027929a06c6f3be18fd9c0a30156f54c6a0fcb7f6331ffddb4157ab329",
+    "validation/collier-reference/shared/support.py": "e5fa03ade78d3862a74ff08232f282137ea9b2082eb0a52dc2b135a415937068",
+    "validation/collier-reference/shared/test_protocol.py": "56ba88649204033f7203b26b248383235aa837fd15e0f9672127f78f939c34e3",
+    "validation/collier-reference/shared/driver.f90": "9e435aa3e8f7323bee131e3fb7400098885f53981d34f5bb56ecdf9a5b68ecbb"
+  },
+  "readiness_sha256": "6d02f3932902eda2fd1e602dfabe2bc25b4263ce718e2e89f31f84893b40781f",
+  "previous_review_sha256": "961b056db161b19ed42059a8cea09f2b8738ad7906864ab6f4cb7cedd94a8d15",
+  "findings": [
+    "All three dedicated call signatures exactly match the frozen N4 diagnostic driver.",
+    "Generic N2 missing UV assignment is present in upstream tensors/BuildTensors.F90:1424; no ad hoc scalar UV patch is introduced.",
+    "Dedicated and generic box accuracy norms differ in upstream collier_tensors.F90; this change preserves dedicated statuses without weakening any accuracy parameter.",
+    "Actual API and direct tensor threshold are checked in each response. All16 prior fixed rows must still match before higher-point calls.",
+    "No changes to inputs, invariant generation, Laurent conversion, tolerance, native status gates or library sources."
+  ],
+  "limits": "No numerical result or timing claim from this source review. Run15 protocol tests, then reviewed driver-only link and full fixed-gated correctness under original caps; any substantive mismatch blocks expansion."
+}

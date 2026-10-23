@@ -1,0 +1,28 @@
+{
+  "kind": "source-only-notebook-api-provenance-review",
+  "status": "source-signatures-match-runtime-pending",
+  "notebook_execution": false,
+  "native_wheel_available": false,
+  "binding_contract": {
+    "pack": "plan.pack(shifts=..., masses_squared=..., mu=...)",
+    "reduction": "workspace.reduce_batch(KinematicsBatch)",
+    "numerator": "PreparedGraph.from_diagram(actual_FeynmanDiagram).numerator",
+    "coefficient_evaluation": "prepared.evaluate_batch(parameters=[], rows=[[], ...], dtype=..., precision=...)",
+    "contraction": "workspace.contract(result, monomials=prepared.monomials, coefficients=...)",
+    "failed_lanes": "success/statuses/diagnostics immutable tuples; lane raises LaneError, lanes masks with None",
+    "dual": "Dual(shape=[[0],[1]], values=[mass,seed]); values[1] is first derivative"
+  },
+  "sources": {
+    "python/tirust/_tirust.pyi": "2896a1c8370c38e2093171877ff3dd6832fd195f5bf59c4b30385611c31c6fd9",
+    "python/tirust/__init__.py": "9a454f14ce07a624ef26cd3731cf75817e0f09174ad865e57b110acbb3b4ba70",
+    "crates/iregi-python/src/lib.rs": "9468e0841165f56f34043861043e261205f1eb80af4d8f85822fab492cef4022",
+    "crates/iregi-python/src/numerator.rs": "de427e18a085286cecbde47a4298cbf3b7039a4400bf1fb5ac857373bcee07c8",
+    "crates/iregi-python/src/numerical.rs": "8b997e5ae9ed7cef943b31887e80af998ad605b83ac0b6ecc4277a5af91943f2",
+    "crates/iregi-python/src/scalar.rs": "a57cf7dd9a46fd1a3e1e087edafe4b0e4e208392ca4e7dd3dfd61b183d76f75a",
+    "crates/iregi-python/src/standalone.rs": "9a6f5c9a5f7fdea474c6e27640578815a5c18cbc7793c6b0150fabc1aea6d7c8"
+  },
+  "limits": [
+    "No native wheel or notebook runtime qualification follows from this source review.",
+    "Numerical cases, rich graph displays, shared class identities, precision, Dual slots and failure masking require real wheel tests."
+  ]
+}
