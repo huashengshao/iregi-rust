@@ -1,0 +1,41 @@
+{
+  "status": "Vendored source reproduced byte-for-byte; manifest target and metadata-script compile checks pass. Main workspace integration and vendored test runtime pending.",
+  "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+  "patches": [
+    {
+      "path": "0001-journal-conditional-cache.patch",
+      "sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328"
+    },
+    {
+      "path": "0002-identify-vendored-source-version.patch",
+      "sha256": "7a2942f2186ab1ed25ef7e54cbd72cca710cf4228029705123ebe93b3b42da72"
+    }
+  ],
+  "retained_upstream_or_patched_files": 217,
+  "retained_upstream_or_patched_bytes": 9585843,
+  "total_files_with_local_documentation": 219,
+  "inventory": "dependencies/symbolica/IREGI_PROVENANCE.json",
+  "inventory_sha256": "29dadd0720e30300a9866b9dbe7696c7a02307efc7ec4f2b51b70ccfed77563e",
+  "reproduction_command": "python3 scripts/prepare-symbolica-patch.py --vendor --output target/symbolica-vendor-reproduced",
+  "reproduction_result": "All 219 files, including local provenance and README, are byte-identical.",
+  "manifest_command": "cargo metadata --manifest-path dependencies/symbolica/Cargo.toml --offline --no-deps --format-version 1",
+  "manifest_packages": [
+    "numerica",
+    "graphica",
+    "symbolica"
+  ],
+  "manifest_targets": 54,
+  "manifest_result": "All 54 target source paths exist; no retained Rust source uses include_str! or include_bytes! to load an omitted asset.",
+  "metadata_script_compile": "rustc --edition=2024 dependencies/symbolica/build.rs -o target/symbolica-vendor-build-script",
+  "metadata_script_compile_exit_code": 0,
+  "license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
+  "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
+  "license_result": "Both files byte-identical to pinned upstream source.",
+  "scope_evidence": "validation/symbolica-scoped-cache.json",
+  "rank7_evidence": "validation/rescue-pentagon-rank7.json",
+  "limits": [
+    "No new Symbolica runtime performed for this vendoring preparation.",
+    "The qualified scope/rank7 experimental binary predates the metadata-only build version patch.",
+    "Fixture-driven optional upstream benchmarks require omitted assets restored from the pinned revision."
+  ]
+}

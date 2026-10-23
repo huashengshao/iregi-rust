@@ -1,0 +1,1150 @@
+{
+  "schema": 2,
+  "status": "passed_with_experimental_symbolica_patch",
+  "purpose": "Full-array n5 rank7 precision-rescue qualification plus exact-evaluator preparation diagnostic",
+  "case": {
+    "propagators": 5,
+    "rank": 7,
+    "algorithm": "PassarinoVeltman",
+    "convention": "IREGI native",
+    "input_policy": "PreserveInputs",
+    "tensor_moments": 330,
+    "laurent_slots_per_moment": 4,
+    "requested_comparisons": 1320,
+    "sample_lanes": 1,
+    "shifts": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "masses_squared": [
+      4,
+      9,
+      16,
+      25,
+      36
+    ],
+    "mu": 3
+  },
+  "rescue": {
+    "primary_bits": 53,
+    "working_bits": 128,
+    "verification_bits": 256,
+    "requested_accuracy_bits": 53,
+    "trigger": "VerifyAllSuccessful",
+    "evaluated_components": 1320,
+    "converged_components": 1320,
+    "primary_status": "Unstable",
+    "primary_reason": "estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound",
+    "result_status": "Converged",
+    "primary_agreed": null,
+    "requested_rows": 1,
+    "accepted_rows": 1,
+    "comparison": "Every tensor/Laurent component passes dimensional mixed absolute/relative128/256 convergence at2^(19-53-8); rounded output is rechecked at2^(19-53). No requested coefficients or stability monitors were omitted."
+  },
+  "coefficient_trace": {
+    "powers": [
+      5,
+      0,
+      0,
+      1
+    ],
+    "slot": "finite",
+    "taylor_component": 0,
+    "bits128": {
+      "real": "2e-32",
+      "imaginary": "-2.4383789354471229393924987498457e-3"
+    },
+    "bits256": {
+      "real": "1e-71",
+      "imaginary": "-2.4383789354471229393924987498432753476200154688257048533643618299719415e-3"
+    },
+    "returned_binary64": {
+      "real": "1.245155873338673e-71",
+      "imaginary": "-0.002438378935447123"
+    },
+    "independent_reference": "validation/pv-high-rank/pentagon-simplex-oracle.json",
+    "independent_expected_imaginary": "-2.43837893544712293939249874984327534762e-3",
+    "asserted_absolute_error_below": "1e-13",
+    "all_arrays_printed": false,
+    "trace_note": "Working/verification values are the actual Float Display strings printed by this run; the returned binary64 trace is also printed. The full arrays are checked but not printed."
+  },
+  "timings_seconds": {
+    "plan": 21.05143341,
+    "stability_expressions": 73.049064,
+    "argument_exact_evaluator": 0.007655,
+    "snapping_diagnostic_exact_evaluator": 9e-06,
+    "reduction_exact_evaluator": 1.783683,
+    "primal_exact_evaluator": 2.690528,
+    "scalar_master_exact_evaluators": 0.862556,
+    "primary_numeric_mapping": 0.494786,
+    "working_numeric_mapping": 1.027993,
+    "verification_numeric_mapping": 1.398599,
+    "primary_workspace_cumulative": 79.046742971,
+    "working_workspace_cumulative": 80.138828012,
+    "verification_workspace_cumulative": 81.637864918,
+    "plan_and_three_workspaces": 102.791179539,
+    "plan_workspaces_and_batch": 114.300682802,
+    "test_total": 115.35
+  },
+  "scope_counters": {
+    "reduction": {
+      "linearization_seconds": 1.57348,
+      "branch_scopes": 8870,
+      "parent_entries_not_copied": 10203522602,
+      "reverted_entries": 29518,
+      "final_entries": 1387306
+    },
+    "primal_monitor": {
+      "linearization_seconds": 2.311359,
+      "branch_scopes": 2138,
+      "parent_entries_not_copied": 546619908,
+      "reverted_entries": 15035,
+      "final_entries": 1809001
+    },
+    "interpretation": "The original translator clones inherited cache maps for each branch; the patched translator records/restores only branch-local updates. These counters establish the amount of avoided map-copy work; they are not independent wall-clock speedup measurements."
+  },
+  "execution_profile_seconds": {
+    "primary": {
+      "arguments": 0.000489452,
+      "scalar_masters": 0.001464515,
+      "reduction": 0.042985374,
+      "total": 1.895756185
+    },
+    "working": {
+      "arguments": 0.000310511,
+      "scalar_masters": 0.088760286,
+      "reduction": 2.827386311,
+      "total": 4.770472735
+    },
+    "verification": {
+      "arguments": 0.00015662,
+      "scalar_masters": 0.136048366,
+      "reduction": 2.842066862,
+      "total": 4.839375879
+    }
+  },
+  "execution_counters": {
+    "primary": {
+      "input_rows": 1,
+      "argument_rows": 1,
+      "master_family_batches": 4,
+      "master_rows": 30,
+      "reduction_rows": 1,
+      "fallback_rows": 0,
+      "fallback_successes": 0,
+      "analytic_rows": 0
+    },
+    "working": {
+      "input_rows": 1,
+      "argument_rows": 1,
+      "master_family_batches": 4,
+      "master_rows": 30,
+      "reduction_rows": 1,
+      "fallback_rows": 0,
+      "fallback_successes": 0,
+      "analytic_rows": 0
+    },
+    "verification": {
+      "input_rows": 1,
+      "argument_rows": 1,
+      "master_family_batches": 4,
+      "master_rows": 30,
+      "reduction_rows": 1,
+      "fallback_rows": 0,
+      "fallback_successes": 0,
+      "analytic_rows": 0
+    }
+  },
+  "build": {
+    "status": "frozen core snapshot compiled successfully against patched Symbolica and copied current masters",
+    "core_source_snapshot": "target/rescue-rank7-source-snapshot",
+    "patch_provenance": {
+      "upstream_repository": "https://github.com/alphal00p/symbolica",
+      "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+      "patch": "0001-journal-conditional-cache.patch",
+      "patch_sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328",
+      "upstream_file_sha256": "7dd830823be3196558d45c65f5db3705c6b43ec461123e1eaf3714ae02215cfe",
+      "patched_file_sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
+      "status": "experimental; isolated optimized library and three public semantic scope tests pass; full rank-seven preparation/numeric comparison pending; main manifest unchanged",
+      "scope": "Direct-evaluator branch-cache bookkeeping, optional preparation counters, and direct semantic tests. No algebra rules, arithmetic, license handling, public numeric API, or instructions changed.",
+      "compile_attempt": "Successful isolated optimized build (10m04s), using target/symbolica-scope-build and target/symbolica-scope-cargo-build, jobs=2. Separate Cargo.lock recorded in target/symbolica-scoped-probe/build-manifest.json.",
+      "runtime_evidence": "validation/symbolica-scoped-cache.json"
+    },
+    "copied_sources": [
+      {
+        "path": "src/bubble_neighborhood.rs",
+        "sha256": "0076006242ce6f622391d27672aef9b8d1e76b09a0818d483c4c4a76a18399fb"
+      },
+      {
+        "path": "src/derivative_domain.rs",
+        "sha256": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e"
+      },
+      {
+        "path": "src/dual_validation.rs",
+        "sha256": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c"
+      },
+      {
+        "path": "src/exact_plan.rs",
+        "sha256": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507"
+      },
+      {
+        "path": "src/generated/a0.rs",
+        "sha256": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53"
+      },
+      {
+        "path": "src/generated/b0.rs",
+        "sha256": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9"
+      },
+      {
+        "path": "src/generated/c0.rs",
+        "sha256": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9"
+      },
+      {
+        "path": "src/generated/constants.rs",
+        "sha256": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47"
+      },
+      {
+        "path": "src/generated/d0.rs",
+        "sha256": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667"
+      },
+      {
+        "path": "src/generated/db0.rs",
+        "sha256": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85"
+      },
+      {
+        "path": "src/lib.rs",
+        "sha256": "51afafb573ec569f0264141419169c0694fc09c49d22d7f7e92478edae45413a"
+      },
+      {
+        "path": "src/native_batch.rs",
+        "sha256": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4"
+      },
+      {
+        "path": "src/normalization.rs",
+        "sha256": "655d7533f8a64c65a7f4e8178603e2e2e90ed8accef38096c23ad7441dfa0f25"
+      },
+      {
+        "path": "src/pentagon6.rs",
+        "sha256": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e"
+      },
+      {
+        "path": "oneloopmaster/Cargo.toml",
+        "sha256": "a3ac1a83139a284dbab4a9ab39443890cd318f829db3aa9d38b3cd043a92aadb",
+        "original_sha256": "b4b7c8198f595b17f922a3b4bafdb24b9d71a019be109ab1c38f2bde345401e4"
+      },
+      {
+        "path": "oneloopmaster/PATCHES.md",
+        "sha256": "a95b23c116dce377f4b6eee39138ecc2ab7ee101cb2ccd8a95a727d7d1151693"
+      },
+      {
+        "path": "oneloopmaster/README.md",
+        "sha256": "db72a532a49cce96b3bc9daa8f1816fd6478cd131e0ffef9bccbae06c95b3545"
+      },
+      {
+        "path": "oneloopmaster/assets/evaluators/README.md",
+        "sha256": "30b6afe1904b9966ab7897fae8d7e538d139b0e52b599b359786219814918af2"
+      },
+      {
+        "path": "oneloopmaster/assets/evaluators/a0.bin",
+        "sha256": "b034aa19e48f3f62b7029f2c88ad4f14e19ff6d9580979d43868349c5e651a0d"
+      },
+      {
+        "path": "oneloopmaster/assets/evaluators/b0.bin",
+        "sha256": "0730c8a390d31c508fbece0760186627dc851b8ccf2da787072f8c2788f50354"
+      },
+      {
+        "path": "oneloopmaster/assets/evaluators/c0.bin",
+        "sha256": "7a7bd44280ba5dcf70d0ad9b54b93cbc29853665799a8288c8d7f1a648ac25d9"
+      },
+      {
+        "path": "oneloopmaster/assets/evaluators/d0.bin",
+        "sha256": "3dc226c8dccb84ee48b0d1eadcf9dd38770dc90bdcdb5e7ba5a5534d9efb9aaf"
+      },
+      {
+        "path": "oneloopmaster/assets/evaluators/db0.bin",
+        "sha256": "5f145ba984ffe2bdffb9355557a9272c3006d0a601e845cd48877d5d19ea4d77"
+      },
+      {
+        "path": "oneloopmaster/examples/arbitrary_precision.rs",
+        "sha256": "cd60964e71870c0524d3961f752ed85c074c69bea22cab157d39fb6f0a0fd23a"
+      },
+      {
+        "path": "oneloopmaster/examples/basic.rs",
+        "sha256": "55aacdbf20b92bbfbff6ccf96048e8972f2a897776d9528f506a26fe8ff56e3e"
+      },
+      {
+        "path": "oneloopmaster/examples/c0_selected_branch.py",
+        "sha256": "4bfa8379dabe838b9a4f4bb7f28c41056b9b9617eb7357366081414afba78dfb"
+      },
+      {
+        "path": "oneloopmaster/examples/complex_branch_probe.rs",
+        "sha256": "0646ea0d2de9b47d2d2b38ab0525e867517342825116b5ead5a77c7bd9eeb2be"
+      },
+      {
+        "path": "oneloopmaster/examples/expansion_survey.rs",
+        "sha256": "0d7a9eabf064de0805906a17dea1adfab28075358c978310c98c4dfa00bf588c"
+      },
+      {
+        "path": "oneloopmaster/examples/expressions/b0_equal_mass.txt",
+        "sha256": "06c1d1c26c9aa129c15a78c7bab94025e60b82c4b463fc677f3a9900bb6caf7c"
+      },
+      {
+        "path": "oneloopmaster/examples/generate_native.rs",
+        "sha256": "17dedd3bf246e19d0950159ebf44ca074a4a4d5c1a7dd5604445aad5dc4798a8"
+      },
+      {
+        "path": "oneloopmaster/examples/get_expression.rs",
+        "sha256": "ec2b4b9b207190ac32f6bd9a2399393b4387966268766f79041e4b9fbc873bf4"
+      },
+      {
+        "path": "oneloopmaster/examples/jit_probe.rs",
+        "sha256": "b66c9977eb0743bcc4d7f69b91995709cd59e2fc525926f7671653c795591b55"
+      },
+      {
+        "path": "oneloopmaster/examples/numeric_performance.rs",
+        "sha256": "e187d4fc6507050edb127e7f9b6c6f691f89dbc71aa7cabcd198aa0f9acce907"
+      },
+      {
+        "path": "oneloopmaster/examples/oracle_sweep.rs",
+        "sha256": "377b19e926d16d408728245ade35323b4a5230cdf5f7d02941dad14b8a7a9b57"
+      },
+      {
+        "path": "oneloopmaster/examples/performance_survey.rs",
+        "sha256": "7c2ffef66f531caa35bbe6b2e3027b7cb0fc400a81791903a3c89ce0534fe85b"
+      },
+      {
+        "path": "oneloopmaster/examples/power_branch_probe.rs",
+        "sha256": "790131ee02e3f5aed7a701a14dbe0149c52af7054e9ddf19f2cc6cccdbb6716b"
+      },
+      {
+        "path": "oneloopmaster/examples/rebuild_evaluators.rs",
+        "sha256": "58637aa0cfd492a2fe246ef7431598aaa470f9006a9e70dd04b5cd1efa1b0045"
+      },
+      {
+        "path": "oneloopmaster/examples/rows_survey.rs",
+        "sha256": "16e820bea0f8c8edeeb8343e2301bef3a1aa9b22f7cb1eba1d221ed1e881242d"
+      },
+      {
+        "path": "oneloopmaster/examples/select_branch.rs",
+        "sha256": "2cabc4f8538d9332e5755446777436535be2c77ee7e0edd517b2bb6f5479a92a"
+      },
+      {
+        "path": "oneloopmaster/examples/simd_probe.rs",
+        "sha256": "cfcfe4efde1bc0bea190599c9d76e250932237f7f52b8cb1dcce9291b2718bfb"
+      },
+      {
+        "path": "oneloopmaster/examples/triangle_branch_probe.rs",
+        "sha256": "d791526c87266d20c97ad8987858e66a4c3593db6fa658f6ed373099ff74261e"
+      },
+      {
+        "path": "oneloopmaster/src/analytic_continuation_tests.rs",
+        "sha256": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c"
+      },
+      {
+        "path": "oneloopmaster/src/backend.rs",
+        "sha256": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52"
+      },
+      {
+        "path": "oneloopmaster/src/box_complex.rs",
+        "sha256": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a"
+      },
+      {
+        "path": "oneloopmaster/src/box_integral.rs",
+        "sha256": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f"
+      },
+      {
+        "path": "oneloopmaster/src/branch_selection.rs",
+        "sha256": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862"
+      },
+      {
+        "path": "oneloopmaster/src/coincident_dilog_tests.rs",
+        "sha256": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27"
+      },
+      {
+        "path": "oneloopmaster/src/definitions.rs",
+        "sha256": "83ab0ca0f2a77cb7a37a0eccacac62d01d9c9a1cf9c7207261561eaab84f2c22"
+      },
+      {
+        "path": "oneloopmaster/src/epsilon.rs",
+        "sha256": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143"
+      },
+      {
+        "path": "oneloopmaster/src/evaluators.rs",
+        "sha256": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed"
+      },
+      {
+        "path": "oneloopmaster/src/expressions.rs",
+        "sha256": "b78104772233fa4382de2d4ce675ba77a95d29df4c34f65962d97010282a34e5"
+      },
+      {
+        "path": "oneloopmaster/src/initialization.rs",
+        "sha256": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7"
+      },
+      {
+        "path": "oneloopmaster/src/inspection.rs",
+        "sha256": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93"
+      },
+      {
+        "path": "oneloopmaster/src/inspection_formulas.rs",
+        "sha256": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a"
+      },
+      {
+        "path": "oneloopmaster/src/inspection_graph.rs",
+        "sha256": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3"
+      },
+      {
+        "path": "oneloopmaster/src/inspection_sheet.rs",
+        "sha256": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769"
+      },
+      {
+        "path": "oneloopmaster/src/jit_primitives.rs",
+        "sha256": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07"
+      },
+      {
+        "path": "oneloopmaster/src/labelling.rs",
+        "sha256": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4"
+      },
+      {
+        "path": "oneloopmaster/src/lib.rs",
+        "sha256": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6"
+      },
+      {
+        "path": "oneloopmaster/src/masters.rs",
+        "sha256": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1"
+      },
+      {
+        "path": "oneloopmaster/src/native/batch.rs",
+        "sha256": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3"
+      },
+      {
+        "path": "oneloopmaster/src/native/constants.rs",
+        "sha256": "0297975c8a0f37c44c33ffb78522ef2243bd310fd85e008ba07061158616ca98"
+      },
+      {
+        "path": "oneloopmaster/src/native/disabled.rs",
+        "sha256": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657"
+      },
+      {
+        "path": "oneloopmaster/src/native/generated_a0.rs",
+        "sha256": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723"
+      },
+      {
+        "path": "oneloopmaster/src/native/generated_b0.rs",
+        "sha256": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79"
+      },
+      {
+        "path": "oneloopmaster/src/native/generated_c0.rs",
+        "sha256": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee"
+      },
+      {
+        "path": "oneloopmaster/src/native/generated_constants.rs",
+        "sha256": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47"
+      },
+      {
+        "path": "oneloopmaster/src/native/generated_d0.rs",
+        "sha256": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611"
+      },
+      {
+        "path": "oneloopmaster/src/native/generated_db0.rs",
+        "sha256": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88"
+      },
+      {
+        "path": "oneloopmaster/src/native/handwritten/box_contour/vertex.rs",
+        "sha256": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2"
+      },
+      {
+        "path": "oneloopmaster/src/native/handwritten/box_contour.rs",
+        "sha256": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a"
+      },
+      {
+        "path": "oneloopmaster/src/native/handwritten/boxes.rs",
+        "sha256": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648"
+      },
+      {
+        "path": "oneloopmaster/src/native/handwritten/mod.rs",
+        "sha256": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7"
+      },
+      {
+        "path": "oneloopmaster/src/native/handwritten/sheet.rs",
+        "sha256": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49"
+      },
+      {
+        "path": "oneloopmaster/src/native/handwritten/triangle.rs",
+        "sha256": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137"
+      },
+      {
+        "path": "oneloopmaster/src/native/mod.rs",
+        "sha256": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b"
+      },
+      {
+        "path": "oneloopmaster/src/native/primitives.rs",
+        "sha256": "cd1d861857cd7e24d77fe2ff65d7246893cfc4d1ec92aee0830eee9e4dba3598"
+      },
+      {
+        "path": "oneloopmaster/src/native/simple.rs",
+        "sha256": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651"
+      },
+      {
+        "path": "oneloopmaster/src/native/tensor/binary64.rs",
+        "sha256": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5"
+      },
+      {
+        "path": "oneloopmaster/src/native/tensor.rs",
+        "sha256": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584"
+      },
+      {
+        "path": "oneloopmaster/src/precision.rs",
+        "sha256": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77"
+      },
+      {
+        "path": "oneloopmaster/src/quotient_tests.rs",
+        "sha256": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433"
+      },
+      {
+        "path": "oneloopmaster/src/removable_log_tests.rs",
+        "sha256": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6"
+      },
+      {
+        "path": "oneloopmaster/src/rust_codegen/batch.rs",
+        "sha256": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411"
+      },
+      {
+        "path": "oneloopmaster/src/rust_codegen.rs",
+        "sha256": "c281c6c05ae8a7aefdfac2d2c0b3adcf3be1b9f471fdb16cfaa0ce27a5d88681"
+      },
+      {
+        "path": "oneloopmaster/src/sheet_exact.rs",
+        "sha256": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d"
+      },
+      {
+        "path": "oneloopmaster/src/tests.rs",
+        "sha256": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7"
+      },
+      {
+        "path": "oneloopmaster/src/triangle.rs",
+        "sha256": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8"
+      },
+      {
+        "path": "oneloopmaster/src/triangle_hv.rs",
+        "sha256": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2"
+      },
+      {
+        "path": "oneloopmaster/src/two_point.rs",
+        "sha256": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e"
+      },
+      {
+        "path": "oneloopmaster/tests/data/scalar_audit.txt",
+        "sha256": "913e5b81f8bff8349c1bb3c75232c9c8c12a7f01b70b14e2abb136cacde4ca2d"
+      },
+      {
+        "path": "oneloopmaster/tests/data/sheets.txt",
+        "sha256": "dec3611c0de335b9f2cb1acccd7e3db08e35ba32d3a7ca68c1f3144ba89f98b4"
+      }
+    ],
+    "project_base_commit": "b01a72fca760198fc75546db85590aaca71150c1",
+    "master_diff_from_checkpoint": "diff --git a/crates/iregi-masters/src/bubble_neighborhood.rs b/crates/iregi-masters/src/bubble_neighborhood.rs\nindex d194896..8d6980f 100644\n--- a/crates/iregi-masters/src/bubble_neighborhood.rs\n+++ b/crates/iregi-masters/src/bubble_neighborhood.rs\n@@ -63,6 +63,52 @@ fn finish(\n     ])\n }\n \n+/// Regular discriminant-zero chart for two positive real primal masses.\n+///\n+/// The caller must require nonzero primal `s`, zero primal Kallen discriminant,\n+/// and `m0\u00b2+m1\u00b2-s > 0`. The opposite sign is the genuine two-particle threshold\n+/// and must not select this chart. All supplied nilpotent directions are kept.\n+pub(crate) fn pseudothreshold_coefficients(\n+    supplied: &[Atom],\n+    order: usize,\n+    derivative: bool,\n+) -> Result<[Atom; 3], MasterError> {\n+    let degree = degree(order, derivative)?;\n+    let p = parameters();\n+    // Divide first, before forming the discriminant or its square root. This\n+    // avoids squared-mass underflow for otherwise regular tiny-scale inputs.\n+    let momentum = &p[0] / &p[1];\n+    let mass_ratio = &p[2] / &p[1];\n+    let k = Atom::num(1) + &mass_ratio - &momentum;\n+    let lambda_symbol = symbolica::symbol!(\"iregi_master_bubble::lambda\");\n+    let lambda = Atom::var(lambda_symbol);\n+    let z_symbol = symbolica::symbol!(\"iregi_master_bubble::atanh_argument\");\n+    let z = Atom::var(z_symbol);\n+    // Expand the analytic expression first, then substitute into the resulting\n+    // even polynomial. Expanding the composed square-root expression directly\n+    // would ask the series engine to differentiate sqrt at zero. Symbolica\n+    // normalizes the even powers after substitution; no coefficients or power\n+    // reductions are implemented here.\n+    let series_depth = degree.checked_mul(2).ok_or(MasterError::SizeOverflow)?;\n+    let regular = (&z * symbolica::transcendental::atanh().call((&z,)))\n+        .series(\n+            z_symbol,\n+            0,\n+            u32::try_from(series_depth).map_err(|_| MasterError::SizeOverflow)?,\n+        )\n+        .map_err(|error| preparation(format!(\"pseudothreshold bubble series: {error}\")))?\n+        .to_atom();\n+    let regular =\n+        &k / &momentum * regular.replace_multiple([Replacement::new(z, lambda.sqrt() / &k)].iter());\n+    let discriminant = &k * &k - Atom::num(4) * &mass_ratio;\n+    let regular = regular.replace_multiple([Replacement::new(lambda, discriminant)].iter());\n+    let finite = Atom::num(2) - (&p[1] / &p[3]).log()\n+        + (&mass_ratio - Atom::num(1) + &momentum) / (Atom::num(2) * &momentum)\n+            * (&p[1] / &p[2]).log()\n+        + regular;\n+    finish(finite, &p, supplied, derivative)\n+}\n+\n /// Equal-mass primal neighborhood, including transverse mass and momentum jets.\n pub(crate) fn equal_coefficients(\n     supplied: &[Atom],\n@@ -271,4 +317,30 @@ mod tests {\n             );\n         }\n     }\n+\n+    #[test]\n+    fn pseudothreshold_jet_matches_regular_parameter_integral() {\n+        // At s=1, m0\u00b2=4, m1\u00b2=9 the Feynman denominator is (x+2)\u00b2.\n+        // Its defining logarithmic integral has the following finite term\n+        // and momentum derivative, without a singular discriminant limit.\n+        let s_symbol = symbolica::symbol!(\"bubble_neighborhood_test::pseudo_s\");\n+        let s = Atom::var(s_symbol);\n+        let p = [s.clone(), Atom::num(4), Atom::num(9), Atom::num(1)];\n+        let at_point = [Replacement::new(s, Atom::num(1))];\n+        let logarithm = (Atom::num(4) / Atom::num(9)).log();\n+        let base = Atom::num(2) - Atom::num(4).log() + Atom::num(3) * &logarithm;\n+        let slope = -Atom::num(2) - Atom::num(5) * &logarithm / Atom::num(2);\n+        let value = pseudothreshold_coefficients(&p, 2, false).unwrap();\n+        equal(value[0].replace_multiple(at_point.iter()), base);\n+        equal(\n+            value[0]\n+                .derivative(s_symbol)\n+                .replace_multiple(at_point.iter()),\n+            slope.clone(),\n+        );\n+        equal(\n+            pseudothreshold_coefficients(&p, 1, true).unwrap()[0].replace_multiple(at_point.iter()),\n+            slope,\n+        );\n+    }\n }\ndiff --git a/crates/iregi-masters/src/derivative_domain.rs b/crates/iregi-masters/src/derivative_domain.rs\nindex 6870acb..3ef51ee 100644\n--- a/crates/iregi-masters/src/derivative_domain.rs\n+++ b/crates/iregi-masters/src/derivative_domain.rs\n@@ -21,7 +21,7 @@ pub(crate) fn domain_discriminant(family: ScalarIntegral, p: &[Atom]) -> Atom {\n     let guards = match family {\n         ScalarIntegral::A0 => return Atom::num(1),\n         ScalarIntegral::B0 | ScalarIntegral::DB0 => {\n-            vec![kallen(&p[0], &p[1], &p[2])]\n+            vec![bubble_discriminant(p)]\n         }\n         ScalarIntegral::C0 => {\n             let masses = &p[3..6];\n@@ -80,6 +80,18 @@ pub(crate) fn domain_discriminant(family: ScalarIntegral, p: &[Atom]) -> Atom {\n     })\n }\n \n+/// Dimensionless bubble discriminant, dividing before any squared values.\n+/// The first nonzero mass is the pivot; the invariant handles massless bubbles.\n+/// Its zero/nonzero classification is invariant under a common nonzero scale.\n+pub(crate) fn bubble_discriminant(p: &[Atom]) -> Atom {\n+    let scale = Symbol::IF.call((\n+        &p[1],\n+        &p[1],\n+        Symbol::IF.call((&p[2], &p[2], Symbol::IF.call((&p[0], &p[0], 1)))),\n+    ));\n+    kallen(&(&p[0] / &scale), &(&p[1] / &scale), &(&p[2] / &scale))\n+}\n+\n fn kallen(invariant: &Atom, first: &Atom, second: &Atom) -> Atom {\n     let difference = invariant - first - second;\n     &difference * &difference - Atom::num(4) * first * second\ndiff --git a/crates/iregi-masters/src/lib.rs b/crates/iregi-masters/src/lib.rs\nindex 30a8871..44ce7a8 100644\n--- a/crates/iregi-masters/src/lib.rs\n+++ b/crates/iregi-masters/src/lib.rs\n@@ -16,7 +16,15 @@ use std::{error::Error, fmt};\n mod bubble_neighborhood;\n mod derivative_domain;\n mod dual_validation;\n+mod exact_plan;\n+mod normalization;\n+mod pentagon6;\n pub use dual_validation::validate_dual_structure;\n+pub use exact_plan::ExactMasterPlan;\n+pub use pentagon6::{\n+    Pentagon6Batch, Pentagon6Diagnostic, Pentagon6Evaluator, Pentagon6LaneError, Pentagon6Options,\n+    Pentagon6Plan,\n+};\n #[cfg(feature = \"native-batch\")]\n mod native_batch;\n \n@@ -26,7 +34,7 @@ pub use symbolica::domains::{\n     float::{Complex, DoubleFloat, Float, FloatLike},\n };\n use symbolica::{\n-    atom::{Atom, Symbol},\n+    atom::{Atom, AtomCore, Symbol},\n     domains::{float::SingleFloat, rational::Rational},\n     evaluate::{BatchExpressionEvaluator, EvaluationDomain, ExpressionEvaluator},\n };\n@@ -159,6 +167,16 @@ pub enum MasterBackend {\n     RustBatch,\n }\n \n+/// Default scalar backend selected by this crate's compiled feature set.\n+/// Dual plans always use Symbolica's batch interpreter.\n+pub const fn default_master_backend() -> MasterBackend {\n+    if cfg!(feature = \"native-batch\") {\n+        MasterBackend::RustBatch\n+    } else {\n+        MasterBackend::SymbolicaBatch\n+    }\n+}\n+\n #[derive(Clone)]\n enum PreparedMaster<T: NativeFloat> {\n     Symbolica(BatchExpressionEvaluator<Complex<T>>),\n@@ -182,6 +200,10 @@ pub struct MasterEvaluator<T: NativeFloat> {\n     input_workspace: Vec<Complex<T>>,\n     output_workspace: Vec<Complex<T>>,\n     valid_lanes: Vec<usize>,\n+    normalization_scales: Vec<Option<normalization::BinaryScale>>,\n+    constant_evaluator: Option<Box<MasterEvaluator<T>>>,\n+    constant_input_workspace: Vec<Complex<T>>,\n+    constant_lanes: Vec<usize>,\n }\n \n impl<T: NativeFloat> MasterEvaluator<T>\n@@ -189,12 +211,7 @@ where\n     Complex<T>: EvaluationDomain,\n {\n     pub fn new(family: ScalarIntegral, prototype: T) -> Result<Self, MasterError> {\n-        let backend = if cfg!(feature = \"native-batch\") {\n-            MasterBackend::RustBatch\n-        } else {\n-            MasterBackend::SymbolicaBatch\n-        };\n-        Self::new_with_backend(family, prototype, backend)\n+        Self::new_with_backend(family, prototype, default_master_backend())\n     }\n \n     /// Select the native generated kernels or the exact-expression interpreter.\n@@ -205,10 +222,7 @@ where\n         backend: MasterBackend,\n     ) -> Result<Self, MasterError> {\n         match backend {\n-            MasterBackend::SymbolicaBatch => {\n-                let exact = exact_scalar_master_evaluator(family)?;\n-                Self::from_exact(family, prototype, None, exact)\n-            }\n+            MasterBackend::SymbolicaBatch => ExactMasterPlan::new(family)?.instantiate(prototype),\n             MasterBackend::RustBatch => {\n                 #[cfg(feature = \"native-batch\")]\n                 {\n@@ -226,6 +240,10 @@ where\n                         input_workspace: Vec::new(),\n                         output_workspace: Vec::new(),\n                         valid_lanes: Vec::new(),\n+                        normalization_scales: Vec::new(),\n+                        constant_evaluator: None,\n+                        constant_input_workspace: Vec::new(),\n+                        constant_lanes: Vec::new(),\n                     })\n                 }\n                 #[cfg(not(feature = \"native-batch\"))]\n@@ -278,33 +296,7 @@ where\n         prototype: T,\n         dual: D,\n     ) -> Result<Self, MasterError> {\n-        validate_dual_structure(&dual)?;\n-        let shape: Vec<_> = dual\n-            .get_shape()\n-            .into_iter()\n-            .map(<[usize]>::to_vec)\n-            .collect();\n-        if shape.is_empty() || shape.len() != dual.get_len() {\n-            return Err(MasterError::InvalidShape(\n-                \"empty or inconsistent shape\".into(),\n-            ));\n-        }\n-        if shape[0].iter().any(|&degree| degree != 0) {\n-            return Err(MasterError::InvalidShape(\"the primal must be first\".into()));\n-        }\n-        let (context, parameters, mut expressions) = expressions(family, true);\n-        if matches!(family, ScalarIntegral::B0 | ScalarIntegral::DB0) {\n-            expressions[0] = lightlike_bubble_finite(\n-                &parameters,\n-                dual.get_max_depth(),\n-                family == ScalarIntegral::DB0,\n-                &expressions[0],\n-            )?;\n-        }\n-        let exact = context\n-            .dual_evaluator(&expressions, &parameters, dual)\n-            .map_err(MasterError::Preparation)?;\n-        Self::from_exact(family, prototype, Some(shape), exact)\n+        ExactMasterPlan::new_dual(family, dual)?.instantiate(prototype)\n     }\n \n     fn from_exact(\n@@ -338,6 +330,10 @@ where\n             input_workspace: Vec::new(),\n             output_workspace: Vec::new(),\n             valid_lanes: Vec::new(),\n+            normalization_scales: Vec::new(),\n+            constant_evaluator: None,\n+            constant_input_workspace: Vec::new(),\n+            constant_lanes: Vec::new(),\n         })\n     }\n \n@@ -390,14 +386,47 @@ where\n         };\n         self.input_workspace.clear();\n         self.valid_lanes.clear();\n+        self.normalization_scales.clear();\n+        self.constant_input_workspace.clear();\n+        self.constant_lanes.clear();\n         for (lane, point) in input.chunks_exact(row_width).enumerate() {\n             if let Err(error) = self.validate_point(point) {\n                 result.errors[lane] = Some(error);\n                 continue;\n             }\n+            // A completely constant Dual is a scalar value with exact zero\n+            // higher components. Evaluate all such lanes together through the\n+            // ordinary batch program, avoiding unused derivative 0/0 at a\n+            // scalar boundary. Scale-only jets remain in the Dual program.\n+            if self.components > 1\n+                && point\n+                    .chunks_exact(self.components)\n+                    .all(|argument| argument[1..].iter().all(SingleFloat::is_zero))\n+            {\n+                self.constant_lanes.push(lane);\n+                self.constant_input_workspace.extend(\n+                    point\n+                        .chunks_exact(self.components)\n+                        .map(|argument| argument[0].clone()),\n+                );\n+                continue;\n+            }\n             self.valid_lanes.push(lane);\n             let start = self.input_workspace.len();\n             self.input_workspace.extend_from_slice(point);\n+            let normalization = if self.components > 1\n+                && matches!(self.family, ScalarIntegral::B0 | ScalarIntegral::DB0)\n+            {\n+                normalization::BinaryScale::for_positive_real(&point[self.components])\n+            } else {\n+                None\n+            };\n+            if let Some(scale) = normalization {\n+                for value in &mut self.input_workspace[start..] {\n+                    scale.divide(value);\n+                }\n+            }\n+            self.normalization_scales.push(normalization);\n             // Reuse OneLOop's exact soft-box relabelling. Nonconstant jets at\n             // massless boundaries are rejected by validate_point below.\n             if self.family == ScalarIntegral::D0 {\n@@ -430,16 +459,26 @@ where\n                 .map_err(MasterError::Evaluation)?,\n         }\n         for (prepared, &lane) in self.valid_lanes.iter().enumerate() {\n-            let output =\n-                &self.output_workspace[prepared * result_width..(prepared + 1) * result_width];\n             let point = &input[lane * row_width..(lane + 1) * row_width];\n-            let domain = &output[5 * self.components];\n             let check_discriminant = self.kinematics_seeded(point)\n                 && (matches!(self.family, ScalarIntegral::C0 | ScalarIntegral::D0)\n                     || (matches!(self.family, ScalarIntegral::B0 | ScalarIntegral::DB0)\n                         && !point[0].is_zero()));\n+            let regular_pseudothreshold = self.regular_bubble_pseudothreshold(point);\n+            let output =\n+                &mut self.output_workspace[prepared * result_width..(prepared + 1) * result_width];\n+            if self.family == ScalarIntegral::DB0 {\n+                if let Some(scale) = self.normalization_scales[prepared] {\n+                    for value in &mut output[..5 * self.components] {\n+                        scale.divide(value);\n+                    }\n+                }\n+            }\n+            let domain = &output[5 * self.components];\n             if check_discriminant\n-                && (domain.is_zero() || !domain.re.is_finite() || !domain.im.is_finite())\n+                && (!domain.re.is_finite()\n+                    || !domain.im.is_finite()\n+                    || (domain.is_zero() && !regular_pseudothreshold))\n             {\n                 result.errors[lane] = Some(LaneError::UnsupportedDerivativeDomain);\n             } else if output[..5 * self.components]\n@@ -452,6 +491,27 @@ where\n                     .clone_from_slice(output);\n             }\n         }\n+        if !self.constant_lanes.is_empty() {\n+            if self.constant_evaluator.is_none() {\n+                self.constant_evaluator =\n+                    Some(Box::new(Self::new(self.family, self.prototype.clone())?));\n+            }\n+            let constants = self\n+                .constant_evaluator\n+                .as_mut()\n+                .unwrap()\n+                .evaluate_batch(&self.constant_input_workspace, self.constant_lanes.len())?;\n+            for (prepared, &lane) in self.constant_lanes.iter().enumerate() {\n+                if let Some(error) = &constants.errors[prepared] {\n+                    result.errors[lane] = Some(error.clone());\n+                } else {\n+                    for slot in 0..OUTPUTS {\n+                        result.values[lane * result_width + slot * self.components] =\n+                            constants.values[prepared * OUTPUTS + slot].clone();\n+                    }\n+                }\n+            }\n+        }\n         Ok(result)\n     }\n \n@@ -637,9 +697,32 @@ where\n                     .any(|value| !value.is_zero())\n             })\n     }\n+\n+    // The symbolic program selects the Taylor chart only at zero discriminant.\n+    // These primal domain checks distinguish the regular pseudothreshold from\n+    // the genuine two-particle threshold before accepting that zero guard.\n+    fn regular_bubble_pseudothreshold(&self, point: &[Complex<T>]) -> bool {\n+        if !matches!(self.family, ScalarIntegral::B0 | ScalarIntegral::DB0) {\n+            return false;\n+        }\n+        let s = &point[0];\n+        let first = &point[self.components];\n+        let second = &point[2 * self.components];\n+        if !s.im.is_zero()\n+            || s.re <= s.re.zero()\n+            || !first.im.is_zero()\n+            || !second.im.is_zero()\n+            || first.re <= first.re.zero()\n+            || second.re <= second.re.zero()\n+        {\n+            return false;\n+        }\n+        let k = first.re.one() + second.re.clone() / &first.re - s.re.clone() / &first.re;\n+        k.is_finite() && k > k.zero()\n+    }\n }\n \n-fn lightlike_bubble_finite(\n+fn regular_bubble_finite(\n     p: &[Atom],\n     order: usize,\n     derivative: bool,\n@@ -655,7 +738,31 @@ fn lightlike_bubble_finite(\n         Symbol::IF.call((&p[2], massive, &second_massless[0])),\n         Symbol::IF.call((&p[2], &first_massless[0], ordinary)),\n     ));\n-    Ok(Symbol::IF.call((&p[0], ordinary, at_zero)))\n+    let pseudothreshold = bubble_neighborhood::pseudothreshold_coefficients(p, order, derivative)?;\n+    // Reuse OneLOop's registered, precision-aware real-sign primitive. The\n+    // surrounding real-axis and nonzero guards make its contract explicit.\n+    // This also keeps constant Duals on genuine thresholds on the native\n+    // scalar branch, whose prescribed DB0 value is not an analytic derivative.\n+    let sign = symbolica::symbol!(\"oneloop::__olo_sign_nonnegative\");\n+    let k = Atom::num(1) + &p[2] / &p[1] - &p[0] / &p[1];\n+    let mut chart = Symbol::IF.call((\n+        Atom::num(1) + sign.call((k,)),\n+        &pseudothreshold[0],\n+        ordinary,\n+    ));\n+    for mass in [&p[2], &p[1]] {\n+        chart = Symbol::IF.call((\n+            mass,\n+            Symbol::IF.call((\n+                mass - mass.conj(),\n+                ordinary,\n+                Symbol::IF.call((Atom::num(1) + sign.call((mass,)), chart, ordinary)),\n+            )),\n+            ordinary,\n+        ));\n+    }\n+    let at_nonzero = Symbol::IF.call((derivative_domain::bubble_discriminant(p), ordinary, chart));\n+    Ok(Symbol::IF.call((&p[0], at_nonzero, at_zero)))\n }\n \n /// Exact scalar outputs used by the reproducible Rust batch generator.\ndiff --git a/dependencies/oneloopmaster/src/definitions.rs b/dependencies/oneloopmaster/src/definitions.rs\nindex 9357ccc..89972bc 100644\n--- a/dependencies/oneloopmaster/src/definitions.rs\n+++ b/dependencies/oneloopmaster/src/definitions.rs\n@@ -1,8 +1,14 @@\n //! Keep the exact definitions we register, independently of Symbolica internals.\n-use std::{collections::HashMap, sync::OnceLock};\n+use std::{\n+    collections::{HashMap, HashSet},\n+    sync::OnceLock,\n+};\n use symbolica::{\n     atom::{Atom, AtomCore, AtomView, Indeterminate, Symbol},\n-    evaluate::{EvaluationError, FunctionMap as SymbolicaFunctionMap, FunctionRegistrationOptions},\n+    evaluate::{\n+        EvaluationError, FunctionMap as SymbolicaFunctionMap, FunctionRegistrationOptions,\n+        InliningPolicy,\n+    },\n };\n \n #[path = \"jit_primitives.rs\"]\n@@ -198,13 +204,35 @@ impl FunctionMap {\n     /// Prepare algebraic grouping identities for arbitrary Dual directions.\n     pub(crate) fn with_analytic_grouping(&self) -> Result<Self, String> {\n         let mut map = Self::new();\n+        let registered: HashSet<Symbol> =\n+            self.definitions.keys().map(|(symbol, _)| *symbol).collect();\n         for ((symbol, tags), (args, body, options)) in &self.definitions {\n+            // Retained scalar helpers become one helper per Taylor component.\n+            // Inline bounded leaves and pure forwarding aliases before Dualizer,\n+            // so Symbolica can share/prune their arithmetic in the caller. Keep\n+            // compound call graphs outlined to bound preparation and IR growth.\n+            let leaf = body.as_view().get_byte_size() <= 256\n+                && body\n+                    .get_all_symbols(true)\n+                    .iter()\n+                    .all(|symbol| !registered.contains(symbol));\n+            let forwarding = match body.as_view() {\n+                AtomView::Fun(fun) if registered.contains(&fun.get_symbol()) => fun\n+                    .iter()\n+                    .all(|argument| matches!(argument, AtomView::Var(_) | AtomView::Num(_))),\n+                _ => false,\n+            };\n+            let options = if leaf || forwarding {\n+                options.clone().inlining(InliningPolicy::Always)\n+            } else {\n+                options.clone()\n+            };\n             map.add_tagged_function_with_options(\n                 *symbol,\n                 tags.clone(),\n                 args.clone(),\n                 analytic_grouping(body),\n-                options.clone(),\n+                options,\n             )\n             .map_err(|error| error.to_string())?;\n         }\n@@ -217,7 +245,8 @@ impl FunctionMap {\n                 argument.to_atom(),\n                 FunctionRegistrationOptions::new()\n                     .inlining(symbolica::evaluate::InliningPolicy::Always),\n-            ).map_err(|error| error.to_string())?;\n+            )\n+            .map_err(|error| error.to_string())?;\n         }\n         Ok(map)\n     }\ndiff --git a/dependencies/oneloopmaster/src/native/constants.rs b/dependencies/oneloopmaster/src/native/constants.rs\nindex 6030122..790a2b6 100644\n--- a/dependencies/oneloopmaster/src/native/constants.rs\n+++ b/dependencies/oneloopmaster/src/native/constants.rs\n@@ -10,6 +10,7 @@ use symbolica::domains::{integer::Integer, rational::Rational};\n pub enum ConstantSpec<'a> {\n     Rational { re: &'a str, im: &'a str },\n     Pi,\n+    EulerGamma,\n     Polylog2 { re: &'a str, im: &'a str },\n }\n \n@@ -50,6 +51,7 @@ impl<T: NativeFloat> ConstantContext<T> {\n                 Ok(match spec {\n                     ConstantSpec::Rational { re, im } => C::new(rational(re)?, rational(im)?),\n                     ConstantSpec::Pi => C::new(prototype.pi(), prototype.zero()),\n+                    ConstantSpec::EulerGamma => C::new(prototype.euler(), prototype.zero()),\n                     ConstantSpec::Polylog2 { re, im } => {\n                         polylog2(&C::new(rational(re)?, rational(im)?))\n                     }\n@@ -106,4 +108,22 @@ mod tests {\n         assert!(ConstantContext::<DoubleFloat>::new(&[], 53).is_err());\n         assert!(ConstantContext::<Float>::new(&[], 256).is_ok());\n     }\n+\n+    #[test]\n+    fn euler_gamma_uses_requested_precision() {\n+        use symbolica::domains::float::Real;\n+        let specs = [ConstantSpec::EulerGamma];\n+        let double =\n+            ConstantContext::<DoubleFloat>::new(&specs, DoubleFloat::DEFAULT_BITS).unwrap();\n+        let wide = ConstantContext::<Float>::new(&specs, 256).unwrap();\n+        let machine = ConstantContext::<f64>::new(&specs, 53).unwrap();\n+        assert_eq!(double.constant(0).re, DoubleFloat::from(0.0).euler());\n+        assert_eq!(wide.constant(0).re, Float::new(256).euler());\n+        assert_eq!(wide.constant(0).re.get_precision(), 256);\n+        assert_ne!(\n+            wide.constant(0).re,\n+            Float::with_val(256, machine.constant(0).re)\n+        );\n+        assert_eq!(wide.constant(0).im, Float::with_val(256, 0));\n+    }\n }\ndiff --git a/dependencies/oneloopmaster/src/rust_codegen.rs b/dependencies/oneloopmaster/src/rust_codegen.rs\nindex 49bfbc0..79aa3e4 100644\n--- a/dependencies/oneloopmaster/src/rust_codegen.rs\n+++ b/dependencies/oneloopmaster/src/rust_codegen.rs\n@@ -262,6 +262,7 @@ type Signature = (Symbol, Vec<String>);\n pub enum ExactConstant {\n     Rational(String, String),\n     Pi,\n+    EulerGamma,\n     Polylog2(String, String),\n }\n \n@@ -271,6 +272,7 @@ impl ExactConstant {\n         match self {\n             Self::Rational(re, im) => runtime::ConstantSpec::Rational { re, im },\n             Self::Pi => runtime::ConstantSpec::Pi,\n+            Self::EulerGamma => runtime::ConstantSpec::EulerGamma,\n             Self::Polylog2(re, im) => runtime::ConstantSpec::Polylog2 { re, im },\n         }\n     }\n@@ -305,6 +307,11 @@ impl Constants {\n                 && definition.fixed_args.is_empty()\n             {\n                 ExactConstant::Pi\n+            } else if definition.symbol == symbolica::transcendental::euler_gamma()\n+                && definition.tags.is_empty()\n+                && definition.fixed_args.is_empty()\n+            {\n+                ExactConstant::EulerGamma\n             } else if definition.symbol == symbolica::transcendental::polylog()\n                 && definition.tags == [\"2\"]\n                 && definition.fixed_args.len() == 1\n@@ -337,6 +344,7 @@ impl Constants {\n                 )\n                 .unwrap(),\n                 ExactConstant::Pi => output.push_str(\"    ConstantSpec::Pi,\\n\"),\n+                ExactConstant::EulerGamma => output.push_str(\"    ConstantSpec::EulerGamma,\\n\"),\n                 ExactConstant::Polylog2(re, im) => writeln!(\n                     output,\n                     \"    ConstantSpec::Polylog2 {{ re: {re:?}, im: {im:?} }},\"\n@@ -1259,7 +1267,11 @@ mod tests {\n         let inner_body = graph(\n             2,\n             Vec::new(),\n-            vec![Instruction::Mul(Slot::Out(0), vec![Slot::Param(0), Slot::Param(1)], 0)],\n+            vec![Instruction::Mul(\n+                Slot::Out(0),\n+                vec![Slot::Param(0), Slot::Param(1)],\n+                0,\n+            )],\n             Vec::new(),\n         );\n         let outer_body = graph(\n@@ -1279,8 +1291,16 @@ mod tests {\n             1,\n             vec![number(7), number(11)],\n             vec![\n-                call(Slot::Temp(0), outer, vec![Slot::Param(0), Slot::Const(0), Slot::Const(1)]),\n-                call(Slot::Temp(1), outer, vec![Slot::Param(0), Slot::Const(0), Slot::Const(0)]),\n+                call(\n+                    Slot::Temp(0),\n+                    outer,\n+                    vec![Slot::Param(0), Slot::Const(0), Slot::Const(1)],\n+                ),\n+                call(\n+                    Slot::Temp(1),\n+                    outer,\n+                    vec![Slot::Param(0), Slot::Const(0), Slot::Const(0)],\n+                ),\n                 Instruction::Add(Slot::Out(0), vec![Slot::Temp(0), Slot::Temp(1)], 0),\n             ],\n             vec![SubEvaluator {\n@@ -1292,15 +1312,24 @@ mod tests {\n         let mut emitter = RustEmitter::default();\n         let module = emitter.emit_graph(&entry, EmitOptions::default()).unwrap();\n         let source = &module.source;\n-        assert!(source.contains(\"fn helper_0<T: NativeFloat>(a0: &C<T>, ctx: &Context<T>)\"), \"{source}\");\n+        assert!(\n+            source.contains(\"fn helper_0<T: NativeFloat>(a0: &C<T>, ctx: &Context<T>)\"),\n+            \"{source}\"\n+        );\n         assert!(source.contains(\"mul(a0, ctx.constant(0))\"), \"{source}\");\n         assert!(\n             source.contains(\"fn helper_1<T: NativeFloat>(a0: &C<T>, a2: &C<T>, ctx: &Context<T>)\"),\n             \"{source}\"\n         );\n         assert!(source.contains(\"helper_0(a0, ctx)\"), \"{source}\");\n-        assert!(source.contains(\"helper_1(a0, ctx.constant(1), ctx)\"), \"{source}\");\n-        assert!(source.contains(\"helper_1(a0, ctx.constant(0), ctx)\"), \"{source}\");\n+        assert!(\n+            source.contains(\"helper_1(a0, ctx.constant(1), ctx)\"),\n+            \"{source}\"\n+        );\n+        assert!(\n+            source.contains(\"helper_1(a0, ctx.constant(0), ctx)\"),\n+            \"{source}\"\n+        );\n         let probe = PURE_NUMERIC_PROBE.replace(\n             \"struct Context<T>(std::marker::PhantomData<T>);\",\n             \"struct Context<T>(Vec<T>);\\nimpl<T> Context<T> { fn constant(&self, index: usize) -> &T { &self.0[index] } }\",\n@@ -1336,17 +1365,23 @@ fn powi<T: NativeFloat>(a: &T, exponent: i64, _: bool) -> T {\n             .stack_size(128 * 1024 * 1024)\n             .spawn(|| {\n                 crate::initialization::ensure_symbolica_state();\n-                let expressions = [Symbol::PI.to_atom(), Atom::num((1, 2)).polylog(2)];\n+                let expressions = [\n+                    Symbol::PI.to_atom(),\n+                    Atom::num((1, 2)).polylog(2),\n+                    Atom::from(symbolica::transcendental::euler_gamma()),\n+                ];\n                 let evaluator = Atom::evaluator_multiple(&expressions, &[] as &[Atom])\n                     .direct_translation(true)\n                     .build()\n                     .unwrap();\n                 let graph = export_checked(evaluator).unwrap();\n                 assert_eq!(graph.input_count, 0);\n-                assert_eq!(graph.constant_functions.len(), 2);\n+                assert_eq!(graph.constant_functions.len(), 3);\n                 let mut constants = Constants::default();\n                 constants.graph_constants(&graph).unwrap();\n                 assert!(constants.values.contains(&ExactConstant::Pi));\n+                assert!(constants.values.contains(&ExactConstant::EulerGamma));\n+                assert!(constants.source().contains(\"ConstantSpec::EulerGamma\"));\n                 assert!(\n                     constants\n                         .values\n",
+    "comparison_limit": "Current masters/oneloop sources are copied exactly and differ from the original retained baseline dependency archive. The core snapshot stays identical; numerical and timing effects cannot all be attributed to cache journaling. Per-stage timing isolates exact core evaluator preparation.",
+    "experimental_manifest_adjustment": "Copied oneloop Cargo.toml omits tracing_max_level_info so the masters bridge reuses the exact patched Symbolica library already tested. This affects logging feature selection only; source code and numerical behavior are unchanged. All numeric features remain enabled.",
+    "embedded_version_note": "Upstream build.rs inherits the outer project git describe when run from the generated source directory, embedding display version symbolica-b01a72f. This display label is not the upstream revision. The precise library source is 9cdc2949cdb153478c1eca0d40690dc0abfc616e plus the recorded patch/file hashes; no source revision is inferred from the display string.",
+    "isolated_lock_sha256": "0dd2541ad598d7516d8bcadbdd03df5e5cb6cfd6170a9df244b77f697e743f47",
+    "compile_command": "CARGO_TARGET_DIR=\"$PWD/target/symbolica-scope-build\" CARGO_BUILD_BUILD_DIR=\"$PWD/target/symbolica-scope-cargo-build\" CARGO_BUILD_JOBS=2 cargo build --manifest-path target/symbolica-scoped-masters/Cargo.toml --offline",
+    "build_log": "warning: patch for the non root package will be ignored, specify patch at the workspace root:\npackage:   /shared/external/iregi/iregi-rust/target/symbolica-scoped-masters/oneloopmaster/Cargo.toml\nworkspace: /shared/external/iregi/iregi-rust/target/symbolica-scoped-masters/Cargo.toml\nwarning: unused `Result` that must be used\n   --> /shared/external/iregi/iregi-rust/target/symbolica-scoped-cache/src/atom.rs:776:9\n    |\n776 |         self.export(&mut data);\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n    |\n    = note: this `Result` may be an `Err` variant, which should be handled\n    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default\nhelp: use `let _ = ...` to ignore the resulting value\n    |\n776 |         let _ = self.export(&mut data);\n    |         +++++++\n\nwarning: `symbolica` (lib) generated 1 warning\n   Compiling oneloop v0.1.0 (/shared/external/iregi/iregi-rust/target/symbolica-scoped-masters/oneloopmaster)\n   Compiling iregi-masters v0.1.0 (/shared/external/iregi/iregi-rust/target/symbolica-scoped-masters)\n    Finished `dev` profile [optimized + debuginfo] target(s) in 3m 21s\n",
+    "precompile_archives": [
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libiregi_masters-ced358360a83e4fe.rlib",
+        "sha256": "0a786705159f3ad1e195db78b724e9b31ca193c80e67ff62b25ac5efdf1ff6df",
+        "bytes": 40882350
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/liboneloop-cf5ad3220691c62d.rlib",
+        "sha256": "d9ca4afc80ba7427df30c94a13b751abd6f8ee757e0809d4ec9cc90deaa00c3e",
+        "bytes": 394085602
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libsymbolica-884bfaeef3929ba1.rlib",
+        "sha256": "a779cb8ceab1317d3433cb845635977d5f904ee32c9c95d0aa55e9971ef62daf",
+        "bytes": 577661952
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libserde-b04ba25115fa19f8.rlib",
+        "sha256": "5eca8586e083fd4d70dd52b6944cb0730f6ed6a1933468f5840409fa34a16102",
+        "bytes": 1220676
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libserde_json-d657c5438f354a41.rlib",
+        "sha256": "23c8fe2a2486f4f6b04c632ce1d29dfceea7b9f4fa788d30c7d6fc8c1a6ab613",
+        "bytes": 5181936
+      },
+      {
+        "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+        "sha256": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411",
+        "bytes": 35944
+      }
+    ],
+    "core_compile_command": "CARGO_CRATE_NAME=iregi_rust CARGO_MANIFEST_DIR=\"$PWD/crates/iregi-rust\" rustc --crate-name iregi_rust --edition=2024 -C opt-level=2 --test target/rescue-rank7-source-snapshot/crates/iregi-rust/src/lib.rs -L dependency=target/symbolica-scope-cargo-build/debug/deps -L dependency=target/cargo-build/debug/deps -L native=target/symbolica-scope-cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib --extern iregi_masters=target/symbolica-scope-cargo-build/debug/deps/libiregi_masters-ced358360a83e4fe.rlib --extern symbolica=target/symbolica-scope-cargo-build/debug/deps/libsymbolica-884bfaeef3929ba1.rlib --extern serde=target/symbolica-scope-cargo-build/debug/deps/libserde-b04ba25115fa19f8.rlib --extern serde_json=target/symbolica-scope-cargo-build/debug/deps/libserde_json-d657c5438f354a41.rlib --extern thiserror=target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib -o target/iregi_runtime_rescue_rank7_scoped_tests",
+    "postcompile_archive_checks": [
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libiregi_masters-ced358360a83e4fe.rlib",
+        "sha256_after": "0a786705159f3ad1e195db78b724e9b31ca193c80e67ff62b25ac5efdf1ff6df",
+        "unchanged": true
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/liboneloop-cf5ad3220691c62d.rlib",
+        "sha256_after": "d9ca4afc80ba7427df30c94a13b751abd6f8ee757e0809d4ec9cc90deaa00c3e",
+        "unchanged": true
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libsymbolica-884bfaeef3929ba1.rlib",
+        "sha256_after": "a779cb8ceab1317d3433cb845635977d5f904ee32c9c95d0aa55e9971ef62daf",
+        "unchanged": true
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libserde-b04ba25115fa19f8.rlib",
+        "sha256_after": "5eca8586e083fd4d70dd52b6944cb0730f6ed6a1933468f5840409fa34a16102",
+        "unchanged": true
+      },
+      {
+        "path": "target/symbolica-scope-cargo-build/debug/deps/libserde_json-d657c5438f354a41.rlib",
+        "sha256_after": "23c8fe2a2486f4f6b04c632ce1d29dfceea7b9f4fa788d30c7d6fc8c1a6ab613",
+        "unchanged": true
+      },
+      {
+        "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+        "sha256_after": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411",
+        "unchanged": true
+      }
+    ],
+    "core_source_snapshot_unchanged": true,
+    "core_source_manifest": {
+      "snapshot_path": "target/rescue-rank7-source-snapshot",
+      "source_base_commit": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+      "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+      "source_files": [
+        {
+          "path": "crates/iregi-rust/src/basis.rs",
+          "sha256": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+          "bytes": 1534
+        },
+        {
+          "path": "crates/iregi-rust/src/contraction.rs",
+          "sha256": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+          "bytes": 31725
+        },
+        {
+          "path": "crates/iregi-rust/src/convention.rs",
+          "sha256": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+          "bytes": 5654
+        },
+        {
+          "path": "crates/iregi-rust/src/execution.rs",
+          "sha256": "80959d0ec079e65ad30606c39b0441e2bd339b6f2a55c53a74017553143e4a4a",
+          "bytes": 106818
+        },
+        {
+          "path": "crates/iregi-rust/src/ibp.rs",
+          "sha256": "08b82d105bf7555b69ab26f5f63aecafd83553a5d528039730004927164bfe5a",
+          "bytes": 77312
+        },
+        {
+          "path": "crates/iregi-rust/src/lib.rs",
+          "sha256": "2e130db707219d2d7b1e4a286cf45cff200110bb292f321ef0e6e4da899674fe",
+          "bytes": 767
+        },
+        {
+          "path": "crates/iregi-rust/src/plan.rs",
+          "sha256": "ef2fcb8476eb01437925011f16b058baffde2c6f43f723a30af18121c3c71d0f",
+          "bytes": 25586
+        },
+        {
+          "path": "crates/iregi-rust/src/pv.rs",
+          "sha256": "40cecf63cec2719a9bd5f710ba0aef3f53b3e2009b319702f87a8a1512dfacb0",
+          "bytes": 68371
+        },
+        {
+          "path": "crates/iregi-rust/src/rescue.rs",
+          "sha256": "e6bfc04e922cc9286c3a3f6b49c17940071d5829d7525c731257007f4fa4930a",
+          "bytes": 34760
+        },
+        {
+          "path": "crates/iregi-rust/src/scalar.rs",
+          "sha256": "9a7429ee714abe86613ba48f3bacd11fbad90cfe401f6e433faa9e6370a6e90d",
+          "bytes": 10532
+        },
+        {
+          "path": "crates/iregi-rust/src/snapping.rs",
+          "sha256": "54dbca1c8ad59e27ad96d63520dfd6d6ea584e963a96916f2b149acc08b784c6",
+          "bytes": 29386
+        },
+        {
+          "path": "crates/iregi-rust/src/stability.rs",
+          "sha256": "898f096077085b5f88742c636784c1db0cb9d604811fa16dbe0cb63c5c82dc8b",
+          "bytes": 70236
+        },
+        {
+          "path": "crates/iregi-rust/src/types.rs",
+          "sha256": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+          "bytes": 6877
+        },
+        {
+          "path": "validation/pv-high-rank/lightlike-feynman-parameters.json",
+          "sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+          "bytes": 20134
+        },
+        {
+          "path": "validation/reference/fixtures.json",
+          "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+          "bytes": 161965
+        },
+        {
+          "path": "validation/reference/snapping/reductions.json",
+          "sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305",
+          "bytes": 211942
+        }
+      ],
+      "precompile_archives": [
+        {
+          "path": "target/libiregi_masters_exact.rlib",
+          "sha256": "2a6021904de9dd4f9518daad56284fde25c4294cd64dcd144c84dd73b9487d1c",
+          "bytes": 2416582
+        },
+        {
+          "path": "target/liboneloop_identity.rlib",
+          "sha256": "a5529bd8f74bdac100eea48649b47853ae8f7fa242001e1f851f325e653d4500",
+          "bytes": 104816180
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+          "sha256": "e0547aca88c66be1e35d50fcd38d05eb705919dad64f649f049cc2496a3ed8b6",
+          "bytes": 580118754
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+          "sha256": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+          "bytes": 1220868
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+          "sha256": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+          "bytes": 6909176
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+          "sha256": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411",
+          "bytes": 35944
+        }
+      ],
+      "core_optimization": "rustc -C opt-level=2",
+      "source_scope": "Exact copied core source and compile-time fixture files. External dependency sources/build settings are not reconstructed by this manifest.",
+      "dependency_scope": "Explicit linked archive paths and known oneloop transitive archive hashed before compilation. Other transitive dependency/native-library build provenance is not established; this is not a source-only reproducibility claim.",
+      "compile_command": [
+        "rustc",
+        "--crate-name",
+        "iregi_rust",
+        "--edition=2024",
+        "-C",
+        "opt-level=2",
+        "--test",
+        "target/rescue-rank7-source-snapshot/crates/iregi-rust/src/lib.rs",
+        "-L",
+        "dependency=target",
+        "-L",
+        "dependency=target/cargo-build/debug/deps",
+        "-L",
+        "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+        "--extern",
+        "iregi_masters=target/libiregi_masters_exact.rlib",
+        "--extern",
+        "symbolica=target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+        "--extern",
+        "serde=target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+        "--extern",
+        "serde_json=target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+        "--extern",
+        "thiserror=target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+        "-o",
+        "target/iregi_runtime_rescue_rank7_snapshot_tests"
+      ],
+      "compile_environment": {
+        "CARGO_CRATE_NAME": "iregi_rust",
+        "CARGO_MANIFEST_DIR": "/shared/external/iregi/iregi-rust/crates/iregi-rust",
+        "setup": "source scripts/env.sh"
+      },
+      "archive_postcompile_checks": [
+        {
+          "path": "target/libiregi_masters_exact.rlib",
+          "sha256_after": "2a6021904de9dd4f9518daad56284fde25c4294cd64dcd144c84dd73b9487d1c",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/liboneloop_identity.rlib",
+          "sha256_after": "a5529bd8f74bdac100eea48649b47853ae8f7fa242001e1f851f325e653d4500",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+          "sha256_after": "e0547aca88c66be1e35d50fcd38d05eb705919dad64f649f049cc2496a3ed8b6",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+          "sha256_after": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+          "sha256_after": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+          "sha256_after": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411",
+          "unchanged_during_build": true
+        }
+      ],
+      "build_exit_code": 0,
+      "binary": {
+        "path": "target/iregi_runtime_rescue_rank7_snapshot_tests",
+        "sha256": "e045f7beed3f5ab780236c95a2c853f9069121175cd4f2dc9ad3293018d45c2d",
+        "bytes": 360171696
+      },
+      "build_log": ""
+    },
+    "binary": {
+      "path": "target/iregi_runtime_rescue_rank7_scoped_tests",
+      "sha256": "44a6e0a952c1289a968b054d0b1b538457c6d3aa30004291521aa19b2feef890",
+      "bytes": 506935624
+    },
+    "core_build_log": ""
+  },
+  "execution": {
+    "timeout_seconds": 240,
+    "exit_code": 0,
+    "test": "rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions",
+    "command": "source scripts/env.sh; IREGI_RESCUE_PROFILE=1 IREGI_PREPARATION_PROFILE=1 SYMBOLICA_SCOPE_PROFILE=1 timeout 240s target/iregi_runtime_rescue_rank7_scoped_tests rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions --exact --ignored --test-threads=1 --nocapture",
+    "log_sha256": "920dd4a4605cc82068d5928f21f5b42607fac34c240b434be9619ab4908ca173",
+    "log": "\nrunning 1 test\ntest rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions ... preparing the complete rank-7 pentagon plan\nplan prepared after 21.05143341s: 330 moments, 9381 aliases, 30 master leaves; preparing three precision workspaces\niregi preparation stability expressions: 73.049064s\nsymbolica scoped cache: roots_elapsed=0.002828s, branch_scopes=1518, parent_entries_not_copied=291938, reverted_entries=1588, final_entries=171\niregi preparation argument exact evaluator: 0.007655s\niregi preparation snapping diagnostic exact evaluator: 0.000009s\nsymbolica scoped cache: roots_elapsed=1.573480s, branch_scopes=8870, parent_entries_not_copied=10203522602, reverted_entries=29518, final_entries=1387306\niregi preparation reduction exact evaluator: 1.783683s\nsymbolica scoped cache: roots_elapsed=2.311359s, branch_scopes=2138, parent_entries_not_copied=546619908, reverted_entries=15035, final_entries=1809001\niregi preparation primal exact evaluator: 2.690528s\nsymbolica scoped cache: roots_elapsed=0.000008s, branch_scopes=4, parent_entries_not_copied=8, reverted_entries=4, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.000085s, branch_scopes=46, parent_entries_not_copied=1196, reverted_entries=164, final_entries=10\nsymbolica scoped cache: roots_elapsed=0.000085s, branch_scopes=18, parent_entries_not_copied=148, reverted_entries=78, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000077s, branch_scopes=18, parent_entries_not_copied=148, reverted_entries=76, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000068s, branch_scopes=38, parent_entries_not_copied=418, reverted_entries=109, final_entries=22\nsymbolica scoped cache: roots_elapsed=0.000073s, branch_scopes=14, parent_entries_not_copied=198, reverted_entries=112, final_entries=2\nsymbolica scoped cache: roots_elapsed=0.000204s, branch_scopes=4, parent_entries_not_copied=34, reverted_entries=21, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.004715s, branch_scopes=46, parent_entries_not_copied=2762, reverted_entries=167, final_entries=78\nsymbolica scoped cache: roots_elapsed=0.000011s, branch_scopes=4, parent_entries_not_copied=28, reverted_entries=6, final_entries=15\nsymbolica scoped cache: roots_elapsed=0.000012s, branch_scopes=4, parent_entries_not_copied=24, reverted_entries=6, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.000009s, branch_scopes=4, parent_entries_not_copied=16, reverted_entries=6, final_entries=11\nsymbolica scoped cache: roots_elapsed=0.000011s, branch_scopes=4, parent_entries_not_copied=6, reverted_entries=17, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.000022s, branch_scopes=6, parent_entries_not_copied=112, reverted_entries=21, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.000256s, branch_scopes=12, parent_entries_not_copied=138, reverted_entries=39, final_entries=8\nsymbolica scoped cache: roots_elapsed=0.000773s, branch_scopes=34, parent_entries_not_copied=1116, reverted_entries=33, final_entries=63\nsymbolica scoped cache: roots_elapsed=0.000469s, branch_scopes=36, parent_entries_not_copied=798, reverted_entries=144, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000034s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=90\nsymbolica scoped cache: roots_elapsed=0.000013s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=42\nsymbolica scoped cache: roots_elapsed=0.001585s, branch_scopes=202, parent_entries_not_copied=11246, reverted_entries=1010, final_entries=21\nsymbolica scoped cache: roots_elapsed=0.003279s, branch_scopes=6, parent_entries_not_copied=68, reverted_entries=8, final_entries=11\nsymbolica scoped cache: roots_elapsed=0.004407s, branch_scopes=12, parent_entries_not_copied=586, reverted_entries=0, final_entries=95\nsymbolica scoped cache: roots_elapsed=0.000095s, branch_scopes=52, parent_entries_not_copied=1126, reverted_entries=187, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000255s, branch_scopes=8, parent_entries_not_copied=122, reverted_entries=28, final_entries=11\nsymbolica scoped cache: roots_elapsed=0.006966s, branch_scopes=286, parent_entries_not_copied=24744, reverted_entries=847, final_entries=32\nsymbolica scoped cache: roots_elapsed=0.013897s, branch_scopes=344, parent_entries_not_copied=6574, reverted_entries=1025, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000225s, branch_scopes=62, parent_entries_not_copied=4964, reverted_entries=118, final_entries=106\nsymbolica scoped cache: roots_elapsed=0.000015s, branch_scopes=4, parent_entries_not_copied=24, reverted_entries=16, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000227s, branch_scopes=34, parent_entries_not_copied=1104, reverted_entries=95, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.007571s, branch_scopes=316, parent_entries_not_copied=33276, reverted_entries=888, final_entries=32\nsymbolica scoped cache: roots_elapsed=0.008032s, branch_scopes=64, parent_entries_not_copied=1260, reverted_entries=120, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000120s, branch_scopes=46, parent_entries_not_copied=798, reverted_entries=160, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.024006s, branch_scopes=214, parent_entries_not_copied=24024, reverted_entries=535, final_entries=119\nsymbolica scoped cache: roots_elapsed=0.000205s, branch_scopes=76, parent_entries_not_copied=2068, reverted_entries=178, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000517s, branch_scopes=66, parent_entries_not_copied=2458, reverted_entries=112, final_entries=58\nsymbolica scoped cache: roots_elapsed=0.000885s, branch_scopes=42, parent_entries_not_copied=2102, reverted_entries=63, final_entries=34\nsymbolica scoped cache: roots_elapsed=0.028152s, branch_scopes=520, parent_entries_not_copied=34590, reverted_entries=1504, final_entries=2\nsymbolica scoped cache: roots_elapsed=0.000074s, branch_scopes=2, parent_entries_not_copied=126, reverted_entries=1, final_entries=68\nsymbolica scoped cache: roots_elapsed=0.033963s, branch_scopes=26, parent_entries_not_copied=458, reverted_entries=116, final_entries=5\nsymbolica scoped cache: roots_elapsed=0.034862s, branch_scopes=38, parent_entries_not_copied=2252, reverted_entries=34, final_entries=102\nsymbolica scoped cache: roots_elapsed=0.050451s, branch_scopes=554, parent_entries_not_copied=39676, reverted_entries=830, final_entries=57\nsymbolica scoped cache: roots_elapsed=0.000149s, branch_scopes=14, parent_entries_not_copied=402, reverted_entries=21, final_entries=121\nsymbolica scoped cache: roots_elapsed=0.000402s, branch_scopes=26, parent_entries_not_copied=364, reverted_entries=87, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.012883s, branch_scopes=622, parent_entries_not_copied=52996, reverted_entries=2572, final_entries=78\nsymbolica scoped cache: roots_elapsed=0.000046s, branch_scopes=32, parent_entries_not_copied=1150, reverted_entries=32, final_entries=69\nsymbolica scoped cache: roots_elapsed=0.014097s, branch_scopes=34, parent_entries_not_copied=196, reverted_entries=73, final_entries=12\nsymbolica scoped cache: roots_elapsed=0.000019s, branch_scopes=18, parent_entries_not_copied=262, reverted_entries=53, final_entries=2\nsymbolica scoped cache: roots_elapsed=0.000050s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=68\nsymbolica scoped cache: roots_elapsed=0.000185s, branch_scopes=26, parent_entries_not_copied=774, reverted_entries=29, final_entries=54\nsymbolica scoped cache: roots_elapsed=0.000432s, branch_scopes=68, parent_entries_not_copied=578, reverted_entries=68, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.065473s, branch_scopes=38, parent_entries_not_copied=582, reverted_entries=50, final_entries=6\nsymbolica scoped cache: roots_elapsed=0.000016s, branch_scopes=6, parent_entries_not_copied=26, reverted_entries=11, final_entries=6\nsymbolica scoped cache: roots_elapsed=0.000016s, branch_scopes=4, parent_entries_not_copied=62, reverted_entries=1, final_entries=17\nsymbolica scoped cache: roots_elapsed=0.000010s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=9\nsymbolica scoped cache: roots_elapsed=0.000010s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=10\nsymbolica scoped cache: roots_elapsed=0.000007s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.079760s, branch_scopes=466, parent_entries_not_copied=80398, reverted_entries=1824, final_entries=30\nsymbolica scoped cache: roots_elapsed=0.270481s, branch_scopes=206, parent_entries_not_copied=26794, reverted_entries=753, final_entries=5\nsymbolica scoped cache: roots_elapsed=0.000024s, branch_scopes=12, parent_entries_not_copied=114, reverted_entries=40, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000026s, branch_scopes=20, parent_entries_not_copied=180, reverted_entries=60, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.082215s, branch_scopes=390, parent_entries_not_copied=29728, reverted_entries=1868, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000015s, branch_scopes=16, parent_entries_not_copied=338, reverted_entries=16, final_entries=27\nsymbolica scoped cache: roots_elapsed=0.000029s, branch_scopes=34, parent_entries_not_copied=676, reverted_entries=86, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000858s, branch_scopes=88, parent_entries_not_copied=9028, reverted_entries=274, final_entries=135\nsymbolica scoped cache: roots_elapsed=0.001064s, branch_scopes=14, parent_entries_not_copied=392, reverted_entries=23, final_entries=32\nsymbolica scoped cache: roots_elapsed=0.008940s, branch_scopes=280, parent_entries_not_copied=18132, reverted_entries=1698, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.037001s, branch_scopes=690, parent_entries_not_copied=54056, reverted_entries=4122, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000489s, branch_scopes=12, parent_entries_not_copied=582, reverted_entries=98, final_entries=76\nsymbolica scoped cache: roots_elapsed=0.000666s, branch_scopes=18, parent_entries_not_copied=522, reverted_entries=23, final_entries=34\nsymbolica scoped cache: roots_elapsed=0.008914s, branch_scopes=528, parent_entries_not_copied=25376, reverted_entries=3249, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.009134s, branch_scopes=396, parent_entries_not_copied=23688, reverted_entries=1986, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000002s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000098s, branch_scopes=14, parent_entries_not_copied=264, reverted_entries=69, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000499s, branch_scopes=92, parent_entries_not_copied=3398, reverted_entries=420, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000763s, branch_scopes=68, parent_entries_not_copied=1836, reverted_entries=375, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.001359s, branch_scopes=252, parent_entries_not_copied=8344, reverted_entries=1198, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000512s, branch_scopes=258, parent_entries_not_copied=4596, reverted_entries=1048, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000001s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000005s, branch_scopes=4, parent_entries_not_copied=16, reverted_entries=6, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000035s, branch_scopes=32, parent_entries_not_copied=702, reverted_entries=90, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000009s, branch_scopes=16, parent_entries_not_copied=88, reverted_entries=25, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000061s, branch_scopes=64, parent_entries_not_copied=740, reverted_entries=216, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000013s, branch_scopes=30, parent_entries_not_copied=0, reverted_entries=53, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.434758s, branch_scopes=4124, parent_entries_not_copied=130848, reverted_entries=15764, final_entries=5\nsymbolica scoped cache: roots_elapsed=0.000006s, branch_scopes=4, parent_entries_not_copied=8, reverted_entries=4, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.000011s, branch_scopes=4, parent_entries_not_copied=16, reverted_entries=6, final_entries=11\nsymbolica scoped cache: roots_elapsed=0.000014s, branch_scopes=4, parent_entries_not_copied=24, reverted_entries=6, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.000010s, branch_scopes=4, parent_entries_not_copied=28, reverted_entries=6, final_entries=15\nsymbolica scoped cache: roots_elapsed=0.000085s, branch_scopes=36, parent_entries_not_copied=798, reverted_entries=144, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000012s, branch_scopes=4, parent_entries_not_copied=6, reverted_entries=17, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.000771s, branch_scopes=20, parent_entries_not_copied=1354, reverted_entries=16, final_entries=110\nsymbolica scoped cache: roots_elapsed=0.000922s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=75\nsymbolica scoped cache: roots_elapsed=0.000010s, branch_scopes=6, parent_entries_not_copied=26, reverted_entries=11, final_entries=6\nsymbolica scoped cache: roots_elapsed=0.000069s, branch_scopes=20, parent_entries_not_copied=236, reverted_entries=143, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000073s, branch_scopes=22, parent_entries_not_copied=286, reverted_entries=142, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000049s, branch_scopes=14, parent_entries_not_copied=206, reverted_entries=98, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000015s, branch_scopes=12, parent_entries_not_copied=114, reverted_entries=40, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000010s, branch_scopes=4, parent_entries_not_copied=62, reverted_entries=1, final_entries=17\nsymbolica scoped cache: roots_elapsed=0.000005s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=9\nsymbolica scoped cache: roots_elapsed=0.000009s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=10\nsymbolica scoped cache: roots_elapsed=0.000006s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.000022s, branch_scopes=20, parent_entries_not_copied=180, reverted_entries=60, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000020s, branch_scopes=6, parent_entries_not_copied=112, reverted_entries=21, final_entries=13\nsymbolica scoped cache: roots_elapsed=0.000030s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=90\nsymbolica scoped cache: roots_elapsed=0.000013s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=42\nsymbolica scoped cache: roots_elapsed=0.001661s, branch_scopes=202, parent_entries_not_copied=11246, reverted_entries=1010, final_entries=21\nsymbolica scoped cache: roots_elapsed=0.001897s, branch_scopes=6, parent_entries_not_copied=68, reverted_entries=8, final_entries=11\nsymbolica scoped cache: roots_elapsed=0.000025s, branch_scopes=12, parent_entries_not_copied=138, reverted_entries=39, final_entries=8\nsymbolica scoped cache: roots_elapsed=0.006224s, branch_scopes=52, parent_entries_not_copied=3118, reverted_entries=208, final_entries=16\nsymbolica scoped cache: roots_elapsed=0.000010s, branch_scopes=8, parent_entries_not_copied=116, reverted_entries=11, final_entries=15\nsymbolica scoped cache: roots_elapsed=0.006594s, branch_scopes=8, parent_entries_not_copied=116, reverted_entries=11, final_entries=15\nsymbolica scoped cache: roots_elapsed=0.006705s, branch_scopes=2, parent_entries_not_copied=34, reverted_entries=0, final_entries=18\nsymbolica scoped cache: roots_elapsed=0.008096s, branch_scopes=62, parent_entries_not_copied=1628, reverted_entries=146, final_entries=2\nsymbolica scoped cache: roots_elapsed=0.000039s, branch_scopes=12, parent_entries_not_copied=158, reverted_entries=90, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.010481s, branch_scopes=142, parent_entries_not_copied=8198, reverted_entries=570, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000822s, branch_scopes=64, parent_entries_not_copied=1932, reverted_entries=386, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000191s, branch_scopes=84, parent_entries_not_copied=1156, reverted_entries=357, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000001s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000004s, branch_scopes=4, parent_entries_not_copied=16, reverted_entries=6, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000005s, branch_scopes=8, parent_entries_not_copied=26, reverted_entries=19, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000004s, branch_scopes=14, parent_entries_not_copied=0, reverted_entries=14, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000001s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000039s, branch_scopes=10, parent_entries_not_copied=130, reverted_entries=58, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000061s, branch_scopes=20, parent_entries_not_copied=290, reverted_entries=96, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.000077s, branch_scopes=74, parent_entries_not_copied=666, reverted_entries=251, final_entries=1\nsymbolica scoped cache: roots_elapsed=0.021566s, branch_scopes=74, parent_entries_not_copied=152, reverted_entries=63, final_entries=5\nsymbolica scoped cache: roots_elapsed=0.000447s, branch_scopes=106, parent_entries_not_copied=1756, reverted_entries=365, final_entries=6\nsymbolica scoped cache: roots_elapsed=0.000035s, branch_scopes=8, parent_entries_not_copied=48, reverted_entries=28, final_entries=2\niregi preparation scalar master exact evaluators: 0.862556s\niregi preparation numeric coefficient mapping: 0.494786s\nprimary workspace prepared after 79.046742971s\niregi preparation numeric coefficient mapping: 1.027993s\nworking-precision workspace prepared after 80.138828012s\niregi preparation numeric coefficient mapping: 1.398599s\nverification workspace prepared after 81.637864918s\nworkspaces prepared after 102.791179539s; evaluating the batch\nprecision coefficient lane=0, moment=[5,0,0,1], slot=finite, Taylor component=0: bits=128 real=2e-32 imag=-2.4383789354471229393924987498457e-3; bits=256 real=1e-71 imag=-2.4383789354471229393924987498432753476200154688257048533643618299719415e-3\nbatch evaluated after 114.300682802s\nexecution stages: primary=Some(ExecutionProfile { arguments: 489.452\u00b5s, scalar_masters: 1.464515ms, reduction: 42.985374ms, total: 1.895756185s }), working=Some(ExecutionProfile { arguments: 310.511\u00b5s, scalar_masters: 88.760286ms, reduction: 2.827386311s, total: 4.770472735s }), verification=Some(ExecutionProfile { arguments: 156.62\u00b5s, scalar_masters: 136.048366ms, reduction: 2.842066862s, total: 4.839375879s })\nprimary status: Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\"); precision status: Converged { working_bits: 128, verification_bits: 256, primary_agreed: None }; batch counters: RescueStats { primary: ExecutionStats { input_rows: 1, argument_rows: 1, master_family_batches: 4, master_rows: 30, reduction_rows: 1, fallback_rows: 0, fallback_successes: 0, analytic_rows: 0 }, working: ExecutionStats { input_rows: 1, argument_rows: 1, master_family_batches: 4, master_rows: 30, reduction_rows: 1, fallback_rows: 0, fallback_successes: 0, analytic_rows: 0 }, verification: ExecutionStats { input_rows: 1, argument_rows: 1, master_family_batches: 4, master_rows: 30, reduction_rows: 1, fallback_rows: 0, fallback_successes: 0, analytic_rows: 0 }, requested_rows: 1, accepted_rows: 1, corrected_successful_rows: 0 }\nindependent-oracle coefficient [5,0,0,1]: (1.245155873338673e-71+-0.002438378935447123i)\nok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 96 filtered out; finished in 115.35s\n\n"
+  },
+  "baseline_attempt": {
+    "schema": 1,
+    "status": "preparation_timeout",
+    "purpose": "Full-array n5 rank7 precision-rescue qualification attempt; numerical evaluation was not reached",
+    "case": {
+      "propagators": 5,
+      "rank": 7,
+      "algorithm": "PassarinoVeltman",
+      "convention": "IREGI native",
+      "input_policy": "PreserveInputs",
+      "tensor_moments": 330,
+      "laurent_slots_per_moment": 4,
+      "requested_comparisons": 1320,
+      "sample_lanes": 1,
+      "shifts": [
+        [
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          0,
+          0,
+          0
+        ]
+      ],
+      "masses_squared": [
+        4,
+        9,
+        16,
+        25,
+        36
+      ],
+      "mu": 3
+    },
+    "rescue": {
+      "primary_bits": 53,
+      "working_bits": 128,
+      "verification_bits": 256,
+      "requested_accuracy_bits": 53,
+      "trigger": "VerifyAllSuccessful",
+      "evaluated_components": 0,
+      "converged_components": 0,
+      "status": "not reached"
+    },
+    "preparation": {
+      "plan_seconds": 20.092360384,
+      "plan_aliases": 9381,
+      "master_leaves": 30,
+      "stability_expressions_seconds": 70.768634,
+      "argument_exact_evaluator_seconds": 0.011043,
+      "snapping_diagnostic_exact_evaluator_seconds": 0.0,
+      "timed_out_stage": "first exact reduction evaluator",
+      "numeric_mapping_reached": false,
+      "shared_precisions_prepared": 0,
+      "remaining_timeout_budget_after_completed_stages_seconds": 149.12796261600002,
+      "timed_out_stage_duration_note": "Approximately 149 seconds remained after the completed timed stages; the log does not separately time unmarked setup overhead, so this is not an exact duration or lower bound."
+    },
+    "build": {
+      "snapshot_path": "target/rescue-rank7-source-snapshot",
+      "source_base_commit": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+      "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+      "source_files": [
+        {
+          "path": "crates/iregi-rust/src/basis.rs",
+          "sha256": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+          "bytes": 1534
+        },
+        {
+          "path": "crates/iregi-rust/src/contraction.rs",
+          "sha256": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+          "bytes": 31725
+        },
+        {
+          "path": "crates/iregi-rust/src/convention.rs",
+          "sha256": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+          "bytes": 5654
+        },
+        {
+          "path": "crates/iregi-rust/src/execution.rs",
+          "sha256": "80959d0ec079e65ad30606c39b0441e2bd339b6f2a55c53a74017553143e4a4a",
+          "bytes": 106818
+        },
+        {
+          "path": "crates/iregi-rust/src/ibp.rs",
+          "sha256": "08b82d105bf7555b69ab26f5f63aecafd83553a5d528039730004927164bfe5a",
+          "bytes": 77312
+        },
+        {
+          "path": "crates/iregi-rust/src/lib.rs",
+          "sha256": "2e130db707219d2d7b1e4a286cf45cff200110bb292f321ef0e6e4da899674fe",
+          "bytes": 767
+        },
+        {
+          "path": "crates/iregi-rust/src/plan.rs",
+          "sha256": "ef2fcb8476eb01437925011f16b058baffde2c6f43f723a30af18121c3c71d0f",
+          "bytes": 25586
+        },
+        {
+          "path": "crates/iregi-rust/src/pv.rs",
+          "sha256": "40cecf63cec2719a9bd5f710ba0aef3f53b3e2009b319702f87a8a1512dfacb0",
+          "bytes": 68371
+        },
+        {
+          "path": "crates/iregi-rust/src/rescue.rs",
+          "sha256": "e6bfc04e922cc9286c3a3f6b49c17940071d5829d7525c731257007f4fa4930a",
+          "bytes": 34760
+        },
+        {
+          "path": "crates/iregi-rust/src/scalar.rs",
+          "sha256": "9a7429ee714abe86613ba48f3bacd11fbad90cfe401f6e433faa9e6370a6e90d",
+          "bytes": 10532
+        },
+        {
+          "path": "crates/iregi-rust/src/snapping.rs",
+          "sha256": "54dbca1c8ad59e27ad96d63520dfd6d6ea584e963a96916f2b149acc08b784c6",
+          "bytes": 29386
+        },
+        {
+          "path": "crates/iregi-rust/src/stability.rs",
+          "sha256": "898f096077085b5f88742c636784c1db0cb9d604811fa16dbe0cb63c5c82dc8b",
+          "bytes": 70236
+        },
+        {
+          "path": "crates/iregi-rust/src/types.rs",
+          "sha256": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+          "bytes": 6877
+        },
+        {
+          "path": "validation/pv-high-rank/lightlike-feynman-parameters.json",
+          "sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+          "bytes": 20134
+        },
+        {
+          "path": "validation/reference/fixtures.json",
+          "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+          "bytes": 161965
+        },
+        {
+          "path": "validation/reference/snapping/reductions.json",
+          "sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305",
+          "bytes": 211942
+        }
+      ],
+      "precompile_archives": [
+        {
+          "path": "target/libiregi_masters_exact.rlib",
+          "sha256": "2a6021904de9dd4f9518daad56284fde25c4294cd64dcd144c84dd73b9487d1c",
+          "bytes": 2416582
+        },
+        {
+          "path": "target/liboneloop_identity.rlib",
+          "sha256": "a5529bd8f74bdac100eea48649b47853ae8f7fa242001e1f851f325e653d4500",
+          "bytes": 104816180
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+          "sha256": "e0547aca88c66be1e35d50fcd38d05eb705919dad64f649f049cc2496a3ed8b6",
+          "bytes": 580118754
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+          "sha256": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+          "bytes": 1220868
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+          "sha256": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+          "bytes": 6909176
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+          "sha256": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411",
+          "bytes": 35944
+        }
+      ],
+      "core_optimization": "rustc -C opt-level=2",
+      "source_scope": "Exact copied core source and compile-time fixture files. External dependency sources/build settings are not reconstructed by this manifest.",
+      "dependency_scope": "Explicit linked archive paths and known oneloop transitive archive hashed before compilation. Other transitive dependency/native-library build provenance is not established; this is not a source-only reproducibility claim.",
+      "compile_command": [
+        "rustc",
+        "--crate-name",
+        "iregi_rust",
+        "--edition=2024",
+        "-C",
+        "opt-level=2",
+        "--test",
+        "target/rescue-rank7-source-snapshot/crates/iregi-rust/src/lib.rs",
+        "-L",
+        "dependency=target",
+        "-L",
+        "dependency=target/cargo-build/debug/deps",
+        "-L",
+        "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+        "--extern",
+        "iregi_masters=target/libiregi_masters_exact.rlib",
+        "--extern",
+        "symbolica=target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+        "--extern",
+        "serde=target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+        "--extern",
+        "serde_json=target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+        "--extern",
+        "thiserror=target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+        "-o",
+        "target/iregi_runtime_rescue_rank7_snapshot_tests"
+      ],
+      "compile_environment": {
+        "CARGO_CRATE_NAME": "iregi_rust",
+        "CARGO_MANIFEST_DIR": "/shared/external/iregi/iregi-rust/crates/iregi-rust",
+        "setup": "source scripts/env.sh"
+      },
+      "archive_postcompile_checks": [
+        {
+          "path": "target/libiregi_masters_exact.rlib",
+          "sha256_after": "2a6021904de9dd4f9518daad56284fde25c4294cd64dcd144c84dd73b9487d1c",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/liboneloop_identity.rlib",
+          "sha256_after": "a5529bd8f74bdac100eea48649b47853ae8f7fa242001e1f851f325e653d4500",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+          "sha256_after": "e0547aca88c66be1e35d50fcd38d05eb705919dad64f649f049cc2496a3ed8b6",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde-fc3dcd4b8c210596.rlib",
+          "sha256_after": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libserde_json-3b583d0e8aa0facc.rlib",
+          "sha256_after": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689",
+          "unchanged_during_build": true
+        },
+        {
+          "path": "target/cargo-build/debug/deps/libthiserror-b877110d28821624.rlib",
+          "sha256_after": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411",
+          "unchanged_during_build": true
+        }
+      ],
+      "build_exit_code": 0,
+      "binary": {
+        "path": "target/iregi_runtime_rescue_rank7_snapshot_tests",
+        "sha256": "e045f7beed3f5ab780236c95a2c853f9069121175cd4f2dc9ad3293018d45c2d",
+        "bytes": 360171696
+      },
+      "build_log": ""
+    },
+    "execution": {
+      "timeout_seconds": 240,
+      "exit_code": 124,
+      "test": "rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions",
+      "command": "source scripts/env.sh; IREGI_RESCUE_PROFILE=1 IREGI_PREPARATION_PROFILE=1 timeout 240s target/iregi_runtime_rescue_rank7_snapshot_tests rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions --exact --ignored --test-threads=1 --nocapture",
+      "log_sha256": "34395b0de98c387eee16cc5bc1545908dd2f734987c1fc004507153303180e96",
+      "log": "\nrunning 1 test\ntest rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions ... preparing the complete rank-7 pentagon plan\nplan prepared after 20.092360384s: 330 moments, 9381 aliases, 30 master leaves; preparing three precision workspaces\niregi preparation stability expressions: 70.768634s\niregi preparation argument exact evaluator: 0.011043s\niregi preparation snapping diagnostic exact evaluator: 0.000000s\n"
+    },
+    "limitations": [
+      "No rank7 accuracy or performance qualification follows from this attempt.",
+      "The run was a one-shot preparation diagnostic, without controlled reference timing.",
+      "No requested tensor outputs or stability guards were omitted.",
+      "Exact source snapshot establishes the core code compiled, while dependency source/build provenance remains limited as documented in the build manifest."
+    ],
+    "next_step": "Diagnose nonlinear first-time Symbolica reduction-evaluator preparation; rerun all330 moments and every Laurent slot after a validated fix."
+  },
+  "limitations": [
+    "The experimental patch is not yet selected by the main workspace Cargo manifest.",
+    "Frozen core sources exactly match the baseline, but current copied masters and isolated dependency lock differ; no overall timing change is attributed solely to the cache patch.",
+    "One cold diagnostic run; no pinned CPU, repeated timing uncertainty, or matched original-IREGI performance comparison.",
+    "This single full-array sample does not qualify the broader high-point kinematic or physical domain.",
+    "The full1320 coefficients converge numerically; only the selected component has an independent quadrature assertion in this test."
+  ]
+}

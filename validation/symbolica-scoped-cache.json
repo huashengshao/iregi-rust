@@ -1,0 +1,67 @@
+{
+  "status": "Three public scope regression tests and the full five-point rank-seven 1320-coefficient rescue pass; main workspace integration pending",
+  "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+  "command": "CARGO_TARGET_DIR=\"$PWD/target/symbolica-scope-build\" CARGO_BUILD_BUILD_DIR=\"$PWD/target/symbolica-scope-cargo-build\" CARGO_BUILD_JOBS=2 cargo test --manifest-path target/symbolica-scoped-probe/Cargo.toml --no-run --offline",
+  "files": [
+    {
+      "path": "dependencies/symbolica-patches/0001-journal-conditional-cache.patch",
+      "sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328"
+    },
+    {
+      "path": "target/symbolica-scoped-cache/src/evaluate/tree.rs",
+      "sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa"
+    },
+    {
+      "path": "target/symbolica-scoped-probe/Cargo.toml",
+      "sha256": "d5ef82d6ae58d5370934811523b7af6679ae8445013cb16ac56d403afb83b156"
+    },
+    {
+      "path": "target/symbolica-scoped-probe/Cargo.lock",
+      "sha256": "8bf9f80bcb5224c50ac618d5b4f97079ad4ef6cadd278dacf46c48a3a968c3cd"
+    },
+    {
+      "path": "target/symbolica-scoped-probe/src/lib.rs",
+      "sha256": "cff964fbcb748c9127f89cdad62cb1118fd665f63821761326e2ba840f57661e"
+    }
+  ],
+  "dependencies_note": "This isolated probe uses its own offline-resolved Cargo.lock; it has not replaced the main workspace patch or lock file. All build artifacts reside in separate project-local Cargo target/build directories.",
+  "runtime_tests": [
+    "upstream completed_conditionals_reuse_only_their_parent_scope, including serialization/JIT",
+    "upstream completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+    "new journal_keeps_parent_aliases_and_lazy_sibling_results_separate, including alias-valued constant conditions inside dynamic branches"
+  ],
+  "build_log": "   Compiling autocfg v1.5.1\n   Compiling libc v0.2.191\n   Compiling proc-macro2 v1.0.107\n   Compiling quote v1.0.47\n   Compiling unicode-ident v1.0.27\n   Compiling cfg-if v1.0.5\n   Compiling num-traits v0.2.19\n   Compiling serde_core v1.0.229\n   Compiling version_check v0.9.5\n   Compiling zerocopy v0.8.63\n   Compiling crossbeam-utils v0.8.23\n   Compiling bytemuck v1.25.2\n   Compiling getrandom v0.3.4\n   Compiling once_cell v1.21.4\n   Compiling crossbeam-epoch v0.9.21\n   Compiling crossbeam-deque v0.8.8\n   Compiling syn v3.0.9\n   Compiling syn v2.0.119\n   Compiling paste v1.0.15\n   Compiling gmp-mpfr-sys v1.7.1\n   Compiling serde v1.0.229\n   Compiling libm v0.2.16\n   Compiling rayon-core v1.13.0\n   Compiling serde_derive v1.0.229\n   Compiling ppv-lite86 v0.2.21\n   Compiling rand_core v0.9.5\n   Compiling safe_arch v0.7.4\n   Compiling ahash v0.8.12\n   Compiling num-complex v0.4.6\n   Compiling virtue v0.0.18\n   Compiling either v1.19.0\n   Compiling wide v0.7.33\n   Compiling bincode_derive v2.0.1\n   Compiling rand_chacha v0.9.0\n   Compiling safe_arch v1.2.0\n   Compiling approx v0.5.1\n   Compiling unty v0.0.4\n   Compiling rug v1.30.0\n   Compiling zmij v1.0.23\n   Compiling anyhow v1.0.104\n   Compiling bincode v2.0.1\n   Compiling simba v0.9.1\n   Compiling wide v1.7.1\n   Compiling rayon v1.12.0\n   Compiling rand v0.9.5\n   Compiling tracing-core v0.1.36\n   Compiling num-integer v0.1.47\n   Compiling corosensei v0.3.4\n   Compiling smallvec v1.16.3\n   Compiling lazy_static v1.5.1\n   Compiling regex-syntax v0.8.11\n   Compiling winnow v1.0.4\n   Compiling alloc-no-stdlib v2.0.4\n   Compiling az v1.3.0\n   Compiling serde_json v1.0.154\n   Compiling regex-automata v0.4.18\n   Compiling alloc-stdlib v0.2.4\n   Compiling toml_parser v1.1.5+spec-1.1.0\n   Compiling num-bigint v0.4.8\n   Compiling xprec v0.2.3\n   Compiling bincode-trait-derive v0.1.1\n   Compiling itertools v0.14.0\n   Compiling tracing-attributes v0.1.31\n   Compiling serde_spanned v1.1.2\n   Compiling toml_datetime v1.1.2+spec-1.1.0\n   Compiling smartstring v1.0.1\n   Compiling log v0.4.34\n   Compiling dyn-clone v1.0.20\n   Compiling foldhash v0.2.0\n   Compiling option-ext v0.2.0\n   Compiling equivalent v1.0.3\n   Compiling itoa v1.0.18\n   Compiling memchr v2.8.3\n   Compiling pin-project-lite v0.2.17\n   Compiling allocator-api2 v0.2.21\n   Compiling scopeguard v1.2.0\n   Compiling colored v3.1.1\n   Compiling bitflags v1.3.2\n   Compiling toml_writer v1.1.3+spec-1.1.0\n   Compiling toml v1.1.8+spec-1.1.0\n   Compiling tracing v0.1.44\n   Compiling region v3.0.2\n   Compiling numerica v3.0.1 (https://github.com/alphal00p/symbolica?rev=9cdc2949cdb153478c1eca0d40690dc0abfc616e#9cdc2949)\n   Compiling hashbrown v0.16.1\n   Compiling dirs-sys v0.5.0\n   Compiling tracing-log v0.2.0\n   Compiling wasmtime-jit-icache-coherence v34.0.2\n   Compiling num-rational v0.4.2\n   Compiling brotli-decompressor v5.0.3\n   Compiling matchers v0.2.0\n   Compiling sharded-slab v0.1.7\n   Compiling thread_local v1.1.10\n   Compiling hugepage-rs v0.1.1\n   Compiling nu-ansi-term v0.50.3\n   Compiling static_assertions v1.1.0\n   Compiling spec_math v0.1.6\n   Compiling symbolica v3.0.1 (/shared/external/iregi/iregi-rust/target/symbolica-scoped-cache)\n   Compiling symjit v2.27.3\n   Compiling tracing-subscriber v0.3.23\n   Compiling brotli v8.0.4\n   Compiling graphica v3.0.1 (https://github.com/alphal00p/symbolica?rev=9cdc2949cdb153478c1eca0d40690dc0abfc616e#9cdc2949)\n   Compiling directories v6.0.0\n   Compiling libloading v0.9.0\n   Compiling tinyjson v2.5.1\n   Compiling append-only-vec v0.1.10\n   Compiling byteorder v1.5.0\n   Compiling data-encoding v2.11.1\n   Compiling bytes v1.12.1\n   Compiling self_cell v1.3.0\n   Compiling inventory v0.3.25\n   Compiling ed25519-compact v2.6.0\nwarning: unused `Result` that must be used\n   --> /shared/external/iregi/iregi-rust/target/symbolica-scoped-cache/src/atom.rs:776:9\n    |\n776 |         self.export(&mut data);\n    |         ^^^^^^^^^^^^^^^^^^^^^^\n    |\n    = note: this `Result` may be an `Err` variant, which should be handled\n    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default\nhelp: use `let _ = ...` to ignore the resulting value\n    |\n776 |         let _ = self.export(&mut data);\n    |         +++++++\n\n   Compiling iregi-symbolica-scope-probe v0.0.0 (/shared/external/iregi/iregi-rust/target/symbolica-scoped-probe)\nwarning: `symbolica` (lib) generated 1 warning\n    Finished `test` profile [optimized + debuginfo] target(s) in 10m 04s\n  Executable unittests src/lib.rs (target/symbolica-scope-cargo-build/debug/deps/iregi_symbolica_scope_probe-eefc5dd304f3cabc)\n",
+  "compiled_artifacts": [
+    {
+      "path": "target/symbolica-scope-cargo-build/debug/deps/iregi_symbolica_scope_probe-eefc5dd304f3cabc",
+      "sha256": "9ab9201109cad96a97a67586c052ad42547f6c895ef9214bc903f9fb98eba49a",
+      "bytes": 338757088
+    },
+    {
+      "path": "target/symbolica-scope-cargo-build/debug/deps/libsymbolica-884bfaeef3929ba1.rlib",
+      "sha256": "a779cb8ceab1317d3433cb845635977d5f904ee32c9c95d0aa55e9971ef62daf",
+      "bytes": 577661952
+    }
+  ],
+  "runtime_log": "\nrunning 3 tests\ntest tests::completed_conditionals_reuse_only_their_parent_scope ... symbolica scoped cache: roots_elapsed=0.000481s, branch_scopes=2, parent_entries_not_copied=0, reverted_entries=4, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000004s, branch_scopes=2, parent_entries_not_copied=0, reverted_entries=4, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.000016s, branch_scopes=6, parent_entries_not_copied=0, reverted_entries=14, final_entries=1\nok\ntest tests::completed_shared_conditionals_keep_captures_and_mixed_dual_components ... symbolica scoped cache: roots_elapsed=0.000005s, branch_scopes=2, parent_entries_not_copied=0, reverted_entries=2, final_entries=4\nsymbolica scoped cache: roots_elapsed=0.000613s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=3\nsymbolica scoped cache: roots_elapsed=0.000044s, branch_scopes=0, parent_entries_not_copied=0, reverted_entries=0, final_entries=5\nok\ntest tests::journal_keeps_parent_aliases_and_lazy_sibling_results_separate ... symbolica scoped cache: roots_elapsed=0.000097s, branch_scopes=10, parent_entries_not_copied=48, reverted_entries=26, final_entries=11\nok\n\ntest result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s\n\n",
+  "runtime_exit_code": 0,
+  "runtime_seconds": 0.03,
+  "runtime_tests_note": "The internal journal unit test is included in the upstream patch but was not executed by the external probe. The external probe runs the new public lazy-alias semantic case and two upstream scope/Dual regressions.",
+  "runtime_command": "SYMBOLICA_SCOPE_PROFILE=1 timeout 60s target/symbolica-scope-cargo-build/debug/deps/iregi_symbolica_scope_probe-eefc5dd304f3cabc --test-threads=1 --nocapture",
+  "runtime_log_sha256": "8aae457d877df4a562c97e834068a22c6f5136dcf4a6bc7627a1e6ae9695a4a0",
+  "embedded_version_note": "Upstream build.rs inherits the outer project git describe when run from the generated source directory, embedding display version symbolica-b01a72f. This display label is not the upstream revision. The precise library source is 9cdc2949cdb153478c1eca0d40690dc0abfc616e plus the recorded patch/file hashes; no source revision is inferred from the display string.",
+  "patch_provenance_at_probe_build": {
+    "upstream_repository": "https://github.com/alphal00p/symbolica",
+    "upstream_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+    "patch": "0001-journal-conditional-cache.patch",
+    "patch_sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328",
+    "upstream_file_sha256": "7dd830823be3196558d45c65f5db3705c6b43ec461123e1eaf3714ae02215cfe",
+    "patched_file_sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
+    "status": "experimental; not enabled in the project manifest; compilation and runtime validation pending",
+    "scope": "Direct-evaluator branch-cache bookkeeping, optional preparation counters, and direct semantic tests. No algebra rules, arithmetic, license handling, public numeric API, or instructions changed.",
+    "compile_attempt": "First compile was stopped while waiting on the shared build lock. Compile-only probe now uses isolated target/symbolica-scope-build and target/symbolica-scope-cargo-build, jobs=2; runtime validation remains pending."
+  },
+  "historical_snapshot_note": "patch_provenance_at_probe_build is the immutable pre-compilation provenance captured for this isolated probe. Its pending status describes that historical point; top-level status and rank7_evidence describe completed validation.",
+  "rank7_evidence": "validation/rescue-pentagon-rank7.json",
+  "current_patch_series": "dependencies/symbolica-patches/provenance.json"
+}
