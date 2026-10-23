@@ -1,0 +1,26 @@
+{
+  "recorded_utc": "2026-10-23T16:03:28.203724+00:00",
+  "status": "correctness_passed_performance_rejected_for_production",
+  "production_changes": false,
+  "runtime_command": "source scripts/env.sh; python3 validation/monitor-roundoff-cache/run_checks.py",
+  "runtime_requirement": "ROOT-granted serial Symbolica lease; each group bounded120s; CPU0",
+  "binaries_sha256": {
+    "target/monitor-roundoff-cache/baseline-unit": "3e7b2b9f49bc6bdd9d47d2547fe1dd444487a2b0802a882a9119e1676564330c",
+    "target/monitor-roundoff-cache/candidate-unit": "a2ca906d089ce4501ac53b471d704abbde66729fcc904cca033cd774cd98a03b",
+    "target/monitor-roundoff-cache/protocol": "879af2c18b07f1bdd6a8d5deacdf3faeecc9195648bc06ba99e196d105184046",
+    "target/monitor-roundoff-cache/performance": "0939cd214ae95179be9fe18e284afd1848b70942d7e3b581a1828cb34d0565c8"
+  },
+  "correctness": {
+    "baseline_stability_tests": 29,
+    "candidate_stability_tests": 37,
+    "new_candidate_tests": 8,
+    "public_snapshots_compared": 120,
+    "evidence": [
+      "validation/monitor-roundoff-cache/qualification-all.json",
+      "validation/monitor-roundoff-cache/qualification-remaining.json"
+    ],
+    "split_scope": "initial19/27local tests plus later5argument+5quadrature tests pervariant"
+  },
+  "production_adopted": false,
+  "performance_evidence": "validation/monitor-roundoff-cache/decision.json"
+}

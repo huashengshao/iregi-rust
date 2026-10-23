@@ -1,0 +1,20 @@
+error: implementation of `std::ops::Fn` is not general enough
+   --> target/near-vacuum-validation/stage-current2-source/support/d0_near_vacuum_oracle.rs:739:30
+    |
+739 |         let mut polynomial = rational.numerator.map_coeff(Rational::from, Q);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ implementation of `std::ops::Fn` is not general enough
+    |
+    = note: `fn(&'2 _) -> _ {<_ as From<&'2 _>>::from}` must implement `std::ops::Fn<(&'1 _,)>`, for any lifetime `'1`...
+    = note: ...but it actually implements `std::ops::Fn<(&'2 _,)>`, for some specific lifetime `'2`
+
+error: implementation of `FnOnce` is not general enough
+   --> target/near-vacuum-validation/stage-current2-source/support/d0_near_vacuum_oracle.rs:739:30
+    |
+739 |         let mut polynomial = rational.numerator.map_coeff(Rational::from, Q);
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ implementation of `FnOnce` is not general enough
+    |
+    = note: `fn(&'2 _) -> _ {<_ as From<&'2 _>>::from}` must implement `FnOnce<(&'1 _,)>`, for any lifetime `'1`...
+    = note: ...but it actually implements `FnOnce<(&'2 _,)>`, for some specific lifetime `'2`
+
+error: aborting due to 2 previous errors
+

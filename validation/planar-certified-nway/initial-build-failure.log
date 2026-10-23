@@ -1,0 +1,32 @@
+error[E0425]: cannot find value `slots` in this scope
+    --> /shared/external/iregi/iregi-rust/target/planar-certified/nway-normalized-source/certified_planar.rs:1105:54
+     |
+1105 |             let original_lane = [0_usize, 2][index / slots];
+     |                                                      ^^^^^ not found in this scope
+
+error[E0425]: cannot find value `slots` in this scope
+    --> /shared/external/iregi/iregi-rust/target/planar-certified/nway-normalized-source/certified_planar.rs:1108:41
+     |
+1108 |                 &reduced.basis[(index % slots) / 4], &expected,
+     |                                         ^^^^^ not found in this scope
+
+error[E0277]: the trait bound `i32: From<usize>` is not satisfied
+   --> /shared/external/iregi/iregi-rust/target/planar-certified/nway-normalized-source/certified_planar.rs:561:25
+    |
+561 |         let dimension = i32::from(monomial.rank()) - 6;
+    |                         ^^^ the trait `From<usize>` is not implemented for `i32`
+    |
+    = help: `i32` implements trait `From<T>`:
+              From<bool>
+              From<deranged::RangedI32<MIN, MAX>>
+              From<i16>
+              From<i8>
+              From<u16>
+              From<u8>
+              From<zerocopy::byteorder::I16<O>>
+              From<zerocopy::byteorder::I32<O>>
+
+error: aborting due to 3 previous errors
+
+Some errors have detailed explanations: E0277, E0425.
+For more information about an error, try `rustc --explain E0277`.

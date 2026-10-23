@@ -1,0 +1,191 @@
+--- a/stability.rs
++++ b/stability.rs
+@@ -999,7 +999,7 @@
+         custom_normalization: None,
+     };
+     let polynomial = expression.to_polynomial_in_vars_with_field::<u16>(&variables, &field);
+-    let mut result = Atom::new();
++    let mut contributions = Vec::with_capacity(polynomial.nterms());
+     for term in &polynomial {
+         if depends_on_amplitudes(term.coefficient, amplitudes)
+             || term
+@@ -1015,12 +1015,12 @@
+         }
+         let coefficient = Symbol::ABS.call((term.coefficient,));
+         if let Some(index) = term.exponents.iter().position(|&power| power == 1) {
+-            result = result + coefficient * &variable_amplitudes[index];
++            contributions.push(coefficient * &variable_amplitudes[index]);
+         } else {
+-            result += coefficient;
+-        }
+-    }
+-    Ok(result)
++            contributions.push(coefficient);
++        }
++    }
++    Ok(Atom::add_many(contributions))
+ }
+ 
+ fn collect_amplitude_variables(
+--- a/certified_planar.rs
++++ b/certified_planar.rs
+@@ -535,6 +535,37 @@
+         settings
+     }
+ 
++    // Match StabilityPlan::kinematic_scale: routing components have mass
++    // dimension one, squared masses dimension two; mu is used only if scaleless.
++    // This test-only helper normalizes the independently compared tensor output.
++    fn dimensional_reference<T: NativeFloat>(
++        prototype: &T,
++        input_row: &[Complex<T>],
++        components: usize,
++        monomial: &Monomial,
++        expected: &Complex<T>,
++    ) -> T {
++        assert_eq!(input_row.len(), 26 * components);
++        let mut scale = prototype.zero();
++        for argument in 0..20 {
++            let value = &input_row[argument * components];
++            let magnitude = NativeFloat::hypot(&value.re, &value.im);
++            if magnitude > scale { scale = magnitude; }
++        }
++        for argument in 20..25 {
++            let value = &input_row[argument * components];
++            let magnitude = NativeFloat::hypot(&value.re, &value.im).sqrt();
++            if magnitude > scale { scale = magnitude; }
++        }
++        if scale.is_zero() { scale = input_row[25 * components].re.clone(); }
++        let dimension = i32::try_from(monomial.rank()).unwrap() - 6;
++        let power = scale.pow(u64::from(dimension.unsigned_abs()));
++        let natural = if dimension < 0 { power.inv() } else { power };
++        assert!(natural.is_finite() && !natural.is_zero());
++        let norm = NativeFloat::hypot(&expected.re, &expected.im);
++        if norm > natural { norm } else { natural }
++    }
++
+     fn points() -> [[i64; 4]; 5] {
+         [
+             [0, 0, 0, 0],
+@@ -894,12 +925,10 @@
+                 &(actual.re.clone() - &expected.re),
+                 &(actual.im.clone() - &expected.im),
+             );
+-            let norm = NativeFloat::hypot(&expected.re, &expected.im);
+-            let scale = if norm > prototype.one() {
+-                norm
+-            } else {
+-                prototype.one()
+-            };
++            let scale = dimensional_reference(
++                &prototype, &input.values, input.components,
++                &reduced.basis[index / 4], expected,
++            );
+             assert!(
+                 difference <= tolerance.clone() * scale,
+                 "tensor slot {index}"
+@@ -975,14 +1004,19 @@
+         assert_eq!(reduced.lane(2).unwrap(), reduced.lane(5).unwrap());
+         let slots = plan.basis.len() * 4;
+         for (position, lane) in [0, 2].into_iter().enumerate() {
+-            for (actual, expected) in reduced
++            for (slot, (actual, expected)) in reduced
+                 .lane(lane)
+                 .unwrap()
+                 .iter()
+                 .zip(&expected[position * slots..(position + 1) * slots])
++                .enumerate()
+             {
+-                assert!((actual.re - expected.re).abs() <= 1e-10 * expected.re.abs().max(1.));
+-                assert!((actual.im - expected.im).abs() <= 1e-10 * expected.im.abs().max(1.));
++                let scale = dimensional_reference(
++                    &0_f64, &input.values[lane * 26..(lane + 1) * 26], 1,
++                    &reduced.basis[slot / 4], expected,
++                );
++                let difference = (actual.re - expected.re).hypot(actual.im - expected.im);
++                assert!(difference <= 1e-10 * scale);
+             }
+         }
+     }
+@@ -1061,6 +1095,7 @@
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(4).unwrap());
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(6).unwrap());
+         assert_eq!(reduced.lane(2).unwrap(), reduced.lane(5).unwrap());
++        let slots = reduced.basis.len() * 4;
+         let values: Vec<_> = [reduced.lane(0).unwrap(), reduced.lane(2).unwrap()].concat();
+         let tolerance = prototype.from_rational(&Rational::from((1, 10_000_000_000_i64)));
+         for (index, (actual, expected)) in values.iter().zip(expected).enumerate() {
+@@ -1068,12 +1103,11 @@
+                 &(actual.re.clone() - &expected.re),
+                 &(actual.im.clone() - &expected.im),
+             );
+-            let norm = NativeFloat::hypot(&expected.re, &expected.im);
+-            let reference = if norm > prototype.one() {
+-                norm
+-            } else {
+-                prototype.one()
+-            };
++            let original_lane = [0_usize, 2][index / slots];
++            let reference = dimensional_reference(
++                &prototype, &input.values[original_lane * 26..(original_lane + 1) * 26], 1,
++                &reduced.basis[(index % slots) / 4], &expected,
++            );
+             assert!(
+                 difference <= tolerance.clone() * reference,
+                 "precision {bits}, tensor slot {index}"
+@@ -1094,12 +1128,14 @@
+                 prototype.from_rational(&low.im.exact_rational().unwrap()),
+             );
+             let difference = NativeFloat::hypot(&(low.re - &high.re), &(low.im - &high.im));
+-            let norm = NativeFloat::hypot(&high.re, &high.im);
+-            let reference = if norm > prototype.one() {
+-                norm
+-            } else {
+-                prototype.one()
+-            };
++            // Both chart fixtures have identical physical scale six; obtain
++            // it from their actual common masses and representative routing.
++            let input_row = row(&prototype, &points(), 1);
++            let basis = tensor_basis(2);
++            let reference = dimensional_reference(
++                &prototype, &input_row, 1,
++                &basis[(index % (basis.len() * 4)) / 4], high,
++            );
+             assert!(
+                 difference <= tolerance.clone() * reference,
+                 "128-to-256 convergence, tensor slot {index}"
+@@ -1179,12 +1215,10 @@
+                 &(actual.re.clone() - &expected.re),
+                 &(actual.im.clone() - &expected.im),
+             );
+-            let norm = NativeFloat::hypot(&expected.re, &expected.im);
+-            let reference = if norm > prototype.one() {
+-                norm
+-            } else {
+-                prototype.one()
+-            };
++            let reference = dimensional_reference(
++                &prototype, &input.values[..26 * components], components,
++                &reduced.basis[index / (4 * components)], expected,
++            );
+             assert!(
+                 difference <= tolerance.clone() * reference,
+                 "mixed tensor component {index}"
+@@ -1303,7 +1337,7 @@
+         &KinematicsBatch {
+             rows: 1,
+             components: 1,
+-            values: valid,
++            values: valid.clone(),
+         },
+         &coefficients,
+     );
+@@ -1314,7 +1348,7 @@
+         assert_eq!(actual.len(), slots);
+         for (slot, (actual, expected)) in actual.iter().zip(&expected).enumerate() {
+             let error = (actual.re - expected.re).hypot(actual.im - expected.im);
+-            let scale = expected.re.hypot(expected.im).max(1.);
++            let scale = dimensional_reference(&0_f64, &valid, 1, &reduced.basis[slot / 4], expected);
+             assert!(
+                 error <= 1e-10 * scale,
+                 "lane {lane}, tensor {}, Laurent slot {}: {actual:?} versus {expected:?}",

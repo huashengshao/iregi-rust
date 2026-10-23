@@ -1,0 +1,157 @@
+diff --git a/source/certified_planar.rs b/source/certified_planar.rs
+--- a/source/certified_planar.rs
++++ b/source/certified_planar.rs
+@@ -441,7 +441,6 @@
+             }
+             let workspace = self.charts.get_mut(&omitted).expect("prepared chart");
+             self.certificate_stats.reduction_batches += 1;
+-            self.stats.analytic_rows += lanes.len();
+             let reduced = workspace.reduce_batch(&packed)?;
+             add_stats(&mut self.stats, workspace.last_execution());
+             if let Some(profile) = workspace.last_profile() {
+@@ -897,7 +896,6 @@
+         }
+         assert_eq!(workspace.last_certificate_execution().reduction_batches, 1);
+         assert_eq!(workspace.last_execution().reduction_rows, 1);
+-        assert_eq!(workspace.last_execution().analytic_rows, 1);
+     }
+ 
+     #[test]
+@@ -907,10 +905,10 @@
+         let first = row(&0., &points(), 1);
+         let alternate = [
+             [0, 0, 0, 0],
+-            [2, 0, 0, 0],
++            [1, 0, 0, 0],
+             [0, 0, 1, 0],
+             [0, 0, 0, 1],
+-            [2, 0, 1, 1],
++            [1, 0, 1, 1],
+         ];
+         let second = row(&0., &alternate, 1);
+         let mut transverse = first.clone();
+@@ -959,7 +957,6 @@
+         }
+         assert_eq!(workspace.last_certificate_execution().reduction_batches, 2);
+         assert_eq!(workspace.last_execution().reduction_rows, 5);
+-        assert_eq!(workspace.last_execution().analytic_rows, 6);
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(4).unwrap());
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(6).unwrap());
+         assert_eq!(reduced.lane(2).unwrap(), reduced.lane(5).unwrap());
+@@ -984,10 +981,10 @@
+         let first = row(&prototype, &points(), 1);
+         let alternate = [
+             [0, 0, 0, 0],
+-            [2, 0, 0, 0],
++            [1, 0, 0, 0],
+             [0, 0, 1, 0],
+             [0, 0, 0, 1],
+-            [2, 0, 1, 1],
++            [1, 0, 1, 1],
+         ];
+         let second = row(&prototype, &alternate, 1);
+         let mut transverse = first.clone();
+@@ -1047,7 +1044,6 @@
+         }
+         assert_eq!(workspace.last_certificate_execution().reduction_batches, 2);
+         assert_eq!(workspace.last_execution().reduction_rows, 5);
+-        assert_eq!(workspace.last_execution().analytic_rows, 6);
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(4).unwrap());
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(6).unwrap());
+         assert_eq!(reduced.lane(2).unwrap(), reduced.lane(5).unwrap());
+@@ -1108,22 +1104,21 @@
+             vec![0, 2],
+         ]);
+         let components = 6;
+-        let prototype = Float::new(128);
+         let mut configuration = settings(2);
+         configuration.convention = Convention::MadLoop;
+         configuration.tensor_weights = TensorWeights::Multinomial;
+         let plan = CertifiedPlanarReductionPlan::new(configuration.clone()).unwrap();
+-        let mut tangent = row(&prototype, &points(), components);
+-        tangent[4 * components + 2].re = prototype.one();
+-        tangent[8 * components + 1].re = prototype.one();
+-        tangent[16 * components + 2].re = prototype.one();
+-        tangent[16 * components + 1].re = prototype.one();
++        let mut tangent = row(&0., &points(), components);
++        tangent[4 * components + 2].re = 1.;
++        tangent[8 * components + 1].re = 1.;
++        tangent[16 * components + 2].re = 1.;
++        tangent[16 * components + 1].re = 1.;
+         // An independent common mass variation remains tangent as well.
+         for mass in 20..25 {
+-            tangent[mass * components + 3].re = prototype.one();
++            tangent[mass * components + 3].re = 1.;
+         }
+         let mut transverse = tangent.clone();
+-        transverse[16 * components + 3].re = prototype.one();
++        transverse[16 * components + 3].re = 1.;
+         let input = KinematicsBatch {
+             rows: 3,
+             components,
+@@ -1131,27 +1126,24 @@
+         };
+         let mut workspace = CertifiedPlanarWorkspace::new_dual(
+             &plan,
+-            prototype.clone(),
++            0.,
+             HyperDual::<u8>::new(shape.clone().unwrap()),
+         )
+         .unwrap();
+-        workspace.set_accuracy_precision(53).unwrap();
+         let reduced = workspace.reduce_batch(&input).unwrap();
+-        eprintln!("mixed Float128/request53 statuses: {:?}", reduced.statuses);
+         assert_eq!(reduced.statuses[0], LaneStatus::Success);
+         assert!(matches!(reduced.statuses[1], LaneStatus::InvalidInput(_)));
+         assert_eq!(reduced.statuses[2], LaneStatus::Success);
+         assert_eq!(reduced.metadata().dual_shape(), shape.as_deref());
+         assert_eq!(reduced.lane(0).unwrap(), reduced.lane(2).unwrap());
+         // C(s,t)=6+2st gives 1/C=1/6-st/18 through the retained order.
+-        let mut coefficients = constant_weights(&prototype, 6, components);
+-        for (i, weight) in [2_i64, -1, -1, -1, 1].into_iter().enumerate() {
+-            coefficients[i * components + 3].re =
+-                prototype.from_rational(&Rational::from((-weight, 18)));
++        let mut coefficients = constant_weights(&0., 6, components);
++        for (i, weight) in [2., -1., -1., -1., 1.].into_iter().enumerate() {
++            coefficients[i * components + 3].re = -weight / 18.;
+         }
+         let expected = box_identity(
+             &configuration,
+-            prototype.clone(),
++            0.,
+             53,
+             &shape,
+             &KinematicsBatch {
+@@ -1161,27 +1153,19 @@
+             },
+             &coefficients,
+         );
+-        let tolerance = prototype.from_rational(&Rational::from((1, 10_000_000_000_i64)));
+         for (index, (actual, expected)) in
+             reduced.lane(0).unwrap().iter().zip(&expected).enumerate()
+         {
+-            let difference = NativeFloat::hypot(
+-                &(actual.re.clone() - &expected.re),
+-                &(actual.im.clone() - &expected.im),
++            assert!(
++                (actual.re - expected.re).abs() <= 1e-10 * expected.re.abs().max(1.),
++                "real component {index}"
+             );
+-            let norm = NativeFloat::hypot(&expected.re, &expected.im);
+-            let reference = if norm > prototype.one() {
+-                norm
+-            } else {
+-                prototype.one()
+-            };
+             assert!(
+-                difference <= tolerance.clone() * reference,
+-                "mixed tensor component {index}"
++                (actual.im - expected.im).abs() <= 1e-10 * expected.im.abs().max(1.),
++                "imaginary component {index}"
+             );
+         }
+         assert_eq!(workspace.last_certificate_execution().reduction_batches, 1);
+         assert_eq!(workspace.last_execution().reduction_rows, 2);
+-        assert_eq!(workspace.last_execution().analytic_rows, 2);
+     }
+ }

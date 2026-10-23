@@ -1,0 +1,23 @@
+{
+  "family": "db0",
+  "mode": "export",
+  "command": [
+    "taskset",
+    "-c",
+    "0",
+    "/shared/external/iregi/iregi-rust/target/stack-reuse-production/factory_probe",
+    "/shared/external/iregi/iregi-rust/target/native-stack-batch/export-db0",
+    "dB0",
+    "--emit"
+  ],
+  "binary_sha256": "f28f98884db414aa3fa436640899840ca60885aa4de8a14094fdd1c87d8bba6c",
+  "timeout_seconds": 18.0,
+  "status": "passed",
+  "exit_code": 0,
+  "elapsed_seconds": 1.1186120540369302,
+  "binary_unchanged": true,
+  "artifacts": {
+    "target/native-stack-batch/db0-export.csv": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/native-stack-batch/db0-export.log": "c426d75fb2d3e1b98e7d86eeccf8cc55f12f923a9b6c039b52843752d6e510f9"
+  }
+}

@@ -1,0 +1,1629 @@
+heterogeneous vacuum: preparing N4 static-shape plan
+near-vacuum preparation Jacobian complete: 1.144545ms
+near-vacuum preparation series complete: 1.626048ms
+near-vacuum preparation polynomial complete: 2.866855294s, 103243 terms
+near-vacuum preparation integral0 complete: 3.062044955s, 13013 terms
+near-vacuum preparation integral1 complete: 3.082906285s, 2457 terms
+near-vacuum preparation integral2 complete: 3.086515263s, 1001 terms
+near-vacuum preparation exact expression ready: 3.088395542s
+near-vacuum preparation compiled/dualized polynomial: 3.272443399s
+near-vacuum preparation tail complete: 3.292770006s
+heterogeneous vacuum: evaluating three lanes and exact derivative oracles
+exact vacuum oracle [0, 0]: derivative 1.290986ms
+exact vacuum oracle [0, 0]: Q numerator 1.790658ms, 6 terms
+exact vacuum oracle [0, 0]: integrated and evaluated 2.0638ms
+exact vacuum oracle [1, 0]: derivative 2.924504ms
+exact vacuum oracle [1, 0]: Q numerator 4.33087ms, 84 terms
+exact vacuum oracle [1, 0]: integrated and evaluated 4.897543ms
+exact vacuum oracle [0, 1]: derivative 5.738067ms
+exact vacuum oracle [0, 1]: Q numerator 6.826033ms, 63 terms
+exact vacuum oracle [0, 1]: integrated and evaluated 7.272665ms
+exact vacuum oracle [1, 1]: derivative 8.762192ms
+exact vacuum oracle [1, 1]: Q numerator 12.091208ms, 427 terms
+exact vacuum oracle [1, 1]: integrated and evaluated 13.361274ms
+exact vacuum oracle [2, 0]: derivative 14.868681ms
+exact vacuum oracle [2, 0]: Q numerator 17.558124ms, 450 terms
+exact vacuum oracle [2, 0]: integrated and evaluated 18.923431ms
+exact vacuum oracle [0, 2]: derivative 20.228757ms
+exact vacuum oracle [0, 2]: Q numerator 22.604569ms, 336 terms
+exact vacuum oracle [0, 2]: integrated and evaluated 23.749124ms
+exact vacuum oracle [3, 0]: derivative 26.051625ms
+exact vacuum oracle [3, 0]: Q numerator 33.29856ms, 1558 terms
+exact vacuum oracle [3, 0]: integrated and evaluated 37.158428ms
+exact vacuum oracle [0, 0]: derivative 1.084216ms
+exact vacuum oracle [0, 0]: Q numerator 1.450507ms, 6 terms
+exact vacuum oracle [0, 0]: integrated and evaluated 1.716879ms
+exact vacuum oracle [1, 0]: derivative 2.562512ms
+exact vacuum oracle [1, 0]: Q numerator 3.935249ms, 84 terms
+exact vacuum oracle [1, 0]: integrated and evaluated 4.435921ms
+exact vacuum oracle [0, 1]: derivative 5.143425ms
+exact vacuum oracle [0, 1]: Q numerator 6.103829ms, 63 terms
+exact vacuum oracle [0, 1]: integrated and evaluated 6.544942ms
+exact vacuum oracle [1, 1]: derivative 7.902748ms
+exact vacuum oracle [1, 1]: Q numerator 11.047933ms, 427 terms
+exact vacuum oracle [1, 1]: integrated and evaluated 12.31607ms
+exact vacuum oracle [2, 0]: derivative 13.781517ms
+exact vacuum oracle [2, 0]: Q numerator 16.421229ms, 450 terms
+exact vacuum oracle [2, 0]: integrated and evaluated 17.720905ms
+exact vacuum oracle [0, 2]: derivative 18.964542ms
+exact vacuum oracle [0, 2]: Q numerator 21.232933ms, 336 terms
+exact vacuum oracle [0, 2]: integrated and evaluated 22.287907ms
+exact vacuum oracle [3, 0]: derivative 24.547458ms
+exact vacuum oracle [3, 0]: Q numerator 31.444712ms, 1558 terms
+exact vacuum oracle [3, 0]: integrated and evaluated 35.305ms
+exact vacuum oracle [0, 0]: derivative 1.068635ms
+exact vacuum oracle [0, 0]: Q numerator 1.410467ms, 6 terms
+exact vacuum oracle [0, 0]: integrated and evaluated 1.681078ms
+exact vacuum oracle [1, 0]: derivative 2.462442ms
+exact vacuum oracle [1, 0]: Q numerator 3.660308ms, 60 terms
+exact vacuum oracle [1, 0]: integrated and evaluated 4.11943ms
+exact vacuum oracle [0, 1]: derivative 4.860484ms
+exact vacuum oracle [0, 1]: Q numerator 5.790428ms, 39 terms
+exact vacuum oracle [0, 1]: integrated and evaluated 6.18279ms
+exact vacuum oracle [1, 1]: derivative 7.506056ms
+exact vacuum oracle [1, 1]: Q numerator 10.39913ms, 223 terms
+exact vacuum oracle [1, 1]: integrated and evaluated 11.203894ms
+exact vacuum oracle [2, 0]: derivative 12.597261ms
+exact vacuum oracle [2, 0]: Q numerator 15.013182ms, 270 terms
+exact vacuum oracle [2, 0]: integrated and evaluated 15.781266ms
+exact vacuum oracle [0, 2]: derivative 16.989112ms
+exact vacuum oracle [0, 2]: Q numerator 18.66765ms, 186 terms
+exact vacuum oracle [0, 2]: integrated and evaluated 19.285463ms
+exact vacuum oracle [3, 0]: derivative 21.153712ms
+exact vacuum oracle [3, 0]: Q numerator 25.341102ms, 772 terms
+exact vacuum oracle [3, 0]: integrated and evaluated 27.132681ms
+{
+  "batch_rows": 3,
+  "diagnostic_seconds": 4.02222524,
+  "numeric_batch_calls": 1,
+  "order": 4,
+  "requested_bits": 128,
+  "rows": [
+    {
+      "lane": 0,
+      "oracle": {
+        "argument_order": [
+          "s01",
+          "s12",
+          "s23",
+          "s03",
+          "s02",
+          "s13",
+          "m0_squared",
+          "m1_squared",
+          "m2_squared",
+          "m3_squared"
+        ],
+        "coefficient_convention": "[t0^a t1^b], equal to partial derivatives divided by a! b!; input components already use the same normalization",
+        "components": [
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "2/75",
+            "center_real_exact_rational": "1/50",
+            "integrated_expression": "1/6/m^2",
+            "multi_index": [
+              0,
+              0
+            ],
+            "parameter_polynomial_terms": 6
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "-563/40000",
+            "center_real_exact_rational": "-23/120000",
+            "integrated_expression": "1/16*(-149/60-5/12*imaginary_unit)/m^3",
+            "multi_index": [
+              1,
+              0
+            ],
+            "parameter_polynomial_terms": 84
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "1277/240000",
+            "center_real_exact_rational": "-7/5000",
+            "integrated_expression": "1/16*(107/120+5/12*imaginary_unit)/m^3",
+            "multi_index": [
+              0,
+              1
+            ],
+            "parameter_polynomial_terms": 63
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "-1192309/268800000",
+            "center_real_exact_rational": "111841/38400000",
+            "integrated_expression": "1/512*(-11217/280-62/5*m-10/3*m*imaginary_unit-205/8*imaginary_unit-13/4*imaginary_unit^2)/m^4",
+            "multi_index": [
+              1,
+              1
+            ],
+            "parameter_polynomial_terms": 427
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "39841/22400000",
+            "center_real_exact_rational": "-112733/38400000",
+            "integrated_expression": "1/1024*(7803/70-326/15*m+113/3*imaginary_unit+13/4*imaginary_unit^2)/m^4",
+            "multi_index": [
+              2,
+              0
+            ],
+            "parameter_polynomial_terms": 450
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "106297/53760000",
+            "center_real_exact_rational": "-4931/15360000",
+            "integrated_expression": "1/1024*(807/56+298/15*m+163/12*imaginary_unit+13/4*imaginary_unit^2)/m^4",
+            "multi_index": [
+              0,
+              2
+            ],
+            "parameter_polynomial_terms": 336
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "23014433/96768000000",
+            "center_real_exact_rational": "3620191/6048000000",
+            "integrated_expression": "1/8192*(-2110793/3780+17069/70*m+247/6*m*imaginary_unit-39903/140*imaginary_unit-632/15*m^2-5198/105*imaginary_unit^2-35/12*imaginary_unit^3)/m^5",
+            "multi_index": [
+              3,
+              0
+            ],
+            "parameter_polynomial_terms": 1558
+          }
+        ],
+        "coordinates": [
+          "t0",
+          "t1"
+        ],
+        "exactness_proof": "At the jet origin F=M on the simplex. Differentiation followed by origin substitution leaves polynomial parameter numerators divided by powers of constant M. Symbolica integrates these polynomials exactly; ancestor closure ensures omitted input monomials cannot affect retained components.",
+        "method": "Exact Symbolica differentiation of the unexpanded parameter integrand, jet-origin substitution, then polynomial integration",
+        "normalization": "D0=integral_Delta3 F^-2 dx, volume(Delta3)=1/6; all pole components zero",
+        "physical_components_argument_major_exact_rational": [
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/128"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/4"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "7/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "-1",
+              "real": "2"
+            },
+            {
+              "imaginary": "1/32",
+              "real": "7/16"
+            },
+            {
+              "imaginary": "-1/32",
+              "real": "-1/8"
+            },
+            {
+              "imaginary": "1/128",
+              "real": "3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-7/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/128"
+            }
+          ],
+          [
+            {
+              "imaginary": "-1",
+              "real": "2"
+            },
+            {
+              "imaginary": "1/16",
+              "real": "1/2"
+            },
+            {
+              "imaginary": "-1/16",
+              "real": "-5/32"
+            },
+            {
+              "imaginary": "1/64",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "9/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "-1",
+              "real": "2"
+            },
+            {
+              "imaginary": "3/32",
+              "real": "9/16"
+            },
+            {
+              "imaginary": "-3/32",
+              "real": "-3/16"
+            },
+            {
+              "imaginary": "3/128",
+              "real": "5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-9/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            }
+          ],
+          [
+            {
+              "imaginary": "-1",
+              "real": "2"
+            },
+            {
+              "imaginary": "1/8",
+              "real": "5/8"
+            },
+            {
+              "imaginary": "-1/8",
+              "real": "-7/32"
+            },
+            {
+              "imaginary": "1/32",
+              "real": "3/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "11/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/256"
+            }
+          ]
+        ],
+        "resource_limits": {
+          "components": 15,
+          "parameter_polynomial_terms": 100000,
+          "total_taylor_degree": 4
+        },
+        "rounding": "Exact Complex<Rational> values; no floating-point arithmetic",
+        "series_truncation": "none: each requested finite Taylor coefficient is exact",
+        "shape": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "status": "Success",
+      "tail_bounds": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "values": [
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 0,
+          "exact_error_squared": "13/193072434191173398233865959974164184235702867816530464639219284789593402033059076465946989893603409358736458757885399132294055912492030607228644545687610982400",
+          "imaginary": "24702312370627455023695143468520087008697596728669986995084284588354800989853/926336713898529563388567880069503262826159877325124512315660672063305037119488",
+          "real": "9263367138985295633885678800695032628261598773251245123156606720633050371195/463168356949264781694283940034751631413079938662562256157830336031652518559744"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 1,
+          "exact_error_squared": "47969/6178317894117548743483710719173253895542491770128974868455017113266988865057890446910303676595309099479566680252332772233409789199744979431316625462003551436800000",
+          "imaginary": "-104305513984974428837552743295826067394225602186809020086743391674328147179655/7410693711188236507108543040556026102609279018600996098525285376506440296955904",
+          "real": "-2840765922622157327724941498879810006000223623797048504434692727660802113833/14821387422376473014217086081112052205218558037201992197050570753012880593911808"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 2,
+          "exact_error_squared": "7421/24713271576470194973934842876693015582169967080515899473820068453067955460231561787641214706381236397918266721009331088933639156798979917725266501848014205747200000",
+          "imaginary": "39431066121614075081573372761625188887633538778139466740903289274161351080053/7410693711188236507108543040556026102609279018600996098525285376506440296955904",
+          "real": "-41499884782654124439807841027113746174611962504165578151741598108436065662953/29642774844752946028434172162224104410437116074403984394101141506025761187823616"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 3,
+          "exact_error_squared": "1447381/1210950307247039553722807300957957763526328386945279074217183354200329817551346527594419520612680583497995069329457223357748318683150015968538058590552696081612800000",
+          "imaginary": "-32871416696775056106972023229696112077291543368263151254600388697831165639967/7410693711188236507108543040556026102609279018600996098525285376506440296955904",
+          "real": "86335353682604537415784016895711095348117122366599375484913171020193415547067/29642774844752946028434172162224104410437116074403984394101141506025761187823616"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 4,
+          "exact_error_squared": "5256073/6054751536235197768614036504789788817631641934726395371085916771001649087756732637972097603063402917489975346647286116788741593415750079842690292952763480408064000000",
+          "imaginary": "52723115740616166192805618442641542134652908103586122421668909765248765691253/29642774844752946028434172162224104410437116074403984394101141506025761187823616",
+          "real": "-21755982659983944431142379754974023193371141968852762843100286363273451406165/7410693711188236507108543040556026102609279018600996098525285376506440296955904"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 5,
+          "exact_error_squared": "32121613/19375204915952632859564916815327324216421254191124465187474933667205277080821544441510712329802889335967921109271315573723973098930400255496608937448843137305804800000",
+          "imaginary": "14652799654355951934451577373176783977475047095242375042502646199153740406353/7410693711188236507108543040556026102609279018600996098525285376506440296955904",
+          "real": "-38064719468613743975575235138522671574964952959084908085237689782867976150303/118571099379011784113736688648896417641748464297615937576404566024103044751294464"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 6,
+          "exact_error_squared": "216996674869/627756639276865304649903304816605304612048635792432672074187850817450977418618039904947079485613614485360643940390624588656728405344968278090129573342517648708075520000000",
+          "imaginary": "112799546229935859445108192813818085638063741502578292620880674010242886430423/474284397516047136454946754595585670566993857190463750305618264096412179005177856",
+          "real": "70973880097884267483877734228924763736590445554571848325175532784286313770047/118571099379011784113736688648896417641748464297615937576404566024103044751294464"
+        }
+      ]
+    },
+    {
+      "lane": 1,
+      "oracle": {
+        "argument_order": [
+          "s01",
+          "s12",
+          "s23",
+          "s03",
+          "s02",
+          "s13",
+          "m0_squared",
+          "m1_squared",
+          "m2_squared",
+          "m3_squared"
+        ],
+        "coefficient_convention": "[t0^a t1^b], equal to partial derivatives divided by a! b!; input components already use the same normalization",
+        "components": [
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "1/150",
+            "center_real_exact_rational": "1/200",
+            "integrated_expression": "1/6/m^2",
+            "multi_index": [
+              0,
+              0
+            ],
+            "parameter_polynomial_terms": 6
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "-563/320000",
+            "center_real_exact_rational": "-23/960000",
+            "integrated_expression": "1/16*(-149/60-5/12*imaginary_unit)/m^3",
+            "multi_index": [
+              1,
+              0
+            ],
+            "parameter_polynomial_terms": 84
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "1277/1920000",
+            "center_real_exact_rational": "-7/40000",
+            "integrated_expression": "1/16*(107/120+5/12*imaginary_unit)/m^3",
+            "multi_index": [
+              0,
+              1
+            ],
+            "parameter_polynomial_terms": 63
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "-1793189/4300800000",
+            "center_real_exact_rational": "118961/614400000",
+            "integrated_expression": "1/512*(-11217/280-62/5*m-10/3*m*imaginary_unit-205/8*imaginary_unit-13/4*imaginary_unit^2)/m^4",
+            "multi_index": [
+              1,
+              1
+            ],
+            "parameter_polynomial_terms": 427
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "-5987/1075200000",
+            "center_real_exact_rational": "-125773/614400000",
+            "integrated_expression": "1/1024*(7803/70-326/15*m+113/3*imaginary_unit+13/4*imaginary_unit^2)/m^4",
+            "multi_index": [
+              2,
+              0
+            ],
+            "parameter_polynomial_terms": 450
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "66027/286720000",
+            "center_real_exact_rational": "-163/245760000",
+            "integrated_expression": "1/1024*(807/56+298/15*m+163/12*imaginary_unit+13/4*imaginary_unit^2)/m^4",
+            "multi_index": [
+              0,
+              2
+            ],
+            "parameter_polynomial_terms": 336
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "-3217597/3096576000000",
+            "center_real_exact_rational": "-8450077/1548288000000",
+            "integrated_expression": "1/8192*(-2110793/3780+17069/70*m+247/6*m*imaginary_unit-39903/140*imaginary_unit-632/15*m^2-5198/105*imaginary_unit^2-35/12*imaginary_unit^3)/m^5",
+            "multi_index": [
+              3,
+              0
+            ],
+            "parameter_polynomial_terms": 1558
+          }
+        ],
+        "coordinates": [
+          "t0",
+          "t1"
+        ],
+        "exactness_proof": "At the jet origin F=M on the simplex. Differentiation followed by origin substitution leaves polynomial parameter numerators divided by powers of constant M. Symbolica integrates these polynomials exactly; ancestor closure ensures omitted input monomials cannot affect retained components.",
+        "method": "Exact Symbolica differentiation of the unexpanded parameter integrand, jet-origin substitution, then polynomial integration",
+        "normalization": "D0=integral_Delta3 F^-2 dx, volume(Delta3)=1/6; all pole components zero",
+        "physical_components_argument_major_exact_rational": [
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/128"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/4"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "7/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "-2",
+              "real": "4"
+            },
+            {
+              "imaginary": "1/32",
+              "real": "7/16"
+            },
+            {
+              "imaginary": "-1/32",
+              "real": "-1/8"
+            },
+            {
+              "imaginary": "1/128",
+              "real": "3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-7/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/128"
+            }
+          ],
+          [
+            {
+              "imaginary": "-2",
+              "real": "4"
+            },
+            {
+              "imaginary": "1/16",
+              "real": "1/2"
+            },
+            {
+              "imaginary": "-1/16",
+              "real": "-5/32"
+            },
+            {
+              "imaginary": "1/64",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "9/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "-2",
+              "real": "4"
+            },
+            {
+              "imaginary": "3/32",
+              "real": "9/16"
+            },
+            {
+              "imaginary": "-3/32",
+              "real": "-3/16"
+            },
+            {
+              "imaginary": "3/128",
+              "real": "5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-9/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            }
+          ],
+          [
+            {
+              "imaginary": "-2",
+              "real": "4"
+            },
+            {
+              "imaginary": "1/8",
+              "real": "5/8"
+            },
+            {
+              "imaginary": "-1/8",
+              "real": "-7/32"
+            },
+            {
+              "imaginary": "1/32",
+              "real": "3/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "11/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/256"
+            }
+          ]
+        ],
+        "resource_limits": {
+          "components": 15,
+          "parameter_polynomial_terms": 100000,
+          "total_taylor_degree": 4
+        },
+        "rounding": "Exact Complex<Rational> values; no floating-point arithmetic",
+        "series_truncation": "none: each requested finite Taylor coefficient is exact",
+        "shape": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "status": "Success",
+      "tail_bounds": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "values": [
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 0,
+          "exact_error_squared": "13/3089158947058774371741855359586626947771245885064487434227508556633494432528945223455151838297654549739783340126166386116704894599872489715658312731001775718400",
+          "imaginary": "24702312370627455023695143468520087008697596728669986995084284588354800989853/3705346855594118253554271520278013051304639509300498049262642688253220148477952",
+          "real": "9263367138985295633885678800695032628261598773251245123156606720633050371195/1852673427797059126777135760139006525652319754650249024631321344126610074238976"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 1,
+          "exact_error_squared": "47969/395412345223523119582957486027088249314719473288254391581121095249087287363704988602259435302099782366692267536149297422938226508783678683604264029568227291955200000",
+          "imaginary": "-104305513984974428837552743295826067394225602186809020086743391674328147179655/59285549689505892056868344324448208820874232148807968788202283012051522375647232",
+          "real": "-2840765922622157327724941498879810006000223623797048504434692727660802113833/118571099379011784113736688648896417641748464297615937576404566024103044751294464"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 2,
+          "exact_error_squared": "7421/1581649380894092478331829944108352997258877893153017566324484380996349149454819954409037741208399129466769070144597189691752906035134714734417056118272909167820800000",
+          "imaginary": "39431066121614075081573372761625188887633538778139466740903289274161351080053/59285549689505892056868344324448208820874232148807968788202283012051522375647232",
+          "real": "-41499884782654124439807841027113746174611962504165578151741598108436065662953/237142198758023568227473377297792835283496928595231875152809132048206089502588928"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 3,
+          "exact_error_squared": "79533689/1550016393276210628765193345226185937313700335289957214997994693376422166465723555320856986384231146877433688741705245897917847914432020439728714995907450984464384000000",
+          "imaginary": "-12359351232581773283059394704568098856874842293606865320794696762474151013447/29642774844752946028434172162224104410437116074403984394101141506025761187823616",
+          "real": "91831618185069146158556186317456814707552337638728447591319424341102358767307/474284397516047136454946754595585670566993857190463750305618264096412179005177856"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 4,
+          "exact_error_squared": "3418517/1550016393276210628765193345226185937313700335289957214997994693376422166465723555320856986384231146877433688741705245897917847914432020439728714995907450984464384000000",
+          "imaginary": "-1320470930026308689525560928089551436795290282272742965531871534200716013627/237142198758023568227473377297792835283496928595231875152809132048206089502588928",
+          "real": "-97090122930966465646725289983318028229528838542344071072897991422848387028025/474284397516047136454946754595585670566993857190463750305618264096412179005177856"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 5,
+          "exact_error_squared": "4133057/1240013114620968503012154676180948749850960268231965771998395754701137733172578844256685589107384917501946950993364196718334278331545616351782971996725960787571507200000",
+          "imaginary": "109220061086746806217601734673837664168969389678832136026189512847006860153373/474284397516047136454946754595585670566993857190463750305618264096412179005177856",
+          "real": "-629137018189417995134735685213870966002766916683313731281052873109661337711/948568795032094272909893509191171341133987714380927500611236528192824358010355712"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 6,
+          "exact_error_squared": "292336763197/2571291194478040287846003936528815327690951212205804224815873436948279203506659491450663237573073364932037197579839998315137959548292990067057170732410952289108277329920000000",
+          "imaginary": "-31540510387616582302331913705904693015446175056102525454532622555014540714507/30354201441027016733116592294117482916287606860189680019559568902170379456331382784",
+          "real": "-41415960636875899457194600562508295886943325807978074939972386162998288032529/7588550360256754183279148073529370729071901715047420004889892225542594864082845696"
+        }
+      ]
+    },
+    {
+      "lane": 2,
+      "oracle": {
+        "argument_order": [
+          "s01",
+          "s12",
+          "s23",
+          "s03",
+          "s02",
+          "s13",
+          "m0_squared",
+          "m1_squared",
+          "m2_squared",
+          "m3_squared"
+        ],
+        "coefficient_convention": "[t0^a t1^b], equal to partial derivatives divided by a! b!; input components already use the same normalization",
+        "components": [
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "1/24",
+            "integrated_expression": "1/6/m^2",
+            "multi_index": [
+              0,
+              0
+            ],
+            "parameter_polynomial_terms": 6
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "-149/7680",
+            "integrated_expression": "-149/960/m^3",
+            "multi_index": [
+              1,
+              0
+            ],
+            "parameter_polynomial_terms": 60
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "107/15360",
+            "integrated_expression": "107/1920/m^3",
+            "multi_index": [
+              0,
+              1
+            ],
+            "parameter_polynomial_terms": 39
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "-18161/2293760",
+            "integrated_expression": "1/256*(-11217/560-31/5*m)/m^4",
+            "multi_index": [
+              1,
+              1
+            ],
+            "parameter_polynomial_terms": 223
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "14281/3440640",
+            "integrated_expression": "1/256*(7803/280-163/30*m)/m^4",
+            "multi_index": [
+              2,
+              0
+            ],
+            "parameter_polynomial_terms": 270
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "45481/13762560",
+            "integrated_expression": "1/1024*(807/56+298/15*m)/m^4",
+            "multi_index": [
+              0,
+              2
+            ],
+            "parameter_polynomial_terms": 186
+          },
+          {
+            "absolute_complex_remainder_bound_exact_rational": "0",
+            "center_imaginary_exact_rational": "0",
+            "center_real_exact_rational": "-904397/990904320",
+            "integrated_expression": "1/1024*(-2110793/30240+17069/560*m-79/15*m^2)/m^5",
+            "multi_index": [
+              3,
+              0
+            ],
+            "parameter_polynomial_terms": 772
+          }
+        ],
+        "coordinates": [
+          "t0",
+          "t1"
+        ],
+        "exactness_proof": "At the jet origin F=M on the simplex. Differentiation followed by origin substitution leaves polynomial parameter numerators divided by powers of constant M. Symbolica integrates these polynomials exactly; ancestor closure ensures omitted input monomials cannot affect retained components.",
+        "method": "Exact Symbolica differentiation of the unexpanded parameter integrand, jet-origin substitution, then polynomial integration",
+        "normalization": "D0=integral_Delta3 F^-2 dx, volume(Delta3)=1/6; all pole components zero",
+        "physical_components_argument_major_exact_rational": [
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/128"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/4"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "0"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "0"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "7/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "2"
+            },
+            {
+              "imaginary": "0",
+              "real": "7/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-7/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/128"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "2"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/2"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "9/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-1/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/256"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "2"
+            },
+            {
+              "imaginary": "0",
+              "real": "9/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "-3/16"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "-9/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "1/64"
+            }
+          ],
+          [
+            {
+              "imaginary": "0",
+              "real": "2"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/8"
+            },
+            {
+              "imaginary": "0",
+              "real": "-7/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "3/32"
+            },
+            {
+              "imaginary": "0",
+              "real": "11/128"
+            },
+            {
+              "imaginary": "0",
+              "real": "-5/64"
+            },
+            {
+              "imaginary": "0",
+              "real": "5/256"
+            }
+          ]
+        ],
+        "resource_limits": {
+          "components": 15,
+          "parameter_polynomial_terms": 100000,
+          "total_taylor_degree": 4
+        },
+        "rounding": "Exact Complex<Rational> values; no floating-point arithmetic",
+        "series_truncation": "none: each requested finite Taylor coefficient is exact",
+        "shape": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            3,
+            0
+          ]
+        ]
+      },
+      "status": "Success",
+      "tail_bounds": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "values": [
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 0,
+          "exact_error_squared": "1/30891589470587743717418553595866269477712458850644874342275085566334944325289452234551518382976545497397833401261663861167048945998724897156583127310017757184",
+          "imaginary": "0",
+          "real": "77194726158210796949047323339125271902179989777093709359638389338608753093291/1852673427797059126777135760139006525652319754650249024631321344126610074238976"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 1,
+          "exact_error_squared": "1/12067027136948337389616622498385261514731429238533154039951205299349587627066192279121686868350213084921028672367837445768378494530751912951790284105475686400",
+          "imaginary": "0",
+          "real": "-4492974295927112791175019991222525591181569717494907302572703129473712582383/231584178474632390847141970017375815706539969331281128078915168015826259279872"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 2,
+          "exact_error_squared": "121/49426543152940389947869685753386031164339934161031798947640136906135910920463123575282429412762472795836533442018662177867278313597959835450533003696028411494400",
+          "imaginary": "0",
+          "real": "103247946236606940919350794966080051169165736326862836268516345740389207262277/14821387422376473014217086081112052205218558037201992197050570753012880593911808"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 3,
+          "exact_error_squared": "529/16818754267319993801705656957749413382310116485351098253016435475004580799324257327700271119620563659694375962909128102190948870599305777340806369313231890022400",
+          "imaginary": "0",
+          "real": "-29337334439716788854456928832907102323147826332487420250008219631245959087485/3705346855594118253554271520278013051304639509300498049262642688253220148477952"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 4,
+          "exact_error_squared": "529/605475153623519776861403650478978881763164193472639537108591677100164908775673263797209760306340291748997534664728611678874159341575007984269029295276348040806400",
+          "imaginary": "0",
+          "real": "30759427574369653773140201579409821652763181752418394625139392805375881778049/7410693711188236507108543040556026102609279018600996098525285376506440296955904"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 5,
+          "exact_error_squared": "2809/9687602457976316429782458407663662108210627095562232593737466833602638540410772220755356164901444667983960554635657786861986549465200127748304468724421568652902400",
+          "imaginary": "0",
+          "real": "97960193649597802902891219664809053889035940710156221969467454952825465944083/29642774844752946028434172162224104410437116074403984394101141506025761187823616"
+        },
+        {
+          "allowed_error_squared": "1/115792089237316195423570985008687907853269984665640564039457584007913129639936",
+          "component": 6,
+          "exact_error_squared": "10936249/12555132785537306092998066096332106092240972715848653441483757016349019548372360798098941589712272289707212878807812491773134568106899365561802591466850352974161510400",
+          "imaginary": "0",
+          "real": "-108219678127026553398325198545905999709381008516918122928647198044812965760347/118571099379011784113736688648896417641748464297615937576404566024103044751294464"
+        }
+      ]
+    }
+  ],
+  "scope": "Validation only; common primal masses, heterogeneous complex mass jets and real invariant jets through mixed degree2 and pure degree3. N2 must reject omitted third derivative at exact vacuum; N4 must enclose independent exact differentiated-integrand oracle. No production dispatch change.",
+  "shape": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      3,
+      0
+    ]
+  ],
+  "static_dynamic_component_container_equivalence": true,
+  "status": "heterogeneous_vacuum_checks_passed",
+  "working_bits": 256
+}

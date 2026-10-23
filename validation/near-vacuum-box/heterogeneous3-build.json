@@ -1,0 +1,42 @@
+{
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+  "source_scope": "Frozen validation-only example; baseline nofeatures oneloop and pre-default-stack Symbolica retained dependencies.",
+  "driver": "heterogeneous",
+  "build_command": [
+    "taskset",
+    "-c",
+    "4,5",
+    "rustc",
+    "--crate-name",
+    "near_vacuum_heterogeneous3",
+    "--edition=2024",
+    "target/near-vacuum-validation/stage-heterogeneous3-source/near_vacuum_heterogeneous.rs",
+    "-L",
+    "dependency=target/d0-node-probe/deps",
+    "-L",
+    "dependency=target/cargo-build/debug/deps",
+    "-L",
+    "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "oneloop=target/d0-node-probe/liboneloop_baseline.rlib",
+    "--extern",
+    "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "serde_json=target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+    "-o",
+    "target/near-vacuum-validation/near_vacuum_heterogeneous3"
+  ],
+  "build_environment": {
+    "CARGO_CRATE_NAME": "near_vacuum_heterogeneous3"
+  },
+  "sha256": {
+    "target/near-vacuum-validation/stage-heterogeneous3-source/near_vacuum_heterogeneous.rs": "784ce47bb93c5874c77d06cb82345747b99588be51fd41bc44d1f67035ffbda6",
+    "target/near-vacuum-validation/stage-heterogeneous3-source/support/near_vacuum_box.rs": "8d765b8480a44f78b26a08de57edaa786f3e1cc18848714594c4dee94f19f733",
+    "target/near-vacuum-validation/stage-heterogeneous3-source/support/d0_near_vacuum_oracle.rs": "9be628f3d29436e81d593dd675ed0ddd3831bfe9bc98f7bcdb494e9ae9d5eb6a",
+    "target/d0-node-probe/liboneloop_baseline.rlib": "20422536ffadaa8e77aaf706559277c0d92ba35bec42ba8b50acbfdc026c4a1b",
+    "target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc",
+    "target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4",
+    "target/near-vacuum-validation/near_vacuum_heterogeneous3": "3458e83bb880685be52e73f31fc0b86cf90455b1074677703c035078bd658951"
+  },
+  "parent_dependency_provenance": "target/d0-node-probe/source-inputs.json"
+}

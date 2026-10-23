@@ -149,6 +149,13 @@ def run_build(command, env, output):
 def inspect_artifacts(path, native_batch):
     examples, libraries, finished = {}, [], False
     for line in path.read_text().splitlines():
+        # Cargo -vv forwards build-script stdout as `[package version] text`
+        # even when compiler messages use JSON. Preserve it in the raw log;
+        # only JSON-object records can carry artifact/finished evidence.
+        if not line.lstrip().startswith("{"):
+            if not line.strip() or re.match(r"^\[[\w-]+ \d+\.\d+\.\d+[^\]]*\] ", line):
+                continue
+            raise ValueError("unrecognized text in Cargo artifact stream: " + line[:160])
         event = json.loads(line)
         if event.get("reason") == "build-finished":
             finished = event.get("success") is True
@@ -188,6 +195,9 @@ def require_unchanged(data):
 
 
 def compatibility_manifest(data, name):
+    returncode = data.get("resources", {}).get("returncode")
+    if type(returncode) is not int or returncode != 0:
+        raise ValueError("compatible manifest requires recorded successful Cargo completion")
     artifact = data["binaries"][name]
     keys = ["status", "started_at", "finished_at", "command", "requested_revision",
             "source_revision", "source_root", "master_backend", "backend_qualification",
@@ -196,7 +206,8 @@ def compatibility_manifest(data, name):
     result = {key: data[key] for key in keys}
     result.update(schema_version=1, kind="physical-rust-build" if name == "physical_benchmark"
                   else "kernel-rust-build", binary_path=artifact["path"],
-                  binary_sha256=artifact["sha256"], workspace_build_manifest=data["manifest_path"])
+                  binary_sha256=artifact["sha256"], returncode=returncode,
+                  workspace_build_manifest=data["manifest_path"])
     return result
 
 
@@ -278,6 +289,10 @@ def main(argv=None):
             raise RuntimeError(f"Cargo failed: {data['resources']['returncode']}")
         examples, libraries = inspect_artifacts(output / "cargo.jsonl", args.native_batch)
         data["cargo_artifacts"] = {"examples": examples, "libraries": libraries}
+        data["cargo_verbose_stdout_lines"] = sum(
+            bool(line.strip()) and not line.lstrip().startswith("{")
+            for line in (output / "cargo.jsonl").read_text().splitlines()
+        )
         data["binaries"] = {name: retain_file(event["executable"], output / "bin" / name)
                             for name, event in examples.items()}
         data["archives"] = [retain_file(path, output / "deps" / Path(path).name)

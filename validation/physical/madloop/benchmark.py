@@ -16,6 +16,7 @@ from pathlib import Path
 import platform
 import re
 import shutil
+import struct
 import subprocess
 import sys
 
@@ -46,6 +47,118 @@ def observed_modes(text: str) -> dict:
             "expected CTMODE=1, IREGIMODE=2 (Hybrid)"
         )
     return {"ctmode": ctmode, "iregimode": iregimode, "algorithm": "Hybrid"}
+
+
+def observed_input_policy(text: str, requested: str, selected_group: int) -> dict:
+    """Check actual global state in both ordinary and replayed reductions."""
+    if requested not in {"legacy", "preserve"}:
+        raise ValueError("unknown input policy")
+    timer, graphs = [], {}
+    for line in text.splitlines():
+        fields = line.split()
+        if not fields or fields[0] not in {"IREGI_BENCH_POLICY", "IREGI_GRAPH_POLICY"}:
+            continue
+        graph = fields[0] == "IREGI_GRAPH_POLICY"
+        if len(fields) != (5 if graph else 4):
+            raise RuntimeError("malformed input-policy record")
+        values = fields[2:] if graph else fields[1:]
+        if values[0] not in {"T", "F"} or values[1] not in {"T", "F"}:
+            raise RuntimeError("malformed input-policy logical state")
+        try:
+            threshold = float(values[2])
+        except ValueError as error:
+            raise RuntimeError("malformed input-policy threshold") from error
+        state = dict(onshell_iregi=values[0] == "T", check=values[1] == "T", threshold=threshold)
+        if (state["onshell_iregi"] != (requested == "legacy") or state["check"]
+                or not math.isfinite(threshold) or threshold != 1e-6):
+            raise RuntimeError("actual IREGI input policy differs from the requested policy")
+        if graph:
+            try:
+                group = int(fields[1])
+            except ValueError as error:
+                raise RuntimeError("malformed input-policy graph identifier") from error
+            if group in graphs:
+                raise RuntimeError("duplicate ordinary-graph input-policy record")
+            graphs[group] = state
+        else:
+            timer.append(state)
+    if len(timer) != 1 or selected_group not in graphs:
+        raise RuntimeError("missing or duplicate timer/selected-graph input-policy record")
+    return dict(name=requested, timer=timer[0], ordinary_graphs=graphs,
+                checked_before_every_timed_step=True)
+
+
+def policy_helpers(prefix: str, policy: str) -> str:
+    desired = ".TRUE." if policy == "legacy" else ".FALSE."
+    if policy not in {"legacy", "preserve"}:
+        raise ValueError("unknown input policy")
+    return f"""
+      SUBROUTINE {prefix}AUDIT_SET_POLICY()
+      USE GLOBAL, ONLY: ONSHELL_IREGI
+      IMPLICIT NONE
+      ONSHELL_IREGI={desired}
+      CALL {prefix}AUDIT_CHECK_POLICY()
+      END
+
+      SUBROUTINE {prefix}AUDIT_CHECK_POLICY()
+      USE GLOBAL, ONLY: ONSHELL_IREGI,CHECK,ZEROTHR_IREGI
+      IMPLICIT NONE
+      IF(ONSHELL_IREGI.NEQV.{desired}) STOP 27
+      IF(CHECK.OR.ZEROTHR_IREGI.NE.1D-6) STOP 28
+      END
+
+      SUBROUTINE {prefix}AUDIT_REPORT_POLICY(GROUP)
+      USE GLOBAL, ONLY: ONSHELL_IREGI,CHECK,ZEROTHR_IREGI
+      IMPLICIT NONE
+      INTEGER GROUP
+      CALL {prefix}AUDIT_CHECK_POLICY()
+      IF(GROUP.EQ.0) THEN
+        WRITE(*,'(A,2L3,ES26.17E3)') 'IREGI_BENCH_POLICY ',
+     $    ONSHELL_IREGI,CHECK,ZEROTHR_IREGI
+      ELSE
+        WRITE(*,'(A,I8,2L3,ES26.17E3)') 'IREGI_GRAPH_POLICY ',
+     $    GROUP,ONSHELL_IREGI,CHECK,ZEROTHR_IREGI
+      ENDIF
+      END
+"""
+
+
+def instrument_input_policy(source: str, prefix: str) -> str:
+    """Keep ordinary reference and timed replay under the same explicit policy."""
+    source = capture.replace_once(source, "      CALL INITIREGI(IREGIRECY,LOOPLIB,1D-6)\n",
+        "      CALL INITIREGI(IREGIRECY,LOOPLIB,1D-6)\n"
+        f"      CALL {prefix}AUDIT_SET_POLICY()\n")
+    source = capture.replace_once(source,
+        "          CALL IMLOOP(CTMODE,IREGIMODE,NLOOPLINE,LOOPMAXCOEFS,RANK\n",
+        f"          CALL {prefix}AUDIT_CHECK_POLICY()\n"
+        "          CALL IMLOOP(CTMODE,IREGIMODE,NLOOPLINE,LOOPMAXCOEFS,RANK\n")
+    return capture.replace_once(source, "      WRITE(*,*) 'IREGI_AUDIT_END'\n",
+        f"      CALL {prefix}AUDIT_REPORT_POLICY(I_LOOPGROUP)\n"
+        "      WRITE(*,*) 'IREGI_AUDIT_END'\n")
+
+
+def exact_numeric_identity(actual, expected, label: str) -> None:
+    """Compare captured binary64 inputs, including the sign of zero."""
+    if isinstance(expected, dict):
+        if not isinstance(actual, dict) or actual.keys() != expected.keys():
+            raise RuntimeError(f"{label}: captured mapping differs")
+        for key in expected:
+            exact_numeric_identity(actual[key], expected[key], f"{label}.{key}")
+    elif isinstance(expected, list):
+        if not isinstance(actual, list) or len(actual) != len(expected):
+            raise RuntimeError(f"{label}: captured array shape differs")
+        for index, (left, right) in enumerate(zip(actual, expected, strict=True)):
+            exact_numeric_identity(left, right, f"{label}[{index}]")
+    else:
+        if isinstance(actual, bool) or isinstance(expected, bool):
+            raise RuntimeError(f"{label}: booleans are not captured numbers")
+        try:
+            left, right = float(actual), float(expected)
+        except (TypeError, ValueError, OverflowError) as error:
+            raise RuntimeError(f"{label}: malformed captured number") from error
+        if (not math.isfinite(left) or not math.isfinite(right)
+                or struct.pack(">d", left) != struct.pack(">d", right)):
+            raise RuntimeError(f"{label}: captured binary64 input differs")
 
 
 def write_artifacts(result: dict) -> None:
@@ -165,6 +278,8 @@ def timer_source(prefix: str, group: int, args: argparse.Namespace) -> str:
 C     Match the original-reference policy: recycle inside each sample only.
       CALL IREGI_FREE_PS()
       CALL INITIREGI(.TRUE.,2,1D-6)
+      CALL {prefix}AUDIT_SET_POLICY()
+      CALL {prefix}AUDIT_REPORT_POLICY(0)
       CALL {prefix}AUDIT_ASSEMBLE()
       IF(.NOT.ALL(IEEE_IS_FINITE(DBLE(SAVED(0:NC-1))))) STOP 20
       IF(.NOT.ALL(IEEE_IS_FINITE(DIMAG(SAVED(0:NC-1))))) STOP 20
@@ -263,6 +378,7 @@ C         Pilot doubling sets a block duration; no pilot enters statistics.
       COMPLEX*16 LOOPCOEFS(0:LOOPMAXCOEFS-1,NLOOPGROUPS)
       COMMON/{prefix}LCOEFS/LOOPCOEFS
       LOGICAL STABLE
+      CALL {prefix}AUDIT_CHECK_POLICY()
       IF(STAGE.EQ.1) THEN
         CALL {prefix}EVAL_POLY(LOOPCOEFS(0,{group}),RANK,Q,VALUE)
         SINK=SINK+VALUE
@@ -287,7 +403,7 @@ C         Pilot doubling sets a block duration; no pilot enters statistics.
         CALL IREGI_FREE_PS()
       ENDIF
       END
-"""
+""" + policy_helpers(prefix, getattr(args, "input_policy", "legacy"))
 
 
 def optimized_reference_library(folder: Path) -> Path:
@@ -317,6 +433,8 @@ def main() -> None:
     parser.add_argument("--warmup", type=int, default=5)
     parser.add_argument("--target-ms", type=float, default=30)
     parser.add_argument("--batch-widths", type=int, nargs="+", default=[1, 32])
+    parser.add_argument("--input-policy", choices=["legacy", "preserve"], default="legacy",
+                        help="Explicit IREGI policy for the ordinary graph and timed replay")
     args = parser.parse_args()
     if Path.cwd().resolve() != ROOT:
         parser.error(f"run from {ROOT}")
@@ -335,8 +453,9 @@ def main() -> None:
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
     capture.LOGS = capture.WORK / "logs" / args.case / "benchmark" / timestamp
     capture.LOGS.mkdir(parents=True, exist_ok=True)
-    ARTIFACT_PATHS = [capture.WORK / "benchmarks" / args.case / f"{timestamp}.json",
-                      capture.WORK / f"{args.case}-benchmark.json"]
+    suffix = "" if args.input_policy == "legacy" else "-preserve"
+    ARTIFACT_PATHS = [capture.WORK / "benchmarks" / args.case / f"{timestamp}{suffix}.json",
+                      capture.WORK / f"{args.case}-benchmark{suffix}.json"]
     ATTEMPT = dict(schema_version=1, case=args.case, attempt_id=timestamp,
                    timestamp_utc=datetime.now(timezone.utc).isoformat(),
                    requested_options=vars(args).copy(), log_directory=str(capture.LOGS),
@@ -360,7 +479,8 @@ def main() -> None:
     coefficients = process / "coef_construction_1.f"
     coefficients.write_text(coefficients.read_text() + assembly)
     tir = process / "TIR_interface.f"
-    source = capture.replace_once(tir.read_text(), "      WRITE(*,*) 'IREGI_AUDIT_END'\n",
+    source = instrument_input_policy(tir.read_text(), prefix)
+    source = capture.replace_once(source, "      WRITE(*,*) 'IREGI_AUDIT_END'\n",
         f"""      WRITE(*,*) 'IREGI_AUDIT_END'
       IF(I_LOOPGROUP.EQ.{group}) CALL {prefix}AUDIT_BENCH(
      $ NLOOPLINE,RANK,NLOOPCOEFS,PDEN,M2L,MU_R,CTMODE,IREGIMODE,
@@ -369,7 +489,8 @@ def main() -> None:
     tir.write_text(source + timer_source(prefix, group, args))
     library = optimized_reference_library(capture.LOGS)
     flags = "-O3 -w -fPIC -ffixed-line-length-132"
-    includes = f" -I{capture.OUTPUT / 'Source/MODEL'} -I{capture.OUTPUT / 'Source/DHELAS'}"
+    includes = (f" -I{capture.OUTPUT / 'Source/MODEL'} -I{capture.OUTPUT / 'Source/DHELAS'}"
+                f" -I{ROOT / 'target/reference/objects'}")
     # Rebuild every generated numerical HELAS routine and process object using
     # the same optimization level. Reference objects are independently O3.
     make = ["make", f"SHELL={shutil.which('bash')}", f"FFLAGS={flags + includes}"]
@@ -381,7 +502,9 @@ def main() -> None:
     capture.run(["make", "-C", str(process), f"SHELL={shutil.which('bash')}",
                  f"FFLAGS={process_flags}", f"LINK_LOOP_LIBS=-L{capture.OUTPUT / 'lib'} -lcts {library}",
                  "-B", "-j2", "check"], capture.LOGS / "process-build.log")
-    command = [str(process / "check")]
+    executable = capture.LOGS / "check"
+    shutil.copy2(process / "check", executable)
+    command = [str(executable)]
     if args.cpu is not None:
         command = ["taskset", "-c", str(args.cpu), *command]
     log = capture.LOGS / "evaluation.log"
@@ -390,6 +513,9 @@ def main() -> None:
     after = environment(args.cpu)
     records, metadata = capture.parse(log)
     modes = observed_modes(log.read_text())
+    input_policy = observed_input_policy(log.read_text(), args.input_policy, group)
+    if set(input_policy["ordinary_graphs"]) != {record["group"] for record in records}:
+        raise RuntimeError("input-policy records do not cover every exported ordinary graph")
     samples: dict[int, dict] = {}
     error = None
     rate = None
@@ -421,23 +547,45 @@ def main() -> None:
     selected_record = next(r for r in records if r["group"] == group)
     fixture = ROOT / f"validation/physical/madloop/fixtures/{args.case}-helicity-{args.helicity}.json"
     fixture_error = None
+    fixture_scope = None
+    fixture_policy_difference = None
+    fixture_identity_passed = False
     if fixture.exists():
         saved = json.loads(fixture.read_text())
         expected = next(r for r in saved["records"] if r["group"] == group)
+        saved_graph = next(g for g in saved["graph_correspondence"] if g["group"] == group)
+        if saved_graph != graph or saved["helicity_index"] != args.helicity:
+            raise RuntimeError("oriented graph or helicity differs from committed correspondence")
+        for name in ["parameters", "couplings", "helicity", "evaluated_external_momenta",
+                     "coefficient_construction_momenta", "wavefunctions", "wavefunction_momenta"]:
+            exact_numeric_identity(metadata[name], saved["metadata"][name], name)
+        for name in ["shifts", "masses_squared", "mu"]:
+            exact_numeric_identity(selected_record[name], expected[name], name)
+        fixture_identity_passed = True
         def number(pair):
             value = complex(*map(float, pair))
             if not math.isfinite(value.real) or not math.isfinite(value.imag):
                 raise RuntimeError("nonfinite optimized or committed reference result")
             return value
         pairs = list(zip(selected_record["numerator"], expected["numerator"], strict=True))
-        pairs += [(a["value"], b["value"]) for a, b in
-                  zip(selected_record["tensors"], expected["tensors"], strict=True)]
-        pairs += list(zip(selected_record["raw_result"], expected["raw_result"], strict=True))
+        pairs += [(selected_record["probe_value"], expected["probe_value"])]
+        reduction_pairs = [(a["value"], b["value"]) for a, b in
+                           zip(selected_record["tensors"], expected["tensors"], strict=True)]
+        reduction_pairs += list(zip(selected_record["raw_result"], expected["raw_result"], strict=True))
+        if args.input_policy == "legacy":
+            pairs += reduction_pairs
+            fixture_scope = "same-policy numerator, pointwise probe, all tensor slots, and final poles"
+        else:
+            fixture_scope = "unchanged numerator/probe and exact point, waves, parameters, routing; legacy tensor/results are a different-policy diagnostic"
+            fixture_policy_difference = max(abs(number(a) - number(b)) / (1 + abs(number(b)))
+                                            for a, b in reduction_pairs)
         fixture_error = max(abs(number(a) - number(b)) / (1 + abs(number(b))) for a, b in pairs)
         if not math.isfinite(fixture_error) or fixture_error > 1e-10:
             raise RuntimeError(f"optimized reference differs from committed capture: {fixture_error}")
     result = dict(ATTEMPT, status="measured", precision="binary64", mode=modes["algorithm"],
+        workload_contract="madloop-selected-generated-graph-v1",
         observed_call_modes=modes,
+        observed_input_policy=input_policy,
         helicity_index=args.helicity, graph=graph, rank=graph["rank"], n=capture.CASE["nloop"],
         mass_class="massive" if capture.CASE["pdg"] == 6 else "massless",
         reference="MadLoop generated HELAS and original IREGI O3",
@@ -446,7 +594,9 @@ def main() -> None:
         warmup_blocks=args.warmup, repeats=args.repeats, target_block_ms=args.target_ms,
         clock="Fortran SYSTEM_CLOCK(integer*8)", clock_rate=rate,
         cache_policy="RECYCLING=true within sample; IREGI_FREE_PS after each sample inside timer",
-        input_policy="original MadLoop INITIREGI: legacy on-shell snapping enabled, threshold 1e-6",
+        input_policy=("original MadLoop INITIREGI: legacy on-shell snapping enabled, threshold 1e-6"
+                      if args.input_policy == "legacy" else
+                      "input preservation: ONSHELL_IREGI=false after each initializer; CHECK=false; no kinematic snapping"),
         phase_space_policy="MadLoop ImprovePSPoint=2 before timing; use metadata.evaluated_external_momenta",
         external_wavefunctions="precomputed HELAS; excluded from all stages",
         stage_definitions={"numerator": "original EVAL_POLY at the fixture complex probe",
@@ -457,13 +607,17 @@ def main() -> None:
         measurement_status="pinned" if args.cpu is not None else "unqualified_unpinned",
         correctness=dict(status="passed", max_error=error,
             committed_fixture_max_error=fixture_error,
-            scope="reference replay only: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"),
+            committed_fixture_scope=fixture_scope,
+            committed_fixture_input_identity_passed=fixture_identity_passed,
+            different_policy_legacy_max_error=fixture_policy_difference,
+            scope="reference replay only against the ordinary path under the same explicit input policy: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"),
         samples={str(k): v for k, v in samples.items()}, metadata=metadata,
         reference_record=selected_record,
         generated_calls=calls, flags=flags,
         provenance=dict(script_sha256=capture.sha256(Path(__file__)),
             capture_script_sha256=capture.sha256(Path(capture.__file__)),
-            executable_sha256=capture.sha256(process / "check"),
+            executable_path=str(executable.relative_to(ROOT)),
+            executable_sha256=capture.sha256(executable),
             compiler=subprocess.check_output([os.environ.get("FC", "gfortran"), "--version"],
                 cwd=ROOT, text=True).splitlines()[0],
             reference_build=json.loads((ROOT / "target/reference/provenance.json").read_text()),

@@ -1,0 +1,1822 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "created_utc": "2026-10-23T16:49:31.180378+00:00",
+  "scope": "Exact read-only numeric routing and binary64-input promotion audit; no engine execution, symbolic manipulation or final-amplitude qualification",
+  "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+  "frozen_source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "provenance": {
+    "audit_script": {
+      "path": "target/physical-gghhh-guard/audit_routing.py",
+      "sha256": "504a415f224467d97d86ec800de650d0bc87a4274dbffb1a8da06f5a56b1ddad"
+    },
+    "failed_rust_run": {
+      "path": "target/benchmark/physical-joint/80949db-quiet-physical-002/gghhh/rust.json",
+      "sha256": "1d54d663e6abec2ca5d6f8954e2a7b4531f3a97e2feaa80fec5d02b2fc0e7885"
+    },
+    "frozen_requests": {
+      "path": "target/benchmark/physical-joint/80949db-quiet-physical-002/gghhh/rust-inputs.json",
+      "sha256": "38383315808d83f1dbf2be7d38f8c084e6b3f7f037832c34c468465bed0e4dc2"
+    },
+    "canonical_reference_records": {
+      "path": "target/benchmark/physical-joint/80949db-quiet-physical-002/gghhh/gghhh-f64-hybrid-batch1/reference-records.json",
+      "sha256": "6aa4c6cb2e3e057bdcf3bb70b01c2ddc33bdb42e572e6bf619827a23cbcbb5c5"
+    },
+    "physical_fixture_input": {
+      "path": "validation/physical/gghhh-cli-input.json",
+      "sha256": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed"
+    },
+    "captured_madloop_fixture": {
+      "path": "validation/physical/madloop/fixtures/gghhh-helicity-1.json",
+      "sha256": "787fbeaa0b4e0aadc182ea62d552c692463f6c42ab12ce516556c86b68895cf4"
+    },
+    "promoted_request": {
+      "path": "target/physical-gghhh-guard/float256-from-binary64/request.json",
+      "sha256": "e74ef3ae8c11d53246dea0e4797ff34a1821a639df943a7bfd92a656237d106f"
+    },
+    "conversion_ledger": {
+      "path": "target/physical-gghhh-guard/float256-from-binary64/input-conversions.json",
+      "sha256": "e227b7ad6d79a2bfbeaac99d7ae841f2b98115f76c95ddc46728d2fad64ef364"
+    },
+    "promoted_request_512": {
+      "path": "target/physical-gghhh-guard/float512-from-binary64/request.json",
+      "sha256": "0210d1697e0107ec4fd14b379b354c570738b0940fce485d4cedc60fb02693ac"
+    },
+    "conversion_ledger_512": {
+      "path": "target/physical-gghhh-guard/float512-from-binary64/input-conversions.json",
+      "sha256": "e227b7ad6d79a2bfbeaac99d7ae841f2b98115f76c95ddc46728d2fad64ef364"
+    },
+    "frozen_benchmark_source": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/crates/iregi-cli/examples/physical_benchmark.rs",
+      "sha256": "ea76ce7fe1fa30171892642bcaa475b889668dabcb83cbc5e6ee11ba5231aace"
+    },
+    "frozen_cli_input_source": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/crates/iregi-cli/src/input.rs",
+      "sha256": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb"
+    },
+    "frozen_plan_source": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/crates/iregi-rust/src/plan.rs",
+      "sha256": "5b17b21f58775301c5e13b23ab9c8d97ac10c8d9526ce9d31077315b35e96b59"
+    },
+    "frozen_execution_source": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/crates/iregi-rust/src/execution.rs",
+      "sha256": "b6ac2cfe72f4dd9f5d18934df8405e1bb24bf5cb63563da48d7bd4baba69bce5"
+    },
+    "frozen_argument_guard_source": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/crates/iregi-rust/src/stability/arguments.rs",
+      "sha256": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c"
+    },
+    "frozen_fixture_generation_source": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/crates/iregi-prepare/tests/madloop_numerator.rs",
+      "sha256": "6ea631a41034ce8637f07b8719c9b1033789b525f58b66c787bba773975f0948"
+    },
+    "frozen_model": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/fixtures/models/sm.json",
+      "sha256": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41"
+    },
+    "frozen_dot": {
+      "path": "target/benchmark/sources/80949dbc4711947971a702643f75d639ef217e82/examples/graphs/gghhh_top_pentagon.dot",
+      "sha256": "2dd4f92b2e4b7742784ea48ef347d21dc10ee9fc39f285703acccfc0889257ed"
+    }
+  },
+  "source_locations": {
+    "distance_pair_order": {
+      "source": "frozen_execution_source",
+      "line": 650,
+      "description": "Lexicographic i<j raw-distance list: constraint 0 is propagators (0,1)"
+    },
+    "distance_expression": {
+      "source": "frozen_plan_source",
+      "line": 988,
+      "description": "Existing squared_difference uses metric (+---)"
+    },
+    "preserved_input_pack": {
+      "source": "frozen_benchmark_source",
+      "line": 155,
+      "description": "Packs supplied shifts; no benchmark reconstruction or snapping"
+    },
+    "decimal_parse": {
+      "source": "frozen_cli_input_source",
+      "line": 139,
+      "description": "Symbolica parses at prototype precision then converts exact rational to destination type"
+    },
+    "fixture_generation": {
+      "source": "frozen_fixture_generation_source",
+      "line": 197,
+      "description": "FeynKit external-coefficient expression evaluated with Complex<f64> bindings, then formatted with {:.17e} at line 199"
+    },
+    "relative_argument_guard": {
+      "source": "frozen_argument_guard_source",
+      "line": 92,
+      "description": "Target 2^(19-accuracy_bits); positive-envelope roundoff multiplied by at least 8 operations for a scalar component"
+    }
+  },
+  "selected_distance": {
+    "index": 0,
+    "propagator_positions": [
+      0,
+      1
+    ],
+    "edge_ids": [
+      0,
+      1
+    ],
+    "metric": "+---",
+    "expression": "(shift[0]-shift[1])^2; shift[0]=0",
+    "shift1_original_strings": [
+      "3.74999995340911823e2",
+      "0.00000000000000000e0",
+      "0.00000000000000000e0",
+      "-3.74999995340911880e2"
+    ],
+    "working_precision_bits": 53,
+    "effective_input_precision_bits": 53,
+    "requested_accuracy_bits": 53,
+    "decimal_string_exact": {
+      "numerator": "-42749999468863951071",
+      "denominator": "1000000000000000000000000000000",
+      "fraction": "-42749999468863951071/1000000000000000000000000000000",
+      "decimal_70_significant_digits": "-4.2749999468863951071e-11"
+    },
+    "binary64_input_exact": {
+      "numerator": "-13194139369384909",
+      "denominator": "309485009821345068724781056",
+      "fraction": "-13194139369384909/309485009821345068724781056",
+      "decimal_70_significant_digits": "-4.26325636159290129201740576790475548314696130347556390915997326374054e-11"
+    },
+    "binary64_coordinates": [
+      {
+        "original": "3.74999995340911823e2",
+        "hex": "0x1.76ffffb1d55e6p+8",
+        "exact": {
+          "numerator": "3298534842346227",
+          "denominator": "8796093022208",
+          "fraction": "3298534842346227/8796093022208",
+          "decimal_70_significant_digits": "374.9999953409118234048946760594844818115234375"
+        }
+      },
+      {
+        "original": "0.00000000000000000e0",
+        "hex": "0x0.0p+0",
+        "exact": {
+          "numerator": "0",
+          "denominator": "1",
+          "fraction": "0",
+          "decimal_70_significant_digits": "0"
+        }
+      },
+      {
+        "original": "0.00000000000000000e0",
+        "hex": "0x0.0p+0",
+        "exact": {
+          "numerator": "0",
+          "denominator": "1",
+          "fraction": "0",
+          "decimal_70_significant_digits": "0"
+        }
+      },
+      {
+        "original": "-3.74999995340911880e2",
+        "hex": "-0x1.76ffffb1d55e7p+8",
+        "exact": {
+          "numerator": "-6597069684692455",
+          "denominator": "17592186044416",
+          "fraction": "-6597069684692455/17592186044416",
+          "decimal_70_significant_digits": "-374.99999534091188024831353686749935150146484375"
+        }
+      }
+    ],
+    "energy_plus_z_decimal": {
+      "numerator": "-57",
+      "denominator": "1000000000000000",
+      "fraction": "-57/1000000000000000",
+      "decimal_70_significant_digits": "-5.7e-14"
+    },
+    "energy_plus_z_binary64": {
+      "numerator": "-1",
+      "denominator": "17592186044416",
+      "fraction": "-1/17592186044416",
+      "decimal_70_significant_digits": "-5.684341886080801486968994140625e-14"
+    },
+    "energy_ulp": {
+      "numerator": "1",
+      "denominator": "17592186044416",
+      "fraction": "1/17592186044416",
+      "decimal_70_significant_digits": "5.684341886080801486968994140625e-14"
+    },
+    "absolute_energy_vs_abs_z_ulp_difference": 1,
+    "positive_envelope_at_shift0_zero": {
+      "numerator": "87042656849376402070956498469141",
+      "denominator": "309485009821345068724781056",
+      "fraction": "87042656849376402070956498469141/309485009821345068724781056",
+      "decimal_70_significant_digits": "281249.993011367821154110904594846308583265841008023023378514793080285"
+    },
+    "envelope_over_absolute_distance": {
+      "numerator": "87042656849376402070956498469141",
+      "denominator": "13194139369384909",
+      "fraction": "87042656849376402070956498469141/13194139369384909",
+      "decimal_70_significant_digits": "6597069684692454.500000000000000037895613044696014191282194714677320892"
+    },
+    "guard_relative_target": {
+      "numerator": "1",
+      "denominator": "17179869184",
+      "fraction": "1/17179869184",
+      "decimal_70_significant_digits": "5.82076609134674072265625e-11"
+    },
+    "guard_roundoff_unit": {
+      "numerator": "1",
+      "denominator": "4503599627370496",
+      "fraction": "1/4503599627370496",
+      "decimal_70_significant_digits": "2.220446049250313080847263336181640625e-16"
+    },
+    "minimum_guard_estimate_uses_count": 8,
+    "minimum_guard_estimate_over_target": {
+      "numerator": "87042656849376402070956498469141",
+      "denominator": "432345558856004698112",
+      "fraction": "87042656849376402070956498469141/432345558856004698112",
+      "decimal_70_significant_digits": "201326589498.6710968017578125000011564823316862797299585630711266272245"
+    },
+    "actual_compiled_operation_count": null,
+    "minimum_estimate_note": "A source-derived lower bound suffices to explain rejection. No compiled evaluator/intermediate or exact operation count was observed.",
+    "absolute_distance_over_top_mass_squared": {
+      "numerator": "13194139369384909",
+      "denominator": "9262576858943036561863972225024",
+      "fraction": "13194139369384909/9262576858943036561863972225024",
+      "decimal_70_significant_digits": "1.42445666797851625246998087737804653785524451317303080930200583505648e-15"
+    },
+    "absolute_distance_over_mu_squared": {
+      "numerator": "13194139369384909",
+      "denominator": "174085318024506601157689344000000",
+      "fraction": "13194139369384909/174085318024506601157689344000000",
+      "decimal_70_significant_digits": "7.579122420609602296919832476275120858927931206178780282951063579983181e-17"
+    }
+  },
+  "routing": {
+    "captured_external_p2_strings": [
+      "3.74999995340911823E+002",
+      "0.00000000000000000E+000",
+      "0.00000000000000000E+000",
+      "-3.74999995340911823E+002"
+    ],
+    "captured_p2_binary64_squared": {
+      "numerator": "0",
+      "denominator": "1",
+      "fraction": "0",
+      "decimal_70_significant_digits": "0"
+    },
+    "canonical_shift1_minus_captured_p2_binary64": [
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "-1",
+        "denominator": "17592186044416",
+        "fraction": "-1/17592186044416",
+        "decimal_70_significant_digits": "-5.684341886080801486968994140625e-14"
+      }
+    ],
+    "external_conservation_decimal": [
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "-1",
+        "denominator": "1000000000000000",
+        "fraction": "-1/1000000000000000",
+        "decimal_70_significant_digits": "-1e-15"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "678217011",
+        "denominator": "20000000000000000000000",
+        "fraction": "678217011/20000000000000000000000",
+        "decimal_70_significant_digits": "3.391085055e-14"
+      }
+    ],
+    "external_conservation_binary64": [
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "78157671",
+        "denominator": "2361183241434822606848",
+        "fraction": "78157671/2361183241434822606848",
+        "decimal_70_significant_digits": "3.310106120883097961804519826500836643390357494354248046875e-14"
+      }
+    ],
+    "existing_routing_numeric_sum_p3_p4_p5_minus_p1_binary64": [
+      {
+        "numerator": "3298534842346227",
+        "denominator": "8796093022208",
+        "fraction": "3298534842346227/8796093022208",
+        "decimal_70_significant_digits": "374.9999953409118234048946760594844818115234375"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "0",
+        "denominator": "1",
+        "fraction": "0",
+        "decimal_70_significant_digits": "0"
+      },
+      {
+        "numerator": "-885443704537097632782183",
+        "denominator": "2361183241434822606848",
+        "fraction": "-885443704537097632782183/2361183241434822606848",
+        "decimal_70_significant_digits": "-374.9999953409118565059558848904640998567217025083664339035749435424805"
+      }
+    ],
+    "selected_madloop_group": 5,
+    "declared_routing_relation": "selected group: x=p1-q, where q is on a->b",
+    "madloop_first_incoming_distance_binary64": {
+      "numerator": "0",
+      "denominator": "1",
+      "fraction": "0",
+      "decimal_70_significant_digits": "0"
+    },
+    "madloop_second_incoming_distance_binary64": {
+      "numerator": "0",
+      "denominator": "1",
+      "fraction": "0",
+      "decimal_70_significant_digits": "0"
+    },
+    "canonical_reference_input_identity_passed": true,
+    "canonical_reference_recorded_stability": [
+      {
+        "mode": 0,
+        "returncode": 0,
+        "stable": true
+      },
+      {
+        "mode": 1,
+        "returncode": 0,
+        "stable": true
+      },
+      {
+        "mode": 2,
+        "returncode": 0,
+        "stable": true
+      }
+    ]
+  },
+  "promoted_request_audit": {
+    "passed": true,
+    "numeric_components_checked": 95,
+    "zero_components_checked": 56,
+    "negative_zero_components_preserved": 4,
+    "conversion_paths_complete_unique": true,
+    "non_numeric_sample_fields_unchanged": true,
+    "model_and_dot_identical_to_captured_and_frozen_inputs": true,
+    "algorithm_and_color_components_unchanged": true,
+    "working_bits_checked": [
+      256,
+      512
+    ],
+    "accuracy_bits": 53,
+    "requests": [
+      {
+        "working_bits": 256,
+        "accuracy_bits": 53,
+        "request_provenance_key": "promoted_request",
+        "conversion_ledger_provenance_key": "conversion_ledger",
+        "id": "gghhh-exact-f64-float256-accuracy53",
+        "numeric_components_checked": 95,
+        "zero_components_checked": 56,
+        "negative_zero_components_preserved": 4,
+        "sample_matches_exact_binary64_conversions": true,
+        "model_and_dot_identical_to_captured_and_frozen_inputs": true,
+        "passed": true
+      },
+      {
+        "working_bits": 512,
+        "accuracy_bits": 53,
+        "request_provenance_key": "promoted_request_512",
+        "conversion_ledger_provenance_key": "conversion_ledger_512",
+        "id": "gghhh-exact-f64-float512-accuracy53",
+        "numeric_components_checked": 95,
+        "zero_components_checked": 56,
+        "negative_zero_components_preserved": 4,
+        "sample_matches_exact_binary64_conversions": true,
+        "model_and_dot_identical_to_captured_and_frozen_inputs": true,
+        "passed": true
+      }
+    ],
+    "selected_distance_exact_after_promotion": {
+      "numerator": "-13194139369384909",
+      "denominator": "309485009821345068724781056",
+      "fraction": "-13194139369384909/309485009821345068724781056",
+      "decimal_70_significant_digits": "-4.26325636159290129201740576790475548314696130347556390915997326374054e-11"
+    },
+    "qualification": "Every promoted numeric component equals float(original).as_integer_ratio(); signed zeros are separately checked. This validates the request, not its numerical result.",
+    "components": [
+      {
+        "path": [
+          "mu"
+        ],
+        "original": "7.50000000000000000E+002",
+        "promoted": "750",
+        "binary64_hex": "0x1.7700000000000p+9",
+        "binary64_bits": "4087700000000000",
+        "exact_fraction": "750",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::G",
+          0
+        ],
+        "original": "1.21771578477671971e0",
+        "promoted": "2742052177281803/2251799813685248",
+        "binary64_hex": "0x1.37bc38bf70616p+0",
+        "binary64_bits": "3ff37bc38bf70616",
+        "exact_fraction": "2742052177281803/2251799813685248",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::G",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::MT",
+          0
+        ],
+        "original": "1.73000000000000000e2",
+        "promoted": "173",
+        "binary64_hex": "0x1.5a00000000000p+7",
+        "binary64_bits": "4065a00000000000",
+        "exact_fraction": "173",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::MT",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::ZERO",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::ZERO",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::yt",
+          0
+        ],
+        "original": "9.93666145815006230e-1",
+        "promoted": "4475074484023139/4503599627370496",
+        "binary64_hex": "0x1.fcc1cf1ed5ec6p-1",
+        "binary64_bits": "3fefcc1cf1ed5ec6",
+        "exact_fraction": "4475074484023139/4503599627370496",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "UFO::{}::yt",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "2.50000000000000000e2",
+        "promoted": "250",
+        "binary64_hex": "0x1.f400000000000p+7",
+        "binary64_bits": "406f400000000000",
+        "exact_fraction": "250",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "2.16506350946109649e2",
+        "promoted": "3808820005641583/17592186044416",
+        "binary64_hex": "0x1.b103406e63adep+7",
+        "binary64_bits": "406b103406e63ade",
+        "exact_fraction": "3808820005641583/17592186044416",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "2.37148580733452587e-6",
+        "promoted": "5599512545578813/2361183241434822606848",
+        "binary64_hex": "0x1.3e4ba1c31cf3dp-19",
+        "binary64_bits": "3ec3e4ba1c31cf3d",
+        "exact_fraction": "5599512545578813/2361183241434822606848",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(0,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "2.50000000000000000e2",
+        "promoted": "250",
+        "binary64_hex": "0x1.f400000000000p+7",
+        "binary64_bits": "406f400000000000",
+        "exact_fraction": "250",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "-1.08253175473054824e2",
+        "promoted": "-3808820005641583/35184372088832",
+        "binary64_hex": "-0x1.b103406e63adep+6",
+        "binary64_bits": "c05b103406e63ade",
+        "exact_fraction": "-3808820005641583/35184372088832",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "1.87499999999999972e2",
+        "promoted": "6597069766655999/35184372088832",
+        "binary64_hex": "0x1.76fffffffffffp+7",
+        "binary64_bits": "40676fffffffffff",
+        "exact_fraction": "6597069766655999/35184372088832",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "3.47334525637731179e-6",
+        "promoted": "4100602305537623/1180591620717411303424",
+        "binary64_hex": "0x1.d22f3bf92ccaep-19",
+        "binary64_bits": "3ecd22f3bf92ccae",
+        "exact_fraction": "4100602305537623/1180591620717411303424",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(1,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "2.50000000000000000e2",
+        "promoted": "250",
+        "binary64_hex": "0x1.f400000000000p+7",
+        "binary64_bits": "406f400000000000",
+        "exact_fraction": "250",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "-1.08253175473054824e2",
+        "promoted": "-3808820005641583/35184372088832",
+        "binary64_hex": "-0x1.b103406e63adep+6",
+        "binary64_bits": "c05b103406e63ade",
+        "exact_fraction": "-3808820005641583/35184372088832",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "-1.87499999999999972e2",
+        "promoted": "-6597069766655999/35184372088832",
+        "binary64_hex": "-0x1.76fffffffffffp+7",
+        "binary64_bits": "c0676fffffffffff",
+        "exact_fraction": "-6597069766655999/35184372088832",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "3.47334525637731179e-6",
+        "promoted": "4100602305537623/1180591620717411303424",
+        "binary64_hex": "0x1.d22f3bf92ccaep-19",
+        "binary64_bits": "3ecd22f3bf92ccae",
+        "exact_fraction": "4100602305537623/1180591620717411303424",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(2,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "3.75000004659088177e2",
+        "promoted": "3298534924309773/8796093022208",
+        "binary64_hex": "0x1.7700004e2aa1ap+8",
+        "binary64_bits": "4077700004e2aa1a",
+        "exact_fraction": "3298534924309773/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "3.75000004659088177e2",
+        "promoted": "3298534924309773/8796093022208",
+        "binary64_hex": "0x1.7700004e2aa1ap+8",
+        "binary64_bits": "4077700004e2aa1a",
+        "exact_fraction": "3298534924309773/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(3,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "3.74999995340911823e2",
+        "promoted": "3298534842346227/8796093022208",
+        "binary64_hex": "0x1.76ffffb1d55e6p+8",
+        "binary64_bits": "40776ffffb1d55e6",
+        "exact_fraction": "3298534842346227/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "-3.74999995340911823e2",
+        "promoted": "-3298534842346227/8796093022208",
+        "binary64_hex": "-0x1.76ffffb1d55e6p+8",
+        "binary64_bits": "c0776ffffb1d55e6",
+        "exact_fraction": "-3298534842346227/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor,spenso::component-labels:subscript,spenso::tensor-label:p}::P(4,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "7.07106781186547573e-1",
+        "promoted": "6369051672525773/9007199254740992",
+        "binary64_hex": "0x1.6a09e667f3bcdp-1",
+        "binary64_bits": "3fe6a09e667f3bcd",
+        "exact_fraction": "6369051672525773/9007199254740992",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "-7.07106781186547573e-1",
+        "promoted": "-6369051672525773/9007199254740992",
+        "binary64_hex": "-0x1.6a09e667f3bcdp-1",
+        "binary64_bits": "bfe6a09e667f3bcd",
+        "exact_fraction": "-6369051672525773/9007199254740992",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "-0.00000000000000000e0",
+        "promoted": "-0",
+        "binary64_hex": "-0x0.0p+0",
+        "binary64_bits": "8000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": true,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(8,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(0))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(0))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(1))",
+          0
+        ],
+        "original": "7.07106781186547573e-1",
+        "promoted": "6369051672525773/9007199254740992",
+        "binary64_hex": "0x1.6a09e667f3bcdp-1",
+        "binary64_bits": "3fe6a09e667f3bcd",
+        "exact_fraction": "6369051672525773/9007199254740992",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(1))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(2))",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(2))",
+          1
+        ],
+        "original": "7.07106781186547573e-1",
+        "promoted": "6369051672525773/9007199254740992",
+        "binary64_hex": "0x1.6a09e667f3bcdp-1",
+        "binary64_bits": "3fe6a09e667f3bcd",
+        "exact_fraction": "6369051672525773/9007199254740992",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(3))",
+          0
+        ],
+        "original": "-0.00000000000000000e0",
+        "promoted": "-0",
+        "binary64_hex": "-0x0.0p+0",
+        "binary64_bits": "8000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": true,
+        "passed": true
+      },
+      {
+        "path": [
+          "parameters",
+          "gammalooprs::{spenso::rank1,spenso::tensor}::\u03f5(9,spenso::{}::cind(3))",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          0,
+          "shift",
+          0
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          0,
+          "shift",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          0,
+          "shift",
+          2
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          0,
+          "shift",
+          3
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          0,
+          "mass_squared",
+          0
+        ],
+        "original": "2.99290000000000000e4",
+        "promoted": "29929",
+        "binary64_hex": "0x1.d3a4000000000p+14",
+        "binary64_bits": "40dd3a4000000000",
+        "exact_fraction": "29929",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          0,
+          "mass_squared",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          1,
+          "shift",
+          0
+        ],
+        "original": "3.74999995340911823e2",
+        "promoted": "3298534842346227/8796093022208",
+        "binary64_hex": "0x1.76ffffb1d55e6p+8",
+        "binary64_bits": "40776ffffb1d55e6",
+        "exact_fraction": "3298534842346227/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          1,
+          "shift",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          1,
+          "shift",
+          2
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          1,
+          "shift",
+          3
+        ],
+        "original": "-3.74999995340911880e2",
+        "promoted": "-6597069684692455/17592186044416",
+        "binary64_hex": "-0x1.76ffffb1d55e7p+8",
+        "binary64_bits": "c0776ffffb1d55e7",
+        "exact_fraction": "-6597069684692455/17592186044416",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          1,
+          "mass_squared",
+          0
+        ],
+        "original": "2.99290000000000000e4",
+        "promoted": "29929",
+        "binary64_hex": "0x1.d3a4000000000p+14",
+        "binary64_bits": "40dd3a4000000000",
+        "exact_fraction": "29929",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          1,
+          "mass_squared",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          2,
+          "shift",
+          0
+        ],
+        "original": "1.24999995340911823e2",
+        "promoted": "1099511586794227/8796093022208",
+        "binary64_hex": "0x1.f3fffec755798p+6",
+        "binary64_bits": "405f3fffec755798",
+        "exact_fraction": "1099511586794227/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          2,
+          "shift",
+          1
+        ],
+        "original": "-2.16506350946109649e2",
+        "promoted": "-3808820005641583/17592186044416",
+        "binary64_hex": "-0x1.b103406e63adep+7",
+        "binary64_bits": "c06b103406e63ade",
+        "exact_fraction": "-3808820005641583/17592186044416",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          2,
+          "shift",
+          2
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          2,
+          "shift",
+          3
+        ],
+        "original": "-3.74999997712397658e2",
+        "promoted": "-3298534863206037/8796093022208",
+        "binary64_hex": "-0x1.76ffffd99ed2ap+8",
+        "binary64_bits": "c0776ffffd99ed2a",
+        "exact_fraction": "-3298534863206037/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          2,
+          "mass_squared",
+          0
+        ],
+        "original": "2.99290000000000000e4",
+        "promoted": "29929",
+        "binary64_hex": "0x1.d3a4000000000p+14",
+        "binary64_bits": "40dd3a4000000000",
+        "exact_fraction": "29929",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          2,
+          "mass_squared",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          3,
+          "shift",
+          0
+        ],
+        "original": "-1.25000004659088177e2",
+        "promoted": "-1099511668757773/8796093022208",
+        "binary64_hex": "-0x1.f4000138aa868p+6",
+        "binary64_bits": "c05f4000138aa868",
+        "exact_fraction": "-1099511668757773/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          3,
+          "shift",
+          1
+        ],
+        "original": "-1.08253175473054824e2",
+        "promoted": "-3808820005641583/35184372088832",
+        "binary64_hex": "-0x1.b103406e63adep+6",
+        "binary64_bits": "c05b103406e63ade",
+        "exact_fraction": "-3808820005641583/35184372088832",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          3,
+          "shift",
+          2
+        ],
+        "original": "-1.87499999999999972e2",
+        "promoted": "-6597069766655999/35184372088832",
+        "binary64_hex": "-0x1.76fffffffffffp+7",
+        "binary64_bits": "c0676fffffffffff",
+        "exact_fraction": "-6597069766655999/35184372088832",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          3,
+          "shift",
+          3
+        ],
+        "original": "-3.75000001185742917e2",
+        "promoted": "-3298534893757905/8796093022208",
+        "binary64_hex": "-0x1.77000013e4ba2p+8",
+        "binary64_bits": "c0777000013e4ba2",
+        "exact_fraction": "-3298534893757905/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          3,
+          "mass_squared",
+          0
+        ],
+        "original": "2.99290000000000000e4",
+        "promoted": "29929",
+        "binary64_hex": "0x1.d3a4000000000p+14",
+        "binary64_bits": "40dd3a4000000000",
+        "exact_fraction": "29929",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          3,
+          "mass_squared",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          4,
+          "shift",
+          0
+        ],
+        "original": "-3.75000004659088177e2",
+        "promoted": "-3298534924309773/8796093022208",
+        "binary64_hex": "-0x1.7700004e2aa1ap+8",
+        "binary64_bits": "c077700004e2aa1a",
+        "exact_fraction": "-3298534924309773/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          4,
+          "shift",
+          1
+        ],
+        "original": "-0.00000000000000000e0",
+        "promoted": "-0",
+        "binary64_hex": "-0x0.0p+0",
+        "binary64_bits": "8000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": true,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          4,
+          "shift",
+          2
+        ],
+        "original": "-0.00000000000000000e0",
+        "promoted": "-0",
+        "binary64_hex": "-0x0.0p+0",
+        "binary64_bits": "8000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": true,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          4,
+          "shift",
+          3
+        ],
+        "original": "-3.75000004659088177e2",
+        "promoted": "-3298534924309773/8796093022208",
+        "binary64_hex": "-0x1.7700004e2aa1ap+8",
+        "binary64_bits": "c077700004e2aa1a",
+        "exact_fraction": "-3298534924309773/8796093022208",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          4,
+          "mass_squared",
+          0
+        ],
+        "original": "2.99290000000000000e4",
+        "promoted": "29929",
+        "binary64_hex": "0x1.d3a4000000000p+14",
+        "binary64_bits": "40dd3a4000000000",
+        "exact_fraction": "29929",
+        "negative_zero": false,
+        "passed": true
+      },
+      {
+        "path": [
+          "propagators",
+          4,
+          "mass_squared",
+          1
+        ],
+        "original": "0.00000000000000000e0",
+        "promoted": "0",
+        "binary64_hex": "0x0.0p+0",
+        "binary64_bits": "0000000000000000",
+        "exact_fraction": "0",
+        "negative_zero": false,
+        "passed": true
+      }
+    ]
+  },
+  "interpretation": [
+    "The nonzero canonical invariant is poorly conditioned relatively; the current guard is expected to reject it at input/working precision 53.",
+    "The captured incoming gluon is null, but the stored canonical routing contains a one-ULP longitudinal discrepancy produced during earlier binary64 fixture preparation.",
+    "The guard is conservative for final observables: its rejection does not establish failure of the massive graph integral or the 1e-10 dimensionally normalized comparison.",
+    "Preserved canonical IREGI inputs are identical and its recorded stable flags do not certify relative accuracy of this tiny invariant.",
+    "The promoted request preserves the exact binary64 canonical inputs, including their nonzero invariant; it does not substitute the original decimal-string values or snap the invariant to zero."
+  ],
+  "audited_files_unchanged": true
+}

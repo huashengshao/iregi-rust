@@ -27,6 +27,99 @@ def canonical_basis(rank):
             for x in range(r-t, -1, -1) for y in range(r-t-x, -1, -1)]
 
 
+def validate_reference(reference, fixture, fixture_sha256):
+    if (reference.get("status") != "complete"
+            or reference.get("reference") != "untouched original IREGI"
+            or reference.get("fixture_sha256") != fixture_sha256):
+        raise ValueError("Original reference is incomplete or belongs to another fixture")
+    samples = {sample["id"]: sample for sample in fixture["samples"]}
+    for case in reference["cases"]:
+        if case["sample"] not in samples:
+            raise ValueError("Unknown original-reference sample")
+        sample, n, mode = samples[case["sample"]], case["propagators"], case["mode"]
+        if n not in [6, 7] or mode not in [0, 1, 2] or case["rank"] != 7:
+            raise ValueError("Unsupported original-reference request")
+        label = f"n{n}_{sample['id']}_mode{mode}"
+        lines = case["request"].splitlines()
+        if len(lines) != n+2 or lines[-1] != "QUIT" or case["id"] != label:
+            raise ValueError("Malformed original-reference request")
+        header = lines[0].split()
+        if (len(header) != 10 or header[:7] != ["EVAL", label, "tensor", str(mode), str(n), "7", "0"]
+                or Fraction(header[7]) != Fraction(sample["mu"])
+                or header[8] != "0" or Fraction(header[9]) != Fraction("1e-6")):
+            raise ValueError("Original-reference request header differs from the fixture")
+        for line, propagator in zip(lines[1:-1], sample["propagators"][:n]):
+            expected = propagator["shift"] + propagator["mass_squared"] + [str(propagator["power"])]
+            if list(map(Fraction, line.split())) != list(map(Fraction, expected)):
+                raise ValueError("Original-reference propagators differ from the fixture")
+        if case["status"] == "captured":
+            raw = [json.loads(line[7:], parse_float=str) for line in case["stdout"].splitlines()
+                   if line.startswith("RESULT ")]
+            if case["exit_code"] != 0 or raw != [case["response"]] or raw[0]["id"] != label:
+                raise ValueError("Original-reference response does not match its captured transport")
+            response = case["response"]
+            moments = response.get("moments")
+            if (type(response.get("stable")) is not bool
+                    or response.get("poles") != ["uv1", "ir1", "ir2", "finite"]
+                    or not isinstance(moments, list) or len(moments) != 330
+                    or any(not isinstance(m, list) or len(m) != 4 for m in moments)
+                    or any(not isinstance(s, list) or len(s) != 2 for m in moments for s in m)
+                    or any(not Decimal(str(v)).is_finite() for m in moments for s in m for v in s)):
+                raise ValueError("Original-reference Laurent ordering or full array shape is invalid")
+
+
+def validate_provenance(record, result_path, fixture_path, root=None):
+    root = Path.cwd() if root is None else Path(root).resolve()
+    result_path, fixture_path = Path(result_path).resolve(), Path(fixture_path).resolve()
+    run_path = result_path.with_name(result_path.stem + "-run.json")
+    run = json.loads(run_path.read_text())
+    variant = run.get("variant", "baseline")
+    if variant not in ["baseline", "candidate"]:
+        raise ValueError("Unknown public execution build variant")
+    build_path = result_path.parent / ("build.json" if variant == "baseline" else "candidate-build.json")
+    build = json.loads(build_path.read_text())
+    if (run.get("status") != "completed" or run.get("exit_code") != 0
+            or run.get("last_public_stage") != "all_lanes_success"
+            or run.get("result_sha256") != digest(result_path)
+            or run.get("fixture_sha256") != digest(fixture_path)
+            or run.get("build_manifest_sha256") != digest(build_path)
+            or build.get("status") != "passed" or build.get("changed_inputs") != {}):
+        raise ValueError("Incomplete, unsuccessful, or mismatched public execution provenance")
+    if variant == "candidate":
+        if (build.get("core_exit_code") != 0 or build.get("probe_exit_code") != 0
+                or build.get("frozen_core_sources_verified_after_build") is not True):
+            raise ValueError("Candidate build did not verify its frozen inputs")
+        snapshot = root / build["frozen_core_source"]
+        for name, expected in build["library_source_hashes"].items():
+            if digest(snapshot / Path(name).relative_to("crates/iregi-rust")) != expected:
+                raise ValueError("Frozen core source changed after compilation")
+        if run.get("frozen_source_files_unchanged") != len(build["library_source_hashes"]):
+            raise ValueError("Run did not verify its complete frozen core source")
+    elif build.get("exit_code") != 0:
+        raise ValueError("Baseline build failed")
+    binary = root / ("target/public-highpoint/highpoint_public" if variant == "baseline"
+                     else "target/public-highpoint/candidate/highpoint_public")
+    source = root / "crates/iregi-rust/examples/highpoint_public.rs"
+    if (run.get("binary_sha256") != build.get("binary_sha256")
+            or run.get("binary_sha256") != digest(binary)
+            or run.get("probe_source_sha256") != build.get("source_sha256")
+            or run.get("probe_source_sha256") != digest(source)
+            or run.get("log_sha256") != digest(result_path.with_suffix(".log"))):
+        raise ValueError("Public executable, source, or captured log differs from its provenance")
+    algorithms = {"Ibp": "ibp", "PassarinoVeltman": "pv", "Hybrid": "hybrid"}
+    settings = record["settings"]
+    expected_command = ["taskset", "-c", "0", str(binary), str(fixture_path.relative_to(root)),
+                        str(settings["propagators"]), str(settings["rank"]), algorithms[settings["algorithm"]],
+                        str(record["working_bits"]), str(record["requested_bits"]), str(record["rows"]),
+                        str(result_path.relative_to(root))]
+    if run.get("command") != expected_command or record["fixture"] != str(fixture_path.relative_to(root)):
+        raise ValueError("Public command does not match its captured output settings")
+    return {"run_manifest_sha256": digest(run_path), "build_manifest_sha256": digest(build_path),
+            "binary_sha256": run["binary_sha256"], "variant": variant,
+            "library_source_hashes": build["library_source_hashes"],
+            "explicit_extern_sha256": build["explicit_extern_sha256"]}
+
+
 def validate(record, fixture):
     settings = record["settings"]
     n, rank, rows = settings["propagators"], settings["rank"], record["rows"]
@@ -73,7 +166,8 @@ def scale(sample, n):
     return q2.sqrt()
 
 
-def compare(low, high, reference, fixture):
+def compare(low, high, reference, fixture, fixture_sha256):
+    validate_reference(reference, fixture, fixture_sha256)
     validate(low, fixture)
     validate(high, fixture)
     if (low["settings"] != high["settings"] or low["rows"] != high["rows"]
@@ -133,9 +227,15 @@ def main():
     here = Path("validation/public-highpoint")
     files = {"low": Path(args.low), "high": Path(args.high),
              "reference": here / "reference-conditioned_masses.json", "fixture": here / "fixture-conditioned_masses.json"}
+    records = {key: json.loads(path.read_text()) for key, path in files.items()}
+    provenance = {key: validate_provenance(records[key], files[key], files["fixture"]) for key in ["low", "high"]}
+    if any(provenance["low"][key] != provenance["high"][key]
+           for key in ["binary_sha256", "build_manifest_sha256", "library_source_hashes", "explicit_extern_sha256"]):
+        raise ValueError("Precision runs were not produced by the same frozen build")
     with localcontext() as context:
         context.prec = 160
-        result = compare(**{key: json.loads(path.read_text()) for key, path in files.items()})
+        result = compare(**records, fixture_sha256=digest(files["fixture"]))
+    result["execution_provenance"] = provenance
     result["input_sha256"] = {key: digest(path) for key, path in files.items()}
     result["script_sha256"] = digest(__file__)
     Path(args.output).write_text(json.dumps(result, indent=2, default=str) + "\n")

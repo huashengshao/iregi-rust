@@ -1,0 +1,583 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "scope": "Equivalent full-graph pipeline contract and preserved-input Fortran reference qualification; no new Rust execution or performance parity qualification",
+  "source_sha256": {
+    "validation/physical/madloop/benchmark.py": "4193ecc65b0c02e9f7cd4de27ff2932e8bd9f4efb6a8defcf85ad840a33a9d1a",
+    "validation/physical/madloop/run.py": "d9168401281202b5237f57bc96339c76a1dac71a3af5891c6b70aa61826496aa",
+    "validation/benchmark/physical_alignment.py": "97cb63289ec2fe0bc07c364f4efbe2dbe71bf25cba843971e063ddc24c6ae1ef",
+    "validation/benchmark/test_physical_alignment.py": "7d4be18ad02092e509cbd47843b0838938b752b7882a7c4ad234a6e9f958ddfc",
+    "validation/benchmark/test_madloop_benchmark_modes.py": "2fda471a944212d7e01ee23a5ec8cb3991f2a221cc3af9f3362934c7f06642d5",
+    "validation/physical/compare_cli.py": "bd15231de5b8adeb70524e5b92e7f8133afd7139aa59977395acb3474e8bae5b",
+    "crates/iregi-cli/examples/physical_benchmark.rs": "ea76ce7fe1fa30171892642bcaa475b889668dabcb83cbc5e6ee11ba5231aace"
+  },
+  "boundary_tests": [
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/benchmark",
+        "-p",
+        "test_physical_alignment.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_passed": 8,
+      "log_sha256": "cc77b98b7d561283cbb8e87f6f9fdcb2367578e5022f875f8949c881a3283234"
+    },
+    {
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "validation/benchmark",
+        "-p",
+        "test_madloop_benchmark_modes.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_passed": 4,
+      "log_sha256": "d3b7a04085d6ce295683684f305d14ffff94f7d27933e4589d76f11dd7a99712"
+    }
+  ],
+  "reference_smokes": [
+    {
+      "case": "ggh",
+      "status": "reference-aligned",
+      "reference_sha256": "0635a40da5334ff28b7da05e48d7ba20bfeb660ad501602b3f274c8f355628ee",
+      "graph": {
+        "group": 1,
+        "diagram": 1,
+        "amplitude_slot": 2,
+        "rank": 3,
+        "spin_size": 4,
+        "symmetry_factor": 1,
+        "multiplier": 1,
+        "external_vertex_order": [
+          1,
+          2,
+          3
+        ],
+        "vertex_calls": [
+          "FFV1L1_2",
+          "FFV1L1_2",
+          "FFS1L1_2"
+        ],
+        "couplings": [
+          "GC_5",
+          "GC_5",
+          "GC_37"
+        ]
+      },
+      "observed_input_policy": {
+        "name": "preserve",
+        "timer": {
+          "onshell_iregi": false,
+          "check": false,
+          "threshold": 1e-06
+        },
+        "ordinary_graphs": {
+          "1": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "2": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          }
+        },
+        "checked_before_every_timed_step": true
+      },
+      "observed_call_modes": {
+        "ctmode": 1,
+        "iregimode": 2,
+        "algorithm": "Hybrid"
+      },
+      "numerator_coefficients": 35,
+      "tensor_laurent_entries": 105,
+      "final_laurent_entries": 3,
+      "correctness": {
+        "status": "passed",
+        "max_error": 0.0,
+        "committed_fixture_max_error": 0.0,
+        "committed_fixture_scope": "unchanged numerator/probe and exact point, waves, parameters, routing; legacy tensor/results are a different-policy diagnostic",
+        "committed_fixture_input_identity_passed": true,
+        "different_policy_legacy_max_error": 0.0,
+        "scope": "reference replay only against the ordinary path under the same explicit input policy: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"
+      },
+      "binary_path": "target/physical/logs/ggh/benchmark/20261023T151510.605553Z/check",
+      "binary_sha256": "675bd9ad8f8065169356e77b4f26257b7c660c5f4477bb6628e7541d4b7d6222",
+      "full_log_path": "target/physical/logs/ggh/benchmark/20261023T151510.605553Z/evaluation.log",
+      "full_log_sha256": "403749730292de9e4dfcad334bc3cce9c69f6601d2cfb47f562d6e482ab3005b",
+      "trace_sha256": "b5baf52fcc8c1d742b419ab4413b195d738838e9e368e81a5314864d0efaa66d",
+      "batch_widths": [
+        1,
+        3
+      ],
+      "repeated_blocks": 3,
+      "performance_qualified": false
+    },
+    {
+      "case": "gghh",
+      "status": "reference-aligned",
+      "reference_sha256": "2297aab31ad4a0a7a1066703fe1c206fc9fb59fb7c3aa4fb2d348e7ef53aa0cf",
+      "graph": {
+        "group": 2,
+        "diagram": 2,
+        "amplitude_slot": 3,
+        "rank": 4,
+        "spin_size": 4,
+        "symmetry_factor": 1,
+        "multiplier": 1,
+        "external_vertex_order": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "vertex_calls": [
+          "FFV1L1_2",
+          "FFV1L1_2",
+          "FFS1L1_2",
+          "FFS1L1_2"
+        ],
+        "couplings": [
+          "GC_5",
+          "GC_5",
+          "GC_37",
+          "GC_37"
+        ]
+      },
+      "observed_input_policy": {
+        "name": "preserve",
+        "timer": {
+          "onshell_iregi": false,
+          "check": false,
+          "threshold": 1e-06
+        },
+        "ordinary_graphs": {
+          "1": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "2": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "3": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "4": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "5": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "6": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          }
+        },
+        "checked_before_every_timed_step": true
+      },
+      "observed_call_modes": {
+        "ctmode": 1,
+        "iregimode": 2,
+        "algorithm": "Hybrid"
+      },
+      "numerator_coefficients": 70,
+      "tensor_laurent_entries": 210,
+      "final_laurent_entries": 3,
+      "correctness": {
+        "status": "passed",
+        "max_error": 0.0,
+        "committed_fixture_max_error": 0.0,
+        "committed_fixture_scope": "unchanged numerator/probe and exact point, waves, parameters, routing; legacy tensor/results are a different-policy diagnostic",
+        "committed_fixture_input_identity_passed": true,
+        "different_policy_legacy_max_error": 0.0,
+        "scope": "reference replay only against the ordinary path under the same explicit input policy: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"
+      },
+      "binary_path": "target/physical/logs/gghh/benchmark/20261023T151515.997273Z/check",
+      "binary_sha256": "63a6c5176d1bfb3e93b88fa70737d925223476d40d47f7223b7d1018e48ca604",
+      "full_log_path": "target/physical/logs/gghh/benchmark/20261023T151515.997273Z/evaluation.log",
+      "full_log_sha256": "428d434086c1c982b30b4a947025b230374b517f983b35227ed5313fd6c81faf",
+      "trace_sha256": "208024db4fc2ead8497227de9c1aa1bef9d1ac93edd13a426611e0a5bc1ecd6a",
+      "batch_widths": [
+        1,
+        3
+      ],
+      "repeated_blocks": 3,
+      "performance_qualified": false
+    },
+    {
+      "case": "gggg-up",
+      "status": "reference-aligned",
+      "reference_sha256": "1c958603108ef9a7a3af16457aff8ff0f5ee5569b5984e092a0667e5d86c478a",
+      "graph": {
+        "group": 2,
+        "diagram": 2,
+        "amplitude_slot": 40,
+        "rank": 4,
+        "spin_size": 4,
+        "symmetry_factor": 1,
+        "multiplier": 1,
+        "external_vertex_order": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "vertex_calls": [
+          "FFV1L1_2",
+          "FFV1L1_2",
+          "FFV1L1_2",
+          "FFV1L1_2"
+        ],
+        "couplings": [
+          "GC_5",
+          "GC_5",
+          "GC_5",
+          "GC_5"
+        ]
+      },
+      "observed_input_policy": {
+        "name": "preserve",
+        "timer": {
+          "onshell_iregi": false,
+          "check": false,
+          "threshold": 1e-06
+        },
+        "ordinary_graphs": {
+          "1": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "2": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "3": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "4": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "5": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "6": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          }
+        },
+        "checked_before_every_timed_step": true
+      },
+      "observed_call_modes": {
+        "ctmode": 1,
+        "iregimode": 2,
+        "algorithm": "Hybrid"
+      },
+      "numerator_coefficients": 70,
+      "tensor_laurent_entries": 210,
+      "final_laurent_entries": 3,
+      "correctness": {
+        "status": "passed",
+        "max_error": 0.0,
+        "committed_fixture_max_error": 0.0,
+        "committed_fixture_scope": "unchanged numerator/probe and exact point, waves, parameters, routing; legacy tensor/results are a different-policy diagnostic",
+        "committed_fixture_input_identity_passed": true,
+        "different_policy_legacy_max_error": 0.0,
+        "scope": "reference replay only against the ordinary path under the same explicit input policy: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"
+      },
+      "binary_path": "target/physical/logs/gggg-up/benchmark/20261023T151522.204027Z/check",
+      "binary_sha256": "ff713d31740fc620dcc2a55c6ced6b3f3287d1cb40bf35587d3b1e6dba445b26",
+      "full_log_path": "target/physical/logs/gggg-up/benchmark/20261023T151522.204027Z/evaluation.log",
+      "full_log_sha256": "c931de8c47450fd078359a5ee7a4877b66d4b7b2ca0d8bb60cff9333a5797f5e",
+      "trace_sha256": "c8829f19b90ec9542ccddd5fabcd2ed5a32db927ebf3de7c5bb4ff134c2f14bf",
+      "batch_widths": [
+        1,
+        3
+      ],
+      "repeated_blocks": 3,
+      "performance_qualified": false
+    },
+    {
+      "case": "gghhh",
+      "status": "reference-aligned",
+      "reference_sha256": "c8322b40ff829d22cfd4ae770f1aab5d5eb1eaac00e90fd1ce9e05875b40809a",
+      "graph": {
+        "group": 5,
+        "diagram": 5,
+        "amplitude_slot": 5,
+        "rank": 5,
+        "spin_size": 4,
+        "symmetry_factor": 1,
+        "multiplier": 1,
+        "external_vertex_order": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "vertex_calls": [
+          "FFV1L1_2",
+          "FFV1L1_2",
+          "FFS1L1_2",
+          "FFS1L1_2",
+          "FFS1L1_2"
+        ],
+        "couplings": [
+          "GC_5",
+          "GC_5",
+          "GC_37",
+          "GC_37",
+          "GC_37"
+        ]
+      },
+      "observed_input_policy": {
+        "name": "preserve",
+        "timer": {
+          "onshell_iregi": false,
+          "check": false,
+          "threshold": 1e-06
+        },
+        "ordinary_graphs": {
+          "1": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "2": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "3": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "4": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "5": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "6": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "7": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "8": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "9": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "10": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "11": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "12": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "13": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "14": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "15": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "16": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "17": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "18": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "19": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "20": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "21": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "22": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "23": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          },
+          "24": {
+            "onshell_iregi": false,
+            "check": false,
+            "threshold": 1e-06
+          }
+        },
+        "checked_before_every_timed_step": true
+      },
+      "observed_call_modes": {
+        "ctmode": 1,
+        "iregimode": 2,
+        "algorithm": "Hybrid"
+      },
+      "numerator_coefficients": 126,
+      "tensor_laurent_entries": 378,
+      "final_laurent_entries": 3,
+      "correctness": {
+        "status": "passed",
+        "max_error": 0.0,
+        "committed_fixture_max_error": 0.0,
+        "committed_fixture_scope": "unchanged numerator/probe and exact point, waves, parameters, routing; legacy tensor/results are a different-policy diagnostic",
+        "committed_fixture_input_identity_passed": true,
+        "different_policy_legacy_max_error": 0.0,
+        "scope": "reference replay only against the ordinary path under the same explicit input policy: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"
+      },
+      "binary_path": "target/physical/logs/gghhh/benchmark/20261023T151528.824658Z/check",
+      "binary_sha256": "0cf587b39371c7a0caacdecd757a1b138425b3bd61431e8cbf9e7becdd6d8c6b",
+      "full_log_path": "target/physical/logs/gghhh/benchmark/20261023T151528.824658Z/evaluation.log",
+      "full_log_sha256": "dccf41fc22e3a5d29d738b1236263b328877ebdea28aa3d20f60e833e837fd0a",
+      "trace_sha256": "9efa3272a9c822543472396ccd914a172031818f530190f548aab105e57fa033",
+      "batch_widths": [
+        1,
+        3
+      ],
+      "repeated_blocks": 3,
+      "performance_qualified": false
+    }
+  ],
+  "totals": {
+    "graphs": 4,
+    "numerator_coefficients": 301,
+    "tensor_laurent_entries": 903,
+    "final_laurent_entries": 12
+  },
+  "legacy_default": {
+    "case": "ggh",
+    "observed_input_policy": {
+      "name": "legacy",
+      "timer": {
+        "onshell_iregi": true,
+        "check": false,
+        "threshold": 1e-06
+      },
+      "ordinary_graphs": {
+        "1": {
+          "onshell_iregi": true,
+          "check": false,
+          "threshold": 1e-06
+        },
+        "2": {
+          "onshell_iregi": true,
+          "check": false,
+          "threshold": 1e-06
+        }
+      },
+      "checked_before_every_timed_step": true
+    },
+    "correctness": {
+      "status": "passed",
+      "max_error": 0.0,
+      "committed_fixture_max_error": 0.0,
+      "committed_fixture_scope": "same-policy numerator, pointwise probe, all tensor slots, and final poles",
+      "committed_fixture_input_identity_passed": true,
+      "different_policy_legacy_max_error": null,
+      "scope": "reference replay only against the ordinary path under the same explicit input policy: coefficients, every tensor coefficient, contracted Laurent output; Rust agreement is a separate gate"
+    },
+    "artifact": "legacy-default-ggh-smoke.json"
+  },
+  "historical_rust_adapter_replay": "historical-rust-ggH-replay.json",
+  "compiled_and_executed_cpu_affinity": {
+    "build": [
+      16,
+      17
+    ],
+    "run": [
+      16
+    ]
+  },
+  "timing_parity_established": false,
+  "performance_qualified": false,
+  "limitations": [
+    "Short three-block reference smoke with concurrent unrelated work; timing samples are diagnostic only.",
+    "The Rust ggH replay uses earlier recorded debug outputs; it does not qualify current production binaries.",
+    "All four fresh preserved references must still be joined with current Rust numerical and full-tensor correctness plus independent quiet-timing/provenance/uncertainty gates.",
+    "Equivalent pipelines retain different declared routing and algorithmic ranks; tensor-stage ratios remain invalid.",
+    "All output representation and fixed-factor comparison adapters are outside both timers."
+  ]
+}

@@ -95,13 +95,13 @@ deterministic 10,000-resample 99% bootstrap interval. Stage order is randomized
 with a recorded seed. An interval wider than 2% of its median is labeled
 `inconclusive-noise`. CPU frequency settings are recorded but not changed.
 
-The physical runner does not yet time a matching MadLoop or original-IREGI
-physical pipeline. Reference results establish correctness only. These data
+The Rust-only `physical_run.py` runner does not time a matching MadLoop or
+original-IREGI physical pipeline. Reference results establish correctness only. These data
 cannot establish physical performance parity; reference timing and ratios remain
 absent. The separate tensor-kernel benchmark supplies its own matched reference
 timings.
 
-The existing MadLoop timer requires additional workload alignment before a
+The historical MadLoop timer measurements require workload alignment before a
 physical timing ratio can be formed. Its generated ggH tensor rank is three,
 while the prepared polynomial has degree two; ggHHH allocates rank five while
 the prepared polynomial has degree four. Matched tensor timings must request
@@ -137,3 +137,118 @@ singleton and batch-three inputs, all seven stages and a separate profiling
 pass. Every tensor and graph comparison passed. Its identified debug executable,
 short intervals and changing live source snapshot remain explicitly unqualified
 for performance; these results cannot establish performance parity.
+
+## Equivalent physical numerical pipelines
+
+`physical_alignment.py` establishes a separate full-graph comparison contract
+for the four qualified oriented graphs. It compares the Rust
+`numerical_end_to_end` workload with MadLoop's `total`: numerical coefficient
+construction, reduction, native result conversion where needed, contraction,
+status checks, and numerical-cache/result cleanup. Both exclude graph and
+wavefunction preparation, parameter parsing, file I/O, and process transport.
+
+This is an equivalent full-graph workload. Each engine keeps its established
+loop routing and algorithmic tensor rank: Rust/MadLoop request ranks 2/3 for
+ggH, 4/4 for ggHH and the up-quark box, and 4/5 for ggHHH. Those differences
+must remain in every result. The existing three-probe numerator qualification
+establishes the relation `x=p1-q`; the helper checks its graph/model/input and
+fixture hashes without introducing a polynomial transformation. A matched
+tensor-stage comparison would additionally require identical routing, rank,
+coefficient arrays and requested moment outputs, and is a separate benchmark.
+
+The shared pipeline contract uses binary64, Hybrid reduction, the exact
+captured evaluated external point, identical model parameters and HELAS
+wavefunctions, helicity 1, and fixed adjoint-color components zero. It preserves
+input kinematics in both engines. Repeated-point batches remain declared as
+such. Structural evaluators and scratch capacity may persist, but numerical
+coefficients and integrals are recomputed each invocation; the original
+IREGI numerical cache is cleared after each sample within its timer.
+
+The code-native outputs are converted outside both timers to the common
+three-slot graph result `[finite, UV+IR single pole, IR double pole]`. Rust's
+four slots are combined as `[finite,uv+ir,ir2]`; its prepared numerator already
+contains the graph/color/fermion factors. MadLoop's stripped three slots receive
+the previously established factor `-1/2` for the top loops or `-1/8` for the
+up-quark box. Optional division by `16*pi^2` is also outside both timers.
+These comparison adapters do not enter either stage measurement.
+
+Run the reference alignment from the project root, choosing permitted CPUs:
+
+```sh
+source scripts/env.sh
+python3 validation/benchmark/physical_alignment.py --capture \
+  --cpu 16 --build-cpus 16,17 --batches 1 32
+```
+
+The MadLoop timer defaults to its unchanged legacy snapping policy. Its explicit
+`--input-policy preserve` option disables `ONSHELL_IREGI` after both ordinary
+and replay initialization, checks the effective `CHECK`/`ONSHELL_IREGI`/threshold
+state before every timed step, and exports observed policy records. It checks
+replayed coefficients, every tensor slot and final poles against the ordinary
+preserved-input path before timing. The earlier legacy fixture supplies an
+exact identity check for evaluated momenta, model values, wavefunctions and
+routing, plus coefficient/probe agreement; its tensor results are retained
+only as a different-policy diagnostic.
+
+The helper retains failed cases and emits preserved selected-graph fixtures
+for subsequent Rust checks. It computes no timing ratio and does not qualify
+performance. Rust binary64 failures remain failures; higher-precision runs
+must be reported separately. The Rust-only `physical_run.py` measurements and
+these reference measurements still require joint correctness, provenance,
+quiet-CPU and uncertainty qualification before a full-pipeline ratio is valid.
+
+## Joint full-graph runner
+
+`physical_joint.py` orchestrates the Rust numerical pipeline and the preserved
+MadLoop pipeline for each graph. Without `--execute` it writes a planned ledger
+and starts no numerical process. Use a fresh output directory for every attempt:
+
+```sh
+python3 validation/benchmark/physical_joint.py --execute \
+  --rust target/optimized/release/examples/physical_benchmark \
+  --build-manifest target/benchmark/physical/physical-rust-build.json \
+  --cpu 0 --batches 1 32 --repeats 21 --warmup 5 --block-ms 30 \
+  --quiet-window-note "Coordinated runtime slot; competing project builds paused" \
+  --output target/benchmark/physical-joint/attempt-01/results.json
+```
+
+The note records the coordinated quiet-window context; it does not prove that
+the host was free of interference. Missing quiet context, fewer than 21 blocks,
+fewer than 3 warmups or blocks targeted below 30 ms remain diagnostic. The runner
+retains a row for every requested graph/batch, even when preparation, reference
+execution, correctness, or provenance fails. A timeout kills only the process
+group launched for that phase. Completed raw responses and phase logs survive
+interruption, and a new attempt cannot overwrite them.
+
+Before comparing timings, the runner joins every Rust prepare, calibration,
+timed and profiling response to its requested batch and rechecks full canonical
+tensor arrays plus all three preserved graph coefficients. It parses the
+MadLoop trace again, checks effective policy and call modes, and requires its
+raw block sequence to match the published stage samples. Both executable
+identities, raw logs, producer sources, generated reference inputs, cards and
+linked archives are retained or hashed. The original canonical-IBP pentagon
+exception remains explicitly visible under the established PV/hybrid gate.
+
+Immutable Rust build sources and their build-time assets must match the build
+manifest. Numerical model, graph, point, fixture and audit data must also match
+the live inputs. Python validation producers can evolve independently of that
+compiled snapshot; their live hashes are recorded and must remain unchanged
+throughout the run. This distinction permits updated reference capture without
+rewriting an older build manifest or treating changed numerical inputs as the
+same benchmark.
+
+The two timer processes run sequentially per graph. Their samples are independent,
+so the estimator is `median(Rust numerical_end_to_end) / median(MadLoop total)`.
+Each of 10,000 bootstrap resamples draws independently from both sample arrays;
+block indices are never paired. The per-family 99% interval and each pipeline's
+own median interval must have relative width at most 2%. A narrow ratio interval
+below 1 is an improvement, one containing 1 is operational parity, and one above 1
+is a regression. Wider intervals are inconclusive. These are per-family
+operational intervals, not simultaneous-family confidence or a formal statistical
+equivalence test. Separate runs remain sensitive to drift between engines;
+within-run bootstrap uncertainty does not measure that drift.
+
+The runner preserves all component timings and the independent profiling pass,
+but forms a ratio only from the two complete numerical pipeline stages. No
+physical parity result is established merely by adding this runner or by the
+earlier reference-only smoke captures.

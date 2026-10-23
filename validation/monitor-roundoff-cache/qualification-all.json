@@ -1,0 +1,57 @@
+{
+  "recorded_utc": "2026-10-23T15:52:22.634274+00:00",
+  "status": "passed",
+  "scope": "serial numerical correctness; no performance or actual concurrent execution",
+  "cpu_affinity": [
+    0
+  ],
+  "group": "all",
+  "results": [
+    {
+      "name": "baseline-stability",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/baseline-unit",
+        "stability::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 7.171457285992801,
+      "binary_sha256": "3e7b2b9f49bc6bdd9d47d2547fe1dd444487a2b0802a882a9119e1676564330c",
+      "log_sha256": "77521d53b904ed4eac70759766a5eb28ed6cf29e6b7452d1c3cd400bb438172a",
+      "tests_passed": 19,
+      "tests_failed": 0,
+      "unittest_seconds": 5.26
+    },
+    {
+      "name": "candidate-stability",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate-unit",
+        "stability::tests",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "exit_code": 0,
+      "seconds": 7.650450450950302,
+      "binary_sha256": "a2ca906d089ce4501ac53b471d704abbde66729fcc904cca033cd774cd98a03b",
+      "log_sha256": "62d72d4780c52392bfafd9dbe3e0a594518fdb0aa7c01b2978b4f0ff7e5286a8",
+      "tests_passed": 27,
+      "tests_failed": 0,
+      "unittest_seconds": 5.69
+    },
+    {
+      "name": "protocol",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/protocol"
+      ],
+      "exit_code": 0,
+      "seconds": 11.49868574901484,
+      "binary_sha256": "879af2c18b07f1bdd6a8d5deacdf3faeecc9195648bc06ba99e196d105184046",
+      "log_sha256": "fc9357596c03f6e754882cff606ed97b13bab83afdd260c50d7333af9feda002",
+      "snapshots_compared": 120
+    }
+  ],
+  "filter_scope": "stability::tests only:19baseline+27candidate; arguments/quadrature10 pervariant omitted in this run",
+  "production_adopted": false,
+  "performance_status": "unmeasured"
+}

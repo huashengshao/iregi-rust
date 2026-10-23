@@ -1,0 +1,42 @@
+{
+  "status": "intentional_diagnostic_stop_no_numerics",
+  "raw_process_status": "completed",
+  "raw_exit_code": 2,
+  "public_status": "workspace_failed",
+  "stop_reason": "reduction preparation: reduction preparation: diagnostic stop after unchanged reverse pass",
+  "plan_seconds": 59.291567293,
+  "instrumented_reverse_seconds": 152.994985325,
+  "substage_totals": {
+    "union_seconds": 0.05050211500000102,
+    "intern_seconds": 0.013226005000003612,
+    "collect_seconds": 152.79149385900092,
+    "paths": 26114,
+    "max_paths": 4,
+    "unconditional_sets": 25559,
+    "max_union_bytes": 27,
+    "predicate_aliases": 15
+  },
+  "collector_counts": {
+    "visited_nodes": 270405574,
+    "visited_ifs": 825,
+    "visited_variables": 155133562,
+    "alias_occurrences": 65995224,
+    "literal_one_occurrences": 65993388,
+    "already_unconditional": 65970269,
+    "duplicate_insertions": 65970100,
+    "max_entry_paths": 4
+  },
+  "matching_baseline_dependencies": {
+    "iregi_masters": "0103094825ec960c856c17b09bc676f02135e3bc1c210ecc3d4ea93d44ec2f84",
+    "symbolica": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850"
+  },
+  "interpretation": "Alias traversal and repeated insertions dominate this instrumented pass. The measured unions are small, so suffix interning is not prioritized. Added counters/set lookups increase collector cost; these are diagnostic timings, not unchanged performance or numerical qualification.",
+  "artifacts": {
+    "validation/public-highpoint/reverse-profile-build.json": "8d1dd7324af08a5ecc1f4b228dcab07810f1ad5ce3035737cda8d65c49db18c7",
+    "validation/public-highpoint/n6-rank7-reverse-profile-128-53-run.json": "7ebcae9a6f69ef8fde37a92605119b740830481f55253a418027d62dd6dcceaf",
+    "validation/public-highpoint/n6-rank7-reverse-profile-128-53.json": "5c50ce4438cf6cf16964f05217c4cbef30025b9101ff2c64bbb2703e53470075",
+    "validation/public-highpoint/n6-rank7-reverse-profile-128-53.log": "803c67e5d9c6d9bebc01098e45e6d622335cae85b8245ba5b9d12367ce186f5e",
+    "validation/public-highpoint/reverse-profile-instrumentation.patch": "ed2ff59e115e7ef53e9d17d0770654f081f451043c7976febda4121230139acc",
+    "validation/public-highpoint/qualify_reverse_profile.py": "af0c5f147d687e48daf5460576df8c89095f1ffbf3c910cfafe67034bbf3c753"
+  }
+}

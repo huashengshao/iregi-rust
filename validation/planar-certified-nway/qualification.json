@@ -1,0 +1,66 @@
+{
+  "status": "isolated-candidate-qualified-for-recorded-cases",
+  "production_promoted": false,
+  "binary_sha256": "9ec3975a12240da22e4f433761b66a429fe2dd9d1071c7af228bf55386edf402",
+  "source_candidate": "candidate.json",
+  "comparison": "complex norm error <=1e-10*max(complex reference norm, physical_scale^(rank-6)); ordinary128/256 convergence uses2^-65 with identical normalization",
+  "tests": [
+    {
+      "test": "certified_planar_float_batches_preserve_binary64_target_and_converge",
+      "report": "target/planar-certified/nway-normalized-certified_planar_float_batches_preserve_binary64_target_and_converge.json",
+      "report_sha256": "4be5af1f93695a3e3de0132eb23251427cb613d96dce8daa675f0488b2738617",
+      "log_sha256": "9da65e1ff9249de886962b6a295bd4c4c55d1fd68b076ee05d3c0fc43fc6badc",
+      "elapsed_seconds": 12.7893416529987,
+      "retained_report": "runs/nway-normalized-certified_planar_float_batches_preserve_binary64_target_and_converge.json",
+      "retained_log": "runs/nway-normalized-certified_planar_float_batches_preserve_binary64_target_and_converge.log"
+    },
+    {
+      "test": "certified_planar_rotating_mixed_jets_match_independent_box_identity",
+      "report": "target/planar-certified/nway-normalized-certified_planar_rotating_mixed_jets_match_independent_box_identity.json",
+      "report_sha256": "b2834089fb6a5b5f4ddd9472bb7a5e7c45ddf784146be5ebb2fddacf0d2d1ee6",
+      "log_sha256": "74a2f69ae2e4c1fc418926e6f9e65633f38fd28eb936ec33ced6438beffeb64f",
+      "elapsed_seconds": 52.16552772698924,
+      "retained_report": "runs/nway-normalized-certified_planar_rotating_mixed_jets_match_independent_box_identity.json",
+      "retained_log": "runs/nway-normalized-certified_planar_rotating_mixed_jets_match_independent_box_identity.log"
+    },
+    {
+      "test": "certified_planar_all_330_moments_match_independent_box_identity",
+      "report": "target/planar-certified/nway-normalized-certified_planar_all_330_moments_match_independent_box_identity.json",
+      "report_sha256": "d512cb2f3c62165d841e11da6962640fa80ad4686f2a0f474c42f451cdd8589e",
+      "log_sha256": "414aedbb53cf14b5486e4eebf26a1baf52b9f14e36c36a1539aaeccd53aede7b",
+      "elapsed_seconds": 258.78729030897375,
+      "retained_report": "runs/nway-normalized-certified_planar_all_330_moments_match_independent_box_identity.json",
+      "retained_log": "runs/nway-normalized-certified_planar_all_330_moments_match_independent_box_identity.log"
+    }
+  ],
+  "scope": [
+    "ordinary seven-lane two-chart rank2 Float128/256 at requested53, exact failed-lane isolation and normalized convergence",
+    "ordered six-component mixed/second Dual rank2 Float128 at requested53; tangent fullarrays, transverse component3 rejection, independent box identity",
+    "rank7 Float128 at requested53; all330 moments \u00d74 Laurent slots versus five successful independent box reductions"
+  ],
+  "limitations": [
+    "No production normal-Workspace fallback integration",
+    "Not a performance qualification; former180s timeouts and current300s bound are not comparable speed measurements",
+    "Known wrapper analytic_rows counts chart-dispatched failed scale lane; metadata must be repaired before promotion",
+    "No rank7 Float256 convergence or rank7 mixedDual run yet",
+    "Existing prototype is not yet compiled against current generalizedPV/allocator changes"
+  ],
+  "historical_evidence": "validation/planar-certified/qualification.json",
+  "initial_test_compile_failure": "initial-build-failure.json",
+  "next_diagnostic": "target/planar-certified/nway-profile-candidate.json (source-only; outside this numerical qualification)",
+  "schema_version": 1,
+  "kind": "private-planar-nway-normalized-checkpoint",
+  "baseline": "validation/planar-certified/qualification.json",
+  "baseline_phase_build": "validation/planar-certified/builds/compile-phase.json",
+  "evidence_manifest": "files.json",
+  "retained_build": "build.json",
+  "retained_source": "source/",
+  "phase_seconds": {
+    "primary_structural": 21.587498019,
+    "primary_local_checks": 13.637206031,
+    "primary_primal_amplitudes": 135.435993338,
+    "primary_workspace": 181.081652208,
+    "primary_numerical_batch": 5.437206985,
+    "independent_box_primal_amplitudes": 29.492059559
+  }
+}

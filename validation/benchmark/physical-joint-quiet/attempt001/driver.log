@@ -1,0 +1,20 @@
+Traceback (most recent call last):
+  File "/shared/external/iregi/iregi-rust/validation/benchmark/physical_joint.py", line 575, in <module>
+    raise SystemExit(main())
+                     ~~~~^^
+  File "/shared/external/iregi/iregi-rust/validation/benchmark/physical_joint.py", line 532, in main
+    row["correctness"] = validate_rust_row(case, width, source, row_files, reference, options, rust_data["build"]["master_backend"])
+                         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/validation/benchmark/physical_joint.py", line 347, in validate_rust_row
+    check_output(case, width, response["output"], configuration, canonical, reference)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/validation/benchmark/physical_joint.py", line 306, in check_output
+    alignment.finite_pair(pair)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/shared/external/iregi/iregi-rust/validation/benchmark/physical_alignment.py", line 45, in finite_pair
+    or any(isinstance(component, bool) for component in value)):
+       ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/shared/external/iregi/iregi-rust/validation/benchmark/physical_alignment.py", line 45, in <genexpr>
+    or any(isinstance(component, bool) for component in value)):
+           ~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyboardInterrupt

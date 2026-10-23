@@ -1,0 +1,271 @@
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/contraction.rs:81:27
+   |
+81 |                   Atom::var(symbolica::symbol!(format!(
+   |  ___________________________^
+82 | |                     "iregi_contract::coefficient_{index}"
+83 | |                 )))
+   | |__________________^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/contraction.rs:97:40
+   |
+97 |                   let moment = Atom::var(symbolica::symbol!(format!(
+   |  ________________________________________^
+98 | |                     "iregi_contract::moment_{index}_{pole}"
+99 | |                 )));
+   | |__________________^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/convention.rs:25:22
+   |
+25 |     let eps_symbol = symbolica::symbol!("iregi_internal::convention_eps");
+   |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/convention.rs:27:23
+   |
+27 |     let a = Atom::var(symbolica::symbol!("iregi_internal::convention_a"));
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/convention.rs:28:23
+   |
+28 |     let b = Atom::var(symbolica::symbol!("iregi_internal::convention_b"));
+   |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/convention.rs:30:19
+   |
+30 |           Atom::var(symbolica::symbol!(format!(
+   |  ___________________^
+31 | |             "iregi_internal::convention_value{slot}"
+32 | |         )))
+   | |__________^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/convention.rs:98:17
+   |
+98 |                 symbolica::parse!("𝑖") * pi.pow(2 + i64::from(settings.dimension_shift));
+   |                 ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::parse` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/ibp.rs:453:31
+    |
+453 |           let alias = Atom::var(symbolica::symbol!(format!(
+    |  _______________________________^
+454 | |             "iregi::ibp_{}_node_{}",
+455 | |             self.alias_namespace,
+456 | |             self.aliases.len()
+457 | |         )));
+    | |__________^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/ibp.rs:884:23
+    |
+884 |             Atom::var(symbolica::symbol!(format!("iregi::master_{id}_{slot}")))
+    |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/ibp.rs:908:27
+    |
+908 |                 Atom::var(symbolica::symbol!(format!("iregi::master_d6_{id}_{slot}")))
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+    --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/ibp.rs:1435:22
+     |
+1435 |     let eps_symbol = symbolica::symbol!("iregi_internal::laurent_eps");
+     |                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+     = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+     = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+    --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/ibp.rs:1437:23
+     |
+1437 |     let a = Atom::var(symbolica::symbol!("iregi_internal::laurent_a"));
+     |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+     = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+     = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+    --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/ibp.rs:1439:19
+     |
+1439 |           Atom::var(symbolica::symbol!(format!(
+     |  ___________________^
+1440 | |             "iregi_internal::laurent_value{i}"
+1441 | |         )))
+     | |__________^
+     |
+     = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+     = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+     = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/invariant_certificate.rs:590:15
+    |
+590 |       Atom::var(symbolica::symbol!(format!(
+    |  _______________^
+591 | |         "iregi_invariant_certificate::{name}"
+592 | |     )))
+    | |______^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/plan.rs:986:15
+    |
+986 |     Atom::var(symbolica::symbol!(format!("iregi::{name}")))
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/pv.rs:168:43
+    |
+168 |                     let alias = Atom::var(symbolica::symbol!(format!("iregi::pv_s{i}_{j}")));
+    |                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/pv.rs:210:51
+    |
+210 |             z: std::array::from_fn(|mu| Atom::var(symbolica::symbol!(format!("iregi::pv_z{mu}")))),
+    |                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/pv.rs:297:31
+    |
+297 |           let alias = Atom::var(symbolica::symbol!(format!(
+    |  _______________________________^
+298 | |             "iregi::pv_node_{}",
+299 | |             self.aliases.len()
+300 | |         )));
+    | |__________^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/snapping.rs:153:32
+    |
+153 |           let symbol = Atom::var(symbolica::symbol!(format!(
+    |  ________________________________^
+154 | |             "iregi_snap::node_{}",
+155 | |             self.aliases.len()
+156 | |         )));
+    | |__________^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/stability/quadrature.rs:382:15
+    |
+382 |       Atom::var(symbolica::symbol!(format!(
+    |  _______________^
+383 | |         "iregi_quadrature_error::{name}"
+384 | |     )))
+    | |______^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/stability.rs:498:36
+    |
+498 |               let handle = Atom::var(symbolica::symbol!(format!(
+    |  ____________________________________^
+499 | |                 "iregi::master_amplitude_{}",
+500 | |                 self.primal_aliases.len()
+501 | |             )));
+    | |______________^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+   --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/stability.rs:630:31
+    |
+630 |           let alias = Atom::var(symbolica::symbol!(format!(
+    |  _______________________________^
+631 | |             "iregi::stability_path_{}",
+632 | |             self.predicate_aliases.len()
+633 | |         )));
+    | |__________^
+    |
+    = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+    = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+    = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+    --> /shared/external/iregi/iregi-rust/target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/stability.rs:1454:27
+     |
+1454 |     let alias = Atom::var(symbolica::symbol!(format!("{namespace}_{}", aliases.len())));
+     |                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+     = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+     = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 23 previous errors
+

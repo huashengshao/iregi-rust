@@ -1,0 +1,152 @@
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/stability.rs /shared/external/iregi/iregi-rust/target/public-highpoint/reverse-profile/source/crates/iregi-rust/src/stability.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/stability.rs	2026-10-23 15:47:45.377529814 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/reverse-profile/source/crates/iregi-rust/src/stability.rs	2026-10-23 16:42:46.956589804 +0000
+@@ -132,6 +132,14 @@
+         }
+         eprintln!("HIGHPOINT_PHASE root alias uses END elapsed={:?} uses={}", phase_started.elapsed(), uses.len());
+         let mut reachable = HashMap::new();
++        REVERSE_COUNTS.with(|counts| *counts.borrow_mut() = ReverseCounts::default());
++        let mut reverse_union_seconds = 0.0f64;
++        let mut reverse_intern_seconds = 0.0f64;
++        let mut reverse_collect_seconds = 0.0f64;
++        let mut reverse_total_paths = 0usize;
++        let mut reverse_max_paths = 0usize;
++        let mut reverse_unconditional_sets = 0usize;
++        let mut reverse_max_union_bytes = 0usize;
+         eprintln!("HIGHPOINT_PHASE reverse alias uses START");
+         let phase_started = std::time::Instant::now();
+         for (phase_index, (alias, body)) in plan.aliases.iter().rev().enumerate() {
+@@ -139,12 +147,35 @@
+                 eprintln!("HIGHPOINT_PHASE reverse alias uses PROGRESS index={} elapsed={:?} uses={} reachable={}", phase_index, phase_started.elapsed(), uses.len(), reachable.len());
+             }
+             if let Some(paths) = uses.remove(alias) {
+-                let active = monitor.intern_predicate(union_paths(paths), &mut predicate_indices);
++                reverse_total_paths += paths.len();
++                reverse_max_paths = reverse_max_paths.max(paths.len());
++                reverse_unconditional_sets += usize::from(paths.contains(&always));
++                let detail_started = std::time::Instant::now();
++                let union = union_paths(paths);
++                let union_seconds = detail_started.elapsed().as_secs_f64();
++                reverse_union_seconds += union_seconds;
++                let union_bytes = union.as_view().get_byte_size();
++                reverse_max_union_bytes = reverse_max_union_bytes.max(union_bytes);
++                let detail_started = std::time::Instant::now();
++                let active = monitor.intern_predicate(union, &mut predicate_indices);
++                let intern_seconds = detail_started.elapsed().as_secs_f64();
++                reverse_intern_seconds += intern_seconds;
++                let detail_started = std::time::Instant::now();
+                 collect_alias_uses(body.as_view(), &active, &definitions, &mut uses);
++                let collect_seconds = detail_started.elapsed().as_secs_f64();
++                reverse_collect_seconds += collect_seconds;
++                if union_seconds + intern_seconds + collect_seconds >= 0.25 {
++                    eprintln!("HIGHPOINT_REVERSE SLOW index={} union={} intern={} collect={} union_bytes={} body_bytes={}", phase_index, union_seconds, intern_seconds, collect_seconds, union_bytes, body.as_view().get_byte_size());
++                }
+                 reachable.insert(alias.clone(), active);
+             }
+         }
+         eprintln!("HIGHPOINT_PHASE reverse alias uses END elapsed={:?} reachable={}", phase_started.elapsed(), reachable.len());
++        eprintln!("HIGHPOINT_REVERSE TOTAL union_seconds={} intern_seconds={} collect_seconds={} paths={} max_paths={} unconditional_sets={} max_union_bytes={} predicate_aliases={}", reverse_union_seconds, reverse_intern_seconds, reverse_collect_seconds, reverse_total_paths, reverse_max_paths, reverse_unconditional_sets, reverse_max_union_bytes, monitor.predicate_aliases.len());
++        REVERSE_COUNTS.with(|counts| eprintln!("HIGHPOINT_REVERSE COUNTERS {:?}", counts.borrow()));
++        if std::env::var_os("IREGI_DIAGNOSTIC_STOP_AFTER_REVERSE").is_some() {
++            return Err(ReductionError::Preparation("diagnostic stop after unchanged reverse pass".into()));
++        }
+         eprintln!("HIGHPOINT_PHASE local checks START");
+         let phase_started = std::time::Instant::now();
+         let mut denominators = BTreeSet::new();
+@@ -1377,53 +1408,86 @@
+     }
+ }
+ 
++#[derive(Debug, Default)]
++struct ReverseCounts {
++    visited_nodes: u64,
++    visited_ifs: u64,
++    visited_variables: u64,
++    alias_occurrences: u64,
++    literal_one_occurrences: u64,
++    already_unconditional: u64,
++    duplicate_insertions: u64,
++    max_entry_paths: usize,
++}
++thread_local! {
++    static REVERSE_COUNTS: std::cell::RefCell<ReverseCounts> = std::cell::RefCell::new(ReverseCounts::default());
++}
++
+ fn collect_alias_uses(
+     value: AtomView<'_>,
+     active: &Atom,
+     definitions: &HashMap<Atom, Atom>,
+     uses: &mut HashMap<Atom, BTreeSet<Atom>>,
+ ) {
++    REVERSE_COUNTS.with(|counts| collect_alias_uses_profiled(value, active, definitions, uses, &mut counts.borrow_mut()));
++}
++
++fn collect_alias_uses_profiled(
++    value: AtomView<'_>,
++    active: &Atom,
++    definitions: &HashMap<Atom, Atom>,
++    uses: &mut HashMap<Atom, BTreeSet<Atom>>,
++    counts: &mut ReverseCounts,
++) {
++    counts.visited_nodes += 1;
+     if let Some((condition, yes, no)) = if_parts(value) {
+-        collect_alias_uses(condition, active, definitions, uses);
+-        collect_alias_uses(
++        counts.visited_ifs += 1;
++        collect_alias_uses_profiled(condition, active, definitions, uses, counts);
++        collect_alias_uses_profiled(
+             yes,
+             &branch_path(active, condition, true),
+             definitions,
+-            uses,
++            uses, counts,
+         );
+-        collect_alias_uses(
++        collect_alias_uses_profiled(
+             no,
+             &branch_path(active, condition, false),
+             definitions,
+-            uses,
++            uses, counts,
+         );
+         return;
+     }
+     match value {
+         AtomView::Var(_) => {
++            counts.visited_variables += 1;
+             let alias = value.to_owned();
+             if definitions.contains_key(&alias) {
+-                uses.entry(alias).or_default().insert(active.clone());
++                counts.alias_occurrences += 1;
++                counts.literal_one_occurrences += u64::from(active == &Atom::num(1));
++                let entry = uses.entry(alias).or_default();
++                counts.already_unconditional += u64::from(entry.contains(&Atom::num(1)));
++                if !entry.insert(active.clone()) { counts.duplicate_insertions += 1; }
++                counts.max_entry_paths = counts.max_entry_paths.max(entry.len());
+             }
+         }
+         AtomView::Pow(power) => {
+             for term in power {
+-                collect_alias_uses(term, active, definitions, uses);
++                collect_alias_uses_profiled(term, active, definitions, uses, counts);
+             }
+         }
+         AtomView::Add(sum) => {
+             for term in sum {
+-                collect_alias_uses(term, active, definitions, uses);
++                collect_alias_uses_profiled(term, active, definitions, uses, counts);
+             }
+         }
+         AtomView::Mul(product) => {
+             for term in product {
+-                collect_alias_uses(term, active, definitions, uses);
++                collect_alias_uses_profiled(term, active, definitions, uses, counts);
+             }
+         }
+         AtomView::Fun(function) => {
+             for term in function {
+-                collect_alias_uses(term, active, definitions, uses);
++                collect_alias_uses_profiled(term, active, definitions, uses, counts);
+             }
+         }
+         _ => {}

@@ -5,6 +5,7 @@ import argparse
 import hashlib
 import json
 import os
+import resource
 import signal
 import subprocess
 import time
@@ -16,6 +17,7 @@ def sha(path):
 
 def main():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--cpu", type=int, default=0)
     parser.add_argument("name")
     parser.add_argument("n", type=int, choices=[6, 7])
     parser.add_argument("--rank", type=int, default=7, choices=range(8))
@@ -24,14 +26,22 @@ def main():
     parser.add_argument("--requested-bits", type=int, default=53)
     parser.add_argument("--rows", type=int, default=1, choices=[1, 2, 3])
     parser.add_argument("--limit", type=float, required=True)
+    parser.add_argument("--variant", default="baseline", choices=["baseline", "candidate", "phase", "nway"])
+    parser.add_argument("--primal-sum-mode", choices=["legacy", "nway", "verify"])
     args = parser.parse_args()
+    if args.primal_sum_mode is not None and args.variant != "nway":
+        parser.error("primal sum mode is only defined for the isolated nway diagnostic")
     if not args.name.replace("-", "").replace("_", "").isalnum() or not 0 < args.limit <= 600:
         parser.error("name must be alphanumeric; timeout must be positive and at most 600 seconds")
     root = Path.cwd()
     here = root / "validation/public-highpoint"
-    build = json.loads((here / "build.json").read_text())
+    build_path = here / {"baseline": "build.json", "candidate": "candidate-build.json", "phase": "phase-build.json", "nway": "nway-build.json"}[args.variant]
+    build = json.loads(build_path.read_text())
     assert build["status"] == "passed"
-    binary = root / "target/public-highpoint/highpoint_public"
+    binary = root / ("target/public-highpoint/highpoint_public" if args.variant == "baseline"
+                     else f"target/public-highpoint/{args.variant}/highpoint_public")
+    if args.variant == "nway":
+        binary = root / build["binary_path"]
     source = root / "crates/iregi-rust/examples/highpoint_public.rs"
     fixture = here / "fixture-conditioned_masses.json"
     output = here / (args.name + ".json")
@@ -40,17 +50,33 @@ def main():
     assert not any(p.exists() for p in [output, log, manifest_path]), "Use a distinct evidence name"
     assert sha(binary) == build["binary_sha256"]
     assert sha(source) == build["source_sha256"]
-    command = ["taskset", "-c", "0", str(binary), str(fixture.relative_to(root)), str(args.n),
+    frozen_sources = {}
+    if args.variant != "baseline":
+        snapshot = root / build["frozen_core_source"]
+        for path, expected in build["library_source_hashes"].items():
+            frozen = snapshot / Path(path).relative_to("crates/iregi-rust")
+            assert sha(frozen) == expected
+            frozen_sources[frozen] = expected
+    command = ["taskset", "-c", str(args.cpu), str(binary), str(fixture.relative_to(root)), str(args.n),
                str(args.rank), args.algorithm, str(args.working_bits), str(args.requested_bits),
                str(args.rows), str(output.relative_to(root))]
     env = os.environ.copy()
     env["IREGI_PV_PREPARATION_PROFILE"] = "1"
+    env["RAYON_NUM_THREADS"] = "1"
+    profile_environment = {"IREGI_PV_PREPARATION_PROFILE": "1", "RAYON_NUM_THREADS": "1"}
+    if args.variant != "baseline":
+        env["IREGI_PREPARATION_PROFILE"] = "1"
+        profile_environment["IREGI_PREPARATION_PROFILE"] = "1"
+    if args.variant == "nway":
+        env["IREGI_PRIMAL_SUM_MODE"] = args.primal_sum_mode or "nway"
+        profile_environment["IREGI_PRIMAL_SUM_MODE"] = env["IREGI_PRIMAL_SUM_MODE"]
     record = {"schema_version": 1, "status": "started", "started_utc": datetime.now(timezone.utc).isoformat(),
               "command": command, "timeout_seconds": args.limit, "binary_sha256": sha(binary),
-              "fixture_sha256": sha(fixture), "build_manifest_sha256": sha(here / "build.json"),
+              "fixture_sha256": sha(fixture), "build_manifest_sha256": sha(build_path),
               "probe_source_sha256": sha(source), "runner_source_sha256": sha(Path(__file__)),
-              "environment_additions": {"IREGI_PV_PREPARATION_PROFILE": "1"},
-              "timing_status": "diagnostic only; not an optimized controlled performance comparison"}
+              "variant": args.variant, "environment_additions": profile_environment,
+              "timing_status": "diagnostic only; not an optimized controlled performance comparison",
+              "license_scope": "Private user-supplied Symbolica license; license contents excluded from evidence. CPU affinity and RAYON_NUM_THREADS=1 retained."}
     manifest_path.write_text(json.dumps(record, indent=2) + "\n")
     start = time.monotonic()
     with log.open("wb") as stream:
@@ -69,6 +95,9 @@ def main():
     assert sha(fixture) == record["fixture_sha256"]
     assert sha(source) == record["probe_source_sha256"]
     assert sha(Path(__file__)) == record["runner_source_sha256"]
+    assert all(sha(path) == expected for path, expected in frozen_sources.items())
+    record["peak_child_rss_kib"] = resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss
+    record["frozen_source_files_unchanged"] = len(frozen_sources)
     if output.exists():
         record["result_sha256"] = sha(output)
         record["last_public_stage"] = json.loads(output.read_text())["status"]

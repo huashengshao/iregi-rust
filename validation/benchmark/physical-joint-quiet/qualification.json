@@ -1,0 +1,977 @@
+{
+  "schema_version": 1,
+  "kind": "quiet-equivalent-physical-pipeline-qualification",
+  "packaged_utc": "2026-10-23T16:40:02.243859+00:00",
+  "status": "complete-with-inconclusive-timings-and-failures",
+  "performance_parity_established": false,
+  "source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "binary": {
+    "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/bin/physical_benchmark",
+    "sha256": "b2440afd7a147af11fb21b8bb9f5e37522df4a588ea4d0d03d8dad371e911775"
+  },
+  "backend": "SymbolicaBatch",
+  "started_utc": "2026-10-23T16:24:16.975596+00:00",
+  "finished_utc": "2026-10-23T16:32:08.728275+00:00",
+  "options": {
+    "cpu": 0,
+    "batches": [
+      1,
+      32
+    ],
+    "repeats": 21,
+    "warmup": 5,
+    "block_ms": 30.0
+  },
+  "quiet_window_note": "ROOT coordinated exclusive project timing and source-freeze window after attempt001 invalidation: CPU0 reserved; native D0 paused; all project heavy builds, numerical jobs and Rust/Cargo/benchmark producer writes held throughout both engine phases",
+  "producer_inputs_unchanged": true,
+  "counts": {
+    "failed": 2,
+    "measured": 6
+  },
+  "contract": "Equivalent complete numerical graph pipelines; algorithmic ranks/routings differ as declared. Rust numerical_end_to_end versus MadLoop total. Final comparison factors outside both timers.",
+  "statistical_method": "Independent bootstrap of the ratio of medians, 10000 resamples, 99% per-family intervals; both pipeline and ratio CI relative widths must be at most0.02.",
+  "limitations": [
+    "Separate runs are sensitive to drift between engines; bootstrap intervals describe within-run sampling only",
+    "A quiet-window note records coordination, not proof of absence of host interference",
+    "Repeated fixed-point lanes do not establish phase-space throughput",
+    "All six measured timing rows exceed the unchanged2% uncertainty threshold; observed slower medians are diagnostic optimization evidence, not a qualified parity or regression gate.",
+    "ggHHH b1/b32 fail before timing with the actual preserved-input binary64 derived-distance conditioning diagnostic. No output is substituted and no guard threshold is relaxed.",
+    "Frozen binaries/archives remain under target and are hash-bound but are not committed; all text evidence and complete raw responses are retained here with deterministic gzip for large files."
+  ],
+  "rows": [
+    {
+      "case": "ggh",
+      "batch_width": 1,
+      "status": "measured",
+      "gate": "inconclusive-noise",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "ratio": {
+        "ratio": 8.114400876109736,
+        "ci99": [
+          7.80798629646936,
+          8.574979179353782
+        ],
+        "relative_ci_width": 0.09452242927048236,
+        "statistical_gate": "inconclusive-noise",
+        "method": "independent bootstrap of ratio of medians; Rust / MadLoop ns per complete batch",
+        "resamples": 10000,
+        "seed": 161803,
+        "sample_counts": [
+          21,
+          21
+        ],
+        "confidence_scope": "per-family operational interval, not simultaneous family confidence or a formal equivalence test"
+      },
+      "pipeline_summaries": {
+        "rust": {
+          "samples_ns": [
+            875680.3142857143,
+            868377.1428571428,
+            894032.0857142857,
+            863217.7142857143,
+            849579.0857142857,
+            898692.6857142857,
+            1328586.4,
+            929002.2285714286,
+            891975.8,
+            919985.6,
+            931953.6571428571,
+            940762.5142857142,
+            931045.9428571429,
+            861485.7142857143,
+            866631.1714285715,
+            877347.7714285714,
+            863947.4285714285,
+            867576.8571428572,
+            855030.8571428572,
+            879599.2,
+            869991.7428571428
+          ],
+          "unit": "ns/batch",
+          "median_ns": 877347.7714285714,
+          "ci99_ns": [
+            866631.1714285715,
+            919985.6
+          ],
+          "minimum_ns": 849579.0857142857,
+          "maximum_ns": 1328586.4,
+          "relative_mad": 0.01807955483494211,
+          "relative_ci_width": 0.06081331748817502,
+          "uncertainty": "inconclusive-noise"
+        },
+        "madloop": {
+          "samples_ns": [
+            104773.78515625,
+            104610.169921875,
+            106056.25,
+            105904.35546875,
+            107440.47265625,
+            116257.455078125,
+            109577.802734375,
+            110067.787109375,
+            107322.4453125,
+            105839.900390625,
+            105591.658203125,
+            108193.8359375,
+            106310.134765625,
+            162130.359375,
+            108275.3203125,
+            112478.615234375,
+            115936.810546875,
+            118557.130859375,
+            111423.318359375,
+            108122.310546875,
+            107287.2109375
+          ],
+          "unit": "ns/batch",
+          "median_ns": 108122.310546875,
+          "ci99_ns": [
+            106056.25,
+            111423.318359375
+          ],
+          "minimum_ns": 104610.169921875,
+          "maximum_ns": 162130.359375,
+          "relative_mad": 0.020513389576182196,
+          "relative_ci_width": 0.0496388611400251,
+          "uncertainty": "inconclusive-noise"
+        }
+      },
+      "correctness": {
+        "canonical_tensors_passed": true,
+        "preserved_graph_passed": true,
+        "checked_raw_responses": 110,
+        "tensor_moments_per_lane": 15,
+        "native_slots_per_moment": 4,
+        "original_modes": [
+          0,
+          1,
+          2
+        ],
+        "max_initial_tensor_normalized_error": 3.540129055639618e-15
+      }
+    },
+    {
+      "case": "ggh",
+      "batch_width": 32,
+      "status": "measured",
+      "gate": "inconclusive-noise",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "ratio": {
+        "ratio": 6.917709614363136,
+        "ci99": [
+          6.816856996821025,
+          7.061198835121907
+        ],
+        "relative_ci_width": 0.03532120483831213,
+        "statistical_gate": "inconclusive-noise",
+        "method": "independent bootstrap of ratio of medians; Rust / MadLoop ns per complete batch",
+        "resamples": 10000,
+        "seed": 161803,
+        "sample_counts": [
+          21,
+          21
+        ],
+        "confidence_scope": "per-family operational interval, not simultaneous family confidence or a formal equivalence test"
+      },
+      "pipeline_summaries": {
+        "rust": {
+          "samples_ns": [
+            23001156.0,
+            22873956.0,
+            23448047.5,
+            23141811.5,
+            23312962.0,
+            23269392.0,
+            23191902.0,
+            23197922.0,
+            23555688.0,
+            23132686.5,
+            24905632.5,
+            23146776.5,
+            23710683.5,
+            23273406.5,
+            23709248.5,
+            23386677.5,
+            23179112.0,
+            25556419.5,
+            28671735.0,
+            26172617.0,
+            24879577.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 23312962.0,
+          "ci99_ns": [
+            23179112.0,
+            23710683.5
+          ],
+          "minimum_ns": 22873956.0,
+          "maximum_ns": 28671735.0,
+          "relative_mad": 0.007732844071894425,
+          "relative_ci_width": 0.022801542764064042,
+          "uncertainty": "inconclusive-noise"
+        },
+        "madloop": {
+          "samples_ns": [
+            3358728.0,
+            3370201.1875,
+            3321696.625,
+            4005055.75,
+            3403023.125,
+            3407448.125,
+            3415841.3125,
+            3414891.3125,
+            3371235.5625,
+            3340856.0625,
+            3352874.1875,
+            3345353.5625,
+            3415641.875,
+            3357883.5625,
+            3366316.75,
+            3354344.8125,
+            3405607.5625,
+            3360024.875,
+            3370040.5625,
+            3372203.6875,
+            3354564.875
+          ],
+          "unit": "ns/batch",
+          "median_ns": 3370040.5625,
+          "ci99_ns": [
+            3354564.875,
+            3405607.5625
+          ],
+          "minimum_ns": 3321696.625,
+          "maximum_ns": 4005055.75,
+          "relative_mad": 0.005093818510975266,
+          "relative_ci_width": 0.015146015768467476,
+          "uncertainty": "within-2-percent"
+        }
+      },
+      "correctness": {
+        "canonical_tensors_passed": true,
+        "preserved_graph_passed": true,
+        "checked_raw_responses": 110,
+        "tensor_moments_per_lane": 15,
+        "native_slots_per_moment": 4,
+        "original_modes": [
+          0,
+          1,
+          2
+        ],
+        "max_initial_tensor_normalized_error": 3.540129055639618e-15
+      }
+    },
+    {
+      "case": "gghh",
+      "batch_width": 1,
+      "status": "measured",
+      "gate": "inconclusive-noise",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "ratio": {
+        "ratio": 12.036118153116437,
+        "ci99": [
+          11.8539958889051,
+          12.303391794818447
+        ],
+        "relative_ci_width": 0.03733727936170082,
+        "statistical_gate": "inconclusive-noise",
+        "method": "independent bootstrap of ratio of medians; Rust / MadLoop ns per complete batch",
+        "resamples": 10000,
+        "seed": 161803,
+        "sample_counts": [
+          21,
+          21
+        ],
+        "confidence_scope": "per-family operational interval, not simultaneous family confidence or a formal equivalence test"
+      },
+      "pipeline_summaries": {
+        "rust": {
+          "samples_ns": [
+            11938669.333333334,
+            13458234.333333334,
+            11540905.0,
+            11529638.333333334,
+            11688508.666666666,
+            11617905.0,
+            11930446.0,
+            11816689.0,
+            12016956.333333334,
+            12131576.666666666,
+            11687562.0,
+            11691812.333333334,
+            12151180.0,
+            11685398.666666666,
+            11649908.666666666,
+            11528654.666666666,
+            11818275.666666666,
+            11775869.0,
+            11494868.0,
+            11184953.333333334,
+            11231914.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 11688508.666666666,
+          "ci99_ns": [
+            11540905.0,
+            11930446.0
+          ],
+          "minimum_ns": 11184953.333333334,
+          "maximum_ns": 13458234.333333334,
+          "relative_mad": 0.01359201056901289,
+          "relative_ci_width": 0.03332683502309362,
+          "uncertainty": "inconclusive-noise"
+        },
+        "madloop": {
+          "samples_ns": [
+            1031113.71875,
+            969687.5625,
+            967628.1875,
+            1053566.28125,
+            971119.46875,
+            968518.1875,
+            966234.4375,
+            975951.625,
+            997970.46875,
+            974202.90625,
+            972637.28125,
+            967621.3125,
+            970232.28125,
+            976597.90625,
+            975596.34375,
+            969407.90625,
+            1002858.0,
+            967550.375,
+            963629.75,
+            977425.09375,
+            963866.03125
+          ],
+          "unit": "ns/batch",
+          "median_ns": 971119.46875,
+          "ci99_ns": [
+            967628.1875,
+            976597.90625
+          ],
+          "minimum_ns": 963629.75,
+          "maximum_ns": 1053566.28125,
+          "relative_mad": 0.004610014672821377,
+          "relative_ci_width": 0.009236472997030521,
+          "uncertainty": "within-2-percent"
+        }
+      },
+      "correctness": {
+        "canonical_tensors_passed": true,
+        "preserved_graph_passed": true,
+        "checked_raw_responses": 110,
+        "tensor_moments_per_lane": 70,
+        "native_slots_per_moment": 4,
+        "original_modes": [
+          0,
+          1,
+          2
+        ],
+        "max_initial_tensor_normalized_error": 7.851109929844182e-14
+      }
+    },
+    {
+      "case": "gghh",
+      "batch_width": 32,
+      "status": "measured",
+      "gate": "inconclusive-noise",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "ratio": {
+        "ratio": 5.202533720004487,
+        "ci99": [
+          5.086522790550605,
+          5.421446383000992
+        ],
+        "relative_ci_width": 0.06437701521521295,
+        "statistical_gate": "inconclusive-noise",
+        "method": "independent bootstrap of ratio of medians; Rust / MadLoop ns per complete batch",
+        "resamples": 10000,
+        "seed": 161803,
+        "sample_counts": [
+          21,
+          21
+        ],
+        "confidence_scope": "per-family operational interval, not simultaneous family confidence or a formal equivalence test"
+      },
+      "pipeline_summaries": {
+        "rust": {
+          "samples_ns": [
+            192610537.0,
+            165656348.0,
+            161507704.0,
+            167805125.0,
+            166285590.0,
+            172798991.0,
+            159467268.0,
+            188090752.0,
+            162824858.0,
+            162811258.0,
+            175825831.0,
+            158228423.0,
+            159986479.0,
+            174702148.0,
+            159612638.0,
+            160456050.0,
+            160213989.0,
+            162572918.0,
+            159641357.0,
+            169175329.0,
+            167622994.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 162824858.0,
+          "ci99_ns": [
+            160213989.0,
+            169175329.0
+          ],
+          "minimum_ns": 158228423.0,
+          "maximum_ns": 192610537.0,
+          "relative_mad": 0.020620868589979056,
+          "relative_ci_width": 0.05503668242105883,
+          "uncertainty": "inconclusive-noise"
+        },
+        "madloop": {
+          "samples_ns": [
+            31362683.0,
+            31156103.0,
+            31752085.0,
+            33076459.0,
+            31204833.0,
+            31297223.0,
+            31049972.0,
+            31212244.0,
+            31836295.0,
+            33513690.0,
+            52792755.0,
+            31792395.0,
+            31180683.0,
+            31056263.0,
+            31217123.0,
+            31095153.0,
+            31306724.0,
+            31503684.0,
+            31722005.0,
+            30899732.0,
+            31068053.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 31297223.0,
+          "ci99_ns": [
+            31156103.0,
+            31752085.0
+          ],
+          "minimum_ns": 30899732.0,
+          "maximum_ns": 52792755.0,
+          "relative_mad": 0.007322374895689627,
+          "relative_ci_width": 0.019042647969118538,
+          "uncertainty": "within-2-percent"
+        }
+      },
+      "correctness": {
+        "canonical_tensors_passed": true,
+        "preserved_graph_passed": true,
+        "checked_raw_responses": 110,
+        "tensor_moments_per_lane": 70,
+        "native_slots_per_moment": 4,
+        "original_modes": [
+          0,
+          1,
+          2
+        ],
+        "max_initial_tensor_normalized_error": 7.851109929844182e-14
+      }
+    },
+    {
+      "case": "gggg-up",
+      "batch_width": 1,
+      "status": "measured",
+      "gate": "inconclusive-noise",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "ratio": {
+        "ratio": 8.007796699505478,
+        "ci99": [
+          7.642303866534168,
+          8.225255691286616
+        ],
+        "relative_ci_width": 0.0727980300484462,
+        "statistical_gate": "inconclusive-noise",
+        "method": "independent bootstrap of ratio of medians; Rust / MadLoop ns per complete batch",
+        "resamples": 10000,
+        "seed": 161803,
+        "sample_counts": [
+          21,
+          21
+        ],
+        "confidence_scope": "per-family operational interval, not simultaneous family confidence or a formal equivalence test"
+      },
+      "pipeline_summaries": {
+        "rust": {
+          "samples_ns": [
+            7352490.4,
+            7138163.6,
+            7320808.2,
+            7518663.0,
+            7242164.0,
+            7303150.0,
+            7383122.2,
+            7205507.8,
+            7303322.0,
+            7771553.8,
+            8774557.0,
+            7101711.6,
+            7196673.6,
+            6969931.0,
+            6887548.8,
+            6597167.8,
+            6933201.0,
+            6767220.4,
+            6714684.0,
+            7584969.2,
+            7462020.6
+          ],
+          "unit": "ns/batch",
+          "median_ns": 7242164.0,
+          "ci99_ns": [
+            6969931.0,
+            7383122.2
+          ],
+          "minimum_ns": 6597167.8,
+          "maximum_ns": 8774557.0,
+          "relative_mad": 0.030357859888287483,
+          "relative_ci_width": 0.05705355471099525,
+          "uncertainty": "inconclusive-noise"
+        },
+        "madloop": {
+          "samples_ns": [
+            904389.09375,
+            966640.53125,
+            934203.859375,
+            889867.625,
+            900796.25,
+            1897120.484375,
+            921856.625,
+            969315.859375,
+            920946.3125,
+            892888.421875,
+            902437.8125,
+            907213.46875,
+            890312.9375,
+            891461.84375,
+            890312.625,
+            890412.0,
+            925644.296875,
+            923208.046875,
+            903810.640625,
+            896062.015625,
+            920639.90625
+          ],
+          "unit": "ns/batch",
+          "median_ns": 904389.09375,
+          "ci99_ns": [
+            892888.421875,
+            923208.046875
+          ],
+          "minimum_ns": 889867.625,
+          "maximum_ns": 1897120.484375,
+          "relative_mad": 0.015564615769118457,
+          "relative_ci_width": 0.033524978584473335,
+          "uncertainty": "inconclusive-noise"
+        }
+      },
+      "correctness": {
+        "canonical_tensors_passed": true,
+        "preserved_graph_passed": true,
+        "checked_raw_responses": 110,
+        "tensor_moments_per_lane": 70,
+        "native_slots_per_moment": 4,
+        "original_modes": [
+          0,
+          1,
+          2
+        ],
+        "max_initial_tensor_normalized_error": 3.365515480281239e-14
+      }
+    },
+    {
+      "case": "gggg-up",
+      "batch_width": 32,
+      "status": "measured",
+      "gate": "inconclusive-noise",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "ratio": {
+        "ratio": 4.074974098277005,
+        "ci99": [
+          3.997256506845441,
+          4.115821866743455
+        ],
+        "relative_ci_width": 0.02909597878134895,
+        "statistical_gate": "inconclusive-noise",
+        "method": "independent bootstrap of ratio of medians; Rust / MadLoop ns per complete batch",
+        "resamples": 10000,
+        "seed": 161803,
+        "sample_counts": [
+          21,
+          21
+        ],
+        "confidence_scope": "per-family operational interval, not simultaneous family confidence or a formal equivalence test"
+      },
+      "pipeline_summaries": {
+        "rust": {
+          "samples_ns": [
+            112538611.0,
+            113470404.0,
+            115816202.0,
+            116454775.0,
+            117682309.0,
+            115851752.0,
+            115699002.0,
+            115912053.0,
+            115170880.0,
+            113845106.0,
+            113186304.0,
+            114206326.0,
+            119503265.0,
+            113599006.0,
+            114775319.0,
+            116373764.0,
+            135534778.0,
+            136099479.0,
+            121723672.0,
+            116889376.0,
+            116543256.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 115851752.0,
+          "ci99_ns": [
+            114206326.0,
+            116889376.0
+          ],
+          "minimum_ns": 112538611.0,
+          "maximum_ns": 136099479.0,
+          "relative_mad": 0.014202858149266487,
+          "relative_ci_width": 0.023159339014570967,
+          "uncertainty": "inconclusive-noise"
+        },
+        "madloop": {
+          "samples_ns": [
+            28337673.5,
+            28956860.5,
+            28253183.5,
+            28351838.5,
+            28283098.5,
+            28359983.5,
+            28911530.0,
+            28365509.0,
+            28419243.5,
+            28410589.0,
+            28872725.5,
+            28491479.0,
+            28400008.5,
+            28430058.5,
+            29006965.5,
+            28528984.5,
+            30560656.0,
+            28572259.5,
+            28401574.0,
+            29336152.0,
+            28505089.5
+          ],
+          "unit": "ns/batch",
+          "median_ns": 28430058.5,
+          "ci99_ns": [
+            28365509.0,
+            28872725.5
+          ],
+          "minimum_ns": 28253183.5,
+          "maximum_ns": 30560656.0,
+          "relative_mad": 0.0032495536370422875,
+          "relative_ci_width": 0.0178408531941642,
+          "uncertainty": "within-2-percent"
+        }
+      },
+      "correctness": {
+        "canonical_tensors_passed": true,
+        "preserved_graph_passed": true,
+        "checked_raw_responses": 110,
+        "tensor_moments_per_lane": 70,
+        "native_slots_per_moment": 4,
+        "original_modes": [
+          0,
+          1,
+          2
+        ],
+        "max_initial_tensor_normalized_error": 3.365515480281239e-14
+      }
+    },
+    {
+      "case": "gghhh",
+      "batch_width": 1,
+      "status": "failed",
+      "gate": "unqualified",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "error": "ValueError: Rust producer process did not complete successfully",
+      "engine_failure": {
+        "error": "lane 0: Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\")",
+        "status": "error"
+      },
+      "rust_stages_present": []
+    },
+    {
+      "case": "gghhh",
+      "batch_width": 32,
+      "status": "failed",
+      "gate": "unqualified",
+      "rust_provenance_qualified": true,
+      "rust_input_policy": "Preserve",
+      "madloop_input_policy": "preserve",
+      "error": "ValueError: Rust producer process did not complete successfully",
+      "engine_failure": {
+        "error": "lane 0: Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\")",
+        "status": "error"
+      },
+      "rust_stages_present": []
+    }
+  ],
+  "phases": {
+    "ggh": {
+      "rust": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:24:19.218600+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:24:39.422012+00:00",
+        "wall_seconds": 20.202757354010828
+      },
+      "madloop": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:24:39.431219+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:24:58.429208+00:00",
+        "wall_seconds": 18.997116192011163
+      }
+    },
+    "gghh": {
+      "rust": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:25:07.352814+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:26:49.755828+00:00",
+        "wall_seconds": 102.3960371920839
+      },
+      "madloop": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:26:49.780950+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:27:08.027994+00:00",
+        "wall_seconds": 18.23888794204686
+      }
+    },
+    "gggg-up": {
+      "rust": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:27:33.759448+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:29:12.894987+00:00",
+        "wall_seconds": 99.12634853099007
+      },
+      "madloop": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:29:12.926534+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:29:33.071738+00:00",
+        "wall_seconds": 20.12840402999427
+      }
+    },
+    "gghhh": {
+      "rust": {
+        "status": "failed",
+        "started_utc": "2026-10-23T16:29:55.707038+00:00",
+        "returncode": 1,
+        "finished_utc": "2026-10-23T16:31:17.314435+00:00",
+        "wall_seconds": 81.59249256108887
+      },
+      "madloop": {
+        "status": "complete",
+        "started_utc": "2026-10-23T16:31:17.340997+00:00",
+        "returncode": 0,
+        "finished_utc": "2026-10-23T16:32:08.326627+00:00",
+        "wall_seconds": 50.96215862699319
+      }
+    }
+  },
+  "build_proof_post_run": {
+    "status": "passed",
+    "scope": "Packaging-time independent reread after both numerical phases; not claimed as part of the original runner finalizer",
+    "initial_and_three_successful_per_case_proofs_identical": true,
+    "failed_case_proof_not_returned_by_original_runner": true,
+    "current_parent_cargo_archives_builders_and_binary_match": true,
+    "proof": {
+      "kind": "verified-workspace-parent",
+      "returncode": 0,
+      "parent_manifest": {
+        "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/workspace-build-recovered.json",
+        "sha256": "e424964884496b0afffacfa785ef4a37d817123325a01a2da6bdf415c6c5145d"
+      },
+      "cargo_stream": {
+        "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/cargo.jsonl",
+        "sha256": "66b334bb8c0cb9b965fc764011ecb9648cf5fa4a0c421f05a110bee3bb78f3e4"
+      },
+      "binary": {
+        "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/bin/physical_benchmark",
+        "sha256": "b2440afd7a147af11fb21b8bb9f5e37522df4a588ea4d0d03d8dad371e911775"
+      },
+      "archives": [
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libiregi_masters-736462b347335a0f.rlib",
+          "sha256": "738a432b25a6431920b4241d921836bd21d2bb4af93527f96ac81089a269c927"
+        },
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libiregi_rust-b16ff118efb36669.rlib",
+          "sha256": "5edc973e99921ca9adc0a03f05d35056e980bcd09902927da63bd20dc58ccf0d"
+        },
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/liboneloop-6117c7de19c8681b.rlib",
+          "sha256": "daf0c29f2e7b1a3ebb73477a93821c077ee857777c57c6832791ed6e04bede98"
+        },
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+          "sha256": "9bc81668488576cccd312ac542566bb6bc72d60fb63b77435c6d70d38dc49fb7"
+        },
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/deps/libsymbolica-8e79cbf264045859.rlib",
+          "sha256": "4de63b0f0dab5490d47163a6c54fa14eb50854ad1ac14dfcbd4f91ff06fb265e"
+        }
+      ],
+      "builder_sources": [
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/builder/build_workspace.py",
+          "sha256": "e03bd649e1aca43f46f2a57c69e61edc35db2a49eb1f9d6bf7c717c51c003c94"
+        },
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/builder/build_physical.py",
+          "sha256": "99ca5a6ab2091887e14f9491848e4d71fae4fa9776d467ef30701b4021e80b87"
+        },
+        {
+          "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/builder/run.py",
+          "sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+        }
+      ],
+      "bound_fields": [
+        "status",
+        "started_at",
+        "finished_at",
+        "command",
+        "requested_revision",
+        "source_revision",
+        "source_root",
+        "master_backend",
+        "backend_qualification",
+        "environment",
+        "profile",
+        "rustc",
+        "cargo",
+        "source_sha256",
+        "assets_sha256",
+        "provenance_qualified"
+      ],
+      "source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+      "child_fields_supplied_by_parent": [
+        "returncode",
+        "source_sha256_before",
+        "assets_sha256_before"
+      ]
+    }
+  },
+  "python_tests": {
+    "passed": 80,
+    "failed": 0,
+    "scope": "Retained pre-run current harness suite",
+    "log": "python-tests.log"
+  },
+  "initial_attempt": {
+    "status": "interrupted",
+    "started_utc": "2026-10-23T16:18:22.055233+00:00",
+    "finished_utc": "2026-10-23T16:22:55.122061+00:00",
+    "producer_inputs_unchanged": false,
+    "performance_parity_established": false,
+    "counts": {
+      "failed": 2,
+      "interrupted": 1,
+      "measured": 3,
+      "not_run": 2
+    },
+    "reason": "New validation-only live Rust source changed during the first attempt; frozen compiled80949db inputs were unchanged. The run was interrupted and retained; attempt002 started after all source producers confirmed a freeze.",
+    "gghh_detail": "Both underlying Rust numerical rows passed; producer exit1 was due workspace source provenance drift, unlike the real ggHHH conditioning failure in attempt002.",
+    "rows": [
+      {
+        "case": "ggh",
+        "batch_width": 1,
+        "status": "measured",
+        "gate": "provenance-changed"
+      },
+      {
+        "case": "ggh",
+        "batch_width": 32,
+        "status": "measured",
+        "gate": "provenance-changed"
+      },
+      {
+        "case": "gghh",
+        "batch_width": 1,
+        "status": "failed",
+        "gate": "unqualified"
+      },
+      {
+        "case": "gghh",
+        "batch_width": 32,
+        "status": "failed",
+        "gate": "unqualified"
+      },
+      {
+        "case": "gggg-up",
+        "batch_width": 1,
+        "status": "measured",
+        "gate": "provenance-changed"
+      },
+      {
+        "case": "gggg-up",
+        "batch_width": 32,
+        "status": "interrupted",
+        "gate": "not_run"
+      },
+      {
+        "case": "gghhh",
+        "batch_width": 1,
+        "status": "not_run",
+        "gate": "not_run"
+      },
+      {
+        "case": "gghhh",
+        "batch_width": 32,
+        "status": "not_run",
+        "gate": "not_run"
+      }
+    ]
+  },
+  "file_manifest": "files.json",
+  "review": {
+    "status": "passed; no blocker found",
+    "reviewer": "/root/checkpoint_audit",
+    "scope": "Independent read-only comparison of all eight gates, six exact ratio/pipeline summaries,660 raw-response count, actual ggHHH guard errors and unchanged provenance, and invalidated attempt001 history. No build or numerical runtime by reviewer."
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "kind": "preserved-ggHHH-conditioning-and-precision-diagnosis",
+  "status": "higher-precision-qualification-passed",
+  "recorded_utc": "2026-10-23T16:51:12.774888+00:00",
+  "source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "input_scope": "Frozen physical joint attempt002 ggHHH singleton; every one of 95 numeric sample components promoted from its represented binary64 value exactly; all 4 negative zeros preserved. Model/DOT text unchanged. Input policy Preserve and requested accuracy 53 unchanged.",
+  "input_audit": {
+    "file": "routing-audit.json",
+    "sha256": "c32175a24ce7954975d343a02c11827ed88a80c5783c320d9ff6e34f662b51ad",
+    "independent_reviewer": "/root/precision_rescue/physical_alignment_review",
+    "scope": "Read-only source/input exact-rational arithmetic and promotion audit; no numerical engine execution."
+  },
+  "guard_unchanged": true,
+  "automatic_rescue_wrapper_tested": false,
+  "performance_gate": false,
+  "binary64_benchmark_rows_changed": false,
+  "initial_binary64_failure": {
+    "error": "lane 0: Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\")",
+    "status": "error"
+  },
+  "precision_rows": [
+    {
+      "working_bits": 128,
+      "requested_bits": 53,
+      "numerical_response_status": "error",
+      "producer_status": "error",
+      "wall_seconds": 39.380636018002406,
+      "error": "lane 0: Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 128 in recurrence pv_node_852, Taylor component 0; this estimate is not a certified error bound\")",
+      "postprocessing_error": null,
+      "source_binary_request_rechecked": true,
+      "external_comparison_passed": null
+    },
+    {
+      "working_bits": 256,
+      "requested_bits": 53,
+      "numerical_response_status": "prepared",
+      "producer_status": "failed",
+      "wall_seconds": 33.33230975898914,
+      "error": null,
+      "postprocessing_error": "ValueError: could not convert string to float: '3298534842346227/8796093022208'",
+      "source_binary_request_rechecked": true,
+      "external_comparison_passed": true
+    },
+    {
+      "working_bits": 512,
+      "requested_bits": 53,
+      "numerical_response_status": "prepared",
+      "producer_status": "prepared",
+      "wall_seconds": 43.83489289798308,
+      "error": null,
+      "postprocessing_error": null,
+      "source_binary_request_rechecked": true,
+      "external_comparison_passed": true
+    }
+  ],
+  "convergence": {
+    "schema_version": 1,
+    "status": "passed",
+    "method": "Decimal200 numerical comparison of preserved textual outputs; no binary64 conversion in convergence",
+    "working_bits": [
+      256,
+      512
+    ],
+    "accuracy_bits": 53,
+    "input_policy": "Preserve",
+    "same_exact_binary64_input_components": true,
+    "complex_tensor_slots_checked": 280,
+    "native_graph_slots_checked": 4,
+    "normalization": "complex absolute difference / max(Q^dimension,abs(higher precision reference)),Q=750",
+    "tolerance": "1e-10",
+    "max_normalized_tensor_difference": "2.1729426745495755210683920075782847081581854075054530608245136639919184232913096108716905761566986197999267824119318657672081604601938966327687888240340233492898925271381505781737429195126161340120305E-55",
+    "normalized_graph_differences": [
+      "0E+202",
+      "0E+202",
+      "0E+202",
+      "3.3444260173208440705461025332022351619511280921394542912923475384240630384480421631571930989501994940273621160308800164631893487928274249759306316612281602919829554763130141973902333474327379265015631E-57"
+    ],
+    "full_tensor_convergence_passed": true,
+    "graph_convergence_passed": true,
+    "response_sha256": {
+      "128": "98c646bf3f295793868835f699c297ffec4ac0ea7550ec340163f384767ff84a",
+      "256": "1034bdd78de206575a678ebb5758ca2bec3f51c69090adf8f034bd60965bc544",
+      "512": "9ea58f807611e22446d2a430fbfbae03787d6c399a04f8bae80dcee120f1a324"
+    }
+  },
+  "original_reference": {
+    "required_modes": [
+      1,
+      2
+    ],
+    "all_280_native_complex_tensor_slots_compared": true,
+    "max_normalized_error": 4.616163909670565e-14,
+    "known_ibp_mode0_mismatch_retained": true,
+    "ibp_max_normalized_error": 0.6001338886546049
+  },
+  "preserved_madloop": {
+    "all_three_graph_laurent_slots_compared": true,
+    "max_normalized_error": 9.28879888726549e-14
+  },
+  "limitations": [
+    "This qualifies one physical point at working 256/512 and requested 53, not all ggHHH kinematics or full 256-bit output accuracy.",
+    "The default binary64 benchmark failure remains; 128-bit evaluation also fails its unchanged recurrence cancellation guard at pv_node_852.",
+    "The 256-bit first driver captured a successful numerical response then failed because the binary64 benchmark comparator cannot parse rational input strings. Separate retained comparison.json uses the original binary64 normalization metadata; the numerical output and producer failure history are unchanged.",
+    "The 512-bit driver applies that corrected reference-comparison adapter. Full 256/512 convergence uses 200-decimal-digit arithmetic over output strings without intermediate binary64 conversion.",
+    "Reported wall times include graph/evaluator preparation and are diagnostic only; these are single-lane Float pipeline runs, not the library PrecisionRescueWorkspace API or timing parity measurements.",
+    "Canonical routed input and captured MadLoop routing differ at rounding level owing to a small external momentum conservation residual. The same preserved canonical point is compared at 256/512 and against its corresponding original IREGI PV/hybrid arrays; the separately routed graph comparison passes 1e-10."
+  ],
+  "binary": {
+    "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/80949db-default-resume/bin/physical_benchmark",
+    "sha256": "b2440afd7a147af11fb21b8bb9f5e37522df4a588ea4d0d03d8dad371e911775"
+  },
+  "build_proof": "validation/benchmark/physical-joint-quiet/build/workspace-build-recovered.json",
+  "build_proof_sha256": "e424964884496b0afffacfa785ef4a37d817123325a01a2da6bdf415c6c5145d",
+  "file_manifest": "files.json"
+}

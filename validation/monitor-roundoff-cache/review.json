@@ -1,0 +1,25 @@
+{
+  "recorded_utc": "2026-10-23T15:39:36.323404+00:00",
+  "reviewer": "independent monitor_cache_review subagent",
+  "status": "no_concrete_correctness_blocker_under_public_workspace_invariants",
+  "checks": [
+    "fully guarded Symbolica monitor expressions are interned before numerical caching",
+    "only successful unchanged OperandRoundoff::complex estimates are cached",
+    "original finiteness/error/check/component/term and owned-addition order retained",
+    "empty cache takes original uncached checker without accessing layout",
+    "public ordinary and validated Dual layouts have nonzero component counts",
+    "dense repeated-index mapping and checked total size bound flat-key arithmetic",
+    "every inspected lane advances generation; wrap clears all stamps; clones own state",
+    "Float represented value, precision and sign retained by clone; no formula replacement",
+    "no primal/output namespace reuse"
+  ],
+  "limitations": [
+    "numerical tests pending",
+    "performance unmeasured; only approximately8-9percent local term calls are redundant in two observed high-point plans",
+    "private estimate helper requires begin_lane first; production sole entry enforces that invariant"
+  ],
+  "source_sha256": {
+    "target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/stability.rs": "00c38841254410840512813772ca417f8438dcd17129b37dd4925efafeeb95f6",
+    "target/monitor-roundoff-cache/candidate/crates/iregi-rust/src/execution.rs": "2d8e1617eab37ead5c855f81d90a2a331938cb3212bb7cdcd72f65c0e70a0c64"
+  }
+}

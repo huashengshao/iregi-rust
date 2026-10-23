@@ -28,15 +28,25 @@ for (workload, rows), blocks in sorted(groups.items()):
         for _ in range(20000)
     )
     interval = [samples[100], samples[19899]]
+    median_speedup = math.exp(statistics.median(logs))
+    latency_ratio = 1.0 / median_speedup
+    latency_interval = [1.0 / interval[1], 1.0 / interval[0]]
+    relative_width = (latency_interval[1] - latency_interval[0]) / latency_ratio
+    narrow = relative_width <= 0.02
     results.append({
         "workload": workload,
         "rows": rows,
         "paired_blocks": len(blocks),
         "baseline_median_ns_per_batch": statistics.median(old),
         "candidate_median_ns_per_batch": statistics.median(new),
-        "median_paired_speedup": math.exp(statistics.median(logs)),
+        "median_paired_speedup": median_speedup,
+        "candidate_over_baseline_latency_ratio": latency_ratio,
+        "latency_ratio_ci99": latency_interval,
+        "relative_ci_width": relative_width,
+        "ci_width_qualified": narrow,
+        "classification": ("inconclusive-noise" if not narrow else "improvement" if latency_interval[1] < 1 else "regression" if latency_interval[0] > 1 else "parity"),
         "paired_bootstrap_99_percent_interval": interval,
-        "classification": (
+        "direction_without_width_gate": (
             "candidate faster" if interval[0] > 1 else
             "candidate slower" if interval[1] < 1 else
             "unresolved at 99 percent"
@@ -46,6 +56,7 @@ output = {
     "scope": "Isolated f64 core guard overhead with matched direct-rustc builds; not full reference-code acceptance benchmark",
     "method": "21 alternating paired blocks, median log ratio, 20000 paired bootstrap resamples, deterministic seed14050301, percentile99 interval",
     "speedup_definition": "baseline time / candidate time",
+    "classification_gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise",
     "results": results,
 }
 (directory / "guard-probe-analysis.json").write_text(json.dumps(output, indent=2) + "\n")

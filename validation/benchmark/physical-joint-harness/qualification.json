@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "kind": "physical-joint-harness-boundary-qualification",
+  "recorded_utc": "2026-10-23T15:58:53.508575+00:00",
+  "status": "python-and-offline-reparse-passed",
+  "source_sha256": {
+    "validation/benchmark/physical_joint.py": "9e51d3a42b899e54731c3a20c1f7d22b0fd5eb7045b13dd407c8baa9e05711a2",
+    "validation/benchmark/physical_run.py": "ba3262440551763bbe848705d59be4e6c92069ed9299cfd7c70d79f8b062ba5f",
+    "validation/benchmark/physical_alignment.py": "97cb63289ec2fe0bc07c364f4efbe2dbe71bf25cba843971e063ddc24c6ae1ef",
+    "validation/benchmark/test_physical_joint.py": "d67d9913783e18748c09d717850113e02600a2cded6d7b4449a1003b31e04cf9",
+    "validation/benchmark/test_physical_build_provenance.py": "33dfb2f7bcf75da675250e33c03508bc1064326acaf5008fcd30977cc791067b",
+    "validation/benchmark/test_physical_harness.py": "b07b791f907b6451e024c1cbe5e92422a2419c37605d5cf45feb7327e0b9e117",
+    "validation/benchmark/PHYSICAL.md": "a3a16e4a217c1a1f385e39a665e842d60b7b4434cf2e09b1c8a834f70a36f9a6",
+    "validation/physical/madloop/benchmark.py": "4193ecc65b0c02e9f7cd4de27ff2932e8bd9f4efb6a8defcf85ad840a33a9d1a",
+    "validation/physical/madloop/run.py": "d9168401281202b5237f57bc96339c76a1dac71a3af5891c6b70aa61826496aa"
+  },
+  "tests": {
+    "command": "source scripts/env.sh; python3 -m unittest discover -s validation/benchmark -p 'test_*.py' -v",
+    "passed": 74,
+    "failed": 0,
+    "log": "python-tests.log",
+    "sha256": "47b48e8c87b1481c7ea460e3d3155fd1b1633839234efcd4effb9d9d45f18449"
+  },
+  "offline_reference_reparse": {
+    "cases": [
+      "gghh",
+      "gggg-up",
+      "gghhh"
+    ],
+    "passed": 3,
+    "artifact": "reference-reparse.json",
+    "sha256": "2cae83be7e95bdce4eadbf36a656d68b3b9230c382343131f06c3f1834cf7cef"
+  },
+  "plan_only": {
+    "artifact": "plan-only.json",
+    "sha256": "48385722d8e5779cfdedb92fc2f880aba07b3e7a549013f88375cd60435b2dcd",
+    "status": "planned",
+    "cases": [
+      "ggh"
+    ],
+    "batches": [
+      1,
+      3
+    ],
+    "numerical_processes_started": 0
+  },
+  "review": {
+    "initial_findings": [
+      "Final provenance failures must still finalize ledger",
+      "Existing evidence directories must not be overwritten",
+      "Bootstrap nonfinite/underflow ratios must be rejected",
+      "Interrupted runs must not claim parity",
+      "Successful saved results cannot override nonzero producer exits"
+    ],
+    "resolution": "Implemented with boundary tests; final independent read-only audit found no further concrete blockers",
+    "reviewer": "/root/checkpoint_audit",
+    "reviewed_source_sha256": {
+      "validation/benchmark/physical_joint.py": "9e51d3a42b899e54731c3a20c1f7d22b0fd5eb7045b13dd407c8baa9e05711a2",
+      "validation/benchmark/physical_run.py": "ba3262440551763bbe848705d59be4e6c92069ed9299cfd7c70d79f8b062ba5f"
+    },
+    "review_scope": "Producer exit handling, raw per-response/stage/batch joins, immutable/live provenance split, final hash failure handling, aggregate parity suppression; reviewer executed no numerical runtime or tests"
+  },
+  "numerical_runtime_executed": false,
+  "performance_parity_established": false,
+  "limitations": [
+    "New joint runner has not yet executed either numerical engine",
+    "Retained reference reparses use prior three-block smoke captures and do not qualify timings",
+    "Canonical/public-core runtime qualification remains in separately recorded artifacts",
+    "Next step is bounded current optimized ggH joint smoke, followed by a coordinated quiet comparison for every requested family"
+  ],
+  "test_source_sha256": {
+    "validation/benchmark/test_kernel_accounting.py": "8e7313adcd0d5342b8219435791490ca0a87b6ff66188d1dcbae2060d5ee2de0",
+    "validation/benchmark/test_kernel_protocol.py": "fdd59884140aac005594299d2d1bc786c247432f03cd9033e9a727b9d4592129",
+    "validation/benchmark/test_madloop_benchmark_modes.py": "2fda471a944212d7e01ee23a5ec8cb3991f2a221cc3af9f3362934c7f06642d5",
+    "validation/benchmark/test_physical_alignment.py": "7d4be18ad02092e509cbd47843b0838938b752b7882a7c4ad234a6e9f958ddfc",
+    "validation/benchmark/test_physical_build_provenance.py": "33dfb2f7bcf75da675250e33c03508bc1064326acaf5008fcd30977cc791067b",
+    "validation/benchmark/test_physical_harness.py": "b07b791f907b6451e024c1cbe5e92422a2419c37605d5cf45feb7327e0b9e117",
+    "validation/benchmark/test_physical_joint.py": "d67d9913783e18748c09d717850113e02600a2cded6d7b4449a1003b31e04cf9",
+    "validation/benchmark/test_physical_reference_shape.py": "ba434feed2c7b0e557647bc5302cee8923969960dd11dd08153295f831a9d75c",
+    "validation/benchmark/test_process_transport.py": "882cb1de09412703870675a327993bad9ee629093658181b1e47c37559c6dace",
+    "validation/benchmark/test_workspace_build.py": "7fcdaa33f1284404ab21ade376e2dd1e59db20533841437ac5a21043a80e1851"
+  }
+}

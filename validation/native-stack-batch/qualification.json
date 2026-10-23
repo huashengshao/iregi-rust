@@ -1,0 +1,91 @@
+{
+  "status": "partial",
+  "production_changes": false,
+  "runtime_cpu_affinity": [
+    12,
+    13
+  ],
+  "license_environment_present": true,
+  "mathematics_and_inputs_unchanged_by_license": true,
+  "qualifications": [
+    {
+      "family": "a0",
+      "status": "passed",
+      "configurations": 40,
+      "complex_outputs": 1344,
+      "strict_old_new": "exact represented value, precision, signed zero, all six outputs",
+      "interpreter_comparison": {
+        "interpreter_value_mismatches": 0,
+        "interpreter_precision_mismatches": 0,
+        "interpreter_signed_zero_mismatches": 0
+      },
+      "run_report": "target/native-stack-batch/a0-parity.json",
+      "binary_sha256": "0a6d92c6b4b1a4165d3cf1963893986f2e6fa273d5fcf6bac90f416e46ab8f34"
+    },
+    {
+      "family": "b0",
+      "status": "passed",
+      "configurations": 40,
+      "complex_outputs": 1440,
+      "strict_old_new": "exact represented value, precision, signed zero, all six outputs",
+      "interpreter_comparison": {
+        "interpreter_value_mismatches": 200,
+        "interpreter_precision_mismatches": 19,
+        "interpreter_signed_zero_mismatches": 0
+      },
+      "run_report": "target/native-stack-batch/b0-parity.json",
+      "binary_sha256": "268e42469780b99ac8ae2282f794cc3502b8c30439daa0963bd06144e66878f5"
+    },
+    {
+      "family": "c0",
+      "status": "passed",
+      "configurations": 40,
+      "complex_outputs": 1488,
+      "strict_old_new": "exact represented value, precision, signed zero, all six outputs",
+      "interpreter_comparison": {
+        "interpreter_value_mismatches": 403,
+        "interpreter_precision_mismatches": 17,
+        "interpreter_signed_zero_mismatches": 3
+      },
+      "run_report": "target/native-stack-batch/c0-parity.json",
+      "binary_sha256": "c4eb0d561187be1b377cfd87e9c33826b26c33dc43a5f205569d6e91b3be7430"
+    },
+    {
+      "family": "db0",
+      "status": "passed",
+      "configurations": 40,
+      "complex_outputs": 1392,
+      "strict_old_new": "exact represented value, precision, signed zero, all six outputs",
+      "interpreter_comparison": {
+        "interpreter_value_mismatches": 27,
+        "interpreter_precision_mismatches": 0,
+        "interpreter_signed_zero_mismatches": 0
+      },
+      "run_report": "target/native-stack-batch/db0-parity-2.json",
+      "binary_sha256": "fccb2172c738a82830a8324a69910d4fbdd81881f4a5e61a3ca6b11d0d9bf7da"
+    }
+  ],
+  "pending": [
+    "Original D0 three-domain compile and numerical qualification",
+    "D0 kernel timings after qualification and separately granted quiet window"
+  ],
+  "retained_failure": {
+    "report": "target/native-stack-batch/db0-parity.json",
+    "reason": "An added fully-scaleless raw dB0 fixture is outside the public supported domain. Both native variants produce matching infinity; strict finite comparison intentionally failed. Public guard rejects UndefinedScalelessDerivative; updated harness checks this explicitly and keeps it visible."
+  },
+  "timing_protocol_v1": {
+    "report": "target/native-stack-batch/timing-summary.json",
+    "groups": 24,
+    "regressions": 2,
+    "inconclusive_noise": 22,
+    "decision": "Reject blanket native kernel adoption; source memory reduction does not demonstrate runtime benefit"
+  },
+  "timing_protocol_v2": {
+    "report": "target/native-stack-batch/timing-fixed-summary.json",
+    "groups": 24,
+    "singleton_parity": 2,
+    "inconclusive_noise": 22,
+    "qualified_batch32_groups": 0,
+    "decision": "Reject blanket native kernel adoption; no batch32 family/order meets the performance gate; C0 batch32 intervals indicate slower execution but exceed the noise-width gate"
+  }
+}

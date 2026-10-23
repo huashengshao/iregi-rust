@@ -21,6 +21,9 @@ represented dyadics. The original binary64 IBP and hybrid implementations report
 stability for these samples; their zero-pole residuals pass the unchanged
 dimensionally normalized `1e-10` gate. Original PV reports instability. None of
 these observations alone establishes finite-coefficient agreement.
+The full external coordinate set has rank four, while `q5=qx+qy` makes some
+five-point pinches planar. These exact subtopology limits are part of this
+structured witness; it is not a family with every sub-Gram determinant nonzero.
 
 The wider squared-mass choice `9,11,13,17,19,23,29` remains in `fixture.json` and
 `reference.json`. Despite reporting stability, original IBP has 85 failing
@@ -103,3 +106,76 @@ then compares all complex coefficients with original IBP and between working
 precisions. Its gates remain `1e-10` for the original comparison and `2^-80` for
 dimensionally normalized mixed convergence. Incomplete or rejected outputs fail
 closed. The independent simplex witnesses remain separately identified.
+
+Before comparison, the reference capture must match the fixture hash, every
+exact propagator and request setting, the raw response, and the four-slot
+Laurent ordering. Each public result must match a successful run manifest,
+build manifest, executable, source, log, fixture, and recorded command. Both
+precision runs must use the same frozen build. Ten Python regression tests in
+`test_compare_public.py` check these bindings, including mismatched mass families
+with shared IDs and a timeout accompanied by a spurious successful result.
+`comparator-qualification.json` records that validation; it is not a reduction
+qualification.
+
+The later candidate build uses the baseline's exact master and Symbolica
+archives with the promoted core, frozen under
+`target/public-highpoint/candidate/source`. The modified core files are
+`plan.rs`, `ibp.rs`, and `pv.rs`. Its default development-profile settings are
+inferred from the retained baseline Cargo fingerprint because the original
+verbose compiler command was not recorded. `candidate-builder-recorded.py`
+preserves the script used for this build; the subsequently improved
+`build_candidate.py` includes post-build frozen-source verification directly.
+The recorded candidate manifest was augmented with that independently verified
+check before any runtime began. No running manifest is rewritten.
+
+The promoted-core run (`n6-rank7-pv-current-128-53`) completed its structural
+plan in 48.292 seconds, then reached the 300-second subprocess deadline during
+workspace preparation (302.93 seconds including termination and reaping).
+It retained the same 330 moments, 31,670 aliases, and 56 master leaves.
+Numerical reduction did not start, and the workspace's stability-expression
+completion marker was not reached. All 18 frozen core source files and the
+binary/input/driver/runner hashes were unchanged. Both timeouts remain visible;
+their diagnostic preparation timings do not qualify a performance improvement.
+`candidate-runner-recorded.py` preserves the runner used for that evidence.
+
+## Isolated stability-amplitude n-way sum candidate
+
+`nway-build.json` freezes a private core derived from the phase candidate. Its
+only mathematical implementation change collects the existing per-polynomial
+amplitude contributions and delegates their sum to Symbolica `Atom::add_many`.
+The previous implementation is retained for complete canonical Atom equality.
+Production remains unchanged. The source/API checks and limitations are in
+`docs/research/master-amplitude-nway.md`.
+
+`nway-exact-run.json` and `nway-qualification.json` bind a passing 20-case exact
+witness to the binary, source snapshot and matching baseline master/Symbolica
+archives. Cases assert expected nonlinear errors, cancellation to an empty
+polynomial, actual duplicate-amplitude merging, and structural preservation of
+nested/singular conditional branches. This exact witness does not test numeric
+lazy evaluation or establish high-point numerical acceptance. Initial and
+second build-only snapshots remain unqualified under `initial-*`/`second-*`.
+
+Reproduction uses the private user-provided license (never committed), CPU14
+and one Rayon thread. These CPU/license changes and development-build phase
+instrumentation make timings diagnostic only:
+
+```sh
+source scripts/env.sh
+source .local/symbolica-license.env
+python3 validation/public-highpoint/build_nway_probe.py
+python3 validation/public-highpoint/run_nway_exact.py
+python3 validation/public-highpoint/qualify_nway.py
+python3 validation/public-highpoint/run_probe.py n6-rank7-pv-nway-128-53 6 \
+  --variant nway --primal-sum-mode nway --limit 300 --cpu 14
+```
+
+Builders/runners refuse to overwrite frozen snapshots or evidence. Use a fresh
+snapshot/evidence name for another run. The bounded public result ledger must
+reach successful numerical completion before any full-array claim is made.
+
+The first bounded `nway3` public run reached the 300-second deadline during local
+check preparation, before entering the changed primal accumulator. Plan
+construction took 49.020s, reverse activation propagation 118.047s, and the last
+local-check marker reported 126.342s with 16,061 checks/532,866 roots. Thus the
+n-way change's impact on this public workload is **unmeasured**. No numerical
+arrays were produced; all earlier failures remain in `qualification.json`.

@@ -49,6 +49,23 @@ class WorkspaceBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "optimized"):
             self.parse(events)
 
+    def test_verbose_build_script_output_does_not_hide_or_replace_cargo_evidence(self):
+        path = self.root / "cargo.jsonl"
+        records = [json.dumps(event) for event in self.events()]
+        records.insert(1, "[radium 0.7.0] cargo:rustc-cfg=radium_atomic_8")
+        path.write_text("\n".join(records) + "\n")
+        examples, _ = builder.inspect_artifacts(path, False)
+        self.assertEqual(set(examples), builder.EXAMPLES)
+        path.write_text("[package 1.0.0] build-finished success=true\n")
+        with self.assertRaisesRegex(ValueError, "both requested"):
+            builder.inspect_artifacts(path, False)
+        path.write_text("arbitrary text\n")
+        with self.assertRaisesRegex(ValueError, "unrecognized text"):
+            builder.inspect_artifacts(path, False)
+        path.write_text("{malformed Cargo JSON}\n")
+        with self.assertRaises(json.JSONDecodeError):
+            builder.inspect_artifacts(path, False)
+
     def test_source_mutation_or_failed_build_cannot_publish_over_prior_success(self):
         standard = self.root / "target/benchmark/rust-build.json"
         standard.parent.mkdir(parents=True)
@@ -59,6 +76,20 @@ class WorkspaceBuildTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "incomplete"):
             builder.publish(self.root, self.root, {"status": "failed", "provenance_qualified": False})
         self.assertEqual(standard.read_text(), "prior successful build\n")
+
+    def test_compatible_manifest_carries_verified_cargo_exit_status(self):
+        data = {key: None for key in [
+            "status", "started_at", "finished_at", "command", "requested_revision",
+            "source_revision", "source_root", "master_backend", "backend_qualification",
+            "environment", "profile", "rustc", "cargo", "source_sha256", "assets_sha256",
+            "provenance_qualified", "manifest_path"]}
+        data["binaries"] = {"physical_benchmark": {"path": "binary", "sha256": "digest"}}
+        for completion in [{}, {"returncode": 7}, {"returncode": False}]:
+            data["resources"] = completion
+            with self.assertRaisesRegex(ValueError, "successful Cargo completion"):
+                builder.compatibility_manifest(data, "physical_benchmark")
+        data["resources"] = {"returncode": 0}
+        self.assertEqual(builder.compatibility_manifest(data, "physical_benchmark")["returncode"], 0)
 
     def test_reference_binary_and_driver_are_both_matched(self):
         output = self.root / "target/benchmark"

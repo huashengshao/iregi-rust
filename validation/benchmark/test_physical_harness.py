@@ -15,11 +15,14 @@ class ProvenanceTests(unittest.TestCase):
             "build_provenance_checks": {
                 "successful_stable_build": True, "binary_matches_manifest": True,
                 "sources_match_manifest": True, "assets_match_manifest": True,
+                "numeric_assets_match_build": True,
             },
             "source_changed_during_run": False,
             "workspace_source_changed_during_run": False,
             "assets_changed_during_run": False,
             "binaries_changed_during_run": False,
+            "validation_producers_changed_during_run": False,
+            "build_assets_changed_during_run": False,
         }
 
     def test_stable_retained_sources_do_not_hide_a_changed_live_harness(self):
@@ -31,7 +34,8 @@ class ProvenanceTests(unittest.TestCase):
 
     def test_missing_or_failed_final_checks_cannot_qualify(self):
         for name in ["source_changed_during_run", "workspace_source_changed_during_run",
-                     "assets_changed_during_run", "binaries_changed_during_run"]:
+                     "assets_changed_during_run", "binaries_changed_during_run", "validation_producers_changed_during_run",
+                     "build_assets_changed_during_run"]:
             with self.subTest(name=name):
                 changed = dict(self.data, **{name: True})
                 self.assertFalse(benchmark.provenance_qualified(changed))

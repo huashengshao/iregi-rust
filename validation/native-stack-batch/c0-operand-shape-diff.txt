@@ -1,0 +1,17 @@
+--- 
++++ 
+@@ -31480,13 +31480,13 @@
+     } else {
+         copy_active_column(v, stride, &[lane], base + STORAGE, base + STORAGE);
+     } }
++    for &lane in &active[..active_len] { resume[lane] = 164; } active_len = 0;
+     *count = active_len;
+ }
+ 
+ #[inline(never)]
+ fn batch_block_80<T: NativeFloat>(v: &mut [C<T>], stride: usize, lanes: &[usize], active: &mut [usize], count: &mut usize, resume: &mut [usize], children: &mut [usize], base: usize, ctx: &Context<T>) {
+     let mut active_len = *count;
+-    for &lane in &active[..active_len] { resume[lane] = 164; } active_len = 0;
+     active_len = 0; for &lane in lanes { if resume[lane] <= 156 { active[active_len] = lane; active_len += 1; } }
+     { let mut kept = 0; for i in 0..active_len { let lane = active[i]; if truth(&v[(base + STORAGE) * stride + lane]) { active[kept] = lane; kept += 1; } else { resume[lane] = 160; } } active_len = kept; }
+     if active_len != 0 {

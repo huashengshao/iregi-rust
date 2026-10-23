@@ -1,0 +1,119 @@
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/candidate/source/crates/iregi-rust/src/execution.rs /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/execution.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/candidate/source/crates/iregi-rust/src/execution.rs	2026-10-23 13:37:32.206947050 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/execution.rs	2026-10-23 15:47:45.379529819 +0000
+@@ -655,6 +655,8 @@
+                 }
+             }
+         }
++        eprintln!("HIGHPOINT_PHASE distance certificates START count={}", distance_polynomials.len());
++        let phase_started = Instant::now();
+         let distance_zeros = if distance_polynomials.is_empty() {
+             None
+         } else {
+@@ -686,6 +688,8 @@
+             })
+         };
+         let started = preparation_timer();
++        eprintln!("HIGHPOINT_PHASE distance certificates END elapsed={:?}", phase_started.elapsed());
++        eprintln!("HIGHPOINT_PHASE stability prepare START");
+         let stability = Arc::new(StabilityPlan::prepare(plan)?);
+         report_preparation("stability expressions", started);
+         let started = preparation_timer();
+@@ -2246,6 +2250,8 @@
+     aliases: &[(Atom, Atom)],
+     dual: Option<&D>,
+ ) -> Result<ExpressionEvaluator<Complex<Rational>>, ReductionError> {
++    eprintln!("HIGHPOINT_PHASE exact evaluator START expressions={} parameters={} aliases={}", expressions.len(), parameters.len(), aliases.len());
++    let phase_started = Instant::now();
+     let mut exact: ExpressionEvaluator<Complex<Rational>> =
+         Atom::evaluator_multiple(expressions, parameters)
+             .add_aliases(aliases.iter().cloned())
+@@ -2260,6 +2266,7 @@
+             .vectorize(&Dualizer::new(BorrowedDual(layout), Vec::new()))
+             .map_err(ReductionError::Preparation)?;
+     }
++    eprintln!("HIGHPOINT_PHASE exact evaluator END elapsed={:?}", phase_started.elapsed());
+     Ok(exact)
+ }
+ 
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/candidate/source/crates/iregi-rust/src/stability.rs /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/stability.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/candidate/source/crates/iregi-rust/src/stability.rs	2026-10-23 14:03:10.521537088 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/phase/source/crates/iregi-rust/src/stability.rs	2026-10-23 15:47:45.377529814 +0000
+@@ -115,26 +115,43 @@
+                 );
+             }
+         }
++        eprintln!("HIGHPOINT_PHASE stability definitions START aliases={}", plan.aliases.len());
++        let phase_started = std::time::Instant::now();
+         let definitions: HashMap<_, _> = plan.aliases.iter().cloned().collect();
++        eprintln!("HIGHPOINT_PHASE stability definitions END elapsed={:?}", phase_started.elapsed());
+         // Propagate use conditions backwards through the topologically ordered
+         // aliases. A union of paths is represented by Symbolica's lazy IF;
+         // inactive generic branches must never become eager monitor roots.
+         let mut uses: HashMap<Atom, BTreeSet<Atom>> = HashMap::new();
+         let mut predicate_indices = HashMap::new();
+         let always = Atom::num(1);
++        eprintln!("HIGHPOINT_PHASE root alias uses START roots={}", plan.moments.len()*4);
++        let phase_started = std::time::Instant::now();
+         for expression in plan.moments.iter().flatten() {
+             collect_alias_uses(expression.as_view(), &always, &definitions, &mut uses);
+         }
++        eprintln!("HIGHPOINT_PHASE root alias uses END elapsed={:?} uses={}", phase_started.elapsed(), uses.len());
+         let mut reachable = HashMap::new();
+-        for (alias, body) in plan.aliases.iter().rev() {
++        eprintln!("HIGHPOINT_PHASE reverse alias uses START");
++        let phase_started = std::time::Instant::now();
++        for (phase_index, (alias, body)) in plan.aliases.iter().rev().enumerate() {
++            if phase_index % 4096 == 0 {
++                eprintln!("HIGHPOINT_PHASE reverse alias uses PROGRESS index={} elapsed={:?} uses={} reachable={}", phase_index, phase_started.elapsed(), uses.len(), reachable.len());
++            }
+             if let Some(paths) = uses.remove(alias) {
+                 let active = monitor.intern_predicate(union_paths(paths), &mut predicate_indices);
+                 collect_alias_uses(body.as_view(), &active, &definitions, &mut uses);
+                 reachable.insert(alias.clone(), active);
+             }
+         }
++        eprintln!("HIGHPOINT_PHASE reverse alias uses END elapsed={:?} reachable={}", phase_started.elapsed(), reachable.len());
++        eprintln!("HIGHPOINT_PHASE local checks START");
++        let phase_started = std::time::Instant::now();
+         let mut denominators = BTreeSet::new();
+-        for (alias, body) in &plan.aliases {
++        for (phase_index, (alias, body)) in plan.aliases.iter().enumerate() {
++            if phase_index % 4096 == 0 {
++                eprintln!("HIGHPOINT_PHASE local checks PROGRESS index={} elapsed={:?} checks={} roots={}", phase_index, phase_started.elapsed(), monitor.checks.len(), monitor.expressions.len());
++            }
+             let dimension = mass_dimension(body.as_view(), &dimensions).unwrap_or(0);
+             dimensions.insert(alias.clone(), dimension);
+             let Some(active) = reachable.get(alias) else {
+@@ -151,6 +168,7 @@
+             );
+             collect_denominators(body.as_view(), active, &mut denominators);
+         }
++        eprintln!("HIGHPOINT_PHASE alias checks END elapsed={:?} checks={} roots={}", phase_started.elapsed(), monitor.checks.len(), monitor.expressions.len());
+         let base_dimension = 4 + 2 * i32::from(plan.settings.dimension_shift)
+             - 2 * plan
+                 .settings
+@@ -174,6 +192,7 @@
+                 collect_denominators(expression.as_view(), &always, &mut denominators);
+             }
+         }
++        eprintln!("HIGHPOINT_PHASE moment checks END elapsed={:?}; denominator checks START count={}", phase_started.elapsed(), denominators.len());
+         for (denominator, active) in denominators {
+             // A denominator may be a named invariant. Inspect that one body
+             // as well, without substituting the entire upstream graph.
+@@ -189,8 +208,15 @@
+                 &mut indices,
+             );
+         }
++        eprintln!("HIGHPOINT_PHASE local checks END elapsed={:?} checks={} roots={}", phase_started.elapsed(), monitor.checks.len(), monitor.expressions.len());
++        eprintln!("HIGHPOINT_PHASE primal amplitudes START");
++        let phase_started = std::time::Instant::now();
+         monitor.prepare_primal_amplitudes(plan, &reachable, base_dimension)?;
++        eprintln!("HIGHPOINT_PHASE primal amplitudes END elapsed={:?}", phase_started.elapsed());
++        eprintln!("HIGHPOINT_PHASE master activations START");
++        let phase_started = std::time::Instant::now();
+         monitor.prepare_master_activations(plan);
++        eprintln!("HIGHPOINT_PHASE master activations END elapsed={:?}", phase_started.elapsed());
+         monitor.prepare_snapping_diagnostics(plan)?;
+         Ok(monitor)
+     }

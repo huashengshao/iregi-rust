@@ -1,0 +1,307 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T16:58:45.853934+00:00",
+  "status": "passed",
+  "scope": "Benchmark report checkpoint through production allocator commitd1a4b8e; timing evidence uses separate frozen80949db and historical snapshots. Later optimization experiments are outside this checkpoint.",
+  "report_artifacts": {
+    "docs/benchmark.typ": "2051bf3be713478a3a6dcb7d60f9565659d9e2d1c45a590d80bfa1381ad6a2f0",
+    "docs/data/results.json": "11e292498db6ccf12324f08a3b078163c587a63e665055ade85b1a8c6d7410c3",
+    "docs/benchmark.pdf": "2edebc605a6ef44167d13dfe654a643641c240081cbcc2c4e2209a22ce1abfed",
+    "scripts/build-benchmark-report.sh": "c0e6106dee393689921cb7b19afb7a5ff0241071cf022b28b6e6174d56bec1b7"
+  },
+  "typst_version": "typst 0.15.1 (9dfd3a08)",
+  "creation_timestamp_utc": "2026-10-23T00:00:00+00:00",
+  "creation_timestamp_unix": 1792713600,
+  "build_command": [
+    "bash",
+    "scripts/build-benchmark-report.sh"
+  ],
+  "independent_rebuild_command": [
+    "typst",
+    "compile",
+    "--creation-timestamp",
+    "1792713600",
+    "docs/benchmark.typ",
+    "target/report-next/reproduced.pdf"
+  ],
+  "byte_identical_rebuild": true,
+  "page_count": 13,
+  "render_check": "All13 pages rendered toPNG with Typst. Changed pages1/3/5/8/10 inspected for overflow and legibility; current component axis expanded to50us/point so allbars fit.",
+  "source_ledger_count": 47,
+  "source_ledger": [
+    {
+      "key": "stack_reuse_factory_qualification",
+      "source": "validation/stack-reuse/production-factory/qualification.json",
+      "sha256": "859a88a94b111c4fa86ecbcbfe6e780587d82d7cf682883456a2474d09377ff7"
+    },
+    {
+      "key": "stack_reuse_integration",
+      "source": "validation/stack-reuse/production-factory/integration-qualification.json",
+      "sha256": "176a0dc914753fd56cc095038743b3ef6a8908eebf4c6092212b80c4de26da62"
+    },
+    {
+      "key": "stack_reuse_dd_e6_parity",
+      "source": "validation/stack-reuse/production-factory/e6-dd-parity.json",
+      "sha256": "ec3ac46b83f363ba950b79966becf0a982bda1533d3f26e7fd93cace5e7936eb"
+    },
+    {
+      "key": "stack_reuse_default_adoption",
+      "source": "validation/stack-reuse/production-factory/adoption.json",
+      "sha256": "0bef7140e843b67fa4928efcac3a917a12e3bfdac09526d8e9d979a5f9159b0c"
+    },
+    {
+      "key": "stack_reuse_current_build",
+      "source": "validation/stack-reuse/production-factory/current-workspace-build/build-result.json",
+      "sha256": "7fa7628b63f2e5083aafc1c9a2bc173f750861a5aec7099435ea4b7ac9fa5e29"
+    },
+    {
+      "key": "stack_reuse_current_acceptance",
+      "source": "validation/stack-reuse/production-factory/current-workspace-build/acceptance/summary.json",
+      "sha256": "1c157b556fc563f9aa7ebb11688368ee94e2ab53802c6ab63c09e268b47b450f"
+    },
+    {
+      "key": "generalized_pv_qualification",
+      "source": "validation/generalized-pv/qualification.json",
+      "sha256": "bcb67d79f0a55280599277181c1a12111f9f8408ae4ef301556733dfa0c689a3"
+    },
+    {
+      "key": "generalized_pv_promotion_compile",
+      "source": "validation/generalized-pv/promotion-compile-manifest.json",
+      "sha256": "c1ea418a39c9697a1dac9453caa97f416ac6cb4b11c2b182f3c716f5a62677dc"
+    },
+    {
+      "key": "generalized_pv_supplemental",
+      "source": "validation/generalized-pv/supplemental-qualification.json",
+      "sha256": "26ab36f7b1b0c3c86687e2299a7fdc0a287dec092236547353c03504b11dfcac"
+    },
+    {
+      "key": "public_n6_rank7_attempt",
+      "source": "validation/public-highpoint/n6-rank7-pv-128-53-run.json",
+      "sha256": "1c9358b27cf1c5ca41b5e65b93803154f953cb4fa05ee6a6789d8d2e0ede75d4"
+    },
+    {
+      "key": "lazy_cayley_solve_qualification",
+      "source": "validation/invariant-certificate/solve-vector/qualification-status.json",
+      "sha256": "a6cf2280d67053cab0d78dbb42bcd307b688c10ed4fb3a5e9bff56fae87c64e8"
+    },
+    {
+      "key": "e6_series_production_comparison",
+      "source": "validation/shifted-pentagon/production-series-qualification.json",
+      "sha256": "8e8347d43b648ac62b13ca2aac59dbd599e46841696d03b25b4be1d8bcb66b0d"
+    },
+    {
+      "key": "physical_harness_smoke",
+      "source": "validation/benchmark/physical-smoke/qualification.json",
+      "sha256": "ac24de9c6c114dda2db030645ee212332a112e3f1a8ff0283c72d3c6eed53c9a"
+    },
+    {
+      "key": "kernel_ledger_qualification",
+      "source": "validation/benchmark/kernel-accounting-qualification/results.json",
+      "sha256": "cb5e3e088db18c08b160294fa5f0af4fb130ce7b4468ea9949d04832b0b68462"
+    },
+    {
+      "key": "concurrent_workspace_qualification",
+      "source": "validation/concurrent-workspaces/qualification.json",
+      "sha256": "68d0b84d3c93946755df1861571bd49e6506d3756d10e90d5fcdc4d053c97000"
+    },
+    {
+      "key": "optimized_5c9_build",
+      "source": "validation/benchmark/baseline-5c9e3dd/build-verification.json",
+      "sha256": "101391b43591894e5f926fc6fdb7d268e8e64f5ff13dfa20b08a1d7025d44d3b"
+    },
+    {
+      "key": "benchmark_5c9_qualification",
+      "source": "validation/benchmark/baseline-5c9e3dd/qualification.json",
+      "sha256": "e6a4f33ab6fc6550204480391e0389c3bffe0012e1af5545324c1a7b61053093"
+    },
+    {
+      "key": "qualified_5c9_benchmark",
+      "source": "validation/benchmark/baseline-5c9e3dd/results.json",
+      "sha256": "4a492c1075b14fdfe845260318c52153100ed80c9a45dea6f88ec7a1ffebc4d0"
+    },
+    {
+      "key": "physical_pipeline_alignment",
+      "source": "validation/benchmark/physical-alignment/qualification.json",
+      "sha256": "579f21d805c8b9a3b0ffa863087d24bd8c36c45acd11af77af1db4e471bfe516"
+    },
+    {
+      "key": "public_n6_rank7_current_attempt",
+      "source": "validation/public-highpoint/n6-rank7-pv-current-128-53-run.json",
+      "sha256": "763b6a180cbeddc6ff168a8357fe7473fa3efc58cd745b6ea3a6e85796740571"
+    },
+    {
+      "key": "public_highpoint_comparator_qualification",
+      "source": "validation/public-highpoint/comparator-qualification.json",
+      "sha256": "8d499b0369ff0ca9c4c0eb08232d5ba9e9e57d11920b053ad1ab2917f293663a"
+    },
+    {
+      "key": "public_highpoint_qualification",
+      "source": "validation/public-highpoint/qualification.json",
+      "sha256": "b1d907c08cd73708404a8ee18a239f2863316b4d4fbe110ee48aa3863acd8ca1"
+    },
+    {
+      "key": "monitor_roundoff_cache_experiment",
+      "source": "validation/monitor-roundoff-cache/qualification-all.json",
+      "sha256": "5b86da5eef1cde5a7f8ca14938868b09de1a49b072182b7e8c2c0f3b52fbbed6"
+    },
+    {
+      "key": "planar_certified_experiment",
+      "source": "validation/planar-certified/qualification.json",
+      "sha256": "a08464e53f23b04f493981bbea611d1ff7ff31c5ed478ba2ecafd354e4b0f7a7"
+    },
+    {
+      "key": "physical_joint_harness",
+      "source": "validation/benchmark/physical-joint-harness/qualification.json",
+      "sha256": "b555e20257fe5c154b175a9f140c0021cb6eefd3f7ae86d0a6b3a4ae6b897c3b"
+    },
+    {
+      "key": "monitor_roundoff_cache_remaining",
+      "source": "validation/monitor-roundoff-cache/qualification-remaining.json",
+      "sha256": "5e6249df3473c72636d64e79e77e592cb7fe85ff1315628167b4587bd7369b7d"
+    },
+    {
+      "key": "monitor_roundoff_cache_summary",
+      "source": "validation/monitor-roundoff-cache/ready.json",
+      "sha256": "b21bed5451abaad0b39eff824a052e4ed74cede3370f33dd94e2c91516f98b54"
+    },
+    {
+      "key": "optimized_80949_smoke",
+      "source": "validation/benchmark/smoke-80949db-licensed/qualification.json",
+      "sha256": "1b30a2602acd06c502cce5fb6999e65096edc09403f2af4b39b0c4698909d65c"
+    },
+    {
+      "key": "near_vacuum_order2_attempt",
+      "source": "validation/near-vacuum-box/n2-mixed-float256-128-run.json",
+      "sha256": "66528123c3978f6a81a1c2c65b951f6dcc05feac2ed27b3be94b6c2ee44cae5e"
+    },
+    {
+      "key": "near_vacuum_order4_attempt",
+      "source": "validation/near-vacuum-box/n4-mixed-float256-128-run.json",
+      "sha256": "22ff791f8b1d3e9b2445ae90af4c104b699ed9f4f56c91f7964b3982d5cf4503"
+    },
+    {
+      "key": "core_stack_reuse_experiment",
+      "source": "validation/core-stack-reuse/qualification.json",
+      "sha256": "6fbaf45f6cb8414f3a34d91a1a4906c230b1cb4ffbc6780c83e4439fd201d625"
+    },
+    {
+      "key": "core_stack_reuse_warm_diagnostic",
+      "source": "validation/core-stack-reuse/warm/qualification.json",
+      "sha256": "14a1162be6794ec2d162c75b52438ed6b79547be8320fdeeac88b439782dfb47"
+    },
+    {
+      "key": "near_vacuum_order4_oracle_run",
+      "source": "validation/near-vacuum-box/n4-oracle-mixed-float256-128-run.json",
+      "sha256": "a0a0cee17c1f9dafa92edcb78bf32addfcd3abe5ac52712ece7ff6a80bec12d2"
+    },
+    {
+      "key": "public_n6_rank7_nway_attempt",
+      "source": "validation/public-highpoint/n6-rank7-pv-nway-128-53-run.json",
+      "sha256": "fceb6cc56ee810ac0d3a0b75dca9bbf0f752247e52311045082d0d6ef50b9d7a"
+    },
+    {
+      "key": "public_nway_expression_qualification",
+      "source": "validation/public-highpoint/nway-qualification.json",
+      "sha256": "9717267433c006e0ba2d7574aa668e2705db1cf3aab0f3ac31ea6e0c99a8155b"
+    },
+    {
+      "key": "near_vacuum_order4_oracle_summary",
+      "source": "validation/near-vacuum-box/n4-oracle-mixed-float256-128.json",
+      "sha256": "849efde580639a95b0ee93583342a9805c0238276c9ddcbfeca9bef080e77776"
+    },
+    {
+      "key": "benchmark_80949_qualification",
+      "source": "validation/benchmark/baseline-80949db-licensed/qualification.json",
+      "sha256": "eeab87361c4e928d8e932fc2b965c1dbc9f208af19e8ab276f7e7e744a21aeca"
+    },
+    {
+      "key": "monitor_roundoff_cache_decision",
+      "source": "validation/monitor-roundoff-cache/decision.json",
+      "sha256": "db8da59a6f16738691826e4012fe0f27de6fd3e84e979a294cd7ba059dfcf1e4"
+    },
+    {
+      "key": "core_stack_reuse_quiet_diagnostic",
+      "source": "validation/core-stack-reuse/warm-quiet/qualification.json",
+      "sha256": "30124ba2d537507bf9b7501764c7c22460f25becbaa27d06b50ab7ecceb79d0a"
+    },
+    {
+      "key": "near_vacuum_candidate_qualification",
+      "source": "validation/near-vacuum-box/qualification.json",
+      "sha256": "4acbf48c5b443882a0f6dca6563e8e7e3cb9dd5e2c302fca0294d6a7769a88f4"
+    },
+    {
+      "key": "qualified_80949_benchmark",
+      "source": "validation/benchmark/baseline-80949db-licensed/results.json",
+      "sha256": "f31fe4034ba5fd5360d5327673c40d8bb604d4c72b8c9b5983958e303ffe179e"
+    },
+    {
+      "key": "physical_joint_quiet_qualification",
+      "source": "validation/benchmark/physical-joint-quiet/qualification.json",
+      "sha256": "89d5f2bf2baf6b5a3a6e9bf84607d7a46bf00c0c75b4bb4430109d5b777e2293"
+    },
+    {
+      "key": "physical_joint_smoke_qualification",
+      "source": "validation/benchmark/physical-joint-smoke/qualification.json",
+      "sha256": "2e19d67d76bedf6cab7776368b18afff2d2efd7afda553dd23135ef30fa5300a"
+    },
+    {
+      "key": "physical_80949_benchmark",
+      "source": "validation/benchmark/physical-joint-quiet/attempt002/results.json.gz",
+      "sha256": "e50db5fa476e96112550c9516e350537b1c24d8c24944a307226a882ef7082b3"
+    },
+    {
+      "key": "core_stack_reuse_production_adoption",
+      "source": "validation/core-stack-reuse/adoption/qualification.json",
+      "sha256": "48db753887129a3579b2c22ee37c8cde0e42a87286b4d2bbceed4692353a4d70"
+    },
+    {
+      "key": "physical_gghhh_precision_followup",
+      "source": "validation/physical/gghhh-guard/qualification.json",
+      "sha256": "566afba556c322b3940ee9a2e05e7d61b42af6c5e7f26b81030e79d890d52e7e"
+    },
+    {
+      "key": "planar_certified_nway_qualification",
+      "source": "validation/planar-certified-nway/qualification.json",
+      "sha256": "2cedd9a815f4c6bdfccdbe95ff146db156ea805b46e00db4ce050e22cf9a3664"
+    }
+  ],
+  "independent_arithmetic_review": {
+    "reviewer": "/root",
+    "status": "passed",
+    "kernel_rows": 8,
+    "physical_rows": 8,
+    "numeric_comparisons": 130,
+    "checks": [
+      "raw source hash joins",
+      "ns/batch to microseconds/point and milliseconds/point conversion",
+      "both engine latency medians",
+      "paired kernel ratios and confidence intervals",
+      "independent-bootstrap physical ratios and confidence intervals",
+      "instrumented components and residuals",
+      "identities/status/contracts",
+      "failed rows have no invented ratio"
+    ],
+    "scope_note": "Numerical row fields are unchanged since this review; physical correctness fields were compacted to retained qualification aggregates."
+  },
+  "independent_scope_review": {
+    "reviewer": "/root/report_update/report_review2",
+    "status": "passed",
+    "refinements_applied": [
+      "76test executions distinguishes38distincttests across2variants",
+      "near-vacuum insufficient-accuracy rejection distinguished from invalidinput",
+      "private experiment and production scopes separated"
+    ]
+  },
+  "known_limits": [
+    "No overall performance acceptance: latestkernel5regressions/3noise, physical6noise/2failures.",
+    "Optimized80949db benchmarks predate promotedcoreallocator d1a4b8e.",
+    "Privateplanar/near-vacuum evidence does not qualify production fallback.",
+    "Historicalsource snapshots and failed attempts remain visible."
+  ],
+  "durable_path_repair": "optimized_5c9_build now points to committed validation/benchmark/baseline-5c9e3dd/build-verification.json; identical bytes and SHA256 preserved.",
+  "additional_root_checks": {
+    "benchmark_harness_tests_passed": 80,
+    "public_harness_tests_passed": 10,
+    "latest_visual_review": "ROOT inspected pages3/5: clean and legible, no overflow."
+  }
+}

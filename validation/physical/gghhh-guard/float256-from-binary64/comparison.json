@@ -1,0 +1,292 @@
+{
+  "canonical_tensors": {
+    "passed": true,
+    "required_original_modes": [
+      1,
+      2
+    ],
+    "all_original_modes_passed": false,
+    "retained_known_reference_issue": "validation/physical/canonical-reference-audit.json",
+    "tolerance": 1e-10,
+    "lanes": [
+      {
+        "lane": 0,
+        "passed": true,
+        "tensor_comparisons": [
+          {
+            "mode": 0,
+            "passed": false,
+            "status": "mismatch",
+            "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+            "moments": 70,
+            "slots_per_moment": 4,
+            "max_normalized_error": 0.6001338886546049,
+            "max_error_by_rank": {
+              "0": 2.269927850286682e-16,
+              "1": 1.552914380184675e-14,
+              "2": 4.508243966411508e-14,
+              "3": 3.463775738507852e-14,
+              "4": 0.6001338886546049
+            },
+            "worst": {
+              "moment": 38,
+              "exponents": [
+                3,
+                0,
+                0,
+                1
+              ],
+              "pole": 3,
+              "actual": [
+                3.932974330721891e-14,
+                1.4927776735143486e-13
+              ],
+              "expected": [
+                1.066904730271263e-06,
+                1.492777594922495e-13
+              ]
+            }
+          },
+          {
+            "mode": 1,
+            "passed": true,
+            "status": "passed",
+            "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+            "moments": 70,
+            "slots_per_moment": 4,
+            "max_normalized_error": 4.616163909670565e-14,
+            "max_error_by_rank": {
+              "0": 5.742513704924488e-16,
+              "1": 3.4813900547231753e-14,
+              "2": 3.715368213505265e-14,
+              "3": 2.5617599398107708e-14,
+              "4": 4.616163909670565e-14
+            },
+            "worst": {
+              "moment": 38,
+              "exponents": [
+                3,
+                0,
+                0,
+                1
+              ],
+              "pole": 3,
+              "actual": [
+                3.932974330721891e-14,
+                1.4927776735143486e-13
+              ],
+              "expected": [
+                3.9329808161342235e-14,
+                1.492778176369125e-13
+              ]
+            }
+          },
+          {
+            "mode": 2,
+            "passed": true,
+            "status": "passed",
+            "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+            "moments": 70,
+            "slots_per_moment": 4,
+            "max_normalized_error": 4.616163909670565e-14,
+            "max_error_by_rank": {
+              "0": 5.742513704924488e-16,
+              "1": 3.4813900547231753e-14,
+              "2": 3.715368213505265e-14,
+              "3": 2.5617599398107708e-14,
+              "4": 4.616163909670565e-14
+            },
+            "worst": {
+              "moment": 38,
+              "exponents": [
+                3,
+                0,
+                0,
+                1
+              ],
+              "pole": 3,
+              "actual": [
+                3.932974330721891e-14,
+                1.4927776735143486e-13
+              ],
+              "expected": [
+                3.9329808161342235e-14,
+                1.492778176369125e-13
+              ]
+            }
+          }
+        ],
+        "physical_comparison": {
+          "status": "passed",
+          "passed": true,
+          "reference": "MadLoop selected graph, fixed equal gluon colors",
+          "group": 5,
+          "factor": "-1/2",
+          "laurent_order": [
+            "finite",
+            "single_pole",
+            "double_pole"
+          ],
+          "mass_dimension": -1,
+          "normalization_scale": 0.0013333333333333333,
+          "actual_raw": [
+            [
+              -0.0010478992478823084,
+              0.00010960416999969034
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "expected_raw": [
+            [
+              -0.0010478992478823298,
+              0.00010960416999981231
+            ],
+            [
+              -7.211826802669099e-21,
+              0.0
+            ],
+            [
+              -0.0,
+              0.0
+            ]
+          ],
+          "errors": [
+            9.28879888726549e-14,
+            5.408870102001824e-18,
+            0.0
+          ],
+          "actual_normalized": [
+            [
+              -6.635899508334437e-06,
+              6.940765147815396e-07
+            ],
+            [
+              0.0,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "expected_normalized": [
+            [
+              -6.6358995083345735e-06,
+              6.94076514782312e-07
+            ],
+            [
+              -4.566942674187309e-23,
+              0.0
+            ],
+            [
+              0.0,
+              0.0
+            ]
+          ],
+          "excludes": [
+            "R2",
+            "UV counterterms"
+          ],
+          "includes": [
+            "bare UV and IR poles",
+            "R1"
+          ],
+          "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+        }
+      }
+    ]
+  },
+  "preserved_graph": {
+    "status": "passed",
+    "passed": true,
+    "reference": "MadLoop selected graph, fixed equal gluon colors",
+    "group": 5,
+    "factor": "-1/2",
+    "laurent_order": [
+      "finite",
+      "single_pole",
+      "double_pole"
+    ],
+    "mass_dimension": -1,
+    "normalization_scale": 0.0013333333333333333,
+    "actual_raw": [
+      [
+        -0.0010478992478823084,
+        0.00010960416999969034
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "expected_raw": [
+      [
+        -0.0010478992478823298,
+        0.00010960416999981231
+      ],
+      [
+        -7.211826802669099e-21,
+        0.0
+      ],
+      [
+        -0.0,
+        0.0
+      ]
+    ],
+    "errors": [
+      9.28879888726549e-14,
+      5.408870102001824e-18,
+      0.0
+    ],
+    "actual_normalized": [
+      [
+        -6.635899508334437e-06,
+        6.940765147815396e-07
+      ],
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "expected_normalized": [
+      [
+        -6.6358995083345735e-06,
+        6.94076514782312e-07
+      ],
+      [
+        -4.566942674187309e-23,
+        0.0
+      ],
+      [
+        0.0,
+        0.0
+      ]
+    ],
+    "excludes": [
+      "R2",
+      "UV counterterms"
+    ],
+    "includes": [
+      "bare UV and IR poles",
+      "R1"
+    ],
+    "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+  },
+  "passed": true,
+  "normalization_input_note": "Original decimal strings used only for binary64 reference normalization; engine receives exact binary64 rational components."
+}

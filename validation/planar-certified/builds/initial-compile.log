@@ -1,0 +1,19 @@
+error[E0369]: cannot subtract `&iregi_masters::Float` from `&iregi_masters::Float`
+   --> /shared/external/iregi/iregi-rust/target/planar-certified/source-snapshot/crates/iregi-rust/src/certified_planar.rs:879:49
+    |
+879 |                 NativeFloat::hypot(&(&actual.re - &expected.re), &(&actual.im - &expected.im));
+    |                                      ---------- ^ ------------ &iregi_masters::Float
+    |                                      |
+    |                                      &iregi_masters::Float
+
+error[E0369]: cannot subtract `&iregi_masters::Float` from `&iregi_masters::Float`
+   --> /shared/external/iregi/iregi-rust/target/planar-certified/source-snapshot/crates/iregi-rust/src/certified_planar.rs:879:79
+    |
+879 |                 NativeFloat::hypot(&(&actual.re - &expected.re), &(&actual.im - &expected.im));
+    |                                                                    ---------- ^ ------------ &iregi_masters::Float
+    |                                                                    |
+    |                                                                    &iregi_masters::Float
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0369`.

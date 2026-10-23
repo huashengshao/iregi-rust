@@ -1,0 +1,41 @@
+diff --git a/source/stability.rs b/source/stability.rs
+--- a/source/stability.rs
++++ b/source/stability.rs
+@@ -192,6 +192,18 @@
+         monitor.prepare_primal_amplitudes(plan, &reachable, base_dimension)?;
+         monitor.prepare_master_activations(plan);
+         monitor.prepare_snapping_diagnostics(plan)?;
++        let mut term_reuse = std::collections::BTreeMap::<usize, usize>::new();
++        let mut value_reuse = std::collections::BTreeMap::<usize, usize>::new();
++        for check in &monitor.checks {
++            *value_reuse.entry(check.value).or_default() += 1;
++            for term in &check.terms { *term_reuse.entry(*term).or_default() += 1; }
++        }
++        let mut histogram = std::collections::BTreeMap::<usize, usize>::new();
++        for uses in term_reuse.values() { *histogram.entry(*uses).or_default() += 1; }
++        eprintln!("MONITOR_STRUCTURE n={} rank={} checks={} expressions={} total_term_uses={} unique_terms={} term_reuse_histogram={:?} duplicate_value_indices={}",
++            plan.settings.propagators, plan.settings.rank, monitor.checks.len(), monitor.expressions.len(),
++            term_reuse.values().sum::<usize>(), term_reuse.len(), histogram,
++            value_reuse.values().filter(|&&uses| uses > 1).count());
+         Ok(monitor)
+     }
+ 
+@@ -748,6 +760,7 @@
+                         natural
+                     }
+                 };
++                let diagnostic_contribution_error = contribution_error.clone();
+                 let estimate = operation_factor.clone() * contribution_error;
+                 let target = tolerance.clone() * &reference;
+                 if !target.is_finite() || (target.is_zero() && !reference.is_zero()) {
+@@ -757,6 +770,10 @@
+                     ));
+                 }
+                 if !estimate.is_finite() || estimate > target {
++                    eprintln!("MONITOR_FAILURE label={} component={} dimension={} denominator={} operations={} terms={} value={:?} scale={:?} reference={:?} contribution_error={:?} operation_factor={:?} estimate={:?} target={:?}", check.label, component, check.dimension, check.denominator, check.operations, check.terms.len(), value, scale, reference, diagnostic_contribution_error, operation_factor, estimate, target);
++                    for &index in &check.terms {
++                        eprintln!("MONITOR_TERM index={} value={:?}", index, values[index * components + component]);
++                    }
+                     return Some(format!(
+                         "estimated cancellation exceeds 2^(19-{accuracy_bits}) with operand-dependent roundoff at configured precision {precision} in {}, Taylor component {component}; this estimate is not a certified error bound",
+                         check.label,

@@ -1,0 +1,39 @@
+{
+  "status": "paused_at_user_request",
+  "recorded_utc": "2026-10-23T15:24:41.072534+00:00",
+  "production_changes": "none; candidate exists only in target snapshots",
+  "runtime": "none active; no cache-candidate numerical qualification or timing has run",
+  "core_build": "Both baseline and candidate optimized core archives compiled successfully; build.json records identical flags/dependencies and binary hashes",
+  "probe_build": "Interrupted owned rustc PIDs2908731/2908732 using SIGINT; build_probes.py exited and retained failed/interrupted compile logs. No known process remains.",
+  "snapshots": "target/monitor-roundoff-cache/{baseline,candidate}",
+  "core_archives": [
+    "target/monitor-roundoff-cache/libiregi_cache_baseline.rlib",
+    "target/monitor-roundoff-cache/libiregi_cache_candidate.rlib"
+  ],
+  "tests": "validation/monitor-roundoff-cache/cache_tests.rs contains eight candidate-only tests, not yet wired or compiled; child review stopped",
+  "next_steps": [
+    "After user resumes: source scripts/env.sh; python3 validation/monitor-roundoff-cache/build_probes.py (CPUs10,11)",
+    "Wire cache_tests.rs inside a separate candidate-tests snapshot of stability.rs test module, preserving the already compiled source snapshot; compile matching unit binary",
+    "Finish empty-cache/layout review; add durable reconstruction of target protocol.rs from committed concurrent_workspaces.rs and protocol_tail.rs",
+    "Request ROOT Symbolica runtime lease for paired protocol and relevant unit/public regression checks; no actual concurrency under one-thread license",
+    "Only after correctness passes and ROOT grants quiet CPU0 timing: run paired performance probe and analyze per-workload21block bootstrap99% intervals; do not promote without evidence"
+  ],
+  "structural_reuse": {
+    "n4_rank2": {
+      "checks": 107,
+      "expressions": 3817,
+      "term_uses": 4072,
+      "unique_term_indices": 3710,
+      "repeated_indices": 343
+    },
+    "n5_rank2": {
+      "checks": 497,
+      "expressions": 18724,
+      "term_uses": 19853,
+      "unique_term_indices": 18227,
+      "repeated_indices": 1561
+    },
+    "source": "target/planar-certified/roundoff-diagnostic-certified_planar_groups_charts_and_isolates_failed_rows.log"
+  },
+  "previous_guard_overhead_probe": "target/mixed-precision-guard-probe/probe is separately compiled and still unrun; it measures mixed-precision guard overhead, not this cache candidate"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T16:41:36.944358+00:00",
+  "status": "qualified_kernel_measurement_performance_requirement_unmet",
+  "source_revision": "80949dbc4711947971a702643f75d639ef217e82",
+  "scope": "Optimized default SymbolicaBatch 80949db snapshot, after default master-root stack allocation, generalized N<=4 PV and lazy Cayley solve; excludes private later core/cache/n-way/near-vacuum candidates. All eight tensor/Laurent comparisons pass; five regressions and three noisy inconclusive timing rows.",
+  "counts": {
+    "correctness_passed": 8,
+    "regression": 5,
+    "inconclusive_noise": 3,
+    "parity": 0,
+    "improvement": 0
+  },
+  "maximum_normalized_error": 2.4583237864622474e-13,
+  "cpu": 0,
+  "protocol": {
+    "repeats": 21,
+    "warmup": 5,
+    "target_block_ms": 30.0,
+    "paired_random_order_seed": 271828,
+    "transport_timed": false,
+    "cache_policy": "structural plans/evaluators and allocation capacity reused; numerical results recomputed for every sample; original recurrence cache freed after every sample",
+    "outputs": "all Cartesian components through requested rank, all four separated native Laurent coefficients",
+    "kernel_scope": "public reduce_batch including result allocation/disposal; original tensor call plus mass-reference setup/status checking/cache disposal",
+    "stage_scope": "separate instrumented pass: argument evaluator, complete scalar-master calls, recurrence evaluator/stability checks; residual is validation/packing/routing",
+    "preparation_scope": "first Rust plan+workspace compile only; not a repeated timing distribution",
+    "numerator": "not applicable to tensor-array kernel; graph/numerator end-to-end benchmark reported separately"
+  },
+  "quiet_window": "Coordinator held other project builds and numerical tasks; unrelated host workloads not controlled. Pending native D0 compiler was SIGSTOP during this run.",
+  "license_context": "User-supplied license accepted; no key material recorded.",
+  "provenance_qualified": true,
+  "source_count": 401,
+  "source_proof": "All401 frozen measured-source files independently rehashed and match both result and build manifest; both binaries and harness independently rehashed. Live edits outside this immutable source snapshot do not alter its identity.",
+  "source_sha256": {
+    "validation/benchmark/baseline-80949db-licensed/reference-build.json": "488782471657193e0e09f69c283cb82d8534577bb4fccd23f3087192c0f2f782",
+    "validation/benchmark/baseline-80949db-licensed/reference.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/baseline-80949db-licensed/results-inputs.json": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+    "validation/benchmark/baseline-80949db-licensed/results.json": "f31fe4034ba5fd5360d5327673c40d8bb604d4c72b8c9b5983958e303ffe179e",
+    "validation/benchmark/baseline-80949db-licensed/rust-build.json": "15456a59fbc28402dfd376ed767c22e53efd84ddbbf169e49424501ef5313e09",
+    "validation/benchmark/baseline-80949db-licensed/rust.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

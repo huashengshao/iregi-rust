@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "timeout",
+  "started_utc": "2026-10-23T16:06:30.343049+00:00",
+  "command": [
+    "taskset",
+    "-c",
+    "14",
+    "/shared/external/iregi/iregi-rust/target/public-highpoint/nway3/highpoint_public",
+    "validation/public-highpoint/fixture-conditioned_masses.json",
+    "6",
+    "7",
+    "pv",
+    "128",
+    "53",
+    "1",
+    "validation/public-highpoint/n6-rank7-pv-nway-128-53.json"
+  ],
+  "timeout_seconds": 300.0,
+  "binary_sha256": "ea2378fddfc2016adb3ab14f8bd7178bd2cfe313a1695f96e34f57f4424e2802",
+  "fixture_sha256": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+  "build_manifest_sha256": "3b73bb886341e1115b056324c547c264170ccb69b8c677389360a358aa2f665e",
+  "probe_source_sha256": "34ca0b393775208f97f8b07ffdf22a0a13ce69d56fa220714d0e49b703fab1dc",
+  "runner_source_sha256": "94513370afbc01474b39d8b3c6b37fe201bcf3b5338c173985b5e96ef5e5a407",
+  "variant": "nway",
+  "environment_additions": {
+    "IREGI_PV_PREPARATION_PROFILE": "1",
+    "RAYON_NUM_THREADS": "1",
+    "IREGI_PREPARATION_PROFILE": "1",
+    "IREGI_PRIMAL_SUM_MODE": "nway"
+  },
+  "timing_status": "diagnostic only; not an optimized controlled performance comparison",
+  "license_scope": "Private user-supplied Symbolica license; license contents excluded from evidence. CPU affinity and RAYON_NUM_THREADS=1 retained.",
+  "exit_code": -9,
+  "elapsed_seconds": 300.6436373790493,
+  "log_sha256": "1143e5e35282c2a187aebf69d6fd460edd53e685527edbef69c5673d9849bba8",
+  "finished_utc": "2026-10-23T16:11:31.744727+00:00",
+  "peak_child_rss_kib": 4148576,
+  "frozen_source_files_unchanged": 18,
+  "result_sha256": "53d9c640f67c2b3b3c12479dd4f2748b16ce577e3e2e6d40851731e32c294e1c",
+  "last_public_stage": "preparing_workspace"
+}

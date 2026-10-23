@@ -1,0 +1,90 @@
+{
+  "command": [
+    "rustc",
+    "--test",
+    "--crate-name",
+    "iregi_rust",
+    "--edition=2024",
+    "-C",
+    "opt-level=2",
+    "-C",
+    "metadata=planar_certified_precision",
+    "/shared/external/iregi/iregi-rust/target/planar-certified/focused-source/lib.rs",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libiregi_masters-0d5459afd211649c.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "oneloop=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/liboneloop-8562c3cbbf948c0e.rlib",
+    "--extern",
+    "serde=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libserde-fc3dcd4b8c210596.rlib",
+    "--extern",
+    "serde_json=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libserde_json-3b583d0e8aa0facc.rlib",
+    "--extern",
+    "thiserror=/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libthiserror-b877110d28821624.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/planar-certified/core-tests-focused",
+    "--cfg",
+    "planar_focus"
+  ],
+  "source_hashes": {
+    "lib.rs": "23c234be681c668a4d10a023cfc1d0c4d1de6e6eed88a9a5515b5569978729fa",
+    "stability.rs": "8b9008bd8c392deeee18a3f5ebbc7664fac56cb2652001a3515acbcbe2cb4849",
+    "contraction.rs": "576c35b122601c0b6e9c7065cfae290c88b50c772d4761d7ff9961939fde931d",
+    "exact_zero_certificate.rs": "f8d20154d4c1031be0f4c64931db7589c2ee0ba3cd4c05eebec25cc58f58d1cb",
+    "basis.rs": "dd1e52a306e26b7567b321426a3293d14907825f01f75da35f2d245e5dff85a3",
+    "ibp.rs": "e78cea2e66a881d117b57fff7dc0b21efe73113371a53d8a81954fa5b38c1a33",
+    "snapping.rs": "68e6cec2b457f1e7b816393fa54748244872f392010e9a3bd844553abdd8ae19",
+    "certified_scalar.rs": "06e3a25f471b25e70003cd40d24b77d6bfe9ccec7ff83e45628a9325f82662ef",
+    "convention.rs": "96d5586d3109154f215861950e6fd751364d35b1c4af5f7135ce8e0d8001e43f",
+    "invariant_certificate.rs": "d0aa64a773316ecf78b891627e6dd77d35b2e6096866d172f874fe38abe3c862",
+    "pv.rs": "4a7d84fc89a0e2c7e03f8b038fb0e64eb7ad4f58e106d88925eccbec3b55ae3e",
+    "scalar.rs": "990d0dc21b449a1643cc1f0f29243c80a7fab3c0a932aa7dc0fba209cbaa173e",
+    "rescue.rs": "16e08520a16b187dd71fa48ab5a50aa10de71145b2e9d42ee48ecc96dee94940",
+    "plan.rs": "99fbcb264833d08a25eee308bcba777acd7dc1b6b2a2cfad84e135ccdd7a7608",
+    "types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+    "certified_planar.rs": "c97c0ecb0c4e8b9b83fe2a3086bd4b0a55a80a022ed13b6f54f3506106910a0e",
+    "execution.rs": "1cbd9074fa551e4758fbe409c75c0c97c4b8da7ca1aa038676aef2f4878736bc",
+    "stability/arguments.rs": "7a04034a5344915ca62e12a310b87894a9c71f63bbedcdfe967dbe65465d1ccf",
+    "stability/quadrature.rs": "718f3d3d73fe77bba75ec7372d87f2c7415b371b7e9233278db7754be2ef868b"
+  },
+  "dependencies": {
+    "iregi_masters": {
+      "path": "/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libiregi_masters-0d5459afd211649c.rlib",
+      "sha256": "5a51209413e9bb69460b3f55c97e4f08ab694596f2fbdb0d01d5517f9ef70c58"
+    },
+    "symbolica": {
+      "path": "/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libsymbolica-5cca42ee48491872.rlib",
+      "sha256": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc"
+    },
+    "oneloop": {
+      "path": "/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/liboneloop-8562c3cbbf948c0e.rlib",
+      "sha256": "ef3ab91a609b41f76b64ff7d7cb4fc9071ac9e5c4f10a9b996ab81940109e499"
+    },
+    "serde": {
+      "path": "/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libserde-fc3dcd4b8c210596.rlib",
+      "sha256": "23c65a314712e86a7ab871318334bda5005613cfb7ca9ce1969d59f31a02c94a"
+    },
+    "serde_json": {
+      "path": "/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libserde_json-3b583d0e8aa0facc.rlib",
+      "sha256": "819a0304f105583ad05d1da12b0180a4e8ff1b1389e3931ba8864626df4bd689"
+    },
+    "thiserror": {
+      "path": "/shared/external/iregi/iregi-rust/target/planar-certified/frozen-deps/libthiserror-b877110d28821624.rlib",
+      "sha256": "5d7ee55f9efe313a0f1672880857ba524b9b9707efce373b2f6431f9d2bef411"
+    }
+  },
+  "cpu_affinity": [
+    8,
+    9
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 56.477328568929806,
+  "binary_sha256": "61b561e733f8748c9c48df37880cca3d72fa3434c8a7b2f45fca8dd47ffab62c"
+}

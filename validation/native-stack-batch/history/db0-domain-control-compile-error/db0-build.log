@@ -1,0 +1,49 @@
+error[E0599]: no method named `is_nan` found for reference `&T` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/native-stack-batch/probe-db0-source.rs:37:93
+   |
+37 |    let equal=if a.is_finite()&&b.is_finite(){same(a,b)}else{a.is_finite()==b.is_finite()&&a.is_nan()==b.is_nan()&&a.negative_sign()=...
+   |                                                                                             ^^^^^^
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following traits define an item `is_nan`, perhaps you need to restrict type parameter `T` with one of them:
+   |
+26 | fn verify<T:NativeFloat + libm::math::support::float_traits::Float>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++++++++++++++++++
+26 | fn verify<T:NativeFloat + num_complex::complex_float::ComplexFloat>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++++++++++++++++++
+26 | fn verify<T:NativeFloat + num_traits::float::Float>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++
+26 | fn verify<T:NativeFloat + num_traits::float::FloatCore>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++++++
+help: there is a method `nan` with a similar name
+   |
+37 -    let equal=if a.is_finite()&&b.is_finite(){same(a,b)}else{a.is_finite()==b.is_finite()&&a.is_nan()==b.is_nan()&&a.negative_sign()==b.negative_sign()&&a.get_precision()==b.get_precision()};
+37 +    let equal=if a.is_finite()&&b.is_finite(){same(a,b)}else{a.is_finite()==b.is_finite()&&a.nan()==b.is_nan()&&a.negative_sign()==b.negative_sign()&&a.get_precision()==b.get_precision()};
+   |
+
+error[E0599]: no method named `is_nan` found for reference `&T` in the current scope
+  --> /shared/external/iregi/iregi-rust/target/native-stack-batch/probe-db0-source.rs:37:105
+   |
+37 |    let equal=if a.is_finite()&&b.is_finite(){same(a,b)}else{a.is_finite()==b.is_finite()&&a.is_nan()==b.is_nan()&&a.negative_sign()=...
+   |                                                                                                         ^^^^^^
+   |
+   = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following traits define an item `is_nan`, perhaps you need to restrict type parameter `T` with one of them:
+   |
+26 | fn verify<T:NativeFloat + libm::math::support::float_traits::Float>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++++++++++++++++++
+26 | fn verify<T:NativeFloat + num_complex::complex_float::ComplexFloat>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++++++++++++++++++
+26 | fn verify<T:NativeFloat + num_traits::float::Float>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++
+26 | fn verify<T:NativeFloat + num_traits::float::FloatCore>(label:&str,exact:&Exact,points:&[Vec<Complex<f64>>],prototype:T,rowsizes:&[usize])->Result<(),String> where Complex<T>:EvaluationDomain{
+   |                         ++++++++++++++++++++++++++++++
+help: there is a method `nan` with a similar name
+   |
+37 -    let equal=if a.is_finite()&&b.is_finite(){same(a,b)}else{a.is_finite()==b.is_finite()&&a.is_nan()==b.is_nan()&&a.negative_sign()==b.negative_sign()&&a.get_precision()==b.get_precision()};
+37 +    let equal=if a.is_finite()&&b.is_finite(){same(a,b)}else{a.is_finite()==b.is_finite()&&a.is_nan()==b.nan()&&a.negative_sign()==b.negative_sign()&&a.get_precision()==b.get_precision()};
+   |
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0599`.

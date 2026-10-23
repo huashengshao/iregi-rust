@@ -1,0 +1,48 @@
+{
+  "recorded_utc": "2026-10-23T16:17:11.833781+00:00",
+  "results": [
+    {
+      "name": "earlier_guard_overhead",
+      "recorded_utc": "2026-10-23T16:16:46.058860+00:00",
+      "binary": "target/mixed-precision-guard-probe/probe",
+      "binary_sha256": "3af4073af65c039c50ecd05a90ed0cb5455f8a8776436a7c773060d67ed0ee87",
+      "executed_copy": "target/monitor-roundoff-cache/executed/earlier_guard_overhead-ov3mpxez",
+      "executed_copy_final_sha256": "3af4073af65c039c50ecd05a90ed0cb5455f8a8776436a7c773060d67ed0ee87",
+      "build_manifest": "validation/mixed-precision/guard-probe-build.json",
+      "build_manifest_sha256": "fbea15d5f247422f7ddca229994410c5fe5c27c29f2135137d6617e6b81a964a",
+      "exit_code": 0,
+      "seconds": 17.01246339897625,
+      "cpu_affinity": [
+        0
+      ],
+      "quiet_window": "requires central lease; CPU affinity alone is not evidence of a quiet host",
+      "raw_csv_sha256": "b2e11388a4406f94956b8568d94e4b9cb3f1c6921c322c805790069908152743",
+      "log_sha256": "efaba5ee3b0b634a2a5d6457d23ff618202ce3ffee518ce73310c3582a95b5ae",
+      "scope": "paired isolated direct-rustc experiment, not IREGI performance acceptance",
+      "provenance_qualified": true,
+      "analysis_exit_code": 0
+    },
+    {
+      "name": "local_monitor_cache",
+      "recorded_utc": "2026-10-23T16:17:07.445776+00:00",
+      "binary": "target/monitor-roundoff-cache/performance",
+      "binary_sha256": "0939cd214ae95179be9fe18e284afd1848b70942d7e3b581a1828cb34d0565c8",
+      "executed_copy": "target/monitor-roundoff-cache/executed/local_monitor_cache-gdw48zmp",
+      "executed_copy_final_sha256": "0939cd214ae95179be9fe18e284afd1848b70942d7e3b581a1828cb34d0565c8",
+      "build_manifest": "validation/monitor-roundoff-cache/performance-compile.json",
+      "build_manifest_sha256": "4d186b5201bc1c327ff93ff0678a33a6117e422d1162d24827cb6e7bd33496a1",
+      "exit_code": 0,
+      "seconds": 21.367847373941913,
+      "cpu_affinity": [
+        0
+      ],
+      "quiet_window": "requires central lease; CPU affinity alone is not evidence of a quiet host",
+      "raw_csv_sha256": "f2648fbba6304f37098b7baebcef055874a3492c0dbeb07c4dec5cbf3410e9f9",
+      "log_sha256": "0beb992d9f5f12f6cb77f960ba59a0dda5e31673ded0c1ae191f2f327f43995b",
+      "scope": "paired isolated direct-rustc experiment, not IREGI performance acceptance",
+      "provenance_qualified": true,
+      "analysis_exit_code": 0
+    }
+  ],
+  "scope": "Separate earlier accuracy-guard and later monitor-cache diagnostics; do not pool or multiply their speedups"
+}

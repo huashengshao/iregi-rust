@@ -175,10 +175,37 @@ def provenance_qualified(data):
     return all(checks.get(name) is True for name in [
         "successful_stable_build", "binary_matches_manifest",
         "sources_match_manifest", "assets_match_manifest",
+        "numeric_assets_match_build",
     ]) and all(data.get(name) is False for name in [
         "source_changed_during_run", "workspace_source_changed_during_run",
         "assets_changed_during_run", "binaries_changed_during_run",
+        "validation_producers_changed_during_run",
+        "build_assets_changed_during_run",
     ])
+
+
+def numeric_asset_hashes(assets):
+    """Model, DOT, input, fixture and audit data must match the built snapshot.
+
+    Python validation producers execute from the live workspace and have their
+    own recorded identity; they are not linked into the Rust executable.
+    """
+    return {name: sha for name, sha in assets.items() if Path(name).suffix != ".py"}
+
+
+def validation_producer_hashes(sources, assets):
+    return {name: sha for name, sha in {**sources, **assets}.items()
+            if name.startswith("validation/") and Path(name).suffix == ".py"}
+
+
+def build_provenance_checks(build, binary_sha256, sources, built_assets, live_assets):
+    return {
+        "successful_stable_build": build.get("status") == "complete" and build.get("provenance_qualified") is True,
+        "binary_matches_manifest": build.get("binary_sha256") == binary_sha256,
+        "sources_match_manifest": build.get("source_sha256") == sources,
+        "assets_match_manifest": build.get("assets_sha256") == built_assets,
+        "numeric_assets_match_build": numeric_asset_hashes(built_assets) == numeric_asset_hashes(live_assets),
+    }
 
 
 def configuration_rows(configurations):
@@ -245,6 +272,7 @@ def main():
     build = json.loads(args.build_manifest.read_text()) if args.build_manifest.exists() else {}
     source_root = Path(build.get("source_root", ROOT))
     sources = kernel.source_hashes(source_root)
+    built_assets = physical_asset_hashes(source_root)
     asset_hashes = physical_asset_hashes(ROOT)
     original_affinity = os.sched_getaffinity(0)
     thread_variables = ["RAYON_NUM_THREADS", "OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"]
@@ -252,11 +280,12 @@ def main():
     for name in thread_variables:
         os.environ[name] = "1"
     os.sched_setaffinity(0, {args.cpu})
-    data = {"schema_version": 1, "kind": "physical-pipeline-benchmark", "status": "running",
+    data = {"schema_version": 2, "kind": "physical-pipeline-benchmark", "status": "running",
             "date": datetime.datetime.now(datetime.timezone.utc).isoformat(), "environment": kernel.environment(args.cpu),
             "build": build, "binary": {"path": str(args.rust), "sha256": kernel.digest(args.rust)},
             "oracle": {"path": str(args.oracle), "sha256": kernel.digest(args.oracle)},
             "assets_sha256": asset_hashes, "inputs": {"path": str(inputs), "sha256": kernel.digest(inputs)},
+            "build_assets_sha256": built_assets,
             "thread_environment": {name: os.environ[name] for name in thread_variables},
             "protocol": {"repeats": args.repeats, "warmup": args.warmup, "target_block_ms": args.block_ms,
                          "stage_order_seed": 271828, "transport_timed": False,
@@ -267,12 +296,10 @@ def main():
                          "reference_timing": None, "performance_parity_claim": False,
                          "qualification": "stored MadLoop and original IREGI outputs establish correctness only; no physical timing ratio is inferred"},
             "rows": configuration_rows(configurations)}
-    data["build_provenance_checks"] = {
-        "successful_stable_build": build.get("status") == "complete" and build.get("provenance_qualified") is True,
-        "binary_matches_manifest": build.get("binary_sha256") == data["binary"]["sha256"],
-        "sources_match_manifest": build.get("source_sha256") == sources,
-        "assets_match_manifest": build.get("assets_sha256") == asset_hashes,
-    }
+    data["build_provenance_checks"] = build_provenance_checks(
+        build, data["binary"]["sha256"], sources, built_assets, asset_hashes)
+    data["validation_producer_sha256"] = validation_producer_hashes(
+        data["environment"]["source_sha256"], asset_hashes)
     kernel.save(args.output, data)
     engine = None
     reference_cache = {}
@@ -369,6 +396,9 @@ def main():
             data["source_changed_during_run"] = kernel.source_hashes(source_root) != sources
             data["workspace_source_changed_during_run"] = kernel.source_hashes() != data["environment"]["source_sha256"]
             data["assets_changed_during_run"] = physical_asset_hashes(ROOT) != asset_hashes
+            data["build_assets_changed_during_run"] = physical_asset_hashes(source_root) != built_assets
+            data["validation_producers_changed_during_run"] = validation_producer_hashes(
+                kernel.source_hashes(), physical_asset_hashes(ROOT)) != data["validation_producer_sha256"]
             data["binaries_changed_during_run"] = (kernel.digest(args.rust) != data["binary"]["sha256"]
                                                     or kernel.digest(args.oracle) != data["oracle"]["sha256"])
             data["provenance_qualified"] = provenance_qualified(data)

@@ -1,0 +1,42 @@
+{
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+  "source_scope": "Frozen validation-only example; baseline nofeatures oneloop and pre-default-stack Symbolica retained dependencies.",
+  "driver": "validate",
+  "build_command": [
+    "taskset",
+    "-c",
+    "4,5",
+    "rustc",
+    "--crate-name",
+    "near_vacuum_current4",
+    "--edition=2024",
+    "target/near-vacuum-validation/stage-current4-source/near_vacuum_validate.rs",
+    "-L",
+    "dependency=target/d0-node-probe/deps",
+    "-L",
+    "dependency=target/cargo-build/debug/deps",
+    "-L",
+    "native=target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "oneloop=target/d0-node-probe/liboneloop_baseline.rlib",
+    "--extern",
+    "symbolica=target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib",
+    "--extern",
+    "serde_json=target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib",
+    "-o",
+    "target/near-vacuum-validation/near_vacuum_current4"
+  ],
+  "build_environment": {
+    "CARGO_CRATE_NAME": "near_vacuum_current4"
+  },
+  "sha256": {
+    "target/near-vacuum-validation/stage-current4-source/near_vacuum_validate.rs": "8cf14f14aff3a30b6071abf4b7b41c4e85c6491f356218488bd20ea627b654f8",
+    "target/near-vacuum-validation/stage-current4-source/support/near_vacuum_box.rs": "8d765b8480a44f78b26a08de57edaa786f3e1cc18848714594c4dee94f19f733",
+    "target/near-vacuum-validation/stage-current4-source/support/d0_near_vacuum_oracle.rs": "3b8986901c845e75fecbc7f374cb03fb9ef1fa2a0f9d8dffbba18225edf93cb1",
+    "target/d0-node-probe/liboneloop_baseline.rlib": "20422536ffadaa8e77aaf706559277c0d92ba35bec42ba8b50acbfdc026c4a1b",
+    "target/d0-node-probe/deps/libsymbolica-5cca42ee48491872.rlib": "fef0009fa8c425978642b09b90c6489774002803aaa0130b9f78d78ed13374dc",
+    "target/d0-node-probe/deps/libserde_json-6ed7d47d62d32cd7.rlib": "808a067d8f9db870604ce3f47ad1b261505f70b387902bc907cb9e7442b806d4",
+    "target/near-vacuum-validation/near_vacuum_current4": "2084e1fb834048df7cd75d5a291754dfe8c38ad3936b652c91e33cb62216bc0d"
+  },
+  "parent_dependency_provenance": "target/d0-node-probe/source-inputs.json"
+}

@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "recorded_utc": "2026-10-23T15:15:17.300086+00:00",
-  "status": "sequential_control_passed_concurrency_license_excluded",
-  "concurrent_numeric_status": "unqualified; ignored integration test requires public LicenseManager::max_threads(2) >=2",
-  "licensing": "No bypass, permit manipulation, or missing-check assumption. Installed license.rs states one Symbolica thread per user in restricted mode; warmed numeric evaluation has no documented exemption.",
+  "recorded_utc": "2026-10-23T16:07:33.031144+00:00",
+  "status": "sequential_warm_concurrent_and_cold_specialization_controls_passed",
+  "concurrent_numeric_status": "qualified for the retained SymbolicaBatch core/master binary and test corpus; public two-thread license capability asserted before workers start",
+  "licensing": "Original restricted license allowed one thread; after the user supplied a license, the ignored concurrency test was explicitly invoked and its public capability assertion passed. Key material remains outside tracked sources and evidence.",
   "source": "crates/iregi-rust/tests/concurrent_workspaces.rs",
   "build_evidence": "validation/concurrent-workspaces/build.json",
   "sequential_control_command": "cargo test -p iregi-rust --test concurrent_workspaces warmed_sequential_controls_cover_the_concurrency_corpus -- --nocapture",
@@ -17,8 +17,8 @@
     "All Laurent/Taylor coefficients, signed zeros, precision metadata, lane status, result metadata, analytic/fallback flags, and execution row counts compared with sequential baselines"
   ],
   "limitations": [
-    "Concurrent execution must remain unclaimed if installed licensing permits fewer than two threads.",
-    "Default backend is reported by the runtime control; a separate native-feature build is needed to qualify generated native kernels."
+    "This qualifies the retained exact source/dependency/binary hashes in build.json, not arbitrary future implementations.",
+    "Default SymbolicaBatch backend is qualified; a separate native-feature build is needed to qualify generated native kernels."
   ],
   "sequential_control": "validation/concurrent-workspaces/sequential-control.json",
   "sequential_log": "validation/concurrent-workspaces/sequential-control.log",
@@ -32,8 +32,28 @@
   "sequential_tests_passed": 1,
   "sequential_tests_failed": 0,
   "sequential_unittest_seconds": 4.57,
-  "installed_symbolica_max_threads": 1,
   "master_backend": "SymbolicaBatch",
   "source_sha256": "396298bf7ac307ac4041a8c0457e005606a0b630deaebfe054c01b92c8677a41",
-  "sequential_log_sha256": "8b9f007b77111a62ea29cd8ad6d33aa20363381d740726840c5192b6e943b6dc"
+  "sequential_log_sha256": "8b9f007b77111a62ea29cd8ad6d33aa20363381d740726840c5192b6e943b6dc",
+  "historical_restricted_license_max_threads": 1,
+  "current_license_capability": "LicenseManager::max_threads(2)>=2 asserted successfully in concurrent test",
+  "concurrent_evidence": "validation/concurrent-workspaces/concurrent-control.json",
+  "concurrent_log": "validation/concurrent-workspaces/concurrent-control.log",
+  "concurrent_tests_passed": 1,
+  "concurrent_tests_failed": 0,
+  "concurrent_unittest_seconds": 4.73,
+  "concurrent_log_sha256": "f098600b9229607accba3dcf52ef6b0233a8c08a000d7f063b36afa2f55552e3",
+  "cold_concurrent_specialization": {
+    "tests_passed": 1,
+    "worker_threads": 4,
+    "unittest_seconds": 0.01,
+    "evidence": "validation/concurrent-workspaces/cold-specialization.json",
+    "source_revision": "80949db",
+    "scope": "Concurrent initialization of one analytic-jet specialization, shared Arc identity and cache lifetime cleanup"
+  },
+  "license_capability_evidence": {
+    "path": "validation/concurrent-workspaces/license-capabilities.json",
+    "sha256": "d47711dfef924db738fa8428c0ba6f284e916a7641fd47834884b5fbdcd29eee",
+    "scope": "Public license capability only; no key material"
+  }
 }
