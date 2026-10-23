@@ -22,6 +22,17 @@ code-generation unit, and the independently audited `-O3` reference objects.
 Compiler commands, versions, binary hashes, source hashes, reference revisions,
 and local reference repair provenance are saved with the measurements. Build
 while sources are stable: the build script rejects a changing source snapshot.
+Use `python3 validation/benchmark/build.py --native-batch` to measure the
+opt-in generated Rust scalar kernels. Each row identifies the actual compiled
+backend. Preserve the manifest alongside measurements when comparing builds.
+`provenance_qualified` requires both measured binaries to match their build
+manifests and the Rust source snapshot to remain unchanged; a timing verdict
+without this provenance is diagnostic only.
+Use `--revision COMMIT` to build a retained Git snapshot below
+`target/benchmark/sources/` while development continues. Commands still run
+from the project root. Measurements identify that exact revision and snapshot;
+they qualify that implementation, not subsequent working-tree edits. The
+runner separately tracks measured-source and current-workspace changes.
 
 A smaller qualification run, after obtaining the shared Symbolica runtime
 slot, is:

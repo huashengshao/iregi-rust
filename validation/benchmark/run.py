@@ -25,17 +25,17 @@ def digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def source_hashes():
-    files = [ROOT / "Cargo.toml", ROOT / "Cargo.lock"]
-    files += sorted((ROOT / "crates").rglob("*.rs"))
-    files += sorted((ROOT / "crates").rglob("Cargo.toml"))
+def source_hashes(root=ROOT):
+    files = [root / "Cargo.toml", root / "Cargo.lock"]
+    files += sorted((root / "crates").rglob("*.rs"))
+    files += sorted((root / "crates").rglob("Cargo.toml"))
     # Path-patched dependencies are not identified by Cargo.lock alone. Include
     # generated evaluator assets and provenance as well as their Rust sources.
-    files += sorted(p for p in (ROOT / "dependencies").rglob("*") if p.is_file()
-                    and not any(part in {"target", ".git", "__pycache__"} for part in p.relative_to(ROOT / "dependencies").parts))
-    files += sorted((ROOT / "validation/benchmark").glob("*.py"))
-    files += sorted((ROOT / "validation/benchmark").glob("*.f90"))
-    return {str(p.relative_to(ROOT)): digest(p) for p in files}
+    files += sorted(p for p in (root / "dependencies").rglob("*") if p.is_file()
+                    and not any(part in {"target", ".git", "__pycache__"} for part in p.relative_to(root / "dependencies").parts))
+    files += sorted((root / "validation/benchmark").glob("*.py"))
+    files += sorted((root / "validation/benchmark").glob("*.f90"))
+    return {str(p.relative_to(root)): digest(p) for p in files}
 
 
 def command_output(command):
@@ -251,6 +251,9 @@ def main():
     parser.add_argument("--filter", default="", help="Case ID substring")
     parser.add_argument("--inputs-only", action="store_true")
     args = parser.parse_args()
+    args.output = args.output.resolve()
+    args.rust = args.rust.resolve()
+    args.reference = args.reference.resolve()
     if args.cpu not in os.sched_getaffinity(0):
         parser.error("requested CPU is outside the permitted affinity mask")
     if min(args.batches) < 1 or args.repeats < 3 or args.warmup < 0 or args.block_ms <= 0:
@@ -286,6 +289,17 @@ def main():
     for key, filename in [("reference_build", "reference-build.json"), ("rust_build", "rust-build.json")]:
         path = ROOT / "target/benchmark" / filename
         data[key] = json.loads(path.read_text()) if path.exists() else None
+    rust_build = data["rust_build"] or {}
+    reference_build = data["reference_build"] or {}
+    measured_source = Path(rust_build.get("source_root", ROOT))
+    measured_source_hashes = source_hashes(measured_source)
+    data["measured_source"] = {"path": str(measured_source), "revision": rust_build.get("source_revision"),
+                               "sha256": measured_source_hashes, "is_current_workspace": measured_source == ROOT}
+    data["build_provenance_checks"] = {
+        "rust_binary_matches_manifest": rust_build.get("binary_sha256") == data["binaries"]["rust"]["sha256"],
+        "reference_binary_matches_manifest": reference_build.get("binary_sha256") == data["binaries"]["reference"]["sha256"],
+        "rust_sources_match_manifest": rust_build.get("source_sha256") == measured_source_hashes,
+    }
     save(args.output, data)
     rng = random.Random(271828)
     rust = reference = None
@@ -340,6 +354,7 @@ def main():
                             profiles[name].append(profiled["profile_ns"][name][0])
                     row["order"] = orders
                     row["rust"] = {"total": summarize(totals["rust"]), "preparation_ns": pilot_rust["preparation_ns"],
+                                   "master_backend": pilot_rust.get("master_backend", rust_build.get("master_backend", "unrecorded")),
                                    "preparation_reused": pilot_rust["plan_reused"], "numerator": None,
                                    "profiled_components": {name: summarize(values) for name, values in profiles.items()},
                                    "execution": pilot_rust["execution"]}
@@ -364,7 +379,9 @@ def main():
         data["status"] = "complete" if all(row["status"] != "running" for row in data["rows"]) else "interrupted"
         data["counts"] = {status: sum(row["status"] == status for row in data["rows"])
                           for status in sorted({row["status"] for row in data["rows"]})}
-        data["source_changed_during_run"] = source_hashes() != data["environment"]["source_sha256"]
+        data["workspace_source_changed_during_run"] = source_hashes() != data["environment"]["source_sha256"]
+        data["source_changed_during_run"] = source_hashes(measured_source) != measured_source_hashes
+        data["provenance_qualified"] = all(data["build_provenance_checks"].values()) and not data["source_changed_during_run"]
         if data["source_changed_during_run"]:
             data["measurement_warning"] = "Sources changed during measurement; results describe hashed binaries and are stale for the current source tree"
         save(args.output, data)
