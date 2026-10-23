@@ -1,0 +1,147 @@
+[
+  {
+    "old": "//! Finite D0 series and component enclosures in a bounded near-vacuum domain.",
+    "new": "//! Private genuine E6 N2 series and component enclosures; no production dispatch.",
+    "occurrences": 1
+  },
+  {
+    "old": "use oneloop::NativeFloat;",
+    "new": "use iregi_masters::NativeFloat;",
+    "occurrences": 1
+  },
+  {
+    "old": "pub const PHYSICAL_ARGUMENTS: usize = 10; // six invariants, four squared masses",
+    "new": "pub const PHYSICAL_ARGUMENTS: usize = 15; // ten invariants, five squared masses\npub const EXTERNAL_ARGUMENTS: usize = 16; // physical inputs plus mu_squared",
+    "occurrences": 1
+  },
+  {
+    "old": "const PREPARED_ARGUMENTS: usize = 11; // normalized invariants/deviations, fixed M",
+    "new": "const PREPARED_ARGUMENTS: usize = 16; // normalized physical inputs plus fixed M",
+    "occurrences": 1
+  },
+  {
+    "old": "iregi_near_vacuum::",
+    "new": "iregi_direct_e6_n2::",
+    "occurrences": 5
+  },
+  {
+    "old": "if ![2, 4].contains(&order)",
+    "new": "if order != 2",
+    "occurrences": 1
+  },
+  {
+    "old": "near-vacuum series supports only orders two and four",
+    "new": "private direct E6 prototype supports only order two",
+    "occurrences": 1
+  },
+  {
+    "old": "let cube_symbols: Vec<_> = (0..3)",
+    "new": "let cube_symbols: Vec<_> = (0..4)",
+    "occurrences": 1
+  },
+  {
+    "old": "simplex[..3]",
+    "new": "simplex[..4]",
+    "occurrences": 1
+  },
+  {
+    "old": "let mut deviation: Atom = (0..4).map(|i| &parameters[6 + i] * &simplex[i]).sum();",
+    "new": "let mut deviation: Atom = (0..5).map(|i| &parameters[10 + i] * &simplex[i]).sum();",
+    "occurrences": 1
+  },
+  {
+    "old": "[(0, 1), (1, 2), (2, 3), (0, 3), (0, 2), (1, 3)]",
+    "new": "[(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]",
+    "occurrences": 1
+  },
+  {
+    "old": "Physical parameters follow the three cube variables",
+    "new": "Physical parameters follow the four cube variables",
+    "occurrences": 1
+  },
+  {
+    "old": "        // N4 in the complete ten-parameter basis has 103243 cube-expanded\n        // monomials before exact integration reduces it to 1001 terms.\n",
+    "new": "",
+    "occurrences": 1
+  },
+  {
+    "old": "for variable in 0..3 {",
+    "new": "for variable in 0..4 {",
+    "occurrences": 1
+  },
+  {
+    "old": "if (0..3).any(|coordinate| polynomial.degree(coordinate) != 0)",
+    "new": "if (0..4).any(|coordinate| polynomial.degree(coordinate) != 0)",
+    "occurrences": 1
+  },
+  {
+    "old": "let integrated_polynomial = polynomial.to_expression() / parameters[10].pow(2);",
+    "new": "let integrated_polynomial = -polynomial.to_expression() / parameters[15].pow(2);",
+    "occurrences": 1
+  },
+  {
+    "old": "/ (Atom::num(6) * l.pow(2));",
+    "new": "/ (Atom::num(24) * l.pow(2));",
+    "occurrences": 1
+  },
+  {
+    "old": "if (0..6)",
+    "new": "if (0..10)",
+    "occurrences": 1
+  },
+  {
+    "old": "(6..10)",
+    "new": "(10..15)",
+    "occurrences": 3
+  },
+  {
+    "old": "point[6 * components]",
+    "new": "point[10 * components]",
+    "occurrences": 1
+  },
+  {
+    "old": "let sigma = (0..6)",
+    "new": "let sigma = (0..10)",
+    "occurrences": 1
+  },
+  {
+    "old": "Rational::from((3, 8))",
+    "new": "Rational::from((2, 5))",
+    "occurrences": 1
+  },
+  {
+    "old": "if argument >= 6 && component == 0",
+    "new": "if argument >= 10 && component == 0",
+    "occurrences": 1
+  },
+  {
+    "old": "        Self::validate_shape(&shape)?;",
+    "new": "        Self::validate_shape(&shape)?;\n        eprintln!(\"stage: exact preparation start full15 N2 components{}\", shape.len());",
+    "occurrences": 1
+  },
+  {
+    "old": "        // Exact rational coefficients avoid expression-coefficient swell.",
+    "new": "        eprintln!(\"stage: Symbolica series constructed\");\n        // Exact rational coefficients avoid expression-coefficient swell.",
+    "occurrences": 1
+  },
+  {
+    "old": "        if polynomial.nterms() > 150_000 {",
+    "new": "        eprintln!(\"stage: cube polynomial terms{}\", polynomial.nterms());\n        if polynomial.nterms() > 150_000 {",
+    "occurrences": 1
+  },
+  {
+    "old": "        let integrated_polynomial =",
+    "new": "        eprintln!(\"stage: exact integration complete terms{}\", polynomial.nterms());\n        let integrated_polynomial =",
+    "occurrences": 1
+  },
+  {
+    "old": "        let instructions = checked_program(&exact)?;",
+    "new": "        let instructions = checked_program(&exact)?;\n        eprintln!(\"stage: numeric+Dual evaluator instructions{}\", instructions);",
+    "occurrences": 1
+  },
+  {
+    "old": "        let tail = compile(&tail, &[b, l], &shape)?;",
+    "new": "        let tail = compile(&tail, &[b, l], &shape)?;\n        eprintln!(\"stage: positive tail evaluator ready\");",
+    "occurrences": 1
+  }
+]

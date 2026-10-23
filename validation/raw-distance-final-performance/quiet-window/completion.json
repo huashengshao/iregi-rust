@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "completed_utc": "2026-10-23T20:30:32.120226+00:00",
+  "status": "all_five_predeclared_cohorts_completed_project_hold_released",
+  "cpu": 254,
+  "immutable_manifests_sha256": {
+    "window.json": "4ff2c3bec2869060ec285f7687df0998fb0f60ac3e1e2da2cadc606773a9fee1",
+    "collier-window.json": "50001488c70369ba8377e3a917987a54f78ddf53c3b9db13dfb2c8cd77a98b61"
+  },
+  "cohorts": {
+    "native_master_replay": {
+      "cases": 8,
+      "paired_blocks_per_case": 21,
+      "raw": "target/native-master-replay/replay-timing.json",
+      "exit_code": 0,
+      "raw_sha256": "2885f4cc0f0777a56af252a6c37279d61f46e94d23a6e55b8144773d4f6ff03c"
+    },
+    "cli_coefficient_cse": {
+      "cases": 16,
+      "paired_blocks_per_case": 21,
+      "raw": "target/cli-coefficient-cse-timing/quiet254/manifest.json",
+      "exit_code": 0,
+      "raw_sha256": "f9f16f01efc9f170c0a9faf320accaef7da1ffe37231d49adc204a4d6d05839d"
+    },
+    "real_ball_long": {
+      "cases": 4,
+      "paired_blocks_per_case": 41,
+      "raw": "target/real-ball-core/kernel-quiet-long-001/qualification.json",
+      "exit_code": 0,
+      "raw_sha256": "39a8b913507b0b30e4a1b2fbeb97d439448793732f994f555da1c2a60dcc789f"
+    },
+    "final_receipts": {
+      "cases": 14,
+      "paired_blocks_per_case": 41,
+      "completion_duration_seconds": 325.765,
+      "exit_code": 0
+    },
+    "iregi_vs_collier": {
+      "cases": 8,
+      "paired_blocks_per_case": 41,
+      "raw": "target/collier-reference/timing-attempt001/results.json",
+      "exit_code": 0,
+      "raw_sha256": "c5b42f2ded5cd4296f2768748eba8218c77749febe4145be7243cbed255237dd"
+    }
+  },
+  "coordinator_notes": [
+    "All five owners reported exit0, all registered rows retained and owned compute idle before the next start grant.",
+    "A separate bounded untimed COLLIER11-test/eight-case pre-post correctness slot ran between third and fourth cohorts to qualify the narrow first-error-retention fix.",
+    "No CI-based rerun, omission or early stopping; external host activity remained uncontrolled.",
+    "Completion is execution/provenance status, not a performance acceptance decision; statistical qualification and explicit numerical scope remain required per cohort.",
+    "CLI raw coefficient failures remain visible and have separately proved dimension-normalized criteria; no full physical acceptance follows."
+  ],
+  "compute_release": "Private implementation, bounded verification, statistical analysis, report rebuild and package audits may now proceed; no additional performance cohort authorized."
+}

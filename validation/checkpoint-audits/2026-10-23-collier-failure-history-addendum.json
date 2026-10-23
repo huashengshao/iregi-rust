@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "status": "timing_ready_pending_failure_history_fix",
+  "reviewer": "/root/checkpoint_audit",
+  "recorded_utc": "2026-10-23T20:17:53.305789+00:00",
+  "supersedes_ready_conclusion_of": {
+    "path": "validation/checkpoint-audits/2026-10-23-collier-timing-protocol.json",
+    "sha256": "df588696093d11e875cc3219549ef3fb4fba36a7121856032c0cfe374566c34c"
+  },
+  "runner_sha256": "6e898de5d4c4d7d2239f2c9ad5e281ed5468067db4971a5dff4575ea7af752d1",
+  "finding": {
+    "source": "Owner raised this point after the initial review; independently confirmed from frozen source without runtime.",
+    "trigger": "A timed checked_request times out, killing its engine. The timed handler records status=timeout and the original error; the subsequent postflight against that exited engine raises again.",
+    "effect": "Postflight row.update overwrites the original timeout status/error with failed and a generic already-exited error. Incomplete calibration/blocks survive, but the first exception text and classification are lost. No false-passed cohort is possible from this path.",
+    "required_fix": "Preserve the first failure status/error and append a distinct postflight error or ordered failure history; a postflight failure after a measured row must still fail that row/cohort.",
+    "location": "validation/collier-reference/run.py timed-row and postflight exception handlers"
+  },
+  "next_gate": [
+    "Retain the existing frozen runner and completed correctness receipt.",
+    "After narrow source fix, add relevant parser/mock regression and obtain a new source-matching correctness receipt before timing.",
+    "Recheck new source/receipt hashes. ROOT retains exclusive timing authorization."
+  ],
+  "scope": "Read-only source finding; no numerical/build activity and no experiment artifact modified."
+}

@@ -1,0 +1,308 @@
+{
+  "status": "passed",
+  "scope": "Independent Python-only raw-to-summary arithmetic/provenance audit; no kernels, builds, or new timing measurements. Raw master kernel results do not establish whole-reduction or IREGI performance parity.",
+  "checks": 251,
+  "errors": [],
+  "source_sha256": {
+    "target/native-master-replay/benchmark_helper.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "target/native-master-replay/statistics-source.json": "e5e2fc3a5ba431cc5152bdf6c81d008620acc290a16816e0da4cd670faa4f46e",
+    "target/native-master-replay/replay_parser.py": "93fa14829ec7487e463be17ea3af624005e5bb611678ccc384e690cf9eb24737",
+    "target/native-master-replay/run_replay.py": "e41ec0562c4ef488f12ec8ee5e72e549f8e1578eba8f072342a014b2f8995a86",
+    "target/native-master-replay/analyze_replay.py": "bf9dc88d4b447bc84134de2eca082125b075cb2672170553e8b5a9c5bc0cbebe",
+    "target/native-master-replay/capture-results.json": "222332475329ab688fe40b792d05649f969272aef79ad452ef26c21d77b4f43c",
+    "target/native-master-replay/replay-timing-summary.json": "5645eb1dbf9ad33183478fb1bfead1644e53b8408028935acd6fee923c6fad94",
+    "target/native-master-replay/replay-build.json": "28877a464fcd4ee4d26b8662faec51ce29acb274a00284446b51feb906ed89d8",
+    "target/native-master-replay/replay-qualification-initial.json": "80fc12d39a19d5ddc63aae0e49e96162423cce0e8aa54e118b998b7f46f7ff81",
+    "target/native-master-replay/replay-qualification-initial.jsonl": "d69ee2c24683c83f4016a29cd3f3aa9a15396ed761c42639ed096caaac9076dc",
+    "target/native-master-replay/replay-qualification-before.json": "fcf0f3af76844d537a577f2bb56fb51bb16aee0616ac51abecc86eea132fe91e",
+    "target/native-master-replay/replay-qualification-before.jsonl": "a26ec8a959e42c535d19b9ed2c4e1d4addc65676f019619c77b1df87b3089f7b",
+    "target/native-master-replay/replay-timing.json": "2885f4cc0f0777a56af252a6c37279d61f46e94d23a6e55b8144773d4f6ff03c",
+    "target/native-master-replay/replay-timing.jsonl": "3922de3e9714ac91d7959d1d1a9375ba3bb17bcdd598417b6d9336100a3a7e74",
+    "target/native-master-replay/replay-qualification-after.json": "c6616727286d99746b68651197f6b312cd8d890e2832bc2455e7ce441103cda7",
+    "target/native-master-replay/replay-qualification-after.jsonl": "9b9058fda42d35d8e335fed3ff9035e2bc32184830448612c21d62e9520d194b",
+    "validation/benchmark-quiet/20261023d/window.json": "4ff2c3bec2869060ec285f7687df0998fb0f60ac3e1e2da2cadc606773a9fee1",
+    "validation/benchmark-quiet/20261023d/completion.json": "a9c19a2932f2747cfc9a2c11abeae0502c141557fb5b677288beed06069abb60"
+  },
+  "quiet_window_bound": true,
+  "all_four_phase_outputs_bitwise_equal": true,
+  "groups_per_phase": 12,
+  "master_rows_per_phase": 297,
+  "represented_u64_components_per_phase": 7128,
+  "gates": {
+    "improvement": 8
+  },
+  "rows": [
+    {
+      "id": "n2-r0-massive",
+      "outer_batch": 1,
+      "native_over_symbolica": {
+        "median": 0.14335095363328218,
+        "ci99": [
+          0.1426725500649284,
+          0.14422165332542805
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.010806368714243323
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.1435853937240133,
+          "ci99": [
+            0.14121091297310828,
+            0.1445518715511439
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.02326809497390319
+        },
+        "native_first": {
+          "median": 0.14290621067564102,
+          "ci99": [
+            0.14115933545459705,
+            0.14504858968176434
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.02721543177710354
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n2-r0-massive",
+      "outer_batch": 32,
+      "native_over_symbolica": {
+        "median": 0.7020083608434228,
+        "ci99": [
+          0.6978467631083848,
+          0.7054023374508607
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.010762798228497308
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.6986051425276054,
+          "ci99": [
+            0.6937567177750854,
+            0.7057563312039837
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.01717653177513528
+        },
+        "native_first": {
+          "median": 0.7046982452240012,
+          "ci99": [
+            0.6997065851072531,
+            0.7228424032411094
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.03283081558760245
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n2-r1-massive",
+      "outer_batch": 1,
+      "native_over_symbolica": {
+        "median": 0.2676354489935536,
+        "ci99": [
+          0.2657748083258538,
+          0.270115969927036
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.016220428263547255
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.2676354489935536,
+          "ci99": [
+            0.261640001878704,
+            0.2720061980664633
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.03873252301495004
+        },
+        "native_first": {
+          "median": 0.26752334566595887,
+          "ci99": [
+            0.26136782644757617,
+            0.2701145389580321
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.03269513727365486
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n2-r1-massive",
+      "outer_batch": 32,
+      "native_over_symbolica": {
+        "median": 0.7372253040472415,
+        "ci99": [
+          0.7329527592755236,
+          0.7410423488671269
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.01097302215102067
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.7372253040472415,
+          "ci99": [
+            0.7277821166437118,
+            0.7398576884892377
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.016379757693113683
+        },
+        "native_first": {
+          "median": 0.7378776604235537,
+          "ci99": [
+            0.7263054159102297,
+            0.748000067353348
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.02940142059683071
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n3-r0-massive",
+      "outer_batch": 1,
+      "native_over_symbolica": {
+        "median": 0.17459207544284944,
+        "ci99": [
+          0.17407456043702124,
+          0.1749152334370989
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.00481506962985173
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.1748745221291306,
+          "ci99": [
+            0.17445977659429518,
+            0.17557623247526769
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.006384325557430795
+        },
+        "native_first": {
+          "median": 0.17416082084235596,
+          "ci99": [
+            0.17396042849421756,
+            0.1747916203636463
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.004772553697258335
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n3-r0-massive",
+      "outer_batch": 32,
+      "native_over_symbolica": {
+        "median": 0.8087254489094413,
+        "ci99": [
+          0.8053813340373727,
+          0.8116339265330905
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.007731415530634555
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.8116309142160653,
+          "ci99": [
+            0.806690352458246,
+            0.8152278338357145
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.0105189208887079
+        },
+        "native_first": {
+          "median": 0.8069655018156492,
+          "ci99": [
+            0.8021330942683244,
+            0.8102816769314035
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.010097807954299268
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n3-r1-massive",
+      "outer_batch": 1,
+      "native_over_symbolica": {
+        "median": 0.23681529714904948,
+        "ci99": [
+          0.23629503963771303,
+          0.2373899085536424
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.004623303178089286
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.2371228088482737,
+          "ci99": [
+            0.23670749771751734,
+            0.2390025222232437
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.009678632422049535
+        },
+        "native_first": {
+          "median": 0.23638468368577428,
+          "ci99": [
+            0.23540067221583907,
+            0.2373899085536424
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.008415250543252652
+        }
+      },
+      "native_slower_pairs": 0
+    },
+    {
+      "id": "n3-r1-massive",
+      "outer_batch": 32,
+      "native_over_symbolica": {
+        "median": 0.78382321741689,
+        "ci99": [
+          0.7786732550093481,
+          0.7883114626011504
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.012296404823992321
+      },
+      "order_strata": {
+        "symbolica_first": {
+          "median": 0.7878347322324917,
+          "ci99": [
+            0.7714569556205131,
+            0.7902942277226607
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.023910182340867735
+        },
+        "native_first": {
+          "median": 0.7802294727352889,
+          "ci99": [
+            0.7701117801330426,
+            0.7861787245231455
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.020592588400661468
+        }
+      },
+      "native_slower_pairs": 0
+    }
+  ]
+}

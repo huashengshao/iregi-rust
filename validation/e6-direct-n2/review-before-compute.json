@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_only_review_before_compute",
+  "reviewed_at_utc": "2026-10-23T20:37:53.830503+00:00",
+  "reviewer": "/root/pentagon_precision/e6_series_review",
+  "independent_family_reviewer": "/root/pentagon_precision/e6_series_review/near_vacuum_oracle_audit",
+  "scope": "Private full-15-parameter direct D6 pentagon N2 module and bounded Float256/request128 driver source; no compilation, Symbolica execution, numerical run, production change, runtime qualification, or performance claim.",
+  "source_sha256": {
+    "target/e6-direct-n2/source/near_vacuum_d0_original.rs": "046bb0e22fe5ec63489f94352a61eecb20020647bd8d893dc585e99e46663a57",
+    "target/e6-direct-n2/source/near_vacuum_e6.rs": "9abf3dc1bbe6c2d2437f6e06d637593cd53a57767107635824b7c0d9560e0513",
+    "target/e6-direct-n2/source/validate.rs": "abcaab0c80f2d8c45baef64a6d39284f1c907252d49aada79eeb565ebc645788",
+    "target/e6-direct-n2/source/family-transform.json": "c16c2b7bde41566a927a63de6252a802182a1f038266323e36ecbc3b0d637860",
+    "target/e6-direct-n2/source/family-transform.diff": "331274ece24b49cbb097cf175dc04b2c507aecba96ed712d2ac34555b8558e28"
+  },
+  "production_base_sha256": "046bb0e22fe5ec63489f94352a61eecb20020647bd8d893dc585e99e46663a57",
+  "transformation_replay": {
+    "replacement_steps": 29,
+    "actual_occurrences": [
+      1,
+      1,
+      1,
+      1,
+      5,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      3,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "all_occurrences_equal_declared": true,
+    "replayed_output_byte_identical_to_candidate": true,
+    "frozen_original_byte_identical_to_live_production_base": true
+  },
+  "mathematical_source_findings": [
+    "Four cube coordinates produce five simplex coordinates, a Symbolica 4x4 Jacobian and four exact polynomial integrals.",
+    "All ten lexicographic pair invariants occur exactly once with the minus sign in F.",
+    "The integrated finite result has the overall minus sign, fixed M^-2 and vacuum normalization -1/(24 M^2).",
+    "The positive full-Taylor tail has volume factor 1/(24 L^2) and the five-parameter invariant envelope factor 2/5.",
+    "M is fixed at the first mass primal and L has zero higher components; every higher physical mass component remains in normalized deviations.",
+    "Existing shape, exact normalization, instruction-major batch, ball enclosure, budget and failure-value-hiding logic is preserved by exact source replay."
+  ],
+  "driver_findings": [
+    "The external sixteen-argument adapter validates all scale components for finiteness and a positive real scale primal before compacting the fifteen physical arguments.",
+    "Physical mu_squared and normalized auxiliary M are explicitly distinct despite equal outer argument counts.",
+    "Expected nine physical rows, eight scale-valid rows and five candidate-active rows are consistent with the fixtures.",
+    "The exact-vacuum common-mass unit seed has cubic coefficient +1/6; N2 must reject component three with nonzero tail despite rho=0.",
+    "The tiny common-mass seed permits a bounded omitted cubic component within the explicit absolute budget; success does not assert that component is exactly zero.",
+    "Independent comparisons bound numeric and every candidate-rectangle point against the oracle, check explicit component counts and require the whole retained oracle interval inside the candidate rectangle.",
+    "Empty, reversed, independent-workspace and malformed-length controls are present; execution counters explicitly distinguish sample rows from Taylor components."
+  ],
+  "resolved_review_comments": [
+    "All values, bounds, centers and radii lengths are asserted before zip-based comparison.",
+    "The prior overlap-only oracle check is replaced by full oracle interval containment; total lane and rejected cubic bound counts are also asserted."
+  ],
+  "unresolved_material_source_findings": [],
+  "limitations": [
+    "This source review does not establish that the candidate compiles or that any runtime assertion passes.",
+    "The first fixture set covers one retained routing family, exact vacuum and one-axis common-mass jets only.",
+    "It does not qualify unequal complex masses, mixed-axis jets, other numeric domains, upstream input-rectangle propagation, public-core dispatch, or performance.",
+    "The fifteen-argument candidate alone has no scale validation; the reviewed private physical adapter supplies that boundary."
+  ]
+}

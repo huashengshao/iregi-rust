@@ -1,0 +1,91 @@
+{
+  "schema_version": 1,
+  "status": "ready-awaiting-independent-retention-fix-addendum-and-root-timing-grant",
+  "scope": "Only initial8 massive undotted N2/N3rank0/1 batches1/32; not the broader shared-domain acceptance",
+  "command": "source scripts/env.sh\npython3 validation/collier-reference/run.py --build validation/collier-reference/ready-initial8-v3/build.json --output target/collier-reference/timing-attempt001 --mode timing --cpu 254 --blocks 41 --block-ms 100 --warmup 5 --timeout 120 --cohort-timeout 900 --correctness-proof validation/collier-reference/ready-initial8-v3/correctness.json --quiet-note validation/benchmark-quiet/20261023d/window.json",
+  "correctness": {
+    "path": "validation/collier-reference/ready-initial8-v3/correctness.json",
+    "sha256": "de40173c8ec11c8750c4cb614bb73a64e3037eac90402c9f1a39696e0ade135b",
+    "rows": 8,
+    "pre_and_post_lane_evaluations": 264,
+    "pre_and_post_complex_laurent_slots": 3168,
+    "maximum_normalized_error": 2.488972223388242e-13,
+    "tolerance": 1e-10,
+    "complex_slot_count_scope": "3168complexslotsperenginepre/post;6336combined"
+  },
+  "protocol_tests": {
+    "path": "validation/collier-reference/ready-initial8-v3/protocol-tests.log",
+    "sha256": "53ec6bfd32b426a23950e2fbbff5aba6e95df6d3ed7324d3edb40dd8151e63f8",
+    "passed": 11
+  },
+  "build": {
+    "path": "validation/collier-reference/ready-initial8-v3/build.json",
+    "sha256": "654d6221d0169ba06d0f2ae7f9615737d6b67aae0f0b57539e74ad518902fc80"
+  },
+  "identity": {
+    "binaries": {
+      "collier": {
+        "path": "/shared/external/iregi/iregi-rust/target/reference/collier/build-attempt001/collier-benchmark",
+        "sha256": "33704d629e547fe817a3982451cde1fc796d832fb51476c6ef07dffbe37c175a"
+      },
+      "iregi": {
+        "path": "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/6b24c03-default/bin/iregi-benchmark",
+        "sha256": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389"
+      }
+    },
+    "input_sha256": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+    "batches": [
+      1,
+      32
+    ],
+    "iregi_mode": "Hybrid",
+    "collier_mode": 1,
+    "source_sha256": {
+      "validation/collier-reference/build.py": "760822d07aab75240994cde51ba875ec08e439329694f247b1158d4dfbc42a8c",
+      "validation/collier-reference/run.py": "979046300446dc037c52927436696b4bcac2a289439abb699d85f6b19a63d134",
+      "validation/collier-reference/test_protocol.py": "afeb69829c82181053b439b7fae7493b438ffd1600bbec16eae37b1524ad005e",
+      "validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+      "validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+      "validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d"
+    }
+  },
+  "protocol": {
+    "cpu": 254,
+    "paired_blocks": 41,
+    "order_inventory": [
+      21,
+      20
+    ],
+    "order_seed": 271828,
+    "warmup_unit_calls": 5,
+    "warmup_blocks": 5,
+    "minimum_observed_block_ms": 100,
+    "calibration_margin": 1.1,
+    "calibration_round_cap": 8,
+    "shared_iterations": true,
+    "maximum_iterations": 1000000,
+    "complete_preflight_all8_before_timing": true,
+    "complete_postflight_all8_after_timing": true,
+    "all_measured_block_arrays_checked": true,
+    "pole_probes_timed": false,
+    "confidence": 0.99,
+    "maximum_relative_ci_width": 0.02,
+    "cohort_cap_seconds": 900,
+    "request_cap_seconds": 120
+  },
+  "planning_duration_seconds_from_diagnostic_single_calls": 3135.594226410146,
+  "planning_duration_caveat": "Rough resource planning only; cold/short correctness durations are not qualified performance measurements. Fixed900s cap controls the cohort.",
+  "files": {
+    "validation/collier-reference/ready-initial8-v3/build.json": "654d6221d0169ba06d0f2ae7f9615737d6b67aae0f0b57539e74ad518902fc80",
+    "validation/collier-reference/ready-initial8-v3/correctness.json": "de40173c8ec11c8750c4cb614bb73a64e3037eac90402c9f1a39696e0ade135b",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/collier-reference/build.py": "760822d07aab75240994cde51ba875ec08e439329694f247b1158d4dfbc42a8c",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/collier-reference/run.py": "979046300446dc037c52927436696b4bcac2a289439abb699d85f6b19a63d134",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/collier-reference/test_protocol.py": "afeb69829c82181053b439b7fae7493b438ffd1600bbec16eae37b1524ad005e",
+    "validation/collier-reference/ready-initial8-v3/protocol-tests.log": "53ec6bfd32b426a23950e2fbbff5aba6e95df6d3ed7324d3edb40dd8151e63f8"
+  },
+  "planning_duration_seconds_from_diagnostic_postflight_calls": 255.76122981240738,
+  "failure_retention": "Original timed failure status/error retained; postflight failure appended separately; regression tests cover both preservation and disqualification"
+}

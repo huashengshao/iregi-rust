@@ -1,12 +1,14 @@
 {
-  "status": "numerical-replay-qualified-timing-pending",
+  "status": "numerical-replay-and-raw-timing-qualified",
   "scope": "Unchanged selected A0/B0/C0 native versus Symbolica on actual ordinary binary64 core master bundles; no D0/Dual/higher-precision/complete-reduction timing claim.",
   "production_changed": false,
   "capture_qualification_sha256": "b49fc4796aa829dc4c371bbfac26cfa9d4c3af37cc1da4e0eef5f20005050780",
   "build_sha256": "28877a464fcd4ee4d26b8662faec51ce29acb274a00284446b51feb906ed89d8",
   "binary_sha256": "ec285c8e6f846dc97b7a129063ebc3e7f205303552a58e9d79811d019a851d25",
   "qualification_records": {
-    "initial": "80fc12d39a19d5ddc63aae0e49e96162423cce0e8aa54e118b998b7f46f7ff81"
+    "initial": "80fc12d39a19d5ddc63aae0e49e96162423cce0e8aa54e118b998b7f46f7ff81",
+    "before": "fcf0f3af76844d537a577f2bb56fb51bb16aee0616ac51abecc86eea132fe91e",
+    "after": "c6616727286d99746b68651197f6b312cd8d890e2832bc2455e7ce441103cda7"
   },
   "total_cases": 8,
   "total_master_rows": 297,
@@ -16,5 +18,14 @@
   "signed_zero_differences": 0,
   "public_symbolica_outputs": "All first five coefficients match captured public outputs exactly, including zero signs; all six finite; ordinary derivative coefficient zero; own backend outputs repeat bitwise.",
   "parser_controls": "31 independent malformed controls rejected; complete synthetic qualification and timing schemas accepted. Synthetic timings are not measurements.",
-  "failed_build_attempt": "earlier-attempts/replay-001-missing-trait/failure.json"
+  "failed_build_attempt": "earlier-attempts/replay-001-missing-trait/failure.json",
+  "timing_summary_sha256": "5645eb1dbf9ad33183478fb1bfead1644e53b8408028935acd6fee923c6fad94",
+  "gates": {
+    "improvement": 8
+  },
+  "quiet_window_sha256": "4ff2c3bec2869060ec285f7687df0998fb0f60ac3e1e2da2cadc606773a9fee1",
+  "quiet_completion_sha256": "a9c19a2932f2747cfc9a2c11abeae0502c141557fb5b677288beed06069abb60",
+  "independent_timing_audit_sha256": "3905cba047500414dfa0ab044109ed56a1432b4aa12d344fb3115dcd7cd87c78",
+  "decision_sha256": "34d5302c082202b714e36f6cc8681e719dcac7ff0be4f9117dffd96092ed5ec5",
+  "decision": "All eight raw master bundles improve. Diagnostic evidence supports a separately qualified whole-core selected-backend experiment; no production adoption or IREGI parity inferred."
 }

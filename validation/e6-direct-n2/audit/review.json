@@ -1,0 +1,21 @@
+{
+  "status": "source_review_passed_then_exact_output_audit_passed",
+  "reviewer": "/root/pentagon_precision/nondyadic_oracle/e6_audit_review",
+  "checker_sha256": "845968854189e84af1546c50fd1be4e5ec728a788a4907a9b4f39d6b333426c9",
+  "result_sha256": "c332f227ce54688a022767f836199f305a3f3659c24518469b734c5f28accc74",
+  "review_scope": "Read-only source and checker review; reviewer performed no builds, Symbolica execution, numerical candidate rerun, or edits.",
+  "findings": [
+    "Correct negative Delta4 normalization, 2/5 invariant envelope and complete Taylor tail.",
+    "Unit common-mass cubic coefficient is +1/6; tiny seed cubic is positive but may fit the explicit absolute budget.",
+    "Numeric and full-rectangle distance formulas, mixed absolute-relative budget and independent oracle matching are correct.",
+    "Nine physical rows become eight scale-valid packed rows and five active candidate rows; four success and five rejection statuses are correct.",
+    "Added exact oracle schema/normalization/ten-invariant/unit-mass checks before audit.",
+    "Added direct selected-artifact/upstream-D0 metadata equality and exact build-command source/output binding before audit."
+  ],
+  "unresolved_material_findings": [],
+  "limitations": [
+    "Reversed/empty execution is reviewed source plus exit-zero evidence; reversed rows are not serialized.",
+    "Independent workspaces were exercised sequentially, not concurrently.",
+    "Private direct E6 N2 only; no public/core or performance qualification."
+  ]
+}

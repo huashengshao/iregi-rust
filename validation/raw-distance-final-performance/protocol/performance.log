@@ -1,0 +1,57 @@
+PREPARE bubble-ordinary rows=1
+PARITY_PASS bubble-ordinary rows=1 fixed_iterations=1024 candidate_proof_work=[0, 0, 0, 0]
+CALIBRATION,bubble-ordinary,1,0,baseline-first,1024,16892654,17298176
+CALIBRATION,bubble-ordinary,1,1,candidate-first,12367,204783589,213485251
+PREPARE bubble-ordinary rows=32
+PARITY_PASS bubble-ordinary rows=32 fixed_iterations=64 candidate_proof_work=[0, 0, 0, 0]
+CALIBRATION,bubble-ordinary,32,0,baseline-first,64,21059481,21259961
+CALIBRATION,bubble-ordinary,32,1,candidate-first,620,207326458,205673392
+PREPARE triangle-ordinary rows=1
+PARITY_PASS triangle-ordinary rows=1 fixed_iterations=256 candidate_proof_work=[0, 0, 0, 0]
+CALIBRATION,triangle-ordinary,1,0,baseline-first,256,25972378,26076350
+CALIBRATION,triangle-ordinary,1,1,candidate-first,2011,203219652,203845335
+PREPARE triangle-ordinary rows=32
+PARITY_PASS triangle-ordinary rows=32 fixed_iterations=16 candidate_proof_work=[0, 0, 0, 0]
+CALIBRATION,triangle-ordinary,32,0,baseline-first,16,35086634,35373554
+CALIBRATION,triangle-ordinary,32,1,candidate-first,94,203556023,204263876
+PREPARE bubble-zero-real rows=1
+PARITY_PASS bubble-zero-real rows=1 fixed_iterations=512 candidate_proof_work=[1, 1, 1, 1]
+CALIBRATION,bubble-zero-real,1,0,baseline-first,512,91776239,46924418
+CALIBRATION,bubble-zero-real,1,1,candidate-first,2226,375954188,217576477
+PREPARE bubble-zero-real rows=32
+PARITY_PASS bubble-zero-real rows=32 fixed_iterations=32 candidate_proof_work=[32, 1, 32, 32]
+CALIBRATION,bubble-zero-real,32,0,baseline-first,32,172373554,85203464
+CALIBRATION,bubble-zero-real,32,1,candidate-first,77,426862431,205782591
+PREPARE bubble-zero-complex rows=1
+PARITY_PASS bubble-zero-complex rows=1 fixed_iterations=256 candidate_proof_work=[1, 1, 1, 1]
+CALIBRATION,bubble-zero-complex,1,0,baseline-first,256,43925856,22316325
+CALIBRATION,bubble-zero-complex,1,1,candidate-first,2341,401944736,204389896
+PREPARE bubble-zero-complex rows=32
+PARITY_PASS bubble-zero-complex rows=32 fixed_iterations=16 candidate_proof_work=[32, 1, 32, 32]
+CALIBRATION,bubble-zero-complex,32,0,baseline-first,16,87066231,43611985
+CALIBRATION,bubble-zero-complex,32,1,candidate-first,75,408316999,202584619
+PREPARE bubble-mixed-dual rows=1
+PARITY_PASS bubble-mixed-dual rows=1 fixed_iterations=128 candidate_proof_work=[1, 1, 2, 1]
+CALIBRATION,bubble-mixed-dual,1,0,baseline-first,128,119108542,61796754
+CALIBRATION,bubble-mixed-dual,1,1,candidate-first,423,400584039,203944284
+PREPARE bubble-mixed-dual rows=32
+PARITY_PASS bubble-mixed-dual rows=32 fixed_iterations=8 candidate_proof_work=[32, 1, 48, 24]
+CALIBRATION,bubble-mixed-dual,32,0,baseline-first,8,214269413,125144104
+CALIBRATION,bubble-mixed-dual,32,1,candidate-first,14,377079890,218903260
+PREPARE ggh-zero-real rows=1
+PARITY_PASS ggh-zero-real rows=1 fixed_iterations=128 candidate_proof_work=[1, 1, 2, 1]
+CALIBRATION,ggh-zero-real,1,0,baseline-first,128,69616624,47224639
+CALIBRATION,ggh-zero-real,1,1,candidate-first,553,300912540,202914130
+PREPARE ggh-zero-real rows=32
+PARITY_PASS ggh-zero-real rows=32 fixed_iterations=8 candidate_proof_work=[32, 1, 64, 32]
+CALIBRATION,ggh-zero-real,32,0,baseline-first,8,120278126,76098438
+CALIBRATION,ggh-zero-real,32,1,candidate-first,22,332376489,208093419
+PREPARE ggh-mixed-complex rows=1
+PARITY_PASS ggh-mixed-complex rows=1 fixed_iterations=128 candidate_proof_work=[1, 1, 2, 1]
+CALIBRATION,ggh-mixed-complex,1,0,baseline-first,128,70014066,46091734
+CALIBRATION,ggh-mixed-complex,1,1,candidate-first,567,310929618,201886775
+PREPARE ggh-mixed-complex rows=32
+PARITY_PASS ggh-mixed-complex rows=32 fixed_iterations=8 candidate_proof_work=[32, 1, 64, 32]
+CALIBRATION,ggh-mixed-complex,32,0,baseline-first,8,118079377,74795123
+CALIBRATION,ggh-mixed-complex,32,1,candidate-first,22,327999113,204097963
+PASS 14 fixed-loop cases; mode=timing

@@ -1,0 +1,20 @@
+{
+  "qualification": "validation/cli-coefficient-optimization/qualification.json",
+  "qualification_sha256": "cff8b7d3d455660f5425409220a70bc88b42fe411ae957c6d3eb11cdf92ce195",
+  "source_qualified": {
+    "input.rs": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb",
+    "coefficients.rs": "71f108d69c0390c489d07e9390f161701a9efe420de793e340454effda042a99",
+    "proof.rs": "eae7eff6a279909ba1a6615de16feb5b72ef8ccd3478e7496aa9c8450cfb111f"
+  },
+  "homogeneity_sha256": "936fc40bbcd26220146beff5c609ad7b0f2d1c60c22b11348603b59c12fe1ffe",
+  "protocol": "direct-vs-cse0 and direct-vs-pair1; all4graphs batches1/32;21seeded-balanced-random paired30ms fixed-loop blocks; each variant exact self-check before/after, independent256-bit scale-aware reference outside timers; unchanged raw failures reported",
+  "production_modified": false,
+  "timing_status": "not run; coordinated grant required",
+  "resumed_utc": "2026-10-23T19:08:18Z",
+  "interrupted_attempt": "earlier-attempts/user-pause-20261023",
+  "review_fix": "Validate homogeneity coefficient count before zip and reference scale length/positivity/finiteness before indexing. No change to arithmetic or protocol.",
+  "resumed_source_review": {
+    "reviewer": "/root/native_stack_batch",
+    "outcome": "Homogeneity length and scale shape/positive/finite checks close gaps; no arithmetic/protocol changes or blocker."
+  }
+}

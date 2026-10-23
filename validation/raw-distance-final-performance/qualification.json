@@ -1,0 +1,234 @@
+{
+  "status": "final_implementation_preflight_qualified_timing_pending",
+  "recorded_utc": "2026-10-23T20:13:29.944665+00:00",
+  "production_adopted": false,
+  "timing_performed": false,
+  "cohort": "New final implementation cohort; distinct from the historical first receipt cohort",
+  "baseline": "21622ec core plus shared collector; independently verified byte-equivalent to 06706e2 core",
+  "candidate": "Same baseline plus final automatic-planar/accounting/checked-receipt patch; private read-only counter accessor outside timed loop",
+  "dependencies": "Both sides use the same frozen 6b24c03-complete-kinds master/Symbolica dependency closure",
+  "source_manifest_sha256": "95a09a15bf6b303ba6143a04fd80f332e67ef289545a428a1b2f53e2f94641ff",
+  "source_review_sha256": "3759e7e792e14215718c502dd2406862acedde6fdf6ffcbd539f2a7e88991463",
+  "final_patch_sha256": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3",
+  "preregistration_sha256": "d7b94df418c09d754b0acb721150dbe3690ebf5fc454bb8c6af3a14d3b56977a",
+  "build_manifest_sha256": "afe0d865a05707b5fa8aa32e20e924f61b5cead5c3171fde2e886bd5e89fd727",
+  "preflight_manifest_sha256": "2c958a2fd7adaffe75b6a6849c23cf0048f7e2bffee5600d62c862526dee71cf",
+  "preflight_log_sha256": "78c1234fdd57cf59ac8fdafa56484a651e44bdaba7e29bb8bd759ce19c3ac72f",
+  "probe_sha256": "492dfb7f194396d6af263aecb870f62fe2a19ef7a79bbc12e7a8c292fcffe1b2",
+  "preflight": {
+    "passed": 14,
+    "failed": 0,
+    "seconds": 17.40465014707297,
+    "duration_scope": "Validation only; not a performance measurement",
+    "cases": [
+      {
+        "family": "bubble-ordinary",
+        "rows": 1,
+        "initial_iterations": 1024,
+        "candidate_proof_work": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-ordinary",
+        "rows": 32,
+        "initial_iterations": 64,
+        "candidate_proof_work": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "triangle-ordinary",
+        "rows": 1,
+        "initial_iterations": 256,
+        "candidate_proof_work": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "triangle-ordinary",
+        "rows": 32,
+        "initial_iterations": 16,
+        "candidate_proof_work": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-zero-real",
+        "rows": 1,
+        "initial_iterations": 512,
+        "candidate_proof_work": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-zero-real",
+        "rows": 32,
+        "initial_iterations": 32,
+        "candidate_proof_work": [
+          32,
+          1,
+          32,
+          32
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-zero-complex",
+        "rows": 1,
+        "initial_iterations": 256,
+        "candidate_proof_work": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-zero-complex",
+        "rows": 32,
+        "initial_iterations": 16,
+        "candidate_proof_work": [
+          32,
+          1,
+          32,
+          32
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-mixed-dual",
+        "rows": 1,
+        "initial_iterations": 128,
+        "candidate_proof_work": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "bubble-mixed-dual",
+        "rows": 32,
+        "initial_iterations": 8,
+        "candidate_proof_work": [
+          32,
+          1,
+          48,
+          24
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "ggh-zero-real",
+        "rows": 1,
+        "initial_iterations": 128,
+        "candidate_proof_work": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "ggh-zero-real",
+        "rows": 32,
+        "initial_iterations": 8,
+        "candidate_proof_work": [
+          32,
+          1,
+          64,
+          32
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "ggh-mixed-complex",
+        "rows": 1,
+        "initial_iterations": 128,
+        "candidate_proof_work": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "status": "exact_parity_passed"
+      },
+      {
+        "family": "ggh-mixed-complex",
+        "rows": 32,
+        "initial_iterations": 8,
+        "candidate_proof_work": [
+          32,
+          1,
+          64,
+          32
+        ],
+        "status": "exact_parity_passed"
+      }
+    ],
+    "exact_comparisons": [
+      "represented input/output bits",
+      "ordered Dual shape and precision context",
+      "basis and metadata",
+      "all lane statuses",
+      "fallback and analytic flags",
+      "all public ExecutionStats fields",
+      "diagnostics"
+    ],
+    "public_stats_deltas": "None permitted; all compared exactly",
+    "candidate_n5_certificate_counters": "All zero, asserted by the probe"
+  },
+  "parser_tests": {
+    "passed": 9,
+    "failed": 0,
+    "manifest": "protocol/parser-tests.json"
+  },
+  "provenance": {
+    "closure_files_verified_before_and_after_build_and_preflight": 865,
+    "sources_externs_build_review_and_binary_bindings_unchanged": true
+  },
+  "future_timing": {
+    "requires_new_root_quiet_grant": true,
+    "overall_timeout_seconds": 600,
+    "cases": 14,
+    "blocks_per_case": 41,
+    "warm_calls_per_side": 5,
+    "calibration_faster_side_minimum_seconds": 0.2,
+    "estimated_total_seconds": "Approximately 300\u2013350, not guaranteed; preserve any timeout",
+    "cpu": "Explicit coordinator grant required"
+  },
+  "limitations": [
+    "No timing result exists for this new cohort yet.",
+    "All workloads are N2/N3; the included N5 automatic fallback is inactive and its performance is not measured.",
+    "Frozen masters exclude later additive master APIs; this is not full current-workspace or IREGI-reference performance qualification.",
+    "This new compiled cohort does not resolve noise for identical binaries in the historical first cohort."
+  ],
+  "historical_first_cohort": {
+    "path": "validation/raw-distance-receipts-performance/qualification.json",
+    "sha256": "558df15036c49057149d326001fa1df8e10433b1097aa6c2b277608363726b92"
+  }
+}

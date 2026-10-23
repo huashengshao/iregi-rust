@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "status": "sequential_timing_authorized_only_on_explicit_owner_grant",
+  "created_utc": "2026-10-23T20:14:26.539132+00:00",
+  "project_head": "bdb55c9",
+  "cpu": 254,
+  "scope": "Four predeclared private optimization cohorts; no production adoption or IREGI parity inferred.",
+  "project_policy": "No parallel project compiler, benchmark or long numerical work; each owner needs explicit ROOT sequential start grant. Source writing and small read-only protocol review may continue.",
+  "external_host_policy": "Shared host activity is uncontrolled; no unrelated process is changed. Pre-window CPU254 survey records27.7% busy. Run each fixed cohort once and retain failed/noisy rows; no CI-driven case omission or early stopping.",
+  "survey": {
+    "path": "validation/benchmark-quiet/20261023d/cpu-survey.json",
+    "sha256": "1206d68f0d125c4c645319ad46383be47b320e02e3bd0d3b3c070bba956460fd"
+  },
+  "cohorts": {
+    "native_master_replay": {
+      "path": "validation/native-master-replay/replay-qualification.json",
+      "sha256": "4553f2a29875431285eca727823e78e0ecf30e237e606d060483d308e58b126e"
+    },
+    "cli_coefficient_cse": {
+      "path": "target/cli-coefficient-cse-timing/ready.json",
+      "sha256": "ae4591318475a9e76ab3ba7d35f6d72b52b40a1541496332fde093fb6a6c5edd"
+    },
+    "real_ball_long": {
+      "path": "target/real-ball-core/kernel-long-registration.json",
+      "sha256": "a265885421fae7c9a4b768fda5aa38518b4ce52a3b694cc24302236818a14aef"
+    },
+    "final_receipts": {
+      "path": "validation/raw-distance-final-performance/qualification.json",
+      "sha256": "fc1b60be95236bcefb912a4823126807e3bfb377881d1b6b8a5bfbc7be4027a7"
+    }
+  },
+  "order": [
+    "native_master_replay",
+    "cli_coefficient_cse",
+    "real_ball_long",
+    "final_receipts"
+  ],
+  "additional_colllier_comparison": "Requires separate frozen protocol review and explicit grant; not authorized by this manifest.",
+  "immutability": "Do not edit this manifest during or after runs. Append coordinator events separately; completion receipts bind this exact hash."
+}

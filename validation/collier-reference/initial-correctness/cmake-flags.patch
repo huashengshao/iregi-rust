@@ -1,0 +1,11 @@
+--- upstream/CMakeLists.txt
++++ generated/CMakeLists.txt
+@@ -96,7 +96,7 @@
+ #==================#
+ #-
+   set (basic "-ffixed-line-length-132  -fno-default-integer-8")
+-  set (opt_RELEASE "-O2 -funroll-loops -ffast-math -Wtabs")
++  set (opt_RELEASE "-O3 -std=legacy -fallow-argument-mismatch -Wtabs")
+   set (opt_DEBUG "-O0 -frange-check -g -fcheck=bounds,do,mem,pointer,recursion")
+   set (opt_DEBUG "${opt_DEBUG} -Wall -Wtabs -Wextra -Wno-unused")
+   set (opt_DEBUG "${opt_DEBUG} -Wno-unused-dummy-argument")

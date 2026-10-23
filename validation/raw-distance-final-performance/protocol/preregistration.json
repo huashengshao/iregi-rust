@@ -1,0 +1,65 @@
+{
+  "status": "new_final_implementation_cohort_preregistered_not_built_not_run",
+  "recorded_utc": "2026-10-23T19:48:40.425215+00:00",
+  "parent_authorization": "NEW cohort approved by ROOT: current21622+collector baseline versus final qualified automatic/accounting/checked receipts; source audit before build, separate quiet timing grant",
+  "scope": "New paired current-core archives with identical frozen6b24 masters; original14-case measurements remain historical and this is not same-binary noise resolution",
+  "original_qualification": "validation/raw-distance-receipts-performance/qualification.json",
+  "original_qualification_sha256": "558df15036c49057149d326001fa1df8e10433b1097aa6c2b277608363726b92",
+  "matrix": {
+    "workloads": [
+      "bubble-ordinary",
+      "triangle-ordinary",
+      "bubble-zero-real",
+      "bubble-zero-complex",
+      "bubble-mixed-dual",
+      "ggh-zero-real",
+      "ggh-mixed-complex"
+    ],
+    "rows": [
+      1,
+      32
+    ]
+  },
+  "correctness": "Exact represented input/output bits, context, full output metadata, every successful lane/status/flags/public ExecutionStats and diagnostics before/after eachcase. Candidate N5 certificate stats must be zero; candidate private reuse counters validated separately. No expected public metadata/counter deltas are allowed initially; any failure retained and investigated before changing protocol.",
+  "warmup": {
+    "calls_per_implementation_per_case": 5,
+    "before_calibration": true,
+    "exact_output_parity_each_call": true,
+    "included_in_timing": false
+  },
+  "calibration": {
+    "target_faster_side_seconds": 0.2,
+    "one_shared_iteration_count_for_both_implementations": true,
+    "initial_iterations": "same original predeclared workload/row counts",
+    "order": "alternatebaseline/candidatefirsteachcalibrationround",
+    "rule": "measure both at identical count; when min(elapsed)>=0.2 freeze count; otherwise count=max(count+1,ceil(count*0.2/minelapsed*1.02))",
+    "maximum_rounds": 12,
+    "failure": "Nonfinite/nonpositive duration,iterationoverflow,maximumrounds or totaldeadline producesretainedfailure;no rowdropping",
+    "excluded_from_reported_pairs": true,
+    "calibration_records_retained": true
+  },
+  "measurement": {
+    "blocks_per_case": 41,
+    "order": "baseline-first on evenblocks,candidate-first on oddblocks",
+    "iterations": "calibratedsharedcount,frozenbeforeblock0",
+    "deadline_seconds_total_includingprep": 600,
+    "cpu": "explicitrequiredavailableCPUfromcoordinatorquietgrant",
+    "no_early_stopping_for_ci": true,
+    "no_case_omission": true
+  },
+  "analysis": {
+    "statistic": "median pairedloglatencyratio",
+    "resamples": 20000,
+    "random_seed": 14050301,
+    "interval": "99%pairedbootstrappercentile",
+    "width_gate": "(upper\u2212lower)/medianlatencyratio<=0.02;otherwiseinconclusive",
+    "decision": "percase;do notpool;retainall14originalandall14followupoutcomes",
+    "independent_review_required": true
+  },
+  "build_hold": "Source review before two generic core libraries and one linked long probe; no timing until explicit quiet-window grant",
+  "source_manifest_sha256": "95a09a15bf6b303ba6143a04fd80f332e67ef289545a428a1b2f53e2f94641ff",
+  "historical_protocol_source_review": "target/raw-distance-receipts/long-protocol/source-review.json",
+  "candidate_source": "validation/automatic-planar/final/adoption.patch",
+  "same_common_collector": true,
+  "library_scope": "Same frozen master/Symbolica externs and identical opt3 generic core recipes; final bookkeeping overhead included. Automatic planar is structurally inactive for all14 N2/N3 cases."
+}

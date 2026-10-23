@@ -1,0 +1,15 @@
+--- production/execution.rs
++++ compiled/execution.rs
+@@ -1316,6 +1316,12 @@
+ 
+     pub(crate) fn last_distance_proof_work(&self) -> DistanceProofWork {
+         self.proof_work
++    }
++
++    /// Private benchmark-only accessor; absent from the proposed public API.
++    pub fn experimental_distance_proofs(&self) -> [usize; 4] {
++        [self.proof_work.certificate_rows, self.proof_work.certificate_passes,
++         self.proof_work.reused_pairs, self.proof_work.covered_rows]
+     }
+ 
+     /// Per-sample notes from the last call. A failed optional exact-profile

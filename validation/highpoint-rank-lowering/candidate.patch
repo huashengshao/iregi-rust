@@ -1,0 +1,199 @@
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/baseline/crates/iregi-rust/src/plan.rs /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/candidate/crates/iregi-rust/src/plan.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/baseline/crates/iregi-rust/src/plan.rs	2026-10-23 18:22:20.987765922 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/candidate/crates/iregi-rust/src/plan.rs	2026-10-23 20:01:25.962372766 +0000
+@@ -444,6 +444,9 @@
+                                 analytic_jet_order,
+                                 snapping.clone(),
+                                 certified_planar_chart,
++                                settings.invariants == InvariantInput::FromShifts
++                                    && settings.input_policy == InputPolicy::Preserve
++                                    && (6..=7).contains(&n),
+                             )?;
+                             (moments, leaves, aliases, Algorithm::PassarinoVeltman)
+                         }
+@@ -459,6 +462,9 @@
+                         analytic_jet_order,
+                         snapping.clone(),
+                         certified_planar_chart,
++                        settings.invariants == InvariantInput::FromShifts
++                            && settings.input_policy == InputPolicy::Preserve
++                            && (6..=7).contains(&n),
+                     );
+                     match pv {
+                         Ok((moments, leaves, aliases)) => {
+@@ -681,6 +687,7 @@
+     analytic_jet_order: u16,
+     snapping: Option<Rc<RefCell<LegacySnapping>>>,
+     certified_planar_chart: Option<usize>,
++    highpoint_rank_lowering: bool,
+ ) -> Result<(Vec<[Atom; 4]>, Vec<MasterLeaf>, Vec<(Atom, Atom)>), ReductionError> {
+     let mut compiler =
+         PvCompiler::with_distances(shifts.to_vec(), masses.to_vec(), distances.to_vec(), true)
+@@ -688,6 +695,9 @@
+     compiler
+         .set_analytic_jet_order(analytic_jet_order)
+         .map_err(ReductionError::Preparation)?;
++    if highpoint_rank_lowering {
++        compiler.enable_highpoint_rank_lowering().map_err(ReductionError::Preparation)?;
++    }
+     if let Some(omitted) = certified_planar_chart {
+         compiler
+             .set_certified_planar_chart(omitted)
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/baseline/crates/iregi-rust/src/pv.rs /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/candidate/crates/iregi-rust/src/pv.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/baseline/crates/iregi-rust/src/pv.rs	2026-10-23 18:22:20.987765922 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/rank-lowering/candidate/crates/iregi-rust/src/pv.rs	2026-10-23 20:01:25.960372759 +0000
+@@ -80,6 +80,8 @@
+     moments: HashMap<(Vec<usize>, [u16; 4]), [Atom; 4]>,
+     generated: HashMap<(Vec<usize>, u16), HashMap<Atom, [Atom; 4]>>,
+     denominator_identities: HashMap<Vec<usize>, Vec<Atom>>,
++    highpoint_rank_lowering: bool,
++    highpoint_coordinate_identities: HashMap<Vec<usize>, Option<[Vec<Atom>; 4]>>,
+     five_point_relations: HashMap<Vec<usize>, Option<FivePointRelation>>,
+     z: [Atom; 4],
+ }
+@@ -209,6 +211,8 @@
+             moments: HashMap::new(),
+             generated: HashMap::new(),
+             denominator_identities: HashMap::new(),
++            highpoint_rank_lowering: false,
++            highpoint_coordinate_identities: HashMap::new(),
+             five_point_relations: HashMap::new(),
+             z: std::array::from_fn(|mu| Atom::var(symbolica::symbol!(format!("iregi::pv_z{mu}")))),
+         })
+@@ -425,14 +429,26 @@
+         } else if active.len() >= 6 {
+             // This exact identity also applies at rank zero and does not rely
+             // on inverting the identically singular N>=7 Cayley matrix.
+-            let factors = self.denominator_identity(active)?;
++            let lowered = if self.highpoint_rank_lowering && rank > 0 {
++                self.highpoint_coordinate_identity(active)?
++            } else {
++                None
++            };
++            let (factors, child_exponents) = if let Some(directions) = lowered {
++                let mu = exponents.iter().position(|&n| n > 0).unwrap();
++                let mut rest = exponents;
++                rest[mu] -= 1;
++                (directions[mu].clone(), rest)
++            } else {
++                (self.denominator_identity(active)?, exponents)
++            };
+             let mut result = zero();
+             for (i, factor) in factors.iter().enumerate() {
+                 if factor.is_zero() {
+                     continue;
+                 }
+                 let child = without(active, i);
+-                let value = self.moment(&child, exponents)?;
++                let value = self.moment(&child, child_exponents)?;
+                 accumulate(&mut result, factor, &value);
+             }
+             result
+@@ -992,6 +1008,107 @@
+         Ok(relation)
+     }
+ 
++    /// Private experiment: require coordinates and distances to describe the
++    /// same preserved four-vectors. Callers inside plan.rs enforce this domain.
++    pub(crate) fn enable_highpoint_rank_lowering(&mut self) -> Result<(), String> {
++        if !self.moments.is_empty() || !self.coefficients.is_empty() {
++            return Err("enable high-point rank lowering before compiling moments".into());
++        }
++        self.highpoint_rank_lowering = true;
++        Ok(())
++    }
++
++    /// Exact Cartesian q^mu = sum_i w_i^mu D_i. One inverse and one four-RHS
++    /// matrix product per chart, reused by every moment and Laurent coefficient.
++    /// The scalar rank-zero identity intentionally remains the existing path.
++    fn highpoint_coordinate_identity(
++        &mut self,
++        active: &[usize],
++    ) -> Result<Option<[Vec<Atom>; 4]>, String> {
++        if let Some(value) = self.highpoint_coordinate_identities.get(active) {
++            return Ok(value.clone());
++        }
++        if !(6..=7).contains(&active.len()) {
++            return Ok(None);
++        }
++        let origin = self.shifts[active[0]].clone();
++        let mut rows = coordinate_rows(&self.shifts, active);
++        rows.push(self.f_values(active));
++        let rhs = Matrix::from_nested_vec(
++            (0..5)
++                .map(|row| {
++                    (0..4)
++                        .map(|mu| {
++                            if row == 4 {
++                                -&origin[mu]
++                            } else if row == mu {
++                                Atom::num(if mu == 0 { 1 } else { -1 }) / Atom::num(2)
++                            } else {
++                                Atom::new()
++                            }
++                        })
++                        .collect()
++                })
++                .collect(),
++            field(),
++        )
++        .map_err(|e| format!("PV Cartesian identity RHS: {e}"))?;
++        // Same deterministic order as the existing seven-point identity.
++        // Every chart remains lazy; an all-singular numerical lane retains an
++        // active inverse denominator and is rejected by the ordinary guards.
++        let selections: Vec<Vec<usize>> = if active.len() == 6 {
++            vec![(0..5).collect()]
++        } else {
++            (0..6)
++                .rev()
++                .map(|omitted| (0..6).filter(|&j| j != omitted).collect())
++                .collect()
++        };
++        let mut charts = Vec::new();
++        for columns in selections {
++            let matrix = Matrix::from_nested_vec(
++                rows.iter()
++                    .map(|row| columns.iter().map(|&j| row[j].clone()).collect())
++                    .collect(),
++                field(),
++            )
++            .map_err(|e| format!("PV Cartesian identity matrix: {e}"))?;
++            let determinant = matrix
++                .det()
++                .map_err(|e| format!("PV Cartesian identity determinant: {e:?}"))?;
++            if determinant.is_zero() {
++                continue;
++            }
++            let inverse = matrix
++                .inv()
++                .map_err(|e| format!("PV Cartesian identity inverse: {e:?}"))?;
++            let solution = &inverse * &rhs;
++            let mut factors: [Vec<Atom>; 4] =
++                std::array::from_fn(|_| vec![Atom::new(); active.len()]);
++            for mu in 0..4 {
++                for (row, &column) in columns.iter().enumerate() {
++                    factors[mu][column + 1] = solution[(row as u32, mu as u32)].clone();
++                }
++                factors[mu][0] = -Atom::add_many(&factors[mu][1..]);
++            }
++            charts.push((self.bind_alias(determinant), factors));
++        }
++        let result = charts.pop().map(|(_, mut factors)| {
++            for (determinant, candidate) in charts.into_iter().rev() {
++                for mu in 0..4 {
++                    for (factor, alternate) in factors[mu].iter_mut().zip(&candidate[mu]) {
++                        *factor = conditional(&determinant, alternate, factor);
++                    }
++                }
++            }
++            factors.map(|direction| direction.into_iter().map(|x| self.bind_alias(x)).collect())
++        });
++        // A structurally deficient K may still admit the old constant RHS.
++        // None explicitly requests that unchanged path; it is never zero data.
++        self.highpoint_coordinate_identities.insert(active.to_vec(), result.clone());
++        Ok(result)
++    }
++
+     pub(crate) fn denominator_identity(&mut self, active: &[usize]) -> Result<Vec<Atom>, String> {
+         if let Some(factors) = self.denominator_identities.get(active) {
+             return Ok(factors.clone());

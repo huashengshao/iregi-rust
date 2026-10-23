@@ -1,0 +1,378 @@
+{
+  "status": "completed_final_implementation_cohort_with_qualified_control_regressions",
+  "recorded_utc": "2026-10-23T20:34:04.431595+00:00",
+  "production_adopted": false,
+  "recommendation": "Do not adopt on an all-family no-regression criterion; retain the two qualified ordinary-control regressions.",
+  "cohort": "New final implementation cohort; distinct from the historical first receipt cohort",
+  "baseline": "21622ec core plus shared collector; independently verified byte-equivalent to 06706e2 core",
+  "candidate": "Same baseline plus final automatic-planar/accounting/checked-receipt patch; private read-only counter accessor outside timed loop",
+  "dependencies": "Both sides use the same frozen 6b24c03-complete-kinds master/Symbolica dependency closure",
+  "readiness": {
+    "path": "qualification.json",
+    "sha256": "fc1b60be95236bcefb912a4823126807e3bfb377881d1b6b8a5bfbc7be4027a7"
+  },
+  "correctness": {
+    "preflight_pairs_passed": 14,
+    "parser_tests_passed": 9,
+    "exact_input_output_context_public_metadata_and_stats_parity": true,
+    "inactive_n5_certificate_counters": true,
+    "preflight_review_bindings_rehashed": 80,
+    "preflight_review_sha256": "336d2cd8722d573f534833de11f6d042aa422cd332f268b71bb9a1148caae5af"
+  },
+  "performance": {
+    "process_seconds_including_preparation_calibration": 325.76511967903934,
+    "timeout_seconds": 600,
+    "exit_code": 0,
+    "timed_out": false,
+    "registered_cases": 14,
+    "observed_cases": 14,
+    "paired_blocks_per_case": 41,
+    "observations": 1148,
+    "warm_calls_per_side_per_case": 5,
+    "calibration_faster_side_minimum_seconds": 0.2,
+    "no_case_dropped": true,
+    "no_confidence_driven_stopping_or_repeat": true,
+    "classification_counts": {
+      "improvement": 11,
+      "regression": 2,
+      "parity": 1,
+      "inconclusive-noise": 0
+    },
+    "all_intervals_pass_width_gate": true,
+    "method": "41 alternating paired blocks after retained200ms calibration, median log ratio, 20000 paired bootstrap resamples, deterministic seed14050301, percentile99 interval",
+    "classification_gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise",
+    "results": [
+      {
+        "workload": "bubble-mixed-dual",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 943341.094563,
+        "candidate_median_ns_per_batch": 482569.539007,
+        "median_paired_speedup": 1.9520789788358295,
+        "candidate_over_baseline_latency_ratio": 0.5122743551064592,
+        "latency_ratio_ci99": [
+          0.5100588959177231,
+          0.5131873506314044
+        ],
+        "relative_ci_width": 0.006106990682817097,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.9486060963303975,
+          1.960557904201927
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-mixed-dual",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 26992937.285714,
+        "candidate_median_ns_per_batch": 15697621.714286,
+        "median_paired_speedup": 1.7206055258645883,
+        "candidate_over_baseline_latency_ratio": 0.5811907406827078,
+        "latency_ratio_ci99": [
+          0.5798711428433145,
+          0.5828519330622953
+        ],
+        "relative_ci_width": 0.005128764122221461,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.7157016100916318,
+          1.7245210635877555
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-ordinary",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 16737.745371,
+        "candidate_median_ns_per_batch": 17227.921889,
+        "median_paired_speedup": 0.9718285413950168,
+        "candidate_over_baseline_latency_ratio": 1.028988095538483,
+        "latency_ratio_ci99": [
+          1.024309761203864,
+          1.032654679463211
+        ],
+        "relative_ci_width": 0.00810982974004175,
+        "ci_width_qualified": true,
+        "classification": "regression",
+        "paired_bootstrap_99_percent_interval": [
+          0.9683779291251695,
+          0.9762671780308987
+        ],
+        "direction_without_width_gate": "candidate slower"
+      },
+      {
+        "workload": "bubble-ordinary",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 334826.724194,
+        "candidate_median_ns_per_batch": 332699.635484,
+        "median_paired_speedup": 1.0076801919767886,
+        "candidate_over_baseline_latency_ratio": 0.9923783438059627,
+        "latency_ratio_ci99": [
+          0.99158522931656,
+          0.9956707368575617
+        ],
+        "relative_ci_width": 0.004116885023239186,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.0043480871559025,
+          1.0084861799416271
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-zero-complex",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 170440.924391,
+        "candidate_median_ns_per_batch": 86777.988466,
+        "median_paired_speedup": 1.965491482283493,
+        "candidate_over_baseline_latency_ratio": 0.5087785976249602,
+        "latency_ratio_ci99": [
+          0.5080008673720411,
+          0.509292973079434
+        ],
+        "relative_ci_width": 0.002539622762090652,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.9635063762091822,
+          1.9685005759402314
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-zero-complex",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 5464468.453333,
+        "candidate_median_ns_per_batch": 2713681.493333,
+        "median_paired_speedup": 2.0079473007165447,
+        "candidate_over_baseline_latency_ratio": 0.4980210385218505,
+        "latency_ratio_ci99": [
+          0.4961127971837842,
+          0.4987938990658693
+        ],
+        "relative_ci_width": 0.005383511287078806,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          2.0048360693119522,
+          2.015670641185963
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-zero-real",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 170585.701707,
+        "candidate_median_ns_per_batch": 86553.855346,
+        "median_paired_speedup": 1.9631577504332696,
+        "candidate_over_baseline_latency_ratio": 0.5093834154587422,
+        "latency_ratio_ci99": [
+          0.506290235814403,
+          0.5101900343575213
+        ],
+        "relative_ci_width": 0.00765591973505103,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.9600539654979596,
+          1.97515166057159
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "bubble-zero-real",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 5455689.428571,
+        "candidate_median_ns_per_batch": 2700054.025974,
+        "median_paired_speedup": 2.0184649466943565,
+        "candidate_over_baseline_latency_ratio": 0.4954259927266519,
+        "latency_ratio_ci99": [
+          0.494230971352209,
+          0.49729668773831953
+        ],
+        "relative_ci_width": 0.006188041061870603,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          2.0108720300309058,
+          2.0233454760312046
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "ggh-mixed-complex",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 537963.800705,
+        "candidate_median_ns_per_batch": 360133.781305,
+        "median_paired_speedup": 1.4911506589048078,
+        "candidate_over_baseline_latency_ratio": 0.6706230480657542,
+        "latency_ratio_ci99": [
+          0.6679915307455478,
+          0.6739349574816941
+        ],
+        "relative_ci_width": 0.0088625446937569,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.4838227174573635,
+          1.4970249680918803
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "ggh-mixed-complex",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 15121197.272727,
+        "candidate_median_ns_per_batch": 9425049.363636,
+        "median_paired_speedup": 1.6090766736340365,
+        "candidate_over_baseline_latency_ratio": 0.6214744246720942,
+        "latency_ratio_ci99": [
+          0.6189615462906346,
+          0.6267134032491974
+        ],
+        "relative_ci_width": 0.012473332209371156,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.5956256796415988,
+          1.6156092506762092
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 551325.723327,
+        "candidate_median_ns_per_batch": 370562.363472,
+        "median_paired_speedup": 1.483179948498047,
+        "candidate_over_baseline_latency_ratio": 0.6742270221578017,
+        "latency_ratio_ci99": [
+          0.671673290510982,
+          0.6772788986956848
+        ],
+        "relative_ci_width": 0.00831412565868772,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.4764966130287198,
+          1.48881906445802
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "ggh-zero-real",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 15228802.681818,
+        "candidate_median_ns_per_batch": 9460454.5,
+        "median_paired_speedup": 1.6070425996299644,
+        "candidate_over_baseline_latency_ratio": 0.6222610403919963,
+        "latency_ratio_ci99": [
+          0.6182659526429942,
+          0.6265693532612233
+        ],
+        "relative_ci_width": 0.01334391851528794,
+        "ci_width_qualified": true,
+        "classification": "improvement",
+        "paired_bootstrap_99_percent_interval": [
+          1.5959925182984325,
+          1.6174269272392405
+        ],
+        "direction_without_width_gate": "candidate faster"
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 1,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 102429.310293,
+        "candidate_median_ns_per_batch": 102722.946295,
+        "median_paired_speedup": 0.9940586874584123,
+        "candidate_over_baseline_latency_ratio": 1.0059768227133332,
+        "latency_ratio_ci99": [
+          0.999937136846778,
+          1.0094102931765456
+        ],
+        "relative_ci_width": 0.009416873347257172,
+        "ci_width_qualified": true,
+        "classification": "parity",
+        "paired_bootstrap_99_percent_interval": [
+          0.9906774348942567,
+          1.0000628671052465
+        ],
+        "direction_without_width_gate": "unresolved at 99 percent"
+      },
+      {
+        "workload": "triangle-ordinary",
+        "rows": 32,
+        "paired_blocks": 41,
+        "baseline_median_ns_per_batch": 2163385.138298,
+        "candidate_median_ns_per_batch": 2177242.0,
+        "median_paired_speedup": 0.9931125335012392,
+        "candidate_over_baseline_latency_ratio": 1.006935232681516,
+        "latency_ratio_ci99": [
+          1.001978178270953,
+          1.012558130797713
+        ],
+        "relative_ci_width": 0.010507083458173487,
+        "ci_width_qualified": true,
+        "classification": "regression",
+        "paired_bootstrap_99_percent_interval": [
+          0.9875976199136148,
+          0.9980257271926155
+        ],
+        "direction_without_width_gate": "candidate slower"
+      }
+    ]
+  },
+  "provenance": {
+    "probe_sha256": "492dfb7f194396d6af263aecb870f62fe2a19ef7a79bbc12e7a8c292fcffe1b2",
+    "source_manifest_sha256": "95a09a15bf6b303ba6143a04fd80f332e67ef289545a428a1b2f53e2f94641ff",
+    "source_review_sha256": "3759e7e792e14215718c502dd2406862acedde6fdf6ffcbd539f2a7e88991463",
+    "final_patch_sha256": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3",
+    "run_sha256": "69b90a2c1b92e75cf2ecb91dbad3c0640509f2954b35f447fbcbe9cb65f478d1",
+    "analysis_sha256": "1c87ccdccf3afde9e08b967cc25d0a33f47146d978f1bfef641ad7263496709e",
+    "raw_csv_sha256": "39b5638d27ed62975c57806844d5ecef2a7e5a7e224abba47dbe9c4cfa91546e",
+    "log_sha256": "7954b8e98eac464b6da98eb0e5573a3b8a91999a1eedbd0ba5c1271325758dd1",
+    "closure_files_verified_before_and_after": 865,
+    "provenance_qualified": true,
+    "quiet_window_sha256": "4ff2c3bec2869060ec285f7687df0998fb0f60ac3e1e2da2cadc606773a9fee1",
+    "quiet_completion_sha256": "a9c19a2932f2747cfc9a2c11abeae0502c141557fb5b677288beed06069abb60"
+  },
+  "independent_statistical_review": {
+    "path": "statistics-review.json",
+    "sha256": "f4a6be6d140f209670d21726573a3ab81f89da5c08c410dce292f1d8e4c7655e",
+    "status": "independent_statistics_reconstruction_passed"
+  },
+  "host_context": {
+    "cpu": 254,
+    "project_heavy_work_serialized": true,
+    "external_host_policy": "Shared host activity is uncontrolled; no unrelated process is changed. Pre-window CPU254 survey records27.7% busy. Run each fixed cohort once and retain failed/noisy rows; no CI-driven case omission or early stopping.",
+    "pre_window_cpu_busy_percent": 27.7,
+    "limitation": "External host activity was uncontrolled; interval classification is conditional on this fixed observed cohort."
+  },
+  "limitations": [
+    "This is a new final-patch cohort and does not resolve noise for the historical binaries.",
+    "All measured cases have two or three propagators; automatic N5 fallback remains inactive.",
+    "Both sides use frozen6b24 master/Symbolica dependencies; later additive master APIs and the full current workspace are outside scope.",
+    "This internal paired comparison is not a benchmark against original IREGI and does not establish overall user performance acceptance.",
+    "Strong gains in proof-reuse cases do not erase ordinary-control regressions, and gains must not be multiplied by other optimization cohorts."
+  ],
+  "historical_first_cohort": {
+    "path": "validation/raw-distance-receipts-performance/qualification.json",
+    "sha256": "558df15036c49057149d326001fa1df8e10433b1097aa6c2b277608363726b92"
+  }
+}

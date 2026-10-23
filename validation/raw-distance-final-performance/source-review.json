@@ -1,0 +1,56 @@
+{
+  "status": "source_review_passed",
+  "reviewer": "/root/checkpoint_audit",
+  "recorded_utc": "2026-10-23T19:55:28.975126+00:00",
+  "source_manifest_sha256": "95a09a15bf6b303ba6143a04fd80f332e67ef289545a428a1b2f53e2f94641ff",
+  "baseline_commit": "21622ec9abfdedcf18993768845a29a9bb1c1e1d",
+  "equivalent_current_core_commit": "06706e2",
+  "baseline_file_count": 24,
+  "candidate_file_count": 30,
+  "final_patch_sha256": "e23ce191d83994415f8f77e195ab31356a7d1155d353dd7f8ea424214b8226c3",
+  "qualified_final_source_manifest_sha256": "d8eaba2a2bffad9e89a872e314330b8e320fb2996c659f0bd68c6b4822b8b965",
+  "common_collector_sha256": "36db72b53c56a7cbea033806b96a705c35eed6c6c2fd2e504234aa49551093a4",
+  "instrumentation_sha256": "0f8bedb94029a81b006be15624559efce55975a07f710cbc10e39f6ef59acc7c",
+  "compiled_execution_sha256": "6b9aa6742d13a7e19b094f61b242bafece895c6a5dd54c6a7246e73bd76a0d6f",
+  "production_execution_sha256": "7793591d03b7fc126f543322d56dfad45086affc921bdcebbced09600c2e3397",
+  "checks": [
+    "Exact file inventory and every compiled source digest independently verified for both snapshots.",
+    "Baseline equals21622ec except the single common collector file; all baseline core files also equal06706e2.",
+    "Every adoption.patch hunk independently applied in memory with exact old-context checks reconstructs all candidate production files.",
+    "Candidate production Rust bytes equal the final qualified production-source snapshot except identical common collector stability.rs.",
+    "Only compiled-source delta is the exact six-line read-only existing-counter accessor; removing it restores production execution.rs byte-for-byte.",
+    "Accessor is absent from reduce_batch timed loop; probe reads it outside timing. Both paths share one macro-generated timed loop.",
+    "Probe pre/post snapshots compare every input/output bit, ordered layout, full metadata, statuses, flags, public counters and diagnostics; candidate N5 certificate counters must be zero.",
+    "Both build recipes select the same frozen6b24 dependency closure, opt3 and codegen16; probe links both generic core archives in one binary."
+  ],
+  "changed_paths": [
+    "crates/iregi-rust/src/certified_planar.rs",
+    "crates/iregi-rust/src/execution/accounting_tests.rs",
+    "crates/iregi-rust/src/execution/planar_fallback/tests.rs",
+    "crates/iregi-rust/src/execution/planar_fallback.rs",
+    "crates/iregi-rust/src/execution/proof_receipt_accounting_tests.rs",
+    "crates/iregi-rust/src/execution/proof_receipt_tests.rs",
+    "crates/iregi-rust/src/execution/proof_receipts.rs",
+    "crates/iregi-rust/src/execution.rs",
+    "crates/iregi-rust/src/plan.rs",
+    "crates/iregi-rust/src/types.rs"
+  ],
+  "protocol_sources_sha256": {
+    "lib_build.py": "7534507f6065bae5dbd3f445b049a43bec9523ef4d3d416024f91677da20a5a3",
+    "protocol/analyze.py": "7ddc8a9a72867523107840b015c089b5d256d94665dedcbdd865a527a153579e",
+    "protocol/build.py": "874b4cf82ff84351a7259d4ce9c91b26029916d581b071e9584340513a2a2983",
+    "protocol/preflight.py": "fcd7f4e734ed354382476126c25d2fe44588c45849efc21cac36ca4c1ce33794",
+    "protocol/preregistration.json": "d7b94df418c09d754b0acb721150dbe3690ebf5fc454bb8c6af3a14d3b56977a",
+    "protocol/probe.rs": "df9b4421ac0adfb77187785b3d951b9cff1796e625fa6df7c03e6a78675d0352",
+    "protocol/protocol.py": "b3fe96558d76e25fdc12adc71f33cb044566ad0a0817b466eb0723f4625e510a",
+    "protocol/run_timing.py": "cbc14f4353573cbc69efca06917be9a4d4b9be1b38b234d74e85cd5aee136fb0",
+    "protocol/test_protocol.py": "ee7f7e16d1e12e52e26b6edd0f2a50ffb216e9144f41f631c6f6d813e25e572e"
+  },
+  "limitations": [
+    "Source review only; no compiler, Symbolica runtime, numerical test or timing executed by this review.",
+    "New14-pair runtime preflight remains required for the common collector interaction before timing.",
+    "This cohort uses frozen6b24 masters, excluding later additive master APIs; it is not a complete-current-workspace or IREGI reference performance qualification.",
+    "Automatic N5 fallback is inactive in all N2/N3 benchmark workloads; its performance is not measured."
+  ],
+  "findings": []
+}

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "recorded_utc": "2026-10-23T20:08:13.416789+00:00",
+  "recorded_utc": "2026-10-23T20:44:28.779360+00:00",
   "status": "passed",
-  "scope": "Evidence-only update after production 06706e2: private automatic-planar 69-check suite and separate shared 18 receipt/accounting followup; one-point input enclosure; actual A0\u2013C0 master replay correctness; bounded amplitude-variable N6 failure. No private candidate is adopted. Production promotion records remain source-bound to their committed revisions. Original IREGI versus COLLIER shared-domain comparison is pending, with no numerical or timing result. Primary measured 6b24 gate remains eight numerical passes, seven timing regressions and one noisy row; historical failures remain visible.",
+  "scope": "Five completed timing cohorts after production 06706e2: original IREGI/COLLIER eight-family comparison (seven COLLIER gains, one short-block inconclusive row), and separately scoped private receipt, RealBall, native-master and CLI-coefficient experiments. All controls, regressions and noisy rows remain visible. No production adoption; measured Rust 6b24 remains seven regressions and one noisy row. Negative exact CSE, E6 design notes and a private direct N2 Float256/request128 bounded-fixture certificate, restricted private N6 rank1 correctness and the rank2 rejection remain separate from broader coverage or performance claims.",
   "report_artifacts": {
-    "docs/benchmark.typ": "592790b4101ddd952a57996643be7682ea0e9e3067f718ea04a721f68b3cb503",
-    "docs/data/results.json": "93d5ef991e72da4582525e7af01c3d961cef8945fb447856a67a5f35581fc3b3",
-    "docs/benchmark.pdf": "e5c834aef1b6377c4ce2f47ec7f197fa7744f28cb7b256e9bfeaebf357a8d694",
+    "docs/benchmark.typ": "802ce72424dbcf1da66f63af3699b3b4d9961c7e94dc7f23fdd6e2af709e708d",
+    "docs/data/results.json": "3c14037ce375f3a4d6749d0663cea6d8ccb544d27ce4b6c7fc2c1bc4aeeb3da8",
+    "docs/benchmark.pdf": "dc4b641a82854bb861c803dcaee21bc5a68df2f06a07d508f32dcdf2e6d2c9f9",
     "scripts/build-benchmark-report.sh": "c0e6106dee393689921cb7b19afb7a5ff0241071cf022b28b6e6174d56bec1b7"
   },
   "typst_version": "typst 0.15.1 (9dfd3a08)",
@@ -25,9 +25,9 @@
     "target/report-next/reproduced.pdf"
   ],
   "byte_identical_rebuild": true,
-  "page_count": 14,
-  "render_check": "All 14 pages rendered; pages 8,9,11,12 visually checked after the evidence-only update. The pending COLLIER note, private candidate rows and input-enclosure limits fit without overflow. Measured timing tables are unchanged. Fixed-date independent PDF rebuild is byte-identical.",
-  "source_ledger_count": 106,
+  "page_count": 16,
+  "render_check": "All16 pages rendered. Final pages4 and13 visually inspected: complete large eight-row IREGI/COLLIER table, amber short-block row, private optimization controls, E6 narrow scope and N6 rank2 rejection fit cleanly without overflow. ROOT independently reviewed page4. Fixed-date independent PDF rebuild is byte-identical.",
+  "source_ledger_count": 127,
   "source_ledger": [
     {
       "key": "stack_reuse_factory_qualification",
@@ -532,7 +532,7 @@
     {
       "key": "actual_native_master_replay",
       "source": "validation/native-master-replay/replay-qualification.json",
-      "sha256": "4553f2a29875431285eca727823e78e0ecf30e237e606d060483d308e58b126e"
+      "sha256": "445350353d079e042493fbc4b9d73a84a9f872e2a1fec692396b921ee3738a69"
     },
     {
       "key": "amplitude_variable_n6_private_capture",
@@ -558,6 +558,111 @@
       "key": "completed_private_evidence_audit",
       "source": "validation/checkpoint-audits/2026-10-23-completed-private-evidence.json",
       "sha256": "c904d8ddcccde67b1891bc1cccac6e55e79bccd9943303be415b9926f875d5ff"
+    },
+    {
+      "key": "collier_initial8_qualification",
+      "source": "validation/collier-reference/timing-initial8/qualification.json",
+      "sha256": "76c5f7e889e0621b3fc6adbdba199971a9ddbe4e8f19c1b59fafe9e915f30ddf"
+    },
+    {
+      "key": "quiet_window_five_cohort_completion",
+      "source": "validation/benchmark-quiet/20261023d/completion.json",
+      "sha256": "a9c19a2932f2747cfc9a2c11abeae0502c141557fb5b677288beed06069abb60"
+    },
+    {
+      "key": "master_cse_exact_census",
+      "source": "validation/master-cse-census/qualification.json",
+      "sha256": "b6595651092975430a237864399a7ad8be903a9b9e4253cfb3190a3c782e21cd"
+    },
+    {
+      "key": "private_n6_rank1_lowering",
+      "source": "validation/highpoint-rank-lowering/n6-rank1-qualification.json",
+      "sha256": "bf40096e6d7064cf9c0a0f754c2902017c777d11b82fc25585e6d33678f74f25"
+    },
+    {
+      "key": "private_n6_rank1_package",
+      "source": "validation/highpoint-rank-lowering/rank1-package.json",
+      "sha256": "012d25e695ada68f54694a85d2c1e5c8b903dbf8ba7c926b1a2d602c10434b04"
+    },
+    {
+      "key": "e6_certified_path_design",
+      "source": "docs/research/e6-certified-path.md",
+      "sha256": "03a859ecc4da5ece34cf83a1a1ea68821a149494243be8826222fd0754744bd0"
+    },
+    {
+      "key": "e6_direct_near_vacuum_design",
+      "source": "docs/research/e6-near-vacuum-direct.md",
+      "sha256": "cdf9961a28790f1e01cb91494d4f701d670070c15017aafed61505ece291aa9c"
+    },
+    {
+      "key": "qualified_collier_benchmark",
+      "source": "validation/collier-reference/timing-initial8/summary.json",
+      "sha256": "d7cfc7eae1f14eaad7b67a4bf839be40f2c64a2a4851f5dc8833ce3329235cc3"
+    },
+    {
+      "key": "receipt_final_cohort_performance",
+      "source": "validation/raw-distance-final-performance/performance-qualification.json",
+      "sha256": "6b8b339ae45f911ff92237cab3ce9d3b4354c1acf9795b4f5574a047887cb2d3"
+    },
+    {
+      "key": "real_ball_long_cohort_performance",
+      "source": "validation/real-ball-certificate/long-timing/qualification.json",
+      "sha256": "3feb96a6d8c7bf60d18be61aabcb3139cbff97d48699c55aa8f68a8815ae4e07"
+    },
+    {
+      "key": "native_master_replay_performance",
+      "source": "validation/native-master-replay/replay-timing-summary.json",
+      "sha256": "5645eb1dbf9ad33183478fb1bfead1644e53b8408028935acd6fee923c6fad94"
+    },
+    {
+      "key": "native_master_replay_decision",
+      "source": "validation/native-master-replay/decision.json",
+      "sha256": "34d5302c082202b714e36f6cc8681e719dcac7ff0be4f9117dffd96092ed5ec5"
+    },
+    {
+      "key": "cli_cse_cohort_qualification",
+      "source": "validation/cli-coefficient-optimization/warm-quiet254/qualification.json",
+      "sha256": "dd4bbc95dea84c0c80046af49c2364c9e69381c54ff21a06142c6293390cd0de"
+    },
+    {
+      "key": "cli_cse_cohort_performance",
+      "source": "validation/cli-coefficient-optimization/warm-quiet254/results.json",
+      "sha256": "a299d529aadda01f1f1cacca574f1c75032223a6b06e95c6a30d28a78307ef80"
+    },
+    {
+      "key": "private_n6_rank1_independent_audit",
+      "source": "validation/highpoint-rank-lowering/rank1-independent-audit.json",
+      "sha256": "f67a918f85a1f4b5f5f4f3b67affc91a86f17f35bacbdd2b2a6a7984ba8a1208"
+    },
+    {
+      "key": "private_n6_rank2_rejection",
+      "source": "validation/highpoint-rank-lowering/n6-rank2-rejection-qualification.json",
+      "sha256": "2da5d184b783607f97d0499230889981aefcf41146cb874166b9a15f9412561d"
+    },
+    {
+      "key": "private_rank_lowering_dispatch_exact",
+      "source": "validation/highpoint-rank-lowering/exact-v4-qualification.json",
+      "sha256": "4f68a7f1aecc1529b6cdb9c0f6055d77b62ed39ef3211de7f53dd8e78d29cdfe"
+    },
+    {
+      "key": "real_ball_long_independent_review",
+      "source": "validation/real-ball-certificate/long-timing-review.json",
+      "sha256": "6745bd51d25b4d90df9657809d3d4de1919ecffcc8f9eee659dda9b5bf6a69d6"
+    },
+    {
+      "key": "collier_initial8_independent_audit",
+      "source": "validation/checkpoint-audits/2026-10-23-collier-timing-independent.json",
+      "sha256": "b3701e192b621f6f5c4be52f4c1a6c28a08a113c1feb1199b3031137e8544fcd"
+    },
+    {
+      "key": "native_replay_historical_preservation",
+      "source": "validation/native-master-replay/initial-qualification/preservation.json",
+      "sha256": "f819c9db61b80f6be79a1633fdc99f76f57341fc1ece2752fb751523d86ab5d5"
+    },
+    {
+      "key": "private_direct_e6_n2",
+      "source": "validation/e6-direct-n2/qualification.json",
+      "sha256": "107eea7992f1afeac3770fc12837f6567bf2c741174addd2a15083d432db206d"
     }
   ],
   "independent_arithmetic_review": {
@@ -588,15 +693,16 @@
     ]
   },
   "known_limits": [
-    "Current production is06706e2. Primary measured kernel6b24c03 predates later APIs/preparation; eight numerical passes, seven regressions and one noisy row are unchanged.",
-    "Overall performance acceptance remains unmet; physical80949db has six noisy rows and two failures. Different CPU/protocol sessions are not causal revision comparisons.",
-    "Restricted explicit N5/unit-power API is production; automatic planar remains private. The69-test combined suite and separate final18 receipt/accounting tests use different source snapshots. The18 tests are shared by both qualification records and are counted once; no automaticrank7 or final-code performance claim.",
-    "Production finite D0 certificates cover exact represented inputs, not upstream routing uncertainty or quadrature errors. Ordinary evaluation/defaultE6 remain unchanged. The private input-enclosure extension covers only one exact nondyadic contour point with exact supplied unshifted geometry; no quadrature or mixed-jet interval-family qualification.",
-    "Actual native replay qualifies1782 complex outputs from297 A0/B0/C0 master rows under1e-10;249 represented component differences remain. Captured public tensor checks are separate. Replay timing is unrun; D0/Dual/higher precision are outside this scope.",
-    "Public API tests3/3 and current core Cargo checking pass. User interruption, storage failures and logged compile-only extension remain retained. No build/runtime performance claim follows.",
-    "CLI/native timing decisions remain unchanged. CSE raw failures coexist with separate normalized diagnostics. Private slim/receipt gains are not multiplied or treated as IREGI acceptance.",
-    "New amplitude-variable private N6 capture times out at600seconds/601.329including teardown in master activation preparation; no numerical entry or arrays. Earlier failures remain retained.",
-    "Original IREGI versus COLLIER1.2.10 is pending on shared ordinary non-dotted N2/N3rank0/1 width1/32 inputs. Source research is bound separately from the active unqualified harness. No result cells or timings are reported."
+    "Current production remains06706e2. Primary measured Rust kernel6b24c03 predates later preparation/APIs: eight numerical passes, seven timing regressions and one noisy row. Overall performance acceptance remains unmet.",
+    "Original IREGI Hybrid versus COLLIER COLI1 comparison covers only massive Euclidean ordinary undotted N2/N3 ranks0/1 batches1/32. Seven COLLIER improvements; N2rank0 singleton remains inconclusive because one98.438ms block misses100ms. IR slots are zero; broader shared-domain and divergent cases remain pending.",
+    "COLLIER medians are microseconds per point; batch32 values are amortized. Raw ns/batch and paired ratios are preserved. Project compute was held, but external host activity remained uncontrolled. Different sessions/CPUs/protocols are not causal revision comparisons.",
+    "Final private receipts have11 gains/1parity/2control regressions; longer slim RealBall has1gain/1noise/2complex-mass regressions. Earlier cohorts remain separate. No blanket adoption and no multiplied candidate gains.",
+    "Actual raw A0-C0 native master replay has8gains but excludes adapter validation/allocation, recurrence and contraction.249 represented component differences remain under the numerical tolerance; no backend adoption or whole-core/IREGI speed claim.",
+    "CLI CSE0 has8gains; pair1 has6gains/2noisy rows. Raw coefficient accuracy failures coexist with separately passing dimension-normalized diagnostics. No physical acceptance or production adoption follows.",
+    "Production finiteD0 certificates cover exact represented inputs; ordinary evaluation/defaultE6 remain unchanged. The new private directN2 E6 fixture is Float256/request128 with16 certified one-axis common-mass components and5expected hidden rejections; no general geometry, mixed-axis, convergence or performance qualification.",
+    "Explicit standalone N5 planar API is production; automatic-planar/receipt integration remains private.69 combined tests and separate18shared accounting checks are not double-counted. No automaticrank7 qualification.",
+    "Private N6 rank1 lowering agrees with originalIBP on20complex slots; old public path rejects. Rank2 candidate rejects nonfinite coefficients without arrays. Prior N6rank7 preparation timeouts and physical binary64 failures remain visible.",
+    "Public API tests3/3 and core Cargo checking pass; retained interruption, storage failures and compile-only continuation do not qualify build/runtime performance."
   ],
   "durable_path_repair": "optimized_5c9_build now points to committed validation/benchmark/baseline-5c9e3dd/build-verification.json; identical bytes and SHA256 preserved.",
   "additional_root_checks": {
@@ -717,7 +823,7 @@
     "source_verification_revision": "21622ec9abfdedcf18993768845a29a9bb1c1e1d",
     "source_verification_method": "git show21622ec:path; historical planar promotion is not compared with later live stability.rs"
   },
-  "all_bound_source_records_verified": 123,
+  "all_bound_source_records_verified": 145,
   "certified_master_and_collector_promotion_checks": {
     "manifest": "validation/near-vacuum-production/promotion.json",
     "sha256": "9f67af4c9134bfecc1262b512447253607a2527dd11d3ac289aef4e27e32dffe",
@@ -800,5 +906,76 @@
       "historical_planar_git21622ec": 7,
       "production_git06706e2": 5
     }
+  },
+  "historical_review_records_note": "Earlier review objects below retain their original checkpoint scopes and counts; superseded timing-pending statements are historical. This five-cohort review and known_limits describe the current report.",
+  "five_cohort_checkpoint_review": {
+    "status": "passed",
+    "reviewer": "/root/report_update",
+    "production_revision": "06706e2a1e4f0082889a53187c80bbe97803340f",
+    "primary_rust_timing_revision": "6b24c03",
+    "source_bindings": {
+      "report_records": 145,
+      "refresh_records": 127,
+      "exact_json_snapshots": 120,
+      "historical_condensed_snapshot_exception": "symbolica_production_qualification",
+      "historical_planar_git21622ec": 7,
+      "production_git06706e2": 5
+    },
+    "collier_independent_review": {
+      "source": "validation/checkpoint-audits/2026-10-23-collier-timing-independent.json",
+      "sha256": "b3701e192b621f6f5c4be52f4c1a6c28a08a113c1feb1199b3031137e8544fcd"
+    },
+    "collier_checks": {
+      "report_arithmetic_joins": 56,
+      "families": 8,
+      "paired_blocks": 328,
+      "numerical_pass": 8,
+      "improvement": 7,
+      "inconclusive_short_block": 1,
+      "pairwise_coefficients_independently_recomputed": 68112,
+      "unit_conversion": "ns/batch divided by1000*batch_width; paired ratios invariant under amortization"
+    },
+    "private_timing_counts": {
+      "final_receipts": {
+        "improvement": 11,
+        "parity": 1,
+        "regression": 2,
+        "inconclusive": 0
+      },
+      "long_slim_real_ball": {
+        "improvement": 1,
+        "regression": 2,
+        "inconclusive": 1
+      },
+      "actual_native_master_replay": {
+        "improvement": 8
+      },
+      "cli_cse0": {
+        "improvement": 8
+      },
+      "cli_pair1": {
+        "improvement": 6,
+        "inconclusive": 2
+      }
+    },
+    "owner_review_scope": "Receipt independent bootstrap reconstruction, RealBall399-file verifier and separate review, native replay statistics/provenance audit, CLI589 independent checks. Separate cohort sources, controls and all outcomes retained; no combined implementation claim.",
+    "native_historical_preservation": {
+      "source": "validation/native-master-replay/initial-qualification/preservation.json",
+      "sha256": "f819c9db61b80f6be79a1633fdc99f76f57341fc1ece2752fb751523d86ab5d5"
+    },
+    "narrow_private_e6": {
+      "source": "validation/e6-direct-n2/qualification.json",
+      "sha256": "107eea7992f1afeac3770fc12837f6567bf2c741174addd2a15083d432db206d",
+      "accepted_components": 16,
+      "expected_rejected_rows": 5,
+      "audit_exact_checks": 513,
+      "audit_hashes": 140,
+      "production_adopted": false
+    },
+    "visual_artifacts": [
+      "target/report-next/frozen-4.png",
+      "target/report-next/frozen-13.png"
+    ],
+    "no_new_numerical_runtime": true
   }
 }

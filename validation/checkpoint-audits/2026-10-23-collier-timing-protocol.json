@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "timing_protocol_source_review_passed",
+  "reviewer": "/root/checkpoint_audit",
+  "recorded_utc": "2026-10-23T20:16:58.472408+00:00",
+  "readiness_sha256": "5ca79d8540d8ddaa6b5f774bc44dbe6f9ca51e0a09df861963fa65f95b92f8bb",
+  "runner_sha256": "6e898de5d4c4d7d2239f2c9ad5e281ed5468067db4971a5dff4575ea7af752d1",
+  "correctness_receipt_sha256": "01677809ec8a5cb9e4435de9f9a73592b8a287b25ea7bc7f6dc89ae8be6aef83",
+  "verified_bindings": {
+    "validation/collier-reference/ready-initial8/build.json": "654d6221d0169ba06d0f2ae7f9615737d6b67aae0f0b57539e74ad518902fc80",
+    "validation/collier-reference/ready-initial8/correctness.json": "01677809ec8a5cb9e4435de9f9a73592b8a287b25ea7bc7f6dc89ae8be6aef83",
+    "validation/collier-reference/ready-initial8/producer/validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d",
+    "validation/collier-reference/ready-initial8/producer/validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "validation/collier-reference/ready-initial8/producer/validation/collier-reference/build.py": "760822d07aab75240994cde51ba875ec08e439329694f247b1158d4dfbc42a8c",
+    "validation/collier-reference/ready-initial8/producer/validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+    "validation/collier-reference/ready-initial8/producer/validation/collier-reference/run.py": "6e898de5d4c4d7d2239f2c9ad5e281ed5468067db4971a5dff4575ea7af752d1",
+    "validation/collier-reference/ready-initial8/producer/validation/collier-reference/test_protocol.py": "1997e8bf94015e34d823703f20b5e2b0d241994ee82c13bcfa1c8564e3793c42",
+    "validation/collier-reference/ready-initial8/protocol-tests.log": "7c758af7411e05fc2e6c4fb89045f7a03d9a5957d5305092903a23a66373d034",
+    "validation/collier-reference/build.py": "760822d07aab75240994cde51ba875ec08e439329694f247b1158d4dfbc42a8c",
+    "validation/collier-reference/run.py": "6e898de5d4c4d7d2239f2c9ad5e281ed5468067db4971a5dff4575ea7af752d1",
+    "validation/collier-reference/test_protocol.py": "1997e8bf94015e34d823703f20b5e2b0d241994ee82c13bcfa1c8564e3793c42",
+    "validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+    "validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d",
+    "/shared/external/iregi/iregi-rust/target/reference/collier/build-attempt001/collier-benchmark": "33704d629e547fe817a3982451cde1fc796d832fb51476c6ef07dffbe37c175a",
+    "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/6b24c03-default/bin/iregi-benchmark": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389",
+    "validation/collier-reference/initial-correctness/producer/validation/collier-reference/build.py": "760822d07aab75240994cde51ba875ec08e439329694f247b1158d4dfbc42a8c",
+    "validation/collier-reference/initial-correctness/producer/validation/collier-reference/run.py": "f06a542e5556ac650d5ae7d11e46c4247f1c149fe352a9cc1bfcbd65aa70208a",
+    "validation/collier-reference/initial-correctness/producer/validation/collier-reference/test_protocol.py": "9c0391c28febb73a179860b0edad4002af9aa266748c227119124d0dea3a056c",
+    "validation/collier-reference/initial-correctness/producer/validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+    "validation/collier-reference/initial-correctness/producer/validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "validation/collier-reference/initial-correctness/producer/validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d",
+    "/shared/external/iregi/iregi-rust/target/benchmark/executables/collier-zndofrwo": "33704d629e547fe817a3982451cde1fc796d832fb51476c6ef07dffbe37c175a",
+    "/shared/external/iregi/iregi-rust/target/benchmark/executables/iregi-w271707x": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389"
+  },
+  "qualified_scope": "Only eight initial massive Euclidean ordinary unit-power N2/N3 rank0/1 cases, batches1/32, COLLIER mode1 versus original IREGI Hybrid; no Rust speed comparison or broader topology/rank qualification.",
+  "source_checks": [
+    "All eight complete-array/pole/UV preflights complete before any timing; timing starts only if every row qualifies.",
+    "Every warmup/calibration/measured request checks complete output arrays against its own preflight; each measured pair is additionally compared across engines.",
+    "Warmup is five untimed evaluation calls per engine before calibration; warmed single-call result seeds one shared iteration count. Calibration accepts only when both observed blocks reach100ms, uses1.10margin, up to8rounds and maximum1000000iterations.",
+    "Five warmup blocks follow calibration, then41paired blocks with a21/20 balanced inventory shuffled reproducibly with seed271828. Timing loops exclude subprocess transport and pole probes.",
+    "All eight complete-array/pole/UV postflights occur after the complete cohort and compare back to preflight. Postflight failure marks its row failed and prevents overall passed status.",
+    "Paired median ratios use99percent bootstrap confidence intervals and2percent relative width gate. Any measured block shorter than100ms overrides its ratio gate to inconclusive-short-block.",
+    "Request waits are bounded by min(120s,remaining900s cohort deadline); exhausted deadlines, iteration caps and incomplete calibration preserve failed rows instead of dropping them.",
+    "New output directory is mandatory. Existing correctness receipt must match binaries,input,mode,batches and all producer source hashes; the changed runner has a new matching completed receipt.",
+    "Old runner and completed initial receipt are retained with their original source identities; no old receipt is relabeled as current."
+  ],
+  "correctness_evidence": {
+    "cases": 8,
+    "pre_and_post_complex_laurent_slots_per_engine": {
+      "collier": 3168,
+      "iregi": 3168
+    },
+    "maximum_normalized_error": 2.488972223388242e-13,
+    "tolerance": 1e-10,
+    "protocol_unit_tests_recorded": 9
+  },
+  "findings": [],
+  "blockers": [],
+  "limits": [
+    "Read-only source/hash/JSON/log review; no compiler, tests, numerical kernel or timing launched by reviewer.",
+    "900s is a request deadline; final persistence/cleanup and already-started Python bookkeeping can add overhead. Any postflight prevented by expiry fails the cohort.",
+    "Large pilot-based duration estimate is planning data only; the fixed cap may yield an honest timeout rather than a performance result.",
+    "No performance conclusion until a separately authorized quiet run completes and all statuses/provenance/gates are independently checked.",
+    "The readiness count3168 is per engine across pre/post phases; both engines together retain6336complex coefficient values."
+  ]
+}

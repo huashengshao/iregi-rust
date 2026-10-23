@@ -1,0 +1,22 @@
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/master-cse-census/source/census.rs:36:52
+   |
+36 |         *self.0.entry(signature).or_insert_with(|| symbolica::symbol!(format!("master_cse_proof::opaque_{index}")))
+   |                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/master-cse-census/source/census.rs:98:57
+   |
+98 | ...(0..family.arity()).map(|i|symbolica::symbol!(format!("iregi_masters::{}_argument_{i}",family.name())).to_atom()).collect();
+   |                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 2 previous errors
+

@@ -1,0 +1,130 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-10-23T20:33:10.917769+00:00",
+  "status": "completed_qualified_protocol_not_accepted_for_adoption",
+  "production_adoption": false,
+  "source_scope": "Identically built immutable6b24 fullcore versus samecore plus slim invariant_certificate9a89286f only; no proof receipts. Later current-planar correctness is separately qualified.",
+  "workload_scope": "ggH rank2 Hybrid tensor kernel,15moments\u00d74nativeLaurent slots,real shifts,real or complex squared masses,batched repeated fixedpoint lanes1/32; not physicalendtoend nor IREGI/MadLoop comparison.",
+  "raw_qualification_sha256": "39a8b913507b0b30e4a1b2fbeb97d439448793732f994f555da1c2a60dcc789f",
+  "registration_sha256": "a265885421fae7c9a4b768fda5aa38518b4ce52a3b694cc24302236818a14aef",
+  "runner_sha256": "7aa79f9f31db2ff8c3ff0df634aa3ecc931836172bff65242b8dc9a4ac3a0353",
+  "prior_run": {
+    "path": "validation/real-ball-certificate/full-core/evidence/kernel-quiet-001/qualification.json",
+    "sha256": "7989bc6e070050c74bbe7dc91cb8385f6b480c2a5be489c547077176ada474ee",
+    "retained_unchanged": true,
+    "pooled_or_replaced": false
+  },
+  "window_sha256": "4ff2c3bec2869060ec285f7687df0998fb0f60ac3e1e2da2cadc606773a9fee1",
+  "completion_sha256": "a9c19a2932f2747cfc9a2c11abeae0502c141557fb5b677288beed06069abb60",
+  "environment_limit": "Project compilers/othernumericaljobs held; recorded hostload27.7% remained externally uncontrolled. One preregistered followup run; no CI earlystop/rerun/omissions.",
+  "protocol": {
+    "blocks": 41,
+    "warmup_blocks": 5,
+    "calibration_initial_warmup_calls": 5,
+    "minimum_target_block_ms": 200,
+    "calibration_acceptance": "Both observed calibration block durations >=200ms; at most8 attempts;1.10 scaling margin",
+    "order": "alternating baseline-first/candidate-first",
+    "same_iterations_for_both": true,
+    "profile": false,
+    "cache": "Persistent warm topology/rank plans; repeated fixed-point lanes; no output memoization; identical post-timing full outputs requested.",
+    "statistics": "existing validation/benchmark/run.py ratio_summary; 10000 paired bootstrap median resamples;99%CI;width<=2%",
+    "request_timeout_seconds": 90
+  },
+  "cpu_affinity": [
+    254
+  ],
+  "builds": {
+    "baseline": {
+      "manifest": "target/real-ball-core/baseline/artifacts/kernel-build.json",
+      "manifest_sha256": "8bd469e463dab166fe6815a59f533bdef3faa6894ae7ba452a55fe7b1d8f24d6",
+      "binary": "target/real-ball-core/baseline/artifacts/kernel_benchmark",
+      "binary_sha256": "7887d8065b1d88c9a50f14afab281e583f5b6a984d3b239b2b508654f4fd946a"
+    },
+    "candidate": {
+      "manifest": "target/real-ball-core/candidate/artifacts/kernel-build.json",
+      "manifest_sha256": "c5c62a624337554cce89288f7617964be3d9aed2bcb754cfdd933ea3675a8b2d",
+      "binary": "target/real-ball-core/candidate/artifacts/kernel_benchmark",
+      "binary_sha256": "2aaa8c342b0f72dccbe100930cd06c6d8b380f9cddb5c970b2fe75be2553164a"
+    }
+  },
+  "performance_provenance_qualified": true,
+  "producer_exit_codes": {
+    "baseline": 0,
+    "candidate": 0
+  },
+  "rows": [
+    {
+      "case": "real-ball-ggh-real-b1",
+      "iterations_per_block": 664,
+      "baseline_ns_per_batch": 561609.9307228916,
+      "candidate_ns_per_batch": 319330.4518072289,
+      "paired_ratio_median": 0.5675436570752214,
+      "ci99": [
+        0.5653350578790881,
+        0.5709391137144778
+      ],
+      "relative_ci_width": 0.009874228643959536,
+      "gate": "improvement"
+    },
+    {
+      "case": "real-ball-ggh-real-b32",
+      "iterations_per_block": 31,
+      "baseline_ns_per_batch": 15542678.64516129,
+      "candidate_ns_per_batch": 7650356.612903226,
+      "paired_ratio_median": 0.4906621263946553,
+      "ci99": [
+        0.4886955175661102,
+        0.4993831288815995
+      ],
+      "relative_ci_width": 0.021782018094653088,
+      "gate": "inconclusive-noise"
+    },
+    {
+      "case": "real-ball-ggh-complex-b1",
+      "iterations_per_block": 398,
+      "baseline_ns_per_batch": 550479.6105527638,
+      "candidate_ns_per_batch": 553666.4824120603,
+      "paired_ratio_median": 1.007429968506357,
+      "ci99": [
+        1.0024291206503373,
+        1.0095128667878084
+      ],
+      "relative_ci_width": 0.007031502296853096,
+      "gate": "regression"
+    },
+    {
+      "case": "real-ball-ggh-complex-b32",
+      "iterations_per_block": 15,
+      "baseline_ns_per_batch": 15534399.2,
+      "candidate_ns_per_batch": 15613206.866666667,
+      "paired_ratio_median": 1.0062444492198834,
+      "ci99": [
+        1.002422745089758,
+        1.00880288385437
+      ],
+      "relative_ci_width": 0.00634054554989915,
+      "gate": "regression"
+    }
+  ],
+  "gate_counts": {
+    "improvement": 1,
+    "inconclusive-noise": 1,
+    "regression": 2,
+    "parity": 0
+  },
+  "all_families_passed": false,
+  "full_output_validation": {
+    "paired_responses": 192,
+    "raw_responses": 384,
+    "complex_laurent_slots_compared": 190080,
+    "includes_calibration_and_warmup": true,
+    "comparison": "Exact complete tensors,statuses,counters and non-timing metadata for everyresponse; prior independentreferencecorrespondence retained in full-core qualification."
+  },
+  "limitations": [
+    "Two complex-mass controls regress,so this candidate has not passed the familywise performance requirement.",
+    "Real batch32 remains inconclusive despite lower measuredlatency;CIwidth2.1782% exceedsunchanged2% bound.",
+    "99% bootstrap intervals describe this run; they do not account for every between-run systematic effect.",
+    "The complex-control label refers to complexmasses in wholeinputrows; rawdistance polynomials themselves dependonlyon realcoordinates in thesefour fixtures.",
+    "Source-only explanation and receipt-combination research are separate; no newcandidate or adoption implied."
+  ]
+}

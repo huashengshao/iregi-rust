@@ -1,0 +1,11 @@
+{
+  "kind": "collier-build-startup-failure",
+  "date": "2026-10-23",
+  "command": "source scripts/env.sh; python3 validation/collier-reference/build.py --output target/reference/collier/build-attempt001 --cpus 26,27 --jobs 2 --timeout 300",
+  "exit_code": 2,
+  "stderr": "build.py: error: source scripts/env.sh; gfortran and cmake are required",
+  "diagnosis": "scripts/env.sh provides gfortran but not cmake on PATH; existing Nix-store CMake located and supplied explicitly on the subsequent attempt",
+  "build_directory_created": false,
+  "compilation_or_numerical_evaluation_started": false,
+  "timing_claim": null
+}

@@ -61,15 +61,32 @@ if timed:
     validate_rows(raw, capture, True)
     for actual, expected in zip(raw, initial):
         assert actual["result"]["represented_outputs"] == expected["result"]["represented_outputs"]
+    timing_record = json.loads((BASE / "replay-timing.json").read_text())
+    completion = json.loads((BASE / "quiet-completion.json").read_text())
+    cohort = completion["cohorts"]["native_master_replay"]
+    assert completion["immutable_manifests_sha256"]["window.json"] == sha(BASE / "quiet-window.json")
+    assert timing_record["quiet_window_sha256_at_start"] == sha(BASE / "quiet-window.json")
+    assert cohort["raw_sha256"] == sha(BASE / "replay-timing.json")
+    assert cohort["cases"] == 8 and cohort["paired_blocks_per_case"] == 21 and cohort["exit_code"] == 0
+    audit = json.loads((BASE / "independent-timing-audit.json").read_text())
+    assert audit["status"] == "passed" and audit["all_four_phase_outputs_bitwise_equal"] is True
+    assert audit["gates"] == timing["gates"]
+    for path, digest in audit["source_sha256"].items():
+        assert sha(ROOT / path) == digest, path
     summary.update(status="numerical-replay-and-raw-timing-qualified", timing_summary_sha256=sha(BASE / "replay-timing-summary.json"), gates=timing["gates"],
-                   decision="Diagnostic raw-kernel evidence only. No production adoption or whole-core parity inferred.")
+                   quiet_window_sha256=sha(BASE / "quiet-window.json"), quiet_completion_sha256=sha(BASE / "quiet-completion.json"),
+                   independent_timing_audit_sha256=sha(BASE / "independent-timing-audit.json"),
+                   decision_sha256=sha(BASE / "decision.json"),
+                   decision="All eight raw master bundles improve. Diagnostic evidence supports a separately qualified whole-core selected-backend experiment; no production adoption or IREGI parity inferred.")
 (BASE / "replay-qualification.json").write_text(json.dumps(summary, indent=2, allow_nan=False) + "\n")
 names = ["README.md", "build_replay.py", "run_replay.py", "replay_parser.py", "test_replay_parser.py", "parser-tests.log",
          "analyze_replay.py", "test_replay_analyzer.py", "analyzer-admission-tests.log", "benchmark_helper.py", "statistics-source.json", "package_replay.py", "replay-build.json",
          "replay-build.log", "replay-qualification.json"]
 names += [f"replay-qualification-{phase}.{extension}" for phase in phases for extension in ["json", "jsonl", "log"]]
 if timed:
-    names += ["replay-timing.json", "replay-timing.jsonl", "replay-timing.log", "replay-timing-summary.json", "analysis.log"]
+    names += ["replay-timing.json", "replay-timing.jsonl", "replay-timing.log", "replay-timing-summary.json", "analysis.log",
+              "quiet-window.json", "quiet-completion.json", "decision.json", "independent-timing-audit.json", "independent-timing-audit.log",
+              "quiet-before-driver.log", "quiet-timing-driver.log", "quiet-after-driver.log"]
 for name in names:
     if (BASE / name).exists():
         shutil.copy2(BASE / name, DEST / name)
@@ -77,7 +94,7 @@ shutil.copytree(BASE / "source", DEST / "source", dirs_exist_ok=True)
 attempt = "earlier-attempts/replay-001-missing-trait"
 shutil.copytree(BASE / attempt, DEST / attempt, dirs_exist_ok=True)
 files = [{"path": str(path.relative_to(DEST)), "sha256": sha(path), "bytes": path.stat().st_size}
-         for path in sorted(DEST.rglob("*")) if path.is_file() and path.name != "manifest.json"]
+         for path in sorted(DEST.rglob("*")) if path.is_file() and path != DEST / "manifest.json"]
 (DEST / "manifest.json").write_text(json.dumps({"scope": summary["scope"], "files": files}, indent=2) + "\n")
 print(json.dumps({"files": len(files), "qualification": summary,
                   "qualification_sha256": sha(DEST / "replay-qualification.json"),

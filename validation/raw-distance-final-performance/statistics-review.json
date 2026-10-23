@@ -1,0 +1,230 @@
+{
+  "status": "independent_statistics_reconstruction_passed",
+  "reviewer": "/root/batch_execution",
+  "recorded_utc": "2026-10-23T20:33:26.789956+00:00",
+  "scope": "Read-only bound artifact review and independent Python reconstruction; no numeric benchmark executed",
+  "sources": {
+    "target/raw-distance-final-performance/protocol/performance.csv": "39b5638d27ed62975c57806844d5ecef2a7e5a7e224abba47dbe9c4cfa91546e",
+    "target/raw-distance-final-performance/protocol/performance.log": "7954b8e98eac464b6da98eb0e5573a3b8a91999a1eedbd0ba5c1271325758dd1",
+    "target/raw-distance-final-performance/protocol/performance-analysis.json": "1c87ccdccf3afde9e08b967cc25d0a33f47146d978f1bfef641ad7263496709e",
+    "target/raw-distance-final-performance/protocol/performance-run.json": "69b90a2c1b92e75cf2ecb91dbad3c0640509f2954b35f447fbcbe9cb65f478d1",
+    "target/raw-distance-final-performance/protocol/preregistration.json": "d7b94df418c09d754b0acb721150dbe3690ebf5fc454bb8c6af3a14d3b56977a",
+    "target/raw-distance-final-performance/protocol/protocol.py": "b3fe96558d76e25fdc12adc71f33cb044566ad0a0817b466eb0723f4625e510a",
+    "target/raw-distance-final-performance/protocol/probe.rs": "df9b4421ac0adfb77187785b3d951b9cff1796e625fa6df7c03e6a78675d0352",
+    "target/raw-distance-final-performance/protocol/build.json": "afe0d865a05707b5fa8aa32e20e924f61b5cead5c3171fde2e886bd5e89fd727",
+    "target/raw-distance-final-performance/source-manifest.json": "95a09a15bf6b303ba6143a04fd80f332e67ef289545a428a1b2f53e2f94641ff",
+    "target/raw-distance-final-performance/source-review.json": "3759e7e792e14215718c502dd2406862acedde6fdf6ffcbd539f2a7e88991463"
+  },
+  "total_csv_rows": 1148,
+  "all14_cases_present": true,
+  "all41_paired_blocks_present": true,
+  "calibration_exact_initial_update_count_stop_verified": true,
+  "bootstrap": "20000 paired median-log resamples, seed14050301, same sortedcase traversal, percentile99 indices100/19899",
+  "gate": "relative99%CIwidth<=2%; no rows omitted",
+  "source_scope": "New finalimplementation cohort, not same binaries as earlier receipt measurements; matching exact input/context/status/allpublicstats parity asserted in hashed probe before/after;N5certificatecountersassertzero",
+  "counts": {
+    "improvement": 11,
+    "parity": 1,
+    "regression": 2,
+    "inconclusive-noise": 0
+  },
+  "results": [
+    {
+      "workload": "bubble-mixed-dual",
+      "rows": 1,
+      "iterations": 423,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.5122743551064592,
+      "ci99": [
+        0.5100588959177231,
+        0.5131873506314044
+      ],
+      "relative_width": 0.006106990682817097,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-mixed-dual",
+      "rows": 32,
+      "iterations": 14,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.5811907406827078,
+      "ci99": [
+        0.5798711428433145,
+        0.5828519330622953
+      ],
+      "relative_width": 0.005128764122221461,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-ordinary",
+      "rows": 1,
+      "iterations": 12367,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 1.028988095538483,
+      "ci99": [
+        1.024309761203864,
+        1.032654679463211
+      ],
+      "relative_width": 0.00810982974004175,
+      "classification": "regression"
+    },
+    {
+      "workload": "bubble-ordinary",
+      "rows": 32,
+      "iterations": 620,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.9923783438059627,
+      "ci99": [
+        0.99158522931656,
+        0.9956707368575617
+      ],
+      "relative_width": 0.004116885023239186,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-zero-complex",
+      "rows": 1,
+      "iterations": 2341,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.5087785976249602,
+      "ci99": [
+        0.5080008673720411,
+        0.509292973079434
+      ],
+      "relative_width": 0.002539622762090652,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-zero-complex",
+      "rows": 32,
+      "iterations": 75,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.4980210385218505,
+      "ci99": [
+        0.4961127971837842,
+        0.4987938990658693
+      ],
+      "relative_width": 0.005383511287078806,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-zero-real",
+      "rows": 1,
+      "iterations": 2226,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.5093834154587422,
+      "ci99": [
+        0.506290235814403,
+        0.5101900343575213
+      ],
+      "relative_width": 0.00765591973505103,
+      "classification": "improvement"
+    },
+    {
+      "workload": "bubble-zero-real",
+      "rows": 32,
+      "iterations": 77,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.4954259927266519,
+      "ci99": [
+        0.494230971352209,
+        0.49729668773831953
+      ],
+      "relative_width": 0.006188041061870603,
+      "classification": "improvement"
+    },
+    {
+      "workload": "ggh-mixed-complex",
+      "rows": 1,
+      "iterations": 567,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.6706230480657542,
+      "ci99": [
+        0.6679915307455478,
+        0.6739349574816941
+      ],
+      "relative_width": 0.0088625446937569,
+      "classification": "improvement"
+    },
+    {
+      "workload": "ggh-mixed-complex",
+      "rows": 32,
+      "iterations": 22,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.6214744246720942,
+      "ci99": [
+        0.6189615462906346,
+        0.6267134032491974
+      ],
+      "relative_width": 0.012473332209371156,
+      "classification": "improvement"
+    },
+    {
+      "workload": "ggh-zero-real",
+      "rows": 1,
+      "iterations": 553,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.6742270221578017,
+      "ci99": [
+        0.671673290510982,
+        0.6772788986956848
+      ],
+      "relative_width": 0.00831412565868772,
+      "classification": "improvement"
+    },
+    {
+      "workload": "ggh-zero-real",
+      "rows": 32,
+      "iterations": 22,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 0.6222610403919963,
+      "ci99": [
+        0.6182659526429942,
+        0.6265693532612233
+      ],
+      "relative_width": 0.01334391851528794,
+      "classification": "improvement"
+    },
+    {
+      "workload": "triangle-ordinary",
+      "rows": 1,
+      "iterations": 2011,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 1.0059768227133332,
+      "ci99": [
+        0.999937136846778,
+        1.0094102931765456
+      ],
+      "relative_width": 0.009416873347257172,
+      "classification": "parity"
+    },
+    {
+      "workload": "triangle-ordinary",
+      "rows": 32,
+      "iterations": 94,
+      "calibration_rounds": 2,
+      "paired_blocks": 41,
+      "candidate_over_baseline": 1.006935232681516,
+      "ci99": [
+        1.001978178270953,
+        1.012558130797713
+      ],
+      "relative_width": 0.010507083458173487,
+      "classification": "regression"
+    }
+  ],
+  "adoption": "No blanket adoption conclusion; both regression rows retained"
+}

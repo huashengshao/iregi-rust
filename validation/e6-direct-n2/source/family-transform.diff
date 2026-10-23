@@ -1,0 +1,179 @@
+--- production near_vacuum.rs
++++ private near_vacuum_e6.rs
+@@ -1,8 +1,8 @@
+-//! Finite D0 series and component enclosures in a bounded near-vacuum domain.
++//! Private genuine E6 N2 series and component enclosures; no production dispatch.
+ //! Polynomial operations, parameter integration, Taylor jets and ball evaluation
+ //! use Symbolica and Numerica. The ordinary master evaluator is unchanged.
+ 
+-use oneloop::NativeFloat;
++use iregi_masters::NativeFloat;
+ use std::sync::Arc;
+ use symbolica::{
+     atom::{Atom, AtomCore},
+@@ -21,8 +21,9 @@
+ };
+ 
+ pub type Exact = Complex<Rational>;
+-pub const PHYSICAL_ARGUMENTS: usize = 10; // six invariants, four squared masses
+-const PREPARED_ARGUMENTS: usize = 11; // normalized invariants/deviations, fixed M
++pub const PHYSICAL_ARGUMENTS: usize = 15; // ten invariants, five squared masses
++pub const EXTERNAL_ARGUMENTS: usize = 16; // physical inputs plus mu_squared
++const PREPARED_ARGUMENTS: usize = 16; // normalized physical inputs plus fixed M
+ 
+ pub fn pow2_minus(bits: u32) -> Rational {
+     Rational::from((Integer::from(1), Integer::from(2).pow(u64::from(bits))))
+@@ -204,15 +205,16 @@
+     }
+ 
+     pub fn new(order: usize, shape: Vec<Vec<usize>>) -> Result<Self, String> {
+-        if ![2, 4].contains(&order) {
+-            return Err("near-vacuum series supports only orders two and four".into());
++        if order != 2 {
++            return Err("private direct E6 prototype supports only order two".into());
+         }
+         Self::validate_shape(&shape)?;
++        eprintln!("stage: exact preparation start full15 N2 components{}", shape.len());
+         let parameters: Vec<_> = (0..PREPARED_ARGUMENTS)
+-            .map(|i| Atom::var(symbolica::symbol!(format!("iregi_near_vacuum::p{i}"))))
++            .map(|i| Atom::var(symbolica::symbol!(format!("iregi_direct_e6_n2::p{i}"))))
+             .collect();
+-        let cube_symbols: Vec<_> = (0..3)
+-            .map(|i| symbolica::symbol!(format!("iregi_near_vacuum::u{i}")))
++        let cube_symbols: Vec<_> = (0..4)
++            .map(|i| symbolica::symbol!(format!("iregi_direct_e6_n2::u{i}")))
+             .collect();
+         let cube: Vec<_> = cube_symbols.iter().copied().map(Atom::var).collect();
+         let mut remaining = Atom::num(1);
+@@ -228,7 +230,7 @@
+             custom_normalization: None,
+         };
+         let jacobian = Matrix::from_nested_vec(
+-            simplex[..3]
++            simplex[..4]
+                 .iter()
+                 .map(|coordinate| {
+                     cube_symbols
+@@ -242,14 +244,14 @@
+         .map_err(|e| format!("Jacobian construction: {e:?}"))?
+         .det()
+         .map_err(|e| format!("Jacobian: {e:?}"))?;
+-        let mut deviation: Atom = (0..4).map(|i| &parameters[6 + i] * &simplex[i]).sum();
+-        for (i, (a, b)) in [(0, 1), (1, 2), (2, 3), (0, 3), (0, 2), (1, 3)]
++        let mut deviation: Atom = (0..5).map(|i| &parameters[10 + i] * &simplex[i]).sum();
++        for (i, (a, b)) in [(0, 1), (0, 2), (0, 3), (0, 4), (1, 2), (1, 3), (1, 4), (2, 3), (2, 4), (3, 4)]
+             .into_iter()
+             .enumerate()
+         {
+             deviation -= &parameters[i] * &simplex[a] * &simplex[b];
+         }
+-        let lambda_symbol = symbolica::symbol!("iregi_near_vacuum::lambda");
++        let lambda_symbol = symbolica::symbol!("iregi_direct_e6_n2::lambda");
+         let lambda = Atom::var(lambda_symbol);
+         let series = (Atom::num(1) / (Atom::num(1) + &lambda * deviation).pow(2))
+             .series(lambda_symbol, 0, order as u32)
+@@ -257,8 +259,9 @@
+             .to_atom()
+             .replace(lambda_symbol)
+             .with(Atom::num(1));
++        eprintln!("stage: Symbolica series constructed");
+         // Exact rational coefficients avoid expression-coefficient swell.
+-        // Physical parameters follow the three cube variables in Symbolica's
++        // Physical parameters follow the four cube variables in Symbolica's
+         // variable map and remain variables after definite integration.
+         let variables = Arc::new(
+             cube.iter()
+@@ -269,29 +272,31 @@
+         let mut polynomial = (series * jacobian)
+             .try_to_polynomial::<_, u16>(&Q, Some(variables))
+             .map_err(|e| e.to_string())?;
+-        // N4 in the complete ten-parameter basis has 103243 cube-expanded
+-        // monomials before exact integration reduces it to 1001 terms.
++        eprintln!("stage: cube polynomial terms{}", polynomial.nterms());
+         if polynomial.nterms() > 150_000 {
+             return Err("near-vacuum parameter polynomial exceeds term limit".into());
+         }
+-        for variable in 0..3 {
++        for variable in 0..4 {
+             let antiderivative = polynomial.integrate(variable);
+             polynomial = &antiderivative.replace(variable, &Rational::from(1))
+                 - &antiderivative.replace(variable, &Rational::from(0));
+         }
+-        if (0..3).any(|coordinate| polynomial.degree(coordinate) != 0) {
++        if (0..4).any(|coordinate| polynomial.degree(coordinate) != 0) {
+             return Err("parameter integration left coordinates".into());
+         }
+-        let integrated_polynomial = polynomial.to_expression() / parameters[10].pow(2);
++        eprintln!("stage: exact integration complete terms{}", polynomial.nterms());
++        let integrated_polynomial = -polynomial.to_expression() / parameters[15].pow(2);
+         let exact = compile(&integrated_polynomial, &parameters, &shape)?;
+         let instructions = checked_program(&exact)?;
+-        let b = Atom::var(symbolica::symbol!("iregi_near_vacuum::bound"));
+-        let l = Atom::var(symbolica::symbol!("iregi_near_vacuum::scale_lower"));
++        eprintln!("stage: numeric+Dual evaluator instructions{}", instructions);
++        let b = Atom::var(symbolica::symbol!("iregi_direct_e6_n2::bound"));
++        let l = Atom::var(symbolica::symbol!("iregi_direct_e6_n2::scale_lower"));
+         let one_minus = Atom::num(1) - &b;
+         let tail = b.pow((order + 1) as i64)
+             * (Atom::num(order + 1) / &one_minus + Atom::num(1) / one_minus.pow(2))
+-            / (Atom::num(6) * l.pow(2));
++            / (Atom::num(24) * l.pow(2));
+         let tail = compile(&tail, &[b, l], &shape)?;
++        eprintln!("stage: positive tail evaluator ready");
+         Ok(Self {
+             order,
+             shape,
+@@ -403,13 +408,13 @@
+                     Status::InvalidInput("nonfinite or nonexact-representable input".into());
+                 continue;
+             };
+-            if (0..6)
++            if (0..10)
+                 .any(|i| (0..components).any(|j| point[i * components + j].im != Rational::from(0)))
+-                || (6..10).any(|i| {
++                || (10..15).any(|i| {
+                     point[i * components].re <= Rational::from(0)
+                         || point[i * components].im > Rational::from(0)
+                 })
+-                || (6..10).any(|i| {
++                || (10..15).any(|i| {
+                     point[i * components].im == Rational::from(0)
+                         && (1..components)
+                             .any(|j| point[i * components + j].im != Rational::from(0))
+@@ -419,15 +424,15 @@
+                     Status::InvalidInput("physical invariant/mass input domain".into());
+                 continue;
+             }
+-            let mass = point[6 * components].clone();
++            let mass = point[10 * components].clone();
+             let lower = abs(&mass.re).max(abs(&mass.im));
+             let mut envelope = Vec::new();
+             for component in 0..components {
+-                let sigma = (0..6)
++                let sigma = (0..10)
+                     .map(|i| upper_abs(&point[i * components + component]))
+                     .max()
+                     .unwrap();
+-                let mu = (6..10)
++                let mu = (10..15)
+                     .map(|i| {
+                         upper_abs(
+                             &(&point[i * components + component]
+@@ -436,7 +441,7 @@
+                     })
+                     .max()
+                     .unwrap();
+-                envelope.push((mu + Rational::from((3, 8)) * sigma) / &lower);
++                envelope.push((mu + Rational::from((2, 5)) * sigma) / &lower);
+             }
+             results[lane].rho = Some(envelope[0].clone());
+             if envelope[0] > Rational::from((1, 4)) {
+@@ -445,7 +450,7 @@
+             for argument in 0..PHYSICAL_ARGUMENTS {
+                 for component in 0..components {
+                     let mut value = point[argument * components + component].clone();
+-                    if argument >= 6 && component == 0 {
++                    if argument >= 10 && component == 0 {
+                         value -= &mass;
+                     }
+                     exact_arguments.push(value / &mass);
