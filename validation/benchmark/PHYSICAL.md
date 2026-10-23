@@ -113,6 +113,12 @@ MadLoop's `numerator_assembly` corresponds to numerical coefficient preparation;
 its `numerator` is a separate polynomial probe. Its `reduction` includes ordering
 conversion, contraction and cache cleanup, so it cannot be compared directly
 with the isolated Rust reduction stage or with a sum of stage medians.
+The generated MadLoop timer exports the actual `CTMODE` and `IREGIMODE`
+arguments before timing. Both the Fortran timer and the Python reader require
+`CTMODE=1` (unchanged propagator direction) and `IREGIMODE=2` (hybrid); an absent,
+duplicate or unexpected record fails the run. Parser tests and generated-source
+compilation are recorded in `madloop-mode-qualification/`; they do not qualify
+numerical timing results.
 
 Each row retains precision, accuracy target, actual scalar backend, full initial
 output, references, raw response log, execution counters and stage samples.

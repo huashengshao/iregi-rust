@@ -28,6 +28,26 @@ ATTEMPT: dict = {}
 ARTIFACT_PATHS: list[Path] = []
 
 
+def observed_modes(text: str) -> dict:
+    """Require the actual Fortran call modes before labeling a measurement."""
+    records = [line.split()[1:] for line in text.splitlines()
+               if line.split()[:1] == ["IREGI_BENCH_MODES"]]
+    if len(records) != 1 or len(records[0]) != 2:
+        raise RuntimeError("missing, duplicate or malformed benchmark mode record")
+    try:
+        ctmode, iregimode = map(int, records[0])
+    except ValueError as error:
+        raise RuntimeError("benchmark modes must be integers") from error
+    # capture.driver selects these values in the generated MadLoop card.
+    # CTMODE=1 preserves propagator direction; IREGIMODE selects reduction.
+    if ctmode != 1 or iregimode != 2:
+        raise RuntimeError(
+            f"unexpected benchmark call modes CTMODE={ctmode}, IREGIMODE={iregimode}; "
+            "expected CTMODE=1, IREGIMODE=2 (Hybrid)"
+        )
+    return {"ctmode": ctmode, "iregimode": iregimode, "algorithm": "Hybrid"}
+
+
 def write_artifacts(result: dict) -> None:
     text = json.dumps(result, indent=2, allow_nan=False) + "\n"
     for path in ARTIFACT_PATHS:
@@ -135,6 +155,8 @@ def timer_source(prefix: str, group: int, args: argparse.Namespace) -> str:
       DATA DONE /.FALSE./
       IF(DONE) RETURN
       DONE=.TRUE.
+      WRITE(*,*) 'IREGI_BENCH_MODES',CTMODE,IMODE
+      IF(CTMODE.NE.1.OR.IMODE.NE.2) STOP 26
       SAVED=LOOPCOEFS(:,{group})
       Q=(/DCMPLX(2D0,0.25D0),DCMPLX(-3D0,0.125D0),
      $ DCMPLX(5D0,-0.5D0),DCMPLX(7D0,0.75D0)/)
@@ -367,6 +389,7 @@ def main() -> None:
     capture.run(command, log)
     after = environment(args.cpu)
     records, metadata = capture.parse(log)
+    modes = observed_modes(log.read_text())
     samples: dict[int, dict] = {}
     error = None
     rate = None
@@ -413,7 +436,8 @@ def main() -> None:
         fixture_error = max(abs(number(a) - number(b)) / (1 + abs(number(b))) for a, b in pairs)
         if not math.isfinite(fixture_error) or fixture_error > 1e-10:
             raise RuntimeError(f"optimized reference differs from committed capture: {fixture_error}")
-    result = dict(ATTEMPT, status="measured", precision="binary64", mode="Hybrid",
+    result = dict(ATTEMPT, status="measured", precision="binary64", mode=modes["algorithm"],
+        observed_call_modes=modes,
         helicity_index=args.helicity, graph=graph, rank=graph["rank"], n=capture.CASE["nloop"],
         mass_class="massive" if capture.CASE["pdg"] == 6 else "massless",
         reference="MadLoop generated HELAS and original IREGI O3",
