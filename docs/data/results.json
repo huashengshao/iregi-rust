@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "pending",
+  "date": "2026-10-23",
+  "revision": null,
+  "host": "Timing environment not yet recorded",
+  "batch_width": null,
+  "measurement_note": "Report infrastructure and source-convention audit are available. No performance measurements or reference agreement are claimed by this data file.",
+  "timing_provenance": null,
+  "reference_revisions": {
+    "madgraph": "6c1b4684b46ad26c4f0ebc57eb9963649f350142",
+    "gammaloop_feynkit": "865afdc43fb4e6b950439d34b4ec2c38352873e7",
+    "symbolica_reference_checkout": "81f08a88c1e8a58bffbe33a2855093546b1c0c72",
+    "oneloopmaster": "8ec256fc26cb361b20e10f59c19beb35717ef32c"
+  },
+  "cases": [
+    {"id": "bubble-polynomial", "label": "Bubble", "description": "Explicit DOT numerator", "n": 2, "rank": "0–3", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
+    {"id": "triangle-polynomial", "label": "Triangle", "description": "Explicit DOT numerator", "n": 3, "rank": "0–3", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
+    {"id": "box-polynomial", "label": "Box", "description": "Expanded topology coverage", "n": 4, "rank": "planned", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null},
+    {"id": "physical-diagram", "label": "Top-loop gg → H / HH", "description": "FeynKit numerator / MadLoop", "n": null, "rank": "planned", "status": "pending", "rust_us": null, "iregi_us": null, "madloop_us": null, "max_error": null}
+  ],
+  "coverage": [
+    {"feature": "Coefficient ordering and normalization", "requirement": "Native IREGI and MadLoop conventions", "status": "source-audited", "evidence": "Original Fortran interfaces and scalar wrappers inspected; numerical checks pending."},
+    {"feature": "Scalar-master backend", "requirement": "OneLoopMaster, all batch lanes", "status": "pending", "evidence": "Native evaluation integration and reference comparison pending."},
+    {"feature": "Precision", "requirement": "binary64, DoubleFloat, arbitrary precision", "status": "pending", "evidence": "No numerical coverage claimed."},
+    {"feature": "Automatic differentiation", "requirement": "Dual values and derivatives", "status": "pending", "evidence": "Derivative checks pending."},
+    {"feature": "Vectorization", "requirement": "Batches propagated through masters", "status": "pending", "evidence": "Widths 1, 4, 8, 16, 32 and 64 planned."},
+    {"feature": "Exceptional kinematics", "requirement": "Lane-local errors and precision rescue", "status": "pending", "evidence": "Threshold and small-Gram corpus pending."},
+    {"feature": "Physical verification", "requirement": "Isolated MadLoop graph, no R2 / UV counterterms", "status": "pending", "evidence": "Bare poles and R1 must remain in the comparison."}
+  ]
+}
