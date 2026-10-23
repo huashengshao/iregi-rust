@@ -1,0 +1,90 @@
+{
+  "binary": "target/checkpoint-exact-zero-tests/iregi_rust-5534b8975886b1fa",
+  "sha256": "335ba2f2b20d2f89f6717eb43a0239cc1f54dc85e30dfefcf0deda2443433556",
+  "scope": "Exact certificate and scalar API tests before the new nonzero-distance condition guard.",
+  "checks": [
+    {
+      "filter": "exact_zero_certificate::tests::",
+      "code": 0,
+      "seconds": 0.01618791196960956,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/exact_zero_certificate.log"
+    },
+    {
+      "filter": "invariant_certificate::tests::",
+      "code": 0,
+      "seconds": 2.9802543909754604,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/invariant_certificate.log"
+    },
+    {
+      "filter": "certified_scalar::tests::",
+      "code": 124,
+      "seconds": 90.03875606704969,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/certified_scalar.log"
+    },
+    {
+      "filter": "scalar::tests::",
+      "code": 124,
+      "seconds": 90.04479800793342,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/scalar.log"
+    },
+    {
+      "filter": "scalar::tests::generalized_scalar_interface_matches_mass_derivative_and_isolates_lanes",
+      "exact": true,
+      "code": 0,
+      "seconds": 0.766515149967745,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/generalized_scalar_interface_matches_mass_derivative_and_isolates_lanes.log"
+    },
+    {
+      "filter": "scalar::tests::high_point_scalar_products_require_a_validated_physical_domain",
+      "exact": true,
+      "code": 0,
+      "seconds": 0.017394833965227008,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/high_point_scalar_products_require_a_validated_physical_domain.log"
+    },
+    {
+      "filter": "scalar::tests::scalar_input_preserves_full_taylor_order_and_scale_derivatives",
+      "exact": true,
+      "code": 0,
+      "seconds": 2.3211900589521974,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/scalar_input_preserves_full_taylor_order_and_scale_derivatives.log"
+    },
+    {
+      "filter": "scalar::tests::scalar_products_alone_set_the_massless_bubble_invariant",
+      "exact": true,
+      "code": 0,
+      "seconds": 1.031525157042779,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/scalar_products_alone_set_the_massless_bubble_invariant.log"
+    },
+    {
+      "filter": "execution::tests::rounded_zero_distance_is_rejected_before_massless_master_and_profile_dispatch",
+      "exact": true,
+      "code": 0,
+      "seconds": 0.9315526059363037,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/rounded_zero_distance_is_rejected_before_massless_master_and_profile_dispatch.log"
+    },
+    {
+      "filter": "execution::tests::distance_zero_proofs_select_components_and_reject_false_derivative_zeros",
+      "exact": true,
+      "code": 0,
+      "seconds": 3.6729151780018583,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/distance_zero_proofs_select_components_and_reject_false_derivative_zeros.log"
+    },
+    {
+      "filter": "execution::tests::supplied_scalar_products_use_exact_distance_zero_proofs",
+      "exact": true,
+      "code": 0,
+      "seconds": 0.7661357809556648,
+      "log": "validation/invariant-certificate/zero-preflight-qualification/supplied_scalar_products_use_exact_distance_zero_proofs.log"
+    }
+  ],
+  "source_hashes_at_snapshot": {
+    "crates/iregi-rust/src/invariant_certificate.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+    "crates/iregi-rust/src/exact_zero_certificate.rs": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+    "dependencies/oneloopmaster/src/native/primitives.rs": "b610c92e859565e71cdb3a9e6091e86298a2a02faa5cf8545709ae57d42167cc"
+  },
+  "limitations": [
+    "Public certified high-point scalar reduction timed out before numerical qualification.",
+    "The new nonzero derived-distance conditioning guard is outside this preserved build.",
+    "The broad scalar filter also matched certified_scalar tests; individual ordinary scalar filters passed as listed."
+  ]
+}

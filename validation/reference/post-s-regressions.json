@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "label": "Post-S, UV-projection and evaluator-fusion independent regression checks",
+  "original_iregi": {
+    "passed": true,
+    "cases": 31,
+    "case_ids": [
+      "A0",
+      "B0",
+      "C0",
+      "D0",
+      "bubble_rank1_mode0",
+      "bubble_rank1_mode1",
+      "bubble_rank1_mode2",
+      "bubble_rank2_mode0",
+      "bubble_rank2_mode1",
+      "bubble_rank2_mode2",
+      "bubble_rank3_mode0",
+      "bubble_rank3_mode1",
+      "bubble_rank3_mode2",
+      "triangle_rank1_mode0",
+      "triangle_rank1_mode1",
+      "triangle_rank1_mode2",
+      "triangle_rank2_mode0",
+      "triangle_rank2_mode1",
+      "triangle_rank2_mode2",
+      "triangle_rank3_mode0",
+      "triangle_rank3_mode1",
+      "triangle_rank3_mode2",
+      "scaleless_B0",
+      "complex_triangle_rank2",
+      "general_unit_bubble_rank2",
+      "general_unit_triangle_rank3",
+      "A0_power2",
+      "B0_power2_1",
+      "C0_power2_1_1_rank2",
+      "A0_dim6_power2",
+      "C0_dim6"
+    ],
+    "elapsed_seconds": 10.97,
+    "tolerance": 1e-10,
+    "normalization": "error/(Q^dimension+abs(reference)); Q=max(mu,abs(shifts),sqrt(abs(mass_squared)))",
+    "precision_rescue_cases": [
+      "C0_power2_1_1_rank2"
+    ],
+    "reference_fixture_sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+    "binary_sha256": "4e61b193e10c15515b89d5e539c4c4d91325dacfce226f2fba7c416599b20681",
+    "command": "source scripts/env.sh; unset IREGI_ORACLE_CASE; target/checkpoint-ready-tests/oracle-6c52b475eea102c1 original_iregi_scalar_and_tensor_fixtures --exact --test-threads=1 --nocapture",
+    "log": "\nrunning 1 test\ntest original_iregi_scalar_and_tensor_fixtures ... preparing A0\nvalidated A0\npreparing B0\nvalidated B0\npreparing C0\nvalidated C0\npreparing D0\nvalidated D0\npreparing bubble_rank1_mode0\nvalidated bubble_rank1_mode0\npreparing bubble_rank1_mode1\nvalidated bubble_rank1_mode1\npreparing bubble_rank1_mode2\nvalidated bubble_rank1_mode2\npreparing bubble_rank2_mode0\nvalidated bubble_rank2_mode0\npreparing bubble_rank2_mode1\nvalidated bubble_rank2_mode1\npreparing bubble_rank2_mode2\nvalidated bubble_rank2_mode2\npreparing bubble_rank3_mode0\nvalidated bubble_rank3_mode0\npreparing bubble_rank3_mode1\nvalidated bubble_rank3_mode1\npreparing bubble_rank3_mode2\nvalidated bubble_rank3_mode2\npreparing triangle_rank1_mode0\nvalidated triangle_rank1_mode0\npreparing triangle_rank1_mode1\nvalidated triangle_rank1_mode1\npreparing triangle_rank1_mode2\nvalidated triangle_rank1_mode2\npreparing triangle_rank2_mode0\nvalidated triangle_rank2_mode0\npreparing triangle_rank2_mode1\nvalidated triangle_rank2_mode1\npreparing triangle_rank2_mode2\nvalidated triangle_rank2_mode2\npreparing triangle_rank3_mode0\nvalidated triangle_rank3_mode0\npreparing triangle_rank3_mode1\nvalidated triangle_rank3_mode1\npreparing triangle_rank3_mode2\nvalidated triangle_rank3_mode2\npreparing scaleless_B0\nvalidated scaleless_B0\npreparing complex_triangle_rank2\nvalidated complex_triangle_rank2\npreparing general_unit_bubble_rank2\nvalidated general_unit_bubble_rank2\npreparing general_unit_triangle_rank3\nvalidated general_unit_triangle_rank3\npreparing A0_power2\nvalidated A0_power2\npreparing B0_power2_1\nvalidated B0_power2_1\npreparing C0_power2_1_1_rank2\nprecision rescue required for C0_power2_1_1_rank2: Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_197_node_23, Taylor component 0; this estimate is not a certified error bound\")\nvalidated C0_power2_1_1_rank2\npreparing A0_dim6_power2\nvalidated A0_dim6_power2\npreparing C0_dim6\nvalidated C0_dim6\nok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 10.97s\n\n"
+  },
+  "independent_gamma": {
+    "passed": true,
+    "tests": 2,
+    "requests": 480,
+    "laurent_comparisons": 1920,
+    "elapsed_seconds": 20.07,
+    "modes": [
+      {
+        "invariant": "symbolic s",
+        "analytic_bubbles": false,
+        "ordinary_requests": 200,
+        "generalized_requests": 40
+      },
+      {
+        "invariant": "exact -3",
+        "analytic_bubbles": true,
+        "ordinary_requests": 200,
+        "generalized_requests": 40
+      }
+    ],
+    "oracle_source_sha256": "3690d0535b9b60f10823b869cf098957aa2739a49669e2ca9147d658882a0f6b",
+    "binary_sha256": "428cd169153a8a7a2d596b59f8161f476c144773d4e595f322d02a371c793863",
+    "command": "source scripts/env.sh; target/checkpoint-ready-tests/triangle_gamma-32191f2c801742b8 --test-threads=1 --nocapture",
+    "log": "\nrunning 2 tests\ntest every_triangle_tensor_coefficient_through_rank_seven_matches_gamma_formula ... Gamma oracle validated 200 requests and all native Laurent slots; analytic bubbles false\nGamma oracle validated 200 requests and all native Laurent slots; analytic bubbles true\nok\ntest generalized_triangle_powers_and_dimensions_match_gamma_formula ... Gamma oracle validated 40 requests and all native Laurent slots; analytic bubbles false\nGamma oracle validated 40 requests and all native Laurent slots; analytic bubbles true\nok\n\ntest result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 20.07s\n\n"
+  },
+  "build_snapshot": {
+    "command": "cargo test --workspace --no-run --offline",
+    "build_log": "target/checkpoint-ready-no-run.log",
+    "note": "Preserved successful full build. Broad checkpoint numerical qualification uses these identified binaries.",
+    "binaries": [
+      {
+        "binary": "target/checkpoint-ready-tests/iregi_rust-5534b8975886b1fa",
+        "sha256": "150dd92b8f3cf0a4d63ba519c36f5d4f70a335b01dcacc3fd1cc19523d01e6fc"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/iregi_masters-05f248b3db8d8d7f",
+        "sha256": "a83a8e973b702a071c23ea655c1c258c2e767c7494b77fb12027cc276032f711"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/legacy_rescue-8595142c522b4e01",
+        "sha256": "f3fd7973d79bb57cf3baf527a0bf4a074afc08c558003ab6a26e2f577f1aad46"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/physical_box-a34b327ba545754d",
+        "sha256": "cee7836ae5a4dc2aa242ea242b97da7adb29866149d6a45328eabd345db6ce17"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/shifted_pentagon-107fba42771912f7",
+        "sha256": "a32a465e183a796eb2081d282826401d7ad8d934f2e101d0ff11d58b1bfe3eed"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/oracle-6c52b475eea102c1",
+        "sha256": "4e61b193e10c15515b89d5e539c4c4d91325dacfce226f2fba7c416599b20681"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/triangle_gamma-32191f2c801742b8",
+        "sha256": "428cd169153a8a7a2d596b59f8161f476c144773d4e595f322d02a371c793863"
+      },
+      {
+        "binary": "target/checkpoint-ready-tests/iregi_rust-67452f0fdb66ff5b",
+        "sha256": "0b37dad5d84ce274ee172a652d3f49834f7e36fbd3f76e231c31ef69c9c4e095"
+      }
+    ]
+  },
+  "limitations": [
+    "Times are whole validation-test durations, not comparable kernel benchmarks.",
+    "The31-case reference suite retains one explicitly verified higher-precision rescue.",
+    "These tests do not qualify all exceptional generalized domains or full tensor Dual continuation."
+  ]
+}

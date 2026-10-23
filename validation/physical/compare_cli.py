@@ -12,6 +12,7 @@ import math
 from pathlib import Path
 import subprocess
 import sys
+import time
 
 sys.dont_write_bytecode = True
 ROOT = Path.cwd()
@@ -147,6 +148,10 @@ def main():
     parser.add_argument("--precision", choices=["f64", "dd", "float"], default="f64")
     parser.add_argument("--bits", type=int, default=128)
     parser.add_argument("--algorithm", choices=["ibp", "pv", "hybrid"], default="hybrid")
+    parser.add_argument("--rescue", action="store_true", help="request the CLI's verified precision rescue")
+    parser.add_argument("--accuracy-bits", type=int, help="accuracy target, independently of working precision")
+    parser.add_argument("--rescue-bits", type=int, help="working precision for verified rescue")
+    parser.add_argument("--verification-bits", type=int, help="independent precision for rescue verification")
     parser.add_argument("--tolerance", type=float, default=1e-10)
     parser.add_argument("--timeout", type=float, default=600)
     parser.add_argument("--output", type=Path)
@@ -155,10 +160,23 @@ def main():
         parser.error("tolerance must be positive and finite")
     if not math.isfinite(args.timeout) or args.timeout <= 0:
         parser.error("timeout must be positive and finite")
+    for name in ["bits", "accuracy_bits", "rescue_bits", "verification_bits"]:
+        value = getattr(args, name)
+        if value is not None and value <= 0:
+            parser.error(f"--{name.replace('_', '-')} must be positive")
     case = CASES[args.case]
     args.input = args.input or Path(f"validation/physical/{args.case}-cli-input.json")
     args.madloop = args.madloop or Path(f"validation/physical/madloop/fixtures/{args.case}-helicity-1.json")
-    args.output = args.output or Path(f"target/physical/{args.case}-cli-{args.algorithm}-{args.precision}-comparison.json")
+    variant = args.precision + (str(args.bits) if args.precision == "float" else "")
+    if args.rescue:
+        variant += "-rescue"
+    for name in ["accuracy_bits", "rescue_bits", "verification_bits"]:
+        value = getattr(args, name)
+        if value is not None:
+            variant += f"-{name.replace('_bits', '')}{value}"
+    if args.cli_result:
+        variant += "-replay"
+    args.output = args.output or Path(f"target/physical/{args.case}-cli-{args.algorithm}-{variant}-comparison.json")
     modes = sorted(set(args.reference_mode if args.reference_mode is not None else MODES))
     graph = Path(f"examples/graphs/{case[0]}.dot")
     model = Path("fixtures/models/sm.json")
@@ -166,10 +184,19 @@ def main():
                "--input", str(args.input), "--feynman-rules", "--external-wavefunctions",
                "--component", ",".join(["0"] * case[1]), "--convention", "oneloop",
                "--algorithm", args.algorithm, "--precision", args.precision, "--bits", str(args.bits)]
+    if args.rescue:
+        command.append("--rescue")
+    for name in ["accuracy_bits", "rescue_bits", "verification_bits"]:
+        value = getattr(args, name)
+        if value is not None:
+            command.extend(["--" + name.replace("_", "-"), str(value)])
     args.output.parent.mkdir(parents=True, exist_ok=True)
     report = {
         "schema_version": 2, "case": args.case, "passed": False, "tolerance": args.tolerance,
         "precision": args.precision, "algorithm": args.algorithm,
+        "requested_accuracy_bits": args.accuracy_bits,
+        "requested_rescue": {"enabled": args.rescue, "working_bits": args.rescue_bits,
+                             "verification_bits": args.verification_bits},
         "error_metric": "abs((actual-expected)/Q^dimension) / max(1, abs(expected/Q^dimension)); Q=max(mu, abs(shift components), sqrt(abs(mass_squared)))",
         "cli_status": {"status": "not_started", "executed": args.cli_result is None},
         "tensor_comparisons": [], "physical_comparison": {"status": "not_run", "passed": False},
@@ -190,27 +217,47 @@ def main():
         if args.cli_result:
             stdout, stderr, returncode = args.cli_result.read_text(), "", 0
         else:
+            started = time.perf_counter()
             try:
                 process = subprocess.run(command, cwd=ROOT, text=True, capture_output=True, timeout=args.timeout)
                 stdout, stderr, returncode = process.stdout, process.stderr, process.returncode
             except subprocess.TimeoutExpired as error:
                 stdout, stderr, returncode = text(error.stdout), text(error.stderr), None
                 report["cli_status"] = {"status": "timeout", "executed": True, "timeout_seconds": args.timeout}
+            finally:
+                report["cli_wall_seconds"] = time.perf_counter() - started
         args.output.with_suffix(".cli.stdout.txt").write_text(stdout)
         args.output.with_suffix(".cli.stderr.txt").write_text(stderr)
+        if returncode is None:
+            raise ValueError("CLI timed out; retained stdout/stderr accompany this report")
         if returncode != 0:
-            if returncode is not None:
-                report["cli_status"] = {"status": "failed", "executed": True, "returncode": returncode}
-            raise ValueError("CLI did not complete successfully; retained stdout/stderr accompany this report")
-        result = json.loads(stdout)
+            report["cli_status"] = {"status": "failed", "executed": True, "returncode": returncode}
+        # The CLI intentionally returns nonzero for an unsuccessful lane while
+        # still emitting structured JSON. Preserve that lane's diagnosis.
+        try:
+            result = json.loads(stdout)
+        except ValueError:
+            if returncode != 0:
+                raise ValueError("CLI failed without structured JSON; retained stdout/stderr accompany this report") from None
+            raise
         args.output.with_suffix(".cli.json").write_text(json.dumps(result, indent=2, allow_nan=False) + "\n")
         report["precision_bits"] = result["precision_bits"]
         report["algorithm_requested"] = result.get("algorithm_requested")
         report["algorithm_used"] = result.get("algorithm_used")
+        report["rescue_evaluation"] = {
+            "precision_control": result.get("precision_control"),
+            "execution": result.get("rescue_execution"),
+            "lanes": [{key: value for key, value in lane.items()
+                       if key in ["id", "status", "precision_rescue"]}
+                      for lane in result["samples"]],
+            "qualification": "Tensor convergence alone does not certify numerator evaluation or contraction; complete higher-precision CLI reruns reparse the original input and reevaluate its numerator.",
+        }
         if len(result["samples"]) != 1 or result["samples"][0]["status"] != "success":
             report["cli_status"] = {"status": "failed_lane", "executed": args.cli_result is None,
-                                    "samples": result.get("samples")}
+                                    "returncode": returncode, "samples": result.get("samples")}
             raise ValueError("expected exactly one successful physical sample")
+        if returncode != 0:
+            raise ValueError("CLI returned a failure exit code despite a successful sample")
         if result["samples"][0]["id"] != sample["id"]:
             raise ValueError("CLI result sample identity differs from the selected physical input")
         if result["graph"]["name"] != case[0]:

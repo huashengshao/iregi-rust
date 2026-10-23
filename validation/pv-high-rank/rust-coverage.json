@@ -7,9 +7,9 @@
     "dimension_normalization": "Q^(rank+4-2N), Q\u00b2=max(1,abs masses_squared,abs pair squared distances)"
   },
   "exact_tests": {
-    "passed": 8,
+    "passed": 10,
     "failed": 0,
-    "includes": "lightlike branch generic/literal comparison, independent60/100digit parameter-integral primal fixture, Symbolica Dualizer first-invariant derivative fixture"
+    "includes": "lightlike branch generic/literal comparison, independent60/100digit parameter-integral primal fixture, Symbolica Dualizer first-invariant derivative fixture, direct Gram-transform call-site products and changed subtopology origin, seven-point alternative chart with exact determinant boundary and complete Dual identity"
   },
   "passed": [
     {
@@ -65,11 +65,90 @@
       "probe_source": "crates/iregi-rust/examples/pv_precision_probe.rs",
       "command": "cargo run -p iregi-rust --example pv_precision_probe --offline"
     },
-    "conditioning_evidence": "validation/pv-high-rank/precision-probe.json"
+    "conditioning_evidence": "validation/pv-high-rank/precision-probe.json",
+    "independent_parameter_integral": {
+      "artifact": "validation/pv-high-rank/pentagon-simplex-oracle.json",
+      "method": "SciPy adaptive GK21 cubature of a Gaussian-derived smooth Feynman-simplex integrand; two simplex coordinate maps",
+      "native_finite_imaginary": "-0.002438378935447123",
+      "conservative_reported_absolute_error": "2.7688486543533276e-15",
+      "difference_from_binary256_pv": "4.336808689942018e-19",
+      "all_poles": "zero by independent angular/power-counting argument",
+      "qualification": "Confirms highprecision result; failed binary64 gate remains failed."
+    }
   },
   "not_yet_qualified": [
     "rank7 fivepoint",
-    "rank0..7 sixpoint and sevenpoint",
-    "translated rank7 cases"
+    "sixpoint rank0..7 binary64 family (retained failed run)",
+    "rank0..7 sevenpoint",
+    "translated and reversed rank7 cases"
+  ],
+  "additional_failures": [
+    {
+      "propagators": 6,
+      "rank": "0..7",
+      "moments": 330,
+      "master_leaves": 56,
+      "discrepancies": 430,
+      "max_normalized_mixed_error": "1.12176789154650173e-6",
+      "artifact": "validation/pv-high-rank/oracle-runs/n6-base-rank7.json",
+      "status": "Complete inline exact-PV/native-master Float128/256 array converges; original IBP and retained inline-PV/original-Fortran-master binary64 routes fail unchanged gate. Public Rust Workspace and performance remain unqualified.",
+      "independent_parameter_integral": {
+        "artifact": "validation/pv-high-rank/sixpoint-simplex-oracle.json",
+        "moment": 321,
+        "monomial": [
+          0,
+          1,
+          0,
+          6
+        ],
+        "native_finite_imaginary": "-0.004930291971105485",
+        "reported_native_absolute_uncertainty": 6.064648241678201e-14,
+        "mapping_difference": 4.336808689942018e-18,
+        "normalized_rust_expression_absolute_error": 2.0371117293027652e-10,
+        "normalized_original_ibp_absolute_error": 1.172055021994578e-06,
+        "qualification": "Two independent simplex coordinate maps agree within the reported error estimates. Both binary64 routes fail the unchanged gate for this component. The Rust-side route uses original Fortran scalar masters, not the public Rust native-master workspace. Other moments still require precision adjudication."
+      },
+      "higher_precision": {
+        "artifact": "validation/pv-high-rank/oracle-runs/n6-base-precision.json",
+        "adjudication": "validation/pv-high-rank/oracle-runs/n6-base-precision-adjudication.json",
+        "bits": [
+          128,
+          256
+        ],
+        "moments": 330,
+        "laurent_slots": 4,
+        "complex_components": 2,
+        "max_dimensionally_normalized_convergence_error": "6.4592608677378317711074132377456122891960704979032126747156718134868244945252167675528239737634322701500204577454737320161607656542445474161099405447e-29",
+        "original_reference_discrepancies": 566,
+        "max_original_reference_error": "1.1219641551905802e-6",
+        "max_retained_rust_with_fortran_masters_error": "7.062467046720669e-8",
+        "rust_binary64_complete_array": false,
+        "qualification": "Full exact-PV/native-master array convergence; not a public Rust Workspace or performance qualification. Complete original tensor and retained Rust binary64 disagreement rows compared without relaxing 1e-10."
+      }
+    }
+  ],
+  "preparation_failures": [
+    {
+      "propagators": 7,
+      "rank": 7,
+      "variant": "base",
+      "status": "preparation_timeout",
+      "bound_seconds": 90,
+      "artifact": "validation/pv-high-rank/oracle-runs/n7-base-rank7.json",
+      "qualification": "Numerical comparison not reached. Neither coefficient failure nor numerical success is inferred."
+    }
+  ],
+  "reference_only_failures": [
+    {
+      "propagators": 7,
+      "rank": "0..7",
+      "moments": 330,
+      "reference_stable": true,
+      "artifact": "validation/pv-high-rank/oracle-runs/n7-base-reference-rank7.json",
+      "uv_components_exceeding_1e-10": 315,
+      "max_dimensionally_normalized_uv_residue": "0.08587303622",
+      "independent_constraint": "All UV poles vanish: superficial degree at most -3. Feynman polynomial F>=3.75 excludes IR poles.",
+      "qualification": "Original reference-only pole contradiction; no Rust numerical evaluation or finite-array adjudication."
+    }
   ]
 }

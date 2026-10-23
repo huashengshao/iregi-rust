@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "reference_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
-  "script_sha256": "808dd72a2f9effa71672f92bdb45e8cd4f719db02285c8c0a533953d77b2c31c",
-  "comparison_script_sha256": "5619de6e02aaa9ab2643086f19f08b029d7d3c02516ba70a7f46fa5b4955b1bb",
+  "script_sha256": "fb555c0e5266306eaeea53234c7742bd7dd834aaff7c3aa445adbaafd79527b5",
+  "comparison_script_sha256": "46e3063ff98ab926428f89f4a27c419eeb8cf85636b237f95587e714aa4b359b",
   "qualification": "Original IREGI modes compared at canonical physical inputs. No Rust reduction is executed. All four Laurent slots are numerically converted to OneLoop. A disagreement does not identify the correct mode.",
   "tolerance": 1e-10,
   "cases": [
@@ -32,6 +32,13 @@
         {
           "mode": 1,
           "max_normalized_error": 6.938893903907228e-16,
+          "max_error_by_slot": {
+            "uv1": 1.6653345369377348e-16,
+            "ir1": 0.0,
+            "ir2": 0.0,
+            "finite": 6.938893903907228e-16
+          },
+          "mismatches": [],
           "passed": true,
           "worst": {
             "moment": 4,
@@ -50,6 +57,13 @@
         {
           "mode": 2,
           "max_normalized_error": 6.938893903907228e-16,
+          "max_error_by_slot": {
+            "uv1": 1.6653345369377348e-16,
+            "ir1": 0.0,
+            "ir2": 0.0,
+            "finite": 6.938893903907228e-16
+          },
+          "mismatches": [],
           "passed": true,
           "worst": {
             "moment": 4,
@@ -93,6 +107,13 @@
         {
           "mode": 1,
           "max_normalized_error": 6.839722312648237e-15,
+          "max_error_by_slot": {
+            "uv1": 5.798371809631084e-16,
+            "ir1": 0.0,
+            "ir2": 0.0,
+            "finite": 6.839722312648237e-15
+          },
+          "mismatches": [],
           "passed": true,
           "worst": {
             "moment": 65,
@@ -111,6 +132,13 @@
         {
           "mode": 2,
           "max_normalized_error": 6.839722312648237e-15,
+          "max_error_by_slot": {
+            "uv1": 5.798371809631084e-16,
+            "ir1": 0.0,
+            "ir2": 0.0,
+            "finite": 6.839722312648237e-15
+          },
+          "mismatches": [],
           "passed": true,
           "worst": {
             "moment": 65,
@@ -154,6 +182,154 @@
         {
           "mode": 1,
           "max_normalized_error": 0.6001338886545732,
+          "max_error_by_slot": {
+            "uv1": 0.19018150149173307,
+            "ir1": 0.0,
+            "ir2": 0.0,
+            "finite": 0.6001338886545732
+          },
+          "mismatches": [
+            {
+              "moment": 35,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173013,
+              "mode_value": [
+                -7.627377656134657e-23,
+                -0.0
+              ],
+              "ibp_value": [
+                -3.381004470964092e-07,
+                -0.0
+              ]
+            },
+            {
+              "moment": 35,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.6001338886545664,
+              "mode_value": [
+                -5.55830012716744e-07,
+                6.520661663627517e-07
+              ],
+              "ibp_value": [
+                -1.6227347036581951e-06,
+                6.520661663626938e-07
+              ]
+            },
+            {
+              "moment": 38,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173155,
+              "mode_value": [
+                -7.715875458852312e-22,
+                -0.0
+              ],
+              "ibp_value": [
+                3.3810044709641085e-07,
+                0.0
+              ]
+            },
+            {
+              "moment": 38,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.6001338886545684,
+              "mode_value": [
+                3.9329808161342235e-14,
+                1.492778176369125e-13
+              ],
+              "ibp_value": [
+                1.066904730271263e-06,
+                1.492777594922495e-13
+              ]
+            },
+            {
+              "moment": 44,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173,
+              "mode_value": [
+                -5.27980360355664e-23,
+                -0.0
+              ],
+              "ibp_value": [
+                -3.3810044709640894e-07,
+                -0.0
+              ]
+            },
+            {
+              "moment": 44,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.28128807152368984,
+              "mode_value": [
+                1.2447160175148066e-06,
+                3.7887553041233463e-06
+              ],
+              "ibp_value": [
+                1.778113265733039e-07,
+                3.7887553041233065e-06
+              ]
+            },
+            {
+              "moment": 54,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149172897,
+              "mode_value": [
+                -1.5051952890120267e-23,
+                -0.0
+              ],
+              "ibp_value": [
+                3.3810044709640704e-07,
+                0.0
+              ]
+            },
+            {
+              "moment": 54,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.6001338886545732,
+              "mode_value": [
+                3.347444464419028e-13,
+                2.9254799485349827e-13
+              ],
+              "ibp_value": [
+                1.06690502568591e-06,
+                2.925479413432438e-13
+              ]
+            },
+            {
+              "moment": 69,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173307,
+              "mode_value": [
+                -9.927945185335754e-24,
+                -0.0
+              ],
+              "ibp_value": [
+                -3.3810044709641434e-07,
+                -0.0
+              ]
+            },
+            {
+              "moment": 69,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.04227332399170542,
+              "mode_value": [
+                2.309707128037628e-05,
+                1.2314259592926659e-05
+              ],
+              "ibp_value": [
+                2.2030166589434773e-05,
+                1.2314259592926574e-05
+              ]
+            }
+          ],
           "passed": false,
           "worst": {
             "moment": 54,
@@ -172,6 +348,154 @@
         {
           "mode": 2,
           "max_normalized_error": 0.6001338886545732,
+          "max_error_by_slot": {
+            "uv1": 0.19018150149173307,
+            "ir1": 0.0,
+            "ir2": 0.0,
+            "finite": 0.6001338886545732
+          },
+          "mismatches": [
+            {
+              "moment": 35,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173013,
+              "mode_value": [
+                -7.627377656134657e-23,
+                -0.0
+              ],
+              "ibp_value": [
+                -3.381004470964092e-07,
+                -0.0
+              ]
+            },
+            {
+              "moment": 35,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.6001338886545664,
+              "mode_value": [
+                -5.55830012716744e-07,
+                6.520661663627517e-07
+              ],
+              "ibp_value": [
+                -1.6227347036581951e-06,
+                6.520661663626938e-07
+              ]
+            },
+            {
+              "moment": 38,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173155,
+              "mode_value": [
+                -7.715875458852312e-22,
+                -0.0
+              ],
+              "ibp_value": [
+                3.3810044709641085e-07,
+                0.0
+              ]
+            },
+            {
+              "moment": 38,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.6001338886545684,
+              "mode_value": [
+                3.9329808161342235e-14,
+                1.492778176369125e-13
+              ],
+              "ibp_value": [
+                1.066904730271263e-06,
+                1.492777594922495e-13
+              ]
+            },
+            {
+              "moment": 44,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173,
+              "mode_value": [
+                -5.27980360355664e-23,
+                -0.0
+              ],
+              "ibp_value": [
+                -3.3810044709640894e-07,
+                -0.0
+              ]
+            },
+            {
+              "moment": 44,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.28128807152368984,
+              "mode_value": [
+                1.2447160175148066e-06,
+                3.7887553041233463e-06
+              ],
+              "ibp_value": [
+                1.778113265733039e-07,
+                3.7887553041233065e-06
+              ]
+            },
+            {
+              "moment": 54,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149172897,
+              "mode_value": [
+                -1.5051952890120267e-23,
+                -0.0
+              ],
+              "ibp_value": [
+                3.3810044709640704e-07,
+                0.0
+              ]
+            },
+            {
+              "moment": 54,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.6001338886545732,
+              "mode_value": [
+                3.347444464419028e-13,
+                2.9254799485349827e-13
+              ],
+              "ibp_value": [
+                1.06690502568591e-06,
+                2.925479413432438e-13
+              ]
+            },
+            {
+              "moment": 69,
+              "rank": 4,
+              "pole": "uv1",
+              "error": 0.19018150149173307,
+              "mode_value": [
+                -9.927945185335754e-24,
+                -0.0
+              ],
+              "ibp_value": [
+                -3.3810044709641434e-07,
+                -0.0
+              ]
+            },
+            {
+              "moment": 69,
+              "rank": 4,
+              "pole": "finite",
+              "error": 0.04227332399170542,
+              "mode_value": [
+                2.309707128037628e-05,
+                1.2314259592926659e-05
+              ],
+              "ibp_value": [
+                2.2030166589434773e-05,
+                1.2314259592926574e-05
+              ]
+            }
+          ],
           "passed": false,
           "worst": {
             "moment": 54,
@@ -215,6 +539,13 @@
         {
           "mode": 1,
           "max_normalized_error": 2.211393154784976e-14,
+          "max_error_by_slot": {
+            "uv1": 4.718447854656915e-16,
+            "ir1": 5.389324511504393e-15,
+            "ir2": 2.4424906541753444e-15,
+            "finite": 2.211393154784976e-14
+          },
+          "mismatches": [],
           "passed": true,
           "worst": {
             "moment": 65,
@@ -233,6 +564,13 @@
         {
           "mode": 2,
           "max_normalized_error": 2.211393154784976e-14,
+          "max_error_by_slot": {
+            "uv1": 4.718447854656915e-16,
+            "ir1": 5.389324511504393e-15,
+            "ir2": 2.4424906541753444e-15,
+            "finite": 2.211393154784976e-14
+          },
+          "mismatches": [],
           "passed": true,
           "worst": {
             "moment": 65,
@@ -251,5 +589,21 @@
       ]
     }
   ],
-  "all_modes_agree": false
+  "all_modes_agree": false,
+  "independent_follow_up": {
+    "case": "gghhh",
+    "evidence": "validation/pv-high-rank/canonical-pentagon-precision.json",
+    "evidence_sha256": "bda784db14022828edcb33e05f9f16819ce2410db0f1a4a6158c8de394159011",
+    "scope": "Moment54 only (monomial q0*q3^3); not complete pentagon integration.",
+    "method": "Exact Symbolica PV coefficients with native oneloop scalar masters at128 and256 bits; decimal inputs embedded at1024 bits.",
+    "outcome": "The converged finite coefficient supports original PV/hybrid and rejects original IBP for this component. The UV coefficient tends to zero.",
+    "analytical_check": "The massive rank4 five-denominator tensor has superficial UV degree\u22122; its UV pole vanishes independently of reduction mode.",
+    "observed_by": "pv_reduction agent; root informed",
+    "physical_reference_verification": {
+      "evidence": "validation/physical/gghhh-madloop-reference-modes.json",
+      "evidence_sha256": "20fb6cb33595f7bcdbcbf607cb2607282d667515365e889337e8a9912fc4e7f0",
+      "scope": "Captured MadLoop positive-PDEN routing with legacy on-shell snapping; different policy from this canonical preserve-input audit.",
+      "outcome": "Explicit original PV and hybrid both reproduce all378 captured tensor slots exactly; numerical contraction agrees within1.25e-14. Captured physical reference agrees with purePV."
+    }
+  }
 }

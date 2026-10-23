@@ -1,0 +1,2323 @@
+{
+  "source": "validation/physical/gghhh-cli-input.json",
+  "source_sha256": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed",
+  "reference_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+  "script_sha256": "005d80515f0dad87d29b1567a6f38c2b83666aefdf08c799d9d246c0716f8f7a",
+  "convention": "OneLoop, raw Cartesian tensor moments",
+  "target": {
+    "moment_index": 54,
+    "exponents": [
+      1,
+      0,
+      0,
+      3
+    ],
+    "numerator": "q0*qz^3"
+  },
+  "symmetric_input": [
+    {
+      "edge_id": 0,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "0",
+        "0",
+        "0",
+        "0"
+      ]
+    },
+    {
+      "edge_id": 1,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "375",
+        "0",
+        "0",
+        "-375"
+      ]
+    },
+    {
+      "edge_id": 2,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "125",
+        "-187.5",
+        "108.253175473054824",
+        "-375"
+      ]
+    },
+    {
+      "edge_id": 4,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "-125",
+        "-187.5",
+        "-108.253175473054824",
+        "-375"
+      ]
+    },
+    {
+      "edge_id": 6,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "-375",
+        "0",
+        "0",
+        "-375"
+      ]
+    }
+  ],
+  "canonical_p1_exact_null_input": [
+    {
+      "edge_id": 0,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "0.00000000000000000e0",
+        "0.00000000000000000e0",
+        "0.00000000000000000e0",
+        "0.00000000000000000e0"
+      ]
+    },
+    {
+      "edge_id": 1,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "3.74999995340911823e2",
+        "0.00000000000000000e0",
+        "0.00000000000000000e0",
+        "-3.74999995340911823e2"
+      ]
+    },
+    {
+      "edge_id": 2,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "1.24999995340911823e2",
+        "-2.16506350946109649e2",
+        "0.00000000000000000e0",
+        "-3.74999997712397658e2"
+      ]
+    },
+    {
+      "edge_id": 4,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "-1.25000004659088177e2",
+        "-1.08253175473054824e2",
+        "-1.87499999999999972e2",
+        "-3.75000001185742917e2"
+      ]
+    },
+    {
+      "edge_id": 6,
+      "mass_squared": [
+        "2.99290000000000000e4",
+        "0.00000000000000000e0"
+      ],
+      "power": 1,
+      "shift": [
+        "-3.75000004659088177e2",
+        "-0.00000000000000000e0",
+        "-0.00000000000000000e0",
+        "-3.75000004659088177e2"
+      ]
+    }
+  ],
+  "null_edge_change": "Only propagator1 shift[3] is set to minus its shift[0], changing it by 5.7e-14 in the supplied decimal data.",
+  "source_findings": [
+    "INITIREGI's supplied threshold sets ZEROTHR_IREGI; recurrence EPS is the fixed parameter 1e-10 in original src/global.f90:37. This scan does not vary recurrence EPS.",
+    "Original src/si_reduce.f90:723 uses the generic invertible-R/S recurrence when their absolute determinants exceed EPS. An equal-mass near-lightlike bubble has R eigenvalues -s and s-4m^2, so this determinant test does not control conditioning.",
+    "Original src/si_reduce.f90:795-799 maps the exceptional dimension divisor into a PV coefficient with IBP2PAVE. This convention alone does not explain a full Cartesian-tensor discrepancy."
+  ],
+  "four_dimensional_projection": "For D-dimensional q=qbar+qperp and four-dimensional external shifts, D_j-D_0=2(p_j-p_0).(qbar+p_0)+f_j: qperp^2 cancels exactly. Inverting the four-dimensional external basis therefore determines each q0..3 component exactly, without dropping an evanescent numerator term.",
+  "independent_parameter_formula": "At epsilon=0 the OneLoop target is integral over sum(x_i)=1,x_i>=0 of -(3/2)*P0*Pz/(F-i0)^2 -2*P0*Pz^3/(F-i0)^3, with P=sum(x_i*p_i), F=m^2-sum(i<j,x_i*x_j*(p_i-p_j)^2). Every UV/IR pole vanishes. F changes sign at this physical point, so real-simplex quadrature without a contour prescription is not a valid evaluation.",
+  "independent_power_counting": {
+    "space_time_dimension_at_epsilon_zero": 4,
+    "numerator_rank": 4,
+    "propagator_count": 5,
+    "superficial_uv_degree": -2,
+    "expected_uv_single": [
+      0,
+      0
+    ],
+    "expected_ir_single": [
+      0,
+      0
+    ],
+    "expected_ir_double": [
+      0,
+      0
+    ],
+    "argument": "The large-loop-momentum degree is 4+4-2*5=-2, so the one-loop integral is ultraviolet convergent. There are no UV subloops. Every internal squared mass is the positive value 29929, excluding soft and collinear infrared divergences. Physical thresholds require the Feynman prescription but do not generate dimensional-regularization poles at this generic point. Consequently every Laurent pole of this tensor moment is exactly zero, independently of reduction and finite-part quadrature."
+  },
+  "symmetry": "q0->-q0, qy->-qy swaps propagators1<->4 and2<->3 and fixes0. Equal masses and measure are invariant, q0*qz^3 is odd, so its exact integral is zero in every Laurent slot.",
+  "qualification": "Threshold scan of untouched original IREGI and an exact tensor symmetry. No numerical integral or Rust reduction is evaluated; variation does not independently identify the canonical answer.",
+  "results": [
+    {
+      "input": "canonical",
+      "threshold": "1e-6",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "1fe3701aad785994faa2b5bd1e9eefb050ec312934479b7a44a38e13d0d00339",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-6",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "9ae686df5973424470183c458fa8ea78f9a28362f8f762a15d9982b0d7ef3c9c"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-6",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "90defe71a554f08b43c1aa68b74016a212426889af4bef6fa311d285f55461ab",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-8",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "cb61f5c75855c46e039953ea0da83ec1eaa79273ebae2741595e63c0ff5e0753",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-8",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "974ac3fe2d896b9f40c6a916075f99d6d29680be0ea0defc93575d486ce4c144"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-8",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "e5cc7ceb98834adfc4e4a84b762c0a54449d6f5594eefa3b1864e9f8c96e4e42",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-10",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "36fbc8198b9412d98e96640bcd3c59bae5c4fb8518c947561367835a28984797",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-10",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "1773d5dd78d21bde2eadbd3e5397bd1f3d5924c370e4033257c7b449f9eea948"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-10",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "3f1fcacd86e403d8fe5b14a68d2cd0379f9e8b99cac33ab80acde810429b6c34",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-12",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "2174293905ceb1bfefdfce71eef4ec19503dba06e8fe1333487bb68f5581bb12",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-12",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "88eb1b1807d0dde06a4e877cb14aa6f85e8aeabb6df012bd136aba416f012803"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-12",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "2ec2dece0b43bc26ecda7ccc3fa210a673f6c2508acf82c5129b0415c10c48bd",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-15",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "aa4838bd15f43db19892cde781fbb80f2f94b35cfecdeb76b2ceb16d6240c1c8",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-15",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "ba3e966494662411e286dc600fba8b0357ec6afffe6d10eff336099804d6dd87"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-15",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "706e7d803869cc6c05aeba2b55e0c183e692638eb2138467edd325fd690fcbf7",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-18",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "53a47e0c91c54c5daf9e6a6bc43372c7332a89902da21db34e9492a2c71f94e2",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-18",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "6063d87e136c3f8df187024e86d13c5d6dd3bd090d8ef8866338d590f9a1aeb2"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-18",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "6f069e87b0b5b92601449e2870711373d75d51c3bd9543301cfc140470e9dc45",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-21",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          3.3369176606729786e-06
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873324494109107e-12,
+          4.7839400180359635e-06
+        ]
+      ],
+      "full_result_sha256": "ffe8a35305c47ad947d03819095cea5a6d1ddb997d89e94b854462ce1a4cb5e9",
+      "target_finite_difference_from_pv": [
+        1.0669046909414635e-06,
+        -5.351025445322819e-20
+      ]
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-21",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "32c8115fbd5bc4718d8fd8899c588360610a6404f9ffa197265a06489509f7cb"
+    },
+    {
+      "input": "canonical",
+      "threshold": "1e-21",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048932068e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329775359533e-12,
+          3.3037952620990313e-12
+        ]
+      ],
+      "full_result_sha256": "d5831bb25351d6acba23215985424a515994bf4eee5b6ff28b9b9b92a5666f92",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-6",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "2c90817686f0b7cf75e10edb9de0fb724960d45efc3c1a9b8d1f12af73c304b2",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-6",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "494b793711c13458b353d8363108a479c3eb0d746aa83dbec220af1571449f94"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-6",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "ccadcc0a1dece7a8e75279b90541fb394a1d5afe1cdae64febb49636aa922242",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-8",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "11d993d36aad50a5e4b4bbb2c3e5b213e59a071a1790837291b3ed5df1b5a135",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-8",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "6e5f7ce5a3f6b7778537cd83de0c42748d8764b3c9f7a379221fe0924692a908"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-8",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "69f364b5dfaf9a92e8013db76872eb601d785d2487f67550020a07101af74737",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-10",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "ecf089cc657b2a7fb8e9db03d0d6a008a6f9897f4110f7ad64feb04655837d18",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-10",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "d5fbf0997a0b76e87e889f3d80b5a46d8ebd1ceaa2cbe5b9bbd514e89e24a049"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-10",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "ed9aca7a12d6a4f2146e5af30bce7de5d87512073305a7a7e1cde7819873fdf2",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-12",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "d0148cc614593b3cc7517d834cdfd6a002c93761dcc8aac85b8d12ee04fe558f",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-12",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "782ab6eef4497c4d87f9c81bd3d074072d3c71148ee51a43b4d8d03feca8c60e"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-12",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "a36055d6928c15810a407f5d76c5eb4657139cc09cb03d105eb80426095d0c6a",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-15",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "05e623a8c0db539f6ac501a0427b9e6e3b6c3d5602863b626f9091012884620f",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-15",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "4fa0a13212e5105bb400e76571233a82bd961e7f0acc10a68c19870d1383eb1d"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-15",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "b44d7042b11b300eeb9412221d156b3dea95263b493e6950476a61c2a0a4c772",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-18",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "a1d12d4e706c193b8792409ad5184b6673ca229ad0ef059281d3d9c49995d005",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-18",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "4d5442beb66b5e777e0d4701a43e9911febec7ecf4173e7e5c072f3048ee97c9"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-18",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "aed29d2022417c872a746664a33dd0971a67ac8ad760fa2d7718457a3991a444",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-21",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -4.883026438386055e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.78146374257586e-21,
+          5.218000752631705e-20
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -4.8193539226930704e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -5.149960319306146e-19,
+          -1.3552527156068805e-20
+        ]
+      ],
+      "full_result_sha256": "cb146e5e0acb9f64017f27098802c87ed15e62af4051205d892824edc0132c19",
+      "target_finite_difference_from_pv": [
+        6.78225575179781e-21,
+        4.2267522543932806e-20
+      ]
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-21",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "bb8f9daad3d949007ff0b71a6d7518c4e8d2843e45107e264c0aad384b590889"
+    },
+    {
+      "input": "symmetric_rotated",
+      "threshold": "1e-21",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -1.656371949437367e-20,
+          9.912484982384243e-21
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -9.783230540787169e-20,
+          -1.6347735882007997e-19
+        ]
+      ],
+      "full_result_sha256": "cc84c3d38eb04af9bf715660fa8e47041cb5519fde34ac158d4e4e22ccdf646b",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "input": "canonical_p1_exact_null",
+      "threshold": "1e-6",
+      "mode": 0,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -3.4561311216100936e-21,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.3474434207828104e-13,
+          2.925479708661428e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -3.411064692858488e-20
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873327407902445e-12,
+          3.3037942905522408e-12
+        ]
+      ],
+      "full_result_sha256": "1d5159a0d05de7fc714f52d6a44b7401f85669ec3d77de77a27eb9ff85f799b2",
+      "target_finite_difference_from_pv": [
+        -1.1002789886021306e-19,
+        -1.965332521399393e-20
+      ]
+    },
+    {
+      "input": "canonical_p1_exact_null",
+      "threshold": "1e-6",
+      "mode": 1,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.50519528901184e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444521061799e-13,
+          2.9254799051946803e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048930225e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329347607894e-12,
+          3.3037953180032058e-12
+        ]
+      ],
+      "full_result_sha256": "08d5d4e745771200be386f73df1689be6dfdc48de4c8fbe468cb22dcbf24b45a"
+    },
+    {
+      "input": "canonical_p1_exact_null",
+      "threshold": "1e-6",
+      "mode": 2,
+      "returncode": 0,
+      "stable": true,
+      "target": [
+        [
+          -1.50519528901184e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444521061799e-13,
+          2.9254799051946803e-13
+        ]
+      ],
+      "target_native_iregi": [
+        [
+          0.0,
+          -1.4855682048930225e-22
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          -2.8873329347607894e-12,
+          3.3037953180032058e-12
+        ]
+      ],
+      "full_result_sha256": "7e446a6eb2b3a83fe7cb1c5085caa7f384928b680064e9234a6b7110bfe4c8d0",
+      "target_finite_difference_from_pv": [
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "observed_single_coordinate_sensitivity": {
+    "binary64_coordinate_change": 5.684341886080802e-14,
+    "ibp_target_change": [
+      -1.066904690941568e-06,
+      2.9522899001713884e-20
+    ],
+    "pv_target_change": [
+      5.664277117612097e-21,
+      -4.334030237520376e-21
+    ],
+    "interpretation": "Original IBP changes by about 1e-6 under a one-ulp external-coordinate change that makes a near-lightlike edge exactly lightlike; PV changes by about 1e-20 and the modes agree at the exactly lightlike variant. This supports internal IBP numerical instability. A high-precision canonical-point evaluation remains required to certify its answer."
+  },
+  "observed_uv_power_counting_violation": {
+    "canonical_ibp_uv_oneloop": [
+      3.3810044709640704e-07,
+      0.0
+    ],
+    "canonical_ibp_uv_native_iregi": [
+      0.0,
+      3.3369176606729786e-06
+    ],
+    "canonical_pv_uv_oneloop": [
+      -1.5051952890120267e-23,
+      -0.0
+    ],
+    "canonical_pv_uv_native_iregi": [
+      0.0,
+      -1.4855682048932068e-22
+    ],
+    "interpretation": "The original IBP result contains a spurious UV pole, contradicting independent ultraviolet power counting. This proves that result is incorrect without evaluating the physical finite part. The conversion from native IREGI finite to OneLoop finite adds (EulerGamma+ln(pi))*UV before division by i*pi^2, so the erroneous UV pole also explains why the two conventions' finite discrepancies are not related by i*pi^2 alone. The finite canonical answer still requires an independent evaluation."
+  }
+}

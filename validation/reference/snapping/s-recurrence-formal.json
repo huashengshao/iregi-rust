@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "kind": "exact Symbolica Laurent-map identity regression",
+  "test": "ibp::tests::analytic_bubble_s_rows_equal_ordinary_ibp_and_singular_limits",
+  "passed": true,
+  "tests_passed": 1,
+  "elapsed_seconds": 0.17,
+  "comparison_count": 48,
+  "comparison_domain": "All four native Laurent slots for six bubble requests, first as generic nonsingular free-master maps, then at the exact pseudothreshold using analytic scalar master values.",
+  "requests": [
+    {
+      "powers": [
+        1,
+        1
+      ],
+      "dimension_shift": 1
+    },
+    {
+      "powers": [
+        1,
+        1
+      ],
+      "dimension_shift": 2
+    },
+    {
+      "powers": [
+        2,
+        1
+      ],
+      "dimension_shift": 1
+    },
+    {
+      "powers": [
+        1,
+        2
+      ],
+      "dimension_shift": 1
+    },
+    {
+      "powers": [
+        3,
+        1
+      ],
+      "dimension_shift": 2
+    },
+    {
+      "powers": [
+        2,
+        2
+      ],
+      "dimension_shift": 2
+    }
+  ],
+  "singular_point": {
+    "masses_squared": [
+      4,
+      9
+    ],
+    "distance_squared": 1,
+    "mu_squared": 1,
+    "bubble_finite": "2+4*log(2)-6*log(3)"
+  },
+  "ibp_source_sha256": "42a2845593a9059159d632a842c7a9c50fe71245b92e8921c7c091778901c605",
+  "test_binary_sha256": "b07ce028f30c2cf66daa57e3eacb9d8cda7945acf4c47804777feb9e36395b20",
+  "production_policy_at_test": "S recurrence opt-in; core plan enablement followed this exact regression and requires separate numerical validation.",
+  "pending": [
+    "Complete original-IREGI tensor arrays through conditional recurrence DAG",
+    "Verified 128/256-bit rescue for all eight IBP triangle/box legacy fixtures",
+    "Complete tensor Dual derivatives"
+  ],
+  "command": "source scripts/env.sh; target/checkpoint-tests/iregi_rust-5534b8975886b1fa ibp::tests::analytic_bubble_s_rows_equal_ordinary_ibp_and_singular_limits --exact --test-threads=1 --nocapture",
+  "log": "\nrunning 1 test\ntest ibp::tests::analytic_bubble_s_rows_equal_ordinary_ibp_and_singular_limits ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 102 filtered out; finished in 0.17s\n\n"
+}

@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "case": "gghhh",
+  "group": 5,
+  "passed": true,
+  "tolerance": 1e-10,
+  "captured_ctmode": 1,
+  "input_policy": "Original MadLoop INITIREGI: legacy on-shell snapping enabled, threshold1e-6",
+  "qualification": "Independent original IREGI mode replay at MadLoop's own routing. This qualifies the captured tensor/contraction reference, not Rust reduction.",
+  "provenance": {
+    "fixture_sha256": "787fbeaa0b4e0aadc182ea62d552c692463f6c42ab12ce516556c86b68895cf4",
+    "original_iregi_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+    "script_sha256": "d417cc4730309cd6c30d7aa8dc8da15be2714f4f42edd59dd8790e485852f892",
+    "normalization_helper_sha256": "10fc59cb825391e3f59acf89cfd302f9fb3b43ff75e84341f34ad702df77567f"
+  },
+  "comparisons": [
+    {
+      "mode": 1,
+      "algorithm": "pv",
+      "passed": true,
+      "status": "passed",
+      "tensor_max_normalized_error": 0.0,
+      "worst": null,
+      "tensor_slots": 378,
+      "contracted_raw": [
+        [
+          0.0020957984957646384,
+          -0.0002192083399996094
+        ],
+        [
+          1.4423653605338194e-20,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "captured_raw": [
+        [
+          "2.09579849576465964E-003",
+          "-2.19208339999624625E-004"
+        ],
+        [
+          "1.44236536053381973E-020",
+          "0.00000000000000000E+000"
+        ],
+        [
+          "0.00000000000000000E+000",
+          "0.00000000000000000E+000"
+        ]
+      ],
+      "contraction_errors": [
+        1.2437150820782969e-14,
+        1.5407439555097887e-33,
+        0.0
+      ]
+    },
+    {
+      "mode": 2,
+      "algorithm": "hybrid",
+      "passed": true,
+      "status": "passed",
+      "tensor_max_normalized_error": 0.0,
+      "worst": null,
+      "tensor_slots": 378,
+      "contracted_raw": [
+        [
+          0.0020957984957646384,
+          -0.0002192083399996094
+        ],
+        [
+          1.4423653605338194e-20,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "captured_raw": [
+        [
+          "2.09579849576465964E-003",
+          "-2.19208339999624625E-004"
+        ],
+        [
+          "1.44236536053381973E-020",
+          "0.00000000000000000E+000"
+        ],
+        [
+          "0.00000000000000000E+000",
+          "0.00000000000000000E+000"
+        ]
+      ],
+      "contraction_errors": [
+        1.2437150820782969e-14,
+        1.5407439555097887e-33,
+        0.0
+      ]
+    }
+  ],
+  "kinematic_scale": 750.0
+}

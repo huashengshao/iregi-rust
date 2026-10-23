@@ -1,0 +1,230 @@
+{
+  "input": {
+    "shifts": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        2,
+        3,
+        5,
+        7
+      ]
+    ],
+    "mass_squared": [
+      4,
+      9,
+      16,
+      25,
+      36,
+      49
+    ],
+    "mu": 3,
+    "monomial": [
+      0,
+      1,
+      0,
+      6
+    ]
+  },
+  "input_source": "validation/pv-high-rank/oracle-runs/n6-base-rank7.json",
+  "input_source_sha256": "efa34bd09514483e26f2d436e8388405155d8c4d7c45b37d4ec48d5502b34c2d",
+  "script_sha256": "3ddfc199ddda239a0f1528a1980db95aa27bc6798143b204a215f43ff28ad28d",
+  "numpy_version": "2.4.4",
+  "scipy_version": "1.17.0",
+  "method": "SciPy adaptive cubature after a simplex-to-cube coordinate change",
+  "integrand_oneloop": "-Px*(6*Pz^6/F^4 +15*Pz^4/F^3 +(45/4)*Pz^2/F^2 +(15/8)/F)",
+  "derivation": "Shift k=q+P. Every kx term in (kx-Px)*(kz-Pz)^6 vanishes: kx has no partner and gxz=0. Gamma(6)-weighted Gaussian integrals of kz^(2r), r=0,1,2,3, are respectively 6/F^4, 1/F^3, 3/(4F^2), 15/(8F). The Minkowski Gaussian sign and (gzz)^r cancel. Multiplication by -Px*binomial(6,2r)*Pz^(6-2r) yields the displayed integrand.",
+  "pole_argument": "The original N=6 rank=7 integral is ultraviolet convergent (superficial degree -1), as are all surviving shifted terms. Positive F excludes IR singularities. All UV/IR Laurent slots vanish.",
+  "positive_f_bound": "F=sum(x_i*m_i^2)-Var(p0)+Var(px)+Var(py)+Var(pz). With p0 in [0,2], Var(p0)<=1, so F>=4-1=3 throughout the simplex.",
+  "native_conversion": "Native finite coefficient is i*pi^2 times the real OneLoop integral; no pole normalization terms occur.",
+  "qualification": "Independent numerical quadrature with estimated errors and mapping convergence, not an interval-certified bound or a performance benchmark.",
+  "runs": [
+    {
+      "configuration": 0,
+      "rule": "genz-malik",
+      "script_sha256": null,
+      "provenance_note": "Restored from captured execution stdout; the original per-run script/input-source digest is unavailable. The running script checked the exact hardcoded input fixture before integration.",
+      "absolute_tolerance_oneloop": 1e-10,
+      "simplex_ordering": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "status": "converged",
+      "oneloop_finite": -0.0004995430177631415,
+      "native_finite_imaginary": -0.0049302919666485605,
+      "estimated_absolute_error_oneloop": 9.999980015405647e-11,
+      "estimated_absolute_error_native": 9.86958467708532e-10,
+      "subdivisions": 23797,
+      "max_subdivisions": 50000,
+      "points_evaluated": 188091735,
+      "minimum_observed_f": 4.380385029080256,
+      "elapsed_seconds_validation_only": 180.10897045605816
+    },
+    {
+      "configuration": 1,
+      "rule": "gk15",
+      "script_sha256": "468dededbdb8d2b33a6b91cbd5ad63d2e3f268a7e34f01c03a5bdd96128e2b32",
+      "absolute_tolerance_oneloop": 1e-13,
+      "simplex_ordering": [
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "status": "not_converged",
+      "oneloop_finite": -0.000499543018201279,
+      "native_finite_imaginary": -0.004930291970972805,
+      "estimated_absolute_error_oneloop": 4.320817915517105e-10,
+      "estimated_absolute_error_native": 4.264476351529337e-09,
+      "subdivisions": 2,
+      "max_subdivisions": 2,
+      "points_evaluated": 99811205,
+      "minimum_observed_f": 4.417570697371133,
+      "elapsed_seconds_validation_only": 36.09997372201178
+    },
+    {
+      "configuration": 2,
+      "rule": "gk15",
+      "script_sha256": "468dededbdb8d2b33a6b91cbd5ad63d2e3f268a7e34f01c03a5bdd96128e2b32",
+      "absolute_tolerance_oneloop": 1e-13,
+      "simplex_ordering": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        0
+      ],
+      "status": "not_converged",
+      "oneloop_finite": -0.0004995430182147152,
+      "native_finite_imaginary": -0.004930291971105415,
+      "estimated_absolute_error_oneloop": 1.1632622099804786e-12,
+      "estimated_absolute_error_native": 1.1480937827244265e-11,
+      "subdivisions": 2,
+      "max_subdivisions": 2,
+      "points_evaluated": 99811205,
+      "minimum_observed_f": 4.208486362454473,
+      "elapsed_seconds_validation_only": 35.7560304478975
+    },
+    {
+      "configuration": 3,
+      "rule": "gk21",
+      "script_sha256": "a02bd223227f5631d623a7fb8dd2643848e077ce19ef365d5743a10dd75fa5ce",
+      "absolute_tolerance_oneloop": 1e-13,
+      "simplex_ordering": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        0
+      ],
+      "status": "not_converged",
+      "oneloop_finite": -0.000499543018214713,
+      "native_finite_imaginary": -0.004930291971105393,
+      "estimated_absolute_error_oneloop": 6.804182858748218e-13,
+      "estimated_absolute_error_native": 6.715459308851818e-12,
+      "subdivisions": 1,
+      "max_subdivisions": 0,
+      "points_evaluated": 272850666,
+      "minimum_observed_f": 4.211913472417705,
+      "elapsed_seconds_validation_only": 34.161212548962794
+    },
+    {
+      "configuration": 5,
+      "rule": "gk21",
+      "script_sha256": "226dc47cf7750131bf5f3f003f64cd938eded271cd2935904a463ad47ae49f52",
+      "absolute_tolerance_oneloop": 1e-13,
+      "simplex_ordering": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        0
+      ],
+      "status": "not_converged",
+      "oneloop_finite": -0.0004995430182147219,
+      "native_finite_imaginary": -0.004930291971105481,
+      "estimated_absolute_error_oneloop": 4.3133853272008475e-15,
+      "estimated_absolute_error_native": 4.2571406808935744e-14,
+      "subdivisions": 2,
+      "max_subdivisions": 2,
+      "points_evaluated": 537433130,
+      "minimum_observed_f": 4.106177862497881,
+      "elapsed_seconds_validation_only": 64.42151947505772
+    },
+    {
+      "configuration": 6,
+      "rule": "gk21",
+      "script_sha256": "226dc47cf7750131bf5f3f003f64cd938eded271cd2935904a463ad47ae49f52",
+      "absolute_tolerance_oneloop": 1e-13,
+      "simplex_ordering": [
+        2,
+        1,
+        3,
+        4,
+        5,
+        0
+      ],
+      "status": "converged",
+      "oneloop_finite": -0.0004995430182147223,
+      "native_finite_imaginary": -0.004930291971105485,
+      "estimated_absolute_error_oneloop": 6.14477338221258e-15,
+      "estimated_absolute_error_native": 6.064648241678201e-14,
+      "subdivisions": 2,
+      "max_subdivisions": 3,
+      "points_evaluated": 537433130,
+      "minimum_observed_f": 4.106179924697353,
+      "elapsed_seconds_validation_only": 69.63985249097459
+    }
+  ],
+  "comparison": {
+    "tight_mapping_difference_native": 4.336808689942018e-18,
+    "estimated_native_uncertainty_including_mapping_difference": 6.064648241678201e-14,
+    "normalization_scale_squared": 82.0,
+    "independent_native_finite_imaginary_normalized": -0.04464569264182684,
+    "previous_rust_with_original_f64_masters_normalized": "-4.46456928455380153e-2",
+    "previous_original_ibp_f64_normalized": "-4.46468646968488370e-2",
+    "difference_from_previous_rust_normalized": 2.0371117293027652e-10,
+    "difference_from_previous_original_ibp_normalized": 1.172055021994578e-06,
+    "all_library_runs_report_converged": false,
+    "all_requested_tolerances_met_by_error_estimate": true,
+    "estimated_error_and_mapping_gate_1e_minus_12_native": true,
+    "library_status_note": "SciPy 1.17 checks the subdivision cap immediately after a subdivision, before checking the updated error again. Configuration 5 reaches its cap on the same step that its error estimate falls below the requested tolerance; its unmodified library status remains not_converged. Configuration 6 stops after the same number of subdivisions with a larger cap and reports converged. The numerical accuracy gate uses both reported error estimates and their independent mapping difference, and is not a rigorous interval bound."
+  }
+}

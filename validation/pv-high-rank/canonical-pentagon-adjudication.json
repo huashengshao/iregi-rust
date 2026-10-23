@@ -1,0 +1,128 @@
+{
+  "scope": "Only canonical ggHHH pentagon raw tensor moment54=q0*qz^3",
+  "sources": {
+    "validation/pv-high-rank/canonical-pentagon-precision.json": "bda784db14022828edcb33e05f9f16819ce2410db0f1a4a6158c8de394159011",
+    "validation/pv-high-rank/canonical-pentagon-threshold-probe.json": "8c8d54897d0debed4356e2183207c2d783fa7b97cb955b7798994b15c79c6f1a",
+    "/shared/external/iregi/iregi-rust/validation/pv-high-rank/compare_canonical_pentagon.py": "39443ce0102afc25974807a6f356e1396672de5e4298b2e3df65922401f0d2f3"
+  },
+  "comparison_normalization": "OneLoop UV, IR single, IR double, finite",
+  "dimensional_normalization": "Multiply each complex moment by Q^2, Q=750",
+  "fixed_mixed_tolerance": "1E-10",
+  "precision_convergence_normalized_errors": [
+    "4.44374999999999999999999999999999999998706249999999999999999999425089843750000000000000000E-25",
+    "0",
+    "0",
+    "7.48128451727974725952433660538630474327304576787819435293906187253681979647009324524130128E-24"
+  ],
+  "precision_convergence_passed": true,
+  "binary256_oneloop_slots": [
+    [
+      "-2.3E-69",
+      "0"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "0",
+      "0"
+    ],
+    [
+      "3.347444077259474333000646899709376238974893400378259882E-13",
+      "2.92547972239412520856215893922101467649948442814025267710199073535E-13"
+    ]
+  ],
+  "independent_pole_constraint": "Rank4 N5 superficial UV degree -2 and positive internal masses imply all UV/IR poles vanish.",
+  "reference_comparisons": [
+    {
+      "mode": 0,
+      "reference_stable": true,
+      "oneloop_slots": [
+        [
+          3.3810044709640704e-07,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          1.06690502568591e-06,
+          2.925479413432438e-13
+        ]
+      ],
+      "normalized_mixed_errors": [
+        "0.190181501491728960000000000000000000000000000000000000000000001047702682445075658000000000",
+        "0",
+        "0",
+        "0.600133738580427617176991393030622760349320659608042359865046024345605464709730731093305017"
+      ],
+      "passes_fixed_gate": false
+    },
+    {
+      "mode": 1,
+      "reference_stable": true,
+      "oneloop_slots": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "normalized_mixed_errors": [
+        "8.46672350069265018749999999999999999999999999870624999999999998904617647097888381992187500E-18",
+        "0",
+        "0",
+        "2.52205898161123120110943637749623821605664702437101937912730324196604122665305270881499773E-14"
+      ],
+      "passes_fixed_gate": true
+    },
+    {
+      "mode": 2,
+      "reference_stable": true,
+      "oneloop_slots": [
+        [
+          -1.5051952890120267e-23,
+          -0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0
+        ],
+        [
+          3.347444464419028e-13,
+          2.9254799485349827e-13
+        ]
+      ],
+      "normalized_mixed_errors": [
+        "8.46672350069265018749999999999999999999999999870624999999999998904617647097888381992187500E-18",
+        "0",
+        "0",
+        "2.52205898161123120110943637749623821605664702437101937912730324196604122665305270881499773E-14"
+      ],
+      "passes_fixed_gate": true
+    }
+  ],
+  "conclusion": "Highprecision PV agrees with original PV/hybrid for this component. Original IBP fails, including a UV pole independently excluded by power counting.",
+  "limitations": "No complete physical tensor, graph contraction, MadLoop comparison, runtime performance, or interval-certified finite integral is qualified by this artifact."
+}

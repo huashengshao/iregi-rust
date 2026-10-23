@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "tolerance": 1e-10,
+  "qualification": "Complete CLI reruns reparse the original input and reevaluate the numerator and contraction at each precision. Comparison arithmetic is binary64 and certifies no additional digits. Reference comparisons remain separately recorded.",
+  "provenance": {
+    "script_sha256": "4b4376434cb15dc54c2be22e6223a69705b6812f35d581753b99cec182755a57",
+    "comparison_helpers_sha256": "10fc59cb825391e3f59acf89cfd302f9fb3b43ff75e84341f34ad702df77567f",
+    "input_sha256": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+    "reports": [
+      {
+        "path": "target/physical/gghh-cli-hybrid-float128-accuracy53-post-profile-fix-comparison.json",
+        "sha256": "d3315eb3685f2c3dbb50c1d05b583f4de935c1f0235d10d1655654240622cedc"
+      },
+      {
+        "path": "target/physical/gghh-cli-hybrid-float256-accuracy53-post-profile-fix-comparison.json",
+        "sha256": "fd41dfcd568f6eb8293ee95c0e2da71b1c47e790e8099f21010442b64a4990bd"
+      }
+    ],
+    "cli_results": [
+      {
+        "path": "target/physical/gghh-cli-hybrid-float128-accuracy53-post-profile-fix-comparison.cli.json",
+        "sha256": "4ab09ac0286d6cab9aef2404d9261879e1e2683ba21bd482e5679ac80e155670"
+      },
+      {
+        "path": "target/physical/gghh-cli-hybrid-float256-accuracy53-post-profile-fix-comparison.cli.json",
+        "sha256": "14e5aa38ac482e133120e6ab541f3686d1261709d93f05d419d8a3842759117a"
+      }
+    ]
+  },
+  "case": "gghh",
+  "working_bits": [
+    128,
+    256
+  ],
+  "accuracy_bits": [
+    53,
+    53
+  ],
+  "independently_passed_reference_reports": [
+    true,
+    true
+  ],
+  "tensor_comparison": {
+    "moments": 70,
+    "slots_per_moment": 4,
+    "max_normalized_error": 6.089072083719446e-37,
+    "worst": {
+      "moment": 54,
+      "exponents": [
+        1,
+        0,
+        0,
+        3
+      ],
+      "pole": 3
+    }
+  },
+  "physical_comparison": {
+    "laurent_order": [
+      "uv1",
+      "ir1",
+      "ir2",
+      "finite"
+    ],
+    "errors": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}

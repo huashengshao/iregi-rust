@@ -1,0 +1,185 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "purpose": "Full-array numerical qualification and cold-preparation diagnostic; not a controlled reference-performance benchmark",
+  "case": {
+    "propagators": 5,
+    "rank": 6,
+    "algorithm": "PassarinoVeltman",
+    "convention": "IREGI native",
+    "input_policy": "PreserveInputs",
+    "tensor_moments": 210,
+    "laurent_slots_per_moment": 4,
+    "taylor_components": 1,
+    "sample_lanes": 1,
+    "shifts": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "masses_squared": [
+      4,
+      9,
+      16,
+      25,
+      36
+    ],
+    "mu": 3
+  },
+  "rescue": {
+    "primary_bits": 53,
+    "working_bits": 128,
+    "verification_bits": 256,
+    "requested_accuracy_bits": 53,
+    "trigger": "VerifyAllSuccessful",
+    "converged_components": 840,
+    "comparison": "Each coefficient passes dimensional mixed absolute/relative convergence at 2^(19-53-8); rounded public output is rechecked at 2^(19-53).",
+    "primary_status": "Unstable",
+    "primary_reason": "estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound",
+    "result_status": "Converged",
+    "primary_agreed": null
+  },
+  "independent_coefficient": {
+    "powers": [
+      5,
+      0,
+      0,
+      1
+    ],
+    "laurent_slot": "finite",
+    "expected_real": "0",
+    "expected_imag": "-2.43837893544712293939249874984327534762e-3",
+    "reference": "validation/pv-high-rank/pentagon-simplex-oracle.json",
+    "precision_probe": "validation/pv-high-rank/precision-probe.json",
+    "asserted_absolute_error_below": "1e-13",
+    "actual_value_captured": false,
+    "note": "The retained executable asserts this coefficient but does not print its value or the complete arrays. Successful test proves the full-array comparison and this independent coefficient assertion; no uncaptured numeric value is reconstructed.",
+    "previous_exact_probe_values": {
+      "binary128": "-2.4383789354471229393924987499367e-3",
+      "binary256": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+      "method": "Exact Symbolica PV coefficients, oneloop NativeEvaluator<Float> A0-D0, exact integer inputs, native IREGI normalization"
+    }
+  },
+  "timings_seconds": {
+    "plan": 14.922830123,
+    "stability_expressions": 25.093055,
+    "argument_exact_evaluator": 0.011583,
+    "reduction_exact_evaluator": 14.112348,
+    "primal_exact_evaluator": 1.826999,
+    "scalar_master_exact_evaluators": 0.980261,
+    "primary_numeric_mapping": 0.169678,
+    "working_numeric_mapping": 0.379832,
+    "verification_numeric_mapping": 0.51232,
+    "primary_workspace_cumulative": 42.304659289,
+    "working_workspace_cumulative": 42.710535727,
+    "verification_workspace_cumulative": 43.263666511,
+    "plan_and_three_workspaces": 58.229090379,
+    "plan_workspaces_and_batch": 65.943074347,
+    "test_total": 66.35
+  },
+  "execution_profile_seconds": {
+    "primary": {
+      "arguments": 0.000471252,
+      "scalar_masters": 0.001619525,
+      "reduction": 0.018153696,
+      "total": 1.851332531
+    },
+    "working": {
+      "arguments": 0.00027979,
+      "scalar_masters": 0.088347472,
+      "reduction": 0.984043574,
+      "total": 2.896920668
+    },
+    "verification": {
+      "arguments": 0.000185631,
+      "scalar_masters": 0.133242526,
+      "reduction": 0.988872451,
+      "total": 2.96299866
+    }
+  },
+  "timing_limitations": [
+    "One cold run; no core pinning, warm-up repetitions, uncertainty estimate, or matched reference timing.",
+    "The source of overhead outside the named execution stages is not separately instrumented.",
+    "Timings are preparation diagnostics and numerical-test timings, not performance-parity evidence."
+  ],
+  "build": {
+    "binary": {
+      "path": "target/iregi_runtime_rescue_cached_optimized_tests",
+      "sha256": "8fc09260cc364218d9d9c142ad40d957bcc539fb74bcb3d064151e1fa9ab53c6",
+      "size_bytes": 359598448,
+      "mtime_ns": 1792751859839445929
+    },
+    "source_base_commit": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
+    "source_snapshot_available": false,
+    "source_provenance_note": "The working source tree was changing during this milestone. No exact source snapshot was saved at compilation; current source hashes must not be attributed to these retained binaries. Binary hashes identify the actual executable used.",
+    "compiler": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+    "core_optimization": "rustc -C opt-level=2; test binary, with existing optimized dependencies",
+    "dependency_hash_note": "Dependency paths and hashes were observed after compilation. They are not an exact build manifest and should not be treated as proof of the linked dependency revisions. The executable SHA-256 identifies the artifact to be run.",
+    "observed_dependency_artifacts": [
+      {
+        "path": "target/libiregi_masters_exact.rlib",
+        "sha256": "2a6021904de9dd4f9518daad56284fde25c4294cd64dcd144c84dd73b9487d1c",
+        "size_bytes": 2416582,
+        "mtime_ns": 1792751634502803553
+      },
+      {
+        "path": "target/libiregi_masters_identity.rlib",
+        "sha256": "64b689a60c497bf97143120334a48036550052b4939b1dbba23ee613235b2d35",
+        "size_bytes": 2385452,
+        "mtime_ns": 1792748922901226768
+      },
+      {
+        "path": "target/liboneloop_identity.rlib",
+        "sha256": "a5529bd8f74bdac100eea48649b47853ae8f7fa242001e1f851f325e653d4500",
+        "size_bytes": 104816180,
+        "mtime_ns": 1792748777081847228
+      },
+      {
+        "path": "target/cargo-build/debug/deps/libsymbolica-50a6d37379d4cf7e.rlib",
+        "sha256": "e0547aca88c66be1e35d50fcd38d05eb705919dad64f649f049cc2496a3ed8b6",
+        "size_bytes": 580118754,
+        "mtime_ns": 1792744382692105848
+      }
+    ]
+  },
+  "execution": {
+    "timeout_seconds": 180,
+    "exit_code": 0,
+    "test": "rescue::tests::five_point_rank_six_verifies_the_preserved_precision_discrepancy",
+    "command": "source scripts/env.sh; IREGI_RESCUE_PROFILE=1 IREGI_PREPARATION_PROFILE=1 timeout 180s target/iregi_runtime_rescue_cached_optimized_tests rescue::tests::five_point_rank_six_verifies_the_preserved_precision_discrepancy --exact --ignored --test-threads=1 --nocapture",
+    "log_sha256": "16de24625a792159cdd6b7ef027223506019fe9cb0819404e89c7e19e24f4919",
+    "log": "\nrunning 1 test\ntest rescue::tests::five_point_rank_six_verifies_the_preserved_precision_discrepancy ... preparing the complete rank-6 pentagon plan\nplan prepared after 14.922830123s: 210 moments, 5725 aliases, 30 master leaves; preparing three precision workspaces\niregi preparation stability expressions: 25.093055s\niregi preparation argument exact evaluator: 0.011583s\niregi preparation reduction exact evaluator: 14.112348s\niregi preparation primal exact evaluator: 1.826999s\niregi preparation scalar master exact evaluators: 0.980261s\niregi preparation numeric coefficient mapping: 0.169678s\nprimary workspace prepared after 42.304659289s\niregi preparation numeric coefficient mapping: 0.379832s\nworking-precision workspace prepared after 42.710535727s\niregi preparation numeric coefficient mapping: 0.512320s\nverification workspace prepared after 43.263666511s\nworkspaces prepared after 58.229090379s; evaluating the batch\nbatch evaluated after 65.943074347s\nexecution stages: primary=Some(ExecutionProfile { arguments: 471.252\u00b5s, scalar_masters: 1.619525ms, reduction: 18.153696ms, total: 1.851332531s }), working=Some(ExecutionProfile { arguments: 279.79\u00b5s, scalar_masters: 88.347472ms, reduction: 984.043574ms, total: 2.896920668s }), verification=Some(ExecutionProfile { arguments: 185.631\u00b5s, scalar_masters: 133.242526ms, reduction: 988.872451ms, total: 2.96299866s })\nprimary status: Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\"); precision status: Converged { working_bits: 128, verification_bits: 256, primary_agreed: None }\nok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 80 filtered out; finished in 66.35s\n\n"
+  },
+  "remaining_qualification": [
+    "Full n5 rank7 case pending.",
+    "This single sample does not qualify the entire high-point parameter domain.",
+    "Cold and warm performance parity with original IREGI remains unmeasured."
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "kind": "exact-invariant-certificate-prototype",
+  "status": "passed",
+  "tests": 7,
+  "runtime_seconds": 2.64,
+  "date": "2026-10-23T11:52:29.323622+00:00",
+  "revision": "e88495a268c3177b5c5bf8c4fbe588e937ee3f1f",
+  "source_sha256": {
+    "crates/iregi-rust/src/invariant_certificate.rs": "7d3190d12f9f828839da25a4508ab9c078f8ce6669829ecfc53bfce2c2be792f",
+    "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+    "docs/research/exact-invariant-certificate.md": "7e20f604239dc7179780e9119d42221b119c90f295ab29aaacf3f45d2a56153d",
+    "target/invariant-certificate-prototype.rs": "cbff65b8b0e6fb212e2e9ef3139c670c362545ef9d55e6c1afac18c56bad07ff"
+  },
+  "binary_sha256": "bdb4d11859638180ced2baef7755a45741b3adb4d06a477fabffc9ffb24f306b",
+  "binary_path": "target/invariant-certificate-prototype-tests",
+  "source_snapshot": "validation/invariant-certificate/snapshot",
+  "symbolica_revision": "9cdc2949cdb153478c1eca0d40690dc0abfc616e",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)\nbinary: rustc\ncommit-hash: b940084d7eb6a299eb4bfeb8e34901bc051e7ac4\ncommit-date: 2026-09-28\nhost: x86_64-unknown-linux-gnu\nrelease: 1.99.0\nLLVM version: 21.1.8",
+  "command": "timeout 120 target/invariant-certificate-prototype-tests invariant_certificate::tests --nocapture --test-threads=1",
+  "runtime_log": "validation/invariant-certificate/runtime.log",
+  "scope": [
+    "six/seven-propagator exact represented-input rank-four Gram certificate",
+    "mixed Taylor coefficients through total degree two",
+    "five lanes, alternate charts, empty/malformed batches, lane isolation",
+    "translation-invariant relative Gram and covector dependency coordinates",
+    "exact Float128 and DoubleFloat coefficients differing beyond binary64",
+    "Euclidean Gram accepted as complex-vector analytic continuation",
+    "2^-300 incompatible residual: fixed128-bit unresolved, adaptive precision rejects"
+  ],
+  "limitations": [
+    "Unregistered prototype; public supplied-G n>=6 guard remains in place.",
+    "No reduction/runtime integration or throughput qualification.",
+    "Lower-rank and rank-changing Taylor strata receive NoRegularChart.",
+    "Independent source review found no concrete bugs; this is not a formal proof of Symbolica internals."
+  ]
+}

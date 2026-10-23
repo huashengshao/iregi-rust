@@ -54,7 +54,7 @@ def main():
         for mode in [1, 2]:
             if 0 not in results or mode not in results:
                 continue
-            maximum, worst = 0.0, None
+            maximum, worst, by_slot, mismatches = 0.0, None, {}, []
             for index, (actual, reference) in enumerate(zip(results[mode], results[0])):
                 # Original IREGI orders Cartesian moments by increasing total rank.
                 rank = next(rank for rank in range(sample["rank"] + 1)
@@ -63,11 +63,18 @@ def main():
                 for pole, (x, y) in enumerate(zip(physical.one_loop_slots(actual),
                                                   physical.one_loop_slots(reference))):
                     error = physical.normalized_error(x, y, scale ** dimension)
+                    slot = ["uv1", "ir1", "ir2", "finite"][pole]
+                    by_slot[slot] = max(by_slot.get(slot, 0.0), error)
+                    if error > audit["tolerance"]:
+                        mismatches.append({"moment": index, "rank": rank, "pole": slot,
+                                           "error": error, "mode_value": physical.pair(x),
+                                           "ibp_value": physical.pair(y)})
                     if error > maximum:
                         maximum = error
                         worst = {"moment": index, "rank": rank, "pole": pole,
                                  "mode_value": physical.pair(x), "ibp_value": physical.pair(y)}
             entry["comparisons_to_ibp"].append({"mode": mode, "max_normalized_error": maximum,
+                                                "max_error_by_slot": by_slot, "mismatches": mismatches,
                                                 "passed": maximum <= audit["tolerance"], "worst": worst})
         audit["cases"].append(entry)
     audit["all_modes_agree"] = all(

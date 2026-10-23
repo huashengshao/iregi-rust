@@ -110,8 +110,157 @@ smaller than the error from original binary64 master values. This experiment
 supports improving scalar-master precision and preserving cancellation
 warnings, rather than loosening the comparison threshold.
 
+An independent parameter integral now confirms that converged value.
+`pentagon_simplex_oracle.py` derives the rank-six moment from Gaussian loop
+integration and evaluates its smooth four-dimensional Feynman simplex with
+SciPy's adaptive cubature. Two simplex coordinate maps give
+`-0.002438378935447123 i` and `-0.0024383789354471227 i` in native units, with a
+maximum reported absolute quadrature error of `2.77e-15`. The integral agrees
+with the 256-bit reduction to binary64 rounding accuracy. This computation
+does not call a reduction implementation or scalar-master library. It is an
+independent accuracy check, not a certified interval bound or a benchmark.
+The binary64 failures remain failures. Reproduce the retained
+`pentagon-simplex-oracle.json` with:
+
+```sh
+source scripts/env.sh
+python3 validation/pv-high-rank/pentagon_simplex_oracle.py --write
+```
+
 The exact PV suite additionally compares Symbolica Dualizer outputs with the
 independent first derivative in the supplied squared invariant at the
 lightlike point. The test uses jet order one and both mass configurations;
 all four Laurent slots and primal/derivative components agree. This isolates
 the PV coefficient jet from the separately qualified scalar-master backend.
+
+The full oracle can be bounded to a single topology, rank, and routing variant:
+
+```sh
+IREGI_PV_ORACLE_N=6 IREGI_PV_ORACLE_RANK=7 IREGI_PV_ORACLE_VARIANT=base \
+  cargo test -p iregi-rust --offline pv::tests::original_iregi_cartesian_moments \
+  -- --exact --ignored --test-threads=1 --nocapture
+```
+
+The default variants are `base`, `translated`, `order_reversed`, and
+`loop_reversed`; each filter also accepts a comma-separated list. Each run
+retains inputs and all discrepancies in `oracle-runs/`. A failed comparison
+does not stop the remaining selected cases or relax the acceptance tolerance.
+An interrupted run retains its initial `started` record, so it cannot be
+mistaken for a passing result.
+
+The six-point base run through rank seven now completes all 330 moments. It
+fails the unchanged binary64 gate in 430 component comparisons: 256 finite
+imaginary components and 174 UV components. The maximum normalized mixed
+error is `1.12176789154650173e-6`. All UV residues in this family vanish by
+power counting; both numerical routes accumulate nonzero UV errors. Finite
+coefficients require higher-precision adjudication before attribution. Inputs,
+every discrepancy, and a matching precision-probe input are retained under
+`oracle-runs/`. This family remains unqualified.
+
+The independent six-point parameter integral now adjudicates its worst
+component, `qx*qz^6`. Two SciPy GK21 simplex coordinate maps give native
+finite `-0.004930291971105485 i`, with maximum reported absolute uncertainty
+`6.07e-14` and a mapping difference of `4.34e-18`. Relative to this value,
+the original IBP mixed error is `1.12e-6`; the Rust PV expression evaluated
+with original Fortran binary64 masters has mixed error `1.95e-10`. Both fail
+the fixed `1e-10` gate for this component. This does not measure the public
+Rust workspace with its native scalar-master backend. The derivation,
+exploratory quadrature failures, and unmodified library statuses remain in
+`sixpoint-simplex-oracle.md` and `sixpoint-simplex-oracle.json`; the independent
+script is `sixpoint_simplex_oracle.py`.
+
+The complete six-point array now converges at 128 and 256 bits using exact
+numeric-specialized PV coefficients and native oneloop scalar masters. Across
+all 330 moments, four Laurent slots, and both complex components, the largest
+dimensionally normalized mixed difference is `6.46e-29`. Against those values,
+original binary64 IBP fails 566 component comparisons at the unchanged
+`1e-10` gate, with maximum error `1.12e-6`. The retained Rust PV expressions
+using original Fortran binary64 masters also fail: among the retained
+disagreement rows, moment 214, `q0^5*qx^2`, has error `7.06e-8`. This is a
+lower bound on that route's maximum error because its earlier record retained
+only disagreements, rather than the complete Rust array. Neither result is a
+public Rust Workspace evaluation or a performance measurement.
+
+The precision input and complete results are
+`oracle-runs/n6-base-precision-input.json` and
+`oracle-runs/n6-base-precision.json`; the comparison is
+`oracle-runs/n6-base-precision-adjudication.json`. The comparison validates the
+embedded input snapshot, distinct precisions, full canonical tensor ordering,
+all finite coefficients, and the reference stability flag before accepting
+convergence. Missing or malformed data fail closed. Reproduce the comparison:
+
+```sh
+source scripts/env.sh
+python3 validation/pv-high-rank/compare_precision_oracle.py \
+  validation/pv-high-rank/oracle-runs/n6-base-rank7.json \
+  validation/pv-high-rank/oracle-runs/n6-base-precision.json \
+  validation/pv-high-rank/oracle-runs/n6-base-precision-adjudication.json
+```
+
+The exact suite now has ten passing checks. The newest constructs a
+seven-point system whose initial denominator chart is singular at the sample
+while an alternate chart is regular. It verifies the determinant boundary,
+the complete denominator-polynomial identity, and its first Dual derivative.
+This checks chart selection, not full seven-point tensor qualification.
+
+The seven-point base rank-seven sweep reached its 90-second preparation
+limit before numerical evaluation. Its retained record is
+`oracle-runs/n7-base-rank7.json`; the timeout does not establish a numerical
+failure or success. Routing variants remain unqualified.
+The separately captured original-only array is
+`oracle-runs/n7-base-reference-rank7.json`, reproduced by
+`capture_sevenpoint_reference.py`. Original IBP reports stability but has 315
+normalized UV components above `1e-10`, with maximum residue `0.085873`.
+Every true UV pole vanishes because the maximum superficial degree is minus
+three; the positive massive Feynman polynomial (`F >= 3.75`) also excludes IR
+poles. Both original IR arrays are zero. These independent pole constraints
+rule out the original UV results, without adjudicating its finite array.
+
+The physical canonical `ggHHH` pentagon has a separate reference discrepancy:
+untouched original IBP and PV disagree on `q0*qz^3`, while both claim stability.
+The script `canonical_pentagon_threshold_probe.py` preserves a scan of the
+original input threshold and a one-ULP routing perturbation. Making just one
+almost-lightlike shift exactly lightlike changes the original IBP answer by
+about `1.07e-6` in OneLoop units; the original PV answer barely changes. This
+indicates sensitivity in the original IBP route, but does not by itself identify
+the correct canonical answer. The threshold input controls on-shell snapping;
+it does not vary the separate, compile-time recurrence threshold.
+Original IBP also returns a native UV pole of `3.3369176606729786e-6 i` for this
+component. The rank-four five-point integral has superficial degree minus two
+and positive internal masses, so its UV and IR poles vanish. This independently
+rules out that pole. Conversion of the erroneous UV residue into the OneLoop
+finite convention explains why the finite discrepancy has different reported
+magnitudes in the two conventions.
+
+`crates/iregi-rust/examples/pv_physical_precision.rs` evaluates the same
+canonical tensor using exact Symbolica PV coefficients and native scalar
+masters at selected binary precisions. Its decimal inputs are embedded at
+1024 bits and then converted to exact binary rationals, without passing through
+binary64. It accepts `IREGI_PV_PHYSICAL_INPUT`, `IREGI_PV_PHYSICAL_MOMENTS`, and
+`IREGI_PV_PHYSICAL_BITS`; the defaults are the canonical pentagon, moment 54,
+and precisions 128 and 256. Both precisions now converge for moment 54, with
+OneLoop finite value approximately
+`(3.3474440772594743330 + 2.9254797223941252086 i) * 10^-13`; the UV residual
+falls from `7.9e-31` to `2.3e-69`. This supports original PV/hybrid for this
+component and rejects original IBP. The retained precision output is
+`canonical-pentagon-precision.json`; `compare_canonical_pentagon.py` produces
+`canonical-pentagon-adjudication.json` with decimal comparisons and source
+hashes. This does not qualify a complete physical tensor or graph contraction.
+A real-simplex quadrature without contour deformation is not
+an independent oracle here, because the physical Feynman polynomial crosses
+zero inside the simplex.
+
+```sh
+source scripts/env.sh
+cargo run -p iregi-rust --example pv_physical_precision --offline \
+  > validation/pv-high-rank/canonical-pentagon-precision.json
+python3 validation/pv-high-rank/compare_canonical_pentagon.py
+```
+
+For a complete tensor array, set `IREGI_PV_PHYSICAL_MOMENTS=all`; use a separate
+output file so the retained physical component evidence is not overwritten.
+The optional `IREGI_PV_PHYSICAL_ALIASES=1` compiles a Symbolica alias DAG and
+lowers it through the exact complex evaluator. This experimental preparation
+path preserves the inline default and records its representation in the
+output; it must pass the retained inline fixtures before being used as further
+evidence.

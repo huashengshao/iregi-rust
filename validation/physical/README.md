@@ -42,6 +42,20 @@ momenta, an independently evaluated complex probe, and the graph map.
 For these oriented graphs the MadLoop polynomial variable is `x = p1 - q`,
 where FeynKit's `q` labels the `a -> b` edge and `p1` is the evaluated first beam.
 
+The capture's per-record `mode` is MadLoop's `CTMODE` routing flag, whose value
+is one. The generated parameter card separately selects `IREGIMODE=2`
+(PV with IBP fallback) and `MLReductionLib=3` (IREGI). The retained card and
+dispatch-source hashes identify those settings. MadLoop's `INITIREGI` also
+enables legacy on-shell snapping with threshold `1e-6`. The canonical Rust
+comparisons preserve their supplied shifts; they do not silently adopt this
+snapping policy. `verify_madloop_reference.py` checks the captured reference
+itself at MadLoop's own routing and snapping policy using explicit original
+PV and hybrid modes, with the exported coefficient order and odd-rank sign.
+`gghhh-madloop-reference-modes.json` records exact agreement of all 378 captured
+pentagon tensor slots with both modes, and agreement of the numerical
+contraction within `1.25e-14`. Thus the captured physical reference agrees with
+pure PV despite the separate canonical-routing IBP discrepancy.
+
 | DOT graph | Selected MadLoop group | Fixed color factor | Prepared degree |
 | --- | ---: | ---: | ---: |
 | `ggh_top_triangle` | 1 | `-1/2` | 2 |
@@ -105,6 +119,18 @@ binary's identity was not inferred. Source and input hashes accompany every
 report. Comparison arithmetic and independent captures are binary64 even when
 the Rust invocation selects `--precision dd` or `--precision float`.
 
+The harness forwards `--rescue`, `--accuracy-bits`, `--rescue-bits` and
+`--verification-bits` when requested. The accuracy target is separate from
+working precision. For example, `--precision float --bits 128 --accuracy-bits 53`
+reparses the original decimal inputs and reevaluates the physical numerator at
+128 bits while targeting binary64 accuracy. A separate 256-bit invocation can
+check the complete result again. Tensor rescue alone does not certify the
+numerator evaluation and contraction, so its status remains separate in the
+report. Default report names include floating precision and rescue options to
+keep distinct attempts; use different `--output` paths for repeated attempts.
+`--timeout` bounds the CLI process, and `cli_wall_seconds` records its observed
+wall time without making a throughput claim.
+
 The numerical comparison first removes mass dimension using
 `Q = max(mu, abs(shift components), sqrt(abs(mass_squared)))`. It then uses
 `abs(actual/Q^d - expected/Q^d) / max(1, abs(expected/Q^d))`, with tensor
@@ -117,9 +143,83 @@ the FeynKit numerator and are applied only to the stripped MadLoop reference.
 Run `python3 validation/physical/audit_reference.py` to compare original IREGI's
 three modes at these canonical points without executing Rust. The retained
 `canonical-reference-audit.json` records agreement for the triangle and both
-boxes, but a disagreement in five finite rank-four coefficients of the
-pentagon. Every reference mode reports this point stable; PV and hybrid agree
-with each other, while IBP differs. The maximum dimensionless difference is
-approximately `0.6001`. This observation alone does not determine which mode
-is correct. The audit exits nonzero on disagreement and saves the raw reference
-outputs, so the discrepancy remains visible during independent checks.
+boxes, but a disagreement in UV and finite coefficients of five rank-four
+pentagon moments. Every reference mode reports this point stable; PV and
+hybrid agree with each other, while IBP differs. The maximum dimensionless
+difference is approximately `0.6001`. The massive rank-four pentagon has
+superficial UV degree `-2`, so the nonzero IBP UV term is independently
+incorrect. The independent 128/256-bit check in
+`validation/pv-high-rank/canonical-pentagon-precision.json` also supports the
+PV/hybrid finite value and rejects IBP for moment 54, whose monomial is
+`q0*q3^3`. That check covers one component; it does not qualify the complete
+pentagon graph. The audit exits nonzero on disagreement and saves the raw
+reference outputs, so the discrepancy remains visible during independent checks.
+
+`gggg-up-cli-comparison.json` records a passing integrated massless quark-box
+check with the captured optimized CLI. All 70 moments and four Laurent slots
+agree with each of the three original IREGI modes, with maximum normalized
+error `2.85e-14`. The three physical Laurent coefficients agree with the
+selected MadLoop graph within `6.74e-15`. The report retains executable, graph,
+model and input hashes; its wall time is a validation observation.
+
+The retained `gghh-cli-*-failure.json` reports expose the earlier nonfinite
+optional-profile failures at binary64 and 128 bits. After failed optional
+profiles were allowed to return to ordinary reduction,
+`gghh-post-profile-fix-f64-rejection.json` records a finite PV result rejected
+by the compounded master-cancellation guard, followed by a nonfinite IBP
+fallback. This is not a binary64 success. The independent reducer-only input
+and all 280 original IREGI tensor slots are in `gghh-tensor-input.json` and
+`gghh-tensor-reference.json`; `crates/iregi-rust/tests/physical_box.rs` exercises
+explicit 128/256-bit rescue before comparing the complete array. Full physical
+qualification also requires a separate numerator contraction comparison.
+
+The full ggHH graph now passes at independently rerun 128- and 256-bit
+precision, both targeting 53-bit accuracy. The retained
+`gghh-cli-hybrid-float128-comparison.json` and
+`gghh-cli-hybrid-float256-comparison.json` compare all 280 tensor slots against
+each original IREGI mode (maximum normalized error `1.15e-13`) and the graph
+contraction against MadLoop (maximum error `4.77e-15`). These runs include
+fresh numerator preparation and contraction at each working precision.
+`gghh-cli-precision-convergence.json` checks the complete outputs against one
+another; its comparison arithmetic is binary64, so it does not claim 128 or
+256 accurate digits. The earlier binary64 rejection remains separate.
+
+To compare two complete physical reruns without starting Symbolica again:
+
+```sh
+python3 validation/physical/compare_precision.py \
+  --lower-report target/physical/gghh-cli-hybrid-float128-accuracy53-post-profile-fix-comparison.json \
+  --higher-report target/physical/gghh-cli-hybrid-float256-accuracy53-post-profile-fix-comparison.json \
+  --input validation/physical/gghh-cli-input.json \
+  --output validation/physical/gghh-cli-precision-convergence.json
+```
+
+The comparison checks shared executable/input/model/graph provenance, tensor
+settings, every Laurent slot, and the complete contracted integral. The CLI
+JSON files must accompany their reports with the `.cli.json` suffix.
+
+The complete ggHHH pentagon now passes separate 128- and 256-bit CLI reruns,
+both with `--accuracy-bits 53`. The retained
+`gghhh-cli-hybrid-float128-comparison.json` and
+`gghhh-cli-hybrid-float256-comparison.json` compare all 280 tensor slots against
+original PV/hybrid with maximum normalized error `4.63e-14`, and the complete
+graph contraction against MadLoop with error `9.30e-14`. Both reports preserve
+the original IBP rank-four mismatch of approximately `0.6001`; consequently
+their all-mode aggregate `passed` fields remain false. The independent physical
+and PV/hybrid comparisons pass. The full reruns agree with one another to a
+maximum tensor comparison error of `7.79e-17`, as recorded in
+`gghhh-cli-precision-convergence.json`. This comparison uses binary64 arithmetic
+at the existing `1e-10` gate and does not certify additional digits.
+
+To reproduce these physical checks with a current debug CLI:
+
+```sh
+python3 validation/physical/compare_cli.py --case gghhh \
+  --cli target/debug/iregi-rust --algorithm hybrid \
+  --precision float --bits 128 --accuracy-bits 53 --timeout 120
+```
+
+Repeat with `--bits 256`. Keep all original modes selected: the expected
+nonzero harness exit preserves their disagreement. Use `compare_precision.py`
+on the resulting two reports to check the complete reruns without another
+Symbolica evaluation.

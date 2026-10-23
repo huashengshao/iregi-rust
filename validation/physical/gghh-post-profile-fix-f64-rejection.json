@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "case": "gghh",
+  "stage": "reducer-only, after failed optional-profile continuation fix",
+  "status": "rejected_by_stability_guard",
+  "precision_bits": 53,
+  "accuracy_bits": 53,
+  "algorithm": "Hybrid",
+  "reference": "validation/physical/gghh-tensor-reference.json",
+  "input": "validation/physical/gghh-tensor-input.json",
+  "diagnosis": "Optional exact-zero IBP profile failed, and ordinary PV was retained. PV produced finite coefficients but its compounded master-cancellation estimate rejected the sample at moment[1,0,0,3], finite slot. IBP fallback then returned nonfinite coefficients.",
+  "qualification": "The estimated cancellation is not a certified error bound. The rejected result is not a successful binary64 evaluation. Explicit128/256-bit rescue and full physical contraction are pending.",
+  "observed_by": "batch_execution agent",
+  "elapsed_seconds": 70.62,
+  "log": "target/physical-box-profile-retry.log",
+  "log_sha256": "d7400b1055f7d677af75ba05d7aa421950ad18fd5c76380d0dab6a336665bdca",
+  "log_text": "\nrunning 1 test\ntest physical_equal_mass_box_survives_optional_profile_failure ... \nthread 'physical_equal_mass_box_survives_optional_profile_failure' (11) panicked at crates/iregi-rust/tests/physical_box.rs:55:5:\nassertion `left == right` failed: diagnostics: [[\"exact-zero profile evaluation failed; ordinary reduction retained: Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\", \"exact-zero profile evaluation failed; ordinary reduction retained: Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"]]\n  left: [Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated compounded master cancellation exceeds 2^(19-53) at working precision 53 in moment [1, 0, 0, 3], Laurent slot 3; primal-only sensitivity estimate, not a certified error bound\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\")]\n right: [Success]\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nFAILED\n\nfailures:\n\nfailures:\n    physical_equal_mass_box_survives_optional_profile_failure\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 0 filtered out; finished in 70.62s\n\n",
+  "input_sha256": "30ab9281a9bc73300e57dd8e6efa99c2a858a4f66858cb1a18b95f0779256794"
+}

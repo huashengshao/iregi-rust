@@ -2,23 +2,19 @@
   "schema_version": 1,
   "recorded_utc": "2026-10-23T09:48:23.313679+00:00",
   "cli_unit_tests": {
-    "passed": 6,
+    "passed": 11,
     "failed": 0,
-    "duration_seconds": 0.03,
+    "duration_seconds": 0.01,
+    "execution_owner": "iregi_algorithm_audit, centrally leased serial runtime",
     "command": [
       "source scripts/env.sh",
-      "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546",
-      "--test-threads=1",
-      "--nocapture"
+      "target/cli-build-legacy/iregi-cli-unit-tests --test-threads=1 --nocapture"
     ],
-    "execution_owner": "ROOT, reported directly after integrated workspace compilation",
+    "log": "target/cli-build-legacy/unit-tests.log",
     "includes": [
-      "decimal input precision",
-      "JSON decimal token preservation",
-      "rational parsing and numeric input policy",
-      "full dimension-offset translation",
-      "supplied scalar-product precision and packing",
-      "comparison scale from all kinematics"
+      "prior nine precision, normalization and rescue tests",
+      "legacy default preservation and exact threshold string/JSON token forwarding",
+      "negative threshold and coordinate n>=5 core rejection"
     ]
   },
   "cli_smoke": {
@@ -29,12 +25,19 @@
       "help",
       "prepare-bubble",
       "compare-bubble-rank2",
+      "compare-legacy-bubble",
       "reduce-bubble-f64",
       "reduce-bubble-dd",
       "reduce-bubble-float",
+      "float-accuracy",
       "run-bubble",
       "run-triangle",
       "supplied-invariants",
+      "legacy-supplied-invariants",
+      "legacy-negative-zero-diagonal",
+      "legacy-higher-point-rejected",
+      "verified-invalid-lane",
+      "verified-generalized-triangle",
       "invalid-lane",
       "mixed-ranks",
       "singular-coefficient-lane"
@@ -43,7 +46,7 @@
   },
   "cli_smoke_reproduction": [
     "source scripts/env.sh",
-    "python3 validation/cli_smoke.py --cli target/debug/iregi-rust"
+    "timeout 180s python3 validation/cli_smoke.py --cli target/cli-build-legacy/iregi-rust --output target/cli-smoke-legacy"
   ],
   "core_oracle": {
     "total": 31,
@@ -69,11 +72,14 @@
     "qualification": "Thirty cases pass at binary64. The generalized triangle is accepted only through the explicit 128/256-bit rescue check; this is not a claim that all cases pass in binary64."
   },
   "executables_sha256": {
-    "target/debug/iregi-rust": "645c0680dbdccdc1a4bc7aaf7ad4e44b6023c93abab5c82f05e22f57ced07580",
+    "target/debug/iregi-rust": "af1a42e89eea9a25754a6ef51ff7376492be35b1dd302bb2abc33e24b81e3661",
     "target/cargo-build/debug/deps/iregi_rust-00900036acb1137e": "f644f9f61f97d0b243b4adef1f1ec941981bc9b4a45cbdfe3a4a188e6e2596aa",
     "target/cargo-build/debug/deps/oracle-70a0223120956b1d": "60c6ef98389440de782ceb3f5863e577ce8589c9e3791b8b9b39988c849e5c38",
     "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546": "23e649190726268456f593df0cb99ae52c188cda91cc79a494c9dd9759bf0d7d",
-    "target/cargo-build/debug/deps/oracle-6c52b475eea102c1": "e074cad5ce431b100a49895286e5562836e3458ecbbfb5a00a12ee100caf0d11"
+    "target/cargo-build/debug/deps/oracle-6c52b475eea102c1": "e074cad5ce431b100a49895286e5562836e3458ecbbfb5a00a12ee100caf0d11",
+    "target/cargo-build/debug/deps/iregi_rust-67452f0fdb66ff5b": "5d60bd6fbc0284fdda41c68feab3600fde4bdafec8e4659eaf74ef46461dc4d7",
+    "target/cli-build-legacy/iregi-rust": "af1a42e89eea9a25754a6ef51ff7376492be35b1dd302bb2abc33e24b81e3661",
+    "target/cli-build-legacy/iregi-cli-unit-tests": "5d60bd6fbc0284fdda41c68feab3600fde4bdafec8e4659eaf74ef46461dc4d7"
   },
   "source_snapshot_sha256": {
     "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
@@ -98,7 +104,7 @@
     "crates/iregi-rust/src/stability.rs": "53bdb45157375502a278fe481c336651457bdfd88cd40b134dd1810523dbf5ad",
     "crates/iregi-rust/src/types.rs": "05765a1354773b44eca5ebfd9bb8862b156743c7285ff7b361ed98d59973d14f"
   },
-  "qualification": "Six CLI unit tests and twelve current CLI integration checks pass. The original oracle passes all31 with explicit128/256-bit rescue for one generalized triangle. Earlier ggH physical evidence retains its own tested executable hash and is not claimed as a new end-to-end run. Earlier smoke and oracle records remain in history. Source snapshots were recorded after execution; final prepare source formatting may postdate compilation without semantic changes. Durations are correctness-suite observations, not runtime benchmarks.",
+  "qualification": "Eleven CLI unit tests and nineteen current CLI integration checks pass, including explicit verified rescue, independent accuracy targets and exact opt-in legacy input policy forwarding. The earlier original oracle passed all31 with explicit128/256-bit rescue for one generalized triangle. Earlier physical evidence retains its own tested executable identity. Preserved executable hashes identify tested binaries; the source snapshot was captured after compilation and before execution. Durations are correctness-suite observations, not runtime benchmarks.",
   "physical_ggh": {
     "passed": true,
     "report": "validation/physical/ggh-cli-comparison.json",
@@ -110,7 +116,7 @@
       0.0
     ]
   },
-  "updated_utc": "2026-10-23T10:13:57.231294+00:00",
+  "updated_utc": "2026-10-23T11:44:25.864263+00:00",
   "previous_core_oracle": {
     "total": 31,
     "passed": 30,
@@ -169,30 +175,474 @@
   "current_source_snapshot_sha256": {
     "Cargo.toml": "02c8f2ce8dc9403464bc2c186caa68fc8efd9d24eecc526b0e4a4d00574e2d36",
     "Cargo.lock": "db32c596b97758f0d153102a3b427886fd4c6f1c84dcbcf00319865703f46089",
-    "validation/cli_smoke.py": "9edc1e3eddf908b1cfda54f3c51cb2fe40ef621f222018fc93e9264914ccfc8c",
+    "validation/cli_smoke.py": "f3fdb4627bd072849470537589824416c1e4bb92b712637cd0ac0842b2b1744b",
     "validation/reference/fixtures.json": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+    "validation/reference/snapping/reductions.json": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305",
     "crates/iregi-cli/Cargo.toml": "2abb4f4d24ce39549d11ed5008f7d44a80053c22d0cb24b413cb2b8af76824ac",
     "crates/iregi-masters/Cargo.toml": "f62cf97c6b6bbe7e772c6f6429aeb673f223cc462c3d8271aee5298e71106fb1",
     "crates/iregi-prepare/Cargo.toml": "19d7078a8f5d9eb7b16e1714381736068193ddf4b883aff4f49ca27d788913a1",
     "crates/iregi-rust/Cargo.toml": "3a2b77408f84a338278c1eaaa642c7c31629bfad3869a2a7feb62ff9142be4d3",
-    "crates/iregi-cli/src/main.rs": "1722d2506cc62a5db315e680af3901eb0f54a53e110a5e96d71a1fe72a0408cc",
-    "crates/iregi-masters/src/bubble_neighborhood.rs": "1b0e8c937ebdc3c7d9744f4f96377d5da3497c13706b8bae3f77604388598c8c",
-    "crates/iregi-masters/src/derivative_domain.rs": "99a8877d010e7b63bbc9b4cf0e55a60970477c5284b79124c54bc25df8cbf18b",
+    "crates/iregi-cli/src/main.rs": "9bc00545cb3e88bb36738ac293acbfd43b821a29fb92b8c302fc041ae74bf90f",
+    "crates/iregi-masters/src/bubble_neighborhood.rs": "e62e02017e0a842ff27d6cef89f032d17def3f0ad452b9b85cd5a20e7470da08",
+    "crates/iregi-masters/src/derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
     "crates/iregi-masters/src/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
-    "crates/iregi-masters/src/lib.rs": "236fe067e511f6cc7284659c7b017eed4da564450f903d67ed4b1d4505b983b1",
+    "crates/iregi-masters/src/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+    "crates/iregi-masters/src/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+    "crates/iregi-masters/src/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+    "crates/iregi-masters/src/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+    "crates/iregi-masters/src/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "crates/iregi-masters/src/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+    "crates/iregi-masters/src/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+    "crates/iregi-masters/src/lib.rs": "f9d361fcacf09a966266a95f0c0a9341e65a0b838ad7f5c0bb7e85ead95fc7fa",
     "crates/iregi-masters/src/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+    "crates/iregi-masters/src/pentagon6.rs": "61966e3e235205d6081b89e449b6d6e905403033970aca0b29da877af3942ab2",
     "crates/iregi-prepare/src/lib.rs": "3b7fe0189318afc26351c1845d29d577556ef7c5f4a72f1644f9704f828d8e9d",
     "crates/iregi-prepare/src/model.rs": "0ea7773af27d8fe7c8897a780b89626c4711d1a2c39ea16d16e843490dac2baf",
-    "crates/iregi-rust/src/basis.rs": "45a128b522a5a7816f1a15b08b5d1b4e54e5ab10989cf1d9cc1bd37dc8dab5e9",
+    "crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
     "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
     "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
-    "crates/iregi-rust/src/execution.rs": "25a99e56b8ff2480e44815696a6d1bccfabde3336f31f552cce1304fdb6dab0e",
-    "crates/iregi-rust/src/ibp.rs": "b6f3f41bae5f46705dae8c4deb495552b36fc1df7bf1f122164621f19daace10",
-    "crates/iregi-rust/src/lib.rs": "189ab7ff0288a71b97b3ecccd5aa5c49d5a7e4c368e0265a3620a04c5bf96646",
-    "crates/iregi-rust/src/plan.rs": "1748e07ae04eb6d70206bd1819e0adbffa3e569171c618bd44b65838e9d76bda",
-    "crates/iregi-rust/src/pv.rs": "cc933610137b49413deac9c25a0edb3e251dcb5decffd11db856e4b0ec38f54f",
-    "crates/iregi-rust/src/rescue.rs": "1010c39b8ec36408f53dba6f8c669156f15e2540c9eb32a21540ad815c304f06",
-    "crates/iregi-rust/src/stability.rs": "f5611e4f8482707f28639f8e31f60e5060f46e31781b2c7d9ecbb45b822fa903",
-    "crates/iregi-rust/src/types.rs": "991e8b6f5db103b41869337ca0ceb8107d1d1f486e506bc4b44b928a87539dc9"
+    "crates/iregi-rust/src/execution.rs": "80959d0ec079e65ad30606c39b0441e2bd339b6f2a55c53a74017553143e4a4a",
+    "crates/iregi-rust/src/ibp.rs": "939e51709c470b69b0e97b92993f2b938af1876630f61a102473294ef97b7c8b",
+    "crates/iregi-rust/src/lib.rs": "2e130db707219d2d7b1e4a286cf45cff200110bb292f321ef0e6e4da899674fe",
+    "crates/iregi-rust/src/plan.rs": "ef2fcb8476eb01437925011f16b058baffde2c6f43f723a30af18121c3c71d0f",
+    "crates/iregi-rust/src/pv.rs": "4e4cbc45e86427c796ece7aa2a4ec775374b65f9a4a499f23c6f2084053732f0",
+    "crates/iregi-rust/src/rescue.rs": "fcc64551b450cf2349f6ed27844281257417e9ddd02594b2104bc4a680cecd08",
+    "crates/iregi-rust/src/scalar.rs": "9a7429ee714abe86613ba48f3bacd11fbad90cfe401f6e433faa9e6370a6e90d",
+    "crates/iregi-rust/src/snapping.rs": "54dbca1c8ad59e27ad96d63520dfd6d6ea584e963a96916f2b149acc08b784c6",
+    "crates/iregi-rust/src/stability.rs": "0bf36faf8e510d4fb2577ce28ab5174b3e3e234def00259948aada643eeb28a8",
+    "crates/iregi-rust/src/types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+    "dependencies/oneloopmaster/src/analytic_continuation_tests.rs": "9915e6ea503168f4801f546afbf089ee29bc03fd29f64b96a951bc4e22380a7c",
+    "dependencies/oneloopmaster/src/backend.rs": "bfa0d38055bf50c7f1de6ea3da75d28c094d33c88a0d7409d38b27264cf97f52",
+    "dependencies/oneloopmaster/src/box_complex.rs": "69b891384fffede27ff329db02aa4156a5b5339e83c51cdc6c5ce8db0f4d213a",
+    "dependencies/oneloopmaster/src/box_integral.rs": "5d18a89f1cb9657ec60a2beadff8514c4d8c74299c35569b8736e2816ed03c3f",
+    "dependencies/oneloopmaster/src/branch_selection.rs": "cad0af7b3813bec1a59e03e2a0929f4c2d158ac0c76a32bdb66c05bf71cb8862",
+    "dependencies/oneloopmaster/src/coincident_dilog_tests.rs": "eb7a653585e9596624d1011057cd1b297a6be86404c751ad38243d45da0bfb27",
+    "dependencies/oneloopmaster/src/definitions.rs": "83ab0ca0f2a77cb7a37a0eccacac62d01d9c9a1cf9c7207261561eaab84f2c22",
+    "dependencies/oneloopmaster/src/epsilon.rs": "a97da7b77c9b0176b1ab412b578b18a28fcb38bf3f4174d096a42aabcd87f143",
+    "dependencies/oneloopmaster/src/evaluators.rs": "1cad8e39db27e73796c2ea06ee08bf48de20629ac1af0b55617ea9588242b8ed",
+    "dependencies/oneloopmaster/src/expressions.rs": "b78104772233fa4382de2d4ce675ba77a95d29df4c34f65962d97010282a34e5",
+    "dependencies/oneloopmaster/src/initialization.rs": "04aa90f35491c9acb98952c386aa71d07e0c5ac310258a9f5e1ea40f8d86e3c7",
+    "dependencies/oneloopmaster/src/inspection.rs": "0d6866ad1819cc1399a64038d1a776be18e7395ac3f295dca7b4dd48ac771f93",
+    "dependencies/oneloopmaster/src/inspection_formulas.rs": "e9b8609e3cbb5a59a8e18b1fb073d3d64093600b126df6f18a3701a1c8c7bc1a",
+    "dependencies/oneloopmaster/src/inspection_graph.rs": "e5084cad4b1071d2c580493cd12c6c0e1ccab6efb0f96f4ea14658afc61638b3",
+    "dependencies/oneloopmaster/src/inspection_sheet.rs": "3e2d7d892c4550baa834649d2b8672b12d8fed2d15b4a7e7f8d13b1daeb11769",
+    "dependencies/oneloopmaster/src/jit_primitives.rs": "e1f008c5a37078c38231cc5f8082d4c3753251b2129965035271b5760ee84b07",
+    "dependencies/oneloopmaster/src/labelling.rs": "facda9ff876a0e720c72ceed453bca363308a9487cb0cf3cbee507c8c4f29cb4",
+    "dependencies/oneloopmaster/src/lib.rs": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6",
+    "dependencies/oneloopmaster/src/masters.rs": "3759b8eeaa353a768144b03f5b26eac97484acf5d15f83e0e1fd4f3ec679fee1",
+    "dependencies/oneloopmaster/src/native/batch.rs": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3",
+    "dependencies/oneloopmaster/src/native/constants.rs": "b755af0982a29444528c29e9bf98e3ef894c7419bd45e84762780bad51a24df4",
+    "dependencies/oneloopmaster/src/native/disabled.rs": "21108dc74fc5692696c971a232981374311922421a62f9dcdc45a27c6ff61657",
+    "dependencies/oneloopmaster/src/native/generated_a0.rs": "cbe27a42f56b8783038df31c8e95feb7df20ed3cb5395a4b478f58e3632fd723",
+    "dependencies/oneloopmaster/src/native/generated_b0.rs": "5c2ae001f1ef085b72d8d12ea460ac7ddab4cc04c2a388e79c8594023611ca79",
+    "dependencies/oneloopmaster/src/native/generated_c0.rs": "41d6ffaba0975ddb2ce37c3d689d01b826bc01d6c5bf220f0db7019a293181ee",
+    "dependencies/oneloopmaster/src/native/generated_constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "dependencies/oneloopmaster/src/native/generated_d0.rs": "00cdf118d96cbd40ac84be8dd626d8241918ba306b542ffff74170f140f17611",
+    "dependencies/oneloopmaster/src/native/generated_db0.rs": "5972f1feef6c35841f3308b2a22710db021eb0162e9ca34a908f88d2610d0c88",
+    "dependencies/oneloopmaster/src/native/handwritten/box_contour/vertex.rs": "bfe4b64dc1e368006dd1c55776fcfe3c0a50c688d6f28f1a16c3449c7e7ab4c2",
+    "dependencies/oneloopmaster/src/native/handwritten/box_contour.rs": "d9da4c60b26c58fb4f9bb5f042a2ca49e9f95565c4ae3241374bd418a6b2c08a",
+    "dependencies/oneloopmaster/src/native/handwritten/boxes.rs": "61b940c98e1144d4b052ff1eece017f70feb0259d49c8e1fbc1374c6a2283648",
+    "dependencies/oneloopmaster/src/native/handwritten/mod.rs": "a122568b47d8e5e4a4e2f8a510825fff57ed25fbd7e6967b882ce9ab0603b1b7",
+    "dependencies/oneloopmaster/src/native/handwritten/sheet.rs": "d99453fbb6731962db7c162613b46c9e32aefcc565adcc67c2a4a3f03f8a0c49",
+    "dependencies/oneloopmaster/src/native/handwritten/triangle.rs": "f7f40f374ee9e2d0a7087bedb9c01ba81ecd49134b13e8796209df9393991137",
+    "dependencies/oneloopmaster/src/native/mod.rs": "2be59396f9f24d9255478bede4e740ad3ec07d920efc3d11e03128891978010b",
+    "dependencies/oneloopmaster/src/native/primitives.rs": "cd1d861857cd7e24d77fe2ff65d7246893cfc4d1ec92aee0830eee9e4dba3598",
+    "dependencies/oneloopmaster/src/native/simple.rs": "00b9c9622b2b5c7d23214b3253c92ffff27b5cc5e4939b3fc85d179109689651",
+    "dependencies/oneloopmaster/src/native/tensor/binary64.rs": "b158524bfe3e465cfde6480ebb763530ced17ff0b06917c7a0dbf277396cd5a5",
+    "dependencies/oneloopmaster/src/native/tensor.rs": "11cd6706fa4f45283f3df9fdd940eedd430df75ef4188a2ca54be2ecba92a584",
+    "dependencies/oneloopmaster/src/precision.rs": "4024fabda1b4e9a27d5471e58e177db1e498a74b9800a7c6aa983564d31b8d77",
+    "dependencies/oneloopmaster/src/quotient_tests.rs": "46f159954cba051809ccee72a1766cc996be889ff2804bac6675231641f84433",
+    "dependencies/oneloopmaster/src/removable_log_tests.rs": "ab225c85d8b3534274d7cf6829f8c68475e8e0d0915edb80fbef0a216e5988e6",
+    "dependencies/oneloopmaster/src/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+    "dependencies/oneloopmaster/src/rust_codegen.rs": "90d2c696acd4e2fa0a912284abd02c48c164ed3c3b99a3d5f447c5f5677422a1",
+    "dependencies/oneloopmaster/src/sheet_exact.rs": "09d9e7fdbf0c687ee703f96405b67020f465a60a07f803fe72c7ac892a281c2d",
+    "dependencies/oneloopmaster/src/tests.rs": "22a27e4eda1e323f70df501e933f132039eb58df4461fdf2f84e1a7667c504d7",
+    "dependencies/oneloopmaster/src/triangle.rs": "f5f05c7dceff93cbfacc000f78c56df52ebe4ad89474c5c06a21c20e1a1f36b8",
+    "dependencies/oneloopmaster/src/triangle_hv.rs": "d177679c57ee53ee22fd3f52f6ecd883590d185d2af17f78181eb96ed7eba0d2",
+    "dependencies/oneloopmaster/src/two_point.rs": "661661ede0079aa8848d2c4d248afc0c27530170f523247b5ddb3fd9cc5e7f6e"
+  },
+  "unit_test_history": [
+    {
+      "passed": 6,
+      "failed": 0,
+      "duration_seconds": 0.03,
+      "command": [
+        "source scripts/env.sh",
+        "target/cargo-build/debug/deps/iregi_rust-876b9c456c1d8546",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "execution_owner": "ROOT, reported directly after integrated workspace compilation",
+      "includes": [
+        "decimal input precision",
+        "JSON decimal token preservation",
+        "rational parsing and numeric input policy",
+        "full dimension-offset translation",
+        "supplied scalar-product precision and packing",
+        "comparison scale from all kinematics"
+      ]
+    },
+    {
+      "passed": 9,
+      "failed": 0,
+      "duration_seconds": 0.03,
+      "execution_owner": "ROOT, reported after integrated compilation",
+      "command": [
+        "source scripts/env.sh",
+        "target/cargo-build/debug/deps/iregi_rust-67452f0fdb66ff5b",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "includes": [
+        "prior six input/scale tests",
+        "rescue defaults and explicit precision settings",
+        "invalid accuracy and verification settings",
+        "signed-zero input preservation"
+      ],
+      "executable_sha256": "45601ef272973dc7f43e76c71cfb074bc158089f06190d3385aa86470664c709"
+    }
+  ],
+  "smoke_history": [
+    {
+      "report": {
+        "schema_version": 1,
+        "passed": true,
+        "status": "passed",
+        "checks": [
+          "help",
+          "prepare-bubble",
+          "compare-bubble-rank2",
+          "reduce-bubble-f64",
+          "reduce-bubble-dd",
+          "reduce-bubble-float",
+          "run-bubble",
+          "run-triangle",
+          "supplied-invariants",
+          "invalid-lane",
+          "mixed-ranks",
+          "singular-coefficient-lane"
+        ],
+        "qualification": "Small CLI integration suite; full tensor oracle comparisons and physical MadLoop comparison run separately."
+      },
+      "cli_sha256": "645c0680dbdccdc1a4bc7aaf7ad4e44b6023c93abab5c82f05e22f57ced07580"
+    },
+    {
+      "report": {
+        "schema_version": 1,
+        "passed": true,
+        "status": "passed",
+        "checks": [
+          "help",
+          "prepare-bubble",
+          "compare-bubble-rank2",
+          "reduce-bubble-f64",
+          "reduce-bubble-dd",
+          "reduce-bubble-float",
+          "float-accuracy",
+          "run-bubble",
+          "run-triangle",
+          "supplied-invariants",
+          "verified-invalid-lane",
+          "verified-generalized-triangle",
+          "invalid-lane",
+          "mixed-ranks",
+          "singular-coefficient-lane"
+        ],
+        "qualification": "Small CLI integration suite; full tensor oracle comparisons and physical MadLoop comparison run separately."
+      },
+      "cli_sha256": "4ec01776012a40c82c8a0ee5cbf2833dd75b2a15a6eeb56301dfaa9ce7ee679f",
+      "reproduction": [
+        "source scripts/env.sh",
+        "timeout 180s python3 validation/cli_smoke.py --cli target/debug/iregi-rust --output target/cli-smoke-rescue"
+      ]
+    }
+  ],
+  "cli_rescue_validation": {
+    "generalized_triangle": {
+      "algorithm_requested": "Ibp",
+      "algorithm_used": "Ibp",
+      "analytic_used": false,
+      "execution": {
+        "analytic_rows": 0,
+        "argument_rows": 1,
+        "fallback_rows": 0,
+        "fallback_successes": 0,
+        "input_rows": 1,
+        "master_family_batches": 3,
+        "master_rows": 7,
+        "reduction_rows": 1
+      },
+      "execution_batch_ids": [
+        "C0_power2_1_1_rank2"
+      ],
+      "execution_scope": "settings_batch",
+      "fallback_used": false,
+      "id": "C0_power2_1_1_rank2",
+      "input_policy": "Preserve",
+      "max_normalized_error": "2.6321725840995775e-13",
+      "precision_rescue": {
+        "primary_agreed": null,
+        "primary_status": "Unstable(\"estimated cancellation exceeds 2^(19-53) at working precision 53 in recurrence ibp_0_node_23, Taylor component 0; this estimate is not a certified error bound\")",
+        "status": "converged",
+        "verification_bits": 256,
+        "working_bits": 128
+      },
+      "preparation_notes": [],
+      "reference_repaired": true,
+      "rescue_execution": {
+        "accepted_rows": 1,
+        "corrected_successful_rows": 0,
+        "enabled": true,
+        "requested_rows": 1,
+        "verification": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 3,
+          "master_rows": 7,
+          "reduction_rows": 1
+        },
+        "working": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 3,
+          "master_rows": 7,
+          "reduction_rows": 1
+        }
+      },
+      "status": "passed",
+      "worst_moment": 2,
+      "worst_pole": 3
+    },
+    "precision_control": {
+      "accuracy_bits": 53,
+      "input_promotion": "exactly promotes the already parsed output-domain input; does not recover decimal digits rounded during input parsing",
+      "output_bits": 53,
+      "rescue": {
+        "trigger": "verify_all_successful",
+        "verification_bits": 256,
+        "working_bits": 128
+      },
+      "scope": "tensor coefficients at the exactly represented input; numerator evaluation and contraction use output precision and are not independently verified by tensor rescue",
+      "tolerance_definition": "2^(19-accuracy_bits); a numerical convergence target, not a certified error bound",
+      "verification_scope": "tensor_moments"
+    },
+    "invalid_lane": {
+      "statuses": [
+        "success",
+        "failed"
+      ],
+      "rescue_statuses": [
+        "converged",
+        "not_requested"
+      ],
+      "execution": {
+        "accepted_rows": 1,
+        "corrected_successful_rows": 0,
+        "enabled": true,
+        "requested_rows": 1,
+        "verification": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 2,
+          "master_rows": 3,
+          "reduction_rows": 1
+        },
+        "working": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 2,
+          "master_rows": 3,
+          "reduction_rows": 1
+        }
+      }
+    },
+    "singular_numerator": {
+      "statuses": [
+        "success",
+        "failed"
+      ],
+      "tensor_rescue_statuses": [
+        "converged",
+        "converged"
+      ],
+      "qualification": "Tensor moments converge for both lanes; the singular numerator still independently fails contraction."
+    }
+  },
+  "current_source_snapshot_qualification": "Source snapshot after compilation and before execution; preserved executable hashes identify the exact tested binaries.",
+  "current_build": {
+    "workspace_no_run": "passed",
+    "workspace_no_run_seconds": 225,
+    "cli_build": "passed",
+    "cli_build_seconds": 19.65,
+    "logs": [
+      "target/cli-build-legacy/workspace-no-run.log",
+      "target/cli-build-legacy/cli-build.log"
+    ],
+    "dependency_incremental_repair": {
+      "utc": "2026-10-23T11:17:34.868689+00:00",
+      "reason": "workspace no-run linker reported undefined hidden Symbolica/Numerica monomorphizations in liboneloop-b1fb0a362de4d4be; ROOT authorized narrow oneloop incremental repair",
+      "removed_incremental_dirs": [
+        "target/cargo-build/debug/incremental/oneloop-08h60ll8odcvd",
+        "target/cargo-build/debug/incremental/oneloop-0rpv3qlnfrc53",
+        "target/cargo-build/debug/incremental/oneloop-146rz9mrwqizy",
+        "target/cargo-build/debug/incremental/oneloop-16svn4l5fypt5",
+        "target/cargo-build/debug/incremental/oneloop-1zl5kug0ua656",
+        "target/cargo-build/debug/incremental/oneloop-2f4xe9p4kovg7"
+      ],
+      "source": "dependencies/oneloopmaster/src/lib.rs",
+      "source_sha256": "2215d643ae84f1a754158a45f87fd12e06409a4248fccff251b8d24ed3ee50e6",
+      "source_mutation": "mtime only",
+      "symbolica_artifacts_changed": false
+    }
+  },
+  "cli_legacy_validation": {
+    "reference_comparisons": [
+      {
+        "algorithm_requested": "PassarinoVeltman",
+        "algorithm_used": "PassarinoVeltman",
+        "analytic_used": false,
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 2,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 2,
+          "master_family_batches": 2,
+          "master_rows": 6,
+          "reduction_rows": 2
+        },
+        "execution_batch_ids": [
+          "bubble_near_mass_mode1",
+          "bubble_near_mass_mode1_translated_complex"
+        ],
+        "execution_scope": "settings_batch",
+        "fallback_used": false,
+        "id": "bubble_near_mass_mode1",
+        "input_policy": {
+          "LegacyOnShell": {
+            "threshold": "1e-06"
+          }
+        },
+        "max_normalized_error": "3.0391408330672964e-16",
+        "precision_rescue": {
+          "status": "not_requested"
+        },
+        "preparation_notes": [
+          "Legacy on-shell policy applies to individual scalar products; input momenta and masses are preserved"
+        ],
+        "reference_repaired": false,
+        "rescue_execution": {
+          "enabled": false
+        },
+        "status": "passed",
+        "worst_moment": 9,
+        "worst_pole": 3
+      },
+      {
+        "algorithm_requested": "PassarinoVeltman",
+        "algorithm_used": "PassarinoVeltman",
+        "analytic_used": false,
+        "execution": {
+          "analytic_rows": 0,
+          "argument_rows": 2,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 2,
+          "master_family_batches": 2,
+          "master_rows": 6,
+          "reduction_rows": 2
+        },
+        "execution_batch_ids": [
+          "bubble_near_mass_mode1",
+          "bubble_near_mass_mode1_translated_complex"
+        ],
+        "execution_scope": "settings_batch",
+        "fallback_used": false,
+        "id": "bubble_near_mass_mode1_translated_complex",
+        "input_policy": {
+          "LegacyOnShell": {
+            "threshold": "1e-06"
+          }
+        },
+        "max_normalized_error": "1.2291510136237733e-15",
+        "precision_rescue": {
+          "status": "not_requested"
+        },
+        "preparation_notes": [
+          "Legacy on-shell policy applies to individual scalar products; input momenta and masses are preserved"
+        ],
+        "reference_repaired": false,
+        "rescue_execution": {
+          "enabled": false
+        },
+        "status": "passed",
+        "worst_moment": 9,
+        "worst_pole": 3
+      }
+    ],
+    "supplied_invariants": {
+      "input_policy": {
+        "LegacyOnShell": {
+          "threshold": "1e-1000"
+        }
+      },
+      "preparation_notes": [
+        "Supplied scalar products bypass the legacy on-shell policy, matching the original supplied-invariant interface"
+      ],
+      "all_tensor_slots_match_preserve_policy": true
+    },
+    "zero_diagonal_rejection": [
+      {
+        "id": "massive-bubble",
+        "reason": "InvalidInput(\"legacy on-shell policy maps a zero scalar product to a nonzero value; this nonphysical Cayley-diagonal domain is unsupported\")",
+        "status": "failed"
+      },
+      {
+        "id": "massive-bubble-second-scale",
+        "status": "success"
+      }
+    ],
+    "higher_point_rejection": {
+      "exit_code": 2,
+      "diagnostic": "iregi-rust: unsupported reduction: legacy on-shell snapping for five or more propagators awaits independent validation of coordinate identities with non-bilinear snapped invariants"
+    },
+    "qualification": "CLI forwards exact core policy. Independent generalized legacy powers/dimension-shift qualification is not claimed; core legacy numerical fixtures separately qualify ordinary rank-two bubble/triangle/box inputs. Pure IBP failures remain explicit."
+  },
+  "physical_gghhh": {
+    "physical_comparisons_passed": true,
+    "pv_and_hybrid_tensor_comparisons_passed": true,
+    "all_original_modes_passed": false,
+    "working_bits": [
+      128,
+      256
+    ],
+    "accuracy_bits": 53,
+    "tensor_slots_compared_per_run": 280,
+    "max_tensor_error_pv_hybrid": 4.620898270815711e-14,
+    "physical_errors": [
+      9.290165668833971e-14,
+      5.408870102001824e-18,
+      0.0
+    ],
+    "retained_original_ibp_mismatch": 0.6001338886546049,
+    "reports": [
+      "validation/physical/gghhh-cli-hybrid-float128-comparison.json",
+      "validation/physical/gghhh-cli-hybrid-float256-comparison.json"
+    ],
+    "cross_precision_report": "validation/physical/gghhh-cli-precision-convergence.json",
+    "cross_precision_max_tensor_error": 7.782812681591389e-17,
+    "qualification": "Independent full numerator preparation and contraction at both precisions, evaluated with the preserved CLI used for the11/19 checks. Original IBP rank-four mismatch remains visible and keeps both all-mode aggregate reports failed. Binary64 comparison arithmetic at1e-10 does not certify additional digits."
   }
 }

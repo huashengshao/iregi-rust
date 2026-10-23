@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "case": "gghh",
+  "passed": false,
+  "tolerance": 1e-10,
+  "precision": "f64",
+  "algorithm": "hybrid",
+  "requested_accuracy_bits": null,
+  "requested_rescue": {
+    "enabled": false,
+    "working_bits": null,
+    "verification_bits": null
+  },
+  "error_metric": "abs((actual-expected)/Q^dimension) / max(1, abs(expected/Q^dimension)); Q=max(mu, abs(shift components), sqrt(abs(mass_squared)))",
+  "cli_status": {
+    "status": "failed",
+    "executed": true,
+    "returncode": 1
+  },
+  "tensor_comparisons": [],
+  "physical_comparison": {
+    "status": "not_run",
+    "passed": false
+  },
+  "provenance": {
+    "cli_sha256": "7bd792d15c1593a426f96798551188b6d743c62705d4441f1a7e9b9d27f69f0f",
+    "replayed_cli_result_sha256": null,
+    "input_sha256": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+    "madloop_fixture_sha256": "8ec4d723a8851567d46a5e1459c07fbebde464c2a98fc7a4ea880e158f825aa8",
+    "original_iregi_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+    "graph_sha256": "6efba48e58fd1abc2ac726bc9712117a671958edceff4487ba71ba7eb0777974",
+    "model_sha256": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+    "script_sha256": "560db0354bc0ba2cd2dc211730fbd91fa7edb34cb1a8da4769556d010a385982",
+    "command": [
+      "/shared/external/iregi/iregi-rust/target/optimized/release/iregi-rust",
+      "run",
+      "examples/graphs/gghh_top_box.dot",
+      "--model",
+      "fixtures/models/sm.json",
+      "--input",
+      "validation/physical/gghh-cli-input.json",
+      "--feynman-rules",
+      "--external-wavefunctions",
+      "--component",
+      "0,0",
+      "--convention",
+      "oneloop",
+      "--algorithm",
+      "hybrid",
+      "--precision",
+      "f64",
+      "--bits",
+      "128"
+    ],
+    "madgraph_revision": "6c1b4684b46ad26c4f0ebc57eb9963649f350142"
+  },
+  "qualification": "Reference data and comparison arithmetic are binary64; higher working precision does not certify additional digits. Failed modes remain visible and are not attributed to either implementation without an independent check.",
+  "kinematic_scale": 600.0,
+  "cli_wall_seconds": 11.5659894940909,
+  "failure": "CLI did not complete successfully; retained stdout/stderr accompany this report"
+}

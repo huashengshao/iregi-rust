@@ -1,0 +1,40 @@
+{
+  "status": "formula_qualified_public_gate_pending",
+  "public_enabled": false,
+  "source_binary": "target/pv-unit-profile",
+  "source_binary_sha256": "96299968fa0a5d60c828366c774134139994b74f4514f6b67e466685dd2f9539",
+  "rank_seven_identity": {
+    "status": "passed",
+    "moments": 330,
+    "slots": 4,
+    "method": "Exact Symbolica comparison with independently specified 2D0-D1-D2-D3+D4=6 box-pinch identity",
+    "seconds": 5.42
+  },
+  "generic_lazy_branch": {
+    "status": "passed",
+    "seconds": 0.15,
+    "departures": [
+      0,
+      2,
+      -2
+    ],
+    "rank": 2,
+    "moments": 15,
+    "slots": 4,
+    "input_master_values": "Arbitrary complex values shared across generic and separately prepared literal graphs",
+    "dual_policy": "Generic branch disabled for nonzero analytic jet order; note asserted",
+    "source_binary": "target/pv-unit-planar-corrected",
+    "source_binary_sha256": "2265c657b8d7f11e9fc3d93b76306f9a1cfda987b69236e8ec85999933e6b145"
+  },
+  "logs": {
+    "pv-planar-rank7-test.log": "\nrunning 1 test\ntest pv::tests::planar_pentagon_all_rank_seven_moments_obey_independent_box_identity ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 37 filtered out; finished in 5.42s\n\n",
+    "pv-planar-lazy-test.log": "\nrunning 1 test\ntest pv::tests::generic_planar_pentagon_branch_is_lazy_and_preserves_ordinary_points ... \nthread 'pv::tests::generic_planar_pentagon_branch_is_lazy_and_preserves_ordinary_points' (11) panicked at target/../crates/iregi-rust/src/pv.rs:1794:63:\ncalled `Result::unwrap()` on an `Err` value: \"PV singular Gram matrix for [0, 2, 3, 4]: Singular\"\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\nFAILED\n\nfailures:\n\nfailures:\n    pv::tests::generic_planar_pentagon_branch_is_lazy_and_preserves_ordinary_points\n\ntest result: FAILED. 0 passed; 1 failed; 0 ignored; 0 measured; 37 filtered out; finished in 0.14s\n\n",
+    "pv-planar-lazy-corrected-test.log": "\nrunning 1 test\ntest pv::tests::generic_planar_pentagon_branch_is_lazy_and_preserves_ordinary_points ... ok\n\ntest result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 37 filtered out; finished in 0.15s\n\n"
+  },
+  "qualification": "Exact all330 box-pinch coefficient identity and generic lazy branch formula checks pass. Public generic activation remains disabled pending exact rank-certificate integration. Not an independent scalar-master or performance benchmark.",
+  "initial_generic_lazy_branch_failure": {
+    "status": "fixture_failure",
+    "failure": "Departure +/-1 creates exactly null Gram box subtopology [0,2,3,4]; separate literal reference preparation fails before ordinary-point comparison",
+    "pending_change": "Use departure +/-2, whose box Gram determinants are nonzero; rerun required"
+  }
+}

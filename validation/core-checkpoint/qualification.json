@@ -1,0 +1,194 @@
+{
+  "binary": "target/checkpoint-current-core-tests",
+  "binary_sha256": "91bb285117ab630c888fd2b16054b65fe4f17b2a584bdbf6618fe7cec4373a9c",
+  "checks": [
+    {
+      "name": "argument_guards",
+      "filter": "stability::arguments::tests::",
+      "code": 0,
+      "seconds": 0.032282563974149525,
+      "log": "validation/core-checkpoint/argument_guards.log",
+      "log_sha256": "2e6c305dc788eacbfbc9d1d9f0bf981131ae9f1dcd462b757ce17d7c90f5ccb5",
+      "status": "passed"
+    },
+    {
+      "name": "execution",
+      "filter": "execution::tests::",
+      "code": 0,
+      "seconds": 29.086160880047828,
+      "log": "validation/core-checkpoint/execution.log",
+      "log_sha256": "756b6bf4b1233a7f2954ead26107e1acd3e79d63648e57c9e704a78f6f49bbf7",
+      "status": "passed"
+    },
+    {
+      "name": "original_oracle",
+      "command": [
+        "target/cargo-build/debug/deps/oracle-6c52b475eea102c1",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "binary_sha256": "c68fc53c00883113d6b79470977c2bd811629c6d63d0f048f49c055010beb7b1",
+      "code": 0,
+      "seconds": 11.363176755025052,
+      "log": "validation/core-checkpoint/original_oracle.log",
+      "log_sha256": "e62f82cd570e7ccf869f3f0c8e6ff89bd00c1ea6cbab0a849d2af2f820761167",
+      "status": "passed"
+    },
+    {
+      "name": "gamma",
+      "command": [
+        "target/cargo-build/debug/deps/triangle_gamma-32191f2c801742b8",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "binary_sha256": "8df281958e2e3ee5f07845715b36cb463e8775bee9e57dc720b3709db1e2f761",
+      "code": 0,
+      "seconds": 21.844574975897558,
+      "log": "validation/core-checkpoint/gamma.log",
+      "log_sha256": "e97bcca8d9ae55772ac444bb6ea72050c2fa900372e516f572141a2409a23245",
+      "status": "passed"
+    },
+    {
+      "name": "legacy30",
+      "command": [
+        "target/checkpoint-current-core-tests",
+        "snapping::tests::legacy_batched_tensor_arrays_match_original_iregi",
+        "--exact",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "binary_sha256": "91bb285117ab630c888fd2b16054b65fe4f17b2a584bdbf6618fe7cec4373a9c",
+      "code": 0,
+      "seconds": 76.53840546600986,
+      "log": "validation/core-checkpoint/legacy30.log",
+      "log_sha256": "698a1b418690cbf8e5f3dcec1c1d346bf0c608270b0f15fac1e1be53726c3c0c",
+      "status": "passed"
+    },
+    {
+      "name": "cli_smoke",
+      "command": [
+        "python3",
+        "validation/cli_smoke.py",
+        "--cli",
+        "target/debug/iregi-rust",
+        "--output",
+        "target/checkpoint-final-cli-smoke"
+      ],
+      "binary": "target/debug/iregi-rust",
+      "binary_sha256": "9c30a5484061f37f88e8e89c5bec1fc88d74a075ceda9eb4508168757ce5911c",
+      "code": 0,
+      "seconds": 18.897759835002944,
+      "log": "validation/core-checkpoint/cli_smoke.log",
+      "log_sha256": "b48b79fc19215ccd1a322f057c293753bd5b5f7e9e08fb6e7b9e8669bc166d01",
+      "status": "passed"
+    },
+    {
+      "name": "e6_public_f64",
+      "command": [
+        "target/cargo-build/debug/deps/shifted_pentagon-107fba42771912f7",
+        "shifted_pentagon_core_preserves_independent_lanes_and_finite_poles",
+        "--exact",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "binary": "target/cargo-build/debug/deps/shifted_pentagon-107fba42771912f7",
+      "binary_sha256": "cf8c58676bc33eaf5af2f338c148c5f19b8eead34973dea9311dc40fb5bdef81",
+      "code": 0,
+      "seconds": 14.535615777946077,
+      "log": "validation/core-checkpoint/e6_public_f64.log",
+      "log_sha256": "0f3911699146256a889a4190f49137422e25568e6d876b24ac6a622adcff2249",
+      "status": "passed"
+    }
+  ],
+  "schema_version": 1,
+  "recorded_utc": "2026-10-23T13:06:03.747249+00:00",
+  "base_commit": "74deeaf871c1399cecfccc9ddf97fedf4d84c1ea",
+  "status": "passed_bounded_scope",
+  "limitations": [
+    {
+      "path": "CertifiedScalarWorkspace rank-six integrated fixture",
+      "status": "preparation_timeout",
+      "timeout_seconds": 90,
+      "evidence": "validation/invariant-certificate/zero-preflight-qualification/report.json"
+    },
+    {
+      "path": "public shifted pentagon DD/Float batch-3 test",
+      "status": "timeout",
+      "timeout_seconds": 150,
+      "log": "validation/core-checkpoint/e6-core-precision-timeout.log",
+      "note": "Earlier guard build, no numeric result; standalone master13 tests pass separately.",
+      "binary": {
+        "target": "shifted_pentagon",
+        "kind": [
+          "test"
+        ],
+        "path": "target/checkpoint-guarded-tests/shifted_pentagon-107fba42771912f7",
+        "sha256": "77b32c9330357e7476c2746678933bb15ac4d8a1c13637d6db5707862fdec39a"
+      }
+    }
+  ],
+  "source_sha256": {
+    "Cargo.lock": "6a02abd5957aade62be767a53e7a06e7224a5d4ab5cc492f1ed4730ec0f81ce6",
+    "Cargo.toml": "5fdb89cf009e76a35078d2dd543544444c8ae90f9f77372602147314c12622c9",
+    "crates/iregi-cli/src/input.rs": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb",
+    "crates/iregi-cli/src/lib.rs": "82fe8a6a1abfd780a63dff5cb42fc683f389565ef8a8e90a53930638790ff94c",
+    "crates/iregi-cli/src/main.rs": "800bc31da2e4f67c32c3ca94fabf24c5ed7c81e035e9d3a2abc1541ef7696276",
+    "crates/iregi-cli/src/numerator.rs": "3060fff5fea11f95774595113b82a98613a882614417db745eaca6c15c25d828",
+    "crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+    "crates/iregi-rust/src/certified_scalar.rs": "da6915a160ca25934d4b113a3433e3e82982283a2f13122ea4bb962a8b4c0e9e",
+    "crates/iregi-rust/src/contraction.rs": "7f4d361ac4fa674e939e586b50a492ac62a88187811ed0abe965df74a3a4f54b",
+    "crates/iregi-rust/src/convention.rs": "2259945e610819207e296f9c82369c2abfca20c52f6bb391752a9fe59863c3bb",
+    "crates/iregi-rust/src/exact_zero_certificate.rs": "a0d78166bf3e01556cd22a14508b2fc5f3b20b7de81a4863ff5782756d7a2337",
+    "crates/iregi-rust/src/execution.rs": "958df5ecb53d43473c5106108467f698e496897fc4270d3640147bf51a159851",
+    "crates/iregi-rust/src/ibp.rs": "9ce6fdc713dd94691f4e89a53cfa1d226d199680883140f65d400aa7abbeef7b",
+    "crates/iregi-rust/src/invariant_certificate.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+    "crates/iregi-rust/src/lib.rs": "9d1303770c6bf0fb231612ce6f28a0cb4c0c28bc1ed51ef31d6b317fbbb237f8",
+    "crates/iregi-rust/src/plan.rs": "0415960983586733de209e951b41d61dc4e09273a7e0815fa9f723741bd8e015",
+    "crates/iregi-rust/src/pv.rs": "e4258e232a997afd2b41969be14c8188621db0b5e880736f1179278bb90b392d",
+    "crates/iregi-rust/src/rescue.rs": "f1d581b39f5749dcbaff7d6fc8b94905fa2153ee1f7cdc8c8f27ba2fcd6c0c9d",
+    "crates/iregi-rust/src/scalar.rs": "7c614ed1291c4eeb188df513328cf729010b72f4054e3c810dd4f8e7f56a5bdd",
+    "crates/iregi-rust/src/snapping.rs": "8016832a8c748c30d68701176bf213310291e8a24df249901469c3f368e92452",
+    "crates/iregi-rust/src/stability/arguments.rs": "e70110440292c4a7b93f84bd2d9e329d788f16a238c53bae98b51c0d93f9305c",
+    "crates/iregi-rust/src/stability/quadrature.rs": "6bde94230d69fcf687648326b60c15218bcde75da65bc497c43a7f17549ff292",
+    "crates/iregi-rust/src/stability.rs": "d89a5a3fc8b82df7c6db366ec441a8212fdcbe5a30f9e5a2f69557f443eda2b8",
+    "crates/iregi-rust/src/types.rs": "7898a22e022b35bc4dbd1fc05f5ef9436ace591315d4331b21c189da30230d30",
+    "crates/iregi-rust/tests/legacy_rescue.rs": "0820b9679665d40d75ecb4b42e9718003750b70e38c1eacfdb2f7347526b615f",
+    "crates/iregi-rust/tests/oracle.rs": "e215603c374e631c9050faa8c5b90878a221d8b3ebee804f7de92932914104fe",
+    "crates/iregi-rust/tests/physical_box.rs": "3429378abd89d3d9770ea712e0062bf9d5423e6a7b21e905cbc4e4c45bd64135",
+    "crates/iregi-rust/tests/shifted_pentagon.rs": "4dbd38e2b31103625e42ac1dbbd63827336bfa9ad4995e6317684624c06b67f6",
+    "crates/iregi-rust/tests/triangle_gamma.rs": "3690d0535b9b60f10823b869cf098957aa2739a49669e2ca9147d658882a0f6b"
+  },
+  "counts": {
+    "argument_guard_tests": 5,
+    "execution_tests": 30,
+    "original_reference_fixtures": 31,
+    "gamma_requests": 480,
+    "gamma_laurent_coefficients": 1920,
+    "legacy_snapping_fixtures": 30,
+    "legacy_primary_successes": 22,
+    "legacy_verified_rescues": 8,
+    "cli_smoke_checks": 19,
+    "public_e6_f64_tests": 1
+  },
+  "earlier_checks": {
+    "cli_unit": {
+      "tests_passed": 11,
+      "log": "validation/core-checkpoint/cli_unit.log",
+      "log_sha256": "842d41b9f8e13b45f7f07d54a32b166e9cfef6736361598b674fc13d5840b900"
+    },
+    "plan": {
+      "tests_passed": 5,
+      "tests_ignored": 2,
+      "log": "validation/core-checkpoint/plan.log",
+      "log_sha256": "9dcf23428d7614d2825990f395e8dff9b4bd6a0f53059ee3a9aa9aefa41286b4"
+    },
+    "exact_zero_and_scalar_api": "validation/invariant-certificate/zero-preflight-qualification/report.json",
+    "qualification": "CLI parser/plan tests used the preserved guard build before the final underflow and mixed-input precision changes. Exact source/binary details are recorded with the related reports; current full execution tests exercise the final guards."
+  },
+  "historical_test_assertion_failure": {
+    "log": "validation/core-checkpoint/historical-bitwise-assertion-failure.log",
+    "status": "fixed_test_only",
+    "reason": "Bitwise equality was inappropriate for the requested53-bit target after54bits of cancellation; final all-slot tolerance1e-20 remains tighter than1e-10. Production thresholds unchanged."
+  },
+  "source_unchanged_since_test_capture": true
+}

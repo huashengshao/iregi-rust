@@ -1,7 +1,7 @@
 # Scalar-master qualification
 
 `qualification.json` records the final frozen master source and exact test
-binary/dependency hashes for 26 passing checks. The adjacent logs preserve
+binary/dependency hashes for 27 passing checks. The adjacent logs preserve
 their complete output. Wall times are validation timings with serialized
 Symbolica execution, not performance measurements.
 
@@ -12,10 +12,12 @@ physical C0 and B0/DB0 mixed derivatives, genuine-threshold diagnostics,
 constant-kinematic scale jets including infrared double poles, and extreme
 independent kinematic/renormalization scales.
 
-Physical D0 is qualified separately: the equal-complex case previously passed
-first, second, and mixed derivative checks against high-precision finite
-differences. The complete five-case mixed batch remains pending. These logs
-do not claim that broader qualification.
+The complete five-case physical D0 batch passes first, second, and mixed
+derivative checks at 384-bit precision against convergent finite differences.
+Its maximum final scaled discrepancy is 2.525e-30, below the unchanged 2^-70
+criterion. `physical_box_full.json` records all cases and stage timings. The
+check took 224.83 seconds; correctness qualification does not imply performance
+parity. Unsupported derivative boundaries retain explicit errors.
 
 The direct binaries preserve the dependency artifacts used during the checks;
 later workspace-level dependency additions have separate central validation.

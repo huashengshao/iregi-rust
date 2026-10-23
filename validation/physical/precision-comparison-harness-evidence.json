@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "script_sha256": "4b4376434cb15dc54c2be22e6223a69705b6812f35d581753b99cec182755a57",
+  "positive_case": "gghh-cli-precision-convergence.json",
+  "negative_checks": [
+    {
+      "name": "tensor_mismatch",
+      "passed": true,
+      "expected": "rejected",
+      "observed": "numerical mismatch"
+    },
+    {
+      "name": "physical_mismatch",
+      "passed": true,
+      "expected": "rejected",
+      "observed": "numerical mismatch"
+    },
+    {
+      "name": "different_input",
+      "passed": true,
+      "expected": "rejected",
+      "observed": "run provenance differs or is unavailable: input_sha256"
+    }
+  ]
+}

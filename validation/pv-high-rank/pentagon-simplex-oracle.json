@@ -1,0 +1,151 @@
+{
+  "input": {
+    "shifts": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        1,
+        0,
+        0,
+        0
+      ]
+    ],
+    "mass_squared": [
+      4,
+      9,
+      16,
+      25,
+      36
+    ],
+    "mu": 3,
+    "monomial": [
+      5,
+      0,
+      0,
+      1
+    ]
+  },
+  "input_source": "validation/pv-high-rank/precision-probe.json",
+  "input_source_sha256": "c89b0908d34b94d28dfacd61fd6a03729d0b46529730533df046d4fa17d5dad9",
+  "script_sha256": "c709610f9ab6d9f7c5441b46cf510617433ce260d9bf6e8c7ac5f27814219990",
+  "numpy_version": "2.4.4",
+  "scipy_version": "1.17.0",
+  "method": "SciPy adaptive cubature after a standard simplex-to-cube coordinate change",
+  "integrand_oneloop": "-2*P0^5*Pz/F^3 +5*P0^3*Pz/F^2 -(15/4)*P0*Pz/F",
+  "derivation": "Shift k=q+P. The kz term integrates to zero because g0z=0. The surviving -Pz times k0^0,k0^2,k0^4 terms have Gamma(5)-weighted Gaussian integrals -2/F^3,+1/(2F^2),-3/(4F), respectively. Binomial coefficients give the displayed integrand.",
+  "pole_argument": "The only rank-six UV term is k0^5*kz, whose angular integral vanishes. Lower Gaussian moments are UV finite; positive F excludes IR singularities. All UV/IR Laurent slots vanish for this monomial.",
+  "positive_f_bound": "F>=min(m_i^2)-x4*(1-x4)>=4-1/4=3.75; the spatial variance terms are nonnegative.",
+  "native_conversion": "Native finite coefficient is i*pi^2 times the real OneLoop integral; no pole normalization terms occur.",
+  "qualification": "Independent numerical quadrature with estimated errors and convergence checks, not an interval-certified bound or a performance benchmark.",
+  "runs": [
+    {
+      "rule": "genz-malik",
+      "absolute_tolerance_oneloop": 1e-10,
+      "simplex_ordering": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "status": "converged",
+      "oneloop_finite": -0.0002470594399130984,
+      "native_finite_imaginary": -0.0024383789354969878,
+      "estimated_absolute_error_oneloop": 9.986630391631664e-11,
+      "estimated_absolute_error_native": 9.85640912653006e-10,
+      "subdivisions": 1270,
+      "points_evaluated": 3149755,
+      "minimum_observed_f": 4.33438014570414,
+      "elapsed_seconds_validation_only": 3.897078929003328
+    },
+    {
+      "rule": "gk21",
+      "absolute_tolerance_oneloop": 1e-13,
+      "simplex_ordering": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "status": "converged",
+      "oneloop_finite": -0.000247059439908046,
+      "native_finite_imaginary": -0.0024383789354471227,
+      "estimated_absolute_error_oneloop": 4.716033133130883e-14,
+      "estimated_absolute_error_native": 4.65453813664318e-13,
+      "subdivisions": 0,
+      "points_evaluated": 398962,
+      "minimum_observed_f": 4.155626619117332,
+      "elapsed_seconds_validation_only": 0.11930073692929
+    },
+    {
+      "rule": "gk21",
+      "absolute_tolerance_oneloop": 1e-15,
+      "simplex_ordering": [
+        1,
+        2,
+        3,
+        4,
+        0
+      ],
+      "status": "converged",
+      "oneloop_finite": -0.0002470594399080461,
+      "native_finite_imaginary": -0.002438378935447123,
+      "estimated_absolute_error_oneloop": 4.3802087318624766e-17,
+      "estimated_absolute_error_native": 4.3230927377679933e-16,
+      "subdivisions": 1,
+      "points_evaluated": 6782354,
+      "minimum_observed_f": 4.0779920404666115,
+      "elapsed_seconds_validation_only": 2.0176724180346355
+    },
+    {
+      "rule": "gk21",
+      "absolute_tolerance_oneloop": 1e-15,
+      "simplex_ordering": [
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "status": "converged",
+      "oneloop_finite": -0.000247059439908046,
+      "native_finite_imaginary": -0.0024383789354471227,
+      "estimated_absolute_error_oneloop": 2.8054302298557334e-16,
+      "estimated_absolute_error_native": 2.7688486543533276e-15,
+      "subdivisions": 1,
+      "points_evaluated": 6782354,
+      "minimum_observed_f": 4.078090964537611,
+      "elapsed_seconds_validation_only": 1.552518274053
+    }
+  ],
+  "comparison": {
+    "tight_mapping_difference_native": 4.336808689942018e-19,
+    "estimated_native_uncertainty_including_mapping_difference": 2.7688486543533276e-15,
+    "previous_pv_binary256_native_imaginary": "-2.4383789354471229393924987498432753476200154688257048533643618299720430e-3",
+    "difference_from_previous_pv_binary256": 4.336808689942018e-19,
+    "passed_1e_minus_12_native": true
+  }
+}

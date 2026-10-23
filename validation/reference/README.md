@@ -71,6 +71,12 @@ p0 p1 p2 p3 mass_squared_real mass_squared_imag power
 - `mu` is positive and is the renormalization scale, not its square. `snap=0`
   preserves input scalar products; `snap=1` enables legacy on-shell repair.
   `threshold` controls the original snapping/mass-reference policy.
+- Mass references and real/complex dispatch reproduce `IMLOOP`: references
+  use real squared masses in propagator order, admit `abs(mass)>threshold`,
+  and retain the first representative under
+  `abs(candidate-reference)/candidate<threshold`. Complex dispatch requires
+  `abs(imaginary_mass)/max(abs(complex_mass),1e-2)>1e-15`; smaller widths are
+  discarded by the original real-mass path, even with `snap=0`.
 - IDs are short ASCII identifiers without whitespace, quotes or backslashes.
   Fortran list-directed input also accepts `D`-format floating point exponents.
 
@@ -114,6 +120,60 @@ array in this order contracts directly with the returned moments.
 The raw scaleless bubble has UV pole `+i*pi^2` and IR single pole `-i*pi^2`.
 Their sum vanishes, but the separate values matter for generalized recurrences.
 Do not discard them when comparing native outputs.
+
+## Legacy snapping policy checks
+
+`python3 validation/reference/snapping/check.py` builds a small isolated probe
+under `target/snapping-reference`, using the original `global.f90` and
+`kinematics.f90`. It compares verbatim policy code extracted from `IMLOOP`
+against the validation driver's policy and checks the committed snapshots.
+The probe does not call any reduction or scalar-master implementation.
+
+`python3 validation/reference/snapping/capture_reductions.py --executable PATH`
+checks complete tensor arrays against a reference executable built with this
+driver. Its committed fixtures cover 30 stable rank-two bubble/triangle/box
+cases across all reduction modes, including translated complex-mass inputs.
+The default executable is the isolated build at
+`target/snapping-reference/oracle-build/iregi-reference`. Use
+`--write-fixtures` only when intentionally regenerating reviewed reference data.
+
+The Rust primary run in `snapping/rust-validation-after-s.json` records 22/30
+binary64 successes and eight explicit cancellation rejections. All eight
+rejected IBP triangle/box cases pass 128-bit rescue with 256-bit verification
+at unchanged requested accuracy and reference tolerance; see
+`snapping/rescue-validation-after-s.json`. The maximum normalized discrepancy
+is `2.93e-12`, below `1e-10`. The earlier primary run remains in
+`snapping/rust-validation.json`, including its exact-pseudothreshold failure.
+The test `legacy_batched_tensor_arrays_match_original_iregi` uses explicit
+unstable-only rescue and records both primary and final statuses. Run the
+dedicated eight-case convergence check with
+`scripts/cargo.sh test -p iregi-rust --test legacy_rescue -- --nocapture`.
+The combined all-30 run passed and is recorded in
+`snapping/rust-qualified-validation.json` with all primary statuses and final
+arrays. `post-s-regressions.json` records the fresh 31-case reference rerun
+and 480 independent Gamma requests, including the enabled analytic S route.
+
+With at least one reference mass, `makeonshell` first maps an invariant to
+zero when `abs(invariant/first_reference)<threshold`, then maps it to the
+first reference satisfying `abs(invariant-reference)/reference<threshold`.
+With no reference masses it instead uses the fixed absolute bound `1e-3`.
+All bounds are strict. The denominators in mass deduplication and mass
+matching are signed; negative squared masses expose the original routine's
+unusual behavior. The snapshot intentionally preserves that behavior.
+
+Snapping is performed separately at every real `scalarprod` call, including
+PV cross-products. Consequently the snapped products need not obey
+bilinearity: reconstructing a cross-product from snapped squared distances
+can give a different answer. The original supplied-scalar-product APIs
+compute directly from their supplied matrix and bypass `makeonshell`.
+The `cscalarprod` helper also bypasses snapping, although the complex-mass
+reduction uses real external momenta and calls the real `scalarprod` helper.
+
+The initial validation driver omitted mass-reference deduplication and treated
+every nonzero imaginary mass as complex. The corrected harness follows
+`IMLOOP` at both decisions; this is a harness correction, not another patch
+to the original IREGI source. All 31 committed `snap=false` fixture outputs
+were rechecked unchanged after the correction.
 
 ## Confirmed defect and narrow repair
 

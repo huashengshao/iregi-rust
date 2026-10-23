@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "tolerance": 1e-10,
+  "qualification": "Complete CLI reruns reparse the original input and reevaluate the numerator and contraction at each precision. Comparison arithmetic is binary64 and certifies no additional digits. Reference comparisons remain separately recorded.",
+  "provenance": {
+    "script_sha256": "4b4376434cb15dc54c2be22e6223a69705b6812f35d581753b99cec182755a57",
+    "comparison_helpers_sha256": "10fc59cb825391e3f59acf89cfd302f9fb3b43ff75e84341f34ad702df77567f",
+    "input_sha256": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed",
+    "reports": [
+      {
+        "path": "target/physical/gghhh-cli-hybrid-float128-accuracy53-comparison.json",
+        "sha256": "558dbfdb9eedb82d813fd8ed8d14600605a1d39735704e805daf715c30ca8b69"
+      },
+      {
+        "path": "target/physical/gghhh-cli-hybrid-float256-accuracy53-comparison.json",
+        "sha256": "b878a404695d1acecdee9ad54aed6e62d92a0c6c394553fd97a284ebf25c3a1b"
+      }
+    ],
+    "cli_results": [
+      {
+        "path": "target/physical/gghhh-cli-hybrid-float128-accuracy53-comparison.cli.json",
+        "sha256": "e52030ce0cf894b6f27745f8123e49afb3ddf1edc9e46782d176c9c605593b13"
+      },
+      {
+        "path": "target/physical/gghhh-cli-hybrid-float256-accuracy53-comparison.cli.json",
+        "sha256": "cabb2cb519597b538b808e0364dea67d28c20e6216147d595f0b3ad8650a9859"
+      }
+    ]
+  },
+  "case": "gghhh",
+  "working_bits": [
+    128,
+    256
+  ],
+  "accuracy_bits": [
+    53,
+    53
+  ],
+  "independently_passed_reference_reports": [
+    false,
+    false
+  ],
+  "tensor_comparison": {
+    "moments": 70,
+    "slots_per_moment": 4,
+    "max_normalized_error": 7.782812681591389e-17,
+    "worst": {
+      "moment": 15,
+      "exponents": [
+        3,
+        0,
+        0,
+        0
+      ],
+      "pole": 3
+    }
+  },
+  "physical_comparison": {
+    "laurent_order": [
+      "uv1",
+      "ir1",
+      "ir2",
+      "finite"
+    ],
+    "errors": [
+      4.304788882405838e-39,
+      0.0,
+      0.0,
+      0.0
+    ]
+  }
+}

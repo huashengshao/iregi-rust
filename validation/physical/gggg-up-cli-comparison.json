@@ -1,0 +1,297 @@
+{
+  "schema_version": 2,
+  "case": "gggg-up",
+  "passed": true,
+  "tolerance": 1e-10,
+  "precision": "f64",
+  "algorithm": "hybrid",
+  "requested_accuracy_bits": null,
+  "requested_rescue": {
+    "enabled": false,
+    "working_bits": null,
+    "verification_bits": null
+  },
+  "error_metric": "abs((actual-expected)/Q^dimension) / max(1, abs(expected/Q^dimension)); Q=max(mu, abs(shift components), sqrt(abs(mass_squared)))",
+  "cli_status": {
+    "status": "success",
+    "executed": true,
+    "returncode": 0
+  },
+  "tensor_comparisons": [
+    {
+      "mode": 0,
+      "algorithm": "ibp",
+      "passed": true,
+      "status": "passed",
+      "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+      "moments": 70,
+      "slots_per_moment": 4,
+      "max_normalized_error": 2.842605945872863e-14,
+      "max_error_by_rank": {
+        "0": 1.7819355314723636e-16,
+        "1": 2.5201822215653042e-15,
+        "2": 1.3158999891476129e-14,
+        "3": 2.3220840237918942e-14,
+        "4": 2.842605945872863e-14
+      },
+      "worst": {
+        "moment": 65,
+        "exponents": [
+          0,
+          0,
+          4,
+          0
+        ],
+        "pole": 3,
+        "actual": [
+          0.4090028632926234,
+          0.21093005473197546
+        ],
+        "expected": [
+          0.4090028632926516,
+          0.21093005473197188
+        ]
+      }
+    },
+    {
+      "mode": 1,
+      "algorithm": "pv",
+      "passed": true,
+      "status": "passed",
+      "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+      "moments": 70,
+      "slots_per_moment": 4,
+      "max_normalized_error": 7.107748676792095e-15,
+      "max_error_by_rank": {
+        "0": 1.7819355314723636e-16,
+        "1": 1.27675647831893e-15,
+        "2": 5.2722821362672855e-15,
+        "3": 5.815476176348533e-15,
+        "4": 7.107748676792095e-15
+      },
+      "worst": {
+        "moment": 44,
+        "exponents": [
+          2,
+          0,
+          0,
+          2
+        ],
+        "pole": 3,
+        "actual": [
+          -0.9285468938729007,
+          6.476300976980079e-17
+        ],
+        "expected": [
+          -0.9285468938728948,
+          -3.922277632639528e-15
+        ]
+      }
+    },
+    {
+      "mode": 2,
+      "algorithm": "hybrid",
+      "passed": true,
+      "status": "passed",
+      "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+      "moments": 70,
+      "slots_per_moment": 4,
+      "max_normalized_error": 7.107748676792095e-15,
+      "max_error_by_rank": {
+        "0": 1.7819355314723636e-16,
+        "1": 1.27675647831893e-15,
+        "2": 5.2722821362672855e-15,
+        "3": 5.815476176348533e-15,
+        "4": 7.107748676792095e-15
+      },
+      "worst": {
+        "moment": 44,
+        "exponents": [
+          2,
+          0,
+          0,
+          2
+        ],
+        "pole": 3,
+        "actual": [
+          -0.9285468938729007,
+          6.476300976980079e-17
+        ],
+        "expected": [
+          -0.9285468938728948,
+          -3.922277632639528e-15
+        ]
+      }
+    }
+  ],
+  "physical_comparison": {
+    "status": "passed",
+    "passed": true,
+    "reference": "MadLoop selected graph, fixed equal gluon colors",
+    "group": 2,
+    "factor": "-1/8",
+    "laurent_order": [
+      "finite",
+      "single_pole",
+      "double_pole"
+    ],
+    "mass_dimension": 0,
+    "normalization_scale": 1.0,
+    "actual_raw": [
+      [
+        0.44981400242275826,
+        -0.690770234394392
+      ],
+      [
+        0.0879515978756916,
+        -6.689241095735009e-16
+      ],
+      [
+        -5.273559366969494e-16,
+        0.0
+      ]
+    ],
+    "expected_raw": [
+      [
+        0.44981400242276376,
+        -0.6907702343943959
+      ],
+      [
+        0.08795159787569588,
+        -7.494005416219807e-16
+      ],
+      [
+        1.1483869410966463e-15,
+        -0.0
+      ]
+    ],
+    "errors": [
+      6.73059832257867e-15,
+      4.2889915082824566e-15,
+      1.6757428777935957e-15
+    ],
+    "actual_normalized": [
+      [
+        0.002848480446523204,
+        -0.004374353610858432
+      ],
+      [
+        0.0005569599999999996,
+        -4.2360114093052474e-18
+      ],
+      [
+        -3.3395204816842913e-18,
+        0.0
+      ]
+    ],
+    "expected_normalized": [
+      [
+        0.0028484804465232385,
+        -0.004374353610858456
+      ],
+      [
+        0.0005569600000000268,
+        -4.745634368709256e-18
+      ],
+      [
+        7.27224525945724e-18,
+        -0.0
+      ]
+    ],
+    "excludes": [
+      "R2",
+      "UV counterterms"
+    ],
+    "includes": [
+      "bare UV and IR poles",
+      "R1"
+    ],
+    "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+  },
+  "provenance": {
+    "cli_sha256": "7bd792d15c1593a426f96798551188b6d743c62705d4441f1a7e9b9d27f69f0f",
+    "replayed_cli_result_sha256": null,
+    "input_sha256": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+    "madloop_fixture_sha256": "93975368536da7892bd42049ccfa8d245db4749283eba1774208700c8af78e85",
+    "original_iregi_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+    "graph_sha256": "2fca7b55d1bb1408750c2a71d29a8a1c4a44502f3e7927d08809d334ef2505d5",
+    "model_sha256": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+    "script_sha256": "560db0354bc0ba2cd2dc211730fbd91fa7edb34cb1a8da4769556d010a385982",
+    "command": [
+      "/shared/external/iregi/iregi-rust/target/optimized/release/iregi-rust",
+      "run",
+      "examples/graphs/gggg_up_box.dot",
+      "--model",
+      "fixtures/models/sm.json",
+      "--input",
+      "validation/physical/gggg-up-cli-input.json",
+      "--feynman-rules",
+      "--external-wavefunctions",
+      "--component",
+      "0,0,0,0",
+      "--convention",
+      "oneloop",
+      "--algorithm",
+      "hybrid",
+      "--precision",
+      "f64",
+      "--bits",
+      "128"
+    ],
+    "madgraph_revision": "6c1b4684b46ad26c4f0ebc57eb9963649f350142"
+  },
+  "qualification": "Reference data and comparison arithmetic are binary64; higher working precision does not certify additional digits. Failed modes remain visible and are not attributed to either implementation without an independent check.",
+  "kinematic_scale": 400.0,
+  "cli_wall_seconds": 16.853192578069866,
+  "precision_bits": 53,
+  "algorithm_requested": "Hybrid",
+  "algorithm_used": "PassarinoVeltman",
+  "rescue_evaluation": {
+    "precision_control": null,
+    "execution": null,
+    "lanes": [
+      {
+        "id": "gggg-up_helicity_1_equal_color_0",
+        "status": "success"
+      }
+    ],
+    "qualification": "Tensor convergence alone does not certify numerator evaluation or contraction; complete higher-precision CLI reruns reparse the original input and reevaluate its numerator."
+  },
+  "tensor_comparison": {
+    "mode": 0,
+    "algorithm": "ibp",
+    "passed": true,
+    "status": "passed",
+    "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+    "moments": 70,
+    "slots_per_moment": 4,
+    "max_normalized_error": 2.842605945872863e-14,
+    "max_error_by_rank": {
+      "0": 1.7819355314723636e-16,
+      "1": 2.5201822215653042e-15,
+      "2": 1.3158999891476129e-14,
+      "3": 2.3220840237918942e-14,
+      "4": 2.842605945872863e-14
+    },
+    "worst": {
+      "moment": 65,
+      "exponents": [
+        0,
+        0,
+        4,
+        0
+      ],
+      "pole": 3,
+      "actual": [
+        0.4090028632926234,
+        0.21093005473197546
+      ],
+      "expected": [
+        0.4090028632926516,
+        0.21093005473197188
+      ]
+    }
+  },
+  "all_reference_modes_passed": true,
+  "reference_modes_disagree_on_rust_match": false
+}
