@@ -1,0 +1,30 @@
+{
+  "status": "read_only_no_correctness_blockers",
+  "reviewer": "/root/numeric_batch_audit/scale_cache_precision_review",
+  "source_sha256": {
+    "candidate/crates/iregi-rust/src/execution.rs": "5457a2dcd00647fe36089703228c2deb219aa345c3751aff0b7163a2d0d0e03b",
+    "candidate/crates/iregi-rust/src/execution/proof_receipts.rs": "db3394f659c13385461c95aa3ad877d768a4c7c7c47fffbcb050c26430ee3c97",
+    "candidate/crates/iregi-rust/src/execution/proof_receipt_tests.rs": "10d055f2b0e56d10b7a3d13b951a84f93ca604963ca16932401eac052c928291"
+  },
+  "reviewed": [
+    "explicit compact/local/source-row mapping",
+    "borrowed batch identity and unchanged exact clone gather",
+    "full ordered structural signature and precision context",
+    "conditioning before coverage subtraction",
+    "uncovered false-zero failure clears coverage",
+    "public calls and fallback begin without receipts",
+    "leaf children consume without outgoing receipt allocation",
+    "per-call proof counters and child aggregation"
+  ],
+  "not_claimed": [
+    "build/runtime pass",
+    "performance improvement",
+    "production adoption"
+  ],
+  "remaining_qualification": [
+    "ten focused tests",
+    "existing full-Taylor and lane-isolation regressions",
+    "paired public result snapshots",
+    "ordinary-batch allocation overhead and proof work counts"
+  ]
+}

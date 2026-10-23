@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "status": "adopted_explicit_certified_planar_api",
+  "recorded_utc": "2026-10-23T18:24:29.241030+00:00",
+  "baseline_source_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+  "production_source_sha256": {
+    "crates/iregi-rust/src/certified_planar.rs": "4c37dca672bdafe2d93f4c1ffba5b2a4603bbde907e1ec623112dd7c5144581f",
+    "crates/iregi-rust/src/certified_planar/public_api_tests.rs": "c950ebd84a9aa6868c0a7b2b390c92fea76a97f27667865ef2787fb3b687632e",
+    "crates/iregi-rust/src/execution.rs": "cfec1ae8b3ea4d057c4f225d565f07c1a2d020155ecff56379093992ca9072dd",
+    "crates/iregi-rust/src/lib.rs": "5ebc35630e2c26eec03bd930ef9bbc7da62c1295b3d2c8cae62df3af916f9f44",
+    "crates/iregi-rust/src/plan.rs": "db9081cf3c4f6258702f82db8bcb5cf140d41d78b52de15343ddc1fd92e1e683",
+    "crates/iregi-rust/src/pv.rs": "909b9901e5f7b074e206927901ab976b936dfb9d6c454893ae1137918f350780",
+    "crates/iregi-rust/src/stability.rs": "0cf336d8a67536d28695bc3b1dcb23b896b28b2b5aa7254751b039dfc775e22d"
+  },
+  "production_equals_qualified_clean_candidate": true,
+  "qualified_binary_sha256": "9f8dbe45ee5938cc0f45d8f6c6bcdc9417695bf2e1e724220c20662f324c9bd1",
+  "evidence_sha256": {
+    "validation/planar-adoption/qualification.json": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+    "validation/planar-adoption/files.json": "0049b0760f2da5601f048a572d7d7e0884f243f5099c2c78a676df204c0061f6",
+    "validation/planar-adoption-followup/qualification.json": "208b7c8a69d3e0a6060faa3f4e6842e73e0ccc8c507222388c39bd252502b881",
+    "validation/planar-adoption-followup/files.json": "4bc177894b3bc897218c4b536ac6628397d325e20acf40fe754119106b38b389",
+    "validation/planar-coefficient-oracle/qualification.json": "e7184bd9cc004ae36522e834b8aabd12ad7681f7ba2849787b564b1401f9b0d2",
+    "validation/planar-coefficient-oracle/files.json": "4f1dec776d736bd9129817f5d5e095a91fd276484380496d8e684eaf6446cc75",
+    "validation/planar-integrated/qualification.json": "776ec26f6934cd3197f5eab37935fb82b724af0e809ba6bb5ef219d8b2fd2a8e",
+    "validation/planar-adoption/standalone-api.patch": "54c0bbb043054c038c5a80009dc4805d501505afc3b2f7be6e47b92461ed38c2",
+    "validation/planar-adoption/symbolica-nway.patch": "88629a41e9e6bf4756137e39435d856c9c4d2e94b71d4a16ad615f67dfee202e"
+  },
+  "scope": {
+    "interface": "CertifiedPlanarReductionPlan and CertifiedPlanarWorkspace<T>",
+    "propagators": 5,
+    "maximum_tensor_rank": 7,
+    "powers": [
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "dimension_shift": 0,
+    "algorithm": "PassarinoVeltman",
+    "invariants": "FromShifts",
+    "input_policy": "Preserve",
+    "automatic_fallback": false,
+    "preparation_change": "Symbolica add_many replaces repeated pairwise addition in primal amplitude accumulation"
+  },
+  "validation": {
+    "focused_api_tests_passed": 9,
+    "ordinary_regression_tests_passed": 49,
+    "ordinary_reference_test_initially_ignored": 1,
+    "separate_original_iregi_coefficient_cases_passed": 20,
+    "ordinary_rank7_complex_slots_per_precision": 1320,
+    "ordinary_rank7_working_bits": [
+      128,
+      256
+    ],
+    "mixed_rank7_accepted_lanes": 2,
+    "mixed_rank7_complex_slots_per_accepted_lane": 5280,
+    "mixed_rank7_primary_working_bits": 128,
+    "mixed_rank7_reference_working_bits": 256,
+    "mixed_rank7_requested_bits": 53,
+    "mixed_rank7_maximum_normalized_error": "2.3600649536236263e-29",
+    "tolerance": "1e-10 dimensionally normalized mixed absolute/relative",
+    "original_mixed600s_timeout_preserved": true,
+    "independent_saved_array_comparator_passed": true
+  },
+  "performance": {
+    "new_gate": false,
+    "latest_primary_kernel_source": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+    "status": "No performance claim for this API or preparation change; previous gates remain source-specific."
+  },
+  "remaining": [
+    "Automatic planar fallback and its dispatch qualification",
+    "Broader singular and homogeneous-only charts",
+    "Full public six/seven-point high-rank qualification",
+    "Performance parity per benchmark family"
+  ]
+}

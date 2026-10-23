@@ -1,0 +1,243 @@
+{
+  "status": "read-only-proposal-no-build-or-new-numerical-run",
+  "source_sha256": {
+    "dependencies/symbolica/src/evaluate/batch.rs": "eb73974b0c176422863e4fbe512d392813d83085b2ae5c476db24d028012efcf",
+    "dependencies/oneloopmaster/src/native/batch.rs": "b250daa48a1369ec15735f9b5645db90b00d1f1a22503db26acb23a30110d3f3",
+    "dependencies/oneloopmaster/src/native/primitives.rs": "b610c92e859565e71cdb3a9e6091e86298a2a02faa5cf8545709ae57d42167cc",
+    "dependencies/oneloopmaster/src/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+    "dependencies/oneloopmaster/src/rust_codegen.rs": "c281c6c05ae8a7aefdfac2d2c0b3adcf3be1b9f471fdb16cfaa0ce27a5d88681"
+  },
+  "binary_sha256": "b5a7fd83440e202341617b2cce34b2d2664985bed997cec8f265d391db1dd624",
+  "b0_vector_loop": {
+    "function": "candidate::batch_block_0::<f64>",
+    "backedge": "0x1a98d2 -> 0x1a9878",
+    "byte_advance": 32,
+    "complex_f64_bytes": 16,
+    "lane_counter_step": -2,
+    "observation": "two complex f64 outputs per loop iteration using packed arithmetic; demonstrates a concrete multi-sample path, not end-to-end benefit"
+  },
+  "code_and_outline": {
+    "scope": "Read-only source audit: remove only exact validated span metadata and one duplicate of each verified-identical dense/sparse Add/Mul expression; expand existing transparent outline wrappers. No slot, operand, constant, label, helper name, arithmetic or stride is erased.",
+    "families": [
+      {
+        "family": "b0",
+        "scalar_source_identical": true,
+        "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+        "dense_loop_pairs_verified": 167,
+        "predicate_or_label_refreshes": 159,
+        "baseline_bytes": 94452,
+        "candidate_bytes": 136533,
+        "baseline_outlines": 4,
+        "candidate_outlines": 4,
+        "baseline_calls": 4,
+        "candidate_calls": 4,
+        "baseline_shape_sha256": "aadeb5aa5ebf1804b52cb6d48f2a9b2108b06bbe50f896b2ef3facc3c5a67ad6",
+        "candidate_shape_sha256": "aadeb5aa5ebf1804b52cb6d48f2a9b2108b06bbe50f896b2ef3facc3c5a67ad6"
+      },
+      {
+        "family": "c0",
+        "scalar_source_identical": true,
+        "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+        "dense_loop_pairs_verified": 3215,
+        "predicate_or_label_refreshes": 1557,
+        "baseline_bytes": 2745551,
+        "candidate_bytes": 3504129,
+        "baseline_outlines": 81,
+        "candidate_outlines": 92,
+        "baseline_calls": 81,
+        "candidate_calls": 92,
+        "baseline_shape_sha256": "fdc5e14f9e78a3b6249375b02810cacc84f1ae4da71cb954615a963eec91fb66",
+        "candidate_shape_sha256": "fdc5e14f9e78a3b6249375b02810cacc84f1ae4da71cb954615a963eec91fb66"
+      },
+      {
+        "family": "fixture",
+        "scalar_source_identical": true,
+        "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+        "dense_loop_pairs_verified": 283,
+        "predicate_or_label_refreshes": 3,
+        "baseline_bytes": 88228,
+        "candidate_bytes": 144239,
+        "baseline_outlines": 4,
+        "candidate_outlines": 4,
+        "baseline_calls": 4,
+        "candidate_calls": 4,
+        "baseline_shape_sha256": "073b58b0a57bcfb34e7b23d20653c546db973d3328d9b3a4a9698b36ed569839",
+        "candidate_shape_sha256": "073b58b0a57bcfb34e7b23d20653c546db973d3328d9b3a4a9698b36ed569839"
+      }
+    ]
+  },
+  "arity_inventory": {
+    "b0": {
+      "arithmetic_arity_histogram": [
+        {
+          "operation": "add",
+          "arity": 2,
+          "instructions": 63
+        },
+        {
+          "operation": "add",
+          "arity": 3,
+          "instructions": 2
+        },
+        {
+          "operation": "add",
+          "arity": 4,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 2,
+          "instructions": 79
+        },
+        {
+          "operation": "mul",
+          "arity": 3,
+          "instructions": 22
+        }
+      ],
+      "note": "Counts include root and each retained shared-helper provenance; no runtime hotness inference."
+    },
+    "c0": {
+      "arithmetic_arity_histogram": [
+        {
+          "operation": "add",
+          "arity": 2,
+          "instructions": 1024
+        },
+        {
+          "operation": "add",
+          "arity": 3,
+          "instructions": 80
+        },
+        {
+          "operation": "add",
+          "arity": 4,
+          "instructions": 16
+        },
+        {
+          "operation": "add",
+          "arity": 5,
+          "instructions": 6
+        },
+        {
+          "operation": "add",
+          "arity": 7,
+          "instructions": 1
+        },
+        {
+          "operation": "add",
+          "arity": 13,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 2,
+          "instructions": 1529
+        },
+        {
+          "operation": "mul",
+          "arity": 3,
+          "instructions": 367
+        },
+        {
+          "operation": "mul",
+          "arity": 4,
+          "instructions": 92
+        },
+        {
+          "operation": "mul",
+          "arity": 5,
+          "instructions": 29
+        },
+        {
+          "operation": "mul",
+          "arity": 6,
+          "instructions": 48
+        },
+        {
+          "operation": "mul",
+          "arity": 7,
+          "instructions": 2
+        },
+        {
+          "operation": "mul",
+          "arity": 8,
+          "instructions": 2
+        },
+        {
+          "operation": "mul",
+          "arity": 9,
+          "instructions": 2
+        },
+        {
+          "operation": "mul",
+          "arity": 10,
+          "instructions": 2
+        },
+        {
+          "operation": "mul",
+          "arity": 11,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 12,
+          "instructions": 3
+        },
+        {
+          "operation": "mul",
+          "arity": 13,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 14,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 15,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 16,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 17,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 18,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 19,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 20,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 21,
+          "instructions": 1
+        },
+        {
+          "operation": "mul",
+          "arity": 22,
+          "instructions": 1
+        }
+      ],
+      "note": "Counts include root and each retained shared-helper provenance; no runtime hotness inference."
+    }
+  },
+  "dynamic_hardware_counters_collected": false,
+  "instruction_cache_and_branch_cost_are_hypotheses": true
+}

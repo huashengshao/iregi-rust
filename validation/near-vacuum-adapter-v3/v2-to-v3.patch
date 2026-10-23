@@ -1,0 +1,157 @@
+--- a/crates/iregi-masters/src/certified.rs
++++ b/crates/iregi-masters/src/certified.rs
+@@ -36,6 +36,8 @@
+     pub formula: Formula,
+     pub attempts: Vec<SeriesAttempt>,
+     pub finite: Option<Vec<FiniteComponentBound>>,
++    /// A valid ordinary request may be outside the bounded series facility.
++    pub series_unavailable: Option<String>,
+ }
+ 
+ pub struct AccuracyMasterBatch<T: NativeFloat> {
+@@ -81,6 +83,14 @@
+             series2: None,
+             series4: None,
+         }
++    }
++
++    /// Preparation diagnostics; derivative components are not sample lanes.
++    pub fn prepared_series_orders(&self) -> Vec<usize> {
++        [(2, self.series2.is_some()), (4, self.series4.is_some())]
++            .into_iter()
++            .filter_map(|(order, prepared)| prepared.then_some(order))
++            .collect()
+     }
+ 
+     pub fn evaluate_batch_with_accuracy(
+@@ -122,6 +132,7 @@
+                     formula: Formula::Rejected,
+                     attempts: Vec::new(),
+                     finite: None,
++                    series_unavailable: None,
+                 })
+                 .collect(),
+             series_execution: Vec::new(),
+@@ -137,7 +148,19 @@
+ 
+         // Physical scale validation above applies even though a finite D0 has
+         // no scale dependence. Only physical arguments enter the series.
+-        if self.ordinary.family == ScalarIntegral::D0 {
++        let mut ordinary_pending = Vec::new();
++        let shape = self
++            .ordinary
++            .shape
++            .clone()
++            .unwrap_or_else(|| vec![Vec::new()]);
++        if self.ordinary.family == ScalarIntegral::D0 && !pending.is_empty() {
++            if let Err(reason) = near_vacuum::NearVacuumPlan::validate_shape(&shape) {
++                for &lane in &pending {
++                    result.diagnostics[lane].series_unavailable = Some(reason.clone());
++                }
++                ordinary_pending.append(&mut pending);
++            }
+             for order in [2, 4] {
+                 if pending.is_empty() {
+                     break;
+@@ -148,12 +171,7 @@
+                     &mut self.series4
+                 };
+                 if workspace.is_none() {
+-                    let shape = self
+-                        .ordinary
+-                        .shape
+-                        .clone()
+-                        .unwrap_or_else(|| vec![Vec::new()]);
+-                    let plan = near_vacuum::NearVacuumPlan::new(order, shape)
++                    let plan = near_vacuum::NearVacuumPlan::new(order, shape.clone())
+                         .map_err(MasterError::Preparation)?;
+                     *workspace = Some(plan.instantiate(self.ordinary.prototype.clone()));
+                 }
+@@ -201,31 +219,39 @@
+                         result.diagnostics[lane].formula = Formula::NearVacuum { order };
+                         result.diagnostics[lane].finite = Some(evaluated.bounds);
+                     } else {
++                        let refine = order == 2
++                            && matches!(&evaluated.status, SeriesStatus::UncertifiedComponent(_));
+                         result.results.errors[lane] = Some(LaneError::UncertifiedFinite(
+                             match evaluated.status {
+                                 SeriesStatus::UncertifiedComponent(component) => Some(component),
+                                 _ => None,
+                             },
+                         ));
+-                        next.push(lane);
++                        if refine {
++                            next.push(lane);
++                        } else {
++                            ordinary_pending.push(lane);
++                        }
+                     }
+                 }
+                 pending = next;
+             }
+-        }
+-
+-        if policy == CertificatePolicy::AllowOrdinaryUncertified && !pending.is_empty() {
+-            let capacity = pending
++        } else {
++            ordinary_pending.append(&mut pending);
++        }
++
++        if policy == CertificatePolicy::AllowOrdinaryUncertified && !ordinary_pending.is_empty() {
++            let capacity = ordinary_pending
+                 .len()
+                 .checked_mul(width)
+                 .ok_or(MasterError::SizeOverflow)?;
+             let mut ordinary_input = Vec::with_capacity(capacity);
+-            for &lane in &pending {
++            for &lane in &ordinary_pending {
+                 ordinary_input.extend_from_slice(&input[lane * width..(lane + 1) * width]);
+             }
+-            result.ordinary_rows = pending.len();
+-            let ordinary = self.ordinary.evaluate_batch(&ordinary_input, pending.len())?;
+-            for (prepared, lane) in pending.into_iter().enumerate() {
++            result.ordinary_rows = ordinary_pending.len();
++            let ordinary = self.ordinary.evaluate_batch(&ordinary_input, ordinary_pending.len())?;
++            for (prepared, lane) in ordinary_pending.into_iter().enumerate() {
+                 result.results.errors[lane] = ordinary.errors[prepared].clone();
+                 if ordinary.errors[prepared].is_none() {
+                     result.results.values[lane * result_width..(lane + 1) * result_width]
+--- a/crates/iregi-masters/src/near_vacuum.rs
++++ b/crates/iregi-masters/src/near_vacuum.rs
+@@ -167,15 +167,7 @@
+ }
+ 
+ impl NearVacuumPlan {
+-    pub fn from_dual<D: DualNumberStructure>(order: usize, dual: &D) -> Result<Self, String> {
+-        Self::new(order, dual.get_shape().iter().map(|x| x.to_vec()).collect())
+-    }
+-
+-    pub fn new(order: usize, shape: Vec<Vec<usize>>) -> Result<Self, String> {
+-        let preparation_started = std::time::Instant::now();
+-        if ![2, 4].contains(&order) {
+-            return Err("validation stage supports only orders two and four".into());
+-        }
++    pub(crate) fn validate_shape(shape: &[Vec<usize>]) -> Result<(), String> {
+         if shape.is_empty()
+             || shape.len() > 32
+             || shape[0].iter().any(|&n| n != 0)
+@@ -202,6 +194,19 @@
+                 }
+             }
+         }
++        Ok(())
++    }
++
++    pub fn from_dual<D: DualNumberStructure>(order: usize, dual: &D) -> Result<Self, String> {
++        Self::new(order, dual.get_shape().iter().map(|x| x.to_vec()).collect())
++    }
++
++    pub fn new(order: usize, shape: Vec<Vec<usize>>) -> Result<Self, String> {
++        let preparation_started = std::time::Instant::now();
++        if ![2, 4].contains(&order) {
++            return Err("validation stage supports only orders two and four".into());
++        }
++        Self::validate_shape(&shape)?;
+         let parameters: Vec<_> = (0..PREPARED_ARGUMENTS)
+             .map(|i| Atom::var(symbolica::symbol!(format!("iregi_near_vacuum::p{i}"))))
+             .collect();

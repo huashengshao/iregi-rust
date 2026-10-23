@@ -1,0 +1,46 @@
+{
+  "environment": {
+    "CARGO_CRATE_NAME": "iregi_masters"
+  },
+  "command": [
+    "taskset",
+    "-c",
+    "20,21",
+    "rustc",
+    "--edition=2024",
+    "--crate-name",
+    "native_dense_generator",
+    "/shared/external/iregi/iregi-rust/target/native-dense-span/generate.rs",
+    "-C",
+    "opt-level=1",
+    "-C",
+    "codegen-units=16",
+    "-C",
+    "metadata=native_dense_generator",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/native-stack-batch/deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "oneloop=/shared/external/iregi/iregi-rust/target/native-stack-batch/deps/liboneloop-8562c3cbbf948c0e.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/native-stack-batch/deps/libsymbolica-5cca42ee48491872.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/native-dense-span/generate"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 13.638397717964835,
+  "inputs": {
+    "target/native-dense-span/generate.rs": "9c299587b126d2234f1015d46f2bc419c4675176f4d993fffd225020d10a0c6f",
+    "target/native-dense-span/baseline/rust_codegen.rs": "3a48dcfa3a9ce9d464ec8a73a9d6b8304d5684a11210ede11c06847df7a87ce9",
+    "target/native-dense-span/baseline/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+    "target/native-dense-span/candidate/rust_codegen.rs": "3a48dcfa3a9ce9d464ec8a73a9d6b8304d5684a11210ede11c06847df7a87ce9",
+    "target/native-dense-span/candidate/rust_codegen/batch.rs": "62ce156a43db4ce93b79fb2f484ad5fa4d27898b98888eac9f2f4fe702c19608",
+    "target/native-stack-batch/deps/liboneloop-8562c3cbbf948c0e.rlib": "0de377f4602cdc7f365a61807c3a93879b5a6fff60577739acc9fe2b6abc90c8",
+    "target/native-stack-batch/deps/libsymbolica-5cca42ee48491872.rlib": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850"
+  },
+  "changed": [],
+  "binary_sha256": "0b2281315169771e567ad2cff1a89417b00d251f80c7b177c354fa9bd94205e5"
+}

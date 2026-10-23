@@ -1,0 +1,53 @@
+warning: field `truncation` is never read
+  --> /shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/source/near_vacuum.rs:85:9
+   |
+84 | pub struct ComponentBound {
+   |            -------------- field in this struct
+85 |     pub truncation: Rational,
+   |         ^^^^^^^^^^
+   |
+   = note: `ComponentBound` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+   = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: field `input_rows` is never read
+   --> /shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/source/near_vacuum.rs:102:9
+    |
+101 | pub struct Execution {
+    |            --------- field in this struct
+102 |     pub input_rows: usize,
+    |         ^^^^^^^^^^
+    |
+    = note: `Execution` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: fields `order` and `integrated_polynomial` are never read
+   --> /shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/source/near_vacuum.rs:112:9
+    |
+111 | pub struct NearVacuumPlan {
+    |            -------------- fields in this struct
+112 |     pub order: usize,
+    |         ^^^^^
+113 |     pub shape: Vec<Vec<usize>>,
+114 |     pub integrated_polynomial: Atom,
+    |         ^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: `NearVacuumPlan` has a derived impl for the trait `Clone`, but this is intentionally ignored during dead code analysis
+
+warning: associated function `from_dual` is never used
+   --> /shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/source/near_vacuum.rs:200:12
+    |
+169 | impl NearVacuumPlan {
+    | ------------------- associated function in this implementation
+...
+200 |     pub fn from_dual<D: DualNumberStructure>(order: usize, dual: &D) -> Result<Self, String> {
+    |            ^^^^^^^^^
+
+error: linking with `cc` failed: exit status: 1
+  |
+  = note:  "cc" "-m64" "/shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/rustc0tsed3/symbols.o" "<17 object files omitted>" "-Wl,--as-needed" "-Wl,-Bstatic" "/shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/libiregi_masters_certified_v3.rlib" "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/{liboneloop-6117c7de19c8681b,libsymbolica-2ae1abcc9fd9c0db,liblibloading-bd632865487176a6,libtracing_subscriber-54c964176fe5e306,libtime-4f8fae273293c50b,libpowerfmt-cceb426130794cfb,libnum_conv-e8c9f24620272cd7,libderanged-d28c8dd4a2bd6e1a,libtime_core-6905544710bb78dc,libtracing_serde-74053572fbe59eb0,libsharded_slab-0e72b567bc791311,libmatchers-83d4ef197fe7bece,libregex_automata-a62132bd7bb1c566,libaho_corasick-5d1a6277a6458a7f,libregex_syntax-0350e608a3de590d,libnu_ansi_term-0adb65fe77a365a0,libthread_local-b7e93af2fb8626a1,libtracing_log-28d78a97db6f12e0,liblog-5b0146f887d9843c,libinventory-73d53c5e60e340bc,libgraphica-0f8ec0b96b63d035,libbrotli-c25e63ef4ef5afbd,libbrotli_decompressor-26d1fa3655179b0d,liballoc_stdlib-b136f35e337a2783,liballoc_no_stdlib-83a72f276ec760df,libappend_only_vec-86b880ed323d0761,libtracing-d5bb68914160fd6a,libpin_project_lite-86f09716b2ed8d93,libtracing_core-991458c7439f4509,libed25519_compact-43fbd9c3bf1fa09b,libdata_encoding-1c2e5b6bc2c00870,libtinyjson-6c54fc4535338a58,libdirectories-b5882aa4d8b9cf57,libdirs_sys-9d54fe7ef813a323,liboption_ext-aca2e77402755145,libsymjit-de7c01d54cf1be7a,libregion-dfe115d8dc8afd14,libbitflags-afb259504e8bd1c7,libtoml-25eac15e76c91272,libtoml_writer-209aa36ce8f26339,libtoml_parser-91f75bbfd0d027a6,libwinnow-d9bf3a082e873b09,libserde_spanned-c1bb5f9314a546f5,libtoml_datetime-2e7c6c3a7c5481da,libserde_json-d5ce7f4fcf58bd84,libmemchr-996a2ed8dd9eaa5d,libzmij-49880c8b3f5258cb,libitoa-52dca32bfc0c7dc9,libcorosensei-a7801b02d9b81609,libscopeguard-f64a62e544e2f9b1,libhugepage_rs-7876b44ebff85964,libwasmtime_jit_icache_coherence-c8e4cc8aa380dae8,liblazy_static-13b5f428aebeb984,libnum_rational-a1292ae7cf8537e1,libnum_bigint-ddc4b31123251fd3,libnum_integer-72c4b57f218ffd83,libspec_math-62407868099bd5da,libanyhow-8426f805108d5503,libself_cell-293a59ba481c86fe,libnumerica-f2720232b78e95ca,libdyn_clone-92b33212c17d10c3,libitertools-90b0d162cebccb2b,libcolored-6fe221dcdab19119,libwide-93e2d6a6624b2182,libsafe_arch-45874e4bde211a73,libxprec-453815f1bd5dd57e,liblibm-a2263eaf66ec0109,libsimba-809f145095809fa5,libwide-f0f68f90a37f908e,libsafe_arch-0624932d51f19f45,libbytemuck-5d1ad2f3277cf8ec,libnum_complex-731d35d6946523bf,libapprox-4d6d441ab10a1126,libnum_traits-d3891769d5dd1250,librug-c20cb23a09b7a5e7,libgmp_mpfr_sys-abd713454cac2ce0,libaz-fbf9b20eae1d8bd7,libsmallvec-9a0a7b0cca9c9350,librand-477c522657ddc378,librand_chacha-e36ed32a01a5e137,libppv_lite86-22c0b678fdad548e,librand_core-9ad19a160b13bffd,libbincode-c89eb1f9ff09a7aa,libunty-8513a9e8ac5c71ad,libsmartstring-458cf5e585f36ae1,libstatic_assertions-e0791074aa7fc264,libbyteorder-3bfea55e2bda0bca,librayon-529fb995db148823,librayon_core-fc7f08cb562936a2,libcrossbeam_deque-cc83f2452ad7f630,libcrossbeam_epoch-a63984d5a6f47149,libcrossbeam_utils-76a079cc0b667e61,libeither-50fd1fdbee2006ea,libbytes-12160940f2e81fcd,libahash-11a32e9a577b38a2,libgetrandom-2fd92752d135d396,liblibc-0f2da5da0731a1b6,libonce_cell-983013399bd71e05,libserde-bde6fd4136f3a6c8,libserde_core-427720ba1965345d,libcfg_if-172a8a5bbefbc3ae,libzerocopy-9538ccc45b80330b}.rlib" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib/{libstd-*,libpanic_unwind-*,libobject-*,libmemchr-*,libaddr2line-*,libgimli-*,libcfg_if-*,librustc_demangle-*,libstd_detect-*,libhashbrown-*,librustc_std_workspace_alloc-*,libminiz_oxide-*,libadler2-*,libunwind-*,liblibc-*,librustc_std_workspace_core-*,liballoc-*,libcore-*,libcompiler_builtins-*}.rlib" "-Wl,-Bdynamic" "-ldl" "-lgcc_s" "-lutil" "-lrt" "-lpthread" "-lm" "-ldl" "-lc" "-L" "/shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/rustc0tsed3/raw-dylibs" "-Wl,--eh-frame-hdr" "-Wl,-z,noexecstack" "-L" "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/build/blake3-be485904775d6e47/out" "-L" "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/build/gmp-mpfr-sys-575ed8ab5d02dcec/out/lib" "-L" "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/build/gmp-mpfr-sys-e9fd89ef30e561a9/out/lib" "-L" "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/build/psm-3e52beb8ea08afba/out" "-L" "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/build/psm-a698b6f3f5aee778/out" "-L" "<sysroot>/lib/rustlib/x86_64-unknown-linux-gnu/lib" "-o" "/shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current/near_vacuum_adapter_validate_v3" "-Wl,--gc-sections" "-pie" "-Wl,-z,relro,-z,now" "-Wl,-O1" "-nodefaultlibs"
+  = note: some arguments are omitted. use `--verbose` to show all linker arguments
+  = note: /nix/store/s2946bl9ciwzhafd66jhansrmxq9xhqm-binutils-2.46/bin/ld.bfd: /shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/liboneloop-6117c7de19c8681b.rlib: error adding symbols: file format not recognized
+          collect2: error: ld returned 1 exit status
+          
+
+error: aborting due to 1 previous error; 4 warnings emitted
+

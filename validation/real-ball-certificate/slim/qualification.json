@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "status": "private_slim_candidate_semantic_tests_passed",
+  "production_changed": false,
+  "performance_gate": false,
+  "new_performance_measurements": false,
+  "full_core_candidate_tested": false,
+  "source_revision_for_dependencies": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+  "source_sha256": {
+    "target/real-ball-certificate/slim6b24-complete/slim.rs": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+    "target/real-ball-certificate/slim6b24-complete/original.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+    "target/real-ball-certificate/slim6b24-complete/slim_tests.rs": "78fa6701cb58a51864faac580b91753292d0ac8b01e597ca68c877d66e6cabe3",
+    "target/real-ball-certificate/slim6b24-complete/build.py": "748c547c6c8400b5367240d4e198334c18379610a06d2f1a9ce25ef359c51cf1"
+  },
+  "candidate_sha256": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+  "binary_sha256": "62ea047ca157a04b56b4946b37b67912338748e4e681b29ff05fec12f16251c5",
+  "build_manifest": "qualified/build.json",
+  "runtime_manifest": "qualified/run.json",
+  "tests": {
+    "paired": 7,
+    "candidate_inherited": 8,
+    "baseline_inherited_controls": 8,
+    "passed": 23,
+    "failed": 0,
+    "ignored": 0,
+    "exhaustive_nonempty_real_complex_patterns": 510,
+    "batch_widths_for_exhaustive_patterns": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "coverage": [
+      "Full argument and mixed Taylor imaginary classification",
+      "Lane-distinct exact residual centers for reverse mixed scatter",
+      "Mixed and all-complex precision refinement",
+      "Transition from mixed lanes to complex-only active lanes",
+      "Selected-empty masks and reusable workspaces",
+      "Tiny nonzero residual and unresolved non-dyadic equality",
+      "Imaginary first Taylor components generating real mixed coefficient",
+      "Eight existing Gram/invariant certificate tests"
+    ]
+  },
+  "semantics": {
+    "real_coefficients_and_no_hidden_function_calls_required": true,
+    "same_exact_zero_and_nonzero_inspection": true,
+    "same_precision_budgets_and_diagnostics": true,
+    "all_complex_direct_output_preserved": true,
+    "remaining_complex_only_overhead": "Per-call imaginary classification/flag allocation and per-pass real-slot scan remain; no overhead or full pipeline timing qualification."
+  },
+  "review": {
+    "status": "passed_read_only",
+    "reviewers": [
+      "/root/precision_rescue/physical_alignment_review",
+      "/root"
+    ],
+    "scope": "Frozen source patch, full Taylor classification, reverse scatter, selected/refinement semantics, seven paired test sources. Reviewers did not independently execute tests."
+  },
+  "dependency_provenance": {
+    "complete_kinds_closure_files": 865,
+    "closure_verified_before_and_after_build": true,
+    "closure_verified_before_and_after_runtime": true,
+    "whole_workspace_completion_verified": true,
+    "failed_attempt_retained": true,
+    "failure_cause": "Initial closure filter omitted completed symjit target.kind=rlib artifacts, causing immediate E0463. No certificate code changed; complete-kinds closure and successful full workspace completion binding used for retry."
+  },
+  "limits": [
+    "Private module-level candidate, not production adoption or full-core integration qualification.",
+    "Earlier609104 candidate timings do not measure this slim9a89286 candidate.",
+    "No quiet timing window or new performance claim.",
+    "Exact enclosure bounds need not be bit-identical across RealBall and ComplexBall; the common sound inspection predicate is retained.",
+    "Compiled binaries/dependency archives remain hash-bound under target; source/log/manifest evidence is committed without binary copies."
+  ]
+}

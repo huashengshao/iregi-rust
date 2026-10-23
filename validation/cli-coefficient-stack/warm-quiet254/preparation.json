@@ -1,0 +1,21 @@
+{
+  "source_qualification_manifest": "validation/cli-coefficient-stack/qualification.json",
+  "source_qualification_sha256": "ccf6abdbffb798091079e3be3b11f7bf1f42993e268aef00d636a61131edcb63",
+  "qualified_source_hashes": {
+    "input.rs": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb",
+    "baseline.rs": "c3605c42dfdbe2bd9e8f87361f5f0876b552337563c8abf755314d8c18a38da2",
+    "candidate.rs": "ea460cdc8d8406c0676e20ad7ceb9e0b4126a2b0682ac2cfd6f8bf7851ee02c8",
+    "proof.rs": "82f11e2e81b22104f759129620bd54ea7a1c53bf1084092215d33e3612122988"
+  },
+  "production_changed": false,
+  "timing_status": "not run; root quiet grant required",
+  "cpu_compile": [
+    8,
+    9
+  ],
+  "protocol": "shared fixed iterations from2ms pilots,21seeded-balanced-random paired30ms blocks, one Instant interval perblock, public returned-buffer allocation included",
+  "independent_source_review": {
+    "reviewer": "/root/native_stack_batch",
+    "outcome": "No blocker: fixed loop, shared pilot formula, seeded balanced ordering and outside-timer exact checks correct. Report N allocations and N-1 timed drops perblock; final drop outside."
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "status": "dense-active-span-candidate-rejected",
+  "production_changes": false,
+  "domains": [
+    "f64"
+  ],
+  "higher_precision_and_dual_status": "unqualified for this dense-active-span candidate; allocator experiment does not cover this patch",
+  "source_audit": "check_dense_shape.py removes only span metadata and exact duplicate Add/Mul loop; ordered primitives, operand slots, helpers, labels and constants remain unchanged",
+  "qualifications": [
+    {
+      "family": "b0",
+      "status": "passed",
+      "physical_configurations": 24,
+      "physical_complex_outputs": 1104,
+      "fixture_configurations": 36,
+      "fixture_complex_outputs": 2856,
+      "malformed_shape_output_untouched": true,
+      "bad_lane_neighbors_unchanged": true,
+      "strict_old_new": "represented values, precision, signed zeros of all six complex outputs",
+      "interpreter_comparison": {
+        "interpreter_value_mismatches": 169,
+        "interpreter_precision_mismatches": 0,
+        "interpreter_signed_zero_mismatches": 0
+      },
+      "compile_elapsed_seconds": 33.11998037796002,
+      "binary_sha256": "b5a7fd83440e202341617b2cce34b2d2664985bed997cec8f265d391db1dd624"
+    },
+    {
+      "family": "c0",
+      "status": "passed",
+      "physical_configurations": 24,
+      "physical_complex_outputs": 1104,
+      "fixture_configurations": 36,
+      "fixture_complex_outputs": 2856,
+      "malformed_shape_output_untouched": true,
+      "bad_lane_neighbors_unchanged": true,
+      "strict_old_new": "represented values, precision, signed zeros of all six complex outputs",
+      "interpreter_comparison": {
+        "interpreter_value_mismatches": 302,
+        "interpreter_precision_mismatches": 0,
+        "interpreter_signed_zero_mismatches": 0
+      },
+      "compile_elapsed_seconds": 174.28826220193878,
+      "binary_sha256": "a6661c7153eb0e1751c19b75dd5ee1ebf29984802fdcd87295e00dbcc1d91a0e"
+    }
+  ],
+  "performance": {
+    "report": "target/native-dense-span/timing-fixed-summary.json",
+    "cpu": 254,
+    "groups": 12,
+    "improvements": 2,
+    "singleton_parity": 6,
+    "batch32_regressions": 4,
+    "inconclusive_noise": 0,
+    "decision": "Reject dense-loop adoption; B0 grouped batches and all C0 batch32 orders regress"
+  },
+  "before_after_qualification_csv_identical": {
+    "b0": true,
+    "c0": true
+  }
+}

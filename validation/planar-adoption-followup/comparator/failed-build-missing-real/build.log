@@ -1,0 +1,23 @@
+error[E0599]: the method `sqrt` exists for struct `iregi_masters::Float`, but its trait bounds were not satisfied
+   --> /shared/external/iregi/iregi-rust/target/planar-mixed-reference/source/compare.rs:130:58
+    |
+130 |         let magnitude = NativeFloat::hypot(&v.re, &v.im).sqrt();
+    |                                                          ^^^^ method cannot be called on `iregi_masters::Float` due to unsatisfied trait bounds
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs:31:1
+    |
+ 31 | pub struct Float(MultiPrecisionFloat);
+    | ---------------- doesn't satisfy `iregi_masters::Float: AsRef<symbolica::atom::Atom>` or `iregi_masters::Float: AtomCore`
+    |
+    = note: the following trait bounds were not satisfied:
+            `iregi_masters::Float: AsRef<symbolica::atom::Atom>`
+            which is required by `iregi_masters::Float: AtomCore`
+    = help: items from traits can only be used if the trait is in scope
+help: trait `Real` which provides `sqrt` is implemented but not in scope; perhaps you want to import it
+    |
+  1 + use symbolica::prelude::Real;
+    |
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0599`.

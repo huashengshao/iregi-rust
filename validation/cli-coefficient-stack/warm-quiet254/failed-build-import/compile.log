@@ -1,0 +1,143 @@
+warning: unused imports: `Complex` and `NativeFloat`
+ --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:7:21
+  |
+7 | use iregi_masters::{Complex,NativeFloat};
+  |                     ^^^^^^^ ^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+error[E0599]: no method named `get_precision` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:14:213
+    |
+ 14 | ...(),"imaginary_bits":z.im.to_bits(),"real_precision":z.re.get_precision(),"imaginary_precision":z.im.get_precision()})).collect::...
+    |                                                             ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:112:8
+    |
+112 |     fn get_precision(&self) -> u32;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `set_precision` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float.rs:117:5
+    |
+117 |     fn set_precision(&mut self, precision: u32);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `FloatLike` which provides `get_precision` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use iregi_masters::FloatLike;
+    |
+
+error[E0599]: no method named `get_precision` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:14:256
+    |
+ 14 | ...ecision":z.re.get_precision(),"imaginary_precision":z.im.get_precision()})).collect::<Vec<_>>()})
+    |                                                             ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:112:8
+    |
+112 |     fn get_precision(&self) -> u32;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `set_precision` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float.rs:117:5
+    |
+117 |     fn set_precision(&mut self, precision: u32);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `FloatLike` which provides `get_precision` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use iregi_masters::FloatLike;
+    |
+
+error[E0599]: no method named `get_precision` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:23:69
+    |
+ 23 |    if a.to_bits()!=b.to_bits()||a.to_bits()!=reference.to_bits()||a.get_precision()!=b.get_precision()||a.get_precision()!=referenc...
+    |                                                                     ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:112:8
+    |
+112 |     fn get_precision(&self) -> u32;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `set_precision` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float.rs:117:5
+    |
+117 |     fn set_precision(&mut self, precision: u32);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `FloatLike` which provides `get_precision` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use iregi_masters::FloatLike;
+    |
+
+error[E0599]: no method named `get_precision` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:23:88
+    |
+ 23 |    if a.to_bits()!=b.to_bits()||a.to_bits()!=reference.to_bits()||a.get_precision()!=b.get_precision()||a.get_precision()!=referenc...
+    |                                                                                        ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:112:8
+    |
+112 |     fn get_precision(&self) -> u32;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `set_precision` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float.rs:117:5
+    |
+117 |     fn set_precision(&mut self, precision: u32);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `FloatLike` which provides `get_precision` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use iregi_masters::FloatLike;
+    |
+
+error[E0599]: no method named `get_precision` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:23:107
+    |
+ 23 |    if a.to_bits()!=b.to_bits()||a.to_bits()!=reference.to_bits()||a.get_precision()!=b.get_precision()||a.get_precision()!=referenc...
+    |                                                                                                           ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:112:8
+    |
+112 |     fn get_precision(&self) -> u32;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `set_precision` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float.rs:117:5
+    |
+117 |     fn set_precision(&mut self, precision: u32);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `FloatLike` which provides `get_precision` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use iregi_masters::FloatLike;
+    |
+
+error[E0599]: no method named `get_precision` found for type `f64` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-timing/source/warm.rs:23:134
+    |
+ 23 | ...ision()!=b.get_precision()||a.get_precision()!=reference.get_precision(){return Err(format!("represented value/precision/signed-...
+    |                                                             ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:112:8
+    |
+112 |     fn get_precision(&self) -> u32;
+    |        ------------- the method is available for `f64` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `set_precision` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float.rs:117:5
+    |
+117 |     fn set_precision(&mut self, precision: u32);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `FloatLike` which provides `get_precision` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use iregi_masters::FloatLike;
+    |
+
+error: aborting due to 6 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0599`.

@@ -1,0 +1,318 @@
+--- baseline/execution.rs
++++ candidate/execution.rs
+@@ -39,6 +39,9 @@
+         BatchResult, InputLayout, KinematicsBatch, LaneStatus, ReductionError, ResultMetadata,
+     },
+ };
++
++mod proof_receipts;
++use proof_receipts::*;
+ 
+ /// Work performed by the last batch, independently of Taylor component count.
+ ///
+@@ -152,6 +155,7 @@
+ /// Original-input distance polynomials and their positive conditioning
+ /// envelopes. Exact certificates additionally protect numerical zero branches.
+ struct PreparedDistanceZeros {
++    domain: Arc<RawDistanceProofDomain>,
+     argument_offset: usize,
+     precision_arguments: std::ops::Range<usize>,
+     pairs: Vec<(usize, usize)>,
+@@ -162,6 +166,7 @@
+ 
+ #[derive(Clone)]
+ struct DistanceZeroWorkspace<T: NativeFloat> {
++    domain: Arc<RawDistanceProofDomain>,
+     argument_offset: usize,
+     precision_arguments: std::ops::Range<usize>,
+     pairs: Vec<(usize, usize)>,
+@@ -181,6 +186,7 @@
+ {
+     fn instantiate(prepared: &PreparedDistanceZeros, prototype: &T) -> Self {
+         Self {
++            domain: prepared.domain.clone(),
+             argument_offset: prepared.argument_offset,
+             precision_arguments: prepared.precision_arguments.clone(),
+             pairs: prepared.pairs.clone(),
+@@ -204,7 +210,13 @@
+         components: usize,
+         prototype: &T,
+         accuracy_bits: u32,
++        original_lanes: &[usize],
++        incoming: Option<&IncomingDistanceReceipts<'_, '_, T>>,
++        mut outgoing: Option<&mut RawDistanceReceipts<'_, T>>,
++        work: &mut DistanceProofWork,
+     ) -> Result<Vec<(usize, String)>, ReductionError> {
++        let incoming = incoming
++            .filter(|proof| proof.matches(&self.domain, prototype.get_precision(), accuracy_bits));
+         self.input.clear();
+         self.selected.clear();
+         self.lanes.clear();
+@@ -274,11 +286,33 @@
+             if selected.is_empty() {
+                 continue;
+             }
++            let original = original_lanes[compact];
++            if let Some(incoming) = incoming {
++                let covered = incoming.coverage(original);
++                let before = selected.len();
++                if let Some(outgoing) = outgoing.as_mut() {
++                    outgoing.proven[original].extend(
++                        selected
++                            .iter()
++                            .copied()
++                            .filter(|pair| covered.binary_search(pair).is_ok()),
++                    );
++                }
++                selected.retain(|pair| covered.binary_search(pair).is_err());
++                work.reused_pairs += before - selected.len();
++                if selected.is_empty() {
++                    work.covered_rows += 1;
++                    continue;
++                }
++            }
+             let start = self.input.len();
+             for value in row {
+                 let (Some(re), Some(im)) = (value.re.exact_rational(), value.im.exact_rational())
+                 else {
+                     self.input.truncate(start);
++                    if let Some(outgoing) = outgoing.as_mut() {
++                        outgoing.proven[original].clear();
++                    }
+                     failures.push((compact,
+                         "rounded-zero distance cannot be certified from this numeric type's represented inputs".into()));
+                     break;
+@@ -297,9 +331,20 @@
+         let certificates =
+             self.certificate
+                 .check_selected_batch(&self.input, self.lanes.len(), &self.selected)?;
+-        for (&compact, certificate) in self.lanes.iter().zip(certificates) {
++        work.certificate_rows += self.certificate.evaluated_rows();
++        work.certificate_passes += self.certificate.passes();
++        for ((&compact, selected), certificate) in
++            self.lanes.iter().zip(&self.selected).zip(certificates)
++        {
++            let original = original_lanes[compact];
+             let reason = match certificate {
+-                ExactZeroCertificate::Zero => continue,
++                ExactZeroCertificate::Zero => {
++                    if let Some(outgoing) = outgoing.as_mut() {
++                        outgoing.proven[original].extend_from_slice(selected);
++                        outgoing.proven[original].sort_unstable();
++                    }
++                    continue;
++                }
+                 ExactZeroCertificate::Nonzero {
+                     constraint,
+                     component,
+@@ -313,6 +358,9 @@
+                     "rounded-zero distance proof is unresolved at {working_bits} certificate bits"
+                 ),
+             };
++            if let Some(outgoing) = outgoing.as_mut() {
++                outgoing.proven[original].clear();
++            }
+             failures.push((compact, reason));
+         }
+         Ok(failures)
+@@ -671,8 +719,15 @@
+                 ),
+                 None => ExactZeroConstraintPlan::new(&plan.parameters, &distance_polynomials),
+             }?;
++            let domain = Arc::new(RawDistanceProofDomain::new(
++                plan,
++                &distance_pairs,
++                &distance_polynomials,
++                dual,
++            ));
+             argument_expressions.extend(distance_polynomials);
+             Some(PreparedDistanceZeros {
++                domain,
+                 argument_offset: distance_offset,
+                 precision_arguments: plan
+                     .layout
+@@ -981,6 +1036,7 @@
+     lightlike_equal: Option<Box<Workspace<T>>>,
+     lightlike_unequal: Option<Box<Workspace<T>>>,
+     stats: ExecutionStats,
++    proof_work: DistanceProofWork,
+     profiling: bool,
+     profile: ExecutionProfile,
+     diagnostics: Vec<Vec<String>>,
+@@ -1175,6 +1231,7 @@
+             primal_inputs: Vec::new(),
+             primal_output: Vec::new(),
+             stats: ExecutionStats::default(),
++            proof_work: DistanceProofWork::default(),
+             profiling: false,
+             profile: ExecutionProfile::default(),
+             diagnostics: Vec::new(),
+@@ -1232,6 +1289,16 @@
+ 
+     pub fn last_execution(&self) -> ExecutionStats {
+         self.stats
++    }
++
++    #[doc(hidden)]
++    pub fn experimental_distance_proofs(&self) -> [usize; 4] {
++        [
++            self.proof_work.certificate_rows,
++            self.proof_work.certificate_passes,
++            self.proof_work.reused_pairs,
++            self.proof_work.covered_rows,
++        ]
+     }
+ 
+     /// Per-sample notes from the last call. A failed optional exact-profile
+@@ -1271,9 +1338,25 @@
+         &mut self,
+         batch: &KinematicsBatch<T>,
+     ) -> Result<BatchResult<T>, ReductionError> {
++        self.reduce_batch_with_receipts(batch, None)
++    }
++
++    fn reduce_batch_with_receipts(
++        &mut self,
++        batch: &KinematicsBatch<T>,
++        incoming: Option<&IncomingDistanceReceipts<'_, '_, T>>,
++    ) -> Result<BatchResult<T>, ReductionError> {
++        let incoming = incoming.filter(|proof| {
++            proof.source_lanes.len() == batch.rows
++                && proof
++                    .source_lanes
++                    .iter()
++                    .all(|&lane| lane < proof.receipt.source.rows)
++        });
++        self.proof_work = DistanceProofWork::default();
+         self.profile = ExecutionProfile::default();
+         let started = self.profiling.then(Instant::now);
+-        let result = self.reduce_batch_impl(batch);
++        let result = self.reduce_batch_impl(batch, incoming);
+         if let Some(started) = started {
+             self.profile.total = started.elapsed();
+         }
+@@ -1283,6 +1366,7 @@
+     fn reduce_batch_impl(
+         &mut self,
+         batch: &KinematicsBatch<T>,
++        incoming: Option<&IncomingDistanceReceipts<'_, '_, T>>,
+     ) -> Result<BatchResult<T>, ReductionError> {
+         self.stats = ExecutionStats {
+             input_rows: batch.rows,
+@@ -1457,6 +1541,21 @@
+         record_time(started, &mut self.profile.arguments);
+         evaluated.map_err(|error| ReductionError::Evaluation(error.to_string()))?;
+ 
++        let mut receipts = self
++            .distance_zeros
++            .as_ref()
++            .filter(|checks| {
++                checks.domain.reusable()
++                    && (self.classification_offset.is_some() || self.zero_profile_offset.is_some())
++            })
++            .map(|checks| {
++                RawDistanceReceipts::new(
++                    batch,
++                    checks.domain.clone(),
++                    self.prototype.get_precision(),
++                    self.accuracy_bits,
++                )
++            });
+         if let Some(checks) = &mut self.distance_zeros {
+             let started = self.profiling.then(Instant::now);
+             let checked = checks.failures(
+@@ -1467,6 +1566,10 @@
+                 self.components,
+                 &self.prototype,
+                 self.accuracy_bits,
++                &self.valid_lanes,
++                incoming,
++                receipts.as_mut(),
++                &mut self.proof_work,
+             );
+             record_time(started, &mut self.profile.arguments);
+             let failures = checked?;
+@@ -1521,6 +1624,8 @@
+                     &mut self.stats,
+                     &mut self.profile,
+                     &mut self.diagnostics,
++                    receipts.as_ref(),
++                    &mut self.proof_work,
+                 )?;
+             }
+             if !unequal.is_empty() {
+@@ -1532,6 +1637,8 @@
+                     &mut self.stats,
+                     &mut self.profile,
+                     &mut self.diagnostics,
++                    receipts.as_ref(),
++                    &mut self.proof_work,
+                 )?;
+             }
+             self.retain_lanes(&ordinary, input_width, argument_width);
+@@ -1616,6 +1723,8 @@
+                             &mut self.stats,
+                             &mut self.profile,
+                             &mut self.diagnostics,
++                            receipts.as_ref(),
++                            &mut self.proof_work,
+                         )?;
+                         for (&compact, &lane) in compact_lanes.iter().zip(&lanes) {
+                             if result.statuses[lane] != LaneStatus::Success {
+@@ -2039,6 +2148,7 @@
+                     components: self.components,
+                     values,
+                 })?;
++                self.proof_work.add(fallback.proof_work)?;
+                 self.stats.fallback_rows = lanes.len();
+                 for (compact, &lane) in lanes.iter().enumerate() {
+                     result.fallback_used[lane] = true;
+@@ -2187,6 +2297,8 @@
+     stats: &mut ExecutionStats,
+     profile: &mut ExecutionProfile,
+     diagnostics: &mut [Vec<String>],
++    receipts: Option<&RawDistanceReceipts<'_, T>>,
++    proof_work: &mut DistanceProofWork,
+ ) -> Result<(), ReductionError>
+ where
+     Complex<T>: EvaluationDomain,
+@@ -2197,11 +2309,30 @@
+     for &lane in lanes {
+         values.extend_from_slice(&batch.values[lane * input_width..(lane + 1) * input_width]);
+     }
+-    let evaluated = workspace.reduce_batch(&KinematicsBatch {
++    let child_batch = KinematicsBatch {
+         rows: lanes.len(),
+         components: batch.components,
+         values,
+-    })?;
++    };
++    // The reference identity binds proofs to exactly the rows cloned above.
++    // A mismatched source disables reuse rather than comparing sample values.
++    let incoming = receipts
++        .filter(|receipt| {
++            std::ptr::eq(receipt.source, batch)
++                && lanes.iter().all(|&lane| lane < receipt.source.rows)
++                && workspace.distance_zeros.as_ref().is_some_and(|checks| {
++                    checks.domain.reusable()
++                        && receipt.domain.as_ref() == checks.domain.as_ref()
++                        && receipt.working_bits == workspace.prototype.get_precision()
++                        && receipt.accuracy_bits == workspace.accuracy_bits
++                })
++        })
++        .map(|receipt| IncomingDistanceReceipts {
++            receipt,
++            source_lanes: lanes,
++        });
++    let evaluated = workspace.reduce_batch_with_receipts(&child_batch, incoming.as_ref())?;
++    proof_work.add(workspace.proof_work)?;
+     for (compact, &lane) in lanes.iter().enumerate() {
+         diagnostics[lane].extend_from_slice(&workspace.diagnostics[compact]);
+         result.analytic_used[lane] = true;
+@@ -3998,3 +4129,6 @@
+     }
+     include!("execution/guard_context_tests.rs");
+ }
++
++#[cfg(test)]
++mod proof_receipt_tests;

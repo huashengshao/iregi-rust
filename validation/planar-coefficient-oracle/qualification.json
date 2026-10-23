@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "kind": "certified-planar-shared-PV-refactor-original-IREGI-coefficient-oracle",
+  "status": "passed",
+  "private_candidate": {
+    "qualification": "validation/planar-adoption/qualification.json",
+    "qualification_sha256": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+    "build_manifest_sha256": "97a7e71fb7979b24300353e0e64c5e586b0d077981d10e3cb59c8e8a15ecdf5c",
+    "binary_sha256": "9f8dbe45ee5938cc0f45d8f6c6bcdc9417695bf2e1e724220c20662f324c9bd1"
+  },
+  "mixed_rank7_followup": {
+    "path": "validation/planar-adoption-followup/qualification.json",
+    "sha256": "208b7c8a69d3e0a6060faa3f4e6842e73e0ccc8c507222388c39bd252502b881"
+  },
+  "cases": 20,
+  "propagators": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "max_rank": 2,
+  "moments_per_case": 15,
+  "laurent_complex_slots_per_moment": 4,
+  "complex_values_compared": 1200,
+  "variants": [
+    "base",
+    "translated",
+    "order_reversed",
+    "loop_reversed"
+  ],
+  "precision": "binary64 numerical evaluation of exact Symbolica coefficients",
+  "tolerance": "1e-10 mixed after dimensional normalization",
+  "maximum_normalized_mixed_error": 7.192335473139502e-13,
+  "original_iregi_binary_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+  "reference_provenance_sha256": "bf1330181d941ab525009e33e58f2aa5e581d89d40877e516c0b7402b0443e74",
+  "original_generated_files_restored": true,
+  "elapsed_seconds": 0.41791580303106457,
+  "timeout_seconds": 180,
+  "scope": "Exact numeric-specialized Symbolica PV coefficients with original Fortran scalar master leaves, compared with original IREGI IBP tensor arrays; not the public Rust Workspace or native master path.",
+  "limitations": [
+    "Not a public Rust Workspace/native scalar-master comparison.",
+    "No performance comparison or new production/automatic fallback qualification.",
+    "The full original N1..7/rank7 oracle was not run."
+  ]
+}

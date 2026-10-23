@@ -1,5 +1,5 @@
 {
-  "status": "all-five-families-native-parity-passed-performance-rejected-pending-d0-timing",
+  "status": "native-allocator-candidate-rejected",
   "production_changes": false,
   "runtime_cpu_affinity": {
     "a0_b0_db0_c0": [
@@ -86,9 +86,7 @@
       "detailed_qualification": "target/native-stack-batch/d0-qualification.json"
     }
   ],
-  "pending": [
-    "D0 f64-only fixed-loop compile, qualification and kernel timings in separately granted quiet window"
-  ],
+  "pending": [],
   "retained_failure": {
     "report": "target/native-stack-batch/db0-parity.json",
     "reason": "An added fully-scaleless raw dB0 fixture is outside the public supported domain. Both native variants produce matching infinity; strict finite comparison intentionally failed. Public guard rejects UndefinedScalelessDerivative; updated harness checks this explicitly and keeps it visible."
@@ -109,5 +107,15 @@
     "decision": "Reject blanket native kernel adoption; no batch32 family/order meets the performance gate; C0 batch32 intervals indicate slower execution but exceed the noise-width gate"
   },
   "configurations": 200,
-  "complex_outputs": 7152
+  "complex_outputs": 7152,
+  "d0_timing_protocol_v2": {
+    "report": "target/native-stack-batch/d0-timing-fixed-summary.json",
+    "cpu": 254,
+    "groups": 6,
+    "singleton_improvements": 3,
+    "batch32_regressions": 2,
+    "batch32_inconclusive_noise": 1,
+    "decision": "Reject D0 allocator adoption; every batch32 group regresses or remains inconclusive",
+    "singleton_caveat": "Scalar source is byte-identical; singleton timing differences cannot establish an allocator algorithm benefit and may reflect compiled layout."
+  }
 }

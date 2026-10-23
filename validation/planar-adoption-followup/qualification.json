@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "kind": "private-certified-planar-mixed-rank7-independent-comparison",
+  "status": "passed",
+  "production_promoted": false,
+  "automatic_workspace_fallback": false,
+  "primary_evidence": {
+    "path": "validation/planar-adoption/qualification.json",
+    "sha256": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+    "original_run_status": "timeout",
+    "original_artifact_status": "primary_complete",
+    "artifact_path": "validation/planar-adoption/mixed-rank7.json",
+    "artifact_sha256": "0f68d0dd5ea589fe49d84e8217ddfd93bddc644054d7e0969951c1466c96c4d9"
+  },
+  "ordinary_rank7_parent": {
+    "path": "validation/planar-integrated/qualification.json",
+    "sha256": "776ec26f6934cd3197f5eab37935fb82b724af0e809ba6bb5ef219d8b2fd2a8e",
+    "scope": "Separate earlier private binary: ordinary Float128/256 primary versus boxes and exact-artifact convergence; not rerun by this comparator."
+  },
+  "mixed_comparison": {
+    "primary_working_precision": 128,
+    "reference_working_precision": 256,
+    "requested_precision": 53,
+    "moments": 330,
+    "laurent_slots": 4,
+    "shape": [
+      [
+        0,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "components": 4,
+    "primary_rows": 3,
+    "accepted_duplicate_lanes": [
+      0,
+      2
+    ],
+    "transverse_mixed_rejected_lane": 1,
+    "complex_slots_per_accepted_lane": 5280,
+    "compared_complex_slots": 10560,
+    "independent_box_rows": 5,
+    "independent_box_statuses": [
+      "Success",
+      "Success",
+      "Success",
+      "Success",
+      "Success"
+    ],
+    "comparisons": [
+      {
+        "complex_slots": 5280,
+        "lane": 0,
+        "maximum_normalized_error": "10424684589990594353029767404963131218274019/441711766194596082395824375185729628956870974218904739530401550323154944"
+      },
+      {
+        "complex_slots": 5280,
+        "lane": 2,
+        "maximum_normalized_error": "10424684589990594353029767404963131218274019/441711766194596082395824375185729628956870974218904739530401550323154944"
+      }
+    ],
+    "dimensional_tolerance": "1/10000000000",
+    "normalization": "|primary-reference| / max(|reference|, physical_scale^(monomial_rank-6))",
+    "convention": "MadLoop",
+    "tensor_weights": "Multinomial",
+    "independent_algorithm": "Ordinary production6b24 four-point PV; all five pinches in one batch; coefficient jets (2,-1,-1,-1,1)/(6+2st) constructed at256 bits and contracted by Symbolica Dualizer.",
+    "primary_validation": "Exact represented input rationals, all successful output slots, full returned basis/convention/weights/ordered shape, duplicate equality, explicit transverse status and rounded128 coefficient jets checked before reference preparation.",
+    "report": "comparator/run.json",
+    "artifact": "comparator/comparison.json.gz",
+    "uncompressed_artifact_sha256": "6e76e7a14a9933e81ee5eb0d7c5f88a022215a9c3712c19a90c1b4011d901dd3",
+    "artifact_bytes": 5409524,
+    "elapsed_seconds": 124.94446215999778,
+    "timeout_seconds": 600,
+    "build_manifest_sha256": "afe2c7b951647798993a95a861a6ff87a58d58a6395f0b30d457c89d2d2392d4",
+    "binary_sha256": "f9d4934246315e089e5c295a79a8b51e58c70c18c8334dba4b164f123f63778a"
+  },
+  "shared_path_regressions": [
+    {
+      "group": "execution",
+      "passed": 35,
+      "ignored": [],
+      "report": "regressions/execution.json",
+      "elapsed_seconds": 25.158834449015558
+    },
+    {
+      "group": "pv",
+      "passed": 14,
+      "ignored": [
+        "pv::tests::original_iregi_cartesian_moments"
+      ],
+      "report": "regressions/pv.json",
+      "elapsed_seconds": 5.834569614031352
+    }
+  ],
+  "limitations": [
+    "Standalone private API candidate only; no automatic fallback or production promotion.",
+    "Original combined600s test remains a timeout; independent agreement is established by this separately built bounded comparator.",
+    "Two accepted primary lanes are duplicates of one tangent fixture; this is not broader mixed-kinematics coverage.",
+    "Exact-rational output encoding does not retain signed-zero signs; claims are numerical agreement, not bitwise identity.",
+    "No performance parity or speedup inferred from bounded correctness runs.",
+    "One ordinary PV external-reference test remains ignored in this focused run."
+  ]
+}

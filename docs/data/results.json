@@ -5,7 +5,7 @@
   "revision": null,
   "host": "AMD EPYC 9754 \u00b7 CPUs 0 / 254 \u00b7 identified kernel snapshots",
   "batch_width": null,
-  "measurement_note": "The latest optimized kernel snapshot (6b24c03) passes all eight numerical comparisons, with seven timing regressions and one noisy row; performance parity remains unmet. Historical timing sessions and the 80949db physical comparisons remain separate. Private experimental qualification does not establish production coverage.",
+  "measurement_note": "The latest measured optimized kernel (6b24c03) passes all eight numerical comparisons, with seven timing regressions and one noisy row. It predates the standalone planar API promotion; performance parity remains unmet. Historical sessions and 80949db physical comparisons remain separate.",
   "timing_provenance": {
     "source": "validation/benchmark/baseline-4c32ece/results.json",
     "revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
@@ -11449,8 +11449,8 @@
   },
   "report_refresh": {
     "date": "2026-10-23",
-    "recorded_utc": "2026-10-23T17:42:32.599863+00:00",
-    "scope": "Latest qualified optimized kernel snapshot is production 6b24c03: eight numerical comparisons pass, seven timing regressions and one noisy row. Historical 80949db/5c9e3dd/4c32ece and physical 80949db measurements remain retained. CPU and timing protocols differ across sessions; no causal revision speedup is claimed. Private proofs and public high-point failures retain their separate qualification scopes.",
+    "recorded_utc": "2026-10-23T18:25:39.835614+00:00",
+    "scope": "Standalone certified planar API and Symbolica sum preparation are promoted with exact qualified-source bindings; automatic Workspace fallback remains absent. Latest optimized kernel measurement remains pre-promotion 6b24c03: eight numerical passes, seven timing regressions and one noisy row. CLI/native candidates remain unadopted or rejected after isolated timing; receipt/slim RealBall and near-vacuum adapter evidence remains private. Historical measurements and failed bounded runs remain visible.",
     "new_evidence": [
       "stack_reuse_factory_qualification",
       "stack_reuse_integration",
@@ -11515,7 +11515,21 @@
       "highpoint_alias_use_full_tests",
       "benchmark_6b24_qualification",
       "optimized_6b24_workspace_build",
-      "qualified_6b24_benchmark"
+      "qualified_6b24_benchmark",
+      "cli_coefficient_stack_correctness",
+      "raw_distance_receipts_correctness",
+      "real_ball_slim_module_qualification",
+      "near_vacuum_adapter_v3_qualification",
+      "planar_clean_candidate_qualification",
+      "cli_coefficient_stack_quiet_timing",
+      "cli_coefficient_stack_quiet_audit",
+      "native_dense_span_qualification",
+      "native_dense_span_fixed_timing",
+      "native_d0_allocator_fixed_timing",
+      "planar_mixed_rank7_followup",
+      "near_vacuum_adapter_current_qualification",
+      "planar_coefficient_oracle_qualification",
+      "planar_production_promotion"
     ]
   },
   "stack_reuse_integration": {
@@ -20687,9 +20701,9 @@
   },
   "native_stack_batch_qualification": {
     "source": "validation/native-stack-batch/qualification.json",
-    "sha256": "ba4fcb842467a56ebabd0a958b55669d176acbb8520487bd8227fa6aa9514aa7",
+    "sha256": "7a14b20cc46b31774533ebece4623a73d90e4a38e6a1d75157e2309e3df0ecbf",
     "snapshot": {
-      "status": "all-five-families-native-parity-passed-performance-rejected-pending-d0-timing",
+      "status": "native-allocator-candidate-rejected",
       "production_changes": false,
       "runtime_cpu_affinity": {
         "a0_b0_db0_c0": [
@@ -20776,9 +20790,7 @@
           "detailed_qualification": "target/native-stack-batch/d0-qualification.json"
         }
       ],
-      "pending": [
-        "D0 f64-only fixed-loop compile, qualification and kernel timings in separately granted quiet window"
-      ],
+      "pending": [],
       "retained_failure": {
         "report": "target/native-stack-batch/db0-parity.json",
         "reason": "An added fully-scaleless raw dB0 fixture is outside the public supported domain. Both native variants produce matching infinity; strict finite comparison intentionally failed. Public guard rejects UndefinedScalelessDerivative; updated harness checks this explicitly and keeps it visible."
@@ -20799,7 +20811,17 @@
         "decision": "Reject blanket native kernel adoption; no batch32 family/order meets the performance gate; C0 batch32 intervals indicate slower execution but exceed the noise-width gate"
       },
       "configurations": 200,
-      "complex_outputs": 7152
+      "complex_outputs": 7152,
+      "d0_timing_protocol_v2": {
+        "report": "target/native-stack-batch/d0-timing-fixed-summary.json",
+        "cpu": 254,
+        "groups": 6,
+        "singleton_improvements": 3,
+        "batch32_regressions": 2,
+        "batch32_inconclusive_noise": 1,
+        "decision": "Reject D0 allocator adoption; every batch32 group regresses or remains inconclusive",
+        "singleton_caveat": "Scalar source is byte-identical; singleton timing differences cannot establish an allocator algorithm benefit and may reflect compiled layout."
+      }
     }
   },
   "native_stack_batch_corrected_timings": {
@@ -24075,7 +24097,7 @@
   },
   "native_d0_allocator_parity": {
     "source": "validation/native-stack-batch/d0-qualification.json",
-    "sha256": "1893251a76fc1f3f4b82ed1fc8ff7bc39675f1112808382139f2bb346d8a47ad",
+    "sha256": "75826e3770d403f6332e8526fbc78a8e6afc9728882bd3f4590d14b980a81ecb",
     "snapshot": {
       "status": "passed",
       "family": "d0",
@@ -24133,12 +24155,13 @@
           }
         ]
       },
-      "performance": "unmeasured with corrected fixed-loop protocol; no adoption claim",
+      "performance": "Rejected by fixed-loop timing: batch32 two regressions and one noisy group; singleton three improvements with identical scalar source",
       "numerical_domains": [
         "f64",
         "DoubleFloat",
         "Float256"
-      ]
+      ],
+      "fixed_loop_performance_report": "target/native-stack-batch/d0-timing-fixed-summary.json"
     }
   },
   "highpoint_alias_use_full_capture": {
@@ -25855,5 +25878,4080 @@
         "preparation_seconds": null
       }
     ]
+  },
+  "cli_coefficient_stack_correctness": {
+    "source": "validation/cli-coefficient-stack/qualification.json",
+    "sha256": "ccf6abdbffb798091079e3be3b11f7bf1f42993e268aef00d636a61131edcb63",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "passed",
+      "production_adopted": false,
+      "source_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+      "scope": "Private ordinary CLI coefficient root stack allocator; four physical FeynKit prepared numerators. Core reducer/master implementation and public API unchanged. No runtime performance claim.",
+      "binary_sha256": "af3a3b1a17821b35168f54037eaeb8496a4d6ef2a0c19b52756d1a46d046903b",
+      "compile_manifest_sha256": "3be7b2429e74f5642d95581225790dc77ef54440eeeaf2c6c6b9bebe620746e6",
+      "runtime_manifest_sha256": "b5b444b0328d89a3e2792e843703f3e6af105b0a0013088ddda45bfdda3505ca",
+      "archive_sha256": "2c9c47939c3de12f823263842399b782e84253dceb075c94ebdc3d2908ee6b7b",
+      "archive_index_sha256": "c2ed408b5ef62b7684c3692b1a82759bee2322e70f3494e45c92496c5748232b",
+      "ordinary_domain_suites": 12,
+      "ordinary_batch_comparisons": 72,
+      "mixed_float_batch_comparisons": 12,
+      "cases": [
+        {
+          "case": "ggh",
+          "status": "passed",
+          "structure": {
+            "after_temporaries": 63,
+            "before_temporaries": 149,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 24,
+            "instructions": 149,
+            "label": "physical",
+            "outputs": 15,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "ordinary_domains": [
+            "f64",
+            "DoubleFloat",
+            "Float128"
+          ],
+          "ordinary_batch_sizes": [
+            0,
+            1,
+            3,
+            7,
+            32,
+            3
+          ],
+          "mixed_float_input_precisions": [
+            80,
+            128,
+            256
+          ],
+          "mixed_float_batch_sizes": [
+            3,
+            1,
+            7
+          ],
+          "empty": {
+            "empty": true,
+            "label": "empty",
+            "unchanged": true
+          },
+          "constant": {
+            "after_temporaries": 0,
+            "before_temporaries": 0,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 0,
+            "instructions": 1,
+            "label": "constant",
+            "outputs": 1,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "outputs_sha256": "ca7575f68c177cd76931a1f1477de9a42b036ceba3e3d32632042786c15dd06f"
+        },
+        {
+          "case": "gghh",
+          "status": "passed",
+          "structure": {
+            "after_temporaries": 500,
+            "before_temporaries": 2674,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 28,
+            "instructions": 2686,
+            "label": "physical",
+            "outputs": 69,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "ordinary_domains": [
+            "f64",
+            "DoubleFloat",
+            "Float128"
+          ],
+          "ordinary_batch_sizes": [
+            0,
+            1,
+            3,
+            7,
+            32,
+            3
+          ],
+          "mixed_float_input_precisions": [
+            80,
+            128,
+            256
+          ],
+          "mixed_float_batch_sizes": [
+            3,
+            1,
+            7
+          ],
+          "empty": {
+            "empty": true,
+            "label": "empty",
+            "unchanged": true
+          },
+          "constant": {
+            "after_temporaries": 0,
+            "before_temporaries": 0,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 0,
+            "instructions": 1,
+            "label": "constant",
+            "outputs": 1,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "outputs_sha256": "625fff4608a5c6387026c3960cd9b0a80f64244991d2d162bee947c76ffd6f48"
+        },
+        {
+          "case": "gghhh",
+          "status": "passed",
+          "structure": {
+            "after_temporaries": 2701,
+            "before_temporaries": 8261,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 32,
+            "instructions": 8273,
+            "label": "physical",
+            "outputs": 69,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "ordinary_domains": [
+            "f64",
+            "DoubleFloat",
+            "Float128"
+          ],
+          "ordinary_batch_sizes": [
+            0,
+            1,
+            3,
+            7,
+            32,
+            3
+          ],
+          "mixed_float_input_precisions": [
+            80,
+            128,
+            256
+          ],
+          "mixed_float_batch_sizes": [
+            3,
+            1,
+            7
+          ],
+          "empty": {
+            "empty": true,
+            "label": "empty",
+            "unchanged": true
+          },
+          "constant": {
+            "after_temporaries": 0,
+            "before_temporaries": 0,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 0,
+            "instructions": 1,
+            "label": "constant",
+            "outputs": 1,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "outputs_sha256": "fe54bde8ba00de75b424a867d289fdbe30ebd8b14ab925a281669414a345632b"
+        },
+        {
+          "case": "gggg-up",
+          "status": "passed",
+          "structure": {
+            "after_temporaries": 8396,
+            "before_temporaries": 44407,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 36,
+            "instructions": 44407,
+            "label": "physical",
+            "outputs": 70,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "ordinary_domains": [
+            "f64",
+            "DoubleFloat",
+            "Float128"
+          ],
+          "ordinary_batch_sizes": [
+            0,
+            1,
+            3,
+            7,
+            32,
+            3
+          ],
+          "mixed_float_input_precisions": [
+            80,
+            128,
+            256
+          ],
+          "mixed_float_batch_sizes": [
+            3,
+            1,
+            7
+          ],
+          "empty": {
+            "empty": true,
+            "label": "empty",
+            "unchanged": true
+          },
+          "constant": {
+            "after_temporaries": 0,
+            "before_temporaries": 0,
+            "empty": false,
+            "helper_count": 0,
+            "inputs": 0,
+            "instructions": 1,
+            "label": "constant",
+            "outputs": 1,
+            "unchanged": true,
+            "unchanged_helpers": true
+          },
+          "outputs_sha256": "3a989df0060c212815924c7385e4bc918054a0d3c95a109c00cbf3a80983dda2"
+        }
+      ],
+      "independent_source_review": {
+        "reviewer": "/root/native_stack_batch",
+        "outcome": "No concrete source or qualification gap found; fresh Some evaluator only, empty None path unchanged.",
+        "reviewed_patch_sha256": "653bb017bb66d4ec737ac565aacd25d5af7bc1fce1c6d644aa03309b5ec01d2c"
+      },
+      "failed_attempts": "Retained under earlier-attempts; two dependency inventory failures, one probe-only trait import failure, and a missing /usr/bin/time launcher path. Successful compile and run manifests identify corrected closure, source, and installed timer.",
+      "timing_scope": "Reported command elapsed/RSS includes graph preparation, proof export and JSON serialization during concurrent work; no throughput or performance-gate inference."
+    }
+  },
+  "raw_distance_receipts_correctness": {
+    "source": "validation/raw-distance-receipts/qualification.json",
+    "sha256": "4bda0b86022cbf93f58ed3c6f6b7360d92e07f668d77da706110faa2ecbb5d1c",
+    "snapshot": {
+      "schema": 1,
+      "status": "private_candidate_49_tests_and_120_exact_public_snapshots_passed",
+      "recorded_utc": "2026-10-23T18:08:22.138809+00:00",
+      "production_adopted": false,
+      "base_git": "e22091ba8c346de3178ffa782ba3614cbcccc7bc",
+      "shared_private_realball_sha256": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+      "focused_qualification": "qualification-initial.json",
+      "focused_qualification_sha256": "62d90a5b54c085f1edc9f33d013c00b5b7b29f94e88c50639590f50c682fbb81",
+      "tests_passed": 49,
+      "tests_failed": 0,
+      "paired_public_snapshots_passed": 120,
+      "paired_run": "protocol-run.json",
+      "paired_run_sha256": "4c87cb1ac154b92cc655d6371601d2a35b60249bd79910a5c6e4d40f6b9557bb",
+      "paired_comparison": [
+        "exact represented rational coefficients",
+        "per-real-and-imaginary-component precision metadata",
+        "signed zeros",
+        "lane statuses and rejected-lane reasons",
+        "analytic/fallback flags",
+        "ordinary ExecutionStats including unchanged argument_rows",
+        "per-lane diagnostic strings"
+      ],
+      "dependency_closure_files_verified_before_after": 865,
+      "performance_status": "unmeasured; no timing or production adoption claim",
+      "remaining": [
+        "Fixed-loop paired timing with ordinary nonzero parents and exact-zero/mixed-complex controls",
+        "Performance-based adoption decision and removal or explicit feature-gating of the experimental public work-count accessor before any production adoption"
+      ],
+      "files_sha256": {
+        "README.md": "d1cd5147cb7c1c109f48094740951e2fbe66e33f827a8f7f995f5fac2924602a",
+        "baseline-lib-build.json": "f2a33e0013f0df69a0b1e74cb7f28825e41ce7d377d6baa6859c6c2444347d4e",
+        "baseline-lib-build.log": "d2e1a38204b3a1c4dcfdb805cff9985a8e46e17cdabacc30e731812149f0db91",
+        "build-current-unit-script.py": "30139a9aa5077f7f644a1faa64338536f4189f48b95979728b8071d646b4462e",
+        "build.py": "3d5b135501671c42f64b9f93ed3c9a0992010059249c5a3bb1145d717f2fbf81",
+        "build_protocol.py": "83503a745c4f9c4be3cde68e7299da6bcd73e0687d4c47149bbf2ee0e9cc1ff0",
+        "candidate-lib-build.json": "c8414947844f9ac8bc67f8db80a4b0bac4145cbf4b87690a4982595f30bc67f0",
+        "candidate-lib-build.log": "ffc165fbe469d353326b4b3f95e627437f3f56585dfcfcb86633a116ad27a6ff",
+        "candidate-metadata-build.json": "0524be1dcfbd07e260d66ff34bfb4bed83ef7925f9f0df5ead2085143995f69e",
+        "candidate-metadata-build.log": "feba0ee5000c65caac15de365a3618b37519c55b66812acdb2c9bffba88b487a",
+        "candidate-metadata-initial.json": "0adee8c2679e32fe88912083f93d86467edd1a10e2bc9d61815086fa05911313",
+        "candidate-metadata-initial.log": "db606d5b34b4582b5b5e9f786717f04b2db4bc2aaa4e025f1688cd2fd6dfc920",
+        "candidate-test-list.log": "58c4df94b324a36e7e5768bc9f8a5ab7fe31c4870387b5c4b849630651d2d99d",
+        "candidate-unit-build.json": "89cb5825122473ab2f5daf32b1d96a9ce0c590f60bdc9235e7afa460f63d2147",
+        "candidate-unit-build.log": "feba0ee5000c65caac15de365a3618b37519c55b66812acdb2c9bffba88b487a",
+        "candidate-unit-host-serde-failure.json": "0df7a2d35f0ee5299c7ddb4068ab1e8b1756faaf7eb3ce8d4002cfd2ef345993",
+        "candidate-unit-host-serde-failure.log": "eeffcaf19fba537600264e6a15e857eaa87e0026e50f9e468f5e7a165e420b81",
+        "design.md": "3aa3e9dfd4c88d95f1d328e6b7a403bb3d74999894da10f65af31293246fa2a9",
+        "exact-zero-regressions.json": "cbd81e0f05d81e9e0e2607fee8092e98becda7a54b435fd94b2acc813d74e2a4",
+        "exact-zero-regressions.log": "a71964778a18f42ed46b09b29af3d78214957778de029b9c510de7071bb70027",
+        "execution-regressions.json": "07d62b79db24af0169f952435b496597ff052f09aca8798151646e1b6f2b9531",
+        "execution-regressions.log": "f353ed6e7aac42b42877c55aaea17b42fb7368ae840da4865de0fe1f0c5469c4",
+        "execution.patch": "441b9eef48ceea5cf3b9c20c24ae8d178699cd1f858be7dfa2cc5bcf71d2125c",
+        "private-source-snapshots.tar.gz": "cd51e7cc4bdd97fbde39bc59cd5686006712bc149afd3701942ac49ee7607e8f",
+        "proof_receipt_tests.rs": "10d055f2b0e56d10b7a3d13b951a84f93ca604963ca16932401eac052c928291",
+        "proof_receipts.rs": "db3394f659c13385461c95aa3ad877d768a4c7c7c47fffbcb050c26430ee3c97",
+        "protocol-build.json": "af014fd5a4d71ab32dcfcb18440a5d84e8d3078a3e44eddf5ee2c44f11f2bb60",
+        "protocol-build.log": "c598311739f179a2085203446045f5562f68af910caf921fcb1d9224eadafae4",
+        "protocol-run.json": "4c87cb1ac154b92cc655d6371601d2a35b60249bd79910a5c6e4d40f6b9557bb",
+        "protocol-run.log": "fc9357596c03f6e754882cff606ed97b13bab83afdd260c50d7333af9feda002",
+        "protocol-source.json": "03919818c0944275b046ae513e28a088d3f54715b2c07c528db48b32b0f3d4de",
+        "protocol.rs": "d54c1ca721815a6ce9e5d421b2803d25bd216fddb0bf8a66225b4d51ec9acc06",
+        "qualification-initial.json": "62d90a5b54c085f1edc9f33d013c00b5b7b29f94e88c50639590f50c682fbb81",
+        "receipt-tests.json": "04927341898085c7afc450cbd23febcdc821d9a46a8d31c54a18ed8339945a31",
+        "receipt-tests.log": "93ab6bd024a7978041b987ae64b2c4fae8bfaf3d8efbcf5d301988ef7fd3c12b",
+        "review.json": "b92a60160d3de21207f334f99279bfd216022d7be52cefa3706e4d7421bb8ac0",
+        "run.py": "b067f4fc96f21f43710946da96e094f9eb5e1ec205867e90453cecf20f95453e",
+        "run_protocol.py": "4dfad461b48eaae32e0814a73d95d17ad926e5134257900fa0bbe06950fc3610",
+        "source-baseline.json": "c146d6bfa05d6cadf719f9ccd04a010d75b32ff0c821d0499f10e5545702b25a"
+      }
+    }
+  },
+  "real_ball_slim_module_qualification": {
+    "source": "validation/real-ball-certificate/slim/qualification.json",
+    "sha256": "96285f7daa6100d7f37a46ac663cf581958c86d0598ad9d39bf02c17c5ee4a3e",
+    "snapshot": {
+      "schema": 1,
+      "status": "private_slim_candidate_semantic_tests_passed",
+      "production_changed": false,
+      "performance_gate": false,
+      "new_performance_measurements": false,
+      "full_core_candidate_tested": false,
+      "source_revision_for_dependencies": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+      "source_sha256": {
+        "target/real-ball-certificate/slim6b24-complete/slim.rs": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+        "target/real-ball-certificate/slim6b24-complete/original.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+        "target/real-ball-certificate/slim6b24-complete/slim_tests.rs": "78fa6701cb58a51864faac580b91753292d0ac8b01e597ca68c877d66e6cabe3",
+        "target/real-ball-certificate/slim6b24-complete/build.py": "748c547c6c8400b5367240d4e198334c18379610a06d2f1a9ce25ef359c51cf1"
+      },
+      "candidate_sha256": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+      "binary_sha256": "62ea047ca157a04b56b4946b37b67912338748e4e681b29ff05fec12f16251c5",
+      "build_manifest": "qualified/build.json",
+      "runtime_manifest": "qualified/run.json",
+      "tests": {
+        "paired": 7,
+        "candidate_inherited": 8,
+        "baseline_inherited_controls": 8,
+        "passed": 23,
+        "failed": 0,
+        "ignored": 0,
+        "exhaustive_nonempty_real_complex_patterns": 510,
+        "batch_widths_for_exhaustive_patterns": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "coverage": [
+          "Full argument and mixed Taylor imaginary classification",
+          "Lane-distinct exact residual centers for reverse mixed scatter",
+          "Mixed and all-complex precision refinement",
+          "Transition from mixed lanes to complex-only active lanes",
+          "Selected-empty masks and reusable workspaces",
+          "Tiny nonzero residual and unresolved non-dyadic equality",
+          "Imaginary first Taylor components generating real mixed coefficient",
+          "Eight existing Gram/invariant certificate tests"
+        ]
+      },
+      "semantics": {
+        "real_coefficients_and_no_hidden_function_calls_required": true,
+        "same_exact_zero_and_nonzero_inspection": true,
+        "same_precision_budgets_and_diagnostics": true,
+        "all_complex_direct_output_preserved": true,
+        "remaining_complex_only_overhead": "Per-call imaginary classification/flag allocation and per-pass real-slot scan remain; no overhead or full pipeline timing qualification."
+      },
+      "review": {
+        "status": "passed_read_only",
+        "reviewers": [
+          "/root/precision_rescue/physical_alignment_review",
+          "/root"
+        ],
+        "scope": "Frozen source patch, full Taylor classification, reverse scatter, selected/refinement semantics, seven paired test sources. Reviewers did not independently execute tests."
+      },
+      "dependency_provenance": {
+        "complete_kinds_closure_files": 865,
+        "closure_verified_before_and_after_build": true,
+        "closure_verified_before_and_after_runtime": true,
+        "whole_workspace_completion_verified": true,
+        "failed_attempt_retained": true,
+        "failure_cause": "Initial closure filter omitted completed symjit target.kind=rlib artifacts, causing immediate E0463. No certificate code changed; complete-kinds closure and successful full workspace completion binding used for retry."
+      },
+      "limits": [
+        "Private module-level candidate, not production adoption or full-core integration qualification.",
+        "Earlier609104 candidate timings do not measure this slim9a89286 candidate.",
+        "No quiet timing window or new performance claim.",
+        "Exact enclosure bounds need not be bit-identical across RealBall and ComplexBall; the common sound inspection predicate is retained.",
+        "Compiled binaries/dependency archives remain hash-bound under target; source/log/manifest evidence is committed without binary copies."
+      ]
+    }
+  },
+  "near_vacuum_adapter_v3_qualification": {
+    "source": "validation/near-vacuum-adapter-v3/qualification.json",
+    "sha256": "ccb126aef4271af4c56296b4ecd6b4db81c571953afbf990a6049fab9f088027",
+    "snapshot": {
+      "status": "private_v3_dispatch_contracts_and_selected_accuracy_checks_passed",
+      "production_changed": false,
+      "previous_qualification": {
+        "path": "validation/near-vacuum-adapter/qualification.json",
+        "sha256": "d02fabe660b410c840fa601ff12d0ff25f7e14f6165d5e2f94df1ef4ae5dad21"
+      },
+      "current_primary_component_checks": 96,
+      "cases": [
+        {
+          "numeric": "f64",
+          "working_bits": 53,
+          "requested_bits": 40,
+          "accepted_components_exactly_equal_to_v2": 24,
+          "diagnostic_wall_seconds": 27.655863363062963,
+          "artifacts": {
+            "validation/near-vacuum-adapter-v3/v3-f64.json": "f940830de0340607ec1210430800c9b77f1798a9cdf777c9b39d9f272547eeca",
+            "validation/near-vacuum-adapter-v3/v3-f64.log": "52f5b2f6fd380e47ab7d1d7930b50ef095f3179d7f84f0eae5b9addea0ca006b",
+            "validation/near-vacuum-adapter-v3/v3-f64-run.json": "f7a759647771cee0989fc47be9f38b63a702d53aed4355074987eea4f1548d75"
+          }
+        },
+        {
+          "numeric": "dd",
+          "working_bits": 106,
+          "requested_bits": 80,
+          "accepted_components_exactly_equal_to_v2": 24,
+          "diagnostic_wall_seconds": 30.274161005043425,
+          "artifacts": {
+            "validation/near-vacuum-adapter-v3/v3-dd.json": "731657c4ced6d77dd4e82f62ae795611a03f29301c5c295b52177265d3f9b015",
+            "validation/near-vacuum-adapter-v3/v3-dd.log": "663bd6ca45140f8332d6842d5d8990a68f5ed0958906cdc0a41bcb29f3d3de1e",
+            "validation/near-vacuum-adapter-v3/v3-dd-run.json": "32140337e89c1831e1df045b817190d510103d4a7c5afc0d26097ec131d54050"
+          }
+        },
+        {
+          "numeric": "float128",
+          "working_bits": 128,
+          "requested_bits": 100,
+          "accepted_components_exactly_equal_to_v2": 24,
+          "diagnostic_wall_seconds": 30.176357376971282,
+          "artifacts": {
+            "validation/near-vacuum-adapter-v3/v3-float128.json": "9b43447f9e31316a4f33ae3ab58a8ab3c94540871670d8c0fe508dc2ce0e8238",
+            "validation/near-vacuum-adapter-v3/v3-float128.log": "be46e3b4b1e018131bb7f1453392fe8fefcd58b58e276950091468966753cbd4",
+            "validation/near-vacuum-adapter-v3/v3-float128-run.json": "49029b2f25918ec918cf733f77ebda518dfececf71250eef910858332f90bc76"
+          }
+        },
+        {
+          "numeric": "float256",
+          "working_bits": 256,
+          "requested_bits": 128,
+          "accepted_components_exactly_equal_to_v2": 24,
+          "diagnostic_wall_seconds": 29.721895198104903,
+          "artifacts": {
+            "validation/near-vacuum-adapter-v3/v3-float256.json": "639a78bb970aecea4e9f390dad9d95470d9b4738478903d3265ed942b0539fb9",
+            "validation/near-vacuum-adapter-v3/v3-float256.log": "d8535b8edf38ec3cdc3d063e9317c81f1a235a4ef7d99a7d75cc4c4657e93281",
+            "validation/near-vacuum-adapter-v3/v3-float256-run.json": "58320362670a4dd877a9cbaa9443efc8819e574d14993f15c9e8e5229b63c706"
+          }
+        }
+      ],
+      "dispatch_contract": {
+        "working_bits": 53,
+        "requested_bits": 40,
+        "unsupported_shape_degree": 5,
+        "independent_audit_checks": 199,
+        "unsupported_shape_prepares_no_series": true,
+        "outside_domain_never_prepares_N4": true,
+        "required_certificate_failures_hide_values": true,
+        "allowed_fallback_preserves_all_legacy_laurent_components": true,
+        "diagnostic_wall_seconds": 38.1386752469698
+      },
+      "independent_contour": {
+        "working_bits": 256,
+        "requested_bits": 128,
+        "primal_boxes": 5,
+        "contracted_results": 1,
+        "ordinary_fallback_rows": 0,
+        "status": "five_pinch_adapter_and_contraction_passed",
+        "scope": "Private adapter and exact x=1/2 five-pinch contraction only. Fixed exact shifted inputs and exact Cayley coefficients eliminate upstream geometry/shift uncertainty. No Gauss nodes, rule weights, quadrature truncation, E6 public execution, derivative, or performance qualification.",
+        "series_execution": [
+          {
+            "active_rows": 5,
+            "enclosure_batch_calls": 1,
+            "estimated_exported_instruction_lane_visits": 395,
+            "input_rows": 5,
+            "numeric_batch_calls": 1,
+            "order": 2,
+            "tail_batch_calls": 1
+          }
+        ]
+      },
+      "source_archive": {
+        "path": "validation/near-vacuum-adapter-v3/private-sources.tar.gz",
+        "sha256": "95407aec52d5d7fe38ede8eaa19ba5b7e724804baf0a8c41fd898c21fb537079",
+        "members": {
+          "source/bubble_neighborhood.rs": "5e00cd3d1785e3ca50695969761131a769226e0fe497f7656fa993cb37d14da9",
+          "source/certified.rs": "357b293a485726b21f4757d9ea9dcbc880bf323cd73a0010168ae5ef982009a2",
+          "source/derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
+          "source/dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+          "source/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+          "source/generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+          "source/generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+          "source/generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+          "source/generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+          "source/generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+          "source/generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+          "source/lib.rs": "bc2d91c5bb357526768929adce4628cc0a17aac5f8d6f009a6b5a0e8aceab97a",
+          "source/native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+          "source/near_vacuum.rs": "73cc02713b1b60e3899435c29c241bd944353c2adb3470051f9652597fa2aa90",
+          "source/normalization.rs": "8c0eb611f7ec8019b4fcd2cc0800165aa026e2e70107bad1af7f290ac8bbed2d",
+          "source/pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+          "source/scale_transport.rs": "bf3b94f71dec9f33a610e5ebf854644e291ccfb1e3a04c8f5451ee04721af6dc",
+          "adapter_validate.rs": "953e350d6e7adc68d2e4aa9e691a4fa2bb33e87798da7de6152867f0c38c9f26",
+          "contract_validate.rs": "d2c5921596ddd34a18670a46ff9f362eec23b474b7ddf5c69194e15653da7611",
+          "run.py": "ae4ddd4f5700a2a70a989288364591dd8f7af59dce394b13b018165992e7d1b0",
+          "run_cpu19.py": "24fb72e8187e1020e39957237a6c0d195721a222430cd0a9fe7a57a3bdca06ff",
+          "contour/five_pinch_compare.rs": "eeb926874d2b9e21536f5c878a5c03123ede6181809074468eb9309787d6683a"
+        }
+      },
+      "production_proposal_patch": {
+        "path": "validation/near-vacuum-adapter-v3/proposed-adapter-v3.patch",
+        "sha256": "ceb41e41dba7d72415f66713dcea8a06d39a97f2454b8a8cf429711987554666"
+      },
+      "delta_from_frozen_v2": {
+        "path": "validation/near-vacuum-adapter-v3/v2-to-v3.patch",
+        "sha256": "e7f6a721f81accfac84843e608a44d6d09b892e923b685235b0d91a7a2f27a3f"
+      },
+      "library_build_sha256": "84f89f319ada964c96765364b43dca0e01345364b8d72f1c3e86f0124d7f90c4",
+      "additional_artifacts": {
+        "validation/near-vacuum-adapter-v3/contract-README.md": "4fc570f95eb8cec380d618c4ff19d65c5e7b9b27dc1b03ee1140cb4bd8806645",
+        "validation/near-vacuum-adapter-v3/contract-artifact-manifest.json": "a136f7d4a138b153ce5904178de8f8e15ec2eb4387b8ddf6f2d234558f6adf58",
+        "validation/near-vacuum-adapter-v3/contract-build.json": "2fec50c7512b7b39758f8f29996541bf64d7210a8c5ac882a9d2e83fb066df2c",
+        "validation/near-vacuum-adapter-v3/contract-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/near-vacuum-adapter-v3/contract-run.json": "e77d10eb2a7d052104c99fddc41fa7bc2987ca5d42f0a32c2a8286fdefc74fec",
+        "validation/near-vacuum-adapter-v3/contract.json": "3bfa17aedb830f9329a92fc9f00f074f4b41c1a3d19904527a03bbdaa8b37ed8",
+        "validation/near-vacuum-adapter-v3/contract.log": "0a9a3438cda7a09de79e128a078d7f278d0784219ad7516ea19fd86c9a1a62b6",
+        "validation/near-vacuum-adapter-v3/contract_validate.rs": "d2c5921596ddd34a18670a46ff9f362eec23b474b7ddf5c69194e15653da7611",
+        "validation/near-vacuum-adapter-v3/contour/README.md": "05511c74746255c7eea134c2e8ea2cd6a9a47c917406abe0e67b87b62af9da97",
+        "validation/near-vacuum-adapter-v3/contour/artifact-manifest.json": "4558f8c1afef8a15f69e0f240142b25cf675fbe30f70361cd689d9bf2f91aa04",
+        "validation/near-vacuum-adapter-v3/contour/audit.json": "83e57134e163b895cc0ca240f06df44d1594bd456f60e53a2beb4342e949322e",
+        "validation/near-vacuum-adapter-v3/contour/build.json": "4cf9fca0530a9045f8893d7c8d03d8ea257687ed80674ef1ed91ffd0e7b9b143",
+        "validation/near-vacuum-adapter-v3/contour/build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/near-vacuum-adapter-v3/contour/five_pinch_compare.rs": "eeb926874d2b9e21536f5c878a5c03123ede6181809074468eb9309787d6683a",
+        "validation/near-vacuum-adapter-v3/contour/independent-audit.json": "f14d2a346ff571bd53500e24a96f9b34b5371f7c9d5246bfbb04ca9671c1d1df",
+        "validation/near-vacuum-adapter-v3/contour/output.json": "3abdf572b4bd77a0f6d7fff6891105c03f1afb2baae4ab5dbde7b802ae9dd62f",
+        "validation/near-vacuum-adapter-v3/contour/run.json": "3f6c09c949f0d22ed5ce72bee35f64632f3cfdd4b4b0f5b33dba1ad1a39e51f8",
+        "validation/near-vacuum-adapter-v3/contour/run.log": "100c1bde0ec08445ed4e4ad13ab61493de4a9e4915fa498859807d90fe4e1558",
+        "validation/near-vacuum-adapter-v3/build.log": "f6d58d3342eec6cbd80b261f1ca51dedaddb9f137008fc78edfe8fdbc930a72d",
+        "validation/near-vacuum-adapter-v3/driver-build.log": "501e271e08537b8cffd93d0d193c437c0ffe9397d46420f5fc0e3631d1870b2c"
+      },
+      "accuracy_contract": "Exact explicit Rational budgets are authoritative; the binary constructor used by qualification derives absolute and relative budgets2^-requested_bits. Certificates enclose the function of exact represented master inputs.",
+      "remaining_limits": [
+        "N2 is still prepared for valid opt-in D0 requests within supported shapes; the normal public master API is unchanged and incurs no new work.",
+        "Shared symbolic-preparation/evaluator errors still return whole-call errors even when ordinary fallback is allowed.",
+        "Finite order2/4 and bounded shape/degree/resource domain remain explicit; no general D0 or requested256-bit guarantee.",
+        "No production geometry/shift rounding, Gauss node/weight intervals, quadrature truncation or public E6/core certification.",
+        "Retained dependency archives precede default allocator-stack changes; all durations are diagnostic, not performance gates."
+      ]
+    }
+  },
+  "planar_clean_candidate_qualification": {
+    "source": "validation/planar-adoption/qualification.json",
+    "sha256": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+    "summary": {
+      "status": "mixed-rank7-qualification-incomplete",
+      "production_promoted": false,
+      "automatic_workspace_fallback": false,
+      "base_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+      "small_tests_passed": 9,
+      "mixed_rank7": {
+        "status": "timeout",
+        "artifact_status": "primary_complete",
+        "artifact": "mixed-rank7.json",
+        "artifact_sha256": "0f68d0dd5ea589fe49d84e8217ddfd93bddc644054d7e0969951c1466c96c4d9",
+        "elapsed_seconds": 606.3596943030134,
+        "timeout_seconds": 600.0,
+        "working_precision": 128,
+        "requested_precision": 53,
+        "shape": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "components": 4,
+        "moments": 330,
+        "complex_slots_per_successful_lane": 5280,
+        "rows": 3,
+        "primary_statuses": [
+          "Success",
+          "InvalidInput(\"planar coordinate determinant is certified nonzero in Taylor component 3; transverse jets and nonplanar points require the ordinary interface\")",
+          "Success"
+        ]
+      },
+      "scope": "Clean private standalone API. Primary mixed rank-seven values exist, but the bounded test did not finish independent boxes; no mixed rank-seven numerical agreement or performance claim."
+    },
+    "separate_completed_followup": "planar_mixed_rank7_followup"
+  },
+  "cli_coefficient_stack_quiet_timing": {
+    "source": "validation/cli-coefficient-stack/warm-quiet254/results.json",
+    "sha256": "400617d807276230ef0bdfc65569dda61af51d62562c257112288d087b0c89df",
+    "snapshot": {
+      "status": "passed",
+      "scope": "quiet paired f64 coefficient evaluation diagnostic; opt2 caller and frozen6b24opt3 dependencies, no IREGI/end-to-end gate",
+      "cpu": 254,
+      "allocation_detail": "Each fixed block times N public output allocations and N-1 predecessor drops; final output survives for exact comparison and is dropped outside the timer. Both variants follow the same policy.",
+      "platform": "Linux-6.18.45-x86_64-with-glibc2.42",
+      "binary_sha256": "74e250011b4c2fe5d9dfb765def25cdc100e5bb421e81b37416b929fced1cd4d",
+      "compile_manifest_sha256": "70f3f6fb3b9a43476f07733848641990c7c0c7d6994b92cf8922aa8b7bb50ba8",
+      "runner_sha256": "5793b0c16d6bb3c1fc94b1c41a4dcf9e07c4825337548748ea4c78db615d5eac",
+      "analysis_helper_sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+      "source_hashes": {
+        "source/baseline.rs": "c3605c42dfdbe2bd9e8f87361f5f0876b552337563c8abf755314d8c18a38da2",
+        "source/candidate.rs": "ea460cdc8d8406c0676e20ad7ceb9e0b4126a2b0682ac2cfd6f8bf7851ee02c8",
+        "source/input.rs": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb",
+        "source/proof.rs": "82f11e2e81b22104f759129620bd54ea7a1c53bf1084092215d33e3612122988",
+        "source/warm.rs": "a68e9bf2f681cddbf2215337166c2e3b4b848ad1fa65026805c5a27e2b571313"
+      },
+      "assets": {
+        "assets/examples/graphs/gggg_up_box.dot": "2fca7b55d1bb1408750c2a71d29a8a1c4a44502f3e7927d08809d334ef2505d5",
+        "assets/examples/graphs/ggh_top_triangle.dot": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+        "assets/examples/graphs/gghh_top_box.dot": "6efba48e58fd1abc2ac726bc9712117a671958edceff4487ba71ba7eb0777974",
+        "assets/examples/graphs/gghhh_top_pentagon.dot": "2dd4f92b2e4b7742784ea48ef347d21dc10ee9fc39f285703acccfc0889257ed",
+        "assets/fixtures/models/sm.json": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+        "assets/validation/physical/gggg-up-cli-input.json": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+        "assets/validation/physical/ggh-cli-input.json": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+        "assets/validation/physical/gghh-cli-input.json": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+        "assets/validation/physical/gghhh-cli-input.json": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed"
+      },
+      "rows": [
+        {
+          "case": "ggh",
+          "rows": 1,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            1241.4490947470974,
+            1239.4047657708857,
+            1228.381748802468,
+            1220.8470000811885,
+            1227.410733133068,
+            1217.4675245595517,
+            1218.3439555086466,
+            1218.2806283997727,
+            1217.6416741089552,
+            1232.5703093285704,
+            1230.1086709425997,
+            1217.7922789640334,
+            1219.4026548672566,
+            1221.5805390923115,
+            1227.93115206625,
+            1216.6905496468296,
+            1225.918486644475,
+            1220.6124056182512,
+            1214.4062677600066,
+            1216.3897052853779,
+            1219.3507347568402
+          ],
+          "candidate_ns_per_batch": [
+            1201.4148737517253,
+            1211.604043192336,
+            1197.0838272306569,
+            1192.8746042055695,
+            1177.9634651294957,
+            1174.3282049200293,
+            1180.591946090769,
+            1182.1101729317204,
+            1178.1732970690914,
+            1193.1814971178046,
+            1191.2431192660551,
+            1173.3161890070635,
+            1190.5343021839733,
+            1170.0682390192417,
+            1192.5319883088414,
+            1182.488917755947,
+            1170.0227328083138,
+            1180.1319720711213,
+            1170.8866201185353,
+            1177.9236421206463,
+            1172.6642445400666
+          ],
+          "baseline_median_ns": 1220.6124056182512,
+          "candidate_median_ns": 1180.591946090769,
+          "candidate_over_baseline": {
+            "samples": [
+              0.9677520236916941,
+              0.9775692950791113,
+              0.9745210138441708,
+              0.9770877137972581,
+              0.9597141635894335,
+              0.9645663487778622,
+              0.9690136687204094,
+              0.9703102432847819,
+              0.9675862136792043,
+              0.9680433546770876,
+              0.9684047819557576,
+              0.9634780982559641,
+              0.9763258243140156,
+              0.957831433602122,
+              0.9711717031546582,
+              0.971889621481148,
+              0.9544049996430378,
+              0.9668359641760103,
+              0.9641638479668391,
+              0.9683768589970867,
+              0.9617120087879525
+            ],
+            "median": 0.9680433546770876,
+            "ci99": [
+              0.9641638479668391,
+              0.97117529274629
+            ],
+            "relative_ci_width": 0.007242903683574947,
+            "classification": "improvement",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "ggh",
+          "rows": 32,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            47277.34782608696,
+            48674.17391304348,
+            44827.323838080956,
+            46404.78110944528,
+            44331.83508245877,
+            43685.145427286356,
+            46270.31184407796,
+            46571.497751124436,
+            43634.605697151426,
+            44955.434782608696,
+            47773.332833583205,
+            47603.331334332834,
+            45344.8215892054,
+            45747.16191904048,
+            43817.39580209895,
+            43799.83808095952,
+            44042.22188905547,
+            45911.68965517241,
+            43692.95652173913,
+            48261.025487256375,
+            44735.82308845577
+          ],
+          "candidate_ns_per_batch": [
+            44564.06896551724,
+            47486.47826086957,
+            44952.04647676162,
+            47711.69715142429,
+            43780.72263868066,
+            45029.66266866567,
+            44549.5712143928,
+            45927.253373313346,
+            43480.736131934034,
+            45403.12743628186,
+            44247.47226386807,
+            47234.48425787107,
+            43837.95052473763,
+            46128.15292353823,
+            44084.740629685155,
+            44723.66416791604,
+            48659.88755622189,
+            46900.92953523238,
+            43506.44827586207,
+            46336.93853073463,
+            48330.785607196405
+          ],
+          "baseline_median_ns": 45344.8215892054,
+          "candidate_median_ns": 45029.66266866567,
+          "candidate_over_baseline": {
+            "samples": [
+              0.9426093259175472,
+              0.975599058870609,
+              1.0027822905318007,
+              1.028163392019815,
+              0.9875684721204745,
+              1.0307774468467148,
+              0.9628111296184101,
+              0.986166552313737,
+              0.9964736804020796,
+              1.0099585880069468,
+              0.9261960520527769,
+              0.9922516541148929,
+              0.9667686185179195,
+              1.0083281888649616,
+              1.0061013399516865,
+              1.0210919977660402,
+              1.1048463376529583,
+              1.0215465796944052,
+              0.9957313887471939,
+              0.960131660338842,
+              1.0803598161507466
+            ],
+            "median": 0.9964736804020796,
+            "ci99": [
+              0.975599058870609,
+              1.0210919977660402
+            ],
+            "relative_ci_width": 0.04565392924083518,
+            "classification": "inconclusive-noise",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "gghh",
+          "rows": 1,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            20442.589846359384,
+            20273.611222444888,
+            20348.160988643955,
+            20202.56245824983,
+            20137.48496993988,
+            20237.265197060788,
+            20156.563794255177,
+            20137.284569138275,
+            20149.23580494322,
+            20126.196392785572,
+            20196.377421509686,
+            20279.79759519038,
+            20260.278557114227,
+            20552.570474281896,
+            20591.067468269874,
+            20137.872411489647,
+            20139.022044088175,
+            20118.70073480294,
+            20388.00734802939,
+            20368.45490981964,
+            20463.665330661323
+          ],
+          "candidate_ns_per_batch": [
+            19880.370073480295,
+            19674.77154308617,
+            19690.84368737475,
+            19688.271877087507,
+            19687.857715430862,
+            19713.034736138943,
+            19709.04676018704,
+            19683.529726118904,
+            19724.17034068136,
+            19872.300601202405,
+            19656.95657982632,
+            19994.712090848363,
+            19874.150968603873,
+            19957.812291249164,
+            19850.396793587173,
+            19764.004008016032,
+            19735.96058784235,
+            19698.76686706747,
+            19876.288577154308,
+            19922.80160320641,
+            19935.728122912493
+          ],
+          "baseline_median_ns": 20237.265197060788,
+          "candidate_median_ns": 19735.96058784235,
+          "candidate_over_baseline": {
+            "samples": [
+              0.9724976249533658,
+              0.9704621109289231,
+              0.9676964762743894,
+              0.9745432995331584,
+              0.9776721246381961,
+              0.9740957853831959,
+              0.9777979501547935,
+              0.9774669299894196,
+              0.9789041396717599,
+              0.9873848099944916,
+              0.973291208100079,
+              0.9859423890695226,
+              0.9809416446362349,
+              0.9710616156856403,
+              0.9640295154282775,
+              0.9814345629054486,
+              0.9799860462259068,
+              0.9791271875221527,
+              0.9749009914436516,
+              0.9781204166645759,
+              0.9742012391613047
+            ],
+            "median": 0.9774669299894196,
+            "ci99": [
+              0.973291208100079,
+              0.9791271875221527
+            ],
+            "relative_ci_width": 0.005970513418941826,
+            "classification": "improvement",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "gghh",
+          "rows": 32,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            746379.6,
+            752644.65,
+            750325.875,
+            748666.375,
+            755194.65,
+            746787.375,
+            750013.375,
+            749805.875,
+            749697.875,
+            753936.375,
+            761796.65,
+            745231.125,
+            747531.625,
+            768954.45,
+            743995.6,
+            755073.4,
+            762673.925,
+            746362.375,
+            744111.85,
+            746196.125,
+            744270.35
+          ],
+          "candidate_ns_per_batch": [
+            760587.4,
+            784368.25,
+            809238.35,
+            812664.125,
+            774087.975,
+            781975.75,
+            767761.95,
+            791014.525,
+            797979.825,
+            788652.775,
+            779879.0,
+            778110.725,
+            759637.15,
+            787878.775,
+            771282.2,
+            779108.25,
+            752843.125,
+            783783.0,
+            790965.8,
+            761247.175,
+            759605.175
+          ],
+          "baseline_median_ns": 749697.875,
+          "candidate_median_ns": 779879.0,
+          "candidate_over_baseline": {
+            "samples": [
+              1.019035622088278,
+              1.0421495057461712,
+              1.0785158515291773,
+              1.0854823351723255,
+              1.0250178215642816,
+              1.0471196704416703,
+              1.0236643446525204,
+              1.0549590919116232,
+              1.0644018765559393,
+              1.0460468564074787,
+              1.0237364525034338,
+              1.0441200037102583,
+              1.0161939971435991,
+              1.0246104629474477,
+              1.0366757545340322,
+              1.031831143833169,
+              0.9871100877088462,
+              1.0501373411273578,
+              1.0629662731483176,
+              1.0201703674084344,
+              1.0206038370331425
+            ],
+            "median": 1.0366757545340322,
+            "ci99": [
+              1.0236643446525204,
+              1.0501373411273578
+            ],
+            "relative_ci_width": 0.025536428684720728,
+            "classification": "inconclusive-noise",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "gghhh",
+          "rows": 1,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            91732.01208459215,
+            93122.20241691843,
+            92268.39274924471,
+            92432.3504531722,
+            91974.85498489426,
+            92515.22054380664,
+            96338.3172205438,
+            92400.53776435045,
+            95155.98489425982,
+            96242.09063444109,
+            92890.90030211481,
+            91801.166163142,
+            92279.74924471299,
+            92101.13897280967,
+            93190.63141993957,
+            93631.41691842901,
+            92440.80664652569,
+            91914.64350453172,
+            92038.11782477342,
+            92545.94561933535,
+            91729.38670694864
+          ],
+          "candidate_ns_per_batch": [
+            89779.98187311178,
+            91207.11782477342,
+            90023.00302114803,
+            89568.01812688822,
+            89729.07552870091,
+            89925.48036253777,
+            89953.84894259818,
+            90453.58006042296,
+            90914.03625377643,
+            90931.22356495468,
+            88742.18429003021,
+            90757.57099697886,
+            90036.59818731117,
+            90690.16918429003,
+            90205.17824773413,
+            90581.91842900302,
+            89619.166163142,
+            89999.49848942598,
+            89608.50151057402,
+            90148.74320241692,
+            90009.70996978851
+          ],
+          "baseline_median_ns": 92432.3504531722,
+          "candidate_median_ns": 90023.00302114803,
+          "candidate_over_baseline": {
+            "samples": [
+              0.9787202943975516,
+              0.9794347154336946,
+              0.9756645839253003,
+              0.9690115818515823,
+              0.9755826801079251,
+              0.9720074149307938,
+              0.933728671393233,
+              0.9789291518097781,
+              0.9554211051969336,
+              0.9448176256929122,
+              0.9553377564584747,
+              0.9886320053461135,
+              0.9756918383961655,
+              0.9846802134668912,
+              0.9679640203450037,
+              0.9674308198061055,
+              0.9694762455484291,
+              0.9791638748507868,
+              0.9736020643226863,
+              0.9740971643773707,
+              0.981252717379938
+            ],
+            "median": 0.9740971643773707,
+            "ci99": [
+              0.9679640203450037,
+              0.9791638748507868
+            ],
+            "relative_ci_width": 0.011497676941644606,
+            "classification": "improvement",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "gghhh",
+          "rows": 32,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            3311118.7,
+            3306516.7,
+            3288086.7,
+            3279995.6,
+            3287553.6,
+            3279033.6,
+            3290595.7,
+            3287739.6,
+            3299705.7,
+            3309092.7,
+            3299413.7,
+            3309745.8,
+            3330385.8,
+            3311469.7,
+            3317630.7,
+            3312062.7,
+            3315759.8,
+            3342783.8,
+            3325643.7,
+            3332519.8,
+            3337192.8
+          ],
+          "candidate_ns_per_batch": [
+            3311235.7,
+            3370249.9,
+            3307661.7,
+            3277437.6,
+            3274288.6,
+            3279971.6,
+            3297268.7,
+            3311469.7,
+            3293686.7,
+            3286825.6,
+            3294308.6,
+            3290796.6,
+            3314312.7,
+            3288848.6,
+            3308184.7,
+            3293054.7,
+            3295372.6,
+            3295852.7,
+            3299141.7,
+            3310550.7,
+            3313200.7
+          ],
+          "baseline_median_ns": 3309745.8,
+          "candidate_median_ns": 3295852.7,
+          "candidate_over_baseline": {
+            "samples": [
+              1.0000353354894826,
+              1.0192750274027045,
+              1.0059533101727518,
+              0.9992201209050402,
+              0.9959650847974008,
+              1.0002860598927683,
+              1.0020279002978092,
+              1.0072177553234447,
+              0.9981758979293214,
+              0.9932709349605104,
+              0.9984527251008263,
+              0.9942747264759728,
+              0.9951738023864983,
+              0.9931688639639372,
+              0.9971527873792584,
+              0.9942609782115538,
+              0.993851424340207,
+              0.9859604740216822,
+              0.9920310164314956,
+              0.9934076610737617,
+              0.9928106940659827
+            ],
+            "median": 0.9959650847974008,
+            "ci99": [
+              0.9934076610737617,
+              1.0000353354894826
+            ],
+            "relative_ci_width": 0.006654524859241614,
+            "classification": "parity",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "gggg-up",
+          "rows": 1,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            498095.7966101695,
+            491079.6779661017,
+            551060.9322033898,
+            498205.83050847455,
+            493866.6271186441,
+            493889.0,
+            495083.74576271186,
+            492988.66101694916,
+            493283.9322033898,
+            512805.2033898305,
+            493369.0169491525,
+            492978.1525423729,
+            493625.4576271186,
+            494763.593220339,
+            492121.5423728814,
+            490433.0677966102,
+            485993.72881355934,
+            482993.5423728814,
+            489100.69491525425,
+            494817.3220338983,
+            497667.66101694916
+          ],
+          "candidate_ns_per_batch": [
+            477587.0847457627,
+            473653.5084745763,
+            481558.1186440678,
+            477350.30508474575,
+            473447.42372881353,
+            477371.83050847455,
+            479839.13559322036,
+            477022.0,
+            475564.0338983051,
+            504339.89830508473,
+            474881.9830508475,
+            474878.6101694915,
+            474568.42372881353,
+            473750.6440677966,
+            474154.5423728814,
+            500769.5423728814,
+            470131.6440677966,
+            469260.9491525424,
+            467671.4576271186,
+            478233.3728813559,
+            475683.8474576271
+          ],
+          "baseline_median_ns": 493625.4576271186,
+          "candidate_median_ns": 475564.0338983051,
+          "candidate_over_baseline": {
+            "samples": [
+              0.9588257680470695,
+              0.9645145782376922,
+              0.8738745400051887,
+              0.9581387367497417,
+              0.9586544174710451,
+              0.966556919689393,
+              0.9692080172294768,
+              0.9676125187463486,
+              0.9640776900517843,
+              0.9834921622698307,
+              0.9625289929784739,
+              0.9632853052827212,
+              0.9613937376935274,
+              0.957529314119957,
+              0.96349072647101,
+              1.021076218662641,
+              0.9673615443876482,
+              0.9715677498442885,
+              0.956186450947798,
+              0.9664847037197977,
+              0.9558263168750012
+            ],
+            "median": 0.96349072647101,
+            "ci99": [
+              0.9586544174710451,
+              0.9673615443876482
+            ],
+            "relative_ci_width": 0.009037063541332508,
+            "classification": "improvement",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        },
+        {
+          "case": "gggg-up",
+          "rows": 32,
+          "status": "passed",
+          "block_count": 21,
+          "baseline_ns_per_batch": [
+            16855719.5,
+            16894010.0,
+            16613309.0,
+            16679949.5,
+            16627459.0,
+            16751689.5,
+            16795504.5,
+            16324592.5,
+            16394938.5,
+            16818310.0,
+            16417708.0,
+            16434053.0,
+            16554783.5,
+            16535519.0,
+            16579098.5,
+            16754609.5,
+            16369893.0,
+            16263242.5,
+            15768636.0,
+            15751670.5,
+            16601429.0
+          ],
+          "candidate_ns_per_batch": [
+            15838200.5,
+            16160392.5,
+            16036246.5,
+            16091411.5,
+            16889675.0,
+            15893996.0,
+            16014356.5,
+            15634330.0,
+            15868625.5,
+            16705499.5,
+            15805075.5,
+            15979986.5,
+            15624535.0,
+            15921481.5,
+            16574918.5,
+            16082437.0,
+            15885596.0,
+            15615325.0,
+            15559219.5,
+            15113798.0,
+            17463707.0
+          ],
+          "baseline_median_ns": 16579098.5,
+          "candidate_median_ns": 15921481.5,
+          "candidate_over_baseline": {
+            "samples": [
+              0.9396336062664071,
+              0.9565752891113477,
+              0.9652650474387733,
+              0.9647158404166631,
+              1.0157700584316582,
+              0.94879958227497,
+              0.9534906498343053,
+              0.957716402415558,
+              0.9678978362742867,
+              0.9932923997714396,
+              0.962684651231463,
+              0.9723703884854211,
+              0.943807872812109,
+              0.962865544165865,
+              0.9997478753142096,
+              0.9598813389234766,
+              0.970415383900188,
+              0.9601606198763869,
+              0.9867194283640005,
+              0.9595044538291986,
+              1.0519399866119958
+            ],
+            "median": 0.962865544165865,
+            "ci99": [
+              0.957716402415558,
+              0.9723703884854211
+            ],
+            "relative_ci_width": 0.015219140573316433,
+            "classification": "improvement",
+            "interpretation": "paired diagnostic only;99%bootstrap median interval;2%maxrelativeCIwidth"
+          },
+          "exact_before_after_all_blocks": true
+        }
+      ],
+      "command": [
+        "timeout",
+        "180",
+        "taskset",
+        "-c",
+        "254",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-timing/probe",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-timing/quiet254/raw"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 20.083484579925425,
+      "log_sha256": "0310a7e818d3e1a6a657d336ed728783516b6836bd2cbd728c43067c43a7b158",
+      "source_binary_and_assets_unchanged": true
+    }
+  },
+  "cli_coefficient_stack_quiet_audit": {
+    "source": "validation/cli-coefficient-stack/warm-quiet254/audit.json",
+    "sha256": "f3325f4b37574bcbbf6b1d724b21c5fb211d96758408be7af9188d6d356aa2d1",
+    "snapshot": {
+      "status": "passed",
+      "raw_file_hashes": [
+        {
+          "path": "gggg-up.json",
+          "sha256": "c8994373294e161c976237b95b6eb950196bffdb8ae0a6dc13df02a87c0d19e1",
+          "bytes": 1177134
+        },
+        {
+          "path": "ggh.json",
+          "sha256": "8f34c825cf3c5717e1e3211e47b75f81ee34af65b0ef0c1fd9e3f29e32195bb3",
+          "bytes": 285630
+        },
+        {
+          "path": "gghh.json",
+          "sha256": "7613cf886f6a34f762919e7cd8c85e33a3167f4f3c94c6285a70e25447dec0e3",
+          "bytes": 1108933
+        },
+        {
+          "path": "gghhh.json",
+          "sha256": "0630babc3ffa61e805ee49edfe864e5389575bf6fa2d7ec827665410d989d1c0",
+          "bytes": 1197378
+        },
+        {
+          "path": "results.json",
+          "sha256": "42febf1b475fbbd20b4028029e6eb7ffaa0ae8720dc88563120062270ab14e4e",
+          "bytes": 4314034
+        }
+      ],
+      "raw_archive_sha256": "6ea868c0408a284668cf588045b3bd655bc1a9e15f505b2dd7ef0e47142f268c",
+      "raw_index_sha256": "eedfd34a798c7b09d969efdddaf0aa2b78387f6e7380b9ac8385307250f3c88f",
+      "results_sha256": "400617d807276230ef0bdfc65569dda61af51d62562c257112288d087b0c89df",
+      "source_scope": "private coefficient allocator; production unchanged; retained6b24fullbenchmark excludescandidate",
+      "families": 8,
+      "pairs": 168,
+      "gate_counts": {
+        "improvement": 5,
+        "inconclusive-noise": 2,
+        "parity": 1
+      },
+      "important_limitation": "ggHHbatch32 candidate/baseline CI is wholly above1 but width exceeds2%; retain possible regression, no blanketadoption.",
+      "row_audits": [
+        {
+          "case": "gggg-up",
+          "rows": 1,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 1,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 0.9645145782376922
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9601097528702984
+            }
+          },
+          "chronological_third_medians": [
+            0.9588257680470695,
+            0.9632853052827212,
+            0.9664847037197977
+          ],
+          "pilot_candidate_over_baseline": 0.8852911951701071
+        },
+        {
+          "case": "gggg-up",
+          "rows": 32,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 2,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 0.9652650474387733
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9598325368527927
+            }
+          },
+          "chronological_third_medians": [
+            0.9565752891113477,
+            0.962865544165865,
+            0.970415383900188
+          ],
+          "pilot_candidate_over_baseline": 0.9798290890504129
+        },
+        {
+          "case": "ggh",
+          "rows": 1,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 0,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 0.9683768589970867
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9678976891843909
+            }
+          },
+          "chronological_third_medians": [
+            0.9690136687204094,
+            0.9680433546770876,
+            0.9668359641760103
+          ],
+          "pilot_candidate_over_baseline": 0.9678763037886797
+        },
+        {
+          "case": "ggh",
+          "rows": 32,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 10,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 1.0083281888649616
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9711838386942643
+            }
+          },
+          "chronological_third_medians": [
+            0.9875684721204745,
+            0.9922516541148929,
+            1.0210919977660402
+          ],
+          "pilot_candidate_over_baseline": 1.0386800791279094
+        },
+        {
+          "case": "gghh",
+          "rows": 1,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 0,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 0.9745432995331584
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9777350373964948
+            }
+          },
+          "chronological_third_medians": [
+            0.9740957853831959,
+            0.9789041396717599,
+            0.9781204166645759
+          ],
+          "pilot_candidate_over_baseline": 0.9823259443547327
+        },
+        {
+          "case": "gghh",
+          "rows": 32,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 20,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 1.0421495057461712
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 1.0342534491836006
+            }
+          },
+          "chronological_third_medians": [
+            1.0421495057461712,
+            1.0441200037102583,
+            1.031831143833169
+          ],
+          "pilot_candidate_over_baseline": 0.9949275053925037
+        },
+        {
+          "case": "gghhh",
+          "rows": 1,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 0,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 0.9736020643226863
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9748808741513355
+            }
+          },
+          "chronological_third_medians": [
+            0.9755826801079251,
+            0.9756918383961655,
+            0.9736020643226863
+          ],
+          "pilot_candidate_over_baseline": 0.9797536420437096
+        },
+        {
+          "case": "gghhh",
+          "rows": 32,
+          "strict_raw_schema_passed": true,
+          "seeded_order_replayed": true,
+          "same_final_expected_bits_precision_metadata": true,
+          "slower_pairs": 6,
+          "order_strata": {
+            "0": {
+              "count": 11,
+              "median_candidate_over_baseline": 0.9942747264759728
+            },
+            "1": {
+              "count": 10,
+              "median_candidate_over_baseline": 0.9965589360883296
+            }
+          },
+          "chronological_third_medians": [
+            1.0002860598927683,
+            0.9951738023864983,
+            0.9934076610737617
+          ],
+          "pilot_candidate_over_baseline": 1.0091177272078613
+        }
+      ],
+      "cpu_cache_readonly_observation": [
+        {
+          "index": "index0",
+          "level": "1",
+          "type": "Data",
+          "size": "32K",
+          "ways_of_associativity": "8",
+          "coherency_line_size": "64",
+          "shared_cpu_list": "254"
+        },
+        {
+          "index": "index1",
+          "level": "1",
+          "type": "Instruction",
+          "size": "32K",
+          "ways_of_associativity": "8",
+          "coherency_line_size": "64",
+          "shared_cpu_list": "254"
+        },
+        {
+          "index": "index2",
+          "level": "2",
+          "type": "Unified",
+          "size": "1024K",
+          "ways_of_associativity": "8",
+          "coherency_line_size": "64",
+          "shared_cpu_list": "254"
+        },
+        {
+          "index": "index3",
+          "level": "3",
+          "type": "Unified",
+          "size": "16384K",
+          "ways_of_associativity": "16",
+          "coherency_line_size": "64",
+          "shared_cpu_list": "248-255"
+        }
+      ],
+      "independent_runner_review": "native_stack_batch reviewed parser and requested explicit elapsed/order/raw-hash checks; all independently verified here after frozen quietrun."
+    }
+  },
+  "native_dense_span_qualification": {
+    "source": "validation/native-dense-span/qualification.json",
+    "sha256": "4476d9696b31d6fef80e1d9b71ca858ae0dfa92c06f837077967012b0f082334",
+    "snapshot": {
+      "status": "dense-active-span-candidate-rejected",
+      "production_changes": false,
+      "domains": [
+        "f64"
+      ],
+      "higher_precision_and_dual_status": "unqualified for this dense-active-span candidate; allocator experiment does not cover this patch",
+      "source_audit": "check_dense_shape.py removes only span metadata and exact duplicate Add/Mul loop; ordered primitives, operand slots, helpers, labels and constants remain unchanged",
+      "qualifications": [
+        {
+          "family": "b0",
+          "status": "passed",
+          "physical_configurations": 24,
+          "physical_complex_outputs": 1104,
+          "fixture_configurations": 36,
+          "fixture_complex_outputs": 2856,
+          "malformed_shape_output_untouched": true,
+          "bad_lane_neighbors_unchanged": true,
+          "strict_old_new": "represented values, precision, signed zeros of all six complex outputs",
+          "interpreter_comparison": {
+            "interpreter_value_mismatches": 169,
+            "interpreter_precision_mismatches": 0,
+            "interpreter_signed_zero_mismatches": 0
+          },
+          "compile_elapsed_seconds": 33.11998037796002,
+          "binary_sha256": "b5a7fd83440e202341617b2cce34b2d2664985bed997cec8f265d391db1dd624"
+        },
+        {
+          "family": "c0",
+          "status": "passed",
+          "physical_configurations": 24,
+          "physical_complex_outputs": 1104,
+          "fixture_configurations": 36,
+          "fixture_complex_outputs": 2856,
+          "malformed_shape_output_untouched": true,
+          "bad_lane_neighbors_unchanged": true,
+          "strict_old_new": "represented values, precision, signed zeros of all six complex outputs",
+          "interpreter_comparison": {
+            "interpreter_value_mismatches": 302,
+            "interpreter_precision_mismatches": 0,
+            "interpreter_signed_zero_mismatches": 0
+          },
+          "compile_elapsed_seconds": 174.28826220193878,
+          "binary_sha256": "a6661c7153eb0e1751c19b75dd5ee1ebf29984802fdcd87295e00dbcc1d91a0e"
+        }
+      ],
+      "performance": {
+        "report": "target/native-dense-span/timing-fixed-summary.json",
+        "cpu": 254,
+        "groups": 12,
+        "improvements": 2,
+        "singleton_parity": 6,
+        "batch32_regressions": 4,
+        "inconclusive_noise": 0,
+        "decision": "Reject dense-loop adoption; B0 grouped batches and all C0 batch32 orders regress"
+      },
+      "before_after_qualification_csv_identical": {
+        "b0": true,
+        "c0": true
+      }
+    }
+  },
+  "native_dense_span_fixed_timing": {
+    "source": "validation/native-dense-span/timing-fixed-summary.json",
+    "sha256": "85d329fe6137dbcea11f236815c8f06ba8730b562586c28bfd023fea95d84456",
+    "snapshot": {
+      "scope": "isolated generated scalar-kernel microbenchmark, excludes preparation and public core; shared frozen opt2 runtime, generated generic kernels opt3/codegen16; NOT original IREGI or release end-to-end parity",
+      "protocol": "dense-span-fixed-loop-v2",
+      "measurement_overhead": "One Instant start/elapsed pair per fixed loop block; black_box input/output each call; no overhead subtraction; independent 2ms pilots choose shared iteration count targeting30ms mean cost",
+      "qualification": "24 f64 configurations before and after timing on exact measured binary; dense-span candidate qualifies f64 only; prior allocator-domain evidence does not qualify this candidate",
+      "cpu_affinity": [
+        254
+      ],
+      "cpu_affinity_by_family": {
+        "b0": [
+          254
+        ],
+        "c0": [
+          254
+        ]
+      },
+      "blocks": 21,
+      "block_target_ms": 30,
+      "quiet_window": "root coordinated; all project compute held; owned build stop/resume records retained when applicable",
+      "parser_controls": {
+        "complete": true,
+        "missing": true,
+        "duplicate": true,
+        "zero_iterations": true,
+        "invalid_variant": true,
+        "shape": true,
+        "varying_fixed_count": true
+      },
+      "qualified_families": [
+        "b0",
+        "c0"
+      ],
+      "invalid_neighbor_control": "Raw NaN lane classifications match; all valid neighbors match clean outputs; existing public guard reports NonFiniteInput for injected lane",
+      "rows": [
+        {
+          "family": "b0",
+          "order": "grouped",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              119.56264978557013,
+              119.0139576501009,
+              119.55646127648839,
+              119.58046638496468,
+              117.94921875,
+              117.67558416372351,
+              120.53192403506559,
+              119.38889852421796,
+              118.12833075807265,
+              119.21384649344097,
+              118.78400132441978,
+              116.86796007820384,
+              118.29183353304742,
+              118.83926431634713,
+              117.66489814581232,
+              118.47039369954591,
+              118.82172363773965,
+              118.19746862386478,
+              118.66937594601413,
+              118.41466164228052,
+              118.21426037462159
+            ],
+            "unit": "ns/batch",
+            "median_ns": 118.66937594601413,
+            "ci99_ns": [
+              118.19746862386478,
+              119.21384649344097
+            ],
+            "minimum_ns": 116.86796007820384,
+            "maximum_ns": 120.53192403506559,
+            "relative_mad": 0.004559265468688517
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              121.02219979818365,
+              119.65563509081736,
+              120.47350766271443,
+              120.10531108097881,
+              117.88063272578204,
+              117.79489625378406,
+              121.12306855449042,
+              119.59469995585268,
+              118.11465297048436,
+              118.35245727169526,
+              117.97413045534813,
+              117.5700208123108,
+              117.58102216826438,
+              118.48521458753784,
+              117.92395228935419,
+              117.63774359863774,
+              118.60807817230071,
+              117.78000047300706,
+              117.43525321644803,
+              117.49284182643794,
+              118.04981158551968
+            ],
+            "unit": "ns/batch",
+            "median_ns": 118.04981158551968,
+            "ci99_ns": [
+              117.78000047300706,
+              119.59469995585268
+            ],
+            "minimum_ns": 117.43525321644803,
+            "maximum_ns": 121.12306855449042,
+            "relative_mad": 0.00397111533647545
+          },
+          "ratio": {
+            "samples": [
+              1.0122074077082697,
+              1.005391615012106,
+              1.0076704042293896,
+              1.004389050418356,
+              0.9994185122636264,
+              1.0010139069281743,
+              1.0049044643081684,
+              1.0017237903538658,
+              0.9998842124704505,
+              0.9927744196913141,
+              0.9931819869675905,
+              1.0060072986097914,
+              0.9939910360372894,
+              0.9970207680866585,
+              1.0022016263781646,
+              0.9929716608942833,
+              0.9982019662827792,
+              0.9964680449106215,
+              0.9896003267925877,
+              0.9922153236511597,
+              0.9986088921202843
+            ],
+            "median": 0.9994185122636264,
+            "ci99": [
+              0.9939910360372894,
+              1.004389050418356
+            ],
+            "gate": "parity",
+            "relative_ci_width": 0.010404064216816989,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "b0",
+          "order": "grouped",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              11129.777570093458,
+              11160.734205607476,
+              11158.293084112149,
+              11129.39214953271,
+              11144.319252336449,
+              11129.01121495327,
+              11156.289719626167,
+              11156.521121495327,
+              11381.04523364486,
+              11388.985794392524,
+              11220.46168224299,
+              11126.999626168224,
+              11114.401495327103,
+              11256.054579439253,
+              11172.71214953271,
+              11263.69906542056,
+              11204.74953271028,
+              11144.35663551402,
+              11159.911775700935,
+              11158.70093457944,
+              11118.887476635515
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11158.293084112149,
+            "ci99_ns": [
+              11129.777570093458,
+              11204.74953271028
+            ],
+            "minimum_ns": 11114.401495327103,
+            "maximum_ns": 11388.985794392524,
+            "relative_mad": 0.0025900856306229573
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              11255.385420560748,
+              11272.891962616823,
+              11281.362990654206,
+              11292.420934579439,
+              11277.291962616822,
+              11226.708785046729,
+              11260.518130841121,
+              11243.90878504673,
+              11499.640373831775,
+              11249.47476635514,
+              11252.394392523365,
+              11253.217196261683,
+              11453.699813084113,
+              11290.974205607477,
+              11385.097570093458,
+              11279.773831775701,
+              11473.008224299065,
+              11271.497196261682,
+              11358.488224299066,
+              11304.233644859813,
+              11300.312523364486
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11279.773831775701,
+            "ci99_ns": [
+              11255.385420560748,
+              11304.233644859813
+            ],
+            "minimum_ns": 11226.708785046729,
+            "maximum_ns": 11499.640373831775,
+            "relative_mad": 0.002168466624322451
+          },
+          "ratio": {
+            "samples": [
+              1.011285746698551,
+              1.010049317091791,
+              1.0110294563527187,
+              1.0146484895901142,
+              1.0119318827170618,
+              1.008778638839198,
+              1.0093425694235598,
+              1.0078328775251482,
+              1.0104204084732324,
+              0.9877503554261985,
+              1.002845935504678,
+              1.0113433606842785,
+              1.030527808258471,
+              1.0031022971612105,
+              1.0190092985228865,
+              1.0014271303114348,
+              1.0239415161227523,
+              1.0114085150813015,
+              1.0177937292506651,
+              1.0130420835842446,
+              1.0163168344953761
+            ],
+            "median": 1.011285746698551,
+            "ci99": [
+              1.008778638839198,
+              1.0146484895901142
+            ],
+            "gate": "regression",
+            "relative_ci_width": 0.005804344390375352,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "b0",
+          "order": "homogeneous",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              117.19935716372845,
+              117.54738872114542,
+              117.26457582546021,
+              117.65382682380442,
+              117.45984221291516,
+              117.30272134021622,
+              117.91676633875524,
+              118.24368169864614,
+              118.22622382390182,
+              118.32623745982274,
+              118.14670692509983,
+              118.4857387747151,
+              118.22447063407033,
+              117.44297652673615,
+              118.2560280510373,
+              118.49399824681016,
+              119.10406934839779,
+              118.0267887406253,
+              118.58321612934645,
+              118.11896756598811,
+              118.00259861692803
+            ],
+            "unit": "ns/batch",
+            "median_ns": 118.11896756598811,
+            "ci99_ns": [
+              117.54738872114542,
+              118.25637909808118
+            ],
+            "minimum_ns": 117.19935716372845,
+            "maximum_ns": 119.10406934839779,
+            "relative_mad": 0.0031051000214854397
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              117.89448524398559,
+              118.34599006525762,
+              117.13944092724262,
+              117.97715398850687,
+              118.22158761079186,
+              118.02791857407227,
+              117.4487815330671,
+              116.83091458069543,
+              118.33679555858576,
+              117.23430408103633,
+              118.14651212622967,
+              118.70063699230545,
+              118.34657056589072,
+              117.63750267848447,
+              119.43448719197428,
+              118.92684133632025,
+              117.77849810071102,
+              117.910649654232,
+              117.75761566182916,
+              118.10731859355215,
+              117.96316742962891
+            ],
+            "unit": "ns/batch",
+            "median_ns": 117.97715398850687,
+            "ci99_ns": [
+              117.75761566182916,
+              118.33679555858576
+            ],
+            "minimum_ns": 116.83091458069543,
+            "maximum_ns": 119.43448719197428,
+            "relative_mad": 0.0028789583282835623
+          },
+          "ratio": {
+            "samples": [
+              1.0059311594967713,
+              1.0067938671611558,
+              0.998932884058662,
+              1.0027481228059556,
+              1.0064851559777843,
+              1.0061822711832298,
+              0.9960312276174222,
+              0.9880520709634933,
+              1.000935255572813,
+              0.9907718406143255,
+              0.9999983512120207,
+              1.0018137053438891,
+              1.001032780533214,
+              1.0016563455516987,
+              1.0099653198264733,
+              1.003652869309115,
+              0.9888704789438447,
+              0.999015993846545,
+              0.9930377966253103,
+              0.9999013793239476,
+              0.9996658447545963
+            ],
+            "median": 1.000935255572813,
+            "ci99": [
+              0.9960312276174222,
+              1.0059311594967713
+            ],
+            "gate": "parity",
+            "relative_ci_width": 0.009890681564297083,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "b0",
+          "order": "homogeneous",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              12259.266181229774,
+              12303.153721682847,
+              12125.15574433657,
+              11934.317556634303,
+              11897.468851132686,
+              11965.854773462783,
+              11942.541666666666,
+              11876.809466019418,
+              11876.121359223302,
+              11905.749595469255,
+              11871.206310679612,
+              11922.027912621359,
+              11867.945792880259,
+              11899.794902912621,
+              11846.323624595469,
+              11894.014158576052,
+              11855.012944983819,
+              11903.370954692557,
+              11869.15574433657,
+              11874.818770226537,
+              11887.290453074434
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11897.468851132686,
+            "ci99_ns": [
+              11874.818770226537,
+              11934.317556634303
+            ],
+            "minimum_ns": 11846.323624595469,
+            "maximum_ns": 12303.153721682847,
+            "relative_mad": 0.0022074056912175315
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              12216.551779935275,
+              12192.364886731391,
+              11878.38713592233,
+              12064.601132686084,
+              11701.23786407767,
+              11687.597491909386,
+              12165.78721682848,
+              11675.51779935275,
+              11613.960355987056,
+              11618.633090614887,
+              11646.32281553398,
+              11609.24352750809,
+              11613.838996763754,
+              11650.760922330097,
+              11618.729773462783,
+              11611.581715210355,
+              11599.19498381877,
+              11613.519417475729,
+              11630.355987055016,
+              11599.048948220065,
+              11610.421116504855
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11630.355987055016,
+            "ci99_ns": [
+              11613.519417475729,
+              11701.23786407767
+            ],
+            "minimum_ns": 11599.048948220065,
+            "maximum_ns": 12216.551779935275,
+            "relative_mad": 0.0018152891941076688
+          },
+          "ratio": {
+            "samples": [
+              0.9965157456683745,
+              0.9909950865072746,
+              0.9796482112380701,
+              1.0109167177288119,
+              0.9835064928927018,
+              0.9767457246622698,
+              1.0186933030164695,
+              0.9830517053218223,
+              0.9779253684509847,
+              0.9758842143829709,
+              0.9810563906261723,
+              0.9737641626570814,
+              0.9785888138898522,
+              0.9790724140529876,
+              0.9807878073953549,
+              0.9762542368286949,
+              0.9784211149872011,
+              0.975649625780791,
+              0.9798806450580533,
+              0.976776923728899,
+              0.9767087935082824
+            ],
+            "median": 0.9790724140529876,
+            "ci99": [
+              0.9767457246622698,
+              0.9830517053218223
+            ],
+            "gate": "improvement",
+            "relative_ci_width": 0.006440770436425733,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "b0",
+          "order": "interleaved",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              118.04333865262684,
+              118.64881014781423,
+              119.18062690009435,
+              118.56463329877734,
+              119.50343812729807,
+              119.42958924959134,
+              119.3548784133751,
+              120.75972324142992,
+              120.19591695689819,
+              121.39575155404907,
+              120.22251342442138,
+              119.51849910503857,
+              119.7219912018109,
+              119.37969272343945,
+              120.16691321786196,
+              120.48160572775312,
+              120.94679153416966,
+              120.80212228162748,
+              120.54656323164552,
+              119.84254891226271,
+              119.07385276040272
+            ],
+            "unit": "ns/batch",
+            "median_ns": 119.7219912018109,
+            "ci99_ns": [
+              119.3548784133751,
+              120.48193051527252
+            ],
+            "minimum_ns": 118.04333865262684,
+            "maximum_ns": 121.39575155404907,
+            "relative_mad": 0.004521845120367098
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              118.79255143601512,
+              118.63409473001674,
+              120.08999701032408,
+              118.92079300182876,
+              119.80426552981328,
+              118.79417828563442,
+              118.79794450074354,
+              120.18970464331613,
+              119.57277919496181,
+              120.14039440425854,
+              121.70773005944407,
+              120.89806369951039,
+              119.56811995977527,
+              118.84500277612763,
+              120.36415417409232,
+              120.87515579317655,
+              119.9929684375643,
+              120.03389205328612,
+              120.43186839213676,
+              120.80223876250713,
+              118.96311438810653
+            ],
+            "unit": "ns/batch",
+            "median_ns": 119.9929684375643,
+            "ci99_ns": [
+              118.84500277612763,
+              120.36415417409232
+            ],
+            "minimum_ns": 118.63409473001674,
+            "maximum_ns": 121.70773005944407,
+            "relative_mad": 0.006744314566764932
+          },
+          "ratio": {
+            "samples": [
+              1.0063469297966319,
+              0.9998759750074261,
+              1.007630183981093,
+              1.0030039286854953,
+              1.002517311696043,
+              0.9946796186108535,
+              0.9953337985004461,
+              0.9952797291777974,
+              0.9948156495019724,
+              0.989658969661458,
+              1.012353897724459,
+              1.011542686737217,
+              0.9987147620876414,
+              0.995521097976433,
+              1.0016413915523714,
+              1.003266474272535,
+              0.9921136965726297,
+              0.993640589967862,
+              0.9990485432646606,
+              1.0080079225530074,
+              0.9990700026099012
+            ],
+            "median": 0.9990700026099012,
+            "ci99": [
+              0.9952797291777974,
+              1.003266474272535
+            ],
+            "gate": "parity",
+            "relative_ci_width": 0.007994179660958296,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "b0",
+          "order": "interleaved",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              11609.778463913546,
+              11616.702045542263,
+              11598.689695098417,
+              11519.295638749518,
+              11568.133925125434,
+              11558.658818988808,
+              11570.7583944423,
+              11549.751061366267,
+              11659.15322269394,
+              11566.072558857584,
+              11575.096487842531,
+              11668.771130837515,
+              11544.432265534542,
+              11561.985719799306,
+              11539.140872250096,
+              11540.63489000386,
+              11510.12157468159,
+              11510.518718641451,
+              11469.57699729834,
+              11485.995368583559,
+              11511.803936703975
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11558.658818988808,
+            "ci99_ns": [
+              11519.295638749518,
+              11598.689695098417
+            ],
+            "minimum_ns": 11469.57699729834,
+            "maximum_ns": 11668.771130837515,
+            "relative_mad": 0.0034055145026534997
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              11511.885372443072,
+              11580.098417599382,
+              11891.087610961018,
+              11601.773446545736,
+              11530.54226167503,
+              11571.57661134697,
+              11499.554226167504,
+              11462.197607101505,
+              11492.591277499036,
+              11480.055962948669,
+              11551.572365881899,
+              11500.908529525279,
+              11524.791586260131,
+              11483.367039752991,
+              11455.694326514858,
+              11458.229641065225,
+              11462.031648012351,
+              11482.406020841374,
+              11526.5129293709,
+              11494.081049787726,
+              11493.57545349286
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11499.554226167504,
+            "ci99_ns": [
+              11482.406020841374,
+              11530.54226167503
+            ],
+            "minimum_ns": 11455.694326514858,
+            "maximum_ns": 11891.087610961018,
+            "relative_mad": 0.0023443259341349807
+          },
+          "ratio": {
+            "samples": [
+              0.9915680482814764,
+              0.9968490516672134,
+              1.0252095644895274,
+              1.0071599697049856,
+              0.996750412495765,
+              1.0011175857476597,
+              0.9938461969520513,
+              0.9924194509648241,
+              0.9857140615606029,
+              0.9925630247025347,
+              0.9979676953893784,
+              0.9856143719479922,
+              0.9982986881621674,
+              0.9932002441490925,
+              0.9927683918015149,
+              0.9928595567120826,
+              0.9958219445070832,
+              0.9975576515283756,
+              1.004964082989806,
+              1.0007039599916854,
+              0.9984165398132785
+            ],
+            "median": 0.996750412495765,
+            "ci99": [
+              0.9927683918015149,
+              0.9984165398132785
+            ],
+            "gate": "improvement",
+            "relative_ci_width": 0.005666562000833491,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "c0",
+          "order": "grouped",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              3040.447151995126,
+              3046.9758351101636,
+              3056.3951670220326,
+              3055.9037465732563,
+              3047.814498933902,
+              3057.6957051477307,
+              3048.5405624936543,
+              3059.574169966494,
+              3047.8276982434763,
+              3040.3447050461978,
+              3047.043862321048,
+              3047.0062950553356,
+              3049.6685957965274,
+              3062.6029038481065,
+              3081.956239212103,
+              3106.9567468778555,
+              3085.132196162047,
+              3048.0591938267844,
+              3053.426236166108,
+              3060.4747690120826,
+              3049.6167123565842
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3049.6685957965274,
+            "ci99_ns": [
+              3047.814498933902,
+              3059.574169966494
+            ],
+            "minimum_ns": 3040.3447050461978,
+            "maximum_ns": 3106.9567468778555,
+            "relative_mad": 0.0020445338832301508
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              3060.1853995329475,
+              3059.943750634582,
+              3052.160219311605,
+              3052.0179713676516,
+              3049.8909533962837,
+              3053.36633160727,
+              3059.904051172708,
+              3054.010051781907,
+              3097.988323687684,
+              3051.1062036755,
+              3054.336988526754,
+              3057.735404609605,
+              3061.0656919484213,
+              3063.0435577215962,
+              3064.1999187734796,
+              3052.493248045487,
+              3056.85308153112,
+              3067.222662199208,
+              3063.347141841811,
+              3063.36643314042,
+              3046.42654076556
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3057.735404609605,
+            "ci99_ns": [
+              3052.493248045487,
+              3063.0435577215962
+            ],
+            "minimum_ns": 3046.42654076556,
+            "maximum_ns": 3097.988323687684,
+            "relative_mad": 0.0017359752920376537
+          },
+          "ratio": {
+            "samples": [
+              1.0064918896961814,
+              1.0042559955267745,
+              0.9986143978513898,
+              0.9987284366498905,
+              1.0006812929274758,
+              0.9985841058241433,
+              1.0037275176256006,
+              0.9981814076484218,
+              1.0164578284635697,
+              1.003539565303711,
+              1.0023935087695621,
+              1.0035211970423825,
+              1.0037371589055948,
+              1.000143882144478,
+              0.9942386201943079,
+              0.9824704676410129,
+              0.9908337429864087,
+              1.0062871050572888,
+              1.0032491060560742,
+              1.0009448416819562,
+              0.9989539106412625
+            ],
+            "median": 1.0009448416819562,
+            "ci99": [
+              0.9986143978513898,
+              1.0037275176256006
+            ],
+            "gate": "parity",
+            "relative_ci_width": 0.005108293245828492,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "c0",
+          "order": "grouped",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              472975.1403508772,
+              474037.5964912281,
+              468830.7368421053,
+              472736.01754385966,
+              469645.3157894737,
+              473749.5263157895,
+              468231.4561403509,
+              471960.4035087719,
+              470656.36842105264,
+              472841.98245614034,
+              470358.84210526315,
+              476299.36842105264,
+              481988.3333333333,
+              506154.22807017545,
+              484747.8245614035,
+              472013.2105263158,
+              468831.8070175439,
+              473194.08771929826,
+              467155.29824561405,
+              474974.1052631579,
+              468895.49122807017
+            ],
+            "unit": "ns/batch",
+            "median_ns": 472736.01754385966,
+            "ci99_ns": [
+              469645.3157894737,
+              474037.5964912281
+            ],
+            "minimum_ns": 467155.29824561405,
+            "maximum_ns": 506154.22807017545,
+            "relative_mad": 0.005028547329537817
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              523017.98245614034,
+              517572.70175438595,
+              520250.5789473684,
+              515400.91228070174,
+              521258.6666666667,
+              516973.56140350876,
+              521812.8771929825,
+              515008.4736842105,
+              522172.1754385965,
+              516294.0701754386,
+              537425.3859649122,
+              526262.0175438597,
+              531754.4912280702,
+              518509.01754385966,
+              523604.1052631579,
+              515899.350877193,
+              520582.70175438595,
+              516610.56140350876,
+              522069.1929824561,
+              514297.94736842107,
+              522465.8771929825
+            ],
+            "unit": "ns/batch",
+            "median_ns": 520582.70175438595,
+            "ci99_ns": [
+              516610.56140350876,
+              522465.8771929825
+            ],
+            "minimum_ns": 514297.94736842107,
+            "maximum_ns": 537425.3859649122,
+            "relative_mad": 0.005803887640887238
+          },
+          "ratio": {
+            "samples": [
+              1.1058043813214766,
+              1.091838929201818,
+              1.1096767725845171,
+              1.0902509924217563,
+              1.1098985748222165,
+              1.0912381600122323,
+              1.1144336211289716,
+              1.0912111902935062,
+              1.1094552426654034,
+              1.0918955789280593,
+              1.1425859107048317,
+              1.104897575842762,
+              1.103251789416902,
+              1.024409140116817,
+              1.0801577206394095,
+              1.092976508648862,
+              1.1103826446120486,
+              1.0917519360680716,
+              1.1175495492464056,
+              1.0827915494118903,
+              1.1142480296080641
+            ],
+            "median": 1.103251789416902,
+            "ci99": [
+              1.0912381600122323,
+              1.1098985748222165
+            ],
+            "gate": "regression",
+            "relative_ci_width": 0.01691401272944845,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "c0",
+          "order": "homogeneous",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              3165.2642418032788,
+              3049.424590163934,
+              3060.0855532786886,
+              3053.022950819672,
+              3048.145901639344,
+              3054.7565573770494,
+              3058.71362704918,
+              3054.6388319672133,
+              3111.681045081967,
+              3071.4523565573772,
+              3045.9993852459015,
+              3052.5782786885247,
+              3058.3949795081967,
+              3049.0742827868853,
+              3065.3683401639346,
+              3053.151024590164,
+              3062.9216188524592,
+              3067.464651639344,
+              3098.5824795081967,
+              3056.2790983606556,
+              3044.448155737705
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3056.2790983606556,
+            "ci99_ns": [
+              3052.5782786885247,
+              3065.3683401639346
+            ],
+            "minimum_ns": 3044.448155737705,
+            "maximum_ns": 3165.2642418032788,
+            "relative_mad": 0.0022427625148495065
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              3061.6571721311475,
+              3116.7835040983605,
+              3052.11618852459,
+              3073.8929303278687,
+              3047.8303278688522,
+              3056.2607581967213,
+              3068.87243852459,
+              3062.495389344262,
+              3064.299590163934,
+              3050.1633196721314,
+              3057.555737704918,
+              3070.4482581967213,
+              3073.8919057377047,
+              3078.3867827868853,
+              3129.7343237704918,
+              3085.943237704918,
+              3068.6060450819673,
+              3060.971823770492,
+              3052.340573770492,
+              3064.5527663934427,
+              3059.0773565573772
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3064.299590163934,
+            "ci99_ns": [
+              3057.555737704918,
+              3073.8929303278687
+            ],
+            "minimum_ns": 3047.8303278688522,
+            "maximum_ns": 3129.7343237704918,
+            "relative_mad": 0.0026233831682178433
+          },
+          "ratio": {
+            "samples": [
+              0.9672674817148582,
+              1.0220890571131667,
+              0.9973957052457048,
+              1.0068358410154086,
+              0.9998964702541561,
+              1.000492412665762,
+              1.0033212692373592,
+              1.0025720086102583,
+              0.9847730361076308,
+              0.9930687393409197,
+              1.0037939444489032,
+              1.0058540610188296,
+              1.0050670127087378,
+              1.0096135735903449,
+              1.02099779747941,
+              1.0107404490805219,
+              1.0018558836747633,
+              0.9978833243064815,
+              0.985076432193264,
+              1.0027071048705025,
+              1.0048052060903392
+            ],
+            "median": 1.0027071048705025,
+            "ci99": [
+              0.9978833243064815,
+              1.0068358410154086
+            ],
+            "gate": "parity",
+            "relative_ci_width": 0.008928346737987109,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "c0",
+          "order": "homogeneous",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              252732.45217391304,
+              252693.32173913042,
+              252081.75652173912,
+              253258.88695652175,
+              255458.28695652174,
+              252474.88695652175,
+              252426.53043478262,
+              253018.19130434783,
+              251635.31304347827,
+              252415.75652173912,
+              252645.4,
+              253482.8,
+              252963.32173913042,
+              252735.40869565218,
+              252053.14782608696,
+              253262.88695652175,
+              253052.62608695653,
+              252576.79130434783,
+              252316.45217391304,
+              253072.71304347826,
+              252408.18260869564
+            ],
+            "unit": "ns/batch",
+            "median_ns": 252693.32173913042,
+            "ci99_ns": [
+              252415.75652173912,
+              253052.62608695653
+            ],
+            "minimum_ns": 251635.31304347827,
+            "maximum_ns": 255458.28695652174,
+            "relative_mad": 0.0012856278234087551
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              257275.86086956522,
+              254999.14782608696,
+              256493.3304347826,
+              255838.02608695652,
+              256134.46086956523,
+              255441.32173913042,
+              255296.72173913044,
+              254909.85217391304,
+              256300.2,
+              255692.98260869566,
+              256569.41739130433,
+              256893.3304347826,
+              256372.11304347825,
+              255382.54782608696,
+              257090.02608695652,
+              254995.32173913042,
+              256160.11304347825,
+              256364.53913043477,
+              258071.94782608695,
+              255646.8956521739,
+              259871.69565217392
+            ],
+            "unit": "ns/batch",
+            "median_ns": 256160.11304347825,
+            "ci99_ns": [
+              255441.32173913042,
+              256569.41739130433
+            ],
+            "minimum_ns": 254909.85217391304,
+            "maximum_ns": 259871.69565217392,
+            "relative_mad": 0.0028060235288303137
+          },
+          "ratio": {
+            "samples": [
+              1.0179771479941393,
+              1.0091249981245527,
+              1.017500567966183,
+              1.010183805044036,
+              1.002646905375822,
+              1.0117494251343877,
+              1.0113704027045183,
+              1.0074763828632771,
+              1.0185382842340405,
+              1.012983444980283,
+              1.0155317191261124,
+              1.0134546818749937,
+              1.0134754369958154,
+              1.010473954338636,
+              1.0199833975663932,
+              1.0068404605326404,
+              1.0122800027985241,
+              1.0149964207183344,
+              1.0228106237329575,
+              1.0101717114332014,
+              1.029569219849932
+            ],
+            "median": 1.012983444980283,
+            "ci99": [
+              1.0101717114332014,
+              1.017500567966183
+            ],
+            "gate": "regression",
+            "relative_ci_width": 0.0072349223171404384,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "c0",
+          "order": "interleaved",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              3052.498475609756,
+              3078.701829268293,
+              3060.1478658536585,
+              3065.3877032520327,
+              3048.1225609756098,
+              3059.526930894309,
+              3069.070731707317,
+              3051.5645325203254,
+              3044.731199186992,
+              3084.660162601626,
+              3093.155182926829,
+              3099.1927845528458,
+              3088.7131097560978,
+              3060.3420731707315,
+              3047.4517276422766,
+              3047.545325203252,
+              3056.603150406504,
+              3061.320630081301,
+              3052.6367886178864,
+              3056.025,
+              3057.2240853658536
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3059.526930894309,
+            "ci99_ns": [
+              3052.498475609756,
+              3069.070731707317
+            ],
+            "minimum_ns": 3044.731199186992,
+            "maximum_ns": 3099.1927845528458,
+            "relative_mad": 0.0026024933114924403
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              3058.556504065041,
+              3055.779979674797,
+              3051.7555894308944,
+              3053.070731707317,
+              3050.653048780488,
+              3062.9142276422763,
+              3060.8867886178864,
+              3051.023882113821,
+              3055.7912601626017,
+              3096.765955284553,
+              3120.9103658536587,
+              3090.160162601626,
+              3128.865650406504,
+              3094.352337398374,
+              3061.1732723577234,
+              3069.5127032520327,
+              3055.253556910569,
+              3051.9447154471545,
+              3079.7821138211384,
+              3054.745426829268,
+              3045.065548780488
+            ],
+            "unit": "ns/batch",
+            "median_ns": 3058.556504065041,
+            "ci99_ns": [
+              3053.070731707317,
+              3079.7821138211384
+            ],
+            "minimum_ns": 3045.065548780488,
+            "maximum_ns": 3128.865650406504,
+            "relative_mad": 0.0022235700485204583
+          },
+          "ratio": {
+            "samples": [
+              1.0019846130976608,
+              0.99255470296747,
+              0.9972575585263678,
+              0.995981920482147,
+              1.0008301791526613,
+              1.0011071308814978,
+              0.9973334133342447,
+              0.9998228284538168,
+              1.003632524598087,
+              1.0039245142235431,
+              1.0089730974637252,
+              0.9970854920686958,
+              1.0129997637280002,
+              1.0111132231020192,
+              1.0045026290624997,
+              1.0072082202903136,
+              0.9995584662353844,
+              0.9969372974062187,
+              1.0088924189423605,
+              0.9995812949269944,
+              0.9960230142620015
+            ],
+            "median": 1.0008301791526613,
+            "ci99": [
+              0.9972575585263678,
+              1.0045026290624997
+            ],
+            "gate": "parity",
+            "relative_ci_width": 0.007239060818755303,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "c0",
+          "order": "interleaved",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              483871.85714285716,
+              481732.01785714284,
+              475582.0,
+              486889.375,
+              478465.9464285714,
+              482635.60714285716,
+              475529.3214285714,
+              483188.28571428574,
+              476994.16071428574,
+              494036.91071428574,
+              496831.01785714284,
+              496201.73214285716,
+              498306.91071428574,
+              490413.3214285714,
+              482534.71428571426,
+              482716.125,
+              477040.39285714284,
+              480175.0535714286,
+              473570.75,
+              495114.03571428574,
+              475658.08928571426
+            ],
+            "unit": "ns/batch",
+            "median_ns": 482635.60714285716,
+            "ci99_ns": [
+              477040.39285714284,
+              490413.3214285714
+            ],
+            "minimum_ns": 473570.75,
+            "maximum_ns": 498306.91071428574,
+            "relative_mad": 0.011688831791686656
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              528383.8035714285,
+              520451.8214285714,
+              526098.9821428572,
+              530914.1785714285,
+              528419.3571428572,
+              524102.5535714286,
+              527040.6071428572,
+              524165.23214285716,
+              528784.1607142857,
+              523794.3214285714,
+              551436.2142857143,
+              539763.6785714285,
+              544705.3035714285,
+              531916.5,
+              531570.0892857143,
+              523045.9285714286,
+              528040.7678571428,
+              528849.0,
+              523007.1785714286,
+              521115.39285714284,
+              528082.9107142857
+            ],
+            "unit": "ns/batch",
+            "median_ns": 528082.9107142857,
+            "ci99_ns": [
+              524102.5535714286,
+              530914.1785714285
+            ],
+            "minimum_ns": 520451.8214285714,
+            "maximum_ns": 551436.2142857143,
+            "relative_mad": 0.007259445833096551
+          },
+          "ratio": {
+            "samples": [
+              1.0919911868638184,
+              1.08037623021958,
+              1.1062213921949466,
+              1.0904205469084811,
+              1.104403272766128,
+              1.0859177106182667,
+              1.1083240998883876,
+              1.0848053391195032,
+              1.1085757526306943,
+              1.060233173005762,
+              1.1099069793671226,
+              1.087790798795579,
+              1.0931120798437937,
+              1.0846289787775953,
+              1.1016204089535528,
+              1.083547661830084,
+              1.106909971909387,
+              1.1013670869957657,
+              1.1043907981466943,
+              1.0525158958690108,
+              1.1102153471357896
+            ],
+            "median": 1.0931120798437937,
+            "ci99": [
+              1.0846289787775953,
+              1.1062213921949466
+            ],
+            "gate": "regression",
+            "relative_ci_width": 0.01975315598052568,
+            "definition": "Dense-span native / original native SSA paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        }
+      ]
+    }
+  },
+  "native_d0_allocator_fixed_timing": {
+    "source": "validation/native-stack-batch/d0-timing-fixed-summary.json",
+    "sha256": "77e2d6118f7d7dcc088fb27ae0704041be3968ac949a3f7ec7d2310793098548",
+    "snapshot": {
+      "scope": "isolated generated scalar-kernel microbenchmark, excludes preparation and public core; shared frozen opt2 runtime, generated generic kernels opt3/codegen16; NOT original IREGI or release end-to-end parity",
+      "protocol": "fixed-loop-v2",
+      "measurement_overhead": "One Instant start/elapsed pair per fixed loop block; black_box input/output each call; no overhead subtraction; independent 2ms pilots choose shared iteration count targeting30ms mean cost",
+      "qualification": "24 f64 configurations before and after timing on exact measured binary; original three-domain qualifications retained separately; f64-only compilation changes code layout relative to original protocol",
+      "cpu_affinity": [
+        254
+      ],
+      "cpu_affinity_by_family": {
+        "d0": [
+          254
+        ]
+      },
+      "blocks": 21,
+      "block_target_ms": 30,
+      "quiet_window": "root coordinated; all project compute held; owned build stop/resume records retained when applicable",
+      "parser_controls": {
+        "complete": true,
+        "missing": true,
+        "duplicate": true,
+        "zero_iterations": true,
+        "invalid_variant": true,
+        "shape": true,
+        "varying_fixed_count": true
+      },
+      "qualified_families": [
+        "d0"
+      ],
+      "unsupported_visible": [],
+      "rows": [
+        {
+          "family": "d0",
+          "order": "grouped",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              59277.34541984733,
+              55581.833969465646,
+              55107.40648854962,
+              55751.89312977099,
+              55452.024809160306,
+              55075.364503816796,
+              54687.15648854962,
+              55411.64503816794,
+              54120.646946564884,
+              54030.3034351145,
+              54444.635496183204,
+              54514.59732824427,
+              54387.423664122136,
+              54520.05534351145,
+              54111.88740458015,
+              53385.12786259542,
+              53666.90648854962,
+              53841.12213740458,
+              53371.864503816796,
+              54071.23854961832,
+              53995.818702290075
+            ],
+            "unit": "ns/batch",
+            "median_ns": 54444.635496183204,
+            "ci99_ns": [
+              54030.3034351145,
+              55107.40648854962
+            ],
+            "minimum_ns": 53371.864503816796,
+            "maximum_ns": 59277.34541984733,
+            "relative_mad": 0.011084900344698508
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              55468.591603053435,
+              55123.95038167939,
+              54062.307251908394,
+              53635.30152671756,
+              52941.76908396946,
+              53617.954198473286,
+              53696.96183206107,
+              53465.96755725191,
+              53046.17748091603,
+              52492.45229007633,
+              54334.12022900763,
+              53298.6965648855,
+              53046.979007633585,
+              52730.8893129771,
+              51925.20038167939,
+              51872.62213740458,
+              51863.46183206107,
+              52345.46755725191,
+              52115.81106870229,
+              51848.919847328245,
+              53301.024809160306
+            ],
+            "unit": "ns/batch",
+            "median_ns": 53046.979007633585,
+            "ci99_ns": [
+              52345.46755725191,
+              53635.30152671756
+            ],
+            "minimum_ns": 51848.919847328245,
+            "maximum_ns": 55468.591603053435,
+            "relative_mad": 0.01225296589149684
+          },
+          "ratio": {
+            "samples": [
+              0.9357468896453207,
+              0.9917619920919162,
+              0.9810352309565071,
+              0.962035520513595,
+              0.9547310358128498,
+              0.9735378908796417,
+              0.9818934696907147,
+              0.9648868486114096,
+              0.9801467734354743,
+              0.9715372476690791,
+              0.997970134868782,
+              0.9776958682087007,
+              0.9753537754469366,
+              0.9671833416297645,
+              0.9595895259289057,
+              0.9716680321702369,
+              0.966395591352497,
+              0.9722209619566304,
+              0.976466000451892,
+              0.958900170184732,
+              0.9871324500706145
+            ],
+            "median": 0.9722209619566304,
+            "ci99": [
+              0.9648868486114096,
+              0.9801467734354743
+            ],
+            "gate": "improvement",
+            "relative_ci_width": 0.015695943022410796,
+            "definition": "Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "d0",
+          "order": "grouped",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              11853389.0,
+              11845975.333333334,
+              11747368.333333334,
+              11816188.666666666,
+              12087196.333333334,
+              12033646.0,
+              11960786.0,
+              12098236.666666666,
+              12065063.0,
+              12052979.333333334,
+              12043102.666666666,
+              12051463.0,
+              12037469.333333334,
+              12046412.666666666,
+              12047389.666666666,
+              11073362.333333334,
+              10344219.666666666,
+              11699785.0,
+              11802342.0,
+              11844242.0,
+              11793358.666666666
+            ],
+            "unit": "ns/batch",
+            "median_ns": 11960786.0,
+            "ci99_ns": [
+              11802342.0,
+              12047389.666666666
+            ],
+            "minimum_ns": 10344219.666666666,
+            "maximum_ns": 12098236.666666666,
+            "relative_mad": 0.009598923236873065
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              12025982.666666666,
+              12041926.333333334,
+              12125483.333333334,
+              11952616.0,
+              12254633.666666666,
+              12195063.666666666,
+              12275970.333333334,
+              12292630.333333334,
+              12347034.0,
+              12306514.0,
+              12167320.0,
+              12272184.0,
+              12947089.666666666,
+              16305132.333333334,
+              12032889.333333334,
+              12028399.333333334,
+              10980815.666666666,
+              10717401.333333334,
+              12093413.0,
+              12163663.333333334,
+              12115939.666666666
+            ],
+            "unit": "ns/batch",
+            "median_ns": 12163663.333333334,
+            "ci99_ns": [
+              12032889.333333334,
+              12275970.333333334
+            ],
+            "minimum_ns": 10717401.333333334,
+            "maximum_ns": 16305132.333333334,
+            "relative_mad": 0.010602644652830739
+          },
+          "ratio": {
+            "samples": [
+              1.0145607021474337,
+              1.0165415674510663,
+              1.0321872090217086,
+              1.0115457984957699,
+              1.0138524541767873,
+              1.013413861988849,
+              1.0263514733340546,
+              1.0160679338669465,
+              1.023370868432266,
+              1.0210350204422485,
+              1.0103143962790542,
+              1.0183148718126587,
+              1.0755657446050122,
+              1.353525965323342,
+              0.9987963921036395,
+              1.086246342461415,
+              1.0615412298378943,
+              0.9160340410813818,
+              1.0246621390906991,
+              1.0269684909623877,
+              1.0273527676989727
+            ],
+            "median": 1.0210350204422485,
+            "ci99": [
+              1.0138524541767873,
+              1.0273527676989727
+            ],
+            "gate": "regression",
+            "relative_ci_width": 0.013222184598857246,
+            "definition": "Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "d0",
+          "order": "homogeneous",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              53264.3315696649,
+              53455.56613756614,
+              53621.63492063492,
+              53640.31216931217,
+              53853.328042328045,
+              53496.11463844797,
+              53323.69664902998,
+              53364.70194003527,
+              53465.70899470899,
+              53649.62433862434,
+              53169.69135802469,
+              53869.88888888889,
+              54774.81481481482,
+              53386.29100529101,
+              53163.00705467372,
+              53318.38800705467,
+              53321.73897707231,
+              53483.08112874779,
+              53251.63315696649,
+              55298.51851851852,
+              55243.61552028219
+            ],
+            "unit": "ns/batch",
+            "median_ns": 53465.70899470899,
+            "ci99_ns": [
+              53321.73897707231,
+              53649.62433862434
+            ],
+            "minimum_ns": 53163.00705467372,
+            "maximum_ns": 55298.51851851852,
+            "relative_mad": 0.0032657039041689177
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              51904.449735449736,
+              51782.59788359788,
+              51845.68430335097,
+              51874.044091710755,
+              52315.73897707231,
+              51893.28571428572,
+              51797.32451499118,
+              51687.14638447972,
+              52157.606701940036,
+              51748.57671957672,
+              51797.94003527337,
+              51656.3897707231,
+              51892.10405643739,
+              51779.282186948854,
+              51911.50440917107,
+              51740.78130511464,
+              52014.608465608464,
+              51773.125220458554,
+              51935.137566137564,
+              52159.95238095238,
+              53334.10229276896
+            ],
+            "unit": "ns/batch",
+            "median_ns": 51874.044091710755,
+            "ci99_ns": [
+              51779.282186948854,
+              51935.137566137564
+            ],
+            "minimum_ns": 51656.3897707231,
+            "maximum_ns": 53334.10229276896,
+            "relative_mad": 0.0018267691756279224
+          },
+          "ratio": {
+            "samples": [
+              0.9744691842713437,
+              0.9687035724275573,
+              0.9668799614201894,
+              0.9670720022652682,
+              0.9714485785530801,
+              0.970038404938472,
+              0.971375350360925,
+              0.9685643225846068,
+              0.9755338081666811,
+              0.9645654998989623,
+              0.9742005024344704,
+              0.9589102713255764,
+              0.9473716019283054,
+              0.9698984741572909,
+              0.9764591449047346,
+              0.9704115829283643,
+              0.9754859737034103,
+              0.9680280965082597,
+              0.975277836325726,
+              0.9432432147976064,
+              0.9654346803783658
+            ],
+            "median": 0.9698984741572909,
+            "ci99": [
+              0.9668799614201894,
+              0.9744691842713437
+            ],
+            "gate": "improvement",
+            "relative_ci_width": 0.007824760068571364,
+            "definition": "Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "d0",
+          "order": "homogeneous",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              12442131.0,
+              12331367.333333334,
+              12362794.0,
+              12369210.666666666,
+              12254233.666666666,
+              12314334.0,
+              12263010.333333334,
+              12325327.0,
+              12304500.333333334,
+              12310924.0,
+              12262127.0,
+              12307680.666666666,
+              12331994.0,
+              12773699.0,
+              12620198.333333334,
+              12062906.333333334,
+              11541011.0,
+              11602951.333333334,
+              11392787.0,
+              11674618.0,
+              11368370.0
+            ],
+            "unit": "ns/batch",
+            "median_ns": 12307680.666666666,
+            "ci99_ns": [
+              12062906.333333334,
+              12331994.0
+            ],
+            "minimum_ns": 11368370.0,
+            "maximum_ns": 12773699.0,
+            "relative_mad": 0.004477962568739647
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              12606161.666666666,
+              12576528.0,
+              12573984.666666666,
+              12502714.666666666,
+              12506838.0,
+              12548751.333333334,
+              12562955.0,
+              12443457.666666666,
+              12475444.333333334,
+              12521378.0,
+              12623598.333333334,
+              12485644.333333334,
+              12651881.666666666,
+              12574158.333333334,
+              12850226.0,
+              12899423.0,
+              12033856.333333334,
+              11616791.333333334,
+              11940429.333333334,
+              11658708.0,
+              11911008.666666666
+            ],
+            "unit": "ns/batch",
+            "median_ns": 12521378.0,
+            "ci99_ns": [
+              12443457.666666666,
+              12576528.0
+            ],
+            "minimum_ns": 11616791.333333334,
+            "maximum_ns": 12899423.0,
+            "relative_mad": 0.006222983870731637
+          },
+          "ratio": {
+            "samples": [
+              1.013183486547977,
+              1.019881061040487,
+              1.0170827619279805,
+              1.0107932513721167,
+              1.020613637719383,
+              1.0190361357206434,
+              1.0244593014695058,
+              1.0095843839815906,
+              1.0138928030695327,
+              1.0170948988069457,
+              1.029478681254348,
+              1.014459561593002,
+              1.0259396547441286,
+              0.9843787874861725,
+              1.018226945456087,
+              1.0693461959789181,
+              1.0427038266693736,
+              1.0011927999698007,
+              1.0480692154898827,
+              0.9986372145110015,
+              1.0477323192917425
+            ],
+            "median": 1.018226945456087,
+            "ci99": [
+              1.013183486547977,
+              1.0259396547441286
+            ],
+            "gate": "regression",
+            "relative_ci_width": 0.012527824227277627,
+            "definition": "Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "d0",
+          "order": "interleaved",
+          "batch": 1,
+          "baseline_ns": {
+            "samples_ns": [
+              55284.34657039711,
+              54082.01263537906,
+              53880.54873646209,
+              53958.59927797834,
+              53388.34476534296,
+              53493.833935018054,
+              53389.62635379061,
+              54607.80866425993,
+              54134.124548736465,
+              54863.51444043321,
+              54035.02707581227,
+              53472.58844765343,
+              58729.26895306859,
+              59688.91155234657,
+              56966.93321299639,
+              55604.61732851985,
+              56109.07581227437,
+              55051.907942238264,
+              54583.56678700361,
+              65041.043321299636,
+              64538.82310469314
+            ],
+            "unit": "ns/batch",
+            "median_ns": 54607.80866425993,
+            "ci99_ns": [
+              53958.59927797834,
+              56109.07581227437
+            ],
+            "minimum_ns": 53388.34476534296,
+            "maximum_ns": 65041.043321299636,
+            "relative_mad": 0.01825395833750642
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              53468.61732851985,
+              52264.80324909747,
+              52244.839350180504,
+              52112.07581227437,
+              52102.58303249098,
+              52001.28158844765,
+              52844.3357400722,
+              52482.51263537906,
+              52150.90433212996,
+              52355.88628158845,
+              53336.19855595668,
+              51918.28700361011,
+              67384.2833935018,
+              60124.36462093863,
+              55314.48916967509,
+              53986.85018050542,
+              54792.285198555954,
+              54018.67328519856,
+              53093.64981949458,
+              52858.01805054152,
+              59857.17870036101
+            ],
+            "unit": "ns/batch",
+            "median_ns": 52858.01805054152,
+            "ci99_ns": [
+              52244.839350180504,
+              54018.67328519856
+            ],
+            "minimum_ns": 51918.28700361011,
+            "maximum_ns": 67384.2833935018,
+            "relative_mad": 0.01411218705843068
+          },
+          "ratio": {
+            "samples": [
+              0.9671565396985352,
+              0.9663990059221129,
+              0.9696419315571174,
+              0.9657788843592614,
+              0.9759168084625347,
+              0.972098609563422,
+              0.9897865811964107,
+              0.9610807303778178,
+              0.9633646940236186,
+              0.9542933371217522,
+              0.9870671200205912,
+              0.9709327435015627,
+              1.1473713975113424,
+              1.007295376264487,
+              0.9709929260691831,
+              0.9709058846955742,
+              0.9765315932466249,
+              0.9812316285545671,
+              0.972703928027954,
+              0.8126871180313858,
+              0.9274600282571361
+            ],
+            "median": 0.9709327435015627,
+            "ci99": [
+              0.9657788843592614,
+              0.9765315932466249
+            ],
+            "gate": "improvement",
+            "relative_ci_width": 0.01107461763889535,
+            "definition": "Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        },
+        {
+          "family": "d0",
+          "order": "interleaved",
+          "batch": 32,
+          "baseline_ns": {
+            "samples_ns": [
+              12617978.333333334,
+              13313178.0,
+              13030266.333333334,
+              12565171.333333334,
+              12609115.0,
+              12529171.333333334,
+              12529908.0,
+              13022660.0,
+              12658375.333333334,
+              12520974.666666666,
+              12580095.0,
+              12542138.0,
+              12552948.0,
+              12699818.666666666,
+              12649678.666666666,
+              11242476.333333334,
+              11001635.333333334,
+              12299747.333333334,
+              12241173.666666666,
+              12321860.666666666,
+              12310230.666666666
+            ],
+            "unit": "ns/batch",
+            "median_ns": 12552948.0,
+            "ci99_ns": [
+              12321860.666666666,
+              12649678.666666666
+            ],
+            "minimum_ns": 11001635.333333334,
+            "maximum_ns": 13313178.0,
+            "relative_mad": 0.00839861149216375
+          },
+          "candidate_ns": {
+            "samples_ns": [
+              12873706.0,
+              13148337.0,
+              12810442.333333334,
+              12860096.0,
+              12776285.666666666,
+              12775469.0,
+              12949546.333333334,
+              13021196.333333334,
+              12811712.666666666,
+              12719638.666666666,
+              12784772.666666666,
+              12747545.666666666,
+              12930169.333333334,
+              16867288.0,
+              12499838.0,
+              11114749.333333334,
+              11633581.333333334,
+              12506714.666666666,
+              12476098.0,
+              12532105.0,
+              12600708.333333334
+            ],
+            "unit": "ns/batch",
+            "median_ns": 12776285.666666666,
+            "ci99_ns": [
+              12532105.0,
+              12873706.0
+            ],
+            "minimum_ns": 11114749.333333334,
+            "maximum_ns": 16867288.0,
+            "relative_mad": 0.013561114019131949
+          },
+          "ratio": {
+            "samples": [
+              1.020266928656162,
+              0.9876182080642203,
+              0.9831297385351474,
+              1.0234715992995878,
+              1.0132579222781826,
+              1.0196579374735981,
+              1.033490934916149,
+              0.999887606167506,
+              1.0121135081948114,
+              1.0158664964420767,
+              1.0162699619253008,
+              1.0163774044478435,
+              1.0300504179044903,
+              1.328151877024176,
+              0.9881545871152038,
+              0.9886388909157589,
+              1.0574410967872474,
+              1.0168269581255895,
+              1.0191913242741621,
+              1.0170627098472305,
+              1.0235964438467604
+            ],
+            "median": 1.0168269581255895,
+            "ci99": [
+              0.999887606167506,
+              1.0234715992995878
+            ],
+            "gate": "inconclusive-noise",
+            "relative_ci_width": 0.023193713486467985,
+            "definition": "Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median"
+          }
+        }
+      ],
+      "historical_four_family_summary": "timing-fixed-summary.json",
+      "singleton_caveat": "Scalar source is byte-identical; singleton timing differences cannot establish an allocator algorithm benefit and may reflect compiled layout."
+    }
+  },
+  "planar_mixed_rank7_followup": {
+    "source": "validation/planar-adoption-followup/qualification.json",
+    "sha256": "208b7c8a69d3e0a6060faa3f4e6842e73e0ccc8c507222388c39bd252502b881",
+    "snapshot": {
+      "schema_version": 1,
+      "kind": "private-certified-planar-mixed-rank7-independent-comparison",
+      "status": "passed",
+      "production_promoted": false,
+      "automatic_workspace_fallback": false,
+      "primary_evidence": {
+        "path": "validation/planar-adoption/qualification.json",
+        "sha256": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+        "original_run_status": "timeout",
+        "original_artifact_status": "primary_complete",
+        "artifact_path": "validation/planar-adoption/mixed-rank7.json",
+        "artifact_sha256": "0f68d0dd5ea589fe49d84e8217ddfd93bddc644054d7e0969951c1466c96c4d9"
+      },
+      "ordinary_rank7_parent": {
+        "path": "validation/planar-integrated/qualification.json",
+        "sha256": "776ec26f6934cd3197f5eab37935fb82b724af0e809ba6bb5ef219d8b2fd2a8e",
+        "scope": "Separate earlier private binary: ordinary Float128/256 primary versus boxes and exact-artifact convergence; not rerun by this comparator."
+      },
+      "mixed_comparison": {
+        "primary_working_precision": 128,
+        "reference_working_precision": 256,
+        "requested_precision": 53,
+        "moments": 330,
+        "laurent_slots": 4,
+        "shape": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "components": 4,
+        "primary_rows": 3,
+        "accepted_duplicate_lanes": [
+          0,
+          2
+        ],
+        "transverse_mixed_rejected_lane": 1,
+        "complex_slots_per_accepted_lane": 5280,
+        "compared_complex_slots": 10560,
+        "independent_box_rows": 5,
+        "independent_box_statuses": [
+          "Success",
+          "Success",
+          "Success",
+          "Success",
+          "Success"
+        ],
+        "comparisons": [
+          {
+            "complex_slots": 5280,
+            "lane": 0,
+            "maximum_normalized_error": "10424684589990594353029767404963131218274019/441711766194596082395824375185729628956870974218904739530401550323154944"
+          },
+          {
+            "complex_slots": 5280,
+            "lane": 2,
+            "maximum_normalized_error": "10424684589990594353029767404963131218274019/441711766194596082395824375185729628956870974218904739530401550323154944"
+          }
+        ],
+        "dimensional_tolerance": "1/10000000000",
+        "normalization": "|primary-reference| / max(|reference|, physical_scale^(monomial_rank-6))",
+        "convention": "MadLoop",
+        "tensor_weights": "Multinomial",
+        "independent_algorithm": "Ordinary production6b24 four-point PV; all five pinches in one batch; coefficient jets (2,-1,-1,-1,1)/(6+2st) constructed at256 bits and contracted by Symbolica Dualizer.",
+        "primary_validation": "Exact represented input rationals, all successful output slots, full returned basis/convention/weights/ordered shape, duplicate equality, explicit transverse status and rounded128 coefficient jets checked before reference preparation.",
+        "report": "comparator/run.json",
+        "artifact": "comparator/comparison.json.gz",
+        "uncompressed_artifact_sha256": "6e76e7a14a9933e81ee5eb0d7c5f88a022215a9c3712c19a90c1b4011d901dd3",
+        "artifact_bytes": 5409524,
+        "elapsed_seconds": 124.94446215999778,
+        "timeout_seconds": 600,
+        "build_manifest_sha256": "afe2c7b951647798993a95a861a6ff87a58d58a6395f0b30d457c89d2d2392d4",
+        "binary_sha256": "f9d4934246315e089e5c295a79a8b51e58c70c18c8334dba4b164f123f63778a"
+      },
+      "shared_path_regressions": [
+        {
+          "group": "execution",
+          "passed": 35,
+          "ignored": [],
+          "report": "regressions/execution.json",
+          "elapsed_seconds": 25.158834449015558
+        },
+        {
+          "group": "pv",
+          "passed": 14,
+          "ignored": [
+            "pv::tests::original_iregi_cartesian_moments"
+          ],
+          "report": "regressions/pv.json",
+          "elapsed_seconds": 5.834569614031352
+        }
+      ],
+      "limitations": [
+        "Standalone private API candidate only; no automatic fallback or production promotion.",
+        "Original combined600s test remains a timeout; independent agreement is established by this separately built bounded comparator.",
+        "Two accepted primary lanes are duplicates of one tangent fixture; this is not broader mixed-kinematics coverage.",
+        "Exact-rational output encoding does not retain signed-zero signs; claims are numerical agreement, not bitwise identity.",
+        "No performance parity or speedup inferred from bounded correctness runs.",
+        "One ordinary PV external-reference test remains ignored in this focused run."
+      ]
+    }
+  },
+  "near_vacuum_adapter_current_qualification": {
+    "source": "validation/near-vacuum-adapter-current/qualification.json",
+    "sha256": "e444a5cdd5c0d6dedf4046da53e7aaa0c4f99c4d6487c9001cbfa6d6b0afd7be",
+    "snapshot": {
+      "status": "private_v3_current_release_dependency_checks_passed",
+      "production_changed": false,
+      "previous_qualification": {
+        "path": "validation/near-vacuum-adapter-v3/qualification.json",
+        "sha256": "ccb126aef4271af4c56296b4ecd6b4db81c571953afbf990a6049fab9f088027"
+      },
+      "source_bytes_unchanged_from_previous_v3": true,
+      "dependency_closure": "target/benchmark/dependency-closures/6b24c03-complete-kinds",
+      "closure_files_verified_before_and_after_build_and_runs": 870,
+      "complete_workspace_dependency_provenance": true,
+      "primary_component_checks": 96,
+      "typed_cases": [
+        {
+          "numeric": "f64",
+          "working_bits": 53,
+          "requested_bits": 40,
+          "accepted_components": 24,
+          "serialized_rows_equal_to_previous_v3": true
+        },
+        {
+          "numeric": "dd",
+          "working_bits": 106,
+          "requested_bits": 80,
+          "accepted_components": 24,
+          "serialized_rows_equal_to_previous_v3": true
+        },
+        {
+          "numeric": "float128",
+          "working_bits": 128,
+          "requested_bits": 100,
+          "accepted_components": 24,
+          "serialized_rows_equal_to_previous_v3": true
+        },
+        {
+          "numeric": "float256",
+          "working_bits": 256,
+          "requested_bits": 128,
+          "accepted_components": 24,
+          "serialized_rows_equal_to_previous_v3": true
+        }
+      ],
+      "dispatch_contract": "Unsupported valid native shape falls back only under the explicit ordinary policy; required-certificate failures hide values; all-outside rows prepare only N2.",
+      "independent_contour": {
+        "working_bits": 256,
+        "requested_bits": 128,
+        "primal_boxes": 5,
+        "contracted_results": 1,
+        "scope": "Exact dyadic fixed-contour inputs; does not enclose production contour mapping or shifted-input rounding."
+      },
+      "retained_failure": "Initial direct-rustc driver link omitted required thin-LTO flags. No numerical runtime or dependency integrity failure occurred in that attempt.",
+      "compiler_pause_intervals": [
+        {
+          "paused_utc": "2026-10-23T18:02:23.080164+00:00",
+          "resumed_utc": "2026-10-23T18:07:24.432802+00:00",
+          "pause_seconds": 301.352638
+        }
+      ],
+      "compiler_diagnostic_time_note": "Observed build wall times include these coordinated quiet-window pauses; no numerical runtime was paused.",
+      "independent_audit": {
+        "path": "validation/near-vacuum-adapter-current/thin-lto/audit.json",
+        "sha256": "8b1d303f957bcf9326b0f00db13fc34c76f1c785deff99e84b01df3061f018ec"
+      },
+      "remaining_limits": [
+        "Private source only; production master and core dispatch are unchanged.",
+        "Selected exact represented-input certificates only; no general DNS formula certificate.",
+        "No public E6 geometry, shifted-input, quadrature or requested256-bit qualification.",
+        "Concurrent diagnostic durations are not performance measurements."
+      ],
+      "artifacts": {
+        "validation/near-vacuum-adapter-current/README.md": "18dfef332cc7d54b6c46918e78c5ccfd70a1c3c1ad206e217dfc2a07b017aac9",
+        "validation/near-vacuum-adapter-current/audit.py": "28a16a9b02b82afe0a9c4d98fddb44c0a8728b7c197d406e204218e9b3a77dd1",
+        "validation/near-vacuum-adapter-current/build-control-events.jsonl": "145d1ac1b1bf93a95c1c4d624f65c0736ca4bbf4f49237c6a1c57212f35cd781",
+        "validation/near-vacuum-adapter-current/build-progress.json": "07ad54ccad336685fb188f245e6c6bef5cad507bcfe311bdedb9983e7b733c7b",
+        "validation/near-vacuum-adapter-current/build.py": "4bc0002277ca631d018640798fa508865073a3736061d8094aa78e080b52a438",
+        "validation/near-vacuum-adapter-current/build_thin_lto.py": "26cdafb87a1c9a020a525b50b0f9b0431c91b40bc39a0e6997470129e5a80c70",
+        "validation/near-vacuum-adapter-current/closure-before.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+        "validation/near-vacuum-adapter-current/control_build.py": "2f32a3f8a8416b4760a63b90ee5026e6e5ab7bd3fc7379f745c7c7d64a0c82ee",
+        "validation/near-vacuum-adapter-current/failed-first-attempt.json": "c3c8ba1dfd4bb55b015e09944e06c09ba6ed759c499b70748f0bdc760e8a62a2",
+        "validation/near-vacuum-adapter-current/iregi_masters_certified_v3-build.log": "b2c8dd7fa313fd9d2bec9f92f823e5fe86399c68eacee9dfffc76e1783997a56",
+        "validation/near-vacuum-adapter-current/near_vacuum_adapter_validate_v3-build.log": "de8a685581f915e79fb0eb12d7fb56eb8f65ede6c997fd43be37fc4199e32ab5",
+        "validation/near-vacuum-adapter-current/qualify.py": "557a7569e7107fdab027f2a94db0a10cd0522b767e5287ee58b248f5063b3e2e",
+        "validation/near-vacuum-adapter-current/run_current.py": "50bdb272e60782c1669b2a58f90be2209a5027fbb920cbc41dd8a142895be216",
+        "validation/near-vacuum-adapter-current/thin-lto/audit.json": "8b1d303f957bcf9326b0f00db13fc34c76f1c785deff99e84b01df3061f018ec",
+        "validation/near-vacuum-adapter-current/thin-lto/build-progress.json": "211cce2ae76e5842cf184dfb1d13973e13b711ce08f0236e8e719b272ac66577",
+        "validation/near-vacuum-adapter-current/thin-lto/build.json": "0dbf82fc43ed5fc97fa6de9829d29daaa5fb770908d55d7546a78ae8ac923102",
+        "validation/near-vacuum-adapter-current/thin-lto/closure-after-build.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+        "validation/near-vacuum-adapter-current/thin-lto/closure-after-runs.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+        "validation/near-vacuum-adapter-current/thin-lto/closure-before-runs.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+        "validation/near-vacuum-adapter-current/thin-lto/closure-before.json": "6db1d9f05a713102740c344a4a51b443a11f2f2b6a9b3a36c8fe5dc5e2c56b44",
+        "validation/near-vacuum-adapter-current/thin-lto/contour-run.json": "ceb0079acc885b46442c48e37703a1194f8596cee685cffe10109b9ba444b9ab",
+        "validation/near-vacuum-adapter-current/thin-lto/contour.json": "68eda118b8b518a9173afe70b67db191bc150720ab6ba9046a0ede82b90f0312",
+        "validation/near-vacuum-adapter-current/thin-lto/contour.log": "6dad90d1fcdd542a6f18e539201e974aa4a91745fb7021b8b437c8b80bab937f",
+        "validation/near-vacuum-adapter-current/thin-lto/contract-run.json": "beae1634f572a07a61bc87a96c437c131d8c07d5b4d0700d60df8005e132ecd3",
+        "validation/near-vacuum-adapter-current/thin-lto/contract.json": "19a1f237e744ebfe181a481ed4d1ba14adf4390236993b62cf97c6c4f69f07fa",
+        "validation/near-vacuum-adapter-current/thin-lto/contract.log": "d7ec1a12920a97f615c8983e11b2d84e857955c11d6e668e2161ab4a6713bce1",
+        "validation/near-vacuum-adapter-current/thin-lto/dd-run.json": "92ae73abc1920c88e8ccf21ff2dc091de30196c652f00d5c6a8ec40adda13195",
+        "validation/near-vacuum-adapter-current/thin-lto/dd.json": "731657c4ced6d77dd4e82f62ae795611a03f29301c5c295b52177265d3f9b015",
+        "validation/near-vacuum-adapter-current/thin-lto/dd.log": "9ab65dfc39834147562010db006067aaec5894485071fde73543dab1e1bdac7b",
+        "validation/near-vacuum-adapter-current/thin-lto/f64-run.json": "daace37437a522a3486e60c4219dfdd66865e81bc7301880887fb5667c093709",
+        "validation/near-vacuum-adapter-current/thin-lto/f64.json": "f940830de0340607ec1210430800c9b77f1798a9cdf777c9b39d9f272547eeca",
+        "validation/near-vacuum-adapter-current/thin-lto/f64.log": "8f1547c1799cd437fd31efb147f4cd83ad9715cfc46b80f72f00333534b63d91",
+        "validation/near-vacuum-adapter-current/thin-lto/five_pinch_compare_current-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/near-vacuum-adapter-current/thin-lto/float128-run.json": "96f0821cc41ab0854b99d09f5d9ec9c85b58930023055e6bd3cc0c0a5e8aed35",
+        "validation/near-vacuum-adapter-current/thin-lto/float128.json": "9b43447f9e31316a4f33ae3ab58a8ab3c94540871670d8c0fe508dc2ce0e8238",
+        "validation/near-vacuum-adapter-current/thin-lto/float128.log": "7dd2cee7196aa5f9c3ade250c1b6b9876193313dd849bd3c79d0e2d0b49a0bbc",
+        "validation/near-vacuum-adapter-current/thin-lto/float256-run.json": "d2600cc6a8390db8ab509ccced4a7ebf471bd172d397ed5309228e29effdbcce",
+        "validation/near-vacuum-adapter-current/thin-lto/float256.json": "639a78bb970aecea4e9f390dad9d95470d9b4738478903d3265ed942b0539fb9",
+        "validation/near-vacuum-adapter-current/thin-lto/float256.log": "6640d2da6ccfe95422a4ecf022c73df1e5760d17154d27879b3185ad693d6573",
+        "validation/near-vacuum-adapter-current/thin-lto/iregi_masters_certified_v3-build.log": "e26ed863e9448195f301a7b2dc7641992b97e38c782d60ab2557bcfeaf4a24c5",
+        "validation/near-vacuum-adapter-current/thin-lto/near_vacuum_adapter_validate_v3-build.log": "3915dffed6718e74d2d4cc44b0a35e81f54756655178aac51a2c8243ba56e693",
+        "validation/near-vacuum-adapter-current/thin-lto/near_vacuum_contract_current-build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "validation/near-vacuum-adapter-current/thin-lto/runs.json": "10dd172e33ed1c278fac74e2fb24731d0b7f541dfabc86a2203d3e46c39bd4e1"
+      }
+    }
+  },
+  "planar_coefficient_oracle_qualification": {
+    "source": "validation/planar-coefficient-oracle/qualification.json",
+    "sha256": "e7184bd9cc004ae36522e834b8aabd12ad7681f7ba2849787b564b1401f9b0d2",
+    "snapshot": {
+      "schema_version": 1,
+      "kind": "certified-planar-shared-PV-refactor-original-IREGI-coefficient-oracle",
+      "status": "passed",
+      "private_candidate": {
+        "qualification": "validation/planar-adoption/qualification.json",
+        "qualification_sha256": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+        "build_manifest_sha256": "97a7e71fb7979b24300353e0e64c5e586b0d077981d10e3cb59c8e8a15ecdf5c",
+        "binary_sha256": "9f8dbe45ee5938cc0f45d8f6c6bcdc9417695bf2e1e724220c20662f324c9bd1"
+      },
+      "mixed_rank7_followup": {
+        "path": "validation/planar-adoption-followup/qualification.json",
+        "sha256": "208b7c8a69d3e0a6060faa3f4e6842e73e0ccc8c507222388c39bd252502b881"
+      },
+      "cases": 20,
+      "propagators": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "max_rank": 2,
+      "moments_per_case": 15,
+      "laurent_complex_slots_per_moment": 4,
+      "complex_values_compared": 1200,
+      "variants": [
+        "base",
+        "translated",
+        "order_reversed",
+        "loop_reversed"
+      ],
+      "precision": "binary64 numerical evaluation of exact Symbolica coefficients",
+      "tolerance": "1e-10 mixed after dimensional normalization",
+      "maximum_normalized_mixed_error": 7.192335473139502e-13,
+      "original_iregi_binary_sha256": "8ee49ae42cb6994f4bd42ed3a3920152e767407ecdafd8986577d5496370a379",
+      "reference_provenance_sha256": "bf1330181d941ab525009e33e58f2aa5e581d89d40877e516c0b7402b0443e74",
+      "original_generated_files_restored": true,
+      "elapsed_seconds": 0.41791580303106457,
+      "timeout_seconds": 180,
+      "scope": "Exact numeric-specialized Symbolica PV coefficients with original Fortran scalar master leaves, compared with original IREGI IBP tensor arrays; not the public Rust Workspace or native master path.",
+      "limitations": [
+        "Not a public Rust Workspace/native scalar-master comparison.",
+        "No performance comparison or new production/automatic fallback qualification.",
+        "The full original N1..7/rank7 oracle was not run."
+      ]
+    }
+  },
+  "planar_production_promotion": {
+    "source": "validation/planar-production/promotion.json",
+    "sha256": "9bfdd072db9b6bfb76cc334d6ffde0a7d650f040f1edcbaa8a3df5085a564862",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "adopted_explicit_certified_planar_api",
+      "recorded_utc": "2026-10-23T18:24:29.241030+00:00",
+      "baseline_source_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+      "production_source_sha256": {
+        "crates/iregi-rust/src/certified_planar.rs": "4c37dca672bdafe2d93f4c1ffba5b2a4603bbde907e1ec623112dd7c5144581f",
+        "crates/iregi-rust/src/certified_planar/public_api_tests.rs": "c950ebd84a9aa6868c0a7b2b390c92fea76a97f27667865ef2787fb3b687632e",
+        "crates/iregi-rust/src/execution.rs": "cfec1ae8b3ea4d057c4f225d565f07c1a2d020155ecff56379093992ca9072dd",
+        "crates/iregi-rust/src/lib.rs": "5ebc35630e2c26eec03bd930ef9bbc7da62c1295b3d2c8cae62df3af916f9f44",
+        "crates/iregi-rust/src/plan.rs": "db9081cf3c4f6258702f82db8bcb5cf140d41d78b52de15343ddc1fd92e1e683",
+        "crates/iregi-rust/src/pv.rs": "909b9901e5f7b074e206927901ab976b936dfb9d6c454893ae1137918f350780",
+        "crates/iregi-rust/src/stability.rs": "0cf336d8a67536d28695bc3b1dcb23b896b28b2b5aa7254751b039dfc775e22d"
+      },
+      "production_equals_qualified_clean_candidate": true,
+      "qualified_binary_sha256": "9f8dbe45ee5938cc0f45d8f6c6bcdc9417695bf2e1e724220c20662f324c9bd1",
+      "evidence_sha256": {
+        "validation/planar-adoption/qualification.json": "cb2fdd2043009db641aab53baa9b429166d1d05ccaf68e3622009ea237a86c14",
+        "validation/planar-adoption/files.json": "0049b0760f2da5601f048a572d7d7e0884f243f5099c2c78a676df204c0061f6",
+        "validation/planar-adoption-followup/qualification.json": "208b7c8a69d3e0a6060faa3f4e6842e73e0ccc8c507222388c39bd252502b881",
+        "validation/planar-adoption-followup/files.json": "4bc177894b3bc897218c4b536ac6628397d325e20acf40fe754119106b38b389",
+        "validation/planar-coefficient-oracle/qualification.json": "e7184bd9cc004ae36522e834b8aabd12ad7681f7ba2849787b564b1401f9b0d2",
+        "validation/planar-coefficient-oracle/files.json": "4f1dec776d736bd9129817f5d5e095a91fd276484380496d8e684eaf6446cc75",
+        "validation/planar-integrated/qualification.json": "776ec26f6934cd3197f5eab37935fb82b724af0e809ba6bb5ef219d8b2fd2a8e",
+        "validation/planar-adoption/standalone-api.patch": "54c0bbb043054c038c5a80009dc4805d501505afc3b2f7be6e47b92461ed38c2",
+        "validation/planar-adoption/symbolica-nway.patch": "88629a41e9e6bf4756137e39435d856c9c4d2e94b71d4a16ad615f67dfee202e"
+      },
+      "scope": {
+        "interface": "CertifiedPlanarReductionPlan and CertifiedPlanarWorkspace<T>",
+        "propagators": 5,
+        "maximum_tensor_rank": 7,
+        "powers": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "PassarinoVeltman",
+        "invariants": "FromShifts",
+        "input_policy": "Preserve",
+        "automatic_fallback": false,
+        "preparation_change": "Symbolica add_many replaces repeated pairwise addition in primal amplitude accumulation"
+      },
+      "validation": {
+        "focused_api_tests_passed": 9,
+        "ordinary_regression_tests_passed": 49,
+        "ordinary_reference_test_initially_ignored": 1,
+        "separate_original_iregi_coefficient_cases_passed": 20,
+        "ordinary_rank7_complex_slots_per_precision": 1320,
+        "ordinary_rank7_working_bits": [
+          128,
+          256
+        ],
+        "mixed_rank7_accepted_lanes": 2,
+        "mixed_rank7_complex_slots_per_accepted_lane": 5280,
+        "mixed_rank7_primary_working_bits": 128,
+        "mixed_rank7_reference_working_bits": 256,
+        "mixed_rank7_requested_bits": 53,
+        "mixed_rank7_maximum_normalized_error": "2.3600649536236263e-29",
+        "tolerance": "1e-10 dimensionally normalized mixed absolute/relative",
+        "original_mixed600s_timeout_preserved": true,
+        "independent_saved_array_comparator_passed": true
+      },
+      "performance": {
+        "new_gate": false,
+        "latest_primary_kernel_source": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+        "status": "No performance claim for this API or preparation change; previous gates remain source-specific."
+      },
+      "remaining": [
+        "Automatic planar fallback and its dispatch qualification",
+        "Broader singular and homogeneous-only charts",
+        "Full public six/seven-point high-rank qualification",
+        "Performance parity per benchmark family"
+      ]
+    }
   }
 }

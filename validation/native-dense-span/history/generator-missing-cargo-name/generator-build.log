@@ -1,0 +1,12 @@
+error: environment variable `CARGO_CRATE_NAME` not defined at compile time
+  --> /shared/external/iregi/iregi-rust/target/native-dense-span/generate.rs:15:13
+   |
+15 |             symbolica::symbol!(format!("iregi_masters::{}_argument_{i}", family.name())).to_atom()
+   |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: `CARGO_CRATE_NAME` may not be available for the current Cargo target
+   = help: Cargo sets build script variables at run time. Use `std::env::var("CARGO_CRATE_NAME")` instead
+   = note: this error originates in the macro `env` which comes from the expansion of the macro `symbolica::symbol` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: aborting due to 1 previous error
+

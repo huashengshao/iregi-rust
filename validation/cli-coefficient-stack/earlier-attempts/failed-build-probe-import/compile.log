@@ -1,0 +1,67 @@
+warning: unused import: `PreparedGraph`
+ --> /shared/external/iregi/iregi-rust/target/cli-coefficient-stack/source/probe.rs:8:64
+  |
+8 | use iregi_prepare::{prepare_dot,NumeratorSource,PrepareOptions,PreparedGraph,PolynomialTerm};
+  |                                                                ^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `domains::rational::Rational`
+  --> /shared/external/iregi/iregi-rust/target/cli-coefficient-stack/source/probe.rs:10:39
+   |
+10 | use symbolica::{atom::{Atom,AtomCore},domains::rational::Rational,evaluate::EvaluationDomain};
+   |                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0599]: no method named `from_rational` found for struct `iregi_masters::Float` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-stack/source/probe.rs:63:22
+    |
+ 63 |     value.re=context.from_rational(&value.re.exact_rational().unwrap());
+    |                      ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:136:8
+    |
+136 |     fn from_rational(&self, rat: &Rational) -> Self;
+    |        ------------- the method is available for `iregi_masters::Float` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `to_rational` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs:892:5
+    |
+892 |     pub fn to_rational(&self) -> Rational {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `SingleFloat` which provides `from_rational` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use symbolica::prelude::SingleFloat;
+    |
+
+error[E0599]: no method named `from_rational` found for struct `iregi_masters::Float` in the current scope
+   --> /shared/external/iregi/iregi-rust/target/cli-coefficient-stack/source/probe.rs:64:22
+    |
+ 64 |     value.im=context.from_rational(&value.im.exact_rational().unwrap());
+    |                      ^^^^^^^^^^^^^
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float.rs:136:8
+    |
+136 |     fn from_rational(&self, rat: &Rational) -> Self;
+    |        ------------- the method is available for `iregi_masters::Float` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: there is a method `to_rational` with a similar name, but with different arguments
+   --> dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs:892:5
+    |
+892 |     pub fn to_rational(&self) -> Rational {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+help: trait `SingleFloat` which provides `from_rational` is implemented but not in scope; perhaps you want to import it
+    |
+  2 + use symbolica::prelude::SingleFloat;
+    |
+
+warning: unused import: `AtomCore`
+  --> /shared/external/iregi/iregi-rust/target/cli-coefficient-stack/source/probe.rs:10:29
+   |
+10 | use symbolica::{atom::{Atom,AtomCore},domains::rational::Rational,evaluate::EvaluationDomain};
+   |                             ^^^^^^^^
+
+error: aborting due to 2 previous errors; 3 warnings emitted
+
+For more information about this error, try `rustc --explain E0599`.

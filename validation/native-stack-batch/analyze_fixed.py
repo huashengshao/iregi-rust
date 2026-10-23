@@ -26,11 +26,15 @@ for name,bad in [('missing',fixture[:-1]),('duplicate',fixture+[fixture[0]]),('z
  try:parse_rows(bad)
  except ValueError:checks[name]=True
  else:raise AssertionError(f'{name} malformed fixture accepted')
-rows=[];families=[]
+rows=[];families=[];cpu_by_family={}
 for family in ['a0','b0','db0','c0','d0']:
  p=base/f'{family}-timing-fixed.csv'
  if not p.exists():continue
  timing=json.loads((base/f'{family}-timing-fixed.json').read_text())
+ assert timing['command'][:2]==['taskset','-c']
+ assigned=[int(v) for v in timing['command'][2].split(',')]
+ assert len(assigned)==1 and assigned[0]>=0,'timings require one pinned core'
+ cpu_by_family[family]=assigned
  quals=[json.loads((base/f'{family}-fixed-parity-{phase}.json').read_text()) for phase in ['before','after']]
  assert timing['protocol']=='fixed-loop-v2' and timing['status']=='passed' and timing['binary_unchanged']
  for phase,qual in zip(['before','after'],quals):
@@ -48,7 +52,7 @@ for family in ['a0','b0','db0','c0','d0']:
   common=list(range(21));ratio=h.ratio_summary([new[k] for k in common],[old[k] for k in common],{'status':'passed'})
   ratio['definition']='Allocated native / baseline native paired block latency; 99% bootstrap median interval; CI width must be <=2% of median'
   rows.append({'family':family,'order':order,'batch':batch,'baseline_ns':h.summarize([old[k] for k in common]),'candidate_ns':h.summarize([new[k] for k in common]),'ratio':ratio})
-result={'scope':'isolated generated scalar-kernel microbenchmark, excludes preparation and public core; shared frozen opt2 runtime, generated generic kernels opt3/codegen16; NOT original IREGI or release end-to-end parity','protocol':'fixed-loop-v2','measurement_overhead':'One Instant start/elapsed pair per fixed loop block; black_box input/output each call; no overhead subtraction; independent 2ms pilots choose shared iteration count targeting30ms mean cost' ,'qualification':'24 f64 configurations before and after timing on exact measured binary; original three-domain qualifications retained separately; f64-only compilation changes code layout relative to original protocol','cpu_affinity':[0],'blocks':21,'block_target_ms':30,'quiet_window':'root coordinated; owned D0 compile SIGSTOP; all other project compute paused','parser_controls':checks,'qualified_families':families,'unsupported_visible':[{'family':'db0','input':'s=m1_squared=m2_squared=0,mu_squared=1','status':'UndefinedScalelessDerivative','timing':None,'initial_raw_failure':'db0-parity.json','public_guard_and_raw_classification_control':'db0-parity-2.log'}],'rows':rows}
+result={'scope':'isolated generated scalar-kernel microbenchmark, excludes preparation and public core; shared frozen opt2 runtime, generated generic kernels opt3/codegen16; NOT original IREGI or release end-to-end parity','protocol':'fixed-loop-v2','measurement_overhead':'One Instant start/elapsed pair per fixed loop block; black_box input/output each call; no overhead subtraction; independent 2ms pilots choose shared iteration count targeting30ms mean cost' ,'qualification':'24 f64 configurations before and after timing on exact measured binary; original three-domain qualifications retained separately; f64-only compilation changes code layout relative to original protocol','cpu_affinity':sorted({cpu for assigned in cpu_by_family.values() for cpu in assigned}),'cpu_affinity_by_family':cpu_by_family,'blocks':21,'block_target_ms':30,'quiet_window':'root coordinated; all project compute held; owned build stop/resume records retained when applicable','parser_controls':checks,'qualified_families':families,'unsupported_visible':[{'family':'db0','input':'s=m1_squared=m2_squared=0,mu_squared=1','status':'UndefinedScalelessDerivative','timing':None,'initial_raw_failure':'db0-parity.json','public_guard_and_raw_classification_control':'db0-parity-2.log'}],'rows':rows}
 assert families,'no complete fixed-protocol measurements yet'
-(base/'timing-fixed-summary.json').write_text(json.dumps(result,indent=2)+'\n')
+(base/'timing-fixed-all-family-summary.json').write_text(json.dumps(result,indent=2)+'\n')
 print(json.dumps([{k:r[k] for k in ['family','order','batch']}|{'ratio':r['ratio']['median'],'ci99':r['ratio']['ci99'],'gate':r['ratio']['gate']} for r in rows],indent=2))

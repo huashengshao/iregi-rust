@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "source_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+  "dependency_closure_manifest": "target/benchmark/dependency-closures/6b24c03/manifest.json",
+  "dependency_closure_manifest_sha256": "b1674a403c43afb70e9e9279519ea19c3ca24dd7f8427f0cef8d2e461aff8a9f",
+  "cargo_library_events_sha256": "62e38223965ad4e16a2f187899f4dcab9a2ceb4f41e641244d95328b8c25a6a5",
+  "parent_workspace_status": "completed_library_artifacts_frozen_workspace_completion_pending",
+  "whole_workspace_success_claimed": false,
+  "command": [
+    "rustc",
+    "--crate-name",
+    "certificate_slim_tests",
+    "--edition=2024",
+    "-C",
+    "opt-level=3",
+    "-C",
+    "codegen-units=1",
+    "-C",
+    "lto=thin",
+    "-C",
+    "embed-bitcode=yes",
+    "--test",
+    "/shared/external/iregi/iregi-rust/target/real-ball-certificate/slim6b24/slim_tests.rs",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/blake3-be485904775d6e47/out",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/gmp-mpfr-sys-575ed8ab5d02dcec/out/lib",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/gmp-mpfr-sys-e9fd89ef30e561a9/out/lib",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/psm-3e52beb8ea08afba/out",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/psm-a698b6f3f5aee778/out",
+    "--extern",
+    "iregi_rust=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/deps/libiregi_rust-b16ff118efb36669.rlib",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/deps/libiregi_masters-736462b347335a0f.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/real-ball-certificate/slim6b24/certificate_slim_tests"
+  ],
+  "cpu_affinity": [
+    12,
+    13
+  ],
+  "source_sha256": {
+    "target/real-ball-certificate/slim6b24/slim.rs": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+    "target/real-ball-certificate/slim6b24/original.rs": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+    "target/real-ball-certificate/slim6b24/slim_tests.rs": "78fa6701cb58a51864faac580b91753292d0ac8b01e597ca68c877d66e6cabe3",
+    "target/real-ball-certificate/slim6b24/build.py": "c45cfabcdc26af1d6b270d43fde8b332af61b6285ac2926e34c7d1b3ed81403e"
+  },
+  "selected_library_events": {
+    "iregi_rust": {
+      "reason": "compiler-artifact",
+      "package_id": "path+file:///shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/crates/iregi-rust#0.1.0",
+      "manifest_path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/crates/iregi-rust/Cargo.toml",
+      "target": {
+        "kind": [
+          "lib"
+        ],
+        "crate_types": [
+          "lib"
+        ],
+        "name": "iregi_rust",
+        "src_path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/crates/iregi-rust/src/lib.rs",
+        "edition": "2024",
+        "doc": true,
+        "doctest": true,
+        "test": true
+      },
+      "profile": {
+        "opt_level": "3",
+        "debuginfo": 0,
+        "debug_assertions": false,
+        "overflow_checks": false,
+        "test": false
+      },
+      "features": [],
+      "filenames": [
+        "/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libiregi_rust-b16ff118efb36669.rlib",
+        "/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libiregi_rust-b16ff118efb36669.rmeta"
+      ],
+      "executable": null,
+      "fresh": false
+    },
+    "iregi_masters": {
+      "reason": "compiler-artifact",
+      "package_id": "path+file:///shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/crates/iregi-masters#0.1.0",
+      "manifest_path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/crates/iregi-masters/Cargo.toml",
+      "target": {
+        "kind": [
+          "lib"
+        ],
+        "crate_types": [
+          "lib"
+        ],
+        "name": "iregi_masters",
+        "src_path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/crates/iregi-masters/src/lib.rs",
+        "edition": "2024",
+        "doc": true,
+        "doctest": true,
+        "test": true
+      },
+      "profile": {
+        "opt_level": "3",
+        "debuginfo": 0,
+        "debug_assertions": false,
+        "overflow_checks": false,
+        "test": false
+      },
+      "features": [
+        "default"
+      ],
+      "filenames": [
+        "/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libiregi_masters-736462b347335a0f.rlib",
+        "/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libiregi_masters-736462b347335a0f.rmeta"
+      ],
+      "executable": null,
+      "fresh": false
+    },
+    "symbolica": {
+      "reason": "compiler-artifact",
+      "package_id": "path+file:///shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/dependencies/symbolica#3.0.1",
+      "manifest_path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/dependencies/symbolica/Cargo.toml",
+      "target": {
+        "kind": [
+          "lib"
+        ],
+        "crate_types": [
+          "lib"
+        ],
+        "name": "symbolica",
+        "src_path": "/shared/external/iregi/iregi-rust/target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/dependencies/symbolica/src/lib.rs",
+        "edition": "2024",
+        "doc": true,
+        "doctest": true,
+        "test": true
+      },
+      "profile": {
+        "opt_level": "3",
+        "debuginfo": 0,
+        "debug_assertions": false,
+        "overflow_checks": false,
+        "test": false
+      },
+      "features": [
+        "bincode",
+        "float-mpfr",
+        "integer-gmp",
+        "native_code_generation",
+        "serde",
+        "tracing_max_level_info"
+      ],
+      "filenames": [
+        "/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+        "/shared/external/iregi/iregi-rust/target/optimized/cargo-build/release/deps/libsymbolica-2ae1abcc9fd9c0db.rmeta"
+      ],
+      "executable": null,
+      "fresh": false
+    }
+  },
+  "explicit_archive_sha256": {
+    "target/benchmark/dependency-closures/6b24c03/deps/libiregi_rust-b16ff118efb36669.rlib": "3cfcc82dd869e4f964582085a70798883ebc630f541c2ea95274773ddc0e0677",
+    "target/benchmark/dependency-closures/6b24c03/deps/libiregi_masters-736462b347335a0f.rlib": "e52e3b2678b1d29ce41e9fa6309dd3b8e34febea4b14932984b7fad3b9e22d09",
+    "target/benchmark/dependency-closures/6b24c03/deps/libsymbolica-2ae1abcc9fd9c0db.rlib": "987a2e4f7c68871e34fb13be828160a884ea96972265a6f8a4d51460da8ba03c"
+  },
+  "closure_files": 861,
+  "native_search_dirs": [
+    "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/blake3-be485904775d6e47/out",
+    "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/gmp-mpfr-sys-575ed8ab5d02dcec/out/lib",
+    "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/gmp-mpfr-sys-e9fd89ef30e561a9/out/lib",
+    "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/psm-3e52beb8ea08afba/out",
+    "/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03/build/psm-a698b6f3f5aee778/out"
+  ],
+  "closure_verified_before": true,
+  "returncode": 1,
+  "wall_seconds": 0.06732905493117869,
+  "closure_verified_after": true,
+  "sources_unchanged": true
+}

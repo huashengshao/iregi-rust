@@ -1,0 +1,40 @@
+{
+  "scope": "Private CLI coefficient allocation candidate; production untouched.",
+  "change": "One ordinary Symbolica optimize_stack call after fresh direct SSA construction, before mapping coefficients; empty numerator stays None.",
+  "prepared_physical_cases": [
+    "ggh",
+    "gghh",
+    "gghhh",
+    "gggg-up"
+  ],
+  "domains": [
+    "f64",
+    "DoubleFloat",
+    "Float128"
+  ],
+  "batch_sizes_in_order": [
+    0,
+    1,
+    3,
+    7,
+    32,
+    3
+  ],
+  "controls": [
+    "canonical physical inputs nonzero",
+    "zero strong coupling eliminates numerator",
+    "exact beyond53-bit coupling perturbation remains distinguishable in DD/Float",
+    "complex coupling",
+    "invalid buffer shape then valid reuse",
+    "mismatched parameter names",
+    "empty numerator",
+    "constant-only numerator without parameters",
+    "negative-zero coupling",
+    "mixed80/128/256-bit Float inputs in one reused256-bit workspace"
+  ],
+  "provenance_proof": "Exact instruction dataflow/operand order/labels/constants/registered constant functions and shared helpers; exported temporary counts before/after.",
+  "production_patch_sha256": "653bb017bb66d4ec737ac565aacd25d5af7bc1fce1c6d644aa03309b5ec01d2c",
+  "runtime_status": "not started; awaiting coherent optimized archive closure from coordinator",
+  "performance_scope": "No assumed gain; no core/reference performance gate claim.",
+  "probe_source_sha256": "2844520d6d8a14536b7c41fd869b9309e8becf7d0a2510ea040c70448d0115f2"
+}

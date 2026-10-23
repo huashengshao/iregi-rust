@@ -1,0 +1,56 @@
+{
+  "status": "completed-rejected",
+  "scope": "D0-only allocator candidate, separate from dense-active-span experiment",
+  "protocol": "fixed-loop-v2",
+  "source_sha256": "8a4822692b3f05cdc4922c8284315c6a6b51ec5bf61278ac099157fb738c192d",
+  "build_script_sha256": "fff83c26eca51e3586e4a0767a7147777dab290ef407c220eaa7bef37bb6931a",
+  "build_command": "source scripts/env.sh; python target/native-stack-batch/build_fixed.py d0",
+  "numeric_qualification": "24 f64 configurations before and after timing; all-type200 configurations remain a separate build scope",
+  "timing_groups": [
+    {
+      "rows": 1,
+      "ordering": "homogeneous"
+    },
+    {
+      "rows": 1,
+      "ordering": "interleaved"
+    },
+    {
+      "rows": 1,
+      "ordering": "grouped"
+    },
+    {
+      "rows": 32,
+      "ordering": "homogeneous"
+    },
+    {
+      "rows": 32,
+      "ordering": "interleaved"
+    },
+    {
+      "rows": 32,
+      "ordering": "grouped"
+    }
+  ],
+  "input_categories": [
+    "real massive below-threshold example",
+    "real massive physical-region example",
+    "complex unequal masses",
+    "complex equal masses",
+    "fully scaleless",
+    "massless zero-leg invariants",
+    "scale4 copy including squared renormalization scale"
+  ],
+  "input_categories_are_not_instrumented_branch_ids": true,
+  "blocks": 21,
+  "target_block_ms": 30,
+  "pilot_ms": 2,
+  "same_iterations_per_paired_block": true,
+  "per_call_timer": false,
+  "black_box_each_call": true,
+  "exact_signed_zero_checks": "warmup, after pilots, after every paired block, final; outside timed region",
+  "timing_cpu": 254,
+  "performance_requires_root_granted_quiet_window": true,
+  "production_changes": false,
+  "cpu_change_reason": "Root selected an idle core because unrelated work occupies CPU0; historical four-family corrected measurements remain CPU0."
+}

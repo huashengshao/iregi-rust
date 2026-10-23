@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "scope": "Exact paired physical coefficient correctness and root storage; no timing gate",
+  "binary_sha256": "af3a3b1a17821b35168f54037eaeb8496a4d6ef2a0c19b52756d1a46d046903b",
+  "compile_manifest_sha256": "3be7b2429e74f5642d95581225790dc77ef54440eeeaf2c6c6b9bebe620746e6",
+  "runner_sha256": "ad8d614f0212cb92df73eeb486bcc637affdfb3901968fab2692af4e29656238",
+  "sources": {
+    "source/baseline.rs": "c3605c42dfdbe2bd9e8f87361f5f0876b552337563c8abf755314d8c18a38da2",
+    "source/candidate.rs": "ea460cdc8d8406c0676e20ad7ceb9e0b4126a2b0682ac2cfd6f8bf7851ee02c8",
+    "source/input.rs": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb",
+    "source/numerator.rs": "3060fff5fea11f95774595113b82a98613a882614417db745eaca6c15c25d828",
+    "source/probe.rs": "bc18270d79332735957e74a7239ff73d27b9748a14e7eb782b2e8b3840695c8c",
+    "source/proof.rs": "82f11e2e81b22104f759129620bd54ea7a1c53bf1084092215d33e3612122988"
+  },
+  "assets": {
+    "assets/examples/graphs/gggg_up_box.dot": "2fca7b55d1bb1408750c2a71d29a8a1c4a44502f3e7927d08809d334ef2505d5",
+    "assets/examples/graphs/ggh_top_triangle.dot": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+    "assets/examples/graphs/gghh_top_box.dot": "6efba48e58fd1abc2ac726bc9712117a671958edceff4487ba71ba7eb0777974",
+    "assets/examples/graphs/gghhh_top_pentagon.dot": "2dd4f92b2e4b7742784ea48ef347d21dc10ee9fc39f285703acccfc0889257ed",
+    "assets/fixtures/models/sm.json": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+    "assets/validation/physical/gggg-up-cli-input.json": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+    "assets/validation/physical/ggh-cli-input.json": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+    "assets/validation/physical/gghh-cli-input.json": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+    "assets/validation/physical/gghhh-cli-input.json": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed"
+  },
+  "runs": [
+    {
+      "case": "ggh",
+      "command": [
+        "/run/current-system/sw/bin/time",
+        "-f",
+        "elapsed_seconds=%e\nmaximum_rss_kib=%M",
+        "-o",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/ggh.resource.txt",
+        "timeout",
+        "240",
+        "taskset",
+        "-c",
+        "8",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/probe",
+        "ggh",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/ggh"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.19410264608450234,
+      "log_sha256": "4474613c584433f70a0b422e8785e905106eadcb31a14ecced073ba63c940824",
+      "status": "passed",
+      "structure": {
+        "after_temporaries": 63,
+        "before_temporaries": 149,
+        "empty": false,
+        "helper_count": 0,
+        "inputs": 24,
+        "instructions": 149,
+        "label": "physical",
+        "outputs": 15,
+        "unchanged": true,
+        "unchanged_helpers": true
+      },
+      "output_sha256": "ca7575f68c177cd76931a1f1477de9a42b036ceba3e3d32632042786c15dd06f"
+    },
+    {
+      "case": "gghh",
+      "command": [
+        "/run/current-system/sw/bin/time",
+        "-f",
+        "elapsed_seconds=%e\nmaximum_rss_kib=%M",
+        "-o",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/gghh.resource.txt",
+        "timeout",
+        "240",
+        "taskset",
+        "-c",
+        "8",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/probe",
+        "gghh",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/gghh"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 1.0121597240213305,
+      "log_sha256": "64c0035367eefcb413588c342512cd647e3b967c77cabe4b9f328590f70c6494",
+      "status": "passed",
+      "structure": {
+        "after_temporaries": 500,
+        "before_temporaries": 2674,
+        "empty": false,
+        "helper_count": 0,
+        "inputs": 28,
+        "instructions": 2686,
+        "label": "physical",
+        "outputs": 69,
+        "unchanged": true,
+        "unchanged_helpers": true
+      },
+      "output_sha256": "625fff4608a5c6387026c3960cd9b0a80f64244991d2d162bee947c76ffd6f48"
+    },
+    {
+      "case": "gghhh",
+      "command": [
+        "/run/current-system/sw/bin/time",
+        "-f",
+        "elapsed_seconds=%e\nmaximum_rss_kib=%M",
+        "-o",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/gghhh.resource.txt",
+        "timeout",
+        "240",
+        "taskset",
+        "-c",
+        "8",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/probe",
+        "gghhh",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/gghhh"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 3.8211868660291657,
+      "log_sha256": "b402585d18531e632ffee3beedb792d6cc2118583687eb0947075b01425763bf",
+      "status": "passed",
+      "structure": {
+        "after_temporaries": 2701,
+        "before_temporaries": 8261,
+        "empty": false,
+        "helper_count": 0,
+        "inputs": 32,
+        "instructions": 8273,
+        "label": "physical",
+        "outputs": 69,
+        "unchanged": true,
+        "unchanged_helpers": true
+      },
+      "output_sha256": "fe54bde8ba00de75b424a867d289fdbe30ebd8b14ab925a281669414a345632b"
+    },
+    {
+      "case": "gggg-up",
+      "command": [
+        "/run/current-system/sw/bin/time",
+        "-f",
+        "elapsed_seconds=%e\nmaximum_rss_kib=%M",
+        "-o",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/gggg-up.resource.txt",
+        "timeout",
+        "240",
+        "taskset",
+        "-c",
+        "8",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/probe",
+        "gggg-up",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-stack/qualification/gggg-up"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 19.199798196088523,
+      "log_sha256": "ea69e440351060edc8dc97bd8b01ff83178f6496d7e1cebf3f77f1655c477341",
+      "status": "passed",
+      "structure": {
+        "after_temporaries": 8396,
+        "before_temporaries": 44407,
+        "empty": false,
+        "helper_count": 0,
+        "inputs": 36,
+        "instructions": 44407,
+        "label": "physical",
+        "outputs": 70,
+        "unchanged": true,
+        "unchanged_helpers": true
+      },
+      "output_sha256": "3a989df0060c212815924c7385e4bc918054a0d3c95a109c00cbf3a80983dda2"
+    }
+  ],
+  "inputs_unchanged": true,
+  "status": "passed"
+}
