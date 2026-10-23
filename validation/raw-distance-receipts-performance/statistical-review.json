@@ -1,0 +1,24 @@
+{
+  "reviewer": "/root/numeric_batch_audit/scale_cache_precision_review",
+  "mode": "independent read-only raw-data, statistics and provenance audit; no build or timing",
+  "result": "no concrete blocker to preparing the narrow private adoption patch",
+  "observations": 588,
+  "cases": 14,
+  "paired_blocks_per_case": 21,
+  "classifications": {
+    "improvement": 8,
+    "parity": 2,
+    "inconclusive-noise": 4,
+    "regression": 0
+  },
+  "independent_statistical_crosscheck": "Exact finite-sample distribution of the median of21bootstrap draws, via binomial/order-statistic calculation; all classifications unchanged.",
+  "ordinary_controls": "Bubble singleton/batch32 qualify parity; triangle singleton/batch32 remain inconclusive. Singleton triangle relative CI width0.0200282 exceeds0.02.",
+  "artifact_binding": "Executable, raw CSV/log, analyzer, build/preflight manifests, paired archives and closure manifest hashes match. CPU254 run42.776s lies within retained quiet window.",
+  "bound_sha256": {
+    "performance-run.json": "911b99a16f148abe65425adfb9cce381e427460d7ccef02ffb294254b3978411",
+    "performance.csv": "1f874b1131320837dec4b09d3f22c6f2e7fc4dba70f4c44ad31b1e5a0f424d4a",
+    "performance-analysis.json": "54ba80d6180336ddf2a3055480ffd84ec8df9b9c21f87108482a4b207bcbbd8e",
+    "quiet-window-start.json": "a56ebd6c30221a6b16cf4761e9b5a432b81bb3490e2bd542cc674a24d2f30e01",
+    "quiet-window-completed.json": "24bd88bfdf998f27ef4597f247d8ccf219d51e92eca4db6e8c5f216c801bf974"
+  }
+}

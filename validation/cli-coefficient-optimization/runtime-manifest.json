@@ -1,0 +1,141 @@
+{
+  "protocol": "Deterministic coefficient CSE/common-pair correctness and single preparation diagnostics; no warm timing",
+  "preparation_sha256": "540c1797c5e4519676221c1942926a1973affd68ef7df5748cb075ddd8144c72",
+  "build_sha256": "d0a89e25655b80f4170725d0718793e0d6cc51d416604163bb3402eae6754285",
+  "binary_sha256": "45959bdf5171973748846a9800a2f39855e279ec66131d74ed88d13029b6620e",
+  "runner_sha256": "fc113276fd2c405f965f620b52b2bd6271b198b8eba19ed79776fe42769927d6",
+  "source_and_assets": {
+    "source/coefficients.rs": "71f108d69c0390c489d07e9390f161701a9efe420de793e340454effda042a99",
+    "source/input.rs": "6d74bffc935eb99689c69bd72772037d6c46875cbc01706008e2e7ef0dec3bbb",
+    "source/probe.rs": "5a8ae61503b26109bcb89741eb9d54714a4741cdf515ba45cff15c84334521a9",
+    "source/proof.rs": "eae7eff6a279909ba1a6615de16feb5b72ef8ccd3478e7496aa9c8450cfb111f",
+    "assets/examples/graphs/gggg_up_box.dot": "2fca7b55d1bb1408750c2a71d29a8a1c4a44502f3e7927d08809d334ef2505d5",
+    "assets/examples/graphs/ggh_top_triangle.dot": "3e0f8dd9aea927698e4fd08caa666b7342a065c3b137366e2ecd911fa71b2206",
+    "assets/examples/graphs/gghh_top_box.dot": "6efba48e58fd1abc2ac726bc9712117a671958edceff4487ba71ba7eb0777974",
+    "assets/examples/graphs/gghhh_top_pentagon.dot": "2dd4f92b2e4b7742784ea48ef347d21dc10ee9fc39f285703acccfc0889257ed",
+    "assets/fixtures/models/sm.json": "95716e0deeabe7bce3638fdc69264022f9a25ddad63a97e6441bf4843cd1ec41",
+    "assets/validation/physical/gggg-up-cli-input.json": "c1bae96eea880184433f3646bbf5f3a98e4ca24b81b3660b7795df3669718cb5",
+    "assets/validation/physical/ggh-cli-input.json": "55327750a66af5d8442aacc9e8b8366311dac6c7da9d559d5a28d0e2b324b4b8",
+    "assets/validation/physical/gghh-cli-input.json": "e3e66fc359db303d9a3f0f9b09bafd9b551fec6e75a9357d8ac44e9ad7110ffb",
+    "assets/validation/physical/gghhh-cli-input.json": "c12517805a9d171a236fcfedee1651f0dca96cc2b1408eebc9f70ecc56a57fed"
+  },
+  "cases": [
+    {
+      "case": "ggh",
+      "command": [
+        "taskset",
+        "-c",
+        "8",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=10",
+        "300",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/probe",
+        "ggh",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/qualification/ggh"
+      ],
+      "started_unix_time": 1792780243.5519185,
+      "status": "passed",
+      "returncode": 0,
+      "finished_unix_time": 1792780244.2182474,
+      "elapsed_seconds": 0.6663296222686768,
+      "log_sha256": "5a7a6767d65ffd9aaab12f441b1ea24882162f2f6e6248658cdc9d181e57a267",
+      "result_sha256": "e80b59db728da97035fd631538ad784fe960416c01252894e279fcd7248cfc84",
+      "result_status": "passed",
+      "failed_comparisons": 0,
+      "artifacts": {
+        "ggh/outputs.json": "e80b59db728da97035fd631538ad784fe960416c01252894e279fcd7248cfc84",
+        "ggh/prepared-graph.json": "4d388810221fadf07af70d3738dd5179d78188cecc7f3bc5c71e3008a49a55b2",
+        "ggh/structures.json": "db986ff6bbb04b03752a2bf09a24414b17ce2f6b0765b1f5f1c9a7fffe598f1f"
+      }
+    },
+    {
+      "case": "gghh",
+      "command": [
+        "taskset",
+        "-c",
+        "8",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=10",
+        "300",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/probe",
+        "gghh",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/qualification/gghh"
+      ],
+      "started_unix_time": 1792780256.55895,
+      "status": "failed",
+      "returncode": 101,
+      "finished_unix_time": 1792780260.7395554,
+      "elapsed_seconds": 4.180606126785278,
+      "log_sha256": "4c52406567410cc7ffc07ac145825fa09998175100d555b0af0fd0da002b2ab7",
+      "result_sha256": "91bcce64ccd37fcbe7620f2e74fbfcef0f815011455a6f043daf8071df1be2bd",
+      "result_status": "numerical_failures",
+      "failed_comparisons": 52,
+      "artifacts": {
+        "gghh/outputs.json": "91bcce64ccd37fcbe7620f2e74fbfcef0f815011455a6f043daf8071df1be2bd",
+        "gghh/prepared-graph.json": "3558109ae9b268980f3a0240c6f8cc988b25a7e06f5bb5c976dfc54ab6037a83",
+        "gghh/structures.json": "adeca96ee23b3dd55b76de27de6cf8cc6968107b64eec4eb98b8d48aeee2d014"
+      }
+    },
+    {
+      "case": "gghhh",
+      "command": [
+        "taskset",
+        "-c",
+        "8",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=10",
+        "300",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/probe",
+        "gghhh",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/qualification/gghhh"
+      ],
+      "started_unix_time": 1792780260.9771695,
+      "status": "failed",
+      "returncode": 101,
+      "finished_unix_time": 1792780280.7996137,
+      "elapsed_seconds": 19.822444677352905,
+      "log_sha256": "58f196f0b837d4b076dad30cd7576dd1f6a7c3cc9c304210b24d10c4e4c387a3",
+      "result_sha256": "629df70d9ce051a795a8b643b0936e8d44f9f97f5e3514b27783b2382d692b4e",
+      "result_status": "numerical_failures",
+      "failed_comparisons": 52,
+      "artifacts": {
+        "gghhh/outputs.json": "629df70d9ce051a795a8b643b0936e8d44f9f97f5e3514b27783b2382d692b4e",
+        "gghhh/prepared-graph.json": "9dccb13aeaf0fa5cfaa22a0f9a80cf90039f784de36459eb9b7b2f6b8e5bf221",
+        "gghhh/structures.json": "a49f42c44da1a8610f92af4373d646aa2a9cf34083f8c58e3edc20919254cf36"
+      }
+    },
+    {
+      "case": "gggg-up",
+      "command": [
+        "taskset",
+        "-c",
+        "8",
+        "timeout",
+        "--signal=TERM",
+        "--kill-after=10",
+        "300",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/probe",
+        "gggg-up",
+        "/shared/external/iregi/iregi-rust/target/cli-coefficient-optimization/qualification/gggg-up"
+      ],
+      "started_unix_time": 1792780281.0618467,
+      "status": "failed",
+      "returncode": 101,
+      "finished_unix_time": 1792780349.395001,
+      "elapsed_seconds": 68.3331549167633,
+      "log_sha256": "a464a8314b736898abb27307baa92a51f6a6cfb2681e73f67296557e2266d489",
+      "result_sha256": "f53548d8cdf31c1436d387c416b9a6cb85115c1bcff44962e577a37b2dd9120d",
+      "result_status": "numerical_failures",
+      "failed_comparisons": 52,
+      "artifacts": {
+        "gggg-up/outputs.json": "f53548d8cdf31c1436d387c416b9a6cb85115c1bcff44962e577a37b2dd9120d",
+        "gggg-up/prepared-graph.json": "f8ec1cc8ddd4f595ede741d196662c89f1078c1c74a480c8b0dd031e26a2d7c2",
+        "gggg-up/structures.json": "f65e9d43ac514605a27e25eda1321d434d7282f4c0881883a90eb8901b6ee691"
+      }
+    }
+  ],
+  "status": "failures_retained"
+}

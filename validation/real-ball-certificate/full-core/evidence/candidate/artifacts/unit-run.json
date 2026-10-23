@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "build_manifest_sha256": "f8d9c52b57341c4ef3e2ff2c2b58c68a7185068439a1077b64045fb0e145cc13",
+  "binary_sha256": "0a9b283d6f0b093f892a7a646f5e97dd259fd9aa32e8ebb73377299d2a33a60a",
+  "source_inventory_sha256": "99c4576f8ac87fdb3cde0f4f4812bde86ca3ad2222977638451cfbf7927150b2",
+  "closure_manifest_sha256": "5742579113ad260a047aad9f638f277560e2dbbbd33ae61f7d57c77996c239f6",
+  "complete_closure_verified_before": true,
+  "build_script_and_event_hashes_independently_verified": true,
+  "cpu_affinity": [
+    12
+  ],
+  "performance_gate": false,
+  "explicit_exclusions": [
+    "all ignored tests",
+    "certified_scalar full six/seven-point reduction tests",
+    "other test namespaces outside the recorded filters"
+  ],
+  "test_membership_sha256": "b8a104fd502894b222bf95a2b734fe373470aa21d43c1f8c19b70aec2e038cca",
+  "groups": {
+    "execution": {
+      "status": "passed",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/core_tests",
+        "execution::tests::",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "timeout_seconds": 180,
+      "expected_passed": 35,
+      "expected_ignored": 0,
+      "membership": [
+        "execution::tests::compounded_primal_monitor_preserves_dual_stride_and_lane_isolation: test",
+        "execution::tests::derived_distance_envelope_checks_internal_second_taylor_cancellation: test",
+        "execution::tests::derived_distance_guard_respects_input_precision_within_one_batch: test",
+        "execution::tests::derived_distance_guards_preserve_nonzero_jets_and_isolate_unstable_rows: test",
+        "execution::tests::distinct_master_leaves_preserve_mixed_dual_components_and_lane_scatter: test",
+        "execution::tests::equal_mass_lightlike_profile_retains_transverse_and_mixed_taylor_components: test",
+        "execution::tests::equal_mass_rank_one_bubble_respects_routing_and_batch_order: test",
+        "execution::tests::exact_preparation_is_shared_across_precisions_and_keyed_by_dual_shape: test",
+        "execution::tests::exact_zero_profiles_preserve_shifted_scaleless_poles_and_batch_neighbors: test",
+        "execution::tests::failed_optional_zero_profile_rejoins_ordinary_batch_in_original_order: test",
+        "execution::tests::finite_cancellation_retries_and_optional_profiles_include_child_stages: test",
+        "execution::tests::fused_ordinary_monitors_match_separate_primal_graph_and_lazy_lanes: test",
+        "execution::tests::guard_context_lifecycle_accuracy_refresh_reaches_existing_and_late_zero_profiles: test",
+        "execution::tests::guard_context_lifecycle_accuracy_refresh_reaches_existing_hybrid_children: test",
+        "execution::tests::guard_context_lifecycle_accuracy_refresh_rejects_invalid_targets_and_clones_independently: test",
+        "execution::tests::guard_context_lifecycle_rescue_retains_the_callers_target_at_each_precision: test",
+        "execution::tests::guard_context_lifecycle_reused_batches_match_fresh_workspaces_after_empty_and_invalid_calls: test",
+        "execution::tests::inactive_master_branches_are_batched_without_false_dual_failures: test",
+        "execution::tests::legacy_boundaries_are_primal_only_and_isolated_before_master_evaluation: test",
+        "execution::tests::legacy_pv_does_not_replace_its_gram_system_with_an_ibp_zero_profile: test",
+        "execution::tests::legacy_threshold_representability_respects_precision_and_unused_queries: test",
+        "execution::tests::legacy_zero_image_rejects_only_lanes_using_an_unsupported_diagonal: test",
+        "execution::tests::lightlike_unequal_mass_lanes_use_analytic_profiles: test",
+        "execution::tests::native_normalization_constants_use_the_requested_precision: test",
+        "execution::tests::nonzero_derived_distance_cancellation_is_rejected_and_resolved_at_higher_precision: test",
+        "execution::tests::pentagon_quadrature_budget_tracks_requested_accuracy_with_two_guard_bits: test",
+        "execution::tests::quadrature_error_packing_preserves_selected_lanes_and_taylor_order: test",
+        "execution::tests::reduction_keeps_double_double_and_arbitrary_precision_inputs: test",
+        "execution::tests::rounded_zero_distance_is_rejected_before_massless_master_and_profile_dispatch: test",
+        "execution::tests::scalar_tadpole_empty_mixed_lanes_and_reused_workspace: test",
+        "execution::tests::scale_squared_and_mass_taylor_components_propagate_through_all_stages: test",
+        "execution::tests::supplied_scalar_products_match_shift_derived_batches_and_dual_jets: test",
+        "execution::tests::supplied_scalar_products_use_exact_distance_zero_proofs: test",
+        "execution::tests::typed_static_and_dynamic_dual_carriers_agree: test",
+        "execution::tests::zero_constraints_check_higher_dual_components_without_freezing_routing: test"
+      ],
+      "returncode": 0,
+      "wall_seconds": 31.60407906002365,
+      "test_result": {
+        "status": "ok",
+        "passed": 35,
+        "failed": 0,
+        "ignored": 0
+      },
+      "log_sha256": "c09b5b62024da94e2ef03055fe7af77ed8400f87f5b41125be84a7ab57b463e6"
+    },
+    "certificate": {
+      "status": "passed",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/core_tests",
+        "invariant_certificate::tests::",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "timeout_seconds": 90,
+      "expected_passed": 8,
+      "expected_ignored": 0,
+      "membership": [
+        "invariant_certificate::tests::absent_regular_chart_does_not_claim_lower_rank: test",
+        "invariant_certificate::tests::certificate_checks_every_mixed_taylor_component: test",
+        "invariant_certificate::tests::certified_covectors_keep_linear_relations_after_translation: test",
+        "invariant_certificate::tests::exact_gram_certificate_isolates_lanes_and_uses_alternative_charts: test",
+        "invariant_certificate::tests::numeric_conversion_retains_bits_beyond_binary64: test",
+        "invariant_certificate::tests::scalar_certificate_preserves_translation_and_diagnoses_rank_loss: test",
+        "invariant_certificate::tests::six_point_scalar_continuation_needs_no_real_minkowski_signature: test",
+        "invariant_certificate::tests::tiny_nonzero_residual_is_never_accepted_by_a_roundoff_tolerance: test"
+      ],
+      "returncode": 0,
+      "wall_seconds": 2.2727275009965524,
+      "test_result": {
+        "status": "ok",
+        "passed": 8,
+        "failed": 0,
+        "ignored": 0
+      },
+      "log_sha256": "f0b80caac8c1c60fce59fc79f43c7f40690ebf0eb2c441212ec64d43dc98ed59"
+    },
+    "exact-zero": {
+      "status": "passed",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/core_tests",
+        "exact_zero_certificate::tests::",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "timeout_seconds": 90,
+      "expected_passed": 4,
+      "expected_ignored": 0,
+      "membership": [
+        "exact_zero_certificate::tests::selected_zero_components_preserve_nonzero_jets_and_refinement_lane_masks: test",
+        "exact_zero_certificate::tests::zero_certificate_rejects_non_polynomial_or_undeclared_inputs: test",
+        "exact_zero_certificate::tests::zero_polynomial_certificate_isolates_tiny_nonzero_rows: test",
+        "exact_zero_certificate::tests::zero_polynomial_certificate_keeps_ordered_mixed_dual_components: test"
+      ],
+      "returncode": 0,
+      "wall_seconds": 0.016695135040208697,
+      "test_result": {
+        "status": "ok",
+        "passed": 4,
+        "failed": 0,
+        "ignored": 0
+      },
+      "log_sha256": "43af0815711c077414f56efbb483f1bc36e49945c0a90a2f328d2431cc4e3371"
+    },
+    "stability": {
+      "status": "passed",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/core_tests",
+        "stability::",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "timeout_seconds": 120,
+      "expected_passed": 38,
+      "expected_ignored": 0,
+      "membership": [
+        "stability::arguments::tests::argument_conditioning_respects_requested_accuracy_and_defers_exact_zeros: test",
+        "stability::arguments::tests::mixed_float_precision_is_respected_without_counting_cancellation_twice: test",
+        "stability::arguments::tests::mixed_precision_higher_taylor_coefficients_keep_their_own_precision: test",
+        "stability::arguments::tests::positive_argument_envelope_retains_internal_monomial_taylor_cancellation: test",
+        "stability::arguments::tests::subnormal_distance_cannot_pass_with_an_underflowed_error_estimate: test",
+        "stability::quadrature::tests::amplified_derivative_errors_and_invalid_estimates_are_rejected: test",
+        "stability::quadrature::tests::backend_budget_is_rechecked_after_cancellation_and_mixed_jet_amplification: test",
+        "stability::quadrature::tests::combined_quadrature_budget_uses_actual_primal_amplitude_precision: test",
+        "stability::quadrature::tests::mixed_jets_and_inactive_singular_coefficients_preserve_lanes: test",
+        "stability::quadrature::tests::signed_coefficient_jets_feed_positive_symbolica_convolution: test",
+        "stability::tests::actual_finite_small_gram_pv_bubble_is_flagged_lane_locally: test",
+        "stability::tests::conditional_alias_monitors_preserve_inactive_poles_and_union_paths: test",
+        "stability::tests::denominator_zero_is_distinct_from_a_zero_tensor_component: test",
+        "stability::tests::dimensional_normalization_and_taylor_axis_are_preserved: test",
+        "stability::tests::finite_cancellation_fails_but_small_absolute_zero_passes: test",
+        "stability::tests::guard_context_does_not_reject_infinite_scale_before_valid_zero_power: test",
+        "stability::tests::guard_context_local_errors_keep_original_precedence_and_denominators_skip_powers: test",
+        "stability::tests::guard_context_output_skip_paths_leave_unused_invalid_powers_unobserved: test",
+        "stability::tests::guard_context_preserves_tied_scale_precision_and_ignores_higher_jets: test",
+        "stability::tests::guard_context_primal_error_precedence_and_invalid_buffers_match: test",
+        "stability::tests::guard_context_prototype_unit_preserves_low_precision_and_range_estimates: test",
+        "stability::tests::guard_context_resets_equal_values_with_different_precision_and_clones_hits: test",
+        "stability::tests::guard_context_scaleless_scale_uses_primal_mu_without_promoting_it: test",
+        "stability::tests::guard_context_typed_constants_refresh_accuracy_without_changing_roundoff: test",
+        "stability::tests::inactive_master_requests_are_skipped_per_sample: test",
+        "stability::tests::master_amplitudes_keep_nested_branches_and_reject_nonlinear_masters: test",
+        "stability::tests::master_dependent_activation_is_conservative_and_not_circular: test",
+        "stability::tests::master_precision_provenance_retains_the_error_budget_and_checks_full_jets: test",
+        "stability::tests::normalization_range_loss_is_reported: test",
+        "stability::tests::pentagon_master_cancellation_triggers_precision_rescue: test",
+        "stability::tests::precision_threshold_survives_beyond_binary64_exponent_range: test",
+        "stability::tests::promoted_arithmetic_retains_the_requested_accuracy: test",
+        "stability::tests::roundoff_weights_each_component_and_ignores_zero_metadata: test",
+        "stability::tests::snapping_boundaries_follow_query_demand_and_skip_discarded_queries: test",
+        "stability::tests::snapping_diagonal_probe_preserves_unused_scalar_tadpoles: test",
+        "stability::tests::snapping_used_only_by_active_master_arguments_is_monitored: test",
+        "stability::tests::tiny_low_relative_precision_terms_use_the_unchanged_absolute_budget: test",
+        "stability::tests::weighted_roundoff_keeps_underflow_visible_without_rejecting_tiny_absolute_errors: test"
+      ],
+      "returncode": 0,
+      "wall_seconds": 5.084898913977668,
+      "test_result": {
+        "status": "ok",
+        "passed": 38,
+        "failed": 0,
+        "ignored": 0
+      },
+      "log_sha256": "320d67ac489e4f1b15f56bd29d178754f68bb8d7c75d2c9eaeec82264fcb7fb3"
+    },
+    "rescue": {
+      "status": "passed",
+      "command": [
+        "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/core_tests",
+        "rescue::tests::",
+        "--test-threads=1",
+        "--nocapture"
+      ],
+      "timeout_seconds": 120,
+      "expected_passed": 3,
+      "expected_ignored": 2,
+      "membership": [
+        "rescue::tests::exact_promotions_preserve_low_limbs_and_signed_zero: test",
+        "rescue::tests::five_point_rank_seven_verifies_every_component_at_two_precisions: test",
+        "rescue::tests::five_point_rank_six_verifies_the_preserved_precision_discrepancy: test",
+        "rescue::tests::generalized_triangle_rescue_matches_every_reference_coefficient: test",
+        "rescue::tests::verified_batch_keeps_dual_axes_and_invalid_lanes_separate: test"
+      ],
+      "returncode": 0,
+      "wall_seconds": 2.880021513905376,
+      "test_result": {
+        "status": "ok",
+        "passed": 3,
+        "failed": 0,
+        "ignored": 2
+      },
+      "log_sha256": "f71e622870dcc7d4487291fb9067fe4c400775c28ddb19886190128957c338b4"
+    }
+  },
+  "complete_closure_verified_after": true
+}

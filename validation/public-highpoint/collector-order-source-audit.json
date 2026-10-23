@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "status": "source_audit_only",
+  "created_utc": "2026-10-23T18:20:21.001239+00:00",
+  "scope": "Source trace for possible preparation-history dependence of the retained Float128 N5 rank1 analytic-profile lane. No causal runtime proof, numerical qualification, tolerance change, or production modification.",
+  "reported_observation_not_recomputed_by_this_audit": "Parent reports exact equality of the new paired29 baseline/candidate records, but 29 differing leaves in the historical baseline comparison, confined to Float128 N5 rank1 analytic-profile lane1: small rounding changes plus precision/signed-zero metadata; inputs, statuses and statistics unchanged.",
+  "runtime_performed_by_this_audit": false,
+  "causal_runtime_proof": false,
+  "hypothesis": "The two inserted f64 controls alter process-wide symbol and alias registration before retained DoubleFloat/Float128 cases. Session-local IDs enter canonical term ordering, which can alter direct-lowered arithmetic order and Float precision tracking without changing exact algebra.",
+  "source_trace": [
+    {
+      "path": "validation/public-highpoint/collector_capture_v2.rs",
+      "lines": [
+        80,
+        81,
+        117
+      ],
+      "finding": "The f64 domain inserts two new controls before the DoubleFloat and Float128 domains; retained input equality does not preserve process preparation history."
+    },
+    {
+      "path": "crates/iregi-rust/src/execution.rs",
+      "lines": [
+        1544,
+        1584,
+        1590,
+        1603
+      ],
+      "finding": "Zero-profile groups are collected in lane encounter order and prepared lazily; the HashMap is used for keyed cache access, not group iteration."
+    },
+    {
+      "path": "crates/iregi-rust/src/plan.rs",
+      "lines": [
+        138,
+        143,
+        144,
+        171,
+        323,
+        325
+      ],
+      "finding": "Zero-distance pairs are canonicalized and sorted; each variant is prepared once and special kinematics select IBP."
+    },
+    {
+      "path": "crates/iregi-rust/src/ibp.rs",
+      "lines": [
+        152,
+        267,
+        310,
+        453,
+        458
+      ],
+      "finding": "Each scalar compiler consumes a global atomic namespace. Alias names contain namespace and insertion index; exact-zero constraints rebuild the scalar graph."
+    },
+    {
+      "path": "dependencies/symbolica/src/state.rs",
+      "lines": [
+        1049,
+        1057,
+        1075
+      ],
+      "finding": "A new symbol gets the current registry-length ID; this is process history dependent."
+    },
+    {
+      "path": "dependencies/symbolica/src/normalize.rs",
+      "lines": [
+        26,
+        38,
+        157,
+        1110
+      ],
+      "finding": "Factors compare symbol IDs, and addition terms are sorted by encoded term bytes containing the symbol IDs."
+    },
+    {
+      "path": "dependencies/symbolica/src/atom/coefficient.rs",
+      "lines": [
+        904,
+        912,
+        914,
+        917
+      ],
+      "finding": "The packed integer writer used for variable IDs writes multibyte IDs little endian. Raw-byte term sorting is not invariant under a uniform numeric shift of IDs."
+    },
+    {
+      "path": "dependencies/symbolica/src/evaluate/tree.rs",
+      "lines": [
+        395,
+        396,
+        1561,
+        1575,
+        1581,
+        1594
+      ],
+      "finding": "Zero Horner iterations bypass Horner/CPE optimization. Direct lowering visits Atom operands, allocates temporaries, then sorts the resulting operand slots."
+    },
+    {
+      "path": "dependencies/symbolica/src/evaluate/batch.rs",
+      "lines": [
+        235,
+        237,
+        238,
+        240,
+        242
+      ],
+      "finding": "Batch Add/Mul accumulates sequentially in the stored operand order."
+    },
+    {
+      "path": "dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs",
+      "lines": [
+        159,
+        181,
+        188,
+        191
+      ],
+      "finding": "Float addition rounds and updates precision based on operand exponents and precision; changed arithmetic order can change values and precision metadata."
+    }
+  ],
+  "excluded_or_lower_priority_mechanisms": [
+    "No unordered HashMap iteration found in the zero-profile dispatch/cache path; profile and lane ordering are explicit.",
+    "The reduction compiler uses direct translation, zero Horner iterations and one core at execution.rs:2263-2265; the direct translator returns before randomized Horner search or CPE at tree.rs:395-396.",
+    "The ordinary scalar-master constructor uses direct translation and zero Horner iterations at oneloopmaster/src/expressions.rs:232-235.",
+    "Stack allocation uses instruction-order traversal and a deterministic heap and preserves operand vector order at evaluate/optimize.rs:504-608."
+  ],
+  "suggested_discriminating_evidence_not_executed": [
+    "Compare the authorized unchanged original-binary replay with its historical 27-case capture to separate repeat-process variability from driver-history differences.",
+    "If a further diagnostic run is separately authorized, preserve the original 27-case preparation sequence before appending the two new controls and retain exact comparison without tolerance changes.",
+    "If needed, capture the selected profile, alias name/ID order, exact expressions, and exported/debug evaluator instructions before numeric mapping; locate the first differing arithmetic operand sequence."
+  ],
+  "limitations": [
+    "This is a concrete source mechanism and localization hypothesis, not proof that it caused the reported 29-leaf difference.",
+    "Current dependency source hashes and pinned compiled archive hashes are recorded separately; this audit does not rebuild or establish a source-to-archive reproducibility proof.",
+    "Original and new capture qualification remains the parent task; this note does not relax historical equality or certify any numerical result."
+  ],
+  "combined_qualifier_review": {
+    "status": "reported_binary_binding_gap_resolved_in_source",
+    "path": "validation/public-highpoint/qualify_collector_nway_full.py",
+    "lines": [
+      49,
+      59
+    ],
+    "finding": "Reconstructs the exact semantic guard inventory from the build and requires both test/exact binary hashes to match the build fields and current files. The recorded semantic inventory equals that expected inventory.",
+    "current_binary_bindings": {
+      "target/public-highpoint/collector-nway/core_tests": "0cd9bf7ed3cbbdab4f0010a07c498821381a1d3523ec000b3d2d6ebae8e59921",
+      "target/public-highpoint/collector-nway/nway_exact_probe": "748aae6598f5c28508f160824f1dc516ef62947b03588a18e16e6700d71ecc2f"
+    },
+    "full_capture_qualifier_executed_by_this_audit": false
+  },
+  "inspected_current_source_sha256": {
+    "validation/public-highpoint/collector_capture.rs": "c879089f092f60e2d92cc5e14d047458c3b55c1e777a1293d8a9b76a1db0eabd",
+    "validation/public-highpoint/collector_capture_v2.rs": "a936fbbdcdd70a554a198e2880e3df3b503d1f9754e86fd747af553316c85f7e",
+    "validation/public-highpoint/qualify_collector_nway_full.py": "2bf1f6ef2fb856b7134e45ff2e062ed6aa0d89625914ef5bd00cc4edc6ce4eb2",
+    "validation/public-highpoint/run_collector_nway_checks.py": "3cc079f0a56e015132603798e759380ece69df8744b7efab2f3f5f579112a772",
+    "crates/iregi-rust/src/execution.rs": "9b86e9fae29d7c565cc92816b8e4975d029d940dded6a416cfbab5e3ee97a29a",
+    "crates/iregi-rust/src/plan.rs": "5b17b21f58775301c5e13b23ab9c8d97ac10c8d9526ce9d31077315b35e96b59",
+    "crates/iregi-rust/src/ibp.rs": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+    "crates/iregi-rust/src/stability.rs": "b713f3a4948a4b2a338f9bf22471a410997896118290166578783d36b9c94139",
+    "crates/iregi-masters/src/lib.rs": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+    "dependencies/oneloopmaster/src/expressions.rs": "1dd7d7901446506a5d7e46d179e3df28f9f3956f7f0ed1a323b74e5a3f80baed",
+    "dependencies/symbolica/src/state.rs": "13c27c7acb4bb8705814615144f35304f682d66bd23c8e252b80134975c73ce1",
+    "dependencies/symbolica/src/atom.rs": "453d52e3894a8eb4746c55ddb9df7b025ccacc22c2c22a31648afb1621e56582",
+    "dependencies/symbolica/src/atom/representation.rs": "06f93d659eae99c42c455c773b1293d3a0f9df70fb40a343df9df566885e9a7d",
+    "dependencies/symbolica/src/atom/coefficient.rs": "e146af99e697482a040ccc7d4b68aa96eec0445c6c082148000887636e577a57",
+    "dependencies/symbolica/src/normalize.rs": "80a79f2b90cc702eeb6c8c0c768619337ed12ea3e974125ac49172baf1da57ad",
+    "dependencies/symbolica/src/evaluate/tree.rs": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
+    "dependencies/symbolica/src/evaluate/function_map.rs": "9ebc261953a132f7045db29c20887af0bda50764f55859b2a21186af06644b7e",
+    "dependencies/symbolica/src/evaluate/evaluator.rs": "7ab103a6720528435e480442bb29b805d377759d554787578b7ed85973b3ebf9",
+    "dependencies/symbolica/src/evaluate/batch.rs": "eb73974b0c176422863e4fbe512d392813d83085b2ae5c476db24d028012efcf",
+    "dependencies/symbolica/src/evaluate/optimize.rs": "899d86347eb9efc9ae39d85e94d0c5a35fbc6de8a1efa13b9ccc95464f92e0f6",
+    "dependencies/symbolica/lib/numerica/src/domains/float/multiprecision.rs": "8bd257589a36a5b93a8d45996c799d300dad1f6103103483301b25a4dc4f1c1f"
+  },
+  "frozen_baseline_source_bindings": {
+    "target/public-highpoint/use-dedup-full/original/crates/iregi-rust/src/execution.rs": {
+      "sha256": "9b86e9fae29d7c565cc92816b8e4975d029d940dded6a416cfbab5e3ee97a29a",
+      "current_source_path": "crates/iregi-rust/src/execution.rs",
+      "current_source_identical": true
+    },
+    "target/public-highpoint/use-dedup-full/original/crates/iregi-rust/src/plan.rs": {
+      "sha256": "5b17b21f58775301c5e13b23ab9c8d97ac10c8d9526ce9d31077315b35e96b59",
+      "current_source_path": "crates/iregi-rust/src/plan.rs",
+      "current_source_identical": true
+    },
+    "target/public-highpoint/use-dedup-full/original/crates/iregi-rust/src/ibp.rs": {
+      "sha256": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+      "current_source_path": "crates/iregi-rust/src/ibp.rs",
+      "current_source_identical": true
+    },
+    "target/public-highpoint/use-dedup-full/original/crates/iregi-rust/src/stability.rs": {
+      "sha256": "b713f3a4948a4b2a338f9bf22471a410997896118290166578783d36b9c94139",
+      "current_source_path": "crates/iregi-rust/src/stability.rs",
+      "current_source_identical": true
+    }
+  },
+  "pinned_dependency_archive_bindings": {
+    "target/stack-reuse-current-workspace/deps/libsymbolica-5cca42ee48491872.rlib": {
+      "sha256": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850",
+      "recorded_by": "validation/public-highpoint/collector-capture-build.json",
+      "current_hash_matches_recorded": true
+    },
+    "target/stack-reuse-current-workspace/deps/libiregi_masters-0d5459afd211649c.rlib": {
+      "sha256": "0103094825ec960c856c17b09bc676f02135e3bc1c210ecc3d4ea93d44ec2f84",
+      "recorded_by": "validation/public-highpoint/collector-capture-build.json",
+      "current_hash_matches_recorded": true
+    },
+    "target/stack-reuse-current-workspace/deps/liboneloop-8562c3cbbf948c0e.rlib": {
+      "sha256": "0de377f4602cdc7f365a61807c3a93879b5a6fff60577739acc9fe2b6abc90c8",
+      "recorded_by": "validation/public-highpoint/collector-capture-build.json",
+      "current_hash_matches_recorded": true
+    }
+  },
+  "provenance_manifest_sha256": {
+    "validation/public-highpoint/collector-capture-build.json": "e18f89449e34490522449e1c15638b09555a224ed6cdeeef48ca191bf943efd1",
+    "validation/public-highpoint/collector-capture-v2-build.json": "88a96d5b24f9eabc7c72ca2ccd432cd9fd2dc657c279ff5786e64649ebe18e01",
+    "validation/public-highpoint/collector-nway-build.json": "c996014c5d07556a935d4c58c72ae81bf3c4c45bdb8b94ce18fb7b6355d8b1ad",
+    "validation/public-highpoint/collector-nway-checks.json": "08838ecb257f31c71bf79fcfaa6e1c36097e3c957b33d19c2dedcea5838bfd07"
+  }
+}

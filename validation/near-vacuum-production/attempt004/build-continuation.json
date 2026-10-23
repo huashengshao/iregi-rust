@@ -1,0 +1,41 @@
+{
+  "status": "continuation-finished",
+  "reason": "Prior storage failures did not finish dependency archives. Extend compilation only rather than discard current compiler work at the originally assumed cached-build deadline. Original600s compilation bound is no longer a satisfied claim; numerical test600s limit is unchanged. Compilation elapsed time is not used for performance qualification.",
+  "recorded_utc": "2026-10-23T19:37:58.247876+00:00",
+  "wrapper": {
+    "pid": 143946,
+    "start_ticks": "81739726",
+    "argv": [
+      "python3",
+      "validation/near-vacuum-production/run_stripped_public_tests.py",
+      "--output",
+      "validation/near-vacuum-production/attempt004"
+    ]
+  },
+  "cargo": {
+    "pid": 144591,
+    "start_ticks": "81739838",
+    "argv": [
+      "/nix/store/1jwkiz96iwqdhm4bh2hvgd86ysb0b67q-cargo-1.99.0/bin/cargo",
+      "rustc",
+      "--locked",
+      "--offline",
+      "--message-format=json",
+      "-p",
+      "iregi-masters",
+      "--test",
+      "certified",
+      "--",
+      "-C",
+      "debuginfo=0",
+      "-C",
+      "strip=debuginfo"
+    ],
+    "pgid": 144591
+  },
+  "extra_compilation_timeout_seconds": 600,
+  "original_record_sha256": "b87d7822116dfb8db01e1ea888bfb608cb1f30ef5d93b1970c8e6b728a65687a",
+  "compilation_process_finished": true,
+  "watcher_elapsed_seconds": 92.03875553095713,
+  "resumed_utc": "2026-10-23T19:40:05.386736+00:00"
+}

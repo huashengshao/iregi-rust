@@ -1,0 +1,77 @@
+{
+  "status": "integrated_and_qualified",
+  "base_revision": "21622ec9abfdedcf18993768845a29a9bb1c1e1d",
+  "source_sha256": {
+    "crates/iregi-masters/src/lib.rs": "bc2d91c5bb357526768929adce4628cc0a17aac5f8d6f009a6b5a0e8aceab97a",
+    "crates/iregi-masters/src/certified.rs": "a33fb74c5b4122cab8e716f6105f4a91bccb397110ffe621344e9166b1a9b941",
+    "crates/iregi-masters/src/near_vacuum.rs": "046bb0e22fe5ec63489f94352a61eecb20020647bd8d893dc585e99e46663a57",
+    "crates/iregi-masters/tests/certified.rs": "27f6995d2f7d950fce269519dd8b07cb1593eec83fe37b9d961e19b3039b70d9",
+    "crates/iregi-rust/src/stability.rs": "36db72b53c56a7cbea033806b96a705c35eed6c6c2fd2e504234aa49551093a4"
+  },
+  "evidence": [
+    {
+      "path": "validation/near-vacuum-production/attempt004/qualification.json",
+      "sha256": "5380c48cdb9df6cb14e8b6007c0a15a0ff0241be44ba6d0f17717d5527ba5127"
+    },
+    {
+      "path": "validation/near-vacuum-production/attempt004/build-continuation.json",
+      "sha256": "e5952209fb988f1330faa3307dbd33978d2caf30c4c6835f70cdd659e656d356"
+    },
+    {
+      "path": "validation/near-vacuum-production/core-check/qualification.json",
+      "sha256": "f1e9ab6f219a0123c0a406c9a4bee03055b66510b96e5aa231f7a9a81d7d66cc"
+    },
+    {
+      "path": "validation/near-vacuum-adapter-current/qualification.json",
+      "sha256": "e444a5cdd5c0d6dedf4046da53e7aaa0c4f99c4d6487c9001cbfa6d6b0afd7be"
+    },
+    {
+      "path": "validation/near-vacuum-production-ready/manifest.json",
+      "sha256": "30921b950794e3a2f27ae80ca1de2a1ea265a0bdb50aff27e9c69ea0e010a395"
+    },
+    {
+      "path": "validation/near-vacuum-production-ready/cleanup-proof.json",
+      "sha256": "73b344359e41557bc5dcf21382b4757b3a76fa6f23163eac491cfda3433f33f1"
+    },
+    {
+      "path": "validation/public-highpoint/collector-capture-v4-qualification.json",
+      "sha256": "973eb869be02d5883bcb583f46da66c303e384347d3eb296e7a253e56fc3907e"
+    },
+    {
+      "path": "validation/public-highpoint/collector-nway-checks.json",
+      "sha256": "08838ecb257f31c71bf79fcfaa6e1c36097e3c957b33d19c2dedcea5838bfd07"
+    },
+    {
+      "path": "validation/public-highpoint/collector-v4-independent-audit.json",
+      "sha256": "ee52b6d7ec13dd9d23d2168e5d6034c4a3e35c3ef2c143f98760682a18793eae"
+    },
+    {
+      "path": "validation/public-highpoint/collector-nway-adoption.json",
+      "sha256": "5fa66cdb155ab1581bcd016dae37f4820987c1c305cc13cf1a3b26eed56cc554"
+    }
+  ],
+  "qualifier_sha256": "95fe37717dfe706d79f719adb745c21d3a995f6f9a0da0fb3da46b9790dbeb0e",
+  "public_api_tests": {
+    "passed": 3,
+    "failed": 0,
+    "ignored": 0,
+    "source_files_verified": 348,
+    "retained_executable": {
+      "path": "target/near-vacuum-production/certified-public",
+      "sha256": "64f44057e53aebe6596b20c6d4ca03747c4038edd33ea28a10d33c465767d3e1"
+    }
+  },
+  "build_limit": "Compilation used an explicit logged continuation after storage failures; the original600s build cap is not claimed met. Numerical tests remained within their unchanged600s cap. Build/runtime durations here are not performance measurements.",
+  "changes": [
+    "Explicit finite D0 near-vacuum accuracy API with exact rational component budgets, lazy N2/N4 batch programs and finite enclosures.",
+    "Exact Symbolica alias-use collection for IF-free subtrees, preserving conditional activation and current tensor results.",
+    "New typed public accuracy/failure variants; downstream exhaustive enum matches must account for them."
+  ],
+  "limits": [
+    "Finite certificates cover exact represented master inputs, not upstream routing, input uncertainty or quadrature error.",
+    "Series support is limited to the checked analytic neighborhood, orders2/4, at most32 ancestor-closed Taylor components and total degree4.",
+    "Ordinary scalar-master and tensor-reduction default formulas remain unchanged; ordinary fallback is explicitly uncertified.",
+    "No new IREGI performance parity is claimed; the primary measured baseline remains6b24c03.",
+    "High-point coverage and all private automatic-planar/receipt/slim/native/CSE experiments remain separate."
+  ]
+}

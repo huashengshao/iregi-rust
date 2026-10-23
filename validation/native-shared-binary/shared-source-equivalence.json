@@ -1,0 +1,71 @@
+{
+  "scope": "Expand each positional shared binary call to exactly its selected existing primitive and original slot/constant reads, remove only validated span metadata, expand transparent outlines. No arithmetic, slot, operand order, real-prefix IR, constant, label, helper name or stride is erased. Complements source review and direct alias/precision/branch tests of shared kernel implementation.",
+  "shared_kernel_sha256": "c14d17893ca54283c0419d7b5f8aa96328d430d6fcb232e6c1c4ec6da8939712",
+  "families": [
+    {
+      "family": "b0",
+      "scalar_source_identical": true,
+      "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+      "inline_arithmetic": true,
+      "shared_binary_calls": 142,
+      "operand_categories": {
+        "mul:BinaryOperand::Column:BinaryOperand::Constant": 5,
+        "mul:BinaryOperand::Constant:BinaryOperand::Column": 45,
+        "mul:BinaryOperand::Column:BinaryOperand::Column": 29,
+        "add:BinaryOperand::Column:BinaryOperand::Column": 49,
+        "add:BinaryOperand::Constant:BinaryOperand::Column": 14
+      },
+      "predicate_or_label_refreshes": 159,
+      "baseline_bytes": 94452,
+      "candidate_bytes": 109703,
+      "baseline_outlines": 4,
+      "candidate_outlines": 4,
+      "baseline_calls": 4,
+      "candidate_calls": 4,
+      "baseline_shape_sha256": "aadeb5aa5ebf1804b52cb6d48f2a9b2108b06bbe50f896b2ef3facc3c5a67ad6",
+      "candidate_shape_sha256": "aadeb5aa5ebf1804b52cb6d48f2a9b2108b06bbe50f896b2ef3facc3c5a67ad6"
+    },
+    {
+      "family": "c0",
+      "scalar_source_identical": true,
+      "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+      "inline_arithmetic": false,
+      "shared_binary_calls": 2553,
+      "operand_categories": {
+        "add:BinaryOperand::Column:BinaryOperand::Column": 1024,
+        "mul:BinaryOperand::Column:BinaryOperand::Column": 1528,
+        "mul:BinaryOperand::Constant:BinaryOperand::Constant": 1
+      },
+      "predicate_or_label_refreshes": 1557,
+      "baseline_bytes": 2745551,
+      "candidate_bytes": 2917643,
+      "baseline_outlines": 81,
+      "candidate_outlines": 82,
+      "baseline_calls": 81,
+      "candidate_calls": 82,
+      "baseline_shape_sha256": "fdc5e14f9e78a3b6249375b02810cacc84f1ae4da71cb954615a963eec91fb66",
+      "candidate_shape_sha256": "fdc5e14f9e78a3b6249375b02810cacc84f1ae4da71cb954615a963eec91fb66"
+    },
+    {
+      "family": "fixture",
+      "scalar_source_identical": true,
+      "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+      "inline_arithmetic": true,
+      "shared_binary_calls": 282,
+      "operand_categories": {
+        "add:BinaryOperand::Column:BinaryOperand::Constant": 140,
+        "mul:BinaryOperand::Column:BinaryOperand::Column": 141,
+        "add:BinaryOperand::Column:BinaryOperand::Column": 1
+      },
+      "predicate_or_label_refreshes": 3,
+      "baseline_bytes": 88228,
+      "candidate_bytes": 96213,
+      "baseline_outlines": 4,
+      "candidate_outlines": 4,
+      "baseline_calls": 4,
+      "candidate_calls": 4,
+      "baseline_shape_sha256": "073b58b0a57bcfb34e7b23d20653c546db973d3328d9b3a4a9698b36ed569839",
+      "candidate_shape_sha256": "073b58b0a57bcfb34e7b23d20653c546db973d3328d9b3a4a9698b36ed569839"
+    }
+  ]
+}

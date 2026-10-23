@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "scope": "plain Python protocol checks only; uses retained candidate preflight records without rerunning Symbolica",
+  "runner_sha256": "eb1e4d5788c3af6d67f36320d9ba0c496dcf58d935774cb2f23e1ca32df47417",
+  "helper_sha256": "2ca9de189f0259ac428b3e9bc979f2e1043133d04d3983c00931de722d7dbc4e",
+  "input_preflight_sha256": "9df320690b9369e9c8d251ebefdb66747a6d05d90329d56cac978be5bf73ba9f",
+  "rows": [
+    {
+      "case": "valid/ggh_f64",
+      "passed": true
+    },
+    {
+      "case": "valid/ggh_dd",
+      "passed": true
+    },
+    {
+      "case": "valid/ggh_float128",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_first_static_f64",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_first_static_dd",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_first_static_float128",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_first_dynamic_f64",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_first_dynamic_dd",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_first_dynamic_float128",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_mixed_static_f64",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_mixed_static_dd",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_mixed_static_float128",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_mixed_dynamic_f64",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_mixed_dynamic_dd",
+      "passed": true
+    },
+    {
+      "case": "valid/lightlike_mixed_dynamic_float128",
+      "passed": true
+    },
+    {
+      "case": "reject/wrong_case",
+      "passed": true,
+      "rejection": "typed response identity differs"
+    },
+    {
+      "case": "reject/wrong_bits",
+      "passed": true,
+      "rejection": "typed precision/carrier/Taylor axes differ"
+    },
+    {
+      "case": "reject/wrong_carrier",
+      "passed": true,
+      "rejection": "typed precision/carrier/Taylor axes differ"
+    },
+    {
+      "case": "reject/swapped_taylor_axes",
+      "passed": true,
+      "rejection": "typed precision/carrier/Taylor axes differ"
+    },
+    {
+      "case": "reject/wrong_algorithm",
+      "passed": true,
+      "rejection": "typed requested reduction settings differ"
+    },
+    {
+      "case": "reject/wrong_policy",
+      "passed": true,
+      "rejection": "typed requested reduction settings differ"
+    },
+    {
+      "case": "reject/missing_input_argument",
+      "passed": true,
+      "rejection": "typed argument count differs"
+    },
+    {
+      "case": "reject/missing_input_component",
+      "passed": true,
+      "rejection": "typed input Taylor width differs"
+    },
+    {
+      "case": "reject/rounded_input_metadata",
+      "passed": true,
+      "rejection": "typed input precision/exactness differs"
+    },
+    {
+      "case": "reject/missing_output_lane",
+      "passed": true,
+      "rejection": "typed lane/input count differs"
+    },
+    {
+      "case": "reject/missing_laurent_slot",
+      "passed": true,
+      "rejection": "typed Laurent count differs"
+    },
+    {
+      "case": "reject/missing_taylor_slot",
+      "passed": true,
+      "rejection": "typed Taylor count differs"
+    },
+    {
+      "case": "reject/failed_lane_outputs",
+      "passed": true,
+      "rejection": "failed typed lane exposed coefficients"
+    },
+    {
+      "case": "reject/nonfinite_output",
+      "passed": true,
+      "rejection": "nonfinite numeric component"
+    },
+    {
+      "case": "reject/invalid_lane_mislabeled",
+      "passed": true,
+      "rejection": "typed lane status differs"
+    },
+    {
+      "case": "reject/wrong_counter_width",
+      "passed": true,
+      "rejection": "execution counters differ or batch width is wrong"
+    }
+  ],
+  "passed": true
+}

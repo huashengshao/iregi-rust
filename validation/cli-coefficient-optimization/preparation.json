@@ -1,0 +1,49 @@
+{
+  "scope": "Private deterministic Symbolica coefficient preparation experiment; no production changes, no timing qualification",
+  "baseline_source": "crates/iregi-cli/src/numerator.rs",
+  "baseline_sha256": "3060fff5fea11f95774595113b82a98613a882614417db745eaca6c15c25d828",
+  "modes": {
+    "direct": {
+      "horner_iterations": 0
+    },
+    "allocated": {
+      "horner_iterations": 0,
+      "explicit_optimize_stack": true
+    },
+    "cse0": {
+      "horner_iterations": 1,
+      "max_horner_scheme_variables": 0,
+      "cpe_iterations": 0
+    },
+    "pair1": {
+      "horner_iterations": 1,
+      "max_horner_scheme_variables": 0,
+      "cpe_iterations": 1,
+      "max_common_pair_cache_entries": 100000,
+      "max_common_pair_distance": 64
+    }
+  },
+  "exact_proof": "Exported straight-line instructions reconstructed entirely with Symbolica Atom operations; each result minus original coefficient expanded by Symbolica must be literal zero. No probabilistic zero test. Unsupported control/helper/constant mechanisms rejected.",
+  "three_checks": [
+    "Symbolica evaluator.rs map_to_ring/evaluate_in_ring supports exact fields but rejects builtin sqrt; no public evaluator-to-Atom API found.",
+    "Symbolica evaluation tests exercise deterministic CSE/CPE with max_horner_scheme_variables(0); conversion tests use numeric finite/rational rings, not symbolic builtin evaluation.",
+    "FeynKit test_support.rs and gammaloop evaluators use map_to_ring(Q) for rational checks; no polynomial builtin evaluator conversion found."
+  ],
+  "future_excluded": [
+    "Removing global coefficient expansion",
+    "Occurrence Horner variable factoring before initial structural results",
+    "Any production or performance policy change"
+  ],
+  "numeric_context_scope": "Inputs retain exact represented values, precision and zero signs across modes; support, rows, components and prototype are identical. Reordered output tracked precision and zero signs are recorded and analyzed, not required bitwise equal. The Float256 oracle lifts exact represented values (zero signs are not used as a numerical oracle); all physical coefficient kernels are straight-line polynomials with only constant positive sqrt, and unsupported branches/inverses must be visible in proof structural counts.",
+  "independent_review_in_progress": "/root/native_stack_batch/peer_cse_review",
+  "independent_review": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review",
+    "result": "No arithmetic, alias, row-layout or failure-suppression defect within inspected finite polynomial coefficient scope",
+    "scope_limits": [
+      "Output zero signs and tracked precision may change under arithmetic reordering and are not a bitwise gate",
+      "Float256 is the high-precision reference for DD/Float128 convergence; Float256 candidate comparison is same-precision consistency, not an independent256-bit accuracy certificate",
+      "The four canonical physical kinematic points vary the coupling; no general conditioning/overflow coverage claim",
+      "No-inverse/constant-sqrt scope is restricted to inspected physical programs; the validation interpreter accepts a broader algebraic instruction subset"
+    ]
+  }
+}

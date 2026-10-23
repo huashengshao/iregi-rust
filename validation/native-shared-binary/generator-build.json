@@ -1,0 +1,46 @@
+{
+  "environment": {
+    "CARGO_CRATE_NAME": "iregi_masters"
+  },
+  "command": [
+    "taskset",
+    "-c",
+    "20,21",
+    "rustc",
+    "--edition=2024",
+    "--crate-name",
+    "native_shared_generator",
+    "/shared/external/iregi/iregi-rust/target/native-shared-binary/generate.rs",
+    "-C",
+    "opt-level=1",
+    "-C",
+    "codegen-units=16",
+    "-C",
+    "metadata=native_shared_generator",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/native-stack-batch/deps",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps",
+    "-L",
+    "native=/shared/external/iregi/iregi-rust/target/cargo-build/debug/build/gmp-mpfr-sys-c4459d582ef76f89/out/lib",
+    "--extern",
+    "oneloop=/shared/external/iregi/iregi-rust/target/native-stack-batch/deps/liboneloop-8562c3cbbf948c0e.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/native-stack-batch/deps/libsymbolica-5cca42ee48491872.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/native-shared-binary/generate"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 13.654440065962262,
+  "inputs": {
+    "target/native-shared-binary/generate.rs": "85fb26c8d5c13a820a37b8f650a1d1e3b57ff219ffa9729c9e13cca64d26a74f",
+    "target/native-shared-binary/baseline/rust_codegen.rs": "3a48dcfa3a9ce9d464ec8a73a9d6b8304d5684a11210ede11c06847df7a87ce9",
+    "target/native-shared-binary/baseline/rust_codegen/batch.rs": "080d272d97ee512237290f27f91c6c7c8ee60aaf6a9b7a055f912fad18960411",
+    "target/native-shared-binary/candidate/rust_codegen.rs": "557238e4a9c9cb3519eff1dde06adc467f65beb5d1c89de04c6345544a28dcf1",
+    "target/native-shared-binary/candidate/rust_codegen/batch.rs": "706ec705de56a7cca820903d6db3c40d6a097a12c553e43394d3a9f2a3a4aa50",
+    "target/native-stack-batch/deps/liboneloop-8562c3cbbf948c0e.rlib": "0de377f4602cdc7f365a61807c3a93879b5a6fff60577739acc9fe2b6abc90c8",
+    "target/native-stack-batch/deps/libsymbolica-5cca42ee48491872.rlib": "611ab764e5e5af4a8c00863d3ee20712bbc6449c1302f1b249bf44ae15f79850"
+  },
+  "changed": [],
+  "binary_sha256": "60c17dffdc0547550961d0135603ab61af964d6ac894ed2157564a0f37cab669"
+}

@@ -1,0 +1,1815 @@
+{
+  "status": "research_diagnostics_only",
+  "adoption": "not adopted; no timing qualification",
+  "raw_criterion": "|a-b|/max(1,|a|,|b|)<=1e-10 for each real/imaginary coefficient component; original failures retained unchanged",
+  "dimensional_diagnostic": "|a-b|/max(Q^(N-rank),|a|,|b|), Q=max absolute real component among all dimension-one masses and external momenta, dimension-one imaginary components required zero. Every coefficient homogeneity established exactly with Symbolica. This diagnostic does not replace the raw criterion or constitute physical end-to-end acceptance.",
+  "high_precision_scope": "DD and Float128 compare to256-bit exact-represented-input baseline. Float256 candidate comparisons test same-precision consistency; near-zero256-bit references may have few tracked bits, with selected exact substitution additionally recorded.",
+  "corpus_scope": "Four canonical physical graphs/kinematic points, coupling controls and original batch sizes; no general conditioning/overflow coverage",
+  "homogeneity_sha256": "936fc40bbcd26220146beff5c609ad7b0f2d1c60c22b11348603b59c12fe1ffe",
+  "runtime_manifest_sha256": "ee33417a5cdf90f672bad09923ba845ca490a63b9d90b5fbd5b4d14f4f8a3a31",
+  "analyzer_sha256": "d0e73f01c6c90852065e855e91b486612f6357eb0f1cb0b4be5b1b183a4dd96c",
+  "structures": [
+    {
+      "case": "ggh",
+      "mode": "direct",
+      "prepare_seconds": 0.000505562,
+      "proof_seconds": 0.001407165,
+      "structure": {
+        "arithmetic": {
+          "additions": 117,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 909
+        },
+        "constants": 8,
+        "helpers": 0,
+        "input_count": 24,
+        "instructions": 149,
+        "outputs_proved": 15,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 149
+      }
+    },
+    {
+      "case": "ggh",
+      "mode": "allocated",
+      "prepare_seconds": 0.00025677,
+      "proof_seconds": 0.001251406,
+      "structure": {
+        "arithmetic": {
+          "additions": 117,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 909
+        },
+        "constants": 8,
+        "helpers": 0,
+        "input_count": 24,
+        "instructions": 149,
+        "outputs_proved": 15,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 63
+      }
+    },
+    {
+      "case": "ggh",
+      "mode": "cse0",
+      "prepare_seconds": 0.000853573,
+      "proof_seconds": 0.001200845,
+      "structure": {
+        "arithmetic": {
+          "additions": 117,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 796
+        },
+        "constants": 8,
+        "helpers": 0,
+        "input_count": 24,
+        "instructions": 180,
+        "outputs_proved": 15,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 37
+      }
+    },
+    {
+      "case": "ggh",
+      "mode": "pair1",
+      "prepare_seconds": 0.001075284,
+      "proof_seconds": 0.001002734,
+      "structure": {
+        "arithmetic": {
+          "additions": 116,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 423
+        },
+        "constants": 8,
+        "helpers": 0,
+        "input_count": 24,
+        "instructions": 207,
+        "outputs_proved": 15,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 59
+      }
+    },
+    {
+      "case": "gghh",
+      "mode": "direct",
+      "prepare_seconds": 0.001318935,
+      "proof_seconds": 0.021362808,
+      "structure": {
+        "arithmetic": {
+          "additions": 2895,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 15132
+        },
+        "constants": 12,
+        "helpers": 0,
+        "input_count": 28,
+        "instructions": 2686,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 2674
+      }
+    },
+    {
+      "case": "gghh",
+      "mode": "allocated",
+      "prepare_seconds": 0.001422886,
+      "proof_seconds": 0.020547405,
+      "structure": {
+        "arithmetic": {
+          "additions": 2895,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 15132
+        },
+        "constants": 12,
+        "helpers": 0,
+        "input_count": 28,
+        "instructions": 2686,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 500
+      }
+    },
+    {
+      "case": "gghh",
+      "mode": "cse0",
+      "prepare_seconds": 0.006362516,
+      "proof_seconds": 0.017255231,
+      "structure": {
+        "arithmetic": {
+          "additions": 2873,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 12450
+        },
+        "constants": 12,
+        "helpers": 0,
+        "input_count": 28,
+        "instructions": 2814,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 357
+      }
+    },
+    {
+      "case": "gghh",
+      "mode": "pair1",
+      "prepare_seconds": 0.013258865,
+      "proof_seconds": 0.014256088,
+      "structure": {
+        "arithmetic": {
+          "additions": 2654,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 6035
+        },
+        "constants": 12,
+        "helpers": 0,
+        "input_count": 28,
+        "instructions": 3176,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 451
+      }
+    },
+    {
+      "case": "gghhh",
+      "mode": "direct",
+      "prepare_seconds": 0.005924675,
+      "proof_seconds": 0.235414046,
+      "structure": {
+        "arithmetic": {
+          "additions": 8739,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 68582
+        },
+        "constants": 38,
+        "helpers": 0,
+        "input_count": 32,
+        "instructions": 8273,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 8261
+      }
+    },
+    {
+      "case": "gghhh",
+      "mode": "allocated",
+      "prepare_seconds": 0.008139104,
+      "proof_seconds": 0.269120415,
+      "structure": {
+        "arithmetic": {
+          "additions": 8739,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 68582
+        },
+        "constants": 38,
+        "helpers": 0,
+        "input_count": 32,
+        "instructions": 8273,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 2701
+      }
+    },
+    {
+      "case": "gghhh",
+      "mode": "cse0",
+      "prepare_seconds": 0.036755881,
+      "proof_seconds": 0.151619183,
+      "structure": {
+        "arithmetic": {
+          "additions": 8664,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 57756
+        },
+        "constants": 38,
+        "helpers": 0,
+        "input_count": 32,
+        "instructions": 8272,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 865
+      }
+    },
+    {
+      "case": "gghhh",
+      "mode": "pair1",
+      "prepare_seconds": 0.0778803,
+      "proof_seconds": 0.137418654,
+      "structure": {
+        "arithmetic": {
+          "additions": 8664,
+          "function_calls": 1,
+          "inversions": 0,
+          "multiplications": 28853
+        },
+        "constants": 38,
+        "helpers": 0,
+        "input_count": 32,
+        "instructions": 8681,
+        "outputs_proved": 69,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 1063
+      }
+    },
+    {
+      "case": "gggg-up",
+      "mode": "direct",
+      "prepare_seconds": 0.028729268,
+      "proof_seconds": 2.109909896,
+      "structure": {
+        "arithmetic": {
+          "additions": 49802,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 308938
+        },
+        "constants": 21,
+        "helpers": 0,
+        "input_count": 36,
+        "instructions": 44407,
+        "outputs_proved": 70,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 44407
+      }
+    },
+    {
+      "case": "gggg-up",
+      "mode": "allocated",
+      "prepare_seconds": 0.030696225,
+      "proof_seconds": 2.086958061,
+      "structure": {
+        "arithmetic": {
+          "additions": 49802,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 308938
+        },
+        "constants": 21,
+        "helpers": 0,
+        "input_count": 36,
+        "instructions": 44407,
+        "outputs_proved": 70,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 8396
+      }
+    },
+    {
+      "case": "gggg-up",
+      "mode": "cse0",
+      "prepare_seconds": 0.122924084,
+      "proof_seconds": 0.928599864,
+      "structure": {
+        "arithmetic": {
+          "additions": 49583,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 246438
+        },
+        "constants": 21,
+        "helpers": 0,
+        "input_count": 36,
+        "instructions": 40297,
+        "outputs_proved": 70,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 5080
+      }
+    },
+    {
+      "case": "gggg-up",
+      "mode": "pair1",
+      "prepare_seconds": 0.463267189,
+      "proof_seconds": 0.857810443,
+      "structure": {
+        "arithmetic": {
+          "additions": 49583,
+          "function_calls": 0,
+          "inversions": 0,
+          "multiplications": 114436
+        },
+        "constants": 21,
+        "helpers": 0,
+        "input_count": 36,
+        "instructions": 40770,
+        "outputs_proved": 70,
+        "proof": "Symbolica exact expanded differences are literal zero; no statistical zero test",
+        "registered_constants": 0,
+        "temporary_count": 5455
+      }
+    }
+  ],
+  "rows": [
+    {
+      "case": "ggh",
+      "domain": "f64",
+      "mode": "direct",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "22000142663183319927089697426968796976928878231087854773975411/62835123153233752663856232583663453132938356697525601090490057845832155136000",
+      "dimension_max": "4914389851224118049109994776664887926431350399731640505049095/20381793802739135922267625083585380404293763152538408235872698290481678778368",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.501249231187526e-16,
+      "dimension_max_decimal_display": 2.411166504178679e-16
+    },
+    {
+      "case": "ggh",
+      "domain": "f64",
+      "mode": "allocated",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "22000142663183319927089697426968796976928878231087854773975411/62835123153233752663856232583663453132938356697525601090490057845832155136000",
+      "dimension_max": "4914389851224118049109994776664887926431350399731640505049095/20381793802739135922267625083585380404293763152538408235872698290481678778368",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.501249231187526e-16,
+      "dimension_max_decimal_display": 2.411166504178679e-16
+    },
+    {
+      "case": "ggh",
+      "domain": "f64",
+      "mode": "cse0",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "22000142663183319927089697426968796976928878231087854773975411/62835123153233752663856232583663453132938356697525601090490057845832155136000",
+      "dimension_max": "9468227502560428263904082049682845095116889325152325903419567/36351484058100958597564232073252489570642304951890728770398845621018348748800",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 146,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.501249231187526e-16,
+      "dimension_max_decimal_display": 2.6046330013452163e-16
+    },
+    {
+      "case": "ggh",
+      "domain": "f64",
+      "mode": "pair1",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "22000142663183319927089697426968796976928878231087854773975411/62835123153233752663856232583663453132938356697525601090490057845832155136000",
+      "dimension_max": "9468227502560428263904082049682845095116889325152325903419567/36351484058100958597564232073252489570642304951890728770398845621018348748800",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 162,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.501249231187526e-16,
+      "dimension_max_decimal_display": 2.6046330013452163e-16
+    },
+    {
+      "case": "ggh",
+      "domain": "DoubleFloat",
+      "mode": "direct",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1041617687176404580318639214500264482047727953/37108806642644718851160475192121534023525375613323972439572164845706525278208",
+      "dimension_max": "1041617687176404580318639214500264482047727953/37108806642644718851160475192121534023525375613323972439572164845706525278208",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.806928547196659e-32,
+      "dimension_max_decimal_display": 2.806928547196659e-32
+    },
+    {
+      "case": "ggh",
+      "domain": "DoubleFloat",
+      "mode": "allocated",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1041617687176404580318639214500264482047727953/37108806642644718851160475192121534023525375613323972439572164845706525278208",
+      "dimension_max": "1041617687176404580318639214500264482047727953/37108806642644718851160475192121534023525375613323972439572164845706525278208",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.806928547196659e-32,
+      "dimension_max_decimal_display": 2.806928547196659e-32
+    },
+    {
+      "case": "ggh",
+      "domain": "DoubleFloat",
+      "mode": "cse0",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1041617687176404580318639214500264482047727953/37108806642644718851160475192121534023525375613323972439572164845706525278208",
+      "dimension_max": "1041617687176404580318639214500264482047727953/37108806642644718851160475192121534023525375613323972439572164845706525278208",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.806928547196659e-32,
+      "dimension_max_decimal_display": 2.806928547196659e-32
+    },
+    {
+      "case": "ggh",
+      "domain": "DoubleFloat",
+      "mode": "pair1",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1874401639101952492683478268071961580190415455/31417561576616867104775076167321052342416239610708510056579570544318215094272",
+      "dimension_max": "1874401639101952492683478268071961580190415455/78250122804905085188585079712902375228967606824827412417289695442847544639488",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 5.966095218850506e-32,
+      "dimension_max_decimal_display": 2.3953976964039426e-32
+    },
+    {
+      "case": "ggh",
+      "domain": "Float128",
+      "mode": "direct",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "147195405100244119222368195651129958235/10190896901369565482226677668495666741620749931785021286514527276920714821632",
+      "dimension_max": "147195405100244119222368195651129958235/10190896901369565482226677668495666741620749931785021286514527276920714821632",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.4443812603036182e-38,
+      "dimension_max_decimal_display": 1.4443812603036182e-38
+    },
+    {
+      "case": "ggh",
+      "domain": "Float128",
+      "mode": "allocated",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "147195405100244119222368195651129958235/10190896901369565482226677668495666741620749931785021286514527276920714821632",
+      "dimension_max": "147195405100244119222368195651129958235/10190896901369565482226677668495666741620749931785021286514527276920714821632",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.4443812603036182e-38,
+      "dimension_max_decimal_display": 1.4443812603036182e-38
+    },
+    {
+      "case": "ggh",
+      "domain": "Float128",
+      "mode": "cse0",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "147195405100244119222368195651129958235/10190896901369565482226677668495666741620749931785021286514527276920714821632",
+      "dimension_max": "147195405100244119222368195651129958235/10190896901369565482226677668495666741620749931785021286514527276920714821632",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 146,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.4443812603036182e-38,
+      "dimension_max_decimal_display": 1.4443812603036182e-38
+    },
+    {
+      "case": "ggh",
+      "domain": "Float128",
+      "mode": "pair1",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "540106327396973058221611898489446905103/53858676988486057893900130572548432103211463576081925226211921788236225052672",
+      "dimension_max": "540106327396973058221611898489446905103/53858676988486057893900130572548432103211463576081925226211921788236225052672",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 162,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.0028213792040181e-38,
+      "dimension_max_decimal_display": 1.0028213792040181e-38
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256",
+      "mode": "direct",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256",
+      "mode": "allocated",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256",
+      "mode": "cse0",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1/72702968116201898157375624866196740637067911606192866553245503220416521365887",
+      "dimension_max": "1/72702968116201898157375624866196740637067911606192866553245503220416521365887",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 146,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.3754596626669901e-77,
+      "dimension_max_decimal_display": 1.3754596626669901e-77
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256",
+      "mode": "pair1",
+      "real_comparisons": 1380,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1/37108806642644718851160475192121253033503413215660942303219058935420932780505",
+      "dimension_max": "1/37108806642644718851160475192121253033503413215660942303219058935420932780505",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 162,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.6947781146128786e-77,
+      "dimension_max_decimal_display": 2.6947781146128786e-77
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256-mixed-input",
+      "mode": "direct",
+      "real_comparisons": 330,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "90758872390713607475587690282953045347659027166027999/226156424291633194186662080095093570025917938800079226639565593765455331328",
+      "dimension_max": "90758872390713607475587690282953045347659027166027999/39125061402452542594292539856451187614483803412413706208644847721423772319744",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 4.0131016695629323e-22,
+      "dimension_max_decimal_display": 2.3197119477242384e-24
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256-mixed-input",
+      "mode": "allocated",
+      "real_comparisons": 330,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "90758872390713607475587690282953045347659027166027999/226156424291633194186662080095093570025917938800079226639565593765455331328",
+      "dimension_max": "90758872390713607475587690282953045347659027166027999/39125061402452542594292539856451187614483803412413706208644847721423772319744",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 4.0131016695629323e-22,
+      "dimension_max_decimal_display": 2.3197119477242384e-24
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256-mixed-input",
+      "mode": "cse0",
+      "real_comparisons": 330,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "90758872390713607475587690282953045347659027166027999/226156424291633194186662080095093570025917938800079226639565593765455331328",
+      "dimension_max": "90758872390713607475587690282953045347659027166027999/39125061402452542594292539856451187614483803412413706208644847721423772319744",
+      "output_precision_differences_from_direct": 2,
+      "zero_sign_differences_from_direct": 8,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 4.0131016695629323e-22,
+      "dimension_max_decimal_display": 2.3197119477242384e-24
+    },
+    {
+      "case": "ggh",
+      "domain": "Float256-mixed-input",
+      "mode": "pair1",
+      "real_comparisons": 330,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "76294016367902984058494679360085872883146855936710537/113078212145816597093331040047546785012958969400039613319782796882727665664",
+      "dimension_max": "76294016367902984058494679360085872883146855936710537/19562530701226271297146269928225593807241901706206853104322423860711886159872",
+      "output_precision_differences_from_direct": 10,
+      "zero_sign_differences_from_direct": 12,
+      "scale_values": [
+        "173"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 6.747012967407049e-22,
+      "dimension_max_decimal_display": 3.900007495611011e-24
+    },
+    {
+      "case": "gghh",
+      "domain": "f64",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 46,
+      "dimension_failed_components": 0,
+      "raw_max": "51422017416287688817342786954917203280710495801049370729644033/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "12855504354071922204335696738729300820177623950262342682411007/16961731821872489563999656007132017751943845410005941997967419532409149849600",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 1.4901161193847656e-08,
+      "dimension_max_decimal_display": 7.579122514774402e-16
+    },
+    {
+      "case": "gghh",
+      "domain": "f64",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 46,
+      "dimension_failed_components": 0,
+      "raw_max": "51422017416287688817342786954917203280710495801049370729644033/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "12855504354071922204335696738729300820177623950262342682411007/16961731821872489563999656007132017751943845410005941997967419532409149849600",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 1.4901161193847656e-08,
+      "dimension_max_decimal_display": 7.579122514774402e-16
+    },
+    {
+      "case": "gghh",
+      "domain": "f64",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 45,
+      "dimension_failed_components": 0,
+      "raw_max": "25711008708143844408671393477458601640355247900524685364822015/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "64832301076527145615767915410600922328314028496803377575278439/53126133619636812929717382428422692944914098796987538436271942380662464886631",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 388,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 7.450580596923828e-09,
+      "dimension_max_decimal_display": 1.2203466855070256e-15
+    },
+    {
+      "case": "gghh",
+      "domain": "f64",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 52,
+      "dimension_failed_components": 0,
+      "raw_max": "1/16777216",
+      "dimension_max": "1/452984832000000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 420,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 5.960464477539063e-08,
+      "dimension_max_decimal_display": 2.2075794361255787e-15
+    },
+    {
+      "case": "gghh",
+      "domain": "DoubleFloat",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "31/9671406556917033397649408",
+      "dimension_max": "31/261127977036759901736534016000000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.2053248736429822e-24,
+      "dimension_max_decimal_display": 1.187157360608512e-31
+    },
+    {
+      "case": "gghh",
+      "domain": "DoubleFloat",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "31/9671406556917033397649408",
+      "dimension_max": "31/261127977036759901736534016000000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.2053248736429822e-24,
+      "dimension_max_decimal_display": 1.187157360608512e-31
+    },
+    {
+      "case": "gghh",
+      "domain": "DoubleFloat",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1962465577470694836455143207993055812526276609/862718293348820473429344482784628181556388621521298319395315527974912",
+      "dimension_max": "1070435769529469910793714477087121352287059969/9938514739378411853906048441678916651529596919925356639434034882270986240000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.274746684520826e-24,
+      "dimension_max_decimal_display": 1.0770580892617548e-31
+    },
+    {
+      "case": "gghh",
+      "domain": "DoubleFloat",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2676089423823674776984286192717803380717649921/862718293348820473429344482784628181556388621521298319395315527974912",
+      "dimension_max": "2676089423823674776984286192717803380717649921/23293393920418152782592301035184960902022492781075054623673519255322624000000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 3.1019272970738538e-24,
+      "dimension_max_decimal_display": 1.148861961879205e-31
+    },
+    {
+      "case": "gghh",
+      "domain": "Float128",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2041694201525630780780247644590609268737/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "1/29206669829258405410484041851863040000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 5.9164567891575885e-31,
+      "dimension_max_decimal_display": 3.4238754566884195e-38
+    },
+    {
+      "case": "gghh",
+      "domain": "Float128",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2041694201525630780780247644590609268737/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "1/29206669829258405410484041851863040000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 5.9164567891575885e-31,
+      "dimension_max_decimal_display": 3.4238754566884195e-38
+    },
+    {
+      "case": "gghh",
+      "domain": "Float128",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "850705917302346158658436518579420528641/862718293348820473429344482784628181556388621521298319395315527974912",
+      "dimension_max": "850705917302346158658436518579420528641/23293393920418152782592301035184960902022492781075054623673519255322624000000",
+      "output_precision_differences_from_direct": 232,
+      "zero_sign_differences_from_direct": 388,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 9.860761315262648e-31,
+      "dimension_max_decimal_display": 3.652133820467647e-38
+    },
+    {
+      "case": "gghh",
+      "domain": "Float128",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "765635325572111542792592866721478475777/862718293348820473429344482784628181556388621521298319395315527974912",
+      "dimension_max": "680564733841876926926749214863536422911/19877029478756823707812096883357833303059193839850713278868069764541972480000",
+      "output_precision_differences_from_direct": 193,
+      "zero_sign_differences_from_direct": 420,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 8.874685183736383e-31,
+      "dimension_max_decimal_display": 3.4238754566884195e-38
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "5/1725436586697640946858688965569256363112777243042596638790631055949824",
+      "dimension_max": "1/9317357568167261113036920414073984360808997112430021849469407702129049600000",
+      "output_precision_differences_from_direct": 206,
+      "zero_sign_differences_from_direct": 388,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.897817305224548e-69,
+      "dimension_max_decimal_display": 1.0732656686016844e-76
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "5/862718293348820473429344482784628181556388621521298319395315527974912",
+      "dimension_max": "1/4658678784083630556518460207036992180404498556215010924734703851064524800000",
+      "output_precision_differences_from_direct": 205,
+      "zero_sign_differences_from_direct": 420,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 5.795634610449096e-69,
+      "dimension_max_decimal_display": 2.1465313372033688e-76
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256-mixed-input",
+      "mode": "direct",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "463491810237966219772125547050762039287666927882387761/1725436586697640946858688965569256363112777243042596638790631055949824",
+      "dimension_max": "463491810237966219772125547050762039287666927882387761/46586787840836305565184602070369921804044985562150109247347038510645248000000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 2.686229177074862e-16,
+      "dimension_max_decimal_display": 9.948996952129117e-24
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256-mixed-input",
+      "mode": "allocated",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "463491810237966219772125547050762039287666927882387761/1725436586697640946858688965569256363112777243042596638790631055949824",
+      "dimension_max": "463491810237966219772125547050762039287666927882387761/46586787840836305565184602070369921804044985562150109247347038510645248000000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 2.686229177074862e-16,
+      "dimension_max_decimal_display": 9.948996952129117e-24
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256-mixed-input",
+      "mode": "cse0",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "206974988890860155759651277327498228545531438072938191/1725436586697640946858688965569256363112777243042596638790631055949824",
+      "dimension_max": "31926990434706022970414584077821805191342764159165163/3312838246459470617968682813892972217176532306641785546478011627423662080000",
+      "output_precision_differences_from_direct": 118,
+      "zero_sign_differences_from_direct": 20,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 1.1995514091131864e-16,
+      "dimension_max_decimal_display": 9.637352644315597e-24
+    },
+    {
+      "case": "gghh",
+      "domain": "Float256-mixed-input",
+      "mode": "pair1",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1514527530936452581305705483870909700665732718236870509/6901746346790563787434755862277025452451108972170386555162524223799296",
+      "dimension_max": "1514527530936452581305705483870909700665732718236870509/186347151363345222260738408281479687216179942248600436989388154042580992000000",
+      "output_precision_differences_from_direct": 151,
+      "zero_sign_differences_from_direct": 20,
+      "scale_values": [
+        "300"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 2.1944120441933295e-16,
+      "dimension_max_decimal_display": 8.12745201553085e-24
+    },
+    {
+      "case": "gghhh",
+      "domain": "f64",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 129,
+      "dimension_failed_components": 0,
+      "raw_max": "12855504354071922204335696738729300820177623950262342682411007/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "24301008050212609155393214324006382406865842125919223202257187/26962416904168543230133981573356868853513697798529067750121518453225572079907",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "3298534924309773/8796093022208"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 2.384185791015625e-07,
+      "dimension_max_decimal_display": 9.01291903340295e-16
+    },
+    {
+      "case": "gghhh",
+      "domain": "f64",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 129,
+      "dimension_failed_components": 0,
+      "raw_max": "12855504354071922204335696738729300820177623950262342682411007/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "24301008050212609155393214324006382406865842125919223202257187/26962416904168543230133981573356868853513697798529067750121518453225572079907",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "3298534924309773/8796093022208"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 2.384185791015625e-07,
+      "dimension_max_decimal_display": 9.01291903340295e-16
+    },
+    {
+      "case": "gghhh",
+      "domain": "f64",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 106,
+      "dimension_failed_components": 0,
+      "raw_max": "32880328286742858785962912551545569213377703400850095275743307/427377752723256324719315036061061745483949592935212611444954256087115",
+      "dimension_max": "724733515810068143052392359054039698627963285147330396988769779/390485969012381217507602265978021771721681065445403438423004876362148334560093",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 380,
+      "scale_values": [
+        "3298534924309773/8796093022208"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 7.69350488583671e-08,
+      "dimension_max_decimal_display": 1.8559783790517933e-15
+    },
+    {
+      "case": "gghhh",
+      "domain": "f64",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 172,
+      "dimension_failed_components": 0,
+      "raw_max": "1/2097152",
+      "dimension_max": "557611959207133154396028301450558787965654173793919942117426675/390485969012381217507602265978021771721681065445403438423004876362148334560093",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 420,
+      "scale_values": [
+        "3298534924309773/8796093022208"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 4.76837158203125e-07,
+      "dimension_max_decimal_display": 1.4279948665439829e-15
+    },
+    {
+      "case": "gghhh",
+      "domain": "DoubleFloat",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2018031337109736815436800777754364788960029223/26959946667150639794667015087019630673637144422540572481103610249216",
+      "dimension_max": "4123334004828463643798289099023116224709093559/51623375516645839382286524437782969816019250805027183724186235438342521055415",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "59421122623960243706445101021635/158456325028528675187087900672"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 7.485294247887397e-23,
+      "dimension_max_decimal_display": 7.987338998200348e-32
+    },
+    {
+      "case": "gghhh",
+      "domain": "DoubleFloat",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2018031337109736815436800777754364788960029223/26959946667150639794667015087019630673637144422540572481103610249216",
+      "dimension_max": "4123334004828463643798289099023116224709093559/51623375516645839382286524437782969816019250805027183724186235438342521055415",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "59421122623960243706445101021635/158456325028528675187087900672"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 7.485294247887397e-23,
+      "dimension_max_decimal_display": 7.987338998200348e-32
+    },
+    {
+      "case": "gghhh",
+      "domain": "DoubleFloat",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2018031337109736815436800777754364788960029223/26959946667150639794667015087019630673637144422540572481103610249216",
+      "dimension_max": "60164845943827831118868023697678669888669232735598962950255656275749713989623122048516705113553913427670798138975437518241005568/740805610206028313656883453027269737200952856012146133313664885799698004485813073141508288593517731680873165580605041209937948041213315358271556839056345021875",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "59421122623960243706445101021635/158456325028528675187087900672"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 7.485294247887397e-23,
+      "dimension_max_decimal_display": 8.121542968214719e-32
+    },
+    {
+      "case": "gghhh",
+      "domain": "DoubleFloat",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "3342240443069377346472203642161008256021659593/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "46885901403299356261913756453957275387680006378356021460110537440705041241285636453062101046823627752981674608343440815416147968/740805610206028313656883453027269737200952856012146133313664885799698004485813073141508288593517731680873165580605041209937948041213315358271556839056345021875",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "59421122623960243706445101021635/158456325028528675187087900672"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 6.198529404254593e-23,
+      "dimension_max_decimal_display": 6.329042431287708e-32
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float128",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1232888362125803681952367993374844032485/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "102567699589323464280544481188194306285935304572418998825199522684775794543463867454841052717908864329601657790791680/3858362505219194451904668879628766812382239603085431533134488527009158107677321368637280444420349131310902477340389207386456935206203260845894814461228081",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.2865185479539859e-29,
+      "dimension_max_decimal_display": 2.6583220070841053e-38
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float128",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1232888362125803681952367993374844032485/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "102567699589323464280544481188194306285935304572418998825199522684775794543463867454841052717908864329601657790791680/3858362505219194451904668879628766812382239603085431533134488527009158107677321368637280444420349131310902477340389207386456935206203260845894814461228081",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.2865185479539859e-29,
+      "dimension_max_decimal_display": 2.6583220070841053e-38
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float128",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "892605995204865218488993385943075821029/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "83647747822415290901689577052905350815683143329155338700839080076344279419982702656580807213972354649883245376931601254249593297994025980966424420758323200/961620660664434213342062953599856012959303595291575675047964689012110204459737220553597951129173228997621832666761157381240710205441217578114423040781942147440297968069828287638322846948616101",
+      "output_precision_differences_from_direct": 442,
+      "zero_sign_differences_from_direct": 380,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.6554298237771764e-29,
+      "dimension_max_decimal_display": 8.698622153627468e-38
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float128",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "47649529001293484325804457269191069505/1684996666696914987166688442938726917102321526408785780068975640576",
+      "dimension_max": "76105855861822580033179187991414562368976000055072117425869576764250787153066332482129752921253471471807602456701702850644356738912306035371555493192400896/961620660664434213342062953599856012959303595291575675047964689012110204459737220553597951129173228997621832666761157381240710205441217578114423040781942147440297968069828287638322846948616101",
+      "output_precision_differences_from_direct": 488,
+      "zero_sign_differences_from_direct": 420,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.8278708167833034e-29,
+      "dimension_max_decimal_display": 7.914332436372265e-38
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256",
+      "mode": "direct",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256",
+      "mode": "allocated",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256",
+      "mode": "cse0",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "11235582092889474423308157442431404585112356118389416079589380072358292237843810195794279832650471001320007117491962084853674360550901038905802964414967132773610493339054092829768888725077880882465817684505312860552384417646403930092119569408801702322709406917786643639996702871154982269052209770601514008576/137104286280003269984007714605149470759910434850630241436237928978921415168205613829677616320690195065534756427819412997547826506363284730028152082198807889722664994348705099288979317803293180043525876752463561632363935057537264536783487368555184579092838551593662311028091406012631900512099057555441972967139450216339308059528059586098360036534287192919079771625483336397712473340549",
+      "output_precision_differences_from_direct": 444,
+      "zero_sign_differences_from_direct": 380,
+      "scale_values": [
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.8546030753437107e-68,
+      "dimension_max_decimal_display": 8.194916729257786e-77
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256",
+      "mode": "pair1",
+      "real_comparisons": 6348,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1/13479973333575319897333507543509815336818572211270286240551805124608",
+      "dimension_max": "17204485079737007710690616083723088270953295306283793371871238235798634989198334362309990993746033720771260898659566942432188864593567215824510789260418422059591067925426579645583610860275505101275783329398760317720838639521056017953558090657227606681648779342860798073744951271456066599486196211233568325632/137104286280003269984007714605149470759910434850630241436237928978921415168205613829677616320690195065534756427819412997547826506363284730028152082198807889722664994348705099288979317803293180043525876752463561632363935057537264536783487368555184579092838551593662311028091406012631900512099057555441972967139450216339308059528059586098360036534287192919079771625483336397712473340549",
+      "output_precision_differences_from_direct": 444,
+      "zero_sign_differences_from_direct": 420,
+      "scale_values": [
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 7.418412301374843e-68,
+      "dimension_max_decimal_display": 1.2548466241675984e-76
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256-mixed-input",
+      "mode": "direct",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "315801193661436935590190377953653412816650945832607729/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "510321326710420553703328587677186117118647436701297246/62115718664595634314468615896687150936331268574708632505326811827479533685241",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288",
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664",
+        "885443726539019401467519/2361183241434822606848"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 5.856858649617157e-15,
+      "dimension_max_decimal_display": 8.215655194556907e-24
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256-mixed-input",
+      "mode": "allocated",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "315801193661436935590190377953653412816650945832607729/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "510321326710420553703328587677186117118647436701297246/62115718664595634314468615896687150936331268574708632505326811827479533685241",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288",
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664",
+        "885443726539019401467519/2361183241434822606848"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 5.856858649617157e-15,
+      "dimension_max_decimal_display": 8.215655194556907e-24
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256-mixed-input",
+      "mode": "cse0",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "153217426294141035010289002900198933391248827931774479/26959946667150639794667015087019630673637144422540572481103610249216",
+      "dimension_max": "10062519573786011763721454237128903565853678252362430070843059671322531365469635695856868633776918805404068110512053623088510384012444289505186283427290799583952231202816/961620660664434213342062953599856012959303595291575675047964689012110204459737220553597951129173228997621832666761157381240710205441217578114423040781942147440297968069828287638322846948616101",
+      "output_precision_differences_from_direct": 157,
+      "zero_sign_differences_from_direct": 20,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288",
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664",
+        "885443726539019401467519/2361183241434822606848"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 5.683150200027246e-15,
+      "dimension_max_decimal_display": 1.0464125809062056e-23
+    },
+    {
+      "case": "gghhh",
+      "domain": "Float256-mixed-input",
+      "mode": "pair1",
+      "real_comparisons": 1518,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "220020222357318881942793688756759088840479750696132593/53919893334301279589334030174039261347274288845081144962207220498432",
+      "dimension_max": "18553935029634479806264952044352508570416750998299421034689523846875185730851970613050653765426651032372371954331272274112994199429775072928449510493014365682163370688512/961620660664434213342062953599856012959303595291575675047964689012110204459737220553597951129173228997621832666761157381240710205441217578114423040781942147440297968069828287638322846948616101",
+      "output_precision_differences_from_direct": 163,
+      "zero_sign_differences_from_direct": 20,
+      "scale_values": [
+        "249230252306166946018917512995445674421/664613997892457936451903530140172288",
+        "42404330081522585194871047545741258612498357433252781112747894580874623788309/113078212145816597093331040047546785012958969400039613319782796882727665664",
+        "885443726539019401467519/2361183241434822606848"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 4.080501810216906e-15,
+      "dimension_max_decimal_display": 1.9294443005014672e-23
+    },
+    {
+      "case": "gggg-up",
+      "domain": "f64",
+      "mode": "direct",
+      "real_comparisons": 6440,
+      "raw_failed_components": 145,
+      "dimension_failed_components": 0,
+      "raw_max": "707052739473955721238463320630111545109769317264428847532605451/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "257110087081438444086713934774586016403552479005246853648220169/141347765182270746366663800059433481266198711750049516649728496103409582080000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 1.280568540096283e-08,
+      "dimension_max_decimal_display": 1.8189894035458565e-15
+    },
+    {
+      "case": "gggg-up",
+      "domain": "f64",
+      "mode": "allocated",
+      "real_comparisons": 6440,
+      "raw_failed_components": 145,
+      "dimension_failed_components": 0,
+      "raw_max": "707052739473955721238463320630111545109769317264428847532605451/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "257110087081438444086713934774586016403552479005246853648220169/141347765182270746366663800059433481266198711750049516649728496103409582080000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 1.280568540096283e-08,
+      "dimension_max_decimal_display": 1.8189894035458565e-15
+    },
+    {
+      "case": "gggg-up",
+      "domain": "f64",
+      "mode": "cse0",
+      "real_comparisons": 6440,
+      "raw_failed_components": 129,
+      "dimension_failed_components": 0,
+      "raw_max": "462798156746589199356085082594254829526394462209444336566796273/110427941548649020598956093796432407239217743554726184882600387580788736",
+      "dimension_max": "33424311320586997731272811520696182132461822270682090974268621/36185027886661311069865932815214971204146870208012676262330495002472853012480",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 86,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 4.190951585769653e-09,
+      "dimension_max_decimal_display": 9.237055564881303e-16
+    },
+    {
+      "case": "gggg-up",
+      "domain": "f64",
+      "mode": "pair1",
+      "real_comparisons": 6440,
+      "raw_failed_components": 137,
+      "dimension_failed_components": 0,
+      "raw_max": "385665130622157666130070902161879024605328718507870280472330285/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "132176066667089343634389671228036731361382394615999033729597399/99454094431510323181034068623085592042647992868523588832335244164319458361344",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 85,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 5,
+      "raw_max_decimal_display": 6.984919309616089e-09,
+      "dimension_max_decimal_display": 1.3290158381373953e-15
+    },
+    {
+      "case": "gggg-up",
+      "domain": "DoubleFloat",
+      "mode": "direct",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "35324380394472507056192577743875004625472978935/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "12845229234353638929524573725045456227444719607/141347765182270746366663800059433481266198711750049516649728496103409582080000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 6.397725050214823e-25,
+      "dimension_max_decimal_display": 9.087677628146056e-32
+    },
+    {
+      "case": "gggg-up",
+      "domain": "DoubleFloat",
+      "mode": "allocated",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "35324380394472507056192577743875004625472978935/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "12845229234353638929524573725045456227444719607/141347765182270746366663800059433481266198711750049516649728496103409582080000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 6.397725050214823e-25,
+      "dimension_max_decimal_display": 9.087677628146056e-32
+    },
+    {
+      "case": "gggg-up",
+      "domain": "DoubleFloat",
+      "mode": "cse0",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "49953669244708595837040008930732329773396131839/110427941548649020598956093796432407239217743554726184882600387580788736",
+      "dimension_max": "610257961679641029768774483322853067270654533/8950868498835916563267761627686486093936081768157787213738873350263062399557",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 4.52364397489937e-25,
+      "dimension_max_decimal_display": 6.817863113048825e-32
+    },
+    {
+      "case": "gggg-up",
+      "domain": "DoubleFloat",
+      "mode": "pair1",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "28544953854119197621165719388989902727654932485/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "503186900400431972803206646846859119389474969/6215880901969386908833746064937421717914129805421347494934015406931204276377",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 5.169878828456423e-25,
+      "dimension_max_decimal_display": 8.095182458225777e-32
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float128",
+      "mode": "direct",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "510423550381407695195061911147652317185/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "15652988878363169319315231941861337726989/565391060729082985466655200237733925064794847000198066598913984413638328320000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.4791141972893971e-31,
+      "dimension_max_decimal_display": 2.7685242950566515e-38
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float128",
+      "mode": "allocated",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "510423550381407695195061911147652317185/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "15652988878363169319315231941861337726989/565391060729082985466655200237733925064794847000198066598913984413638328320000",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 1.4791141972893971e-31,
+      "dimension_max_decimal_display": 2.7685242950566515e-38
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float128",
+      "mode": "cse0",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2339441272581451936310700426093406453759/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "2339441272581451936310700426093406453759/27606985387162255149739023449108101809804435888681546220650096895197184000000",
+      "output_precision_differences_from_direct": 866,
+      "zero_sign_differences_from_direct": 86,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 6.77927340424307e-31,
+      "dimension_max_decimal_display": 8.474091755303838e-38
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float128",
+      "mode": "pair1",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2126764793255865396646091296448551321599/3450873173395281893717377931138512726225554486085193277581262111899648",
+      "dimension_max": "2126764793255865396646091296448551321599/27606985387162255149739023449108101809804435888681546220650096895197184000000",
+      "output_precision_differences_from_direct": 895,
+      "zero_sign_differences_from_direct": 101,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 6.162975822039155e-31,
+      "dimension_max_decimal_display": 7.703719777548944e-38
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256",
+      "mode": "direct",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256",
+      "mode": "allocated",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "0",
+      "dimension_max": "0",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 0.0,
+      "dimension_max_decimal_display": 0.0
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256",
+      "mode": "cse0",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "53/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "53/441711766194596082395824375185729628956870974218904739530401550323154944000000",
+      "output_precision_differences_from_direct": 820,
+      "zero_sign_differences_from_direct": 102,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 9.599019823556315e-70,
+      "dimension_max_decimal_display": 1.1998774779445394e-76
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256",
+      "mode": "pair1",
+      "real_comparisons": 6440,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "29/13803492693581127574869511724554050904902217944340773110325048447598592",
+      "dimension_max": "29/110427941548649020598956093796432407239217743554726184882600387580788736000000",
+      "output_precision_differences_from_direct": 1027,
+      "zero_sign_differences_from_direct": 78,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 0,
+      "raw_max_decimal_display": 2.1009175462877973e-69,
+      "dimension_max_decimal_display": 2.6261469328597466e-76
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256-mixed-input",
+      "mode": "direct",
+      "real_comparisons": 1540,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1245152626953534697416156959559626211690225536774176729/27606985387162255149739023449108101809804435888681546220650096895197184",
+      "dimension_max": "11520147650734902365866298604006909617097897232024339/1413477651822707463666638000594334812661987117500495166497284961034095820800",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 4.5102810375396984e-17,
+      "dimension_max_decimal_display": 8.15021563013709e-24
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256-mixed-input",
+      "mode": "allocated",
+      "real_comparisons": 1540,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1245152626953534697416156959559626211690225536774176729/27606985387162255149739023449108101809804435888681546220650096895197184",
+      "dimension_max": "11520147650734902365866298604006909617097897232024339/1413477651822707463666638000594334812661987117500495166497284961034095820800",
+      "output_precision_differences_from_direct": 0,
+      "zero_sign_differences_from_direct": 0,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 4.5102810375396984e-17,
+      "dimension_max_decimal_display": 8.15021563013709e-24
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256-mixed-input",
+      "mode": "cse0",
+      "real_comparisons": 1540,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "1819838454778243019300537094740992155547252707593027623/27606985387162255149739023449108101809804435888681546220650096895197184",
+      "dimension_max": "1819838454778243019300537094740992155547252707593027623/220855883097298041197912187592864814478435487109452369765200775161577472000000",
+      "output_precision_differences_from_direct": 311,
+      "zero_sign_differences_from_direct": 17,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 6.591949208711867e-17,
+      "dimension_max_decimal_display": 8.239936510889834e-24
+    },
+    {
+      "case": "gggg-up",
+      "domain": "Float256-mixed-input",
+      "mode": "pair1",
+      "real_comparisons": 1540,
+      "raw_failed_components": 0,
+      "dimension_failed_components": 0,
+      "raw_max": "2202962339994715233890123851528569451451937488138928115/55213970774324510299478046898216203619608871777363092441300193790394368",
+      "dimension_max": "728556306927485572424207404883807295464274501253876559/99454094431510190541340186810491902191946613654531744839560389337644766481231",
+      "output_precision_differences_from_direct": 319,
+      "zero_sign_differences_from_direct": 16,
+      "scale_values": [
+        "200"
+      ],
+      "strict_failed_batches": 3,
+      "raw_max_decimal_display": 3.9898639947466563e-17,
+      "dimension_max_decimal_display": 7.325553674707795e-24
+    }
+  ]
+}

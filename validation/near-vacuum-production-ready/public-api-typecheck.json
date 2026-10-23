@@ -1,0 +1,38 @@
+{
+  "status": "passed",
+  "command": [
+    "taskset",
+    "-c",
+    "18",
+    "rustc",
+    "--test",
+    "--emit=metadata",
+    "--edition=2024",
+    "--crate-name",
+    "certified_public_api",
+    "/shared/external/iregi/iregi-rust/target/near-vacuum-production-ready/crates/iregi-masters/tests/certified.rs",
+    "-L",
+    "dependency=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps",
+    "--extern",
+    "iregi_masters=/shared/external/iregi/iregi-rust/target/near-vacuum-adapter-current-thin-lto/libiregi_masters_certified_v3.rlib",
+    "--extern",
+    "symbolica=/shared/external/iregi/iregi-rust/target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+    "-o",
+    "/shared/external/iregi/iregi-rust/target/near-vacuum-production-ready/certified-public-api.rmeta"
+  ],
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "exit_code": 0,
+  "diagnostic_seconds": 0.34112173691391945,
+  "sha256_before": {
+    "target/near-vacuum-production-ready/crates/iregi-masters/tests/certified.rs": "27f6995d2f7d950fce269519dd8b07cb1593eec83fe37b9d961e19b3039b70d9",
+    "target/near-vacuum-adapter-current-thin-lto/libiregi_masters_certified_v3.rlib": "0eda2e3bffa75237078681eeecea8d7340558b77041d46546cd983b50b242d12",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rlib": "987a2e4f7c68871e34fb13be828160a884ea96972265a6f8a4d51460da8ba03c"
+  },
+  "sha256_after": {
+    "target/near-vacuum-production-ready/crates/iregi-masters/tests/certified.rs": "27f6995d2f7d950fce269519dd8b07cb1593eec83fe37b9d961e19b3039b70d9",
+    "target/near-vacuum-adapter-current-thin-lto/libiregi_masters_certified_v3.rlib": "0eda2e3bffa75237078681eeecea8d7340558b77041d46546cd983b50b242d12",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rlib": "987a2e4f7c68871e34fb13be828160a884ea96972265a6f8a4d51460da8ba03c"
+  },
+  "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "scope": "Metadata-only compile of focused public-path integration tests against the exact qualified v3 API. No linking or runtime. The staged cleanup changes no signatures or executable arithmetic/dispatch; actual public crate integration remains unapplied."
+}

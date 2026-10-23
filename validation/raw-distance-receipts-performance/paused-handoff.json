@@ -1,0 +1,52 @@
+{
+  "status": "paused_at_user_request",
+  "recorded_utc": "2026-10-23T18:57:00.204522+00:00",
+  "active_compute": false,
+  "children_active": false,
+  "production_changes_from_this_task": false,
+  "completed": {
+    "receipt_correctness": "validation/raw-distance-receipts/qualification.json:49tests+120exact snapshots, immutable4bda record",
+    "timing_qualification": "validation/raw-distance-receipts-performance/qualification.json",
+    "timing_qualification_sha256": "558df15036c49057149d326001fa1df8e10433b1097aa6c2b277608363726b92",
+    "counts": {
+      "improvements": 8,
+      "parity": 2,
+      "inconclusive": 4,
+      "qualified_regressions": 0
+    },
+    "timing_run": "14cases,588observations,21alternating blocks,CPU254 quiet grant;42.776s full process;all exact pre/post parity and865closure checks passed",
+    "independent_statistical_review": "validation/raw-distance-receipts-performance/statistical-review.json",
+    "adoption_patch": "validation/raw-distance-receipts-performance/adoption/adoption.patch",
+    "adoption_patch_sha256": "7bf76c7e6dcadf8dd56e0dfbd42144630d476d8f35cef2731bd00be7f6a0e662",
+    "adoption_status": "private only;git apply --check passed on21622ec;not applied/compiled;publicexperimentalaccessor removed;current input validation refactor preserved"
+  },
+  "coordination": {
+    "owner": "/root/checkpoint_audit",
+    "accounting_baseline": "target/planar-automatic/source-snapshot/crates/iregi-rust/src/execution.rs",
+    "accounting_patches": "accounting.patch relative21622ec;automatic.patch relative accounting, per owner",
+    "pending_merge": "Capture child Result, harvest private proof_work with ordinary stats/profile/diagnostics, then propagate original error; generic fallback anddispatch_profile are the two existing proof_work aggregation seams",
+    "pending_tests": "Separate combined snapshot after resume;10receipt tests + current shared input-validation controls + targeted execution/exact-zero regressions in one shared compile. Do not mutate alreadyqualified frozen candidates."
+  },
+  "dag_research_partial": {
+    "scope": "read-only;no proposed production implementation or large build",
+    "existing_apis": [
+      "dependencies/symbolica/src/evaluate/domain.rs:EvaluationDomain is domain dispatch, not a bound algorithm",
+      "dependencies/symbolica/src/evaluate/evaluator.rs:map_coeff_with_prec(653),export_instructions via instruction.rs,Real generic interpreter",
+      "dependencies/symbolica/src/evaluate/batch.rs:into_batch_evaluator(53),evaluate_batch(130),instruction-major batches andlazy branches",
+      "dependencies/symbolica/lib/numerica/src/domains/float/interval.rs:certifiedRealBall/ComplexBall rational algebra;transcendentals not certifying",
+      "dependencies/symbolica/src/evaluate/dual.rs:vectorize existingDualizer before ball coefficient mapping"
+    ],
+    "existing_error_domain_limit": "ErrorPropagatingFloat stores abs_err:f64, uses to_f64 and first-order rules;not a conservative arbitrary-precision enclosure or drop-in replacement",
+    "branch_limit": "RealBall PartialOrd compares centers;IF uses is_fully_zero. An uncertain zero-containing condition must be rejected or resolved with a prior exact primal decision, never silently followed bycenter behavior. External callbacks/constant functions also require whitelisting.",
+    "precision_scope": "Ball evaluation of original recurrence DAG can bound rounding relative to fixed represented master inputs withoutcertifying master accuracy. Keep existing raw-distance/argument/master-provenance guards, fullTaylor layout and requestedbudget unchanged. Current near-vacuum masterfacility onlycertifies a restrictedD0domain, not all scalar masters.",
+    "potential_benefit": "Re-evaluate exact moment/alias DAG directly;avoid prepare_primal_amplitudes/master_amplitude to_polynomial_in_vars_with_field expansion. No new handwritten symbolic algebra.",
+    "three_reuse_checks": "Checked Symbolica domain/evaluator/interval/error sources;checked evaluation.rs and interval/error tests;searched FeynKit/gammaloop/spenso for EvaluationDomain/RealBall/ErrorPropagatingFloat/error propagation. Existing wrappers use Symbolica;no reusable conservative branch-aware DAGbound engine found.",
+    "remaining": "Write source-bound design note: operation/branch whitelist, conditional certificate semantics vs existing estimatepolicy, master-error limits, failure diagnostics, bounded testplan and performance/preparation comparison. No bigbuild authorized."
+  },
+  "resume_instructions": [
+    "Coordinate with ROOT before any production mutation or build;userpause remains authoritative.",
+    "Receipt performance is complete;do not rerun timing without a new concrete reason and quietgrant.",
+    "Combine receipt patch with accounting harvest-before-error repair in a fresh private snapshot;keep patches separate and preserve originalerrorprecedence.",
+    "Finish read-only DAGbound design before considering any prototype;use existing Symbolica ball evaluator and reject unsupported/ambiguous operations."
+  ]
+}

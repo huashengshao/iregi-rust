@@ -1,0 +1,43 @@
+{
+  "status": "bounded_failure_capture_qualified",
+  "runtime_outcome": "timeout",
+  "elapsed_seconds": 301.75220495602116,
+  "timeout_seconds": 300,
+  "complete_baseline_cases": 27,
+  "complete_candidate_cases": 0,
+  "baseline_ordinary_successes": 24,
+  "baseline_ordinary_failures": [
+    {
+      "domain": "f64",
+      "propagators": 4,
+      "rank": 2,
+      "components": 1,
+      "statuses": "[Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_50_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_50_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 4,
+      "rank": 1,
+      "components": 3,
+      "statuses": "[Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_56_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), MasterFailure(\"D0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_56_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 5,
+      "rank": 1,
+      "components": 1,
+      "statuses": "[Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_59_node_2, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_59_node_2, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_59_node_2, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    }
+  ],
+  "paired_numerical_agreement_qualified": false,
+  "performance_qualified": false,
+  "scope": "The original combined300s bound was reached after a complete27case baseline and during the candidate child. Two required binary64N4 cases also fail the unchanged baseline cancellation guard. No paired agreement or success-only qualification; all raw failures retained.",
+  "artifacts": {
+    "validation/public-highpoint/collector-capture-build.json": "e18f89449e34490522449e1c15638b09555a224ed6cdeeef48ca191bf943efd1",
+    "validation/public-highpoint/collector-capture-run.json": "22da479a3f198361ce1cabb6bb4ab7d878debc5b99b626c5bd964c9639ec9c16",
+    "validation/public-highpoint/collector-capture-output.baseline.json": "7ba134c2eb1c597010157c3c3dd7b06593b90599ad0316ab3ebd9fa1fcfa4411",
+    "validation/public-highpoint/collector-capture-run.log": "80ab50fab5eb58ac61724d26bee3f8e299e5c1ce9648327dfbd0c2f008c0efb9",
+    "validation/public-highpoint/collector_capture.rs": "c879089f092f60e2d92cc5e14d047458c3b55c1e777a1293d8a9b76a1db0eabd",
+    "validation/public-highpoint/qualify_collector_capture_timeout.py": "feceead24f94e302a9a49ae15344c33757f3a8598d740f190ce40b38146f810e"
+  }
+}

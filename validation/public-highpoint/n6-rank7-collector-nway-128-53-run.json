@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "timeout",
+  "started_utc": "2026-10-23T18:36:03.046953+00:00",
+  "command": [
+    "taskset",
+    "-c",
+    "14",
+    "/shared/external/iregi/iregi-rust/target/public-highpoint/collector-nway/highpoint_public",
+    "validation/public-highpoint/fixture-conditioned_masses.json",
+    "6",
+    "7",
+    "pv",
+    "128",
+    "53",
+    "1",
+    "validation/public-highpoint/n6-rank7-collector-nway-128-53.json"
+  ],
+  "timeout_seconds": 600.0,
+  "binary_sha256": "963ac874cae1d4e7a0b95791bb90d3dd2d433ef6323a57599e52d6d6b07cb3a8",
+  "fixture_sha256": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+  "build_manifest_sha256": "c996014c5d07556a935d4c58c72ae81bf3c4c45bdb8b94ce18fb7b6355d8b1ad",
+  "probe_source_sha256": "34ca0b393775208f97f8b07ffdf22a0a13ce69d56fa220714d0e49b703fab1dc",
+  "runner_source_sha256": "40d9bf8330949a6050c31a520fc3ce4dc43ceef4fcbf9cc3d79695d3510d5f38",
+  "variant": "collector-nway",
+  "environment_additions": {
+    "IREGI_PV_PREPARATION_PROFILE": "1",
+    "RAYON_NUM_THREADS": "1",
+    "IREGI_PREPARATION_PROFILE": "1",
+    "IREGI_PRIMAL_SUM_MODE": "nway"
+  },
+  "environment_removals": [
+    "IREGI_ALIAS_USE_VERIFY",
+    "IREGI_DIAGNOSTIC_STOP_AFTER_REVERSE",
+    "IREGI_MASTER_AMPLITUDE_MODE"
+  ],
+  "semantic_qualification_sha256": "08838ecb257f31c71bf79fcfaa6e1c36097e3c957b33d19c2dedcea5838bfd07",
+  "collector_capture_qualification_sha256": "973eb869be02d5883bcb583f46da66c303e384347d3eb296e7a253e56fc3907e",
+  "timing_status": "diagnostic only; not an optimized controlled performance comparison",
+  "license_scope": "Private user-supplied Symbolica license; license contents excluded from evidence. CPU affinity and RAYON_NUM_THREADS=1 retained.",
+  "exit_code": -9,
+  "elapsed_seconds": 601.2317819080781,
+  "log_sha256": "0cbe690d20264eab20a6b09189251514db4d203eeaa89f57100c2d5ba70ec8c6",
+  "finished_utc": "2026-10-23T18:46:04.710356+00:00",
+  "numerical_reduction_entered": false,
+  "scope": "Full ordinary public combined collector+n-way candidate with explicit nway mode and fine phase counters; successful complete arrays determine numerical coverage. No controlled performance claim.",
+  "peak_child_rss_kib": 11704828,
+  "frozen_source_files_unchanged": 25,
+  "result_sha256": "d44d454db92dd02d70cbffc85b878650c868170376663a959da550a95c04bcef",
+  "last_public_stage": "preparing_workspace"
+}

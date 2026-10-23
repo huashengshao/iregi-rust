@@ -1,0 +1,251 @@
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup-full/source/crates/iregi-rust/src/lib.rs /shared/external/iregi/iregi-rust/target/public-highpoint/collector-nway/source/crates/iregi-rust/src/lib.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup-full/source/crates/iregi-rust/src/lib.rs	2026-10-23 17:14:32.881063642 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/collector-nway/source/crates/iregi-rust/src/lib.rs	2026-10-23 17:33:28.226956250 +0000
+@@ -31,3 +31,5 @@
+     RescueTrigger,
+ };
+ pub use types::*;
++
++pub use stability::diagnostic_amplitude_exact_cases;
+diff -ru /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup-full/source/crates/iregi-rust/src/stability.rs /shared/external/iregi/iregi-rust/target/public-highpoint/collector-nway/source/crates/iregi-rust/src/stability.rs
+--- /shared/external/iregi/iregi-rust/target/public-highpoint/use-dedup-full/source/crates/iregi-rust/src/stability.rs	2026-10-23 17:14:32.940063880 +0000
++++ /shared/external/iregi/iregi-rust/target/public-highpoint/collector-nway/source/crates/iregi-rust/src/stability.rs	2026-10-23 17:33:28.226956250 +0000
+@@ -212,9 +212,14 @@
+         }
+         eprintln!("HIGHPOINT_PHASE local checks END elapsed={:?} checks={} roots={}", phase_started.elapsed(), monitor.checks.len(), monitor.expressions.len());
+         eprintln!("HIGHPOINT_PHASE primal amplitudes START");
++        let dependency_calls_before = PRIMAL_DEPENDENCY_CALLS.load(std::sync::atomic::Ordering::Relaxed);
++        let dependency_ns_before = PRIMAL_DEPENDENCY_NS.load(std::sync::atomic::Ordering::Relaxed);
+         let phase_started = std::time::Instant::now();
+         monitor.prepare_primal_amplitudes(plan, &reachable, base_dimension)?;
+         eprintln!("HIGHPOINT_PHASE primal amplitudes END elapsed={:?}", phase_started.elapsed());
++        eprintln!("HIGHPOINT_PRIMAL dependency_discovery calls={} nanoseconds={}",
++            PRIMAL_DEPENDENCY_CALLS.load(std::sync::atomic::Ordering::Relaxed).saturating_sub(dependency_calls_before),
++            PRIMAL_DEPENDENCY_NS.load(std::sync::atomic::Ordering::Relaxed).saturating_sub(dependency_ns_before));
+         eprintln!("HIGHPOINT_PHASE master activations START");
+         let phase_started = std::time::Instant::now();
+         monitor.prepare_master_activations(plan);
+@@ -443,6 +448,9 @@
+         for (primal_index, (alias, body)) in plan.aliases.iter().enumerate() {
+             if primal_index % 1024 == 0 {
+                 eprintln!("HIGHPOINT_PHASE primal aliases PROGRESS index={} elapsed={:?} amplitudes={}", primal_index, primal_started.elapsed(), amplitudes.len());
++                eprintln!("HIGHPOINT_PRIMAL dependency_progress calls={} nanoseconds={}",
++                    PRIMAL_DEPENDENCY_CALLS.load(std::sync::atomic::Ordering::Relaxed),
++                    PRIMAL_DEPENDENCY_NS.load(std::sync::atomic::Ordering::Relaxed));
+             }
+             if !reachable.contains_key(alias) || !depends_on_amplitudes(body, &amplitudes) {
+                 continue;
+@@ -1161,17 +1169,48 @@
+ }
+ 
+ fn depends_on_amplitudes(expression: &Atom, amplitudes: &HashMap<Atom, Atom>) -> bool {
+-    expression
++    let started = std::time::Instant::now();
++    let result = expression
+         .get_all_symbols(false)
+         .into_iter()
+-        .any(|symbol| amplitudes.contains_key(&Atom::var(symbol)))
++        .any(|symbol| amplitudes.contains_key(&Atom::var(symbol)));
++    PRIMAL_DEPENDENCY_CALLS.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
++    PRIMAL_DEPENDENCY_NS.fetch_add(started.elapsed().as_nanos().min(u64::MAX as u128) as u64, std::sync::atomic::Ordering::Relaxed);
++    result
+ }
+ 
+ /// Symbolica extracts the affine coefficients in immediate recurrence inputs.
+ /// Aliases are never substituted recursively. Conditional subexpressions are
+ /// polynomial generators of their own, with separately constructed lazy
+ /// amplitudes, preserving branches even when IF occurs below a sum/product.
+-fn master_amplitude(
++static PRIMAL_DEPENDENCY_CALLS: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
++static PRIMAL_DEPENDENCY_NS: std::sync::atomic::AtomicU64 = std::sync::atomic::AtomicU64::new(0);
++static PRIMAL_CALL: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
++static PRIMAL_VERIFIED: std::sync::atomic::AtomicUsize = std::sync::atomic::AtomicUsize::new(0);
++
++fn master_amplitude(expression: &Atom, amplitudes: &HashMap<Atom, Atom>) -> Result<Atom, ReductionError> {
++    static MODE: std::sync::OnceLock<String> = std::sync::OnceLock::new();
++    let mode = MODE.get_or_init(|| std::env::var("IREGI_PRIMAL_SUM_MODE").unwrap_or_else(|_| "nway".into()));
++    match mode.as_str() {
++        "legacy" => master_amplitude_legacy(expression, amplitudes),
++        "nway" => master_amplitude_nway(expression, amplitudes),
++        "verify" => {
++            let candidate = master_amplitude_nway(expression, amplitudes);
++            let legacy = master_amplitude_legacy(expression, amplitudes);
++            match (&candidate, &legacy) {
++                (Ok(a), Ok(b)) => assert_eq!(a, b, "exact full master-amplitude mismatch"),
++                (Err(a), Err(b)) => assert_eq!(a.to_string(), b.to_string()),
++                _ => panic!("master-amplitude success/error mismatch"),
++            }
++            let count = PRIMAL_VERIFIED.fetch_add(1, std::sync::atomic::Ordering::Relaxed) + 1;
++            if count % 500 == 0 { eprintln!("HIGHPOINT_PRIMAL VERIFIED count={count}"); }
++            candidate
++        }
++        _ => panic!("unknown IREGI_PRIMAL_SUM_MODE"),
++    }
++}
++
++fn master_amplitude_nway(
+     expression: &Atom,
+     amplitudes: &HashMap<Atom, Atom>,
+ ) -> Result<Atom, ReductionError> {
+@@ -1188,6 +1227,8 @@
+             master_amplitude(&no.to_owned(), amplitudes)?,
+         )));
+     }
++    let diagnostic_start = std::time::Instant::now();
++    let diagnostic_call = PRIMAL_CALL.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
+     let mut variables = BTreeSet::new();
+     collect_amplitude_variables(expression.as_view(), amplitudes, &mut variables);
+     let variables: Vec<_> = variables.into_iter().collect();
+@@ -1195,6 +1236,79 @@
+         .iter()
+         .map(|variable| master_amplitude(variable, amplitudes))
+         .collect::<Result<Vec<_>, _>>()?;
++    let diagnostic_variables_elapsed = diagnostic_start.elapsed();
++    let diagnostic_verbose = diagnostic_call % 500 == 0 || variables.len() >= 100;
++    if diagnostic_verbose {
++        eprintln!("HIGHPOINT_PRIMAL polynomial START call={} variables={} collect_seconds={}", diagnostic_call, variables.len(), diagnostic_variables_elapsed.as_secs_f64());
++    }
++    let diagnostic_polynomial_start = std::time::Instant::now();
++    let field = AtomField {
++        statistical_zero_test: false,
++        cancel_check_on_division: false,
++        custom_normalization: None,
++    };
++    let polynomial = expression.to_polynomial_in_vars_with_field::<u16>(&variables, &field);
++    let diagnostic_polynomial_elapsed = diagnostic_polynomial_start.elapsed();
++    if diagnostic_verbose {
++        eprintln!("HIGHPOINT_PRIMAL polynomial END call={} terms={} seconds={}", diagnostic_call, polynomial.nterms(), diagnostic_polynomial_elapsed.as_secs_f64());
++    }
++    let diagnostic_terms_start = std::time::Instant::now();
++    let mut contributions = Vec::with_capacity(polynomial.nterms());
++    for term in &polynomial {
++        if depends_on_amplitudes(term.coefficient, amplitudes)
++            || term
++                .exponents
++                .iter()
++                .map(|&power| u32::from(power))
++                .sum::<u32>()
++                > 1
++        {
++            return Err(ReductionError::Preparation(format!(
++                "primal stability monitor requires affine scalar-master dependence: {expression}"
++            )));
++        }
++        let coefficient = Symbol::ABS.call((term.coefficient,));
++        if let Some(index) = term.exponents.iter().position(|&power| power == 1) {
++            contributions.push(coefficient * &variable_amplitudes[index]);
++        } else {
++            contributions.push(coefficient);
++        }
++    }
++    let diagnostic_terms_elapsed = diagnostic_terms_start.elapsed();
++    let diagnostic_sum_start = std::time::Instant::now();
++    let result = Atom::add_many(contributions);
++    let diagnostic_sum_elapsed = diagnostic_sum_start.elapsed();
++    if diagnostic_verbose || diagnostic_start.elapsed().as_secs_f64() > 0.025 {
++        eprintln!("HIGHPOINT_PRIMAL END call={} variables={} terms={} collect={} polynomial={} contributions={} sum={} total={}", diagnostic_call, variables.len(), polynomial.nterms(), diagnostic_variables_elapsed.as_secs_f64(), diagnostic_polynomial_elapsed.as_secs_f64(), diagnostic_terms_elapsed.as_secs_f64(), diagnostic_sum_elapsed.as_secs_f64(), diagnostic_start.elapsed().as_secs_f64());
++    }
++    Ok(result)
++}
++
++
++fn master_amplitude_legacy(
++    expression: &Atom,
++    amplitudes: &HashMap<Atom, Atom>,
++) -> Result<Atom, ReductionError> {
++    if let Some(amplitude) = amplitudes.get(expression) {
++        return Ok(amplitude.clone());
++    }
++    if !depends_on_amplitudes(expression, amplitudes) {
++        return Ok(Symbol::ABS.call((expression,)));
++    }
++    if let Some((condition, yes, no)) = if_parts(expression.as_view()) {
++        return Ok(Symbol::IF.call((
++            condition,
++            master_amplitude_legacy(&yes.to_owned(), amplitudes)?,
++            master_amplitude_legacy(&no.to_owned(), amplitudes)?,
++        )));
++    }
++    let mut variables = BTreeSet::new();
++    collect_amplitude_variables(expression.as_view(), amplitudes, &mut variables);
++    let variables: Vec<_> = variables.into_iter().collect();
++    let variable_amplitudes = variables
++        .iter()
++        .map(|variable| master_amplitude_legacy(variable, amplitudes))
++        .collect::<Result<Vec<_>, _>>()?;
+     let field = AtomField {
+         statistical_zero_test: false,
+         cancel_check_on_division: false,
+@@ -2526,3 +2640,72 @@
+     }
+     include!("stability/context_tests.rs");
+ }
++
++/// Private snapshot-only witness: equality checks use complete canonical Atoms.
++pub fn diagnostic_amplitude_exact_cases() -> Vec<(String, String)> {
++    let x = Atom::var(symbolica::symbol!("iregi_nway_diagnostic::x"));
++    let y = Atom::var(symbolica::symbol!("iregi_nway_diagnostic::y"));
++    let p = Atom::var(symbolica::symbol!("iregi_nway_diagnostic::p"));
++    let q = Atom::var(symbolica::symbol!("iregi_nway_diagnostic::q"));
++    let mut amplitudes = HashMap::from([
++        (x.clone(), Symbol::ABS.call((&x,))),
++        (y.clone(), Symbol::ABS.call((&y,))),
++    ]);
++    let branch = Symbol::IF.call((&p, &x, Atom::num(-2) * &y));
++    let nested = Symbol::IF.call((&q, &branch, &x + &y));
++    let mut cases = vec![
++        ("zero".into(), Atom::num(0)),
++        ("constant".into(), Atom::num(-7)),
++        ("direct_alias".into(), x.clone()),
++        ("mixed_affine".into(), Atom::num(-3)*&x + Atom::num(5)*&y + Atom::num(-7)),
++        ("cancellation".into(), &x-&x+&y),
++        ("polynomial_empty".into(), (&p+Atom::num(1))*&x-&p*&x-&x),
++        ("inactive_singular_if".into(), Symbol::IF.call((&p, &x*&q.pow(-1), Atom::num(2)*&y))),
++        ("master_denominator_error".into(), (Atom::num(1)+&x).pow(-1)),
++        ("factored_coefficient".into(), (&p+&q)*(&x+&y)+(&p-&q)*&x),
++        ("rational_coefficient".into(), (&p+&q).pow(-1)*&x+&p*&y),
++        ("top_if".into(), branch.clone()),
++        ("nested_if_product".into(), (&p+&q)*&nested+Atom::num(3)*&branch+Atom::num(7)),
++        ("nonlinear_power_error".into(), x.pow(2)),
++        ("nonlinear_product_error".into(), &x*&y),
++        ("nonlinear_function_error".into(), Symbol::EXP.call((&x,))),
++        ("nonlinear_hidden_branch_error".into(), Symbol::IF.call((&p, x.pow(2), &y))),
++    ];
++    for size in [32usize,128,512] {
++        let terms = (0..size).map(|i| {
++            let variable=Atom::var(symbolica::symbol!(format!("iregi_nway_diagnostic::master_{i}")));
++            amplitudes.insert(variable.clone(), Symbol::ABS.call((&variable,)));
++            (Atom::num((i%7) as i64-3)*&p + Atom::num((i%11) as i64+1))*variable
++        }).collect::<Vec<_>>();
++        cases.push((format!("wide_{size}"), Atom::add_many(terms)));
++    }
++    let shared=Atom::var(symbolica::symbol!("iregi_nway_diagnostic::shared_amplitude_master"));
++    amplitudes.insert(shared.clone(), Symbol::ABS.call((&x,)));
++    cases.push(("duplicate_amplitude".into(), &p*&x+&p*&shared));
++    let mut results=Vec::new();
++    for (name, expression) in cases {
++        if name == "polynomial_empty" {
++            assert!(depends_on_amplitudes(&expression, &amplitudes), "case must reach coefficient extraction");
++        }
++        let begin=std::time::Instant::now();
++        let legacy=master_amplitude_legacy(&expression,&amplitudes);
++        let legacy_seconds=begin.elapsed().as_secs_f64();
++        let begin=std::time::Instant::now();
++        let candidate=master_amplitude_nway(&expression,&amplitudes);
++        let candidate_seconds=begin.elapsed().as_secs_f64();
++        assert_eq!(legacy.is_err(), name.ends_with("_error"), "legacy case classification: {name}");
++        assert_eq!(candidate.is_err(), name.ends_with("_error"), "candidate case classification: {name}");
++        if name == "polynomial_empty" { assert_eq!(candidate.as_ref().unwrap(), &Atom::num(0)); }
++        if name == "duplicate_amplitude" {
++            assert_eq!(candidate.as_ref().unwrap(), &(Atom::num(2)*Symbol::ABS.call((&p,))*Symbol::ABS.call((&x,))));
++        }
++        let full_result=match (legacy,candidate) {
++            (Ok(left),Ok(right))=> {assert_eq!(left,right,"full expression differs: {name}");right.to_string()},
++            (Err(left),Err(right))=> {assert_eq!(left.to_string(),right.to_string());format!("ERROR: {right}")},
++            _=>panic!("success/error mismatch: {name}"),
++        };
++        eprintln!("HIGHPOINT_EXACT name={name} equal=true legacy_seconds={legacy_seconds} nway_seconds={candidate_seconds}");
++        results.push((name, full_result));
++    }
++    results
++}

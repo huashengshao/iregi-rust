@@ -1,0 +1,193 @@
+--- a/crates/iregi-rust/src/invariant_certificate.rs
++++ b/crates/iregi-rust/src/invariant_certificate.rs
+@@ -11,7 +11,7 @@
+     domains::{
+         atom::AtomField,
+         dual::{DualNumberStructure, HyperDual},
+-        float::{Complex, ComplexBall, DoubleFloat, Float, SingleFloat},
++        float::{Complex, ComplexBall, DoubleFloat, Float, RealBall, SingleFloat},
+         rational::{Q, Rational},
+     },
+     evaluate::{BatchExpressionEvaluator, Dualizer, ExpressionEvaluator},
+@@ -238,6 +238,12 @@
+             passes: 0,
+             input: Vec::new(),
+             output: Vec::new(),
++            real_evaluators: Vec::new(),
++            real_input: Vec::new(),
++            real_output: Vec::new(),
++            // No hidden function body may escape this coefficient proof.
++            real_coefficients: self.exact.count_operations().function_calls == 0
++                && self.exact.get_constants().iter().all(|value| value.im.is_zero()),
+         }
+     }
+ }
+@@ -282,6 +288,10 @@
+     passes: usize,
+     input: Vec<ComplexBall>,
+     output: Vec<ComplexBall>,
++    real_evaluators: Vec<(u32, BatchExpressionEvaluator<RealBall>)>,
++    real_input: Vec<RealBall>,
++    real_output: Vec<RealBall>,
++    real_coefficients: bool,
+ }
+ 
+ impl InvariantCertificateWorkspace {
+@@ -326,6 +336,53 @@
+         selected: &[Vec<(usize, usize)>],
+     ) -> Result<Vec<InvariantCertificate>, ReductionError> {
+         self.check_batch_inner(input, rows, Some(selected))
++    }
++
++
++    fn evaluate_complex_rows(
++        &mut self,
++        input: &[Complex<Rational>],
++        active: &[usize],
++        bits: u32,
++    ) -> Result<usize, ReductionError> {
++        let input_width = self.arguments * self.components;
++        let radius = Rational::from(0);
++        let index =
++            if let Some(index) = self.evaluators.iter().position(|entry| entry.0 == bits) {
++                index
++            } else {
++                let evaluator = self
++                    .exact
++                    .clone()
++                    .map_coeff_with_prec(
++                        &|value| ComplexBall::from_rational_ball(value, &radius, bits),
++                        bits,
++                    )
++                    .into_batch_evaluator();
++                self.evaluators.push((bits, evaluator));
++                self.evaluators.len() - 1
++            };
++        let evaluator = &mut self.evaluators[index].1;
++        let width = evaluator.get_output_len();
++        let output_len = width.checked_mul(active.len()).ok_or_else(size_error)?;
++        self.input.clear();
++        for &lane in active {
++            self.input.extend(
++                input[lane * input_width..(lane + 1) * input_width]
++                    .iter()
++                    .map(|value| ComplexBall::from_rational_ball(value, &radius, bits)),
++            );
++        }
++        let zero = ComplexBall::from_rational_ball(
++            &Complex::new(Rational::from(0), Rational::from(0)),
++            &radius,
++            bits,
++        );
++        self.output.resize(output_len, zero);
++        evaluator
++            .evaluate_batch(&self.input, &mut self.output, active.len())
++            .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
++        Ok(width)
+     }
+ 
+     fn check_batch_inner(
+@@ -385,44 +442,71 @@
+             self.output.clear();
+             return Ok(result);
+         }
++        // Classify every argument and every Taylor component once per call.
++        // A real primal alone does not imply a real jet. Inputs remain immutable
++        // during precision refinement, so this exact classification is reusable.
++        let mut real_lanes = vec![false; rows];
++        if self.real_coefficients {
++            for &lane in &active {
++                real_lanes[lane] = input[lane * input_width..(lane + 1) * input_width]
++                    .iter().all(|value| value.im.is_zero());
++            }
++        }
+         let mut bits = self.initial_bits;
+         let radius = Rational::from(0);
+         loop {
+-            let index =
+-                if let Some(index) = self.evaluators.iter().position(|entry| entry.0 == bits) {
++            let width = self.exact.get_output_len();
++            let real_slots: Vec<_> = active.iter().enumerate()
++                .filter_map(|(slot, &lane)| real_lanes[lane].then_some((slot, lane)))
++                .collect();
++            if real_slots.is_empty() {
++                // Preserve the original direct output path for all-complex
++                // batches, including after all real lanes have resolved.
++                self.evaluate_complex_rows(input, &active, bits)?;
++            } else {
++                let complex_slots: Vec<_> = active.iter().enumerate()
++                    .filter_map(|(slot, &lane)| (!real_lanes[lane]).then_some((slot, lane)))
++                    .collect();
++                if !complex_slots.is_empty() {
++                    let complex_lanes: Vec<_> = complex_slots.iter().map(|&(_, lane)| lane).collect();
++                    self.evaluate_complex_rows(input, &complex_lanes, bits)?;
++                }
++                let output_len = width.checked_mul(active.len()).ok_or_else(size_error)?;
++                let zero = RealBall::from_rational_ball(&radius, &radius, bits);
++                self.output.resize(output_len, ComplexBall::new(zero.clone(), zero.clone()));
++                // Complex output is compact and ordered. Restore it backwards
++                // so later destinations cannot overwrite unread source slots.
++                for (compact, &(slot, _)) in complex_slots.iter().enumerate().rev() {
++                    if slot != compact {
++                        let (before, after) = self.output.split_at_mut(slot * width);
++                        after[..width].clone_from_slice(&before[compact * width..(compact + 1) * width]);
++                    }
++                }
++                let index = if let Some(index) = self.real_evaluators.iter().position(|entry| entry.0 == bits) {
+                     index
+                 } else {
+-                    let evaluator = self
+-                        .exact
+-                        .clone()
+-                        .map_coeff_with_prec(
+-                            &|value| ComplexBall::from_rational_ball(value, &radius, bits),
+-                            bits,
+-                        )
+-                        .into_batch_evaluator();
+-                    self.evaluators.push((bits, evaluator));
+-                    self.evaluators.len() - 1
++                    let evaluator = self.exact.clone().map_coeff_with_prec(&|value| {
++                        debug_assert!(value.im.is_zero());
++                        RealBall::from_rational_ball(&value.re, &radius, bits)
++                    }, bits).into_batch_evaluator();
++                    self.real_evaluators.push((bits, evaluator));
++                    self.real_evaluators.len() - 1
+                 };
+-            let evaluator = &mut self.evaluators[index].1;
+-            let width = evaluator.get_output_len();
+-            let output_len = width.checked_mul(active.len()).ok_or_else(size_error)?;
+-            self.input.clear();
+-            for &lane in &active {
+-                self.input.extend(
+-                    input[lane * input_width..(lane + 1) * input_width]
+-                        .iter()
+-                        .map(|value| ComplexBall::from_rational_ball(value, &radius, bits)),
+-                );
+-            }
+-            let zero = ComplexBall::from_rational_ball(
+-                &Complex::new(Rational::from(0), Rational::from(0)),
+-                &radius,
+-                bits,
+-            );
+-            self.output.resize(output_len, zero);
+-            evaluator
+-                .evaluate_batch(&self.input, &mut self.output, active.len())
+-                .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
++                self.real_input.clear();
++                for &(_, lane) in &real_slots {
++                    self.real_input.extend(input[lane * input_width..(lane + 1) * input_width]
++                        .iter().map(|value| RealBall::from_rational_ball(&value.re, &radius, bits)));
++                }
++                self.real_output.resize(width * real_slots.len(), zero.clone());
++                self.real_evaluators[index].1
++                    .evaluate_batch(&self.real_input, &mut self.real_output, real_slots.len())
++                    .map_err(|error| ReductionError::Evaluation(error.to_string()))?;
++                for (&(slot, _), point) in real_slots.iter().zip(self.real_output.chunks_exact(width)) {
++                    for (destination, value) in self.output[slot * width..(slot + 1) * width].iter_mut().zip(point) {
++                        *destination = ComplexBall::new(value.clone(), zero.clone());
++                    }
++                }
++            }
+             self.evaluated_rows = self
+                 .evaluated_rows
+                 .checked_add(active.len())

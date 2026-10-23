@@ -1,0 +1,109 @@
+{
+  "status": "unapplied_production_cleanup_staged",
+  "production_changed": false,
+  "qualified_checkpoint": {
+    "path": "validation/near-vacuum-adapter-current/qualification.json",
+    "sha256": "e444a5cdd5c0d6dedf4046da53e7aaa0c4f99c4d6487c9001cbfa6d6b0afd7be"
+  },
+  "qualified_build_sha256": "0dbf82fc43ed5fc97fa6de9829d29daaa5fb770908d55d7546a78ae8ac923102",
+  "formatting": "Preserved exactly; rustfmt is unavailable in the pinned command environment.",
+  "arithmetic_and_dispatch_changes": "None; exact whitelisted comment/diagnostic text replacements, seven removed eprintln statements, one removed timer binding, only. No general string/token stripping or formatter is used.",
+  "changed_files": {
+    "near_vacuum.rs": {
+      "qualified_sha256": "73cc02713b1b60e3899435c29c241bd944353c2adb3470051f9652597fa2aa90",
+      "staged_sha256": "046bb0e22fe5ec63489f94352a61eecb20020647bd8d893dc585e99e46663a57",
+      "whitelisted_changes": [
+        {
+          "old": "//! Validation-only finite D0 neighborhood. All polynomial/jet/ball operations\n//! belong to Symbolica; production master dispatch is deliberately untouched.\n",
+          "new": "//! Finite D0 series and component enclosures in a bounded near-vacuum domain.\n//! Polynomial operations, parameter integration, Taylor jets and ball evaluation\n//! use Symbolica and Numerica. The ordinary master evaluator is unchanged.\n"
+        },
+        {
+          "old": "        let preparation_started = std::time::Instant::now();\n",
+          "new": ""
+        },
+        {
+          "old": "        eprintln!(\n            \"near-vacuum preparation Jacobian complete: {:?}\",\n            preparation_started.elapsed()\n        );\n",
+          "new": ""
+        },
+        {
+          "old": "        eprintln!(\n            \"near-vacuum preparation series complete: {:?}\",\n            preparation_started.elapsed()\n        );\n",
+          "new": ""
+        },
+        {
+          "old": "        eprintln!(\n            \"near-vacuum preparation polynomial complete: {:?}, {} terms\",\n            preparation_started.elapsed(),\n            polynomial.nterms()\n        );\n",
+          "new": ""
+        },
+        {
+          "old": "            eprintln!(\n                \"near-vacuum preparation integral{variable} complete: {:?}, {} terms\",\n                preparation_started.elapsed(),\n                polynomial.nterms()\n            );\n",
+          "new": ""
+        },
+        {
+          "old": "        eprintln!(\n            \"near-vacuum preparation exact expression ready: {:?}\",\n            preparation_started.elapsed()\n        );\n",
+          "new": ""
+        },
+        {
+          "old": "        eprintln!(\n            \"near-vacuum preparation compiled/dualized polynomial: {:?}\",\n            preparation_started.elapsed()\n        );\n",
+          "new": ""
+        },
+        {
+          "old": "        eprintln!(\n            \"near-vacuum preparation tail complete: {:?}\",\n            preparation_started.elapsed()\n        );\n",
+          "new": ""
+        },
+        {
+          "old": "validation program exceeds the 500000-instruction preparation limit",
+          "new": "near-vacuum program exceeds the 500000-instruction preparation limit"
+        },
+        {
+          "old": "invalid or oversized validation Dual shape",
+          "new": "invalid or oversized near-vacuum Dual shape"
+        },
+        {
+          "old": "validation stage supports only orders two and four",
+          "new": "near-vacuum series supports only orders two and four"
+        },
+        {
+          "old": "validation parameter polynomial exceeds term limit",
+          "new": "near-vacuum parameter polynomial exceeds term limit"
+        },
+        {
+          "old": "    pub requested_bits: u32,\n",
+          "new": "    /// Diagnostic bit target; the explicit budgets below define acceptance.\n    pub requested_bits: u32,\n"
+        }
+      ],
+      "only_whitelisted_changes": true
+    },
+    "certified.rs": {
+      "qualified_sha256": "357b293a485726b21f4757d9ea9dcbc880bf323cd73a0010168ae5ef982009a2",
+      "staged_sha256": "a33fb74c5b4122cab8e716f6105f4a91bccb397110ffe621344e9166b1a9b941",
+      "whitelisted_changes": [
+        {
+          "old": "//! Isolated proposed accuracy-aware master adapter; not production dispatch.\n",
+          "new": "//! Explicit accuracy-aware scalar-master evaluation.\n//!\n//! Certified finite D0 results enclose the function of the exact represented\n//! input components. Routing or shift roundoff before this call requires its\n//! own enclosure. The bounded series supports orders two and four, at most\n//! 32 ancestor-closed Taylor components, and total derivative degree at most four.\n//!\n//! Explicit Rational budgets determine acceptance. Ordinary fallback is opt-in\n//! and carries no certificate. The ordinary `MasterEvaluator` API is unchanged.\n"
+        }
+      ],
+      "only_whitelisted_changes": true
+    }
+  },
+  "unchanged_qualified_sources": {
+    "bubble_neighborhood.rs": "5e00cd3d1785e3ca50695969761131a769226e0fe497f7656fa993cb37d14da9",
+    "derivative_domain.rs": "db3752669d74aed5ae8a0e36fada4765866fa824ba39b6f15f4eba03bcc56d5e",
+    "dual_validation.rs": "36038636b36db665b58bfff6058c2b34776b3826b3dee98cff076be6e941852c",
+    "exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+    "generated/a0.rs": "7b40130c0ebf536e6187597e6a44e6a0c8196ffdd2ad79286d3bef1f5d20cb53",
+    "generated/b0.rs": "f674a02da4901fb6132144cecb344f62c3e96955278cc5e0ae8124a6b98f2ce9",
+    "generated/c0.rs": "9bdb77ccd67db9bb0d951f88108a3ca28d37e5fce85ff31b8b54eb148a8ec3d9",
+    "generated/constants.rs": "5031d111e1ee3f169d3722daebbb2fe7008ecd0a533be3e1fe59aaf2f69d9a47",
+    "generated/d0.rs": "60767290b4138cbd4b909ded535619479b7389d068d48dbb32da5f9ff6ea7667",
+    "generated/db0.rs": "01cd6e71995cb1b637595002f481e3166930aae274c1fcb1f2bbc943009c5b85",
+    "lib.rs": "bc2d91c5bb357526768929adce4628cc0a17aac5f8d6f009a6b5a0e8aceab97a",
+    "native_batch.rs": "83343bc0ace655e1410077d453cf835b5b50ebe69fe67b4bf03a785a86d00fa4",
+    "normalization.rs": "8c0eb611f7ec8019b4fcd2cc0800165aa026e2e70107bad1af7f290ac8bbed2d",
+    "pentagon6.rs": "b38091c69c03ab85e7e5f20bc2206614ceed808f6b7c4044baa2abbc9a1d940e",
+    "scale_transport.rs": "bf3b94f71dec9f33a610e5ebf854644e291ccfb1e3a04c8f5451ee04721af6dc"
+  },
+  "live_production_lib_sha256": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+  "ordinary_master_implementation_byte_identical_after_removing_api_additions": true,
+  "cleanup_patch_sha256": "4f2c63fa4a509e9cbafcc79f3cf35cdfad4b9786b055f3fdc0a20ab57850c0e7",
+  "prepare_script_sha256": "a8af5fa5fdfa3f012f6937b53d57d27679029e123e7879ce60c76bc78ceb4389",
+  "remaining_work": "Focused public integration tests and final unapplied production patch; no new arithmetic runtime is claimed by this cleanup proof."
+}

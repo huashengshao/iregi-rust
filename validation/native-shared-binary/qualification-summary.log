@@ -1,0 +1,113 @@
+{
+  "status": "numerically-qualified-performance-rejected",
+  "production_changed": false,
+  "adoption": "Rejected: not all requested per-family/order/batch performance gates pass. Production unchanged; no selective adoption based on the one favorable homogeneous group.",
+  "native_numeric_policy": "Exact represented rational, precision, and signed zero equality required for every finite old/new complex output. All six Laurent/boundary outputs compared. Interpreter differences recorded separately and nonfinite interpreter controls rejected.",
+  "physical": [
+    {
+      "family": "B0",
+      "domain": "f64",
+      "configurations": 24,
+      "complex_outputs": 1104,
+      "interpreter_value_differences": 169,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "B0",
+      "domain": "DoubleFloat",
+      "configurations": 8,
+      "complex_outputs": 168,
+      "interpreter_value_differences": 9,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "B0",
+      "domain": "Float256",
+      "configurations": 8,
+      "complex_outputs": 168,
+      "interpreter_value_differences": 22,
+      "interpreter_precision_differences": 19,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "C0",
+      "domain": "f64",
+      "configurations": 24,
+      "complex_outputs": 1104,
+      "interpreter_value_differences": 302,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "C0",
+      "domain": "DoubleFloat",
+      "configurations": 8,
+      "complex_outputs": 192,
+      "interpreter_value_differences": 52,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 3
+    },
+    {
+      "family": "C0",
+      "domain": "Float256",
+      "configurations": 8,
+      "complex_outputs": 192,
+      "interpreter_value_differences": 49,
+      "interpreter_precision_differences": 17,
+      "interpreter_signed_zero_differences": 0
+    }
+  ],
+  "controls": [
+    {
+      "scope": "Symbolica generated guarded alias/outline fixture",
+      "domain": "f64",
+      "configurations": 36,
+      "complex_outputs": 2856
+    },
+    {
+      "scope": "Symbolica generated guarded alias/outline fixture",
+      "domain": "DoubleFloat",
+      "configurations": 36,
+      "complex_outputs": 2856
+    },
+    {
+      "scope": "Symbolica generated guarded alias/outline fixture",
+      "domain": "Float256",
+      "configurations": 36,
+      "complex_outputs": 2856
+    },
+    {
+      "scope": "Direct shared kernel active and inactive arena comparisons",
+      "domain": "f64",
+      "configurations": 240,
+      "complex_comparisons": 31680
+    },
+    {
+      "scope": "Direct shared kernel active and inactive arena comparisons",
+      "domain": "DoubleFloat",
+      "configurations": 240,
+      "complex_comparisons": 31680
+    },
+    {
+      "scope": "Direct shared kernel active and inactive arena comparisons",
+      "domain": "Float256-mixed80-128-256",
+      "configurations": 240,
+      "complex_comparisons": 31680
+    }
+  ],
+  "invalid_neighbor_controls": "Both families: valid adjacent lanes unchanged, raw invalid classifications equal, public NonFiniteInput error, shape sentinel values/precision/signed zeros preserved.",
+  "timing": {
+    "summary_sha256": "c4e2cad7a66f512b7e45c5bd082ac144de0420f3a413768714762f3ec5bea716",
+    "groups": 12,
+    "gates": {
+      "parity": 2,
+      "regression": 7,
+      "improvement": 1,
+      "inconclusive-noise": 2
+    },
+    "all_type_before_after_csv_identical": true,
+    "interpretation": "Seven regressions and two noisy groups remain visible. C0 grouped batch32 is noisy under the interval-width gate despite a wholly slower confidence interval. Singleton scalar source is unchanged; singleton differences are layout/cohort effects, not shared-batch arithmetic benefits."
+  }
+}

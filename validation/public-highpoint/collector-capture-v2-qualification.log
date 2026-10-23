@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/shared/external/iregi/iregi-rust/validation/public-highpoint/qualify_collector_capture_v2.py", line 194, in <module>
+    main()
+    ~~~~^^
+  File "/shared/external/iregi/iregi-rust/validation/public-highpoint/qualify_collector_capture_v2.py", line 182, in main
+    counts = check_rows(*reports, original, probe)
+  File "/shared/external/iregi/iregi-rust/validation/public-highpoint/qualify_collector_capture_v2.py", line 39, in check_rows
+    assert old[key] == new[key], ('Original capture changed', key, identity(new))
+           ^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('Original capture changed', 'result', ('Float128', 5, 1, 1, 'retained_v1'))

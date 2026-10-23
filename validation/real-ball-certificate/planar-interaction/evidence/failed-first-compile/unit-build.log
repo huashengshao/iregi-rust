@@ -1,0 +1,23 @@
+error[E0599]: the method `evaluate_batch` exists for struct `BatchExpressionEvaluator<iregi_masters::Complex<Fraction<IntegerRing>>>`, but its trait bounds were not satisfied
+   --> /shared/external/iregi/iregi-rust/target/real-ball-planar/candidate/crates/iregi-rust/src/certified_planar/public_api_tests.rs:557:19
+    |
+557 |         evaluator.evaluate_batch(&seeds,&mut output,1).unwrap();
+    |                   ^^^^^^^^^^^^^^ method cannot be called due to unsatisfied trait bounds
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/rational.rs:137:1
+    |
+137 | pub struct Fraction<R: Ring> {
+    | ---------------------------- doesn't satisfy `Fraction<IntegerRing>: symbolica::prelude::Real`
+    |
+   ::: dependencies/symbolica/lib/numerica/src/domains/float/complex.rs:18:1
+    |
+ 18 | pub struct Complex<T> {
+    | --------------------- doesn't satisfy `_: Real`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Fraction<IntegerRing>: symbolica::prelude::Real`
+            which is required by `iregi_masters::Complex<Fraction<IntegerRing>>: symbolica::prelude::Real`
+
+error: aborting due to 1 previous error
+
+For more information about this error, try `rustc --explain E0599`.

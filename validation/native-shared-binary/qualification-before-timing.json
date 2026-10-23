@@ -1,0 +1,189 @@
+{
+  "status": "numerically-qualified-timing-unrun",
+  "production_changed": false,
+  "adoption": "Not adopted. Performance qualification pending coordinated quiet window.",
+  "native_numeric_policy": "Exact represented rational, precision, and signed zero equality required for every finite old/new complex output. All six Laurent/boundary outputs compared. Interpreter differences recorded separately and nonfinite interpreter controls rejected.",
+  "physical": [
+    {
+      "family": "B0",
+      "domain": "f64",
+      "configurations": 24,
+      "complex_outputs": 1104,
+      "interpreter_value_differences": 169,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "B0",
+      "domain": "DoubleFloat",
+      "configurations": 8,
+      "complex_outputs": 168,
+      "interpreter_value_differences": 9,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "B0",
+      "domain": "Float256",
+      "configurations": 8,
+      "complex_outputs": 168,
+      "interpreter_value_differences": 22,
+      "interpreter_precision_differences": 19,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "C0",
+      "domain": "f64",
+      "configurations": 24,
+      "complex_outputs": 1104,
+      "interpreter_value_differences": 302,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 0
+    },
+    {
+      "family": "C0",
+      "domain": "DoubleFloat",
+      "configurations": 8,
+      "complex_outputs": 192,
+      "interpreter_value_differences": 52,
+      "interpreter_precision_differences": 0,
+      "interpreter_signed_zero_differences": 3
+    },
+    {
+      "family": "C0",
+      "domain": "Float256",
+      "configurations": 8,
+      "complex_outputs": 192,
+      "interpreter_value_differences": 49,
+      "interpreter_precision_differences": 17,
+      "interpreter_signed_zero_differences": 0
+    }
+  ],
+  "controls": [
+    {
+      "scope": "Symbolica generated guarded alias/outline fixture",
+      "domain": "f64",
+      "configurations": 36,
+      "complex_outputs": 2856
+    },
+    {
+      "scope": "Symbolica generated guarded alias/outline fixture",
+      "domain": "DoubleFloat",
+      "configurations": 36,
+      "complex_outputs": 2856
+    },
+    {
+      "scope": "Symbolica generated guarded alias/outline fixture",
+      "domain": "Float256",
+      "configurations": 36,
+      "complex_outputs": 2856
+    },
+    {
+      "scope": "Direct shared kernel active and inactive arena comparisons",
+      "domain": "f64",
+      "configurations": 240,
+      "complex_comparisons": 31680
+    },
+    {
+      "scope": "Direct shared kernel active and inactive arena comparisons",
+      "domain": "DoubleFloat",
+      "configurations": 240,
+      "complex_comparisons": 31680
+    },
+    {
+      "scope": "Direct shared kernel active and inactive arena comparisons",
+      "domain": "Float256-mixed80-128-256",
+      "configurations": 240,
+      "complex_comparisons": 31680
+    }
+  ],
+  "invalid_neighbor_controls": "Both families: valid adjacent lanes unchanged, raw invalid classifications equal, public NonFiniteInput error, shape sentinel values/precision/signed zeros preserved.",
+  "source": {
+    "scope": "Expand each positional shared binary call to exactly its selected existing primitive and original slot/constant reads, remove only validated span metadata, expand transparent outlines. No arithmetic, slot, operand order, real-prefix IR, constant, label, helper name or stride is erased. Complements source review and direct alias/precision/branch tests of shared kernel implementation.",
+    "shared_kernel_sha256": "c14d17893ca54283c0419d7b5f8aa96328d430d6fcb232e6c1c4ec6da8939712",
+    "families": [
+      {
+        "family": "b0",
+        "scalar_source_identical": true,
+        "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+        "inline_arithmetic": true,
+        "shared_binary_calls": 142,
+        "operand_categories": {
+          "mul:BinaryOperand::Column:BinaryOperand::Constant": 5,
+          "mul:BinaryOperand::Constant:BinaryOperand::Column": 45,
+          "mul:BinaryOperand::Column:BinaryOperand::Column": 29,
+          "add:BinaryOperand::Column:BinaryOperand::Column": 49,
+          "add:BinaryOperand::Constant:BinaryOperand::Column": 14
+        },
+        "predicate_or_label_refreshes": 159,
+        "baseline_bytes": 94452,
+        "candidate_bytes": 109703,
+        "baseline_outlines": 4,
+        "candidate_outlines": 4,
+        "baseline_calls": 4,
+        "candidate_calls": 4,
+        "baseline_shape_sha256": "aadeb5aa5ebf1804b52cb6d48f2a9b2108b06bbe50f896b2ef3facc3c5a67ad6",
+        "candidate_shape_sha256": "aadeb5aa5ebf1804b52cb6d48f2a9b2108b06bbe50f896b2ef3facc3c5a67ad6"
+      },
+      {
+        "family": "c0",
+        "scalar_source_identical": true,
+        "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+        "inline_arithmetic": false,
+        "shared_binary_calls": 2553,
+        "operand_categories": {
+          "add:BinaryOperand::Column:BinaryOperand::Column": 1024,
+          "mul:BinaryOperand::Column:BinaryOperand::Column": 1528,
+          "mul:BinaryOperand::Constant:BinaryOperand::Constant": 1
+        },
+        "predicate_or_label_refreshes": 1557,
+        "baseline_bytes": 2745551,
+        "candidate_bytes": 2917643,
+        "baseline_outlines": 81,
+        "candidate_outlines": 82,
+        "baseline_calls": 81,
+        "candidate_calls": 82,
+        "baseline_shape_sha256": "fdc5e14f9e78a3b6249375b02810cacc84f1ae4da71cb954615a963eec91fb66",
+        "candidate_shape_sha256": "fdc5e14f9e78a3b6249375b02810cacc84f1ae4da71cb954615a963eec91fb66"
+      },
+      {
+        "family": "fixture",
+        "scalar_source_identical": true,
+        "full_ordered_primitive_control_slot_and_helper_source_identical": true,
+        "inline_arithmetic": true,
+        "shared_binary_calls": 282,
+        "operand_categories": {
+          "add:BinaryOperand::Column:BinaryOperand::Constant": 140,
+          "mul:BinaryOperand::Column:BinaryOperand::Column": 141,
+          "add:BinaryOperand::Column:BinaryOperand::Column": 1
+        },
+        "predicate_or_label_refreshes": 3,
+        "baseline_bytes": 88228,
+        "candidate_bytes": 96213,
+        "baseline_outlines": 4,
+        "candidate_outlines": 4,
+        "baseline_calls": 4,
+        "candidate_calls": 4,
+        "baseline_shape_sha256": "073b58b0a57bcfb34e7b23d20653c546db973d3328d9b3a4a9698b36ed569839",
+        "candidate_shape_sha256": "073b58b0a57bcfb34e7b23d20653c546db973d3328d9b3a4a9698b36ed569839"
+      }
+    ]
+  },
+  "evidence_sha256": {
+    "probe-build.json": "2710e355ab1b2b77937af67f8b00c211d55393e7afefa7010b85389be5f8c304",
+    "parity.json": "7ce08bd22f1adc414c7ee27860572e2f6365764bcf79b2f29621fd939098c3f4",
+    "parity.csv": "84b9d48ddb03f0ee8dd83f3b4700c703b50dc3f20dea598f1547ba5f33dd52a6",
+    "parity.log": "e706b0df0ba2f61d0c1bd719abb40e9a9733bf984ab1163b440ba930e2a9660f",
+    "shared-source-equivalence.json": "554c8d982f839ce2dd965fa28f400cd8134993c9c8b31fae4c716cd1b6067f48",
+    "baseline-source-equivalence.json": "c09e79198f6c12a2c6fb598635ec24ddb74381938ae565ac57e6de0eacd53dda",
+    "shared_binary_kernel.rs": "c14d17893ca54283c0419d7b5f8aa96328d430d6fcb232e6c1c4ec6da8939712",
+    "kernel_controls.rs": "b3af08c03c08a244ea2c1ff4ee5cddad1afcdee0eb73910d457aa2a82b4bd974",
+    "probe.rs": "c4c39d9f52b335a23158982642ac9f5b23d6adb4930a35e4b4c53f44538b2f05"
+  },
+  "limitations": [
+    "B0/C0 only; D0 and Dual paths unchanged.",
+    "All-type combined probe uses frozen dev-profile dependencies and opt3 generated code, not an end-to-end release IREGI comparison.",
+    "Native versus interpreter exact differences predate this candidate and are not claimed as exact cross-backend agreement.",
+    "Direct mixed precision tests qualify storage/primitive behavior; they are not physical higher-precision convergence tests."
+  ]
+}

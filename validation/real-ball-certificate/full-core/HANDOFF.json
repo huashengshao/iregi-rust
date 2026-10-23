@@ -1,0 +1,141 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-10-23T18:56:08.211071+00:00",
+  "status": "paused_at_user_request",
+  "owned_compute_active": false,
+  "production_modified": false,
+  "durable_full_bundle_packaged": false,
+  "scope": "Immutable6b24 full core versus same core plus slim invariant_certificate.rs9a89286f only; no receipts. Existing results are complete; raw evidence and binaries remain under target. No adoption or overall performance claim.",
+  "artifacts": {
+    "target/real-ball-core/sources.json": {
+      "sha256": "99c4576f8ac87fdb3cde0f4f4812bde86ca3ad2222977638451cfbf7927150b2"
+    },
+    "target/real-ball-core/candidate/artifacts/unit-build.json": {
+      "sha256": "f8d9c52b57341c4ef3e2ff2c2b58c68a7185068439a1077b64045fb0e145cc13"
+    },
+    "target/real-ball-core/candidate/artifacts/unit-run.json": {
+      "sha256": "38f499a7553be1245c87d95966529aec60bc1948b392f8a1d154587df23d2f7a"
+    },
+    "target/real-ball-core/kernel-paired/qualification.json": {
+      "sha256": "829a93920dde05995786c819e36704e6102cddf0d1090ad18e2fdf9e0ab4ddbe"
+    },
+    "target/real-ball-core/typed-paired/qualification.json": {
+      "sha256": "80459b02ec9e70b3e7d515d191ecd75cbcf797d8c983b1d2b3a6ffe8d0e71609"
+    },
+    "target/real-ball-core/physical-paired/qualification.json": {
+      "sha256": "708002dbf6a7b9866c484db60569ef4fd24a3cf088918330fb1ba372841a3756"
+    },
+    "target/real-ball-core/typed-protocol-checks.json": {
+      "sha256": "132309b99c7a14ad51f7a43c571d0919520f6efbc4f40f4c95b99b3ce4775edf"
+    },
+    "target/real-ball-core/kernel-quiet-001/qualification.json": {
+      "sha256": "7989bc6e070050c74bbe7dc91cb8385f6b480c2a5be489c547077176ada474ee"
+    },
+    "target/real-ball-core/harness-review.json": {
+      "sha256": "ca96fa600958af2740e527e8137cb05f557294269a22ff81056996956a7afc39"
+    },
+    "target/real-ball-core/slim-adoption-21622ec.patch": {
+      "sha256": "9011b1ce1b51944b1d743df3555c4e1a1c330a7a380e3464e16332e31b17b840"
+    },
+    "target/real-ball-core/slim-adoption-21622ec.json": {
+      "sha256": "ba0cf24de3e64945ef71199f742a892d79ffe9fac1faa86cd068886c14dd0fde"
+    },
+    "target/real-ball-core/run_kernel_timing_long.py": {
+      "sha256": "7aa79f9f31db2ff8c3ff0df634aa3ecc931836172bff65242b8dc9a4ac3a0353"
+    },
+    "target/real-ball-core/kernel-long-registration.json": {
+      "sha256": "a265885421fae7c9a4b768fda5aa38518b4ce52a3b694cc24302236818a14aef"
+    }
+  },
+  "completed_correctness": {
+    "focused_core_passed": 88,
+    "explicit_ignored_highpoint_tests": 2,
+    "kernel_packets_passed": 8,
+    "kernel_exact_complex_slots": 6000,
+    "typed_cases_passed": 15,
+    "typed_exact_complex_laurent_taylor_slots": 3600,
+    "physical_ggH_packets_passed": 2,
+    "physical_exact_complex_slots": 256,
+    "physical_tolerance": 1e-10,
+    "physical_max_normalized_tensor_error": 3.540129055639618e-15,
+    "physical_max_graph_laurent_error": 8.014058084304107e-15,
+    "typed_protocol_checks_passed": 31
+  },
+  "physical_baseline_scope": "Completed immutable6b24 Cargo physical binary reused; candidate uses separately linked private core. This comparison is correctness only. The paired kernel timing binaries use identical direct-rustc recipes.",
+  "first_quiet_timing": {
+    "status": "completed",
+    "provenance_qualified": true,
+    "producer_exit_codes": {
+      "baseline": 0,
+      "candidate": 0
+    },
+    "rows": [
+      {
+        "id": "real-ball-ggh-real-b1",
+        "ratio_median": 0.5767014197039527,
+        "ci99": [
+          0.5670467646526484,
+          0.5846839345023536
+        ],
+        "relative_ci_width": 0.030582844513819943,
+        "gate": "inconclusive-noise"
+      },
+      {
+        "id": "real-ball-ggh-real-b32",
+        "ratio_median": 0.5060055607706401,
+        "ci99": [
+          0.4909099163754451,
+          0.5217692743397362
+        ],
+        "relative_ci_width": 0.06098620322925435,
+        "gate": "inconclusive-noise"
+      },
+      {
+        "id": "real-ball-ggh-complex-b1",
+        "ratio_median": 1.0036915494077234,
+        "ci99": [
+          0.9961938190696483,
+          1.0068007118594144
+        ],
+        "relative_ci_width": 0.010567880935159042,
+        "gate": "parity"
+      },
+      {
+        "id": "real-ball-ggh-complex-b32",
+        "ratio_median": 0.9924203542043648,
+        "ci99": [
+          0.9885263188785496,
+          0.9989790107726658
+        ],
+        "relative_ci_width": 0.010532524700681181,
+        "gate": "improvement"
+      }
+    ],
+    "gate_rule": "99%CI with relative width<=2%; no threshold relaxation",
+    "quiet_window": "target/benchmark/optimization-quiet-20261023b/window.json",
+    "quiet_window_sha256": "24bd88bfdf998f27ef4597f247d8ccf219d51e92eca4db6e8c5f216c801bf974"
+  },
+  "long_protocol": {
+    "status": "registered_not_run",
+    "source": "target/real-ball-core/run_kernel_timing_long.py",
+    "source_sha256": "7aa79f9f31db2ff8c3ff0df634aa3ecc931836172bff65242b8dc9a4ac3a0353",
+    "blocks": 41,
+    "warmup_blocks": 5,
+    "minimum_observed_calibration_block_ms": 200,
+    "cpu": 254,
+    "review": "ROOT review pending; no runtime grant or execution"
+  },
+  "planar_interaction": {
+    "status": "proposed_not_built_or_run",
+    "existing_nonignored_tests": 9,
+    "explicit_ignored_rank7_artifact_tests": 3,
+    "proposed_additional_test": "Full six-component complex/real lane-scatter certificate comparison against original ComplexBall implementation",
+    "production_source_scope": "Current certified_planar API plus only slim certificate patch; distinct from old6b24 full-core evidence"
+  },
+  "resume_steps": [
+    "Package existing complete sources, raw outputs, logs, build/run manifests and quiet timing into durable validation bundle, retaining hashes of noncommitted binaries/dependency archives.",
+    "Review the separately registered longer protocol; run only after ROOT quiet grant and retain first run unchanged.",
+    "Freeze current production sources privately and qualify9 existing nonignored certified_planar tests plus complex/full-Taylor certificate interaction control.",
+    "Rebase the one-file adoption patch and request ROOT adoption decision only after interaction qualification; ROOT owns commits/pushes."
+  ]
+}

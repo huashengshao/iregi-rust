@@ -1,0 +1,4604 @@
+{
+  "schema": 1,
+  "status": "passed",
+  "kind": "physical",
+  "scope": "immutable6b24 baseline versus the same source plus slim9a89286f certificate only; no receipts",
+  "performance_gate": false,
+  "cpu_affinity": [
+    12
+  ],
+  "closure": {
+    "manifest.json": "5742579113ad260a047aad9f638f277560e2dbbbd33ae61f7d57c77996c239f6",
+    "cargo-library-events.json": "e4f805ed3d98a4779780be3c2bda39409cc779537f3d9c77656d4fe93ae41d82",
+    "workspace-completion.json": "073ac89a8945a2cd0c530b6726fea69a8746d1c8e13e957a79686670a2b7f7b6"
+  },
+  "builds": {
+    "baseline": {
+      "producer_kind": "completed_workspace",
+      "manifest": "target/benchmark/workspace-builds/6b24c03-default/workspace-build.json",
+      "manifest_sha256": "8058e1715f9b013490cc1fc21ff237c284dfe61627d414c95a1faf2d2ee8f765",
+      "binary": "target/benchmark/workspace-builds/6b24c03-default/bin/physical_benchmark",
+      "binary_sha256": "fd424ba553b5d6c91da229bc07a2813ff65cb0b83afad1c0e9e11c0d15d9f256",
+      "scope": "Correctness-only baseline reused from completed immutable6b24 workspace; Cargo and private candidate link recipes differ; excluded from paired timing."
+    },
+    "candidate": {
+      "manifest": "target/real-ball-core/candidate/artifacts/physical-build.json",
+      "manifest_sha256": "a088f492dd40f3deff0764bb323190dfeba155eb0b42d014792dd08a022c4758",
+      "binary": "target/real-ball-core/candidate/artifacts/physical_benchmark",
+      "binary_sha256": "1ce59599de1492b047ee0e66249f28b1d51259ba544585a7653ac99d88213108"
+    }
+  },
+  "scripts": {
+    "target/real-ball-core/run_pair.py": "eb1e4d5788c3af6d67f36320d9ba0c496dcf58d935774cb2f23e1ca32df47417",
+    "target/real-ball-core/verify_artifacts.py": "d2eebed3b45b4d53f5f79c87cf3b6911e0234b2fb75a0305d1772f6bde44baef",
+    "target/real-ball-core/witness_inputs.py": "2ca9de189f0259ac428b3e9bc979f2e1043133d04d3983c00931de722d7dbc4e",
+    "target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/validation/reference/capture.py": "95c1fc9da3cff457e30cf8eb04a258bef4a999b38f8adebc1499e35705ec1ada",
+    "target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/validation/physical/compare_cli.py": "bd15231de5b8adeb70524e5b92e7f8133afd7139aa59977395acb3474e8bae5b"
+  },
+  "rows": [
+    {
+      "id": "real-ball-physical-ggh-f64-b1",
+      "status": "passed",
+      "runs": {
+        "baseline": {
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/6b24c03-default/bin/physical_benchmark"
+          ],
+          "timeout_seconds": 90,
+          "status": "completed",
+          "returncode": 0,
+          "wall_seconds_not_benchmark": 1.4254147009924054,
+          "stdout_sha256": "2fb51b7ef9228531b2b563dc1d70a71549068a6beb653e11ec43fc43b3a3ef76",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_count": 1,
+          "chatter": []
+        },
+        "candidate": {
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/physical_benchmark"
+          ],
+          "timeout_seconds": 90,
+          "status": "completed",
+          "returncode": 0,
+          "wall_seconds_not_benchmark": 1.3733758119633421,
+          "stdout_sha256": "82c3345fcaaac779f6575346edcb89e7f8eb352bb975739b0ab3a8795a7115dc",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_count": 1,
+          "chatter": []
+        }
+      },
+      "performance_gate": false,
+      "comparison": {
+        "passed": true,
+        "performance_gate": false,
+        "request_sha256": "63ab28f2323edff880b0b70d33040c2ec68f0da2ccda7c03f8eef1b8cd7eba99",
+        "baseline": {
+          "first_observed_ns": {
+            "end_to_end": 1354043965,
+            "evaluator_preparation": 1206160482,
+            "graph_preparation": 31953338,
+            "numerical_end_to_end": 115914755
+          },
+          "id": "real-ball-physical-ggh-f64-b1",
+          "master_backend": "SymbolicaBatch",
+          "output": {
+            "algorithm_requested": "Hybrid",
+            "algorithm_used": "PassarinoVeltman",
+            "basis": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                2
+              ]
+            ],
+            "execution": {
+              "analytic_rows": 1,
+              "fallback_rows": 0,
+              "input_rows": 1,
+              "master_family_batches": 6,
+              "master_rows": 14,
+              "pentagon_box_rows": 0
+            },
+            "graph": {
+              "name": "ggh_top_triangle"
+            },
+            "kinematics_contract": "explicit canonical (q+p_i) propagators in reported graph edge order",
+            "poles": [
+              "uv1",
+              "ir1",
+              "ir2",
+              "finite"
+            ],
+            "precision_bits": 53,
+            "precision_control": {
+              "accuracy_bits": 53,
+              "output_bits": 53,
+              "verification_scope": "none"
+            },
+            "preparation_notes": [],
+            "samples": [
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              }
+            ],
+            "settings": {
+              "algorithm": "Hybrid",
+              "convention": "OneLoop",
+              "dimension_shift": 0,
+              "input_policy": "Preserve",
+              "invariants": "FromShifts",
+              "powers": [
+                1,
+                1,
+                1
+              ],
+              "propagators": 3,
+              "rank": 2,
+              "tensor_weights": "Components"
+            }
+          },
+          "preparation_qualification": "first observed within this persistent process; global Symbolica and structural caches may already be warm; excludes file I/O, JSON transport and output serialization",
+          "status": "prepared"
+        },
+        "candidate": {
+          "first_observed_ns": {
+            "end_to_end": 1294734967,
+            "evaluator_preparation": 1188024929,
+            "graph_preparation": 31952098,
+            "numerical_end_to_end": 74757320
+          },
+          "id": "real-ball-physical-ggh-f64-b1",
+          "master_backend": "SymbolicaBatch",
+          "output": {
+            "algorithm_requested": "Hybrid",
+            "algorithm_used": "PassarinoVeltman",
+            "basis": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                2
+              ]
+            ],
+            "execution": {
+              "analytic_rows": 1,
+              "fallback_rows": 0,
+              "input_rows": 1,
+              "master_family_batches": 6,
+              "master_rows": 14,
+              "pentagon_box_rows": 0
+            },
+            "graph": {
+              "name": "ggh_top_triangle"
+            },
+            "kinematics_contract": "explicit canonical (q+p_i) propagators in reported graph edge order",
+            "poles": [
+              "uv1",
+              "ir1",
+              "ir2",
+              "finite"
+            ],
+            "precision_bits": 53,
+            "precision_control": {
+              "accuracy_bits": 53,
+              "output_bits": 53,
+              "verification_scope": "none"
+            },
+            "preparation_notes": [],
+            "samples": [
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              }
+            ],
+            "settings": {
+              "algorithm": "Hybrid",
+              "convention": "OneLoop",
+              "dimension_shift": 0,
+              "input_policy": "Preserve",
+              "invariants": "FromShifts",
+              "powers": [
+                1,
+                1,
+                1
+              ],
+              "propagators": 3,
+              "rank": 2,
+              "tensor_weights": "Components"
+            }
+          },
+          "preparation_qualification": "first observed within this persistent process; global Symbolica and structural caches may already be warm; excludes file I/O, JSON transport and output serialization",
+          "status": "prepared"
+        },
+        "errors": [],
+        "differences": [],
+        "complex_slots_checked": 64,
+        "maximum_normalized_difference": "0",
+        "tolerance": "0"
+      },
+      "independent_checks": [
+        {
+          "variant": "baseline",
+          "lane": 0,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        },
+        {
+          "variant": "candidate",
+          "lane": 0,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        }
+      ]
+    },
+    {
+      "id": "real-ball-physical-ggh-f64-b3",
+      "status": "passed",
+      "runs": {
+        "baseline": {
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/benchmark/workspace-builds/6b24c03-default/bin/physical_benchmark"
+          ],
+          "timeout_seconds": 90,
+          "status": "completed",
+          "returncode": 0,
+          "wall_seconds_not_benchmark": 1.2241978539386764,
+          "stdout_sha256": "e7dd166b29295e210eef974f9ad13b5ada932fd71bb088582e6fd6efa17a8ac2",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_count": 1,
+          "chatter": []
+        },
+        "candidate": {
+          "command": [
+            "/shared/external/iregi/iregi-rust/target/real-ball-core/candidate/artifacts/physical_benchmark"
+          ],
+          "timeout_seconds": 90,
+          "status": "completed",
+          "returncode": 0,
+          "wall_seconds_not_benchmark": 1.324423686019145,
+          "stdout_sha256": "4647f404515c2f5922257e92cfb380e2450ce1ea67c2bff44f6196aa9c8d21f5",
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "response_count": 1,
+          "chatter": []
+        }
+      },
+      "performance_gate": false,
+      "comparison": {
+        "passed": true,
+        "performance_gate": false,
+        "request_sha256": "aa89d1aa4c89b71b395501bd9986e95c8ffa820a15e6de8c5a79b47d3e8b300c",
+        "baseline": {
+          "first_observed_ns": {
+            "end_to_end": 1170090316,
+            "evaluator_preparation": 1020506486,
+            "graph_preparation": 18647065,
+            "numerical_end_to_end": 130935766
+          },
+          "id": "real-ball-physical-ggh-f64-b3",
+          "master_backend": "SymbolicaBatch",
+          "output": {
+            "algorithm_requested": "Hybrid",
+            "algorithm_used": "PassarinoVeltman",
+            "basis": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                2
+              ]
+            ],
+            "execution": {
+              "analytic_rows": 3,
+              "fallback_rows": 0,
+              "input_rows": 3,
+              "master_family_batches": 6,
+              "master_rows": 42,
+              "pentagon_box_rows": 0
+            },
+            "graph": {
+              "name": "ggh_top_triangle"
+            },
+            "kinematics_contract": "explicit canonical (q+p_i) propagators in reported graph edge order",
+            "poles": [
+              "uv1",
+              "ir1",
+              "ir2",
+              "finite"
+            ],
+            "precision_bits": 53,
+            "precision_control": {
+              "accuracy_bits": 53,
+              "output_bits": 53,
+              "verification_scope": "none"
+            },
+            "preparation_notes": [],
+            "samples": [
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              },
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              },
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              }
+            ],
+            "settings": {
+              "algorithm": "Hybrid",
+              "convention": "OneLoop",
+              "dimension_shift": 0,
+              "input_policy": "Preserve",
+              "invariants": "FromShifts",
+              "powers": [
+                1,
+                1,
+                1
+              ],
+              "propagators": 3,
+              "rank": 2,
+              "tensor_weights": "Components"
+            }
+          },
+          "preparation_qualification": "first observed within this persistent process; global Symbolica and structural caches may already be warm; excludes file I/O, JSON transport and output serialization",
+          "status": "prepared"
+        },
+        "candidate": {
+          "first_observed_ns": {
+            "end_to_end": 1253423621,
+            "evaluator_preparation": 1143106498,
+            "graph_preparation": 18668575,
+            "numerical_end_to_end": 91647718
+          },
+          "id": "real-ball-physical-ggh-f64-b3",
+          "master_backend": "SymbolicaBatch",
+          "output": {
+            "algorithm_requested": "Hybrid",
+            "algorithm_used": "PassarinoVeltman",
+            "basis": [
+              [
+                0,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                0,
+                1
+              ],
+              [
+                2,
+                0,
+                0,
+                0
+              ],
+              [
+                1,
+                1,
+                0,
+                0
+              ],
+              [
+                1,
+                0,
+                1,
+                0
+              ],
+              [
+                1,
+                0,
+                0,
+                1
+              ],
+              [
+                0,
+                2,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                1,
+                0
+              ],
+              [
+                0,
+                1,
+                0,
+                1
+              ],
+              [
+                0,
+                0,
+                2,
+                0
+              ],
+              [
+                0,
+                0,
+                1,
+                1
+              ],
+              [
+                0,
+                0,
+                0,
+                2
+              ]
+            ],
+            "execution": {
+              "analytic_rows": 3,
+              "fallback_rows": 0,
+              "input_rows": 3,
+              "master_family_batches": 6,
+              "master_rows": 42,
+              "pentagon_box_rows": 0
+            },
+            "graph": {
+              "name": "ggh_top_triangle"
+            },
+            "kinematics_contract": "explicit canonical (q+p_i) propagators in reported graph edge order",
+            "poles": [
+              "uv1",
+              "ir1",
+              "ir2",
+              "finite"
+            ],
+            "precision_bits": 53,
+            "precision_control": {
+              "accuracy_bits": 53,
+              "output_bits": 53,
+              "verification_scope": "none"
+            },
+            "preparation_notes": [],
+            "samples": [
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              },
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              },
+              {
+                "analytic_used": false,
+                "fallback_used": false,
+                "id": "ggh_helicity_1_equal_color_0",
+                "integral": [
+                  [
+                    "2.842170943040400743e-14",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "0.000000000000000000e0",
+                    "0.000000000000000000e0"
+                  ],
+                  [
+                    "-1.478684334962245543e2",
+                    "9.853003660313784880e-13"
+                  ]
+                ],
+                "moments": [
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.748829596281933189e-5",
+                      "5.251604272976662102e-20"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-7.354037220624220399e-4",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "-1.624889285977388909e-1",
+                      "9.860761315262647568e-32"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "2.602085213965210642e-17",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.512111672188981015e-1",
+                      "-7.858763214295926003e-16"
+                    ]
+                  ],
+                  [
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ]
+                  ],
+                  [
+                    [
+                      "-2.500000000000000000e-1",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "0.000000000000000000e0",
+                      "0.000000000000000000e0"
+                    ],
+                    [
+                      "1.165261959688375648e-1",
+                      "-9.860761315262647568e-32"
+                    ]
+                  ]
+                ],
+                "status": "success"
+              }
+            ],
+            "settings": {
+              "algorithm": "Hybrid",
+              "convention": "OneLoop",
+              "dimension_shift": 0,
+              "input_policy": "Preserve",
+              "invariants": "FromShifts",
+              "powers": [
+                1,
+                1,
+                1
+              ],
+              "propagators": 3,
+              "rank": 2,
+              "tensor_weights": "Components"
+            }
+          },
+          "preparation_qualification": "first observed within this persistent process; global Symbolica and structural caches may already be warm; excludes file I/O, JSON transport and output serialization",
+          "status": "prepared"
+        },
+        "errors": [],
+        "differences": [],
+        "complex_slots_checked": 192,
+        "maximum_normalized_difference": "0",
+        "tolerance": "0"
+      },
+      "independent_checks": [
+        {
+          "variant": "baseline",
+          "lane": 0,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        },
+        {
+          "variant": "baseline",
+          "lane": 1,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        },
+        {
+          "variant": "baseline",
+          "lane": 2,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        },
+        {
+          "variant": "candidate",
+          "lane": 0,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        },
+        {
+          "variant": "candidate",
+          "lane": 1,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        },
+        {
+          "variant": "candidate",
+          "lane": 2,
+          "tensors": [
+            {
+              "mode": 0,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 7.257230266915874e-16,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 1,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            },
+            {
+              "mode": 2,
+              "status": "passed",
+              "passed": true,
+              "reference": "original IREGI at the FeynKit canonical shifts, converted to OneLoop",
+              "moments": 15,
+              "slots_per_moment": 4,
+              "max_normalized_error": 3.540129055639618e-15,
+              "max_error_by_rank": {
+                "0": 3.540129055639618e-15,
+                "1": 8.168737041822811e-17,
+                "2": 1.8143352502046734e-15
+              },
+              "worst": {
+                "moment": 0,
+                "exponents": [
+                  0,
+                  0,
+                  0,
+                  0
+                ],
+                "pole": 3,
+                "actual": [
+                  -1.7488295962819332e-05,
+                  5.251604272976662e-20
+                ],
+                "expected": [
+                  -1.7488295962819362e-05,
+                  -6.198498786137545e-20
+                ]
+              }
+            }
+          ],
+          "graph": {
+            "status": "passed",
+            "passed": true,
+            "reference": "MadLoop selected graph, fixed equal gluon colors",
+            "group": 1,
+            "factor": "-1/2",
+            "laurent_order": [
+              "finite",
+              "single_pole",
+              "double_pole"
+            ],
+            "mass_dimension": 1,
+            "normalization_scale": 173.0,
+            "actual_raw": [
+              [
+                -147.86843349622455,
+                9.853003660313785e-13
+              ],
+              [
+                2.842170943040401e-14,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_raw": [
+              [
+                -147.8684334962245,
+                -3.9993379997872965e-13
+              ],
+              [
+                2.842170943040401e-14,
+                -0.0
+              ],
+              [
+                -0.0,
+                0.0
+              ]
+            ],
+            "errors": [
+              8.014058084304107e-15,
+              0.0,
+              0.0
+            ],
+            "actual_normalized": [
+              [
+                -0.9363877940734862,
+                6.239487458095495e-15
+              ],
+              [
+                1.799825775391955e-16,
+                0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "expected_normalized": [
+              [
+                -0.9363877940734858,
+                -2.532610374526428e-15
+              ],
+              [
+                1.799825775391955e-16,
+                -0.0
+              ],
+              [
+                0.0,
+                0.0
+              ]
+            ],
+            "excludes": [
+              "R2",
+              "UV counterterms"
+            ],
+            "includes": [
+              "bare UV and IR poles",
+              "R1"
+            ],
+            "momentum_source": "MadLoop evaluated external momenta at the numerator seam"
+          },
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "verified_before": true,
+  "input_catalog_sha256": "bd533ff37562f27d04bace76c57adb762e8d1d11bfc45dbbf30349ee9ff7451b",
+  "independent_comparer_source": {
+    "target/real-ball-core/run_pair.py": "eb1e4d5788c3af6d67f36320d9ba0c496dcf58d935774cb2f23e1ca32df47417",
+    "target/real-ball-core/verify_artifacts.py": "d2eebed3b45b4d53f5f79c87cf3b6911e0234b2fb75a0305d1772f6bde44baef",
+    "target/real-ball-core/witness_inputs.py": "2ca9de189f0259ac428b3e9bc979f2e1043133d04d3983c00931de722d7dbc4e",
+    "target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/validation/reference/capture.py": "95c1fc9da3cff457e30cf8eb04a258bef4a999b38f8adebc1499e35705ec1ada",
+    "target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/validation/physical/compare_cli.py": "bd15231de5b8adeb70524e5b92e7f8133afd7139aa59977395acb3474e8bae5b"
+  },
+  "verified_after": true
+}

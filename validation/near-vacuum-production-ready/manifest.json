@@ -1,0 +1,62 @@
+{
+  "status": "reviewed_unapplied_production_patch_ready",
+  "production_changed": false,
+  "qualified_checkpoint": {
+    "path": "validation/near-vacuum-adapter-current/qualification.json",
+    "sha256": "e444a5cdd5c0d6dedf4046da53e7aaa0c4f99c4d6487c9001cbfa6d6b0afd7be"
+  },
+  "staged_source_sha256": {
+    "crates/iregi-masters/src/lib.rs": "bc2d91c5bb357526768929adce4628cc0a17aac5f8d6f009a6b5a0e8aceab97a",
+    "crates/iregi-masters/src/certified.rs": "a33fb74c5b4122cab8e716f6105f4a91bccb397110ffe621344e9166b1a9b941",
+    "crates/iregi-masters/src/near_vacuum.rs": "046bb0e22fe5ec63489f94352a61eecb20020647bd8d893dc585e99e46663a57",
+    "crates/iregi-masters/tests/certified.rs": "27f6995d2f7d950fce269519dd8b07cb1593eec83fe37b9d961e19b3039b70d9"
+  },
+  "production_baseline_sha256": {
+    "crates/iregi-masters/src/lib.rs": "47b74a182fb2953b4676a95fe108a1065b142f46b4f758418b44578922466883",
+    "crates/iregi-masters/src/certified.rs": null,
+    "crates/iregi-masters/src/near_vacuum.rs": null,
+    "crates/iregi-masters/tests/certified.rs": null
+  },
+  "patch_check": {
+    "command": [
+      "git",
+      "apply",
+      "--check",
+      "validation/near-vacuum-production-ready/production.patch"
+    ],
+    "exit_code": 0,
+    "applied": false
+  },
+  "cleanup": "Seven stage eprintln sites and their timer removed; module/API documentation and four diagnostic literals updated. Exact whitelist replay proves arithmetic and dispatch unchanged.",
+  "focused_public_tests": {
+    "count": 3,
+    "metadata_typecheck": "passed",
+    "executed": false,
+    "coverage": [
+      "Mixed odd batch, lane isolation, empty/reverse inputs and independent workspace state",
+      "Explicit accuracy budgets, changed contexts and required versus ordinary policy",
+      "Common-mass third Taylor coefficient at exact vacuum and scale-only jets",
+      "Native degree-five shape with explicit uncertified fallback and no series preparation",
+      "Exact rational certificate distances, independent vacuum identities and zero Laurent poles"
+    ]
+  },
+  "integration_notes": [
+    "One combined public test executable should be built and run after integration; no four-driver relink is required.",
+    "The new public error enum variants affect downstream exhaustive matches.",
+    "The ordinary master evaluator and default E6 path remain unchanged.",
+    "This cleanup does not add input-rounding or quadrature certificates."
+  ],
+  "artifacts": {
+    "validation/near-vacuum-production-ready/README.md": "2d8b0a445ec5e58b828a26fb6845b8c3c543cf19759f5f261119027edf4d468b",
+    "validation/near-vacuum-production-ready/cleanup-proof.json": "73b344359e41557bc5dcf21382b4757b3a76fa6f23163eac491cfda3433f33f1",
+    "validation/near-vacuum-production-ready/cleanup.patch": "4f2c63fa4a509e9cbafcc79f3cf35cdfad4b9786b055f3fdc0a20ab57850c0e7",
+    "validation/near-vacuum-production-ready/independent-review.md": "e8559ff6308567080cfb8e09b17916c6573663215bddc09c0b7bbb923c865406",
+    "validation/near-vacuum-production-ready/package.py": "45d122ec8a8afc73f6c671b7d45e5fd050619ff068cbfe629ad831a717e3d5de",
+    "validation/near-vacuum-production-ready/patch-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/near-vacuum-production-ready/prepare.py": "a8af5fa5fdfa3f012f6937b53d57d27679029e123e7879ce60c76bc78ceb4389",
+    "validation/near-vacuum-production-ready/production.patch": "53ca87b327ec4783ad5ffe108f70946166a029a72923534f7728ab404cd11e2d",
+    "validation/near-vacuum-production-ready/proposed-sources.tar.gz": "d2396336c3f1aa1c8f01b0a45eac9cabedda59a532ef33806ad0a24205c774f0",
+    "validation/near-vacuum-production-ready/public-api-typecheck.json": "10e2a80c393eb955324e0d3392db689f8db17ef5129496b1fe0c2cba9643f8e3",
+    "validation/near-vacuum-production-ready/public-api-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-10-23T18:54:22.092665+00:00",
+  "status": "registered_not_run",
+  "source_sha256": "7aa79f9f31db2ff8c3ff0df634aa3ecc931836172bff65242b8dc9a4ac3a0353",
+  "original_21block_qualification_sha256": "7989bc6e070050c74bbe7dc91cb8385f6b480c2a5be489c547077176ada474ee",
+  "protocol": {
+    "case_ids": [
+      "real-ball-ggh-real-b1",
+      "real-ball-ggh-real-b32",
+      "real-ball-ggh-complex-b1",
+      "real-ball-ggh-complex-b32"
+    ],
+    "paired_blocks": 41,
+    "warmup_blocks": 5,
+    "calibration_initial_warmup_calls": 5,
+    "faster_side_minimum_observed_calibration_block_ms": 200,
+    "maximum_calibration_attempts": 8,
+    "calibration_margin": 1.1,
+    "statistics": "Frozen original run.py10000 paired bootstrap median resamples;99% CI;relativewidth<=2%;all four cases retained regardless of result",
+    "cpu": 254
+  },
+  "approval": "ROOT authorized one separate longer measurement; no runtime grant yet",
+  "scope": "Same immutable6b24+slim kernel binaries and input catalog; no receipts; does not replace first run; no production or MadLoop/IREGI timing claim",
+  "builds": {
+    "baseline": {
+      "manifest": "target/real-ball-core/baseline/artifacts/kernel-build.json",
+      "manifest_sha256": "8bd469e463dab166fe6815a59f533bdef3faa6894ae7ba452a55fe7b1d8f24d6",
+      "binary": "target/real-ball-core/baseline/artifacts/kernel_benchmark",
+      "binary_sha256": "7887d8065b1d88c9a50f14afab281e583f5b6a984d3b239b2b508654f4fd946a"
+    },
+    "candidate": {
+      "manifest": "target/real-ball-core/candidate/artifacts/kernel-build.json",
+      "manifest_sha256": "c5c62a624337554cce89288f7617964be3d9aed2bcb754cfdd933ea3675a8b2d",
+      "binary": "target/real-ball-core/candidate/artifacts/kernel_benchmark",
+      "binary_sha256": "2aaa8c342b0f72dccbe100930cd06c6d8b380f9cddb5c970b2fe75be2553164a"
+    }
+  },
+  "input_catalog_sha256": "bd533ff37562f27d04bace76c57adb762e8d1d11bfc45dbbf30349ee9ff7451b"
+}

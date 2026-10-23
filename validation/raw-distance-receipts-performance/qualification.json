@@ -1,0 +1,83 @@
+{
+  "recorded_utc": "2026-10-23T18:54:28.480610+00:00",
+  "status": "qualified_isolated_timing_private_patch_prepared_not_adopted",
+  "scope": "same slim RealBall baseline versus call-local exact raw-distance zero proof receipts;14f64/flattened-Dual workload/batch pairs;not IREGI reference acceptance",
+  "correctness": {
+    "prior_tests": 49,
+    "prior_exact_public_snapshots": 120,
+    "prior_record": "validation/raw-distance-receipts/qualification.json",
+    "prior_sha256": "4bda0b86022cbf93f58ed3c6f6b7360d92e07f668d77da706110faa2ecbb5d1c",
+    "timing_cases_passed": 14,
+    "timing_parity": "exact coefficient bits and ordinary status/metadata/stats/diagnostics before and after each case;no comparisons inside timed iterations"
+  },
+  "performance": {
+    "observations": 588,
+    "cases": 14,
+    "paired_blocks": 21,
+    "cpu": 254,
+    "run_seconds_including_preparation_not_a_latency_measurement": 42.776360456016846,
+    "classification_counts": {
+      "improvement": 8,
+      "parity": 2,
+      "inconclusive-noise": 4
+    },
+    "regressions": 0,
+    "per_case": "performance-analysis.json",
+    "method": "21 alternating paired blocks, median log ratio, 20000 paired bootstrap resamples, deterministic seed14050301, percentile99 interval",
+    "classification_gate": "99% bootstrap interval width <=2% of median candidate/baseline latency ratio; otherwise inconclusive-noise"
+  },
+  "decision": "Prepare narrow current-source patch; eight improvements and no qualified regressions. Four noisy cases remain unresolved. No production change or full-reference acceptance claim.",
+  "production_patch": {
+    "status": "private_prepared_not_applied_not_compiled",
+    "path": "adoption/adoption.patch",
+    "sha256": "7bf76c7e6dcadf8dd56e0dfbd42144630d476d8f35cef2731bd00be7f6a0e662",
+    "base_commit": "21622ec9abfdedcf18993768845a29a9bb1c1e1d",
+    "public_experimental_accessor": false
+  },
+  "provenance": {
+    "closure_files_verified_before_and_after": 865,
+    "quiet_window_source": "target/benchmark/optimization-quiet-20261023b/window.json",
+    "quiet_window_start_sha256": "a56ebd6c30221a6b16cf4761e9b5a432b81bb3490e2bd542cc674a24d2f30e01",
+    "quiet_window_completed_sha256": "24bd88bfdf998f27ef4597f247d8ccf219d51e92eca4db6e8c5f216c801bf974",
+    "independent_review": "statistical-review.json"
+  },
+  "files": {
+    "README.md": "b847a4554cfd457e5a0cbe461dfa26b1d102fbe62a2b0d7fbaaf35280444f155",
+    "TIMING.md": "fc71e64944457a415b635175e4fd32d115fa336513a14b897254a63ba47991f9",
+    "adoption/adoption.patch": "7bf76c7e6dcadf8dd56e0dfbd42144630d476d8f35cef2731bd00be7f6a0e662",
+    "adoption/apply-check.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "adoption/execution.rs": "d9ef6e175bdd7af49852b03c1bd7fa246db7728500d7835bfa0530c6d9dc2833",
+    "adoption/prepared.json": "68dfe1a75fc87c07529bb5746588d2f5eca388195ba0c06147f30c6640914c2c",
+    "adoption/proof_receipt_tests.rs": "10d055f2b0e56d10b7a3d13b951a84f93ca604963ca16932401eac052c928291",
+    "adoption/proof_receipts.rs": "7614ccb2a99c1c438ab068f764a3138237f346b8215dfb04144a2d26fbc0c208",
+    "adoption/rebase.log": "a9289564898bc9bee115fe5139aaae6d07554d6be0487fc81b9477b4a4ab8248",
+    "all-cpu-survey.json": "ad79b520156b387073927b739ee5bb33a929d89c8e4f812ab5c4f90e08325630",
+    "analysis.log": "54ba80d6180336ddf2a3055480ffd84ec8df9b9c21f87108482a4b207bcbbd8e",
+    "analyze.py": "65a37d3c469a55191f733f4e59372d86b058601b321e74fe68480fd5b55993d7",
+    "build-launched.py": "9ca7e2220520fadb391ef470e2dddf3f8ee4a5cc634ae42e88d0547caa2d3266",
+    "build.json": "261b0d07b7420a4ef6ca493d498485a7507a5343bd242e48ce6d32c6f8b1948e",
+    "build.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "build.py": "b4af7ce45e7221a9794b5a526830c1d90e25500e1c15caa3f3cb94e57dd66c4a",
+    "configurable-launcher.json": "bb9dcd26a8c2f1ecbff422724571edc13d72008f0279a4654afd004c996aad22",
+    "cpu-survey.json": "818fe5d70d7587444eff1b11f4b91cfd10e374c4687447e7a3864a1a40cfacdc",
+    "cpu254-launcher.json": "ccc3f71da269d01b8737fde6f848e63ae454488a1e8c3fbad4cb301311618b35",
+    "followup-cpu-survey.json": "f1123177912dc9fab6a3c974fd83c0fc22d1ae2e8fb3f5eedafa1cec6181052e",
+    "performance-analysis.json": "54ba80d6180336ddf2a3055480ffd84ec8df9b9c21f87108482a4b207bcbbd8e",
+    "performance-run.json": "911b99a16f148abe65425adfb9cce381e427460d7ccef02ffb294254b3978411",
+    "performance.csv": "1f874b1131320837dec4b09d3f22c6f2e7fc4dba70f4c44ad31b1e5a0f424d4a",
+    "performance.log": "b6a079bd2b3637563cd5289133156fce54491af698757fef385a7d34942196c7",
+    "preflight-qualification.json": "8fa268d7f6dfb9958178f347778d13a28666ff37e2dc504b633268562c532880",
+    "preflight.json": "cb47dac6d2c3a13ee36ea76b52200ab14409a37ed084b8105cc566bb39361662",
+    "preflight.log": "bd994935c96b8a4a4cf57ca75d142fb584cdf2b2771e44e875b2d76fd0617fcd",
+    "preflight.py": "ce820377624515349a61668966d95252a19d6c99ea3292e029b84970f1186e47",
+    "probe.rs": "c8892d0bc8fcf996ee70681c3619e729580a4f1f6c57c885c5d32c02911892ee",
+    "quiet-window-binding.json": "379916a343912fc66c210496febba6e8c7ed6f61485520e046996092a48e50ce",
+    "quiet-window-completed.json": "24bd88bfdf998f27ef4597f247d8ccf219d51e92eca4db6e8c5f216c801bf974",
+    "quiet-window-start.json": "a56ebd6c30221a6b16cf4761e9b5a432b81bb3490e2bd542cc674a24d2f30e01",
+    "review.json": "5020e2fcddf21c4f5b7a20f3690565f03add96df9f01755e4884c020566e37ff",
+    "run_timing.py": "76ab8a084275737a08a2eb56000f47565d9a5103937e83cbfde3380e7b1ff2cc",
+    "run_timing_configurable.py": "524c26fc645737fabdfa0ad25bae402df08fd29e3af84c57505d2c81edea98bd",
+    "run_timing_cpu254.py": "1682d7f121a9dde920232d948de7d43b5963a3a042d3f40508c0367b34e5ccd1",
+    "statistical-review.json": "d30e468219852230634b7bd94844b1353850af985d4054932f2dffb29f316d3d"
+  }
+}

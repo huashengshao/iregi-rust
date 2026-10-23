@@ -1,0 +1,2583 @@
+{
+  "status": "qualified",
+  "paired_cases": 29,
+  "compared_lanes": 145,
+  "required_ordinary_successes": 26,
+  "ordinary_successes": 26,
+  "known_ordinary_guard_parity_cases": 3,
+  "successful_lanes": 86,
+  "invalid_scale_guards": 29,
+  "nonzero_second_order_dual_cases": 12,
+  "compared_complex_moment_components": 4520,
+  "guard_records": [
+    {
+      "domain": "f64",
+      "propagators": 1,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 2,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        3
+      ],
+      "complete_statuses": "[Success, Success, Success, Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 3,
+      "rank": 1,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1,
+        3
+      ],
+      "complete_statuses": "[Success, Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Success, Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 2,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        3
+      ],
+      "complete_statuses": "[Success, Success, Success, Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 1,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 3,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1,
+        3
+      ],
+      "complete_statuses": "[Success, MasterFailure(\"C0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Success, Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 4,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "known_guard_parity",
+      "ordinary_lane_success": false,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "complete_statuses": "[Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_50_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_50_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 4,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "known_guard_parity",
+      "ordinary_lane_success": false,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "complete_statuses": "[Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_56_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), MasterFailure(\"D0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_56_node_5, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 5,
+      "rank": 1,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "known_guard_parity",
+      "ordinary_lane_success": false,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "complete_statuses": "[Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_59_node_2, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_59_node_2, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"PV reduction failed its stability check (Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_12, Taylor component 0; this estimate is not a certified error bound\\\")); IBP fallback returned Unstable(\\\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence ibp_59_node_2, Taylor component 0; this estimate is not a certified error bound\\\")\"), Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 4,
+      "rank": 2,
+      "components": 1,
+      "fixture": "orthogonal_unit_n4",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1,
+        3
+      ],
+      "complete_statuses": "[Success, Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Success, Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "f64",
+      "propagators": 4,
+      "rank": 1,
+      "components": 3,
+      "fixture": "orthogonal_unit_n4",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1,
+        3
+      ],
+      "complete_statuses": "[Success, MasterFailure(\"D0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Success, Unstable(\"derived distance 0, Taylor component 0, exceeds the relative conditioning target 2^(19-53) at working precision 53 and input precision 53; this operation-count estimate is not a certified error bound\"), InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 1,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 2,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 3,
+      "rank": 1,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 2,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 1,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 3,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, MasterFailure(\"C0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 4,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 4,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, MasterFailure(\"D0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "DoubleFloat",
+      "propagators": 5,
+      "rank": 1,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 1,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 2,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 3,
+      "rank": 1,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 2,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 1,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 3,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, MasterFailure(\"C0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 4,
+      "rank": 2,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, Unstable(\"PV reduction failed its stability check (Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")); IBP fallback returned Unstable(\\\"reduction has nonfinite coefficients at this kinematic point\\\")\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 4,
+      "rank": 1,
+      "components": 3,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [
+        1
+      ],
+      "complete_statuses": "[Success, MasterFailure(\"D0 leaf 0: these Dual seeds cross a scalar-limit branch without a supported analytic neighborhood\"), Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    },
+    {
+      "domain": "Float128",
+      "propagators": 5,
+      "rank": 1,
+      "components": 1,
+      "fixture": "retained_v1",
+      "validation_role": "positive",
+      "ordinary_lane_success": true,
+      "invalid_scale_lane": 4,
+      "additional_guarded_lanes": [],
+      "complete_statuses": "[Success, Success, Success, Success, InvalidInput(\"mu must be positive and real\")]"
+    }
+  ],
+  "historical_numerical_comparison": {
+    "status": "passed",
+    "tolerance": "1e-10",
+    "arithmetic_precision_decimal_digits": 100,
+    "compared_complex_components": {
+      "moments": 4280,
+      "repeat": 4280,
+      "contracted": 624
+    },
+    "maximum_normalized_errors": {
+      "moments": "5.420959969541188924736214606692373649241533974479891853281205947317035109490890481421304092529519974E-37",
+      "repeat": "5.420959969541188924736214606692373649241533974479891853281205947317035109490890481421304092529519974E-37",
+      "contracted": "1.224341769093444071228540455321379638629214889915905026177999999341589998654479199712401111275659846E-37"
+    },
+    "maximum_unscaled_contraction_error": "9.229353139917370593359354906828279002166064799100050863464868019572948552676339652358511417421910593E-40",
+    "maximum_raw_difference_exact": "1/340282366920938463463374607431768211456",
+    "changed_leaves": [
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 7,
+        "part": 0,
+        "property": "bits",
+        "historical": 128,
+        "current": 2
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 7,
+        "part": 0,
+        "property": "negative_sign",
+        "historical": false,
+        "current": true
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 7,
+        "part": 0,
+        "property": "rational",
+        "historical": "0",
+        "current": "-1/1361129467683753853853498429727072845824"
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 7,
+        "part": 1,
+        "property": "bits",
+        "historical": 123,
+        "current": 124
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 7,
+        "part": 1,
+        "property": "rational",
+        "historical": "3471612298217835038702895805551705427/340282366920938463463374607431768211456",
+        "current": "867903074554458759675723951387926357/85070591730234615865843651857942052864"
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 11,
+        "part": 0,
+        "property": "bits",
+        "historical": 128,
+        "current": 2
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 11,
+        "part": 0,
+        "property": "negative_sign",
+        "historical": false,
+        "current": true
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "0",
+        "current": "-1/1361129467683753853853498429727072845824"
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "19933753413646901358155750200039951303/1361129467683753853853498429727072845824",
+        "current": "19933753413646901358155750200039951305/1361129467683753853853498429727072845824"
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 15,
+        "part": 0,
+        "property": "rational",
+        "historical": "1/340282366920938463463374607431768211456",
+        "current": "15/5444517870735015415413993718908291383296"
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 15,
+        "part": 1,
+        "property": "bits",
+        "historical": 123,
+        "current": 124
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 19,
+        "part": 1,
+        "property": "bits",
+        "historical": 122,
+        "current": 123
+      },
+      {
+        "case": 26,
+        "field": "moments",
+        "lane": 1,
+        "index": 19,
+        "part": 1,
+        "property": "rational",
+        "historical": "4611729313713399821554182043679300837/2722258935367507707706996859454145691648",
+        "current": "9223458627426799643108364087358601679/5444517870735015415413993718908291383296"
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 7,
+        "part": 0,
+        "property": "bits",
+        "historical": 128,
+        "current": 2
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 7,
+        "part": 0,
+        "property": "negative_sign",
+        "historical": false,
+        "current": true
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 7,
+        "part": 0,
+        "property": "rational",
+        "historical": "0",
+        "current": "-1/1361129467683753853853498429727072845824"
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 7,
+        "part": 1,
+        "property": "bits",
+        "historical": 123,
+        "current": 124
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 7,
+        "part": 1,
+        "property": "rational",
+        "historical": "3471612298217835038702895805551705427/340282366920938463463374607431768211456",
+        "current": "867903074554458759675723951387926357/85070591730234615865843651857942052864"
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 11,
+        "part": 0,
+        "property": "bits",
+        "historical": 128,
+        "current": 2
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 11,
+        "part": 0,
+        "property": "negative_sign",
+        "historical": false,
+        "current": true
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "0",
+        "current": "-1/1361129467683753853853498429727072845824"
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "19933753413646901358155750200039951303/1361129467683753853853498429727072845824",
+        "current": "19933753413646901358155750200039951305/1361129467683753853853498429727072845824"
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 15,
+        "part": 0,
+        "property": "rational",
+        "historical": "1/340282366920938463463374607431768211456",
+        "current": "15/5444517870735015415413993718908291383296"
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 15,
+        "part": 1,
+        "property": "bits",
+        "historical": 123,
+        "current": 124
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 19,
+        "part": 1,
+        "property": "bits",
+        "historical": 122,
+        "current": 123
+      },
+      {
+        "case": 26,
+        "field": "repeat",
+        "lane": 1,
+        "index": 19,
+        "part": 1,
+        "property": "rational",
+        "historical": "4611729313713399821554182043679300837/2722258935367507707706996859454145691648",
+        "current": "9223458627426799643108364087358601679/5444517870735015415413993718908291383296"
+      },
+      {
+        "case": 26,
+        "field": "contracted",
+        "lane": 1,
+        "index": 3,
+        "part": 0,
+        "property": "bits",
+        "historical": 4,
+        "current": 3
+      },
+      {
+        "case": 26,
+        "field": "contracted",
+        "lane": 1,
+        "index": 3,
+        "part": 0,
+        "property": "rational",
+        "historical": "-1/2722258935367507707706996859454145691648",
+        "current": "-3/10889035741470030830827987437816582766592"
+      },
+      {
+        "case": 26,
+        "field": "contracted",
+        "lane": 1,
+        "index": 3,
+        "part": 1,
+        "property": "rational",
+        "historical": "-41041953622811772350313278677681885893/5444517870735015415413993718908291383296",
+        "current": "-20520976811405886175156639338840942949/2722258935367507707706996859454145691648"
+      }
+    ],
+    "normalization": "Tensor moments and repeats: existing q^(4-2N+moment rank), using primal kinematics and the same scale for all dimensionless Taylor-parameter components. Mixed-rank contractions: scalar-integral scale q^(4-2N), plus an unscaled mixed absolute/relative check. No homogeneous numerator degree is inferred.",
+    "historical_bitwise_identical": false,
+    "scope": "All successful historical slots and components are compared. Rejected lanes require unchanged statuses and absent arrays. Current baseline/candidate exact equality is a separate prerequisite. Precision and signed-zero differences are recorded, not hidden."
+  },
+  "control_probe_numerical_comparison": {
+    "status": "passed",
+    "tolerance": "1e-10",
+    "arithmetic_precision_decimal_digits": 100,
+    "compared_complex_components": {
+      "moments": 240,
+      "repeat": 240,
+      "contracted": 32
+    },
+    "maximum_normalized_errors": {
+      "moments": "4.369129570460809489753042831554783834716501889382526544780190388712471590150478568274265611695126914E-14",
+      "repeat": "4.369129570460809489753042831554783834716501889382526544780190388712471590150478568274265611695126914E-14",
+      "contracted": "8.642231053966692173776354540325129895770188514248594972195614619045270772739421514111868423211267383E-14"
+    },
+    "maximum_unscaled_contraction_error": "7.539510394289373530720543203495551053295519040042103846909088579628046090652385270083798914214436032E-15",
+    "maximum_raw_difference_exact": "1737178818627953/158456325028528675187087900672",
+    "changed_leaves": [
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3159360039089059/633825300114114700748351602688",
+        "current": "-5864022915728689/633825300114114700748351602688"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7952077569780469/144115188075855872",
+        "current": "-7952077569780267/144115188075855872"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 15,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6645934506889381/20282409603651670423947251286016",
+        "current": "-8019529960669305/5070602400912917605986812821504"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 19,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6371476500050951/633825300114114700748351602688",
+        "current": "-1986889479358425/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 19,
+        "part": 1,
+        "property": "rational",
+        "historical": "-3029290498108631/72057594037927936",
+        "current": "-757322624527159/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 23,
+        "part": 0,
+        "property": "rational",
+        "historical": "1913955512328263/79228162514264337593543950336",
+        "current": "5565089843284479/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 23,
+        "part": 1,
+        "property": "rational",
+        "historical": "-5236434407463383/18014398509481984",
+        "current": "-2618217203731693/9007199254740992"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 39,
+        "part": 0,
+        "property": "rational",
+        "historical": "6017987704653021/1267650600228229401496703205376",
+        "current": "1424237343720353/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 39,
+        "part": 1,
+        "property": "rational",
+        "historical": "5649689610557663/18014398509481984",
+        "current": "5649689610557641/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 43,
+        "part": 0,
+        "property": "rational",
+        "historical": "7788324409272071/1267650600228229401496703205376",
+        "current": "8628960832745757/633825300114114700748351602688"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 43,
+        "part": 1,
+        "property": "rational",
+        "historical": "5492425193549/562949953421312",
+        "current": "5624243398193801/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "1454704158861403/79228162514264337593543950336",
+        "current": "4626522240740035/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "1270635664971477/144115188075855872",
+        "current": "2541271329942559/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 51,
+        "part": 0,
+        "property": "rational",
+        "historical": "2449042214142157/2535301200456458802993406410752",
+        "current": "7351235797280195/2535301200456458802993406410752"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 51,
+        "part": 1,
+        "property": "rational",
+        "historical": "5558201670511265/18014398509481984",
+        "current": "5558201670511259/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 55,
+        "part": 0,
+        "property": "rational",
+        "historical": "278750698419349/19807040628566084398385987584",
+        "current": "1594588072548367/79228162514264337593543950336"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 55,
+        "part": 1,
+        "property": "rational",
+        "historical": "2265247239704447/288230376151711744",
+        "current": "4530494479409703/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "6747391966957327/316912650057057350374175801344",
+        "current": "8365241769551893/316912650057057350374175801344"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 0,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "2749808521846685/9007199254740992",
+        "current": "5499617043693357/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 3,
+        "part": 0,
+        "property": "rational",
+        "historical": "-1521023120931599/72057594037927936",
+        "current": "-760511560465799/36028797018963968"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "1530634994364601/288230376151711744",
+        "current": "6122539977455551/1152921504606846976"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7894193785208421/144115188075855872",
+        "current": "-1973548446302083/36028797018963968"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 15,
+        "part": 0,
+        "property": "rational",
+        "historical": "304107466476285/72057594037927936",
+        "current": "2432859731809599/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 15,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1699389481561545/36028797018963968",
+        "current": "-3398778963123011/72057594037927936"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 19,
+        "part": 0,
+        "property": "rational",
+        "historical": "4081215586832687/1152921504606846976",
+        "current": "8162431173668167/2305843009213693952"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 19,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6024626489647805/144115188075855872",
+        "current": "-6024626489647883/144115188075855872"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 23,
+        "part": 0,
+        "property": "rational",
+        "historical": "7757445380572943/576460752303423488",
+        "current": "484840336285895/36028797018963968"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 23,
+        "part": 1,
+        "property": "rational",
+        "historical": "-326532257183673/1125899906842624",
+        "current": "-2612258057469387/9007199254740992"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 39,
+        "part": 0,
+        "property": "rational",
+        "historical": "-4518871720101953/288230376151711744",
+        "current": "-2259435860050607/144115188075855872"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 39,
+        "part": 1,
+        "property": "rational",
+        "historical": "2817382018052127/9007199254740992",
+        "current": "5634764036104245/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 43,
+        "part": 0,
+        "property": "rational",
+        "historical": "-2002244117463413/2305843009213693952",
+        "current": "-8008976469802725/9223372036854775808"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 43,
+        "part": 1,
+        "property": "rational",
+        "historical": "2794844261609953/288230376151711744",
+        "current": "5589688523219275/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3459151787181829/4611686018427387904",
+        "current": "-1729575893580877/2305843009213693952"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "5053890320619937/576460752303423488",
+        "current": "2526945160310087/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 51,
+        "part": 0,
+        "property": "rational",
+        "historical": "-8630215987004193/576460752303423488",
+        "current": "-8630215987003275/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 51,
+        "part": 1,
+        "property": "rational",
+        "historical": "5544495735408925/18014398509481984",
+        "current": "5544495735408891/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 55,
+        "part": 0,
+        "property": "rational",
+        "historical": "-2896782809646093/4611686018427387904",
+        "current": "-2896782809640813/4611686018427387904"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 55,
+        "part": 1,
+        "property": "rational",
+        "historical": "4508015711870767/576460752303423488",
+        "current": "2254007855935265/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "-8406217342884897/576460752303423488",
+        "current": "-262694291965205/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "moments",
+        "lane": 2,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "171452662829527/562949953421312",
+        "current": "685810651318109/2251799813685248"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3159360039089059/633825300114114700748351602688",
+        "current": "-5864022915728689/633825300114114700748351602688"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7952077569780469/144115188075855872",
+        "current": "-7952077569780267/144115188075855872"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 15,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6645934506889381/20282409603651670423947251286016",
+        "current": "-8019529960669305/5070602400912917605986812821504"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 19,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6371476500050951/633825300114114700748351602688",
+        "current": "-1986889479358425/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 19,
+        "part": 1,
+        "property": "rational",
+        "historical": "-3029290498108631/72057594037927936",
+        "current": "-757322624527159/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 23,
+        "part": 0,
+        "property": "rational",
+        "historical": "1913955512328263/79228162514264337593543950336",
+        "current": "5565089843284479/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 23,
+        "part": 1,
+        "property": "rational",
+        "historical": "-5236434407463383/18014398509481984",
+        "current": "-2618217203731693/9007199254740992"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 39,
+        "part": 0,
+        "property": "rational",
+        "historical": "6017987704653021/1267650600228229401496703205376",
+        "current": "1424237343720353/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 39,
+        "part": 1,
+        "property": "rational",
+        "historical": "5649689610557663/18014398509481984",
+        "current": "5649689610557641/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 43,
+        "part": 0,
+        "property": "rational",
+        "historical": "7788324409272071/1267650600228229401496703205376",
+        "current": "8628960832745757/633825300114114700748351602688"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 43,
+        "part": 1,
+        "property": "rational",
+        "historical": "5492425193549/562949953421312",
+        "current": "5624243398193801/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "1454704158861403/79228162514264337593543950336",
+        "current": "4626522240740035/158456325028528675187087900672"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "1270635664971477/144115188075855872",
+        "current": "2541271329942559/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 51,
+        "part": 0,
+        "property": "rational",
+        "historical": "2449042214142157/2535301200456458802993406410752",
+        "current": "7351235797280195/2535301200456458802993406410752"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 51,
+        "part": 1,
+        "property": "rational",
+        "historical": "5558201670511265/18014398509481984",
+        "current": "5558201670511259/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 55,
+        "part": 0,
+        "property": "rational",
+        "historical": "278750698419349/19807040628566084398385987584",
+        "current": "1594588072548367/79228162514264337593543950336"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 55,
+        "part": 1,
+        "property": "rational",
+        "historical": "2265247239704447/288230376151711744",
+        "current": "4530494479409703/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "6747391966957327/316912650057057350374175801344",
+        "current": "8365241769551893/316912650057057350374175801344"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 0,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "2749808521846685/9007199254740992",
+        "current": "5499617043693357/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 3,
+        "part": 0,
+        "property": "rational",
+        "historical": "-1521023120931599/72057594037927936",
+        "current": "-760511560465799/36028797018963968"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "1530634994364601/288230376151711744",
+        "current": "6122539977455551/1152921504606846976"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7894193785208421/144115188075855872",
+        "current": "-1973548446302083/36028797018963968"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 15,
+        "part": 0,
+        "property": "rational",
+        "historical": "304107466476285/72057594037927936",
+        "current": "2432859731809599/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 15,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1699389481561545/36028797018963968",
+        "current": "-3398778963123011/72057594037927936"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 19,
+        "part": 0,
+        "property": "rational",
+        "historical": "4081215586832687/1152921504606846976",
+        "current": "8162431173668167/2305843009213693952"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 19,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6024626489647805/144115188075855872",
+        "current": "-6024626489647883/144115188075855872"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 23,
+        "part": 0,
+        "property": "rational",
+        "historical": "7757445380572943/576460752303423488",
+        "current": "484840336285895/36028797018963968"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 23,
+        "part": 1,
+        "property": "rational",
+        "historical": "-326532257183673/1125899906842624",
+        "current": "-2612258057469387/9007199254740992"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 39,
+        "part": 0,
+        "property": "rational",
+        "historical": "-4518871720101953/288230376151711744",
+        "current": "-2259435860050607/144115188075855872"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 39,
+        "part": 1,
+        "property": "rational",
+        "historical": "2817382018052127/9007199254740992",
+        "current": "5634764036104245/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 43,
+        "part": 0,
+        "property": "rational",
+        "historical": "-2002244117463413/2305843009213693952",
+        "current": "-8008976469802725/9223372036854775808"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 43,
+        "part": 1,
+        "property": "rational",
+        "historical": "2794844261609953/288230376151711744",
+        "current": "5589688523219275/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3459151787181829/4611686018427387904",
+        "current": "-1729575893580877/2305843009213693952"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "5053890320619937/576460752303423488",
+        "current": "2526945160310087/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 51,
+        "part": 0,
+        "property": "rational",
+        "historical": "-8630215987004193/576460752303423488",
+        "current": "-8630215987003275/576460752303423488"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 51,
+        "part": 1,
+        "property": "rational",
+        "historical": "5544495735408925/18014398509481984",
+        "current": "5544495735408891/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 55,
+        "part": 0,
+        "property": "rational",
+        "historical": "-2896782809646093/4611686018427387904",
+        "current": "-2896782809640813/4611686018427387904"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 55,
+        "part": 1,
+        "property": "rational",
+        "historical": "4508015711870767/576460752303423488",
+        "current": "2254007855935265/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "-8406217342884897/576460752303423488",
+        "current": "-262694291965205/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "repeat",
+        "lane": 2,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "171452662829527/562949953421312",
+        "current": "685810651318109/2251799813685248"
+      },
+      {
+        "case": 0,
+        "field": "contracted",
+        "lane": 0,
+        "index": 3,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5434517270352455/633825300114114700748351602688",
+        "current": "-3992755600891379/316912650057057350374175801344"
+      },
+      {
+        "case": 0,
+        "field": "contracted",
+        "lane": 0,
+        "index": 3,
+        "part": 1,
+        "property": "rational",
+        "historical": "2357144223589447/9007199254740992",
+        "current": "4714288447178901/18014398509481984"
+      },
+      {
+        "case": 0,
+        "field": "contracted",
+        "lane": 2,
+        "index": 3,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3236218518522397/144115188075855872",
+        "current": "-6472437037045065/288230376151711744"
+      },
+      {
+        "case": 0,
+        "field": "contracted",
+        "lane": 2,
+        "index": 3,
+        "part": 1,
+        "property": "rational",
+        "historical": "4683831987055589/18014398509481984",
+        "current": "146369749595487/562949953421312"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 10,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1530078093387211/9007199254740992",
+        "current": "-382519523346803/2251799813685248"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 33,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3159360039089059/633825300114114700748351602688",
+        "current": "-5763778791220323/633825300114114700748351602688"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 33,
+        "part": 1,
+        "property": "rational",
+        "historical": "-3976038784890037/72057594037927936",
+        "current": "-7952077569779931/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 34,
+        "part": 0,
+        "property": "rational",
+        "historical": "-4638985072636135/81129638414606681695789005144064",
+        "current": "-3522422030418463/40564819207303340847894502572032"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 34,
+        "part": 1,
+        "property": "rational",
+        "historical": "6155070007574359/144115188075855872",
+        "current": "6155070007574413/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 35,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7445071658982781/288230376151711744",
+        "current": "-7445071658982779/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 45,
+        "part": 0,
+        "property": "rational",
+        "historical": "-207685453340293/633825300114114700748351602688",
+        "current": "-3608788482301187/2535301200456458802993406410752"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 45,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6840055773498221/144115188075855872",
+        "current": "-855006971687285/18014398509481984"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 46,
+        "part": 0,
+        "property": "negative_sign",
+        "historical": true,
+        "current": false
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 46,
+        "part": 0,
+        "property": "rational",
+        "historical": "-4638985072636135/81129638414606681695789005144064",
+        "current": "2405858988200791/20282409603651670423947251286016"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 46,
+        "part": 1,
+        "property": "rational",
+        "historical": "4887890605070617/144115188075855872",
+        "current": "4887890605070647/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5398788314804659/162259276829213363391578010288128",
+        "current": "-4926873245578547/649037107316853453566312041152512"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "-5462680835538199/288230376151711744",
+        "current": "-5462680835538209/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 57,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6371476500050951/633825300114114700748351602688",
+        "current": "-3923656896462667/316912650057057350374175801344"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 57,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1514645249054217/36028797018963968",
+        "current": "-6058580996216937/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 58,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5441454804724543/10141204801825835211973625643008",
+        "current": "-5928281018619255/20282409603651670423947251286016"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 58,
+        "part": 1,
+        "property": "rational",
+        "historical": "1024557314069723/36028797018963968",
+        "current": "8196458512557893/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "5248163760031371/40564819207303340847894502572032",
+        "current": "6329257516652719/81129638414606681695789005144064"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 0,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "-8726521744135749/576460752303423488",
+        "current": "-4363260872067867/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 9,
+        "part": 0,
+        "property": "rational",
+        "historical": "-1521023120931599/72057594037927936",
+        "current": "-760511560465799/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 10,
+        "part": 0,
+        "property": "rational",
+        "historical": "7633906611399763/288230376151711744",
+        "current": "1908476652849939/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6856451130540395/288230376151711744",
+        "current": "-3428225565270197/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "233086006413291/2251799813685248",
+        "current": "7458752205225321/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 33,
+        "part": 0,
+        "property": "rational",
+        "historical": "6122539977461039/1152921504606846976",
+        "current": "6122539977458191/1152921504606846976"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 33,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7894193785207927/144115188075855872",
+        "current": "-3947096892603949/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 34,
+        "part": 0,
+        "property": "rational",
+        "historical": "-7373355640563851/1152921504606846976",
+        "current": "-921669455070477/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 34,
+        "part": 1,
+        "property": "rational",
+        "historical": "757223967525711/18014398509481984",
+        "current": "6057791740205659/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 35,
+        "part": 0,
+        "property": "rational",
+        "historical": "6176127598875135/1152921504606846976",
+        "current": "386007974929695/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 35,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7230990250701613/288230376151711744",
+        "current": "-7230990250701645/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 45,
+        "part": 0,
+        "property": "rational",
+        "historical": "4865719463623195/1152921504606846976",
+        "current": "2432859731810919/576460752303423488"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 45,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6797557926245687/144115188075855872",
+        "current": "-1699389481561397/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 46,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5416872525561083/1152921504606846976",
+        "current": "-5416872525560999/1152921504606846976"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 46,
+        "part": 1,
+        "property": "rational",
+        "historical": "2410783173037477/72057594037927936",
+        "current": "2410783173037487/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "4214606824285903/1152921504606846976",
+        "current": "8429213648571737/2305843009213693952"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "-332867523726901/18014398509481984",
+        "current": "-5325880379630475/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 57,
+        "part": 0,
+        "property": "rational",
+        "historical": "2040607793417661/576460752303423488",
+        "current": "8162431173673447/2305843009213693952"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 57,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6024626489647311/144115188075855872",
+        "current": "-6024626489647449/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 58,
+        "part": 0,
+        "property": "rational",
+        "historical": "-8658336242103387/2305843009213693952",
+        "current": "-4329168121051543/1152921504606846976"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 58,
+        "part": 1,
+        "property": "rational",
+        "historical": "4047326170815233/144115188075855872",
+        "current": "4047326170815243/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "3235816484167559/1152921504606846976",
+        "current": "6471632968335251/2305843009213693952"
+      },
+      {
+        "case": 1,
+        "field": "moments",
+        "lane": 2,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "-2130716412112439/144115188075855872",
+        "current": "-4261432824224947/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 10,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1530078093387211/9007199254740992",
+        "current": "-382519523346803/2251799813685248"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 33,
+        "part": 0,
+        "property": "rational",
+        "historical": "-3159360039089059/633825300114114700748351602688",
+        "current": "-5763778791220323/633825300114114700748351602688"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 33,
+        "part": 1,
+        "property": "rational",
+        "historical": "-3976038784890037/72057594037927936",
+        "current": "-7952077569779931/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 34,
+        "part": 0,
+        "property": "rational",
+        "historical": "-4638985072636135/81129638414606681695789005144064",
+        "current": "-3522422030418463/40564819207303340847894502572032"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 34,
+        "part": 1,
+        "property": "rational",
+        "historical": "6155070007574359/144115188075855872",
+        "current": "6155070007574413/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 35,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7445071658982781/288230376151711744",
+        "current": "-7445071658982779/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 45,
+        "part": 0,
+        "property": "rational",
+        "historical": "-207685453340293/633825300114114700748351602688",
+        "current": "-3608788482301187/2535301200456458802993406410752"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 45,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6840055773498221/144115188075855872",
+        "current": "-855006971687285/18014398509481984"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 46,
+        "part": 0,
+        "property": "negative_sign",
+        "historical": true,
+        "current": false
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 46,
+        "part": 0,
+        "property": "rational",
+        "historical": "-4638985072636135/81129638414606681695789005144064",
+        "current": "2405858988200791/20282409603651670423947251286016"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 46,
+        "part": 1,
+        "property": "rational",
+        "historical": "4887890605070617/144115188075855872",
+        "current": "4887890605070647/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5398788314804659/162259276829213363391578010288128",
+        "current": "-4926873245578547/649037107316853453566312041152512"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "-5462680835538199/288230376151711744",
+        "current": "-5462680835538209/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 57,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6371476500050951/633825300114114700748351602688",
+        "current": "-3923656896462667/316912650057057350374175801344"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 57,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1514645249054217/36028797018963968",
+        "current": "-6058580996216937/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 58,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5441454804724543/10141204801825835211973625643008",
+        "current": "-5928281018619255/20282409603651670423947251286016"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 58,
+        "part": 1,
+        "property": "rational",
+        "historical": "1024557314069723/36028797018963968",
+        "current": "8196458512557893/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "5248163760031371/40564819207303340847894502572032",
+        "current": "6329257516652719/81129638414606681695789005144064"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 0,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "-8726521744135749/576460752303423488",
+        "current": "-4363260872067867/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 9,
+        "part": 0,
+        "property": "rational",
+        "historical": "-1521023120931599/72057594037927936",
+        "current": "-760511560465799/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 10,
+        "part": 0,
+        "property": "rational",
+        "historical": "7633906611399763/288230376151711744",
+        "current": "1908476652849939/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6856451130540395/288230376151711744",
+        "current": "-3428225565270197/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "233086006413291/2251799813685248",
+        "current": "7458752205225321/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 33,
+        "part": 0,
+        "property": "rational",
+        "historical": "6122539977461039/1152921504606846976",
+        "current": "6122539977458191/1152921504606846976"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 33,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7894193785207927/144115188075855872",
+        "current": "-3947096892603949/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 34,
+        "part": 0,
+        "property": "rational",
+        "historical": "-7373355640563851/1152921504606846976",
+        "current": "-921669455070477/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 34,
+        "part": 1,
+        "property": "rational",
+        "historical": "757223967525711/18014398509481984",
+        "current": "6057791740205659/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 35,
+        "part": 0,
+        "property": "rational",
+        "historical": "6176127598875135/1152921504606846976",
+        "current": "386007974929695/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 35,
+        "part": 1,
+        "property": "rational",
+        "historical": "-7230990250701613/288230376151711744",
+        "current": "-7230990250701645/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 45,
+        "part": 0,
+        "property": "rational",
+        "historical": "4865719463623195/1152921504606846976",
+        "current": "2432859731810919/576460752303423488"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 45,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6797557926245687/144115188075855872",
+        "current": "-1699389481561397/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 46,
+        "part": 0,
+        "property": "rational",
+        "historical": "-5416872525561083/1152921504606846976",
+        "current": "-5416872525560999/1152921504606846976"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 46,
+        "part": 1,
+        "property": "rational",
+        "historical": "2410783173037477/72057594037927936",
+        "current": "2410783173037487/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 47,
+        "part": 0,
+        "property": "rational",
+        "historical": "4214606824285903/1152921504606846976",
+        "current": "8429213648571737/2305843009213693952"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 47,
+        "part": 1,
+        "property": "rational",
+        "historical": "-332867523726901/18014398509481984",
+        "current": "-5325880379630475/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 57,
+        "part": 0,
+        "property": "rational",
+        "historical": "2040607793417661/576460752303423488",
+        "current": "8162431173673447/2305843009213693952"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 57,
+        "part": 1,
+        "property": "rational",
+        "historical": "-6024626489647311/144115188075855872",
+        "current": "-6024626489647449/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 58,
+        "part": 0,
+        "property": "rational",
+        "historical": "-8658336242103387/2305843009213693952",
+        "current": "-4329168121051543/1152921504606846976"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 58,
+        "part": 1,
+        "property": "rational",
+        "historical": "4047326170815233/144115188075855872",
+        "current": "4047326170815243/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 59,
+        "part": 0,
+        "property": "rational",
+        "historical": "3235816484167559/1152921504606846976",
+        "current": "6471632968335251/2305843009213693952"
+      },
+      {
+        "case": 1,
+        "field": "repeat",
+        "lane": 2,
+        "index": 59,
+        "part": 1,
+        "property": "rational",
+        "historical": "-2130716412112439/144115188075855872",
+        "current": "-4261432824224947/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 0,
+        "index": 9,
+        "part": 0,
+        "property": "rational",
+        "historical": "-2275493949704803/633825300114114700748351602688",
+        "current": "-816293268878671/158456325028528675187087900672"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 0,
+        "index": 9,
+        "part": 1,
+        "property": "rational",
+        "historical": "7239387528584163/36028797018963968",
+        "current": "7239387528584175/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 0,
+        "index": 10,
+        "part": 0,
+        "property": "rational",
+        "historical": "-2452390087528173/158456325028528675187087900672",
+        "current": "-7293741591253869/316912650057057350374175801344"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 0,
+        "index": 10,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1571581967214017/18014398509481984",
+        "current": "-3143163934428029/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 0,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "-785012201952155/1267650600228229401496703205376",
+        "current": "-4980000568872087/20282409603651670423947251286016"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 0,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "638789706256469/18014398509481984",
+        "current": "1277579412512969/36028797018963968"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 2,
+        "index": 9,
+        "part": 0,
+        "property": "rational",
+        "historical": "-1418481876518165/72057594037927936",
+        "current": "-2836963753036369/144115188075855872"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 2,
+        "index": 9,
+        "part": 1,
+        "property": "rational",
+        "historical": "7183268526051005/36028797018963968",
+        "current": "1795817131512749/9007199254740992"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 2,
+        "index": 10,
+        "part": 0,
+        "property": "rational",
+        "historical": "2412416354033959/144115188075855872",
+        "current": "1206208177016805/72057594037927936"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 2,
+        "index": 10,
+        "part": 1,
+        "property": "rational",
+        "historical": "-1533924589140985/18014398509481984",
+        "current": "-383481147285247/4503599627370496"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 2,
+        "index": 11,
+        "part": 0,
+        "property": "rational",
+        "historical": "-6178676786676037/576460752303423488",
+        "current": "-3089338393337953/288230376151711744"
+      },
+      {
+        "case": 1,
+        "field": "contracted",
+        "lane": 2,
+        "index": 11,
+        "part": 1,
+        "property": "rational",
+        "historical": "4830251468746343/144115188075855872",
+        "current": "4830251468746357/144115188075855872"
+      }
+    ],
+    "normalization": "Tensor moments and repeats: existing q^(4-2N+moment rank), using primal kinematics and the same scale for all dimensionless Taylor-parameter components. Mixed-rank contractions: scalar-integral scale q^(4-2N), plus an unscaled mixed absolute/relative check. No homogeneous numerator degree is inferred.",
+    "historical_bitwise_identical": false,
+    "scope": "All successful historical slots and components are compared. Rejected lanes require unchanged statuses and absent arrays. Current baseline/candidate exact equality is a separate prerequisite. Precision and signed-zero differences are recorded, not hidden."
+  },
+  "full_run_control_original_reference": {
+    "status": "passed",
+    "tolerance": "1e-10",
+    "comparisons": [
+      {
+        "rank": 2,
+        "components": 1,
+        "compared_primal_complex_slots": 60,
+        "maximum_normalized_reference_error": "6.060342640294069165127698378858031436715409456896375622259608058778756094128744870455046307625673258E-14"
+      },
+      {
+        "rank": 1,
+        "components": 3,
+        "compared_primal_complex_slots": 20,
+        "maximum_normalized_reference_error": "6.743058600733391589062618808311042525413162116383081165661494591624050061197672312379824212639559385E-14"
+      }
+    ],
+    "scope": "Actual full29-capture ordinary/primal arrays, every requested Laurent slot, against untouched original IREGI at identical represented inputs. No independent higher-Dual derivative or complex-mass-lane reference claim."
+  },
+  "unchanged_original_binary_replay_exact": true,
+  "protocol": "Independent baseline and candidate children, each bounded at300s with durable per-case checkpoints. The original combined300s timeout remains retained.",
+  "scope": "Exact complete arrays, repeats, contractions, metadata, status, diagnostics, precision and inputs match pure6b24 for29 paired cases.26 ordinary lanes must succeed;3 retained f64N4/N5 ordinary guards are separate parity controls. Original27 inputs/status/layout and2 independently checked conditionedf64N4 controls are preserved. All cross-preparation numerical arrays use unchanged normalized1e-10 tolerance. Historical27 have29 rounding/precision/sign leaves differing, max raw2^-128; full-run versus probe controls have178 differing leaves. Actual full-run control primal arrays are independently compared with untouched original IREGI. Same-protocol current baseline/candidate remain exactly equal. Cross-preparation bitwise reproducibility and the specific cause are not claimed. Dual derivatives are paired snapshots, not independently established here. No N6/N7 full-array or performance claim.",
+  "artifacts": {
+    "validation/public-highpoint/collector-capture-v2-build.json": "88a96d5b24f9eabc7c72ca2ccd432cd9fd2dc657c279ff5786e64649ebe18e01",
+    "validation/public-highpoint/collector-capture-build.json": "e18f89449e34490522449e1c15638b09555a224ed6cdeeef48ca191bf943efd1",
+    "validation/public-highpoint/qualify_collector_capture_v4.py": "bbf935628d666ef548dfcdfd0c91b861820536f5cfb98369a6d6005ba6475b80",
+    "validation/public-highpoint/collector_capture_v2.rs": "a936fbbdcdd70a554a198e2880e3df3b503d1f9754e86fd747af553316c85f7e",
+    "validation/public-highpoint/collector-v2-baseline.json": "6720242cb0aa0f9dfad3e66b64c78b289c80f5af44eb92612da892f99740b056",
+    "validation/public-highpoint/collector-v2-baseline-run.json": "80830cb33353b844710bdd406e4ea90a25e7026e5cf7f030503c840df972c3c9",
+    "validation/public-highpoint/collector-v2-baseline.progress.jsonl": "2f6eb7939983030fb06b6faa93c8d65aa2c7872bd36a726a53bbfdf4992b9f51",
+    "validation/public-highpoint/collector-v2-baseline.log": "5892a043320cc9fde149adfa1356eb4b725e61f43d7d024aab7f80ffb6b0ec5c",
+    "validation/public-highpoint/collector-v2-candidate.json": "6720242cb0aa0f9dfad3e66b64c78b289c80f5af44eb92612da892f99740b056",
+    "validation/public-highpoint/collector-v2-candidate-run.json": "504aaa899f0a2952677b54c10f97059df7cfeb252e7fc477c1adba0ecd0edae7",
+    "validation/public-highpoint/collector-v2-candidate.progress.jsonl": "2f6eb7939983030fb06b6faa93c8d65aa2c7872bd36a726a53bbfdf4992b9f51",
+    "validation/public-highpoint/collector-v2-candidate.log": "f896a60084ca3df8796652398d685589b09385e7a286bb73d5eb9a2e5161df36",
+    "validation/public-highpoint/collector-v1-replay-baseline.json": "7ba134c2eb1c597010157c3c3dd7b06593b90599ad0316ab3ebd9fa1fcfa4411",
+    "validation/public-highpoint/collector-v1-replay-baseline-run.json": "d4d7159fba95dfdb281263f037a591afb0c4430597c79334073723ad82e9e3ea",
+    "validation/public-highpoint/collector-v1-replay-baseline.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/public-highpoint/replay_collector_original.py": "6557666c33c6470eb450c602e374ee75814c59205d27a974a723f8fc674547c8",
+    "validation/public-highpoint/compare_collector_history_v4.py": "b4312b83a33d49b6ff16f7cb3c6a8a50b65e5bca4d4eae602260c7fa919cbc1a",
+    "validation/public-highpoint/qualify_collector_capture_v2.py": "fa7dc2f921e4b7b1f94321fe14af1f79b83c8f41d3439ff8918ef188698030bd",
+    "validation/public-highpoint/collector-capture-v2-qualification.log": "fd7bdb4e50b81f4107217b2129f7629b3a939d859643a0d5dc9b1a0697f8c9ae",
+    "validation/public-highpoint/collector-v2-historical-differences.json": "f6b2c19c675d2db5639200c14caf318c263e3d37ba1a9eb56127a83392521829",
+    "validation/public-highpoint/collector-v2-probe-qualification.json": "f9db9429175d55a871a439e6400b721b030ccdff8911accec2ecf24305f77577",
+    "validation/public-highpoint/collector-capture-output.baseline.json": "7ba134c2eb1c597010157c3c3dd7b06593b90599ad0316ab3ebd9fa1fcfa4411",
+    "validation/public-highpoint/collector-capture-run.json": "22da479a3f198361ce1cabb6bb4ab7d878debc5b99b626c5bd964c9639ec9c16",
+    "validation/public-highpoint/collector-capture-run.log": "80ab50fab5eb58ac61724d26bee3f8e299e5c1ce9648327dfbd0c2f008c0efb9",
+    "validation/public-highpoint/test_qualify_collector_capture_v2.py": "6afa15bc872f473e5703f6ab8c5bef04046bccaec0475091c1dedda677bb6ea6",
+    "validation/public-highpoint/collector-v2-qualifier-tests.log": "916460034121a62ecf571e3bee67727448a3e2368b5a443b169f6ca04da7131f",
+    "validation/public-highpoint/test_compare_collector_history.py": "eb3ab29d3a9a617e6373af8cac952cae12264e1560e973819a624ae844db1711",
+    "validation/public-highpoint/collector-history-comparator-tests.log": "7f56900c5f5210f1bfff24fac11363c5dd92873d704759dff0928283c29f76c2",
+    "validation/public-highpoint/collector-order-source-audit.json": "811990e840b0496c8783b0569386667c8aefdd10afe8c1dc337f00d85349ddea",
+    "validation/public-highpoint/collector-order-source-snapshot.json": "496b0bcc68d199f9044a26ea234a4d22f3e968c1263c1ff754695e75d2030f4a",
+    "validation/public-highpoint/compare_collector_controls.py": "70262eb006fd0e644fd91bb12c989d003b7f3d47cccfb5c97dfd15d916b4ad80",
+    "validation/public-highpoint/qualify_collector_capture_v3.py": "851a11550b61b8176d0de9d80042d3508a12da09ca4231dc0a1dfb9b0e8927e3",
+    "validation/public-highpoint/compare_collector_history.py": "81c2682e5514f27a4eb0a514e2bb5888cebe5d4a6fd4a4f17f86d52c90beef47",
+    "validation/public-highpoint/collector-capture-v3-qualification.log": "3463b3d68ea8f3d68b1719df1c129f598d386cb3308dd2b5ab5aead11d7edb81",
+    "validation/public-highpoint/test_collector_protocol_v4.py": "fce95fddf918431561fb6d74867ceb72b6e68392ae3fc34f71ad754c58e7da09",
+    "validation/public-highpoint/collector-v4-comparator-tests.log": "6f0e1d5dad4227467dd6b861b8c150d981246b256e1b815ca01410b689f138a0"
+  }
+}

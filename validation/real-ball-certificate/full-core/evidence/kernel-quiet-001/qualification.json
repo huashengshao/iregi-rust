@@ -1,0 +1,3382 @@
+{
+  "schema": 1,
+  "status": "completed",
+  "recorded_utc": "2026-10-23T18:48:27.949212+00:00",
+  "scope": "Isolated immutable6b24 binary64 Hybrid ggH tensor kernel: original ComplexBall versus slim RealBall certificate. No receipts; no IREGI/MadLoop/end-to-end performance claim.",
+  "quiet_note": "ROOT granted second timing in active target/benchmark/optimization-quiet-20261023b/window.json; receipt run completed and project compilers and other numerical jobs held",
+  "environment": {
+    "cpu_index": 254,
+    "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+    "platform": "Linux-6.18.45-x86_64-with-glibc2.42",
+    "hostname": "itphlies",
+    "cpu": {
+      "processor": "254",
+      "vendor_id": "AuthenticAMD",
+      "cpu family": "25",
+      "model": "160",
+      "model name": "AMD EPYC 9754 128-Core Processor",
+      "stepping": "2",
+      "microcode": "0xaa00215",
+      "cpu MHz": "3100.054",
+      "cache size": "1024 KB",
+      "physical id": "1",
+      "siblings": "128",
+      "core id": "94",
+      "cpu cores": "128",
+      "apicid": "444",
+      "initial apicid": "444",
+      "fpu": "yes",
+      "fpu_exception": "yes",
+      "cpuid level": "16",
+      "wp": "yes",
+      "flags": "fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good amd_lbr_v2 nopl xtopology nonstop_tsc cpuid extd_apicid aperfmperf rapl pni pclmulqdq monitor ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt aes xsave avx f16c rdrand lahf_lm cmp_legacy svm extapic cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw ibs skinit wdt tce topoext perfctr_core perfctr_nb bpext perfctr_llc mwaitx cpuid_fault cpb cat_l3 cdp_l3 hw_pstate ssbd mba perfmon_v2 ibrs ibpb stibp ibrs_enhanced vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid cqm rdt_a avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local user_shstk avx512_bf16 clzero irperf xsaveerptr rdpru wbnoinvd amd_ppin cppc arat npt lbrv svm_lock nrip_save tsc_scale vmcb_clean flushbyasid decodeassists pausefilter pfthreshold avic v_vmsave_vmload vgif x2avic v_spec_ctrl vnmi avx512vbmi umip pku ospke avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq la57 rdpid overflow_recov succor smca fsrm flush_l1d debug_swap",
+      "bugs": "sysret_ss_attrs spectre_v1 spectre_v2 spec_store_bypass srso spectre_v2_user tsa vmscape",
+      "bogomips": "4500.06",
+      "TLB size": "3584 4K pages",
+      "clflush size": "64",
+      "cache_alignment": "64",
+      "address sizes": "52 bits physical, 57 bits virtual",
+      "power management": "ts ttp tm hwpstate cpb eff_freq_ro [13] [14]"
+    },
+    "frequency": {
+      "energy_performance_available_preferences": "performance",
+      "amd_pstate_highest_perf": "255",
+      "scaling_min_freq": "1800800",
+      "scaling_available_governors": "performance powersave",
+      "scaling_governor": "performance",
+      "cpuinfo_max_freq": "3102730",
+      "boost": "1",
+      "amd_pstate_lowest_nonlinear_freq": "1800800",
+      "amd_pstate_max_freq": "3102730",
+      "related_cpus": "254",
+      "scaling_cur_freq": "3100040",
+      "scaling_setspeed": "<unsupported>",
+      "affected_cpus": "254",
+      "scaling_max_freq": "3102730",
+      "cpuinfo_transition_latency": "0",
+      "energy_performance_preference": "performance",
+      "scaling_driver": "amd-pstate-epp",
+      "amd_pstate_hw_prefcore": "disabled",
+      "amd_pstate_prefcore_ranking": "255",
+      "cpuinfo_min_freq": "401530",
+      "cpuinfo_avg_freq": "3100040"
+    }
+  },
+  "input_catalog_sha256": "bd533ff37562f27d04bace76c57adb762e8d1d11bfc45dbbf30349ee9ff7451b",
+  "cpu_affinity": [
+    254
+  ],
+  "builds": {
+    "baseline": {
+      "manifest": "target/real-ball-core/baseline/artifacts/kernel-build.json",
+      "manifest_sha256": "8bd469e463dab166fe6815a59f533bdef3faa6894ae7ba452a55fe7b1d8f24d6",
+      "binary": "target/real-ball-core/baseline/artifacts/kernel_benchmark",
+      "binary_sha256": "7887d8065b1d88c9a50f14afab281e583f5b6a984d3b239b2b508654f4fd946a"
+    },
+    "candidate": {
+      "manifest": "target/real-ball-core/candidate/artifacts/kernel-build.json",
+      "manifest_sha256": "c5c62a624337554cce89288f7617964be3d9aed2bcb754cfdd933ea3675a8b2d",
+      "binary": "target/real-ball-core/candidate/artifacts/kernel_benchmark",
+      "binary_sha256": "2aaa8c342b0f72dccbe100930cd06c6d8b380f9cddb5c970b2fe75be2553164a"
+    }
+  },
+  "closure": {
+    "manifest.json": "5742579113ad260a047aad9f638f277560e2dbbbd33ae61f7d57c77996c239f6",
+    "cargo-library-events.json": "e4f805ed3d98a4779780be3c2bda39409cc779537f3d9c77656d4fe93ae41d82",
+    "workspace-completion.json": "073ac89a8945a2cd0c530b6726fea69a8746d1c8e13e957a79686670a2b7f7b6"
+  },
+  "scripts": {
+    "target/real-ball-core/run_kernel_timing.py": "fa21aeb97e19d665ea2a3a549ec527e511f540c2084e228796b3e54c7f5930da",
+    "target/real-ball-core/verify_artifacts.py": "d2eebed3b45b4d53f5f79c87cf3b6911e0234b2fb75a0305d1772f6bde44baef",
+    "target/real-ball-core/witness_inputs.py": "2ca9de189f0259ac428b3e9bc979f2e1043133d04d3983c00931de722d7dbc4e",
+    "target/benchmark/sources/6b24c0372022e22606a1ac85f30c7fa579fb41f0/validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+  },
+  "correctness_qualification_sha256": "829a93920dde05995786c819e36704e6102cddf0d1090ad18e2fdf9e0ab4ddbe",
+  "protocol": {
+    "blocks": 21,
+    "warmup_blocks": 5,
+    "calibration_initial_warmup_calls": 5,
+    "minimum_target_block_ms": 30,
+    "order": "alternating baseline-first/candidate-first",
+    "same_iterations_for_both": true,
+    "profile": false,
+    "cache": "Persistent warm topology/rank plans; repeated fixed-point lanes; no output memoization; identical post-timing full outputs requested.",
+    "statistics": "existing validation/benchmark/run.py ratio_summary; 10000 paired bootstrap median resamples;99%CI;width<=2%",
+    "request_timeout_seconds": 90
+  },
+  "rows": [
+    {
+      "id": "real-ball-ggh-real-b1",
+      "status": "measured",
+      "blocks": [
+        {
+          "phase": "timing",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "4ee3aefe658966778727a8ba280875917d6bfca0cbd0b9af583be612f2116459",
+          "timings_ns_per_batch": {
+            "baseline": 577783.1794871795,
+            "candidate": 327075.1538461539
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-00-baseline.json",
+              "sha256": "a566c9dd81fc34285bfa22d0b7f30f3b80c3d44f3cb7020d67b78f88b7448719"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-00-candidate.json",
+              "sha256": "bfb62b7837321fc0e9f7ab8777c927700a1894b883ebcd0dd07947a0f3c45738"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "efd42da9b612bf5c2b7011e0080f80d40316c770be56b0bc44a0c09961db721f",
+          "timings_ns_per_batch": {
+            "candidate": 321612.9358974359,
+            "baseline": 567134.8205128205
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-01-candidate.json",
+              "sha256": "d629018022a4974b4dfffb76980af65f616a2546f60a78297472394862074c8f"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-01-baseline.json",
+              "sha256": "33fe7fee3d86388f1669d3cbe16ed071c1686742a883663c258790dd9a337503"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "384b433a84b54fc687cf1ac26f6414e768d1c7f89f4667fe67c500c656be90e2",
+          "timings_ns_per_batch": {
+            "baseline": 561902.358974359,
+            "candidate": 328535.28205128206
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-02-baseline.json",
+              "sha256": "e89675f73933c2fa5f1daeb6c239be96ce6c573fe760f35ed267037527708279"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-02-candidate.json",
+              "sha256": "2d2abd70d035e70a0f0308c3c334f0dfd892d94fbcd0b22c52293faacb338695"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "1af89aeb84a05a2426ece0b2f08fb1c0f3113f7d7c8fbd06a0417b18459b1d83",
+          "timings_ns_per_batch": {
+            "candidate": 320434.73076923075,
+            "baseline": 568258.282051282
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-03-candidate.json",
+              "sha256": "2b988b8ff7ca4c891c35344d7f1fd7f8031604035ee60f7a2dc188dc6dfb5e5e"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-03-baseline.json",
+              "sha256": "60dcf2ec8c17ad4ffa1739fadc406a52a65bb3035171f9b4430335652c2a26c9"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "2fd46815e3686dd91b0755446d65a7472c6273353556f4e6ba224cc9c36fd055",
+          "timings_ns_per_batch": {
+            "baseline": 559986.9743589744,
+            "candidate": 325469.1153846154
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-04-baseline.json",
+              "sha256": "324082c863e11856f64693bdc3cec267569d731493d89d53146bdd7113d6a45b"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-04-candidate.json",
+              "sha256": "3cf8f5e6f6a33458eb010c27ca5d8501304a9b71079a09ce56e2b1260fc1a146"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 5,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "2f9d19c529c8a48288bd79a14ad2c36dbee4fd52e200f1ddea892df789f680b8",
+          "timings_ns_per_batch": {
+            "candidate": 321815.1282051282,
+            "baseline": 564801.3461538461
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-05-candidate.json",
+              "sha256": "e45c3ddca94b22abd5a32dbbda4f6aea0e1a0c811ee038cb24b6fb7f5b677f0c"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-05-baseline.json",
+              "sha256": "db38418ed4cef46c2008c0107f17eef2f6a13e9561c8af5dcc0c7f1159ffbac2"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 6,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "ac4b349b6a10b558fda94666079d7f8e018aba3685041b8b405468058e0df627",
+          "timings_ns_per_batch": {
+            "baseline": 560374.5384615385,
+            "candidate": 324570.26923076925
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-06-baseline.json",
+              "sha256": "c29e4acdfe5c047103df097354d99839226a421b729aae1031459e2f48012d67"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-06-candidate.json",
+              "sha256": "446ff3dfb11cbf1b3a3ca9aae91d74646c7ef5fd1ca96683ae7c30d2322ef153"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 7,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "e42dc2e7690b749301f53f06fd8081e14a47cfd9e63536d847c71d287390af3f",
+          "timings_ns_per_batch": {
+            "candidate": 320624.858974359,
+            "baseline": 575054.4615384615
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-07-candidate.json",
+              "sha256": "581baa67894581dad36c28df623493be3bdbfca08450cc7f7e9b73c67eb15462"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-07-baseline.json",
+              "sha256": "385e768624940e54766352c8527badf3e998cf0247433d5f58a464463cd90096"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 8,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "7f94f80e3207af3715285e99a123621e611ad834e1824f4c957a12552fa72f29",
+          "timings_ns_per_batch": {
+            "baseline": 568503.4102564103,
+            "candidate": 333091.3205128205
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-08-baseline.json",
+              "sha256": "41514b0bfd371db793fd3e7857acd39ab9b1d4fb31bb7bea58de175d59986064"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-08-candidate.json",
+              "sha256": "a9d5192f5bfa1bc783ff127fa5c87418c9b4d6c9dcb6785727f1f34e7363dc8b"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 9,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "47be8a3e84da60d64ce07bb1084132153537bdd1221ddeb51bebb4c26dd3e036",
+          "timings_ns_per_batch": {
+            "candidate": 319920.76923076925,
+            "baseline": 564187.6282051282
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-09-candidate.json",
+              "sha256": "44eca37b802e4aa96373029632c5fde9de41613a2b59e1ef3b18c9ca2a607d26"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-09-baseline.json",
+              "sha256": "ea56a8cda859bdee769c558f43c1b320bb9031bd2d42673b8a9945a176cefa86"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 10,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "3fc88ce0149a14cfcb922e81a669dc760c6a4515cd17d06aa72cff877d6b2b60",
+          "timings_ns_per_batch": {
+            "baseline": 558188.7564102564,
+            "candidate": 337630.9487179487
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-10-baseline.json",
+              "sha256": "79a2384468c807e9228a0b3f13c9ce918fcb191216bdfb7ea9148880f5c3e903"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-10-candidate.json",
+              "sha256": "87ca2d6b2490358bfa497814b64061c62e90bbca05c2e51be1b01e728de2d599"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 11,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "6547f848d83524d984c917f4ef2986ecd5dc9767ffe08896af94105fdd050e63",
+          "timings_ns_per_batch": {
+            "candidate": 348966.0,
+            "baseline": 595006.0897435897
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-11-candidate.json",
+              "sha256": "a890fe9f4b9398810bd66acc9feebfff455a32130d7431c33664c4fa375cd7bc"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-11-baseline.json",
+              "sha256": "e391200410871f178d9ab92ad36e7ed73d9070f3ceeba0e3a660aa2263de9a64"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 12,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "962c083850c162b0c337861a64082728c32a9374bd4cf9afb0dcfb45e8193975",
+          "timings_ns_per_batch": {
+            "baseline": 590938.7564102564,
+            "candidate": 334083.8846153846
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-12-baseline.json",
+              "sha256": "006c818a3913057f72fb557810608517feef5ce24c2bf5fd57c07d7d4c2030c0"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-12-candidate.json",
+              "sha256": "851d2e9b1e37609d89f55499f2e549779291693beec5d557a9a10da357d01149"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 13,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "7cb6da905d7a5fedbf59b96159b7eec2617ae3ef8ec65a7c5337f9e380819924",
+          "timings_ns_per_batch": {
+            "candidate": 325752.4487179487,
+            "baseline": 570772.2564102564
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-13-candidate.json",
+              "sha256": "1c07f5ef3110d4bfbb9d6336fe0bbc6a296a79ade3d126765a35f25e3cd4801d"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-13-baseline.json",
+              "sha256": "246fcb79caba8b794bca7514812358bf1936d642c405c740ecb4fe0f8ea3d587"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 14,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "bbb75c923087998e023f63a79917d957cbdc13c71f4a6e021c308eeafa60c4a9",
+          "timings_ns_per_batch": {
+            "baseline": 562756.2051282051,
+            "candidate": 330443.8717948718
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-14-baseline.json",
+              "sha256": "783816a37f35f4497a1f54f023fe97e98b3dba93e1e6816388fdd79a2189085a"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-14-candidate.json",
+              "sha256": "b7dfe6fb4c0633f2697b16f7a520887ddbba5384e000188c2eb4cb5a39e4b9b7"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 15,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "af7aa7435f95d18adaee4c4b1143413535fbcd4db6517f048db57fe3fb883b4d",
+          "timings_ns_per_batch": {
+            "candidate": 327612.58974358975,
+            "baseline": 633393.4102564103
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-15-candidate.json",
+              "sha256": "f7021f2d291cc792047e34b7869f912228a7508bbddc61dbb2ef75a47f71e509"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-15-baseline.json",
+              "sha256": "d8003265d34093e920d83e0817ab46de0b101610f36968f342db8b9f2b230a36"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 16,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "da4ebacd005d27925423d1b1e25cbe5e7d6122beb67b990c05c079b7b3e3f0f1",
+          "timings_ns_per_batch": {
+            "baseline": 564913.0128205129,
+            "candidate": 331870.9358974359
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-16-baseline.json",
+              "sha256": "dae3fff82797aafc2a2e28d6763500dbc629be26cec55675c833c9e26a451e61"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-16-candidate.json",
+              "sha256": "364e010208ae6873d96665138bbe2e29f017f1b90a87b71d893913544e6a9b08"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 17,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "144fe4e2dab7c5441fec28a6614ec4956de1b2b598620bca633cef9ce8c195e5",
+          "timings_ns_per_batch": {
+            "candidate": 325740.6538461539,
+            "baseline": 570095.7307692308
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-17-candidate.json",
+              "sha256": "23ed9c38015cd62f6b28afdf6014377cb6762d8f3010ef87c390b15ea9c3bd03"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-17-baseline.json",
+              "sha256": "20d17b8d7724f89e29a4e47597944f6492dc9eceeefce5445eedda6c91cc4173"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 18,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "02707ea2a02053c96e789d5ae9dd7f6f0be2b3ddf128f3a3ff88a052216cb89e",
+          "timings_ns_per_batch": {
+            "baseline": 562920.1794871795,
+            "candidate": 325964.6282051282
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-18-baseline.json",
+              "sha256": "0e0acb98d377f10160b11c47ff257af9f81106e9b15b5b2df9d817b799ee5599"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-18-candidate.json",
+              "sha256": "5693acde9f14fa55f7713cf005235ebbb89f1888584bb4d46aa85894ca86c940"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 19,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "f14b85029ed3924003aa39a27d21688d556a9aee96e0d2a65576cc14ea6b2e65",
+          "timings_ns_per_batch": {
+            "candidate": 328396.4358974359,
+            "baseline": 567340.0769230769
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-19-candidate.json",
+              "sha256": "14e245c773bad8efb23e2740196ae36617b9cd1cfcc4579f2d9780c41226e1b9"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-19-baseline.json",
+              "sha256": "2f20b8407cd263d223c695be5d05fd1ad475d9f4104d6893338eea43c4e6bfe4"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 20,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "96f7a05853299b1a21839bf7df41af3b7afbada42916fd323130ff50951e3e44",
+          "timings_ns_per_batch": {
+            "baseline": 564899.282051282,
+            "candidate": 325778.21794871794
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/timing-20-baseline.json",
+              "sha256": "39c5930c9e2765f95847326539e111ee9333ac99161d766ffb0aa1fbeae8b2d7"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/timing-20-candidate.json",
+              "sha256": "1826580953fcf6176d764861c9a4daa322c93b5329eb011ed13a7f1923f3e1c6"
+            }
+          }
+        }
+      ],
+      "calibration": [
+        {
+          "phase": "calibration",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 1,
+          "request_sha256": "a08d39dc7edc8d1bfdc8c9bd57523bfca0f4bf7eb27d144061101351579077ac",
+          "timings_ns_per_batch": {
+            "baseline": 582542.0,
+            "candidate": 388141.0
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/calibration-00-baseline.json",
+              "sha256": "56312dd6479251fa51c8027f6c8034d1b6f1eb6b01ac5fadd2126e3cba09b2e9"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/calibration-00-candidate.json",
+              "sha256": "252393e59ab16da6c309c9fed2e8b89adff0212afae750a0abb287d8ec293221"
+            }
+          }
+        }
+      ],
+      "iterations": 78,
+      "warmup": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "78035c350d4bcf3f4a83573c6c4fa3446bac5b6d4895d64d25a8f25905529403",
+          "timings_ns_per_batch": {
+            "baseline": 569321.1153846154,
+            "candidate": 322421.92307692306
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/warmup-00-baseline.json",
+              "sha256": "534538b22c41ab56fbcebdff6cb0b016f85968e5c718ea0a685ef6fff1e79517"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/warmup-00-candidate.json",
+              "sha256": "87c1325eb763cdf29dc24205f020b6a3e2166e50656e08ced7226fe6a28a4d65"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "5d440cc80b8d9443020be394881f1f70c12eeee7e28632b06fa5ca8fee0a7cf6",
+          "timings_ns_per_batch": {
+            "candidate": 319493.57692307694,
+            "baseline": 561231.9615384615
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/warmup-01-candidate.json",
+              "sha256": "72ff1475ebc77428c794426f22e8b5842dbbb2bac5faf5d6daeba01bb0152961"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/warmup-01-baseline.json",
+              "sha256": "c0b8c9ed17fe4b4be68197c2a07757d8f30639251292f09de06a8314621249f8"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "1b7010e13895bc4357c8eb56ea4d655cde1a070e74d063c65378e04268a0adda",
+          "timings_ns_per_batch": {
+            "baseline": 560787.9871794871,
+            "candidate": 328371.3076923077
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/warmup-02-baseline.json",
+              "sha256": "1ce6e63cc8f0af3f39a67b7353052b7794f2e2976edc955aceb0be2e24c01484"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/warmup-02-candidate.json",
+              "sha256": "6772c5d0f7bd74af6106de88aedbb5469fd7969f56f40ed12b72388707210927"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 78,
+          "request_sha256": "b15fe5a4b8c45ea80c01a65c2dbed7dfeafa81a05131e9a6d69fc22a0314bd3b",
+          "timings_ns_per_batch": {
+            "candidate": 323215.0,
+            "baseline": 570203.6794871795
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/warmup-03-candidate.json",
+              "sha256": "db696eaa8a083b1bfdb4a392458d209e7eec2e860b8dc75134ad6cb80d0d7d5c"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/warmup-03-baseline.json",
+              "sha256": "e1013afebe91c7931f49599df327062b4148084fd7f09d158515fc4b97a596c1"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 78,
+          "request_sha256": "48f3eae3b68a799505ae8e4e9c3c75663155c513489e980e1f2b3798fe996115",
+          "timings_ns_per_batch": {
+            "baseline": 588851.0512820513,
+            "candidate": 336850.9487179487
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b1/warmup-04-baseline.json",
+              "sha256": "9e8753ceb00e8f706ebcbff609961449232443ae3613f6e481a7a002fec21a66"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b1/warmup-04-candidate.json",
+              "sha256": "6c49306f874f5029009bd8236e70d438a3786d9b699d8d0e119a6baab7745a42"
+            }
+          }
+        }
+      ],
+      "baseline": {
+        "samples_ns": [
+          577783.1794871795,
+          567134.8205128205,
+          561902.358974359,
+          568258.282051282,
+          559986.9743589744,
+          564801.3461538461,
+          560374.5384615385,
+          575054.4615384615,
+          568503.4102564103,
+          564187.6282051282,
+          558188.7564102564,
+          595006.0897435897,
+          590938.7564102564,
+          570772.2564102564,
+          562756.2051282051,
+          633393.4102564103,
+          564913.0128205129,
+          570095.7307692308,
+          562920.1794871795,
+          567340.0769230769,
+          564899.282051282
+        ],
+        "unit": "ns/batch",
+        "median_ns": 567134.8205128205,
+        "ci99_ns": [
+          562920.1794871795,
+          570772.2564102564
+        ],
+        "minimum_ns": 558188.7564102564,
+        "maximum_ns": 633393.4102564103,
+        "relative_mad": 0.007431462278810522
+      },
+      "candidate": {
+        "samples_ns": [
+          327075.1538461539,
+          321612.9358974359,
+          328535.28205128206,
+          320434.73076923075,
+          325469.1153846154,
+          321815.1282051282,
+          324570.26923076925,
+          320624.858974359,
+          333091.3205128205,
+          319920.76923076925,
+          337630.9487179487,
+          348966.0,
+          334083.8846153846,
+          325752.4487179487,
+          330443.8717948718,
+          327612.58974358975,
+          331870.9358974359,
+          325740.6538461539,
+          325964.6282051282,
+          328396.4358974359,
+          325778.21794871794
+        ],
+        "unit": "ns/batch",
+        "median_ns": 325964.6282051282,
+        "ci99_ns": [
+          324570.26923076925,
+          330443.8717948718
+        ],
+        "minimum_ns": 319920.76923076925,
+        "maximum_ns": 348966.0,
+        "relative_mad": 0.012729908833509189
+      },
+      "ratio": {
+        "samples": [
+          0.5660863200213868,
+          0.5670837414049514,
+          0.5846839345023536,
+          0.5638892399641495,
+          0.5812083678503145,
+          0.5697846338302973,
+          0.5792023851080919,
+          0.5575556411067243,
+          0.5859090983510326,
+          0.5670467646526484,
+          0.6048687739417621,
+          0.5864914763315825,
+          0.5653443457403706,
+          0.5707222890732205,
+          0.5871883220187528,
+          0.5172339725021226,
+          0.5874726344866119,
+          0.571378868960537,
+          0.5790601227017338,
+          0.5788352511221619,
+          0.5767014197039527
+        ],
+        "median": 0.5767014197039527,
+        "ci99": [
+          0.5670467646526484,
+          0.5846839345023536
+        ],
+        "gate": "inconclusive-noise",
+        "relative_ci_width": 0.030582844513819943,
+        "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+      }
+    },
+    {
+      "id": "real-ball-ggh-real-b32",
+      "status": "measured",
+      "blocks": [
+        {
+          "phase": "timing",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "2639948adaacae175eec580426541f9d2128b994e53efd4ff80fe700962b9f29",
+          "timings_ns_per_batch": {
+            "baseline": 15130524.2,
+            "candidate": 7483369.8
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-00-baseline.json",
+              "sha256": "487613de71a6e64f5641e29eb5c6d6bba8ab29923a5af517a097f0c87fc09002"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-00-candidate.json",
+              "sha256": "4189d65ca78805e9bd08884bd69cab361c775b2a432833de446f341e24139d70"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "9923bf5cda0ba65833cda11244895d6c120345feff387b005fac344603a13e84",
+          "timings_ns_per_batch": {
+            "candidate": 7417607.6,
+            "baseline": 15109916.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-01-candidate.json",
+              "sha256": "32c9c52d5b4d11bf7e2f1de723e42b49f0a0e911f16fab22c68d13e04b356802"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-01-baseline.json",
+              "sha256": "d0b64d129b04550be121d112a92cfed60980359ed205d868c7af913878858fbf"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "c155a8a25a5ee2e6f165e4ec13db4bdee20183edadfb223122551d3a5adb069e",
+          "timings_ns_per_batch": {
+            "baseline": 15086052.0,
+            "candidate": 7587808.2
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-02-baseline.json",
+              "sha256": "a6a683a91b32dca59333a1c1949239e73f72c350a8d518157b9c4a7a29715139"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-02-candidate.json",
+              "sha256": "dd0c69e57995574650c736a1dc5d842f2bf8bbc192b70730160ac17d71c194c8"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "f9f435fcab1e42eee5450c89573696c03f07014e9ff3551746426aba148412ea",
+          "timings_ns_per_batch": {
+            "candidate": 8310383.0,
+            "baseline": 15168122.2
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-03-candidate.json",
+              "sha256": "79f0f5ac3478534d71ec6744a9bb0cae923147aee911bc81b26f853b9bb46671"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-03-baseline.json",
+              "sha256": "a8eb2e4c58266743c24deb8a76bb487b5cb3024c69e814a5dd3ab68956b189b9"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "4ee633b7c428e7fe9f0672aa12d917c17adba8b78fabe298ed4e97efc4c17d76",
+          "timings_ns_per_batch": {
+            "baseline": 15735842.4,
+            "candidate": 8161536.4
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-04-baseline.json",
+              "sha256": "588af47888d768905ba6caf4a327f2ccd5cfac5331508c06ac8c28af8016a04f"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-04-candidate.json",
+              "sha256": "f4365bb8da9f44f222fc7490be02b63b4b3744760030aca99104c10ddb3acd3d"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 5,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "3dac1163fd7591956bcadf9dc6e0dccdff4d2f6d128f158d1ccce5f3e0b6b999",
+          "timings_ns_per_batch": {
+            "candidate": 8149886.2,
+            "baseline": 15732206.4
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-05-candidate.json",
+              "sha256": "cc742330696f27190f37a143b23bbb0347c14e48569055c5ca6ce82a0e25d960"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-05-baseline.json",
+              "sha256": "95e266b513a941997639794bc7272c844cb30036b0f52cb2e6a581d081e5aa08"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 6,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "f7514f4e6d2a4ef425de56454cf41e3b8ce8f6bd7f2b7e081a7307de5d40e205",
+          "timings_ns_per_batch": {
+            "baseline": 15184732.2,
+            "candidate": 7568302.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-06-baseline.json",
+              "sha256": "d2639bb6dd51d5f6083c6fbe84ac9d9b54cc99b74af27ffc985749da8dbabe19"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-06-candidate.json",
+              "sha256": "f91b622e64a119a9aff8a42cba4f5522098bb854a99a2faa3f71a3d90c2820d3"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 7,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "69d53a0b3d27cb974a9c28e137200c2142eb3c1d5a1aa7dda211692299fd2fc4",
+          "timings_ns_per_batch": {
+            "candidate": 7492769.8,
+            "baseline": 15266980.6
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-07-candidate.json",
+              "sha256": "eccb965963e653d1faf56dfcee9025fa378fde502b3d2264277ffd118a2faf6e"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-07-baseline.json",
+              "sha256": "e4c1e46bf90d0f4e3390022f4127306d92d8d667673bf42439c0f04d6cbff150"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 8,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "ca7447ac93e8cc26f8e72d70721c517eb212f8321647e9b2dd30c85dd9dac7d7",
+          "timings_ns_per_batch": {
+            "baseline": 15426521.4,
+            "candidate": 7568440.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-08-baseline.json",
+              "sha256": "f1cad63afb18ce99b7300792911c7d78511dcc646c696712a18284782c364862"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-08-candidate.json",
+              "sha256": "7ee12cc0c9e769582e0784b2f81945cea2ee71d45b44c5bdd8f1f8f9d922c8f4"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 9,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "2d8c3505f290261c9ad6cd0d879d1624295cabda5a2a49bd029da1910c5a533c",
+          "timings_ns_per_batch": {
+            "candidate": 7575142.0,
+            "baseline": 15572321.8
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-09-candidate.json",
+              "sha256": "cba21b4a5f76558b4a1af72b1f7bc37c2ddc23a0809d66ed185bc8be611047cc"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-09-baseline.json",
+              "sha256": "3d838201957dd4aaffebb05b1cd3c3fb97068298cf408d213d8fc91c4f82e59d"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 10,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "7f2b00db46fa50ee0dc8818f18059325d75e7dd77ff3cc142a7ab54bf2702771",
+          "timings_ns_per_batch": {
+            "baseline": 17170874.0,
+            "candidate": 8074440.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-10-baseline.json",
+              "sha256": "25c218f2f9ed655329caad3141b7dab92a226617934ebd28fbd8d93ae7e68672"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-10-candidate.json",
+              "sha256": "9e088aee3d9c4a3f2a04c241fc4c3a7ff5aed896af92133dc51ac878595a3614"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 11,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "959fe130c783a73f9a6d1a94df6eceb2305affc456fd6a5147cb7e6903d24a12",
+          "timings_ns_per_batch": {
+            "candidate": 8247588.6,
+            "baseline": 15961637.4
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-11-candidate.json",
+              "sha256": "b789eae54f8903d5b5af454a7ce68738ff9158514adf6acdc5dac20751682e52"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-11-baseline.json",
+              "sha256": "73cd917d02515a95cedc6d58565b782a248d2112de98fc00798cc7d789cecdd8"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 12,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "e76e50ce21c451cedf500287924ce4ebbfb6c09bcbe154e1fbdb4758a4b17d2c",
+          "timings_ns_per_batch": {
+            "baseline": 15831845.0,
+            "candidate": 8278196.8
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-12-baseline.json",
+              "sha256": "ce5c42ad37dda9ef4693184c5afafe7af19fce50c404aa669ee7703c7de9de1a"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-12-candidate.json",
+              "sha256": "6036eab250bcd7a1e1a639ab5aabb886c9ec33e40d84f562750ade04b22b8d9f"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 13,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "b1e1a7d8b0fd21c75d18b970f0a4e88c95107ae8c28b0d828e863bbda8633792",
+          "timings_ns_per_batch": {
+            "candidate": 7737432.8,
+            "baseline": 15768342.6
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-13-candidate.json",
+              "sha256": "cf40248d7931de260ac7a0edef142f8446f08c3f450cca1e5227fff96f4bd87c"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-13-baseline.json",
+              "sha256": "994f81b1e1ac0637658176ec7dd198b1e8d05e169ee43c1c8c83917de48f9988"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 14,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "d6fc24ce8cdf1e0334d7b941c083e2388ddd9681959656ed7cd0bb03c92bfb67",
+          "timings_ns_per_batch": {
+            "baseline": 15492025.4,
+            "candidate": 7839051.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-14-baseline.json",
+              "sha256": "8b3cb4b15ef5bd5d18becb62876eac43fe3ede9f09d184b8f4fb43e0d048980a"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-14-candidate.json",
+              "sha256": "72f05f49a99f5351de9e1649add4d35de9ade74c1cd838db209b4687ea9be4e0"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 15,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "b207815a3eb8d603147ec255285e93351006ffef78e4b084bd2456cd18cf3bad",
+          "timings_ns_per_batch": {
+            "candidate": 7703606.6,
+            "baseline": 15548349.6
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-15-candidate.json",
+              "sha256": "db0bd8e01b6d3b37977fd63ed688ae2a569b238b087d14e88b8ee05baeacb583"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-15-baseline.json",
+              "sha256": "fe56e4601c1a963973b151e788ad38132d9cd76fe430a2d0c99542469579e0c1"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 16,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "061f90096349332e83c4382a065b4704df2da7f165ff345ca7f0f563b7b248c0",
+          "timings_ns_per_batch": {
+            "baseline": 15995041.4,
+            "candidate": 8226348.6
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-16-baseline.json",
+              "sha256": "240fc7e24df4472a92587cc9c4406d2b48510a97dd1046de826ace64f5334366"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-16-candidate.json",
+              "sha256": "baa3de735a4e0f337f3d3cbd6bc344ff24d59f752d4b5c124c793b8b4725a982"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 17,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "8df41bb623810c0232e396c1b36ae99fd4d7cace38a02bd273d07c747433c7c5",
+          "timings_ns_per_batch": {
+            "candidate": 8954421.6,
+            "baseline": 15909147.2
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-17-candidate.json",
+              "sha256": "c88a8740d8714f1414cece1b196ae959199c6867be49afe6720c25693c8407c1"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-17-baseline.json",
+              "sha256": "7b15bab8f8feb996ecf0a3043fa0c26450a90c416ff1731f6185b27831cf104e"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 18,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "79b3cdc9b1fe951e604fbf481200c1d8ba27a3c239ab1f7d2348c5de7df82714",
+          "timings_ns_per_batch": {
+            "baseline": 15967753.2,
+            "candidate": 8331483.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-18-baseline.json",
+              "sha256": "7aa40775dacbf0feff4567acd666eaaba61977fd689b3af3767e854af83d73f4"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-18-candidate.json",
+              "sha256": "1450b6e9cfde0e017fdf939eccea1f80bd8b41058275f50155c79f2eeea29095"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 19,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "56fb648a70de4ad9609224018135c6b8a18f572dd5159eef9178b19062fa2f74",
+          "timings_ns_per_batch": {
+            "candidate": 8362635.2,
+            "baseline": 15975749.2
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-19-candidate.json",
+              "sha256": "2ba81c165ca958a2a6622300f717232f8b0707e5ebc2031501436daa97b75e0b"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-19-baseline.json",
+              "sha256": "b7882b6d08968639ba6a9ab856aa894b36a48c98ad6ad2ad39cc4851ebbaa944"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 20,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "2884a11d34d176ad1a4da540d13fc4968e2b8e255acb7df4f1b7cd140691c0f3",
+          "timings_ns_per_batch": {
+            "baseline": 15920365.2,
+            "candidate": 8367789.2
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/timing-20-baseline.json",
+              "sha256": "ecf7a1bfe671cfc745d112c0c52e0c10545e85e820dea1e32135cbbf6c71effb"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/timing-20-candidate.json",
+              "sha256": "4b8517da7b80c32686cc677ada8fdac3fb528e09e3139794db3cba0a68df159f"
+            }
+          }
+        }
+      ],
+      "calibration": [
+        {
+          "phase": "calibration",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 1,
+          "request_sha256": "43852933aa6d279f7e44ef55dc99ef7732102f85eb7db6c0483f58157d540bab",
+          "timings_ns_per_batch": {
+            "baseline": 14738909.0,
+            "candidate": 7227309.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/calibration-00-baseline.json",
+              "sha256": "8cb0d013346452f9f50fec185e58f935a5d56e7ee09ffd2733429f6bef94f3ec"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/calibration-00-candidate.json",
+              "sha256": "a64fbd0830a9bcc1247ddb455775f7edaec077bcb56827c20df2f98bd3edbb1b"
+            }
+          }
+        }
+      ],
+      "iterations": 5,
+      "warmup": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "d70491994da38cab678d0f2da793b4ff0ff11ad4fb3aeaa962f54d8d9fd710cf",
+          "timings_ns_per_batch": {
+            "baseline": 15066481.8,
+            "candidate": 7465997.6
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/warmup-00-baseline.json",
+              "sha256": "1d6447b5e27e19a1bf9a5ecc1404c48048a2725994ed52d2cb09d6ba08392a80"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/warmup-00-candidate.json",
+              "sha256": "cfe7b0cc0c8d354938147ef175c40a8c0506dbaf13c63a2b31b326c1d73f2198"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "d1c8f888a02363403ef253450dcd70afc1f2268cd0502177b148569e23a0bfe0",
+          "timings_ns_per_batch": {
+            "candidate": 7374481.2,
+            "baseline": 15084897.8
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/warmup-01-candidate.json",
+              "sha256": "1ef6250c8d51a187d8bbfa1207860f69fc42000f5e4a12ad2a33c812c0725f73"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/warmup-01-baseline.json",
+              "sha256": "ba1ed7de790df91b3b74010d809e74d7312833749644f19303426bf095279c76"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "5547c1e925d163767ae5272ee62d9823324d9114155f99d66f1c735a01202d4c",
+          "timings_ns_per_batch": {
+            "baseline": 15115826.0,
+            "candidate": 7520495.8
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/warmup-02-baseline.json",
+              "sha256": "6a6b92340505fa8ee4ec93a8f57cc02d6a6a1ec5c7e1586a2d9108ec6be286f6"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/warmup-02-candidate.json",
+              "sha256": "91b6fa1cf2641cc8574899fd6dc24b18baf4198f159674bf970798e0bfaa6311"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 5,
+          "request_sha256": "bfeda0399d359a4f191df13373df997e92e7e3cab5779b866c69c8e47fe18ee4",
+          "timings_ns_per_batch": {
+            "candidate": 7361595.0,
+            "baseline": 15198744.2
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/warmup-03-candidate.json",
+              "sha256": "fb6636b4a1156c770a2b6c8d7fd6705581502a549c4e2ad8c20a5d3fe63cc5fa"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/warmup-03-baseline.json",
+              "sha256": "640ccf71f4b01cb791bfdf1db44debd21c16589f1e1fc09af26e172cff0b6fc7"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 5,
+          "request_sha256": "71a6de2f16c82b9939c8db2cd5705905f2d2aa12c3bb97a7bdabcef3548e7395",
+          "timings_ns_per_batch": {
+            "baseline": 15047835.8,
+            "candidate": 7468035.6
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-real-b32/warmup-04-baseline.json",
+              "sha256": "102e5e3655ca68b37c4746e08c67e7bd7679ddfbc8a386ecb1474838da07efe4"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-real-b32/warmup-04-candidate.json",
+              "sha256": "b91468819ddba39673dcafd6fdc9071f371a102f6602fd390cca8ec719647a92"
+            }
+          }
+        }
+      ],
+      "baseline": {
+        "samples_ns": [
+          15130524.2,
+          15109916.0,
+          15086052.0,
+          15168122.2,
+          15735842.4,
+          15732206.4,
+          15184732.2,
+          15266980.6,
+          15426521.4,
+          15572321.8,
+          17170874.0,
+          15961637.4,
+          15831845.0,
+          15768342.6,
+          15492025.4,
+          15548349.6,
+          15995041.4,
+          15909147.2,
+          15967753.2,
+          15975749.2,
+          15920365.2
+        ],
+        "unit": "ns/batch",
+        "median_ns": 15732206.4,
+        "ci99_ns": [
+          15266980.6,
+          15920365.2
+        ],
+        "minimum_ns": 15086052.0,
+        "maximum_ns": 17170874.0,
+        "relative_mad": 0.015266835044828803
+      },
+      "candidate": {
+        "samples_ns": [
+          7483369.8,
+          7417607.6,
+          7587808.2,
+          8310383.0,
+          8161536.4,
+          8149886.2,
+          7568302.0,
+          7492769.8,
+          7568440.0,
+          7575142.0,
+          8074440.0,
+          8247588.6,
+          8278196.8,
+          7737432.8,
+          7839051.0,
+          7703606.6,
+          8226348.6,
+          8954421.6,
+          8331483.0,
+          8362635.2,
+          8367789.2
+        ],
+        "unit": "ns/batch",
+        "median_ns": 8074440.0,
+        "ci99_ns": [
+          7575142.0,
+          8278196.8
+        ],
+        "minimum_ns": 7417607.6,
+        "maximum_ns": 8954421.6,
+        "relative_mad": 0.036330593824463395
+      },
+      "ratio": {
+        "samples": [
+          0.49458760985954475,
+          0.49090991637544507,
+          0.5029684505926402,
+          0.5478847605803177,
+          0.5186590074135465,
+          0.5180383471195751,
+          0.4984152437011698,
+          0.4907826895384933,
+          0.490612225773725,
+          0.48644910484703696,
+          0.47024047814921943,
+          0.5167131913421363,
+          0.5228826330727719,
+          0.49069410757221876,
+          0.5060055607706401,
+          0.49546137038235877,
+          0.5143061774132075,
+          0.5628473661994906,
+          0.5217692743397362,
+          0.5234580923441137,
+          0.5256028423267577
+        ],
+        "median": 0.5060055607706401,
+        "ci99": [
+          0.4909099163754451,
+          0.5217692743397362
+        ],
+        "gate": "inconclusive-noise",
+        "relative_ci_width": 0.06098620322925435,
+        "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+      }
+    },
+    {
+      "id": "real-ball-ggh-complex-b1",
+      "status": "measured",
+      "blocks": [
+        {
+          "phase": "timing",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "cdc212462ad6bdea304d1310faaca79d5e4c98f62cc07448fb0bc40fbab9f09d",
+          "timings_ns_per_batch": {
+            "baseline": 564812.2363636363,
+            "candidate": 571208.6181818182
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-00-baseline.json",
+              "sha256": "4e0fd8cbaa67a30d35c945a96731041707cd6e08976c0d90d4fbfc38ee3a65c7"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-00-candidate.json",
+              "sha256": "f744c92d9bc47420ac910fa66aa759db0bf845179e240f4f4fdcb83e1d8bbc24"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "edf9ee7843206bf98047f00970579f069ce3b8827a6395f33f877f26fa10893c",
+          "timings_ns_per_batch": {
+            "candidate": 579691.5818181818,
+            "baseline": 583899.6
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-01-candidate.json",
+              "sha256": "05be2bcf2ff2019c12d52a339303b5f557c349bcd96246d5a58a163f807eb46d"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-01-baseline.json",
+              "sha256": "63d1a8ead91648458ebab15ebe66514ff5d829be940dcaa42d4e8c2086e0ea29"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "867ec6de78edb4ea50fe9f1b8a0c085d2c91709ac5caa17f169c5c153f4697c7",
+          "timings_ns_per_batch": {
+            "baseline": 577546.8181818182,
+            "candidate": 583711.9636363636
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-02-baseline.json",
+              "sha256": "ae41578c4af7e7be4b826193881fc6ed5ad485d8500e66083fca80d5e7f2d5a8"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-02-candidate.json",
+              "sha256": "fde80146f2f797e798f578ce5beb6a448f7be18a41b4cc9ae50b07a784badb24"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "6ae5d34224fbd9d6633173293fa12e80e189ba900eaaa8e1b918f0ab1ecd9322",
+          "timings_ns_per_batch": {
+            "candidate": 585714.1454545455,
+            "baseline": 584802.8727272727
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-03-candidate.json",
+              "sha256": "4c6b1e408468f6a09eba450700aa4ffa27b5b5813a9ed1473023344e204c22fc"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-03-baseline.json",
+              "sha256": "9915292fccfd0a9da4b444e61c747b14e4f50193847b5e4f71f72d9edf9007f2"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "1ee69a74eaf5970e7ecdc454d1cee6b8d8422d63d7478184fca3dcb6b4a46444",
+          "timings_ns_per_batch": {
+            "baseline": 583377.0363636364,
+            "candidate": 590138.7090909091
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-04-baseline.json",
+              "sha256": "130d4438603ee6d0f8c246148bcaa41205f0d39e7b9c6c4e6aa234e80c548c3a"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-04-candidate.json",
+              "sha256": "aabb0e4b200da233f17c17911733411841a551caac2a3d492dcc23c50e4d55c4"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 5,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "a64236ed5820e5d69d9ff54e3c6ea0b9d8373324144a748f7c15f82ae94bd8b0",
+          "timings_ns_per_batch": {
+            "candidate": 584329.5818181818,
+            "baseline": 686055.9818181818
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-05-candidate.json",
+              "sha256": "d2321e35f4cd6a509d849bc562065295e8771acfbb145aee2c62beb2e5bd3adc"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-05-baseline.json",
+              "sha256": "e7e80df49f89eb6b57de33b5a1cc387d68ee1d958aa57a52481425594b9ec3e8"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 6,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "9c05edf73d9ccdb58ed22029c805b5b02c87a268ae5b0b5699b3520debae9eb7",
+          "timings_ns_per_batch": {
+            "baseline": 586055.9636363636,
+            "candidate": 588219.4181818182
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-06-baseline.json",
+              "sha256": "eb16e0e58b1525d9aac5e3f041e336470e48e8482ffda29895cf4eff1841cd25"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-06-candidate.json",
+              "sha256": "2d800ae633048c96b4486c70a8c1fdac8e52c9c4107aff8ee37e15fc879f2f97"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 7,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "90019353f176727335c05d5c5cab1cb782cca4b5be9833532518a30538f64fb2",
+          "timings_ns_per_batch": {
+            "candidate": 596943.0909090909,
+            "baseline": 584887.4181818182
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-07-candidate.json",
+              "sha256": "4a0b0933c93ee85ffc701dc0caba083fd5608de75a3888481df258d7338fbf33"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-07-baseline.json",
+              "sha256": "31de0c013e579f6ba28a6dce76e2d0f451126d9907e6e14bbf6d5babde5275c0"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 8,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "10627d0fad1a1711a4926efb229384aedabf69ced3f5649921ba1a522afd6cd1",
+          "timings_ns_per_batch": {
+            "baseline": 583577.9454545454,
+            "candidate": 587546.6909090909
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-08-baseline.json",
+              "sha256": "247fccb40eaf75cbefd04ac6c52d057cc34707982b4aa01aaa52e647577826b7"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-08-candidate.json",
+              "sha256": "f2b3641e83c94901534af5c71741335c375ad75ce0e5d1d52d466deaa18784d3"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 9,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "1d62683a4eb7c37a317f214fa0dbf6e46333af237496e7ba9598c7089802ade6",
+          "timings_ns_per_batch": {
+            "candidate": 588786.1636363637,
+            "baseline": 586492.3272727273
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-09-candidate.json",
+              "sha256": "a4cd848199a35648857838fa1b68afb077d16f2ef1d7e0b3ebc3cf9f130ac75a"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-09-baseline.json",
+              "sha256": "0811f119d0eead70e1778c12c1f43936032118a0c251aa4a925f9b368226376a"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 10,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "85f7b850b06b413a456215bd7bcce37bd0b7683315227d36a878fb922393a8fd",
+          "timings_ns_per_batch": {
+            "baseline": 576749.5636363636,
+            "candidate": 573013.9090909091
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-10-baseline.json",
+              "sha256": "db9db1317f8063548aa716aa47ecbb34b743a2ed31e6f39c285741fbf7b72d46"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-10-candidate.json",
+              "sha256": "0d4b9d45f844694f734a08141ff8a18cfbf01e15ac916620fa09e26e9e06a5c0"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 11,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "05bf81c3bdb8f5dd2cadb257982f00f95285182ec9963f2cea6c77c376da520f",
+          "timings_ns_per_batch": {
+            "candidate": 563148.9636363636,
+            "baseline": 565300.6
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-11-candidate.json",
+              "sha256": "366f44f7779939a2cd2be7f00a1127a3e55cc289ee658b9f7b710398be1f6a66"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-11-baseline.json",
+              "sha256": "abd0ebaa57c1acb020ddb1d65d1ed858cb6bff1b0f166a9210c0e4bc65f32b5a"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 12,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "0e4da1f66977b11f4250c214996f066c2815c128689612bed82cc5e85dcbef04",
+          "timings_ns_per_batch": {
+            "baseline": 561996.9454545454,
+            "candidate": 564424.6
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-12-baseline.json",
+              "sha256": "c62312da65f036841718c313641e1862a95310a2281fc76cf54691d544f93a02"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-12-candidate.json",
+              "sha256": "b57982cca20a3f9b178a0adb0f9445e1401d5fb3814b2f3791dd9c47531aa285"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 13,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "7a0a9d5fa96ddde6eb993bc01df4c8409c93d37a5278e8c6d8dda24e0ec735ea",
+          "timings_ns_per_batch": {
+            "candidate": 577219.9272727272,
+            "baseline": 575358.2909090909
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-13-candidate.json",
+              "sha256": "d45b574658489b521b85eb0f011c106c785a28993c7525f7b194c782b69449a1"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-13-baseline.json",
+              "sha256": "3d3934b9fa228a4c5f4101d62334307638c59b23a7546dc83fa303acb6be4875"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 14,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "0615b1868ab84405994e38be80552d3e32a0787cb065e7bea55003304d9ac493",
+          "timings_ns_per_batch": {
+            "baseline": 578519.5636363636,
+            "candidate": 582224.8545454545
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-14-baseline.json",
+              "sha256": "0c1019d97461087fbf0c9deae744bb91a88eaf7096e7c0a95e22134064322adc"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-14-candidate.json",
+              "sha256": "d1d0dfa3219f240d57bf385e5c0857ecb7134a9ef13a3a35e04872f7a807eaa5"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 15,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "7288ab54112d8ebac33d50eedcade0ee6505c1c3616831ff695eac4a355dd760",
+          "timings_ns_per_batch": {
+            "candidate": 588495.6181818182,
+            "baseline": 575532.1090909091
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-15-candidate.json",
+              "sha256": "2008ce6221cffa5addb4f1b5e60f6928cd4f35adee6feaaf695ef9c3a701b902"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-15-baseline.json",
+              "sha256": "242f63ae0ccfde786cdd2e956ff0c85f13e8710b8d00639b9c15e4cf31f0aa8a"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 16,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "e3094207c3c705183e91ac0cdb513eaed119a01d1b2be1d356e77ec54a744eea",
+          "timings_ns_per_batch": {
+            "baseline": 578845.4,
+            "candidate": 573981.5636363636
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-16-baseline.json",
+              "sha256": "df54f7e6bea9ee30977f8c945aed170fabcb1f380329be4fd769a495c4195ca9"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-16-candidate.json",
+              "sha256": "67fd73339d77000e02a6e1050edad0b73fba6b94c7d01d665e0ce0e85f116645"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 17,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "7388d351ae13f10718a212c8774b2eb022382ccb3a5f8e08d4fdf41cc349e38f",
+          "timings_ns_per_batch": {
+            "candidate": 578217.5636363636,
+            "baseline": 580339.4
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-17-candidate.json",
+              "sha256": "afe59900c20676649c0fa11fe417eaeb403d88b61e004a34b68c4977aea15a51"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-17-baseline.json",
+              "sha256": "6698f6511e39407d43794b48d1b04fe81899841f5468c5b3e7ec8780c677394c"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 18,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "ad33c38335b090a2dcc218d0dd5007bd67a811e0fc0752d7c85cb6523081a40d",
+          "timings_ns_per_batch": {
+            "baseline": 575746.8363636363,
+            "candidate": 579205.3818181818
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-18-baseline.json",
+              "sha256": "9df283424f11dfb184ac3aa50d8936d71fa3a60e1a2de6c0d5766a27565648c0"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-18-candidate.json",
+              "sha256": "2217af7211c57e47da280d1f7167268d66bc977ac54fad6f33b4591ef1e0a158"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 19,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "34daad18a1462a45f3196562e9baabaa5557be0ee5095044b2d49dadbe07740f",
+          "timings_ns_per_batch": {
+            "candidate": 580709.5818181818,
+            "baseline": 580491.0181818182
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-19-candidate.json",
+              "sha256": "9b118731e95d69368134f78a37f96ed4fb95946d87e83c7a2caf8262404d3e1b"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-19-baseline.json",
+              "sha256": "f6c4d2f7f60fda668b681a383ed91cb6b9374c5c2f407fa302872f7ee2eba446"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 20,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "d76787b70945ca373031debca0b93f14e0ebd10099423811607a10bd7368a607",
+          "timings_ns_per_batch": {
+            "baseline": 582103.7636363637,
+            "candidate": 579437.7636363637
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/timing-20-baseline.json",
+              "sha256": "f015873c5db9d47727783f82ab0017d2793595ebab8fd194d747ed665cda1019"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/timing-20-candidate.json",
+              "sha256": "6cb8ce67996030f1afdb7178e930e86d3e19e4a2db7f7da3ba4d13e0cc75c6a8"
+            }
+          }
+        }
+      ],
+      "calibration": [
+        {
+          "phase": "calibration",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 1,
+          "request_sha256": "1af2210b6edc961e7f4ffcea77c59fce6c1fb0ead811372b7a7ec318222bc68e",
+          "timings_ns_per_batch": {
+            "baseline": 545612.0,
+            "candidate": 572043.0
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/calibration-00-baseline.json",
+              "sha256": "6ee7dad7a71139af29573def0486bec0cc1bbfa40fa932b285b9daa6d84f3d1e"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/calibration-00-candidate.json",
+              "sha256": "c62f5387d4bce8f4721aa05ca948d247fb4391e0fd9466c7d33d2ebeedd4265c"
+            }
+          }
+        }
+      ],
+      "iterations": 55,
+      "warmup": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "a21a008fa6d2572ff27e352c089e9c5198aa4bdba285012df0b9bac8e693bc97",
+          "timings_ns_per_batch": {
+            "baseline": 568410.8,
+            "candidate": 567701.1636363637
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/warmup-00-baseline.json",
+              "sha256": "b2dfa723d84748e9f28072be8d6cf0e73922bbdcffe0fc57e7ea20827861c5c0"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/warmup-00-candidate.json",
+              "sha256": "039aedd6d165d623a8e1b61cd6967cfac4ac5da2d3954d2c66611a45813a73e2"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "e342629228553e0b8c4b94738ae6c8618abac1892fd770047507ff55d5450f34",
+          "timings_ns_per_batch": {
+            "candidate": 565544.6181818182,
+            "baseline": 567281.3636363636
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/warmup-01-candidate.json",
+              "sha256": "63346af8144ca9b1abce263b01d640bb7e57c9700d805bbd22b47d3f0898e587"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/warmup-01-baseline.json",
+              "sha256": "8b312fb8f7002b92543865dfdee6071d683f350e6c910baf2de4c11eedc17a6a"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "8b6a141028ee96276a779a2788f509750d73c6e2c01d1763f064f5b5f3f657bd",
+          "timings_ns_per_batch": {
+            "baseline": 561077.1272727273,
+            "candidate": 572832.0909090909
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/warmup-02-baseline.json",
+              "sha256": "0f41e512711dcf257f0d67663128522a1ac413eedb9865de82b9ac21659862f7"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/warmup-02-candidate.json",
+              "sha256": "b22a5684290e94bb4b2da3aa58eb3bb0c9a91444b43848d19cf5d124aae5f7ec"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 55,
+          "request_sha256": "68193933d410ac46dcd3f964766e8f4ed5a73497536c6d959315c99c0e502802",
+          "timings_ns_per_batch": {
+            "candidate": 570329.7272727273,
+            "baseline": 571908.6181818182
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/warmup-03-candidate.json",
+              "sha256": "94bf57b45405024214f83f6e0927b4b783087b225581060a276a879a6df73d48"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/warmup-03-baseline.json",
+              "sha256": "8f4ca4e1e8a1037a42294c580c28baca02bf74e9b794f663cf18f49f70521cf3"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 55,
+          "request_sha256": "2e21c961a628094fb6b077e2e225f44a4df1620b1f8fcbc9537e95ce62672bb2",
+          "timings_ns_per_batch": {
+            "baseline": 565540.2363636363,
+            "candidate": 566018.2363636363
+          },
+          "full_output_slots_checked": 60,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b1/warmup-04-baseline.json",
+              "sha256": "74da583080f1f11f1bbf560da3d141b8d586c6745fbbe76c6e18892934312980"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b1/warmup-04-candidate.json",
+              "sha256": "4870c7aea3da9365688b6f694063db78fbd4a707b3892d1b5aef12cdf7b2c3ee"
+            }
+          }
+        }
+      ],
+      "baseline": {
+        "samples_ns": [
+          564812.2363636363,
+          583899.6,
+          577546.8181818182,
+          584802.8727272727,
+          583377.0363636364,
+          686055.9818181818,
+          586055.9636363636,
+          584887.4181818182,
+          583577.9454545454,
+          586492.3272727273,
+          576749.5636363636,
+          565300.6,
+          561996.9454545454,
+          575358.2909090909,
+          578519.5636363636,
+          575532.1090909091,
+          578845.4,
+          580339.4,
+          575746.8363636363,
+          580491.0181818182,
+          582103.7636363637
+        ],
+        "unit": "ns/batch",
+        "median_ns": 580339.4,
+        "ci99_ns": [
+          575746.8363636363,
+          583899.6
+        ],
+        "minimum_ns": 561996.9454545454,
+        "maximum_ns": 686055.9818181818,
+        "relative_mad": 0.007691141989106132
+      },
+      "candidate": {
+        "samples_ns": [
+          571208.6181818182,
+          579691.5818181818,
+          583711.9636363636,
+          585714.1454545455,
+          590138.7090909091,
+          584329.5818181818,
+          588219.4181818182,
+          596943.0909090909,
+          587546.6909090909,
+          588786.1636363637,
+          573013.9090909091,
+          563148.9636363636,
+          564424.6,
+          577219.9272727272,
+          582224.8545454545,
+          588495.6181818182,
+          573981.5636363636,
+          578217.5636363636,
+          579205.3818181818,
+          580709.5818181818,
+          579437.7636363637
+        ],
+        "unit": "ns/batch",
+        "median_ns": 580709.5818181818,
+        "ci99_ns": [
+          577219.9272727272,
+          587546.6909090909
+        ],
+        "minimum_ns": 563148.9636363636,
+        "maximum_ns": 596943.0909090909,
+        "relative_mad": 0.011585857014366792
+      },
+      "ratio": {
+        "samples": [
+          1.0113247932788476,
+          0.9927932504461072,
+          1.010674711141088,
+          1.0015582562428653,
+          1.0115905706015105,
+          0.851722887496141,
+          1.0036915494077234,
+          1.0206119542881416,
+          1.0068007118594144,
+          1.0039111106095848,
+          0.993522917430745,
+          0.9961938190696483,
+          1.0043196934878196,
+          1.0032356123011539,
+          1.0064047806539174,
+          1.022524388971774,
+          0.9915973481630217,
+          0.9963438009488302,
+          1.0060070594158874,
+          1.0003765151044854,
+          0.9954200605346619
+        ],
+        "median": 1.0036915494077234,
+        "ci99": [
+          0.9961938190696483,
+          1.0068007118594144
+        ],
+        "gate": "parity",
+        "relative_ci_width": 0.010567880935159042,
+        "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+      }
+    },
+    {
+      "id": "real-ball-ggh-complex-b32",
+      "status": "measured",
+      "blocks": [
+        {
+          "phase": "timing",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "95ce3fec4e5e73b996bcf4eb047b5fc87769341dcaf91bb8c871f54d7da738ac",
+          "timings_ns_per_batch": {
+            "baseline": 16403230.0,
+            "candidate": 16331420.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-00-baseline.json",
+              "sha256": "297f29173b2f023eca2b42b908dae9ac90a0c8ae464238259622d21146b32231"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-00-candidate.json",
+              "sha256": "e2466691ac6fc8793368507466ec78a22cc7916dcbe6cc8f3497b6399a226ee7"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "202283fed727d011319151fb0229f77bc0400364d8d0d7bdb89980760d53229d",
+          "timings_ns_per_batch": {
+            "candidate": 16217094.5,
+            "baseline": 16397185.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-01-candidate.json",
+              "sha256": "b55bf5e81b5376a7e5b39c20806077424bd892ed6b1e7254a0475ed9a75e2228"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-01-baseline.json",
+              "sha256": "f06a777af6a3fbe34a88948c905949439e6602c743f9a9c5578fa4afec5c1d62"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "c73d43b0dcc498ea0db0b63d78dbb497a7dde8481fe89690bb188e3c2b865775",
+          "timings_ns_per_batch": {
+            "baseline": 16303429.5,
+            "candidate": 16113829.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-02-baseline.json",
+              "sha256": "c3a9d430b183ad8122278447e91131850b4347c80d3b35a51f5fd3f44cc3d383"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-02-candidate.json",
+              "sha256": "ec6added367fc52e4ea6d773311669b7d2be5108f29fc0ecae4c9bcc27daa70e"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "be8c20ac368a6b55b2e3f78b249cff3dad912b0837adcd9a81b23968fd9fffe3",
+          "timings_ns_per_batch": {
+            "candidate": 16082023.5,
+            "baseline": 16148974.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-03-candidate.json",
+              "sha256": "99cb43dbda06369b164b110f5730586d92b4024e0f6f55e0b904a9155d783599"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-03-baseline.json",
+              "sha256": "074caa50da96b2759bb4beb375af8a7eca76d4b8af2e7acab987c9d25f2840f3"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "da8ab032679f0156e77a1f7f21f1dac4d47a167bf542b4348ba5b61f7ef38919",
+          "timings_ns_per_batch": {
+            "baseline": 16255799.5,
+            "candidate": 15967928.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-04-baseline.json",
+              "sha256": "07a2de410c6d33e15c5303e96253b915eff99e47a9320b23675d64fd0e719d41"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-04-candidate.json",
+              "sha256": "b3218184378570cdc6e0c36c1bdb62855cce78fbbb69aa189359f9a56746c1bf"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 5,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "008daf213ac70207b9b99336031a80d7ae16b1d7cb0390472b7f84819804d93a",
+          "timings_ns_per_batch": {
+            "candidate": 15970398.5,
+            "baseline": 16440265.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-05-candidate.json",
+              "sha256": "a853bff7c65383646059a0edd56df4d1503150fb109f28c379c9a8cf86076399"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-05-baseline.json",
+              "sha256": "40aa3114d4fd1978ed484e4794f4786c242c42d273bdfac36bc902595f77fe61"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 6,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "837bc36de01354e29268eef5f623ff2f4f5df7684a970810909302c55fe8bce1",
+          "timings_ns_per_batch": {
+            "baseline": 15955043.5,
+            "candidate": 15897453.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-06-baseline.json",
+              "sha256": "0b730dfad5be9a7d8506f636ed6c8a5f7a2cd491575cd702671fc31556773989"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-06-candidate.json",
+              "sha256": "9adf9a30654e0c982d7e3b329ee7a78db3a2d8acd36f1693da5d2065d5b6db4f"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 7,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "77c5247287db63c9b964df1551d885a80f56824bf060b81c078e0805e254c687",
+          "timings_ns_per_batch": {
+            "candidate": 15869893.0,
+            "baseline": 16005693.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-07-candidate.json",
+              "sha256": "d93fc8817c1ab091291cedb876f4a5424d8c3940865e9cd295a00e3ad6c87305"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-07-baseline.json",
+              "sha256": "611e3644bc7fc508028ed79bc59adf12c561aefebec53a3a402de8668f9a7309"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 8,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "96990b19fe6ea89d797180cae334dde2c0713bff8b5a9f755b9cb8b6e542f8c9",
+          "timings_ns_per_batch": {
+            "baseline": 15913463.0,
+            "candidate": 15730877.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-08-baseline.json",
+              "sha256": "4f42a9e6c3c1ea62dae6940f799795547229557edfc8da5edc8c42afae5fae28"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-08-candidate.json",
+              "sha256": "b59c0ece8b307274d8481941313eb02214c91f4969fdbce89a7672588e4c1f8a"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 9,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "86919f35623aedef9924f3baf04e05b5944635de28d0e1b6889d6fc4eb373f02",
+          "timings_ns_per_batch": {
+            "candidate": 15443341.5,
+            "baseline": 15922878.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-09-candidate.json",
+              "sha256": "35584630babdc3d7d9656693adf7fc86570866fca88e8f18783e060edb187003"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-09-baseline.json",
+              "sha256": "2ab98ba67ddb4ede2f2300f805d2913bea708b4be4eee665c14e593e1dbfaca4"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 10,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "6397db1b9af36208e586ac96b5303afec2afad4cc7330f48371455b602371c5b",
+          "timings_ns_per_batch": {
+            "baseline": 15954223.5,
+            "candidate": 15775152.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-10-baseline.json",
+              "sha256": "dfe8007b2d1e1d3955939e6fce658acb3361132d6d8aadb4f8e905ca2027c15b"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-10-candidate.json",
+              "sha256": "163caadfae76a0c6c46394b29ae8b8783706638517e7edb0e76eb2018f1c3c79"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 11,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "def77f6101a5615b21117089fb2635030ff4d26b6ea9c6fb09aaf9df0eef0b58",
+          "timings_ns_per_batch": {
+            "candidate": 15948593.0,
+            "baseline": 15964363.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-11-candidate.json",
+              "sha256": "9d5e1cc0b65577a697bade20407adca3c484c6b89b7f0c20f15d280c9979a36f"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-11-baseline.json",
+              "sha256": "288b13c65f79f125fb9b35934297aded9f7a367ffcee13ca5415990968e5fcb3"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 12,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "0f3b174984e15f04105a6c049cc7032009919c033447ef754c757bff58712e44",
+          "timings_ns_per_batch": {
+            "baseline": 16021928.5,
+            "candidate": 16181939.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-12-baseline.json",
+              "sha256": "5a7281e173d7ab797ba1f35b5f13bcec530eaef88a45f07237581409a4b13bb1"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-12-candidate.json",
+              "sha256": "10306b6a9420a4ba9d9548419026041b34d71cb9824569d626c7992308a2a35f"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 13,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "5d9c600ce489a516fa0a9afa7ae667bcada93c985bbf1c644efc777be234925f",
+          "timings_ns_per_batch": {
+            "candidate": 16138094.5,
+            "baseline": 16012673.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-13-candidate.json",
+              "sha256": "65deb99bb66e427853191a131408a82f856a744478299c6cb50dd58e73309c7a"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-13-baseline.json",
+              "sha256": "12e8338b6108ac6de21b5a812a2720f322dfa5ecd64d65f578a7a8824cfead53"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 14,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "43d74110015eba29168a5dded6528543843b956fa5abd49f212ec8c536f7b68a",
+          "timings_ns_per_batch": {
+            "baseline": 16122304.0,
+            "candidate": 15923683.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-14-baseline.json",
+              "sha256": "e76dcb3c49cdbb67070b1784774bc2f71cf7e07a2d81b0e41b1e877c7e5747fb"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-14-candidate.json",
+              "sha256": "2c0884fa9b0cb8de66f3ebfe72514bbaf585edc10ab1f27a8fc248ae79f2ae5c"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 15,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "e25589440a0b5103febf0ec4c9fff254a98301ea8f07f820b8200078ee66e4c9",
+          "timings_ns_per_batch": {
+            "candidate": 16007303.5,
+            "baseline": 16074159.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-15-candidate.json",
+              "sha256": "3af549c359ffe201194add2714f153d1bd891a49c4d4dc8d3ff865f612387dc9"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-15-baseline.json",
+              "sha256": "75f10815cd1005c063480cfea110bd8529eda884cbcdbcc490a2bdcbd172d57f"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 16,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "20baa4deee27d77a7830105434556dcec91e2e6d19345532172a7b93aef78c53",
+          "timings_ns_per_batch": {
+            "baseline": 16056963.5,
+            "candidate": 16307004.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-16-baseline.json",
+              "sha256": "642f86ce289245b7ba17aea05683608e8959f57226c9dfd7785ef6685e790d35"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-16-candidate.json",
+              "sha256": "77b5a465da3a25b79a84d3090a546e0a47244bca963f88ff3640f87ed2ffecb7"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 17,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "b4a4cb59d7b626bca3d41ff7acac341e08fd46c330c286530222fb820cc3a27c",
+          "timings_ns_per_batch": {
+            "candidate": 16034708.5,
+            "baseline": 16045979.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-17-candidate.json",
+              "sha256": "98981ce6fee2ed0d88346f61b25ec4e2b4421c8386382f4160432effd4df8733"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-17-baseline.json",
+              "sha256": "8478991707469be35d9aae6a3290cc61c481f19dc75b5e0bf0e0092363c52b6e"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 18,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "b575d253ff512f8dc35ce4c80c04cc5a9c5fc82cf4da40c2de8f5f5acc1b52b4",
+          "timings_ns_per_batch": {
+            "baseline": 16043754.0,
+            "candidate": 16027373.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-18-baseline.json",
+              "sha256": "bad54c2a5407a342f2899f6a4fc07c9d50fc2fc4b4d1f9809c77951a78d2f0b9"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-18-candidate.json",
+              "sha256": "67ba596a7dc25390e88c533f76f25bafc20e1f9f05133d1982c549df4b11081e"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 19,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "1e89aa6accbe9b94b14c072f28aa96619f1af9a13c707f64f5dc959adfdbc161",
+          "timings_ns_per_batch": {
+            "candidate": 15958158.0,
+            "baseline": 16080039.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-19-candidate.json",
+              "sha256": "ddba4a794c700d846f3651dd2b724c8432ee490c683b3c83500134198e086ed2"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-19-baseline.json",
+              "sha256": "0c7e96047646622732de6e5cc43e060072ef719f9e61a3e1eeed2d3ddddad83a"
+            }
+          }
+        },
+        {
+          "phase": "timing",
+          "index": 20,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "a23e08f8bf8c0d0427dd17d9985f93d37ad1fcf394178329da44eb87e576dde7",
+          "timings_ns_per_batch": {
+            "baseline": 16110929.0,
+            "candidate": 15938703.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/timing-20-baseline.json",
+              "sha256": "67a56ce524c1f30c2db70f6712af311734b87ffb4e3fba09d3eaf6db0a7d4f42"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/timing-20-candidate.json",
+              "sha256": "250b04244700bdc1b311c27bc20ad506b52ce523af68a6d121b543d0d8f05814"
+            }
+          }
+        }
+      ],
+      "calibration": [
+        {
+          "phase": "calibration",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 1,
+          "request_sha256": "0c9795cfe9ed7ad61a6531cfd2e2e9607fea65e9ea77febc99e00367c86e211a",
+          "timings_ns_per_batch": {
+            "baseline": 16001644.0,
+            "candidate": 15412881.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/calibration-00-baseline.json",
+              "sha256": "07ea157d39f9f89c06f3eaa2feed4a3971e0fe85a84f81df9d67fb762d761d9d"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/calibration-00-candidate.json",
+              "sha256": "5445e1a1477557f2bdcd17cfe543666a966e35e9c91345d2473831bb87526cb8"
+            }
+          }
+        }
+      ],
+      "iterations": 2,
+      "warmup": [
+        {
+          "phase": "warmup",
+          "index": 0,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "4b01bb9db2500e7105f1ee55f6cf112e6a17b7938d0f3561fc41ac7152aafa69",
+          "timings_ns_per_batch": {
+            "baseline": 15986423.5,
+            "candidate": 15463391.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/warmup-00-baseline.json",
+              "sha256": "22264697fac0ac26a10719dbd33920bcac785344b1e0bc6cf18cd11cc84d50b9"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/warmup-00-candidate.json",
+              "sha256": "dc1ecbdae9a6797a7c6f40e43d85a5ca41734cf6d711daa8a8f2beac9dae6ee5"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 1,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "f3993c40e331442385561308234734216e43396156f1a21b57128dbcc07036e6",
+          "timings_ns_per_batch": {
+            "candidate": 15543792.0,
+            "baseline": 16196309.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/warmup-01-candidate.json",
+              "sha256": "d25a00331f506e2ed541a5ca374fdd8cb9c05ffa5e48679f3a36e938f908f270"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/warmup-01-baseline.json",
+              "sha256": "5f79f2627ee7442f5e136d2af7c06d3d8b56779b41cb1a0873cf611ee18b31f8"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 2,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "a4b75382fc3e82b497dcd91a7144b00c3abbf8d0f64cec6c012075df6932e05f",
+          "timings_ns_per_batch": {
+            "baseline": 16392890.0,
+            "candidate": 16082989.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/warmup-02-baseline.json",
+              "sha256": "bc6296740875c4679ad081932900c320a2bdc0eaa3d211cda2011f4b237ad0c8"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/warmup-02-candidate.json",
+              "sha256": "5c6479db35c2c96a56c1d4faf3a678add740a0a03f97ef1de0236dbc875b199f"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 3,
+          "order": [
+            "candidate",
+            "baseline"
+          ],
+          "iterations": 2,
+          "request_sha256": "420cd50d358a3f5dc9b76e21d467ae1f6698a15cc33f76b37e6923297234f4ba",
+          "timings_ns_per_batch": {
+            "candidate": 16212924.5,
+            "baseline": 16317534.5
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/warmup-03-candidate.json",
+              "sha256": "9e903ff52ebfe6f41db38ba6765e2b9b4b7cac6aad25a9e4a86b2b069a9ddf7f"
+            },
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/warmup-03-baseline.json",
+              "sha256": "a9ba6fe8fd7da46ead650dcf8614bdfc5a665d3b4174de7de7c182eccb007508"
+            }
+          }
+        },
+        {
+          "phase": "warmup",
+          "index": 4,
+          "order": [
+            "baseline",
+            "candidate"
+          ],
+          "iterations": 2,
+          "request_sha256": "a79e2682f76d9592a12e1c91c259f0da8f2f05843852660e9f28f870b1ee2a67",
+          "timings_ns_per_batch": {
+            "baseline": 16584311.0,
+            "candidate": 16163619.0
+          },
+          "full_output_slots_checked": 1920,
+          "full_outputs_exact": true,
+          "responses": {
+            "baseline": {
+              "path": "real-ball-ggh-complex-b32/warmup-04-baseline.json",
+              "sha256": "c2b64e14e41588b40d7b87877c6d8e56b974338f5b5b90d7a58960e0fd736f2c"
+            },
+            "candidate": {
+              "path": "real-ball-ggh-complex-b32/warmup-04-candidate.json",
+              "sha256": "162f56206e63874bd8f4148847ebc35e45377c5c3f2a68845198b7f1de53487b"
+            }
+          }
+        }
+      ],
+      "baseline": {
+        "samples_ns": [
+          16403230.0,
+          16397185.0,
+          16303429.5,
+          16148974.0,
+          16255799.5,
+          16440265.5,
+          15955043.5,
+          16005693.5,
+          15913463.0,
+          15922878.0,
+          15954223.5,
+          15964363.5,
+          16021928.5,
+          16012673.5,
+          16122304.0,
+          16074159.0,
+          16056963.5,
+          16045979.0,
+          16043754.0,
+          16080039.0,
+          16110929.0
+        ],
+        "unit": "ns/batch",
+        "median_ns": 16056963.5,
+        "ci99_ns": [
+          16005693.5,
+          16148974.0
+        ],
+        "minimum_ns": 15913463.0,
+        "maximum_ns": 16440265.5,
+        "relative_mad": 0.005730255287682506
+      },
+      "candidate": {
+        "samples_ns": [
+          16331420.0,
+          16217094.5,
+          16113829.0,
+          16082023.5,
+          15967928.5,
+          15970398.5,
+          15897453.0,
+          15869893.0,
+          15730877.0,
+          15443341.5,
+          15775152.5,
+          15948593.0,
+          16181939.5,
+          16138094.5,
+          15923683.0,
+          16007303.5,
+          16307004.5,
+          16034708.5,
+          16027373.5,
+          15958158.0,
+          15938703.0
+        ],
+        "unit": "ns/batch",
+        "median_ns": 15970398.5,
+        "ci99_ns": [
+          15923683.0,
+          16113829.0
+        ],
+        "minimum_ns": 15443341.5,
+        "maximum_ns": 16331420.0,
+        "relative_mad": 0.006293236828122981
+      },
+      "ratio": {
+        "samples": [
+          0.9956222036757395,
+          0.9890169867571781,
+          0.9883705143141815,
+          0.9958541948237702,
+          0.9822911816794985,
+          0.9714197437991497,
+          0.9963904517088906,
+          0.9915154879105988,
+          0.9885263188785496,
+          0.9698838049252152,
+          0.9887759501426064,
+          0.9990121435157749,
+          1.0099870000044002,
+          1.0078326083398879,
+          0.9876803588370496,
+          0.9958408088410722,
+          1.0155721223380747,
+          0.9992976121930609,
+          0.9989790107726658,
+          0.9924203542043648,
+          0.9893099895108469
+        ],
+        "median": 0.9924203542043648,
+        "ci99": [
+          0.9885263188785496,
+          0.9989790107726658
+        ],
+        "gate": "improvement",
+        "relative_ci_width": 0.010532524700681181,
+        "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+      }
+    }
+  ],
+  "verified_before": true,
+  "executed": {
+    "baseline": {
+      "path": "target/benchmark/executables/slim-baseline-vwnbyoyn",
+      "sha256": "7887d8065b1d88c9a50f14afab281e583f5b6a984d3b239b2b508654f4fd946a"
+    },
+    "candidate": {
+      "path": "target/benchmark/executables/slim-candidate-5xip7cz4",
+      "sha256": "2aaa8c342b0f72dccbe100930cd06c6d8b380f9cddb5c970b2fe75be2553164a"
+    }
+  },
+  "producer_exit_codes": {
+    "baseline": 0,
+    "candidate": 0
+  },
+  "verified_after": true,
+  "performance_provenance_qualified": true
+}

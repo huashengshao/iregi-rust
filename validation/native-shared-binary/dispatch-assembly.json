@@ -1,0 +1,63 @@
+{
+  "scope": "Static machine-code evidence that generated B0/C0 blocks call the shared non-inlined arithmetic loop. Does not establish speedup or dynamic cache behavior.",
+  "symbols": [
+    {
+      "label": "b0-candidate-block0",
+      "symbol": {
+        "address": "00000000011f2480",
+        "bytes": 31562,
+        "kind": "t",
+        "name": "native_shared_binary_probe::b0::candidate::batch_block_0::<f64>"
+      },
+      "assembly_sha256": "f9e5209f93e9fe0e33f7325831971f40d0adfe9d2a01ced642264cb66857865e",
+      "direct_calls_to_shared_binary": 45,
+      "sample_shared_calls": [
+        "11f27a9:\te8 a2 0f 1d 00       \tcall   13c3750 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, true>>",
+        "11f2820:\te8 2b 0f 1d 00       \tcall   13c3750 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, true>>",
+        "11f2883:\te8 c8 0e 1d 00       \tcall   13c3750 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, true>>",
+        "11f2961:\te8 ea 0d 1d 00       \tcall   13c3750 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, true>>"
+      ]
+    },
+    {
+      "label": "c0-candidate-block0",
+      "symbol": {
+        "address": "0000000000969450",
+        "bytes": 23839,
+        "kind": "t",
+        "name": "native_shared_binary_probe::c0::candidate::batch_block_0::<f64>"
+      },
+      "assembly_sha256": "f688b97086f140ac8502272c2173c9312326e09c917b3034820839d16b2efcb7",
+      "direct_calls_to_shared_binary": 72,
+      "sample_shared_calls": [
+        "9695fd:\te8 4e a1 a5 00       \tcall   13c3750 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, true>>",
+        "96963b:\te8 90 92 a5 00       \tcall   13c28d0 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, false, false>>",
+        "96967b:\te8 d0 a0 a5 00       \tcall   13c3750 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, true>>",
+        "9696a4:\te8 27 92 a5 00       \tcall   13c28d0 <native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, false, false>>"
+      ]
+    },
+    {
+      "label": "shared-add",
+      "symbol": {
+        "address": "00000000013c28d0",
+        "bytes": 3700,
+        "kind": "t",
+        "name": "native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, false, false>"
+      },
+      "assembly_sha256": "a506a44ae6d0cc9737a56d5eac95b462fbff9fcc58d2f7100e44dea081b008fa",
+      "direct_calls_to_shared_binary": 0,
+      "sample_shared_calls": []
+    },
+    {
+      "label": "shared-mul",
+      "symbol": {
+        "address": "00000000013c3750",
+        "bytes": 4294,
+        "kind": "t",
+        "name": "native_shared_binary_probe::shared_binary_kernel::shared_binary::<f64, true, false>"
+      },
+      "assembly_sha256": "aa1e2af997a67fbb17adcaee0ee8c11fff2cd08da45b6b9d42a27a59842bed56",
+      "direct_calls_to_shared_binary": 0,
+      "sample_shared_calls": []
+    }
+  ]
+}

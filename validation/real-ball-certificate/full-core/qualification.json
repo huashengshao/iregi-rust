@@ -1,0 +1,518 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-10-23T19:08:36.999104+00:00",
+  "status": "completed_private_qualification",
+  "source_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+  "candidate_certificate_sha256": "9a89286f2e7f2c515ac48284c3ddbff101bec83cbab191c93bc263a0a50a5fc2",
+  "baseline_certificate_sha256": "1bb69027a7ae3c5262dca88fc7eaf3da63d47f700232e426d449267c7c6ac8c9",
+  "production_adoption": false,
+  "scope": "Immutable full6b24 core versus same source with only slim certificate; no proof receipts. Current certified-planar API interaction remains separate/unqualified.",
+  "correctness": {
+    "core_tests": {
+      "passed": 88,
+      "ignored": 2,
+      "groups": {
+        "execution": 35,
+        "invariant_certificate": 8,
+        "exact_zero": 4,
+        "stability": 38,
+        "rescue": 3
+      }
+    },
+    "kernel": {
+      "packets": 8,
+      "successful_lanes": 100,
+      "invalid_lanes": 7,
+      "exact_complex_laurent_slots": 6000
+    },
+    "typed": {
+      "cases": 15,
+      "successful_lanes": 60,
+      "invalid_lanes": 15,
+      "exact_complex_laurent_taylor_slots": 3600,
+      "working_bits": [
+        53,
+        106,
+        128
+      ],
+      "requested_bits": 53,
+      "carriers": [
+        "ordinary",
+        "static firstDual",
+        "dynamic firstDual",
+        "static mixedDual",
+        "dynamic mixedDual"
+      ]
+    },
+    "physical": {
+      "packets": 2,
+      "batches": [
+        1,
+        3
+      ],
+      "paired_complex_slots": 256,
+      "variant_lanes_independently_checked": 8,
+      "tensor_max_normalized_error": 3.540129055639618e-15,
+      "graph_max_normalized_error": 8.014058084304107e-15,
+      "tolerance": 1e-10,
+      "reference": "all3 canonical preserved originalIREGI modes and preserved selected MadLoop ggH graph",
+      "baseline_link_scope": "Reused completed immutable6b24 Cargo binary; separately linked candidate. Correctness only."
+    },
+    "typed_protocol_mutation_checks": 31
+  },
+  "performance": {
+    "scope": "Four identical-source,identically linked publicggH tensor-kernel workloads; no physical end-to-end or reference comparison",
+    "protocol": {
+      "blocks": 21,
+      "warmup_blocks": 5,
+      "calibration_initial_warmup_calls": 5,
+      "minimum_target_block_ms": 30,
+      "order": "alternating baseline-first/candidate-first",
+      "same_iterations_for_both": true,
+      "profile": false,
+      "cache": "Persistent warm topology/rank plans; repeated fixed-point lanes; no output memoization; identical post-timing full outputs requested.",
+      "statistics": "existing validation/benchmark/run.py ratio_summary; 10000 paired bootstrap median resamples;99%CI;width<=2%",
+      "request_timeout_seconds": 90
+    },
+    "cpu_affinity": [
+      254
+    ],
+    "status": "completed",
+    "provenance_qualified": true,
+    "producer_exit_codes": {
+      "baseline": 0,
+      "candidate": 0
+    },
+    "rows": [
+      {
+        "id": "real-ball-ggh-real-b1",
+        "baseline": {
+          "samples_ns": [
+            577783.1794871795,
+            567134.8205128205,
+            561902.358974359,
+            568258.282051282,
+            559986.9743589744,
+            564801.3461538461,
+            560374.5384615385,
+            575054.4615384615,
+            568503.4102564103,
+            564187.6282051282,
+            558188.7564102564,
+            595006.0897435897,
+            590938.7564102564,
+            570772.2564102564,
+            562756.2051282051,
+            633393.4102564103,
+            564913.0128205129,
+            570095.7307692308,
+            562920.1794871795,
+            567340.0769230769,
+            564899.282051282
+          ],
+          "unit": "ns/batch",
+          "median_ns": 567134.8205128205,
+          "ci99_ns": [
+            562920.1794871795,
+            570772.2564102564
+          ],
+          "minimum_ns": 558188.7564102564,
+          "maximum_ns": 633393.4102564103,
+          "relative_mad": 0.007431462278810522
+        },
+        "candidate": {
+          "samples_ns": [
+            327075.1538461539,
+            321612.9358974359,
+            328535.28205128206,
+            320434.73076923075,
+            325469.1153846154,
+            321815.1282051282,
+            324570.26923076925,
+            320624.858974359,
+            333091.3205128205,
+            319920.76923076925,
+            337630.9487179487,
+            348966.0,
+            334083.8846153846,
+            325752.4487179487,
+            330443.8717948718,
+            327612.58974358975,
+            331870.9358974359,
+            325740.6538461539,
+            325964.6282051282,
+            328396.4358974359,
+            325778.21794871794
+          ],
+          "unit": "ns/batch",
+          "median_ns": 325964.6282051282,
+          "ci99_ns": [
+            324570.26923076925,
+            330443.8717948718
+          ],
+          "minimum_ns": 319920.76923076925,
+          "maximum_ns": 348966.0,
+          "relative_mad": 0.012729908833509189
+        },
+        "ratio": {
+          "samples": [
+            0.5660863200213868,
+            0.5670837414049514,
+            0.5846839345023536,
+            0.5638892399641495,
+            0.5812083678503145,
+            0.5697846338302973,
+            0.5792023851080919,
+            0.5575556411067243,
+            0.5859090983510326,
+            0.5670467646526484,
+            0.6048687739417621,
+            0.5864914763315825,
+            0.5653443457403706,
+            0.5707222890732205,
+            0.5871883220187528,
+            0.5172339725021226,
+            0.5874726344866119,
+            0.571378868960537,
+            0.5790601227017338,
+            0.5788352511221619,
+            0.5767014197039527
+          ],
+          "median": 0.5767014197039527,
+          "ci99": [
+            0.5670467646526484,
+            0.5846839345023536
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.030582844513819943,
+          "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+        }
+      },
+      {
+        "id": "real-ball-ggh-real-b32",
+        "baseline": {
+          "samples_ns": [
+            15130524.2,
+            15109916.0,
+            15086052.0,
+            15168122.2,
+            15735842.4,
+            15732206.4,
+            15184732.2,
+            15266980.6,
+            15426521.4,
+            15572321.8,
+            17170874.0,
+            15961637.4,
+            15831845.0,
+            15768342.6,
+            15492025.4,
+            15548349.6,
+            15995041.4,
+            15909147.2,
+            15967753.2,
+            15975749.2,
+            15920365.2
+          ],
+          "unit": "ns/batch",
+          "median_ns": 15732206.4,
+          "ci99_ns": [
+            15266980.6,
+            15920365.2
+          ],
+          "minimum_ns": 15086052.0,
+          "maximum_ns": 17170874.0,
+          "relative_mad": 0.015266835044828803
+        },
+        "candidate": {
+          "samples_ns": [
+            7483369.8,
+            7417607.6,
+            7587808.2,
+            8310383.0,
+            8161536.4,
+            8149886.2,
+            7568302.0,
+            7492769.8,
+            7568440.0,
+            7575142.0,
+            8074440.0,
+            8247588.6,
+            8278196.8,
+            7737432.8,
+            7839051.0,
+            7703606.6,
+            8226348.6,
+            8954421.6,
+            8331483.0,
+            8362635.2,
+            8367789.2
+          ],
+          "unit": "ns/batch",
+          "median_ns": 8074440.0,
+          "ci99_ns": [
+            7575142.0,
+            8278196.8
+          ],
+          "minimum_ns": 7417607.6,
+          "maximum_ns": 8954421.6,
+          "relative_mad": 0.036330593824463395
+        },
+        "ratio": {
+          "samples": [
+            0.49458760985954475,
+            0.49090991637544507,
+            0.5029684505926402,
+            0.5478847605803177,
+            0.5186590074135465,
+            0.5180383471195751,
+            0.4984152437011698,
+            0.4907826895384933,
+            0.490612225773725,
+            0.48644910484703696,
+            0.47024047814921943,
+            0.5167131913421363,
+            0.5228826330727719,
+            0.49069410757221876,
+            0.5060055607706401,
+            0.49546137038235877,
+            0.5143061774132075,
+            0.5628473661994906,
+            0.5217692743397362,
+            0.5234580923441137,
+            0.5256028423267577
+          ],
+          "median": 0.5060055607706401,
+          "ci99": [
+            0.4909099163754451,
+            0.5217692743397362
+          ],
+          "gate": "inconclusive-noise",
+          "relative_ci_width": 0.06098620322925435,
+          "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+        }
+      },
+      {
+        "id": "real-ball-ggh-complex-b1",
+        "baseline": {
+          "samples_ns": [
+            564812.2363636363,
+            583899.6,
+            577546.8181818182,
+            584802.8727272727,
+            583377.0363636364,
+            686055.9818181818,
+            586055.9636363636,
+            584887.4181818182,
+            583577.9454545454,
+            586492.3272727273,
+            576749.5636363636,
+            565300.6,
+            561996.9454545454,
+            575358.2909090909,
+            578519.5636363636,
+            575532.1090909091,
+            578845.4,
+            580339.4,
+            575746.8363636363,
+            580491.0181818182,
+            582103.7636363637
+          ],
+          "unit": "ns/batch",
+          "median_ns": 580339.4,
+          "ci99_ns": [
+            575746.8363636363,
+            583899.6
+          ],
+          "minimum_ns": 561996.9454545454,
+          "maximum_ns": 686055.9818181818,
+          "relative_mad": 0.007691141989106132
+        },
+        "candidate": {
+          "samples_ns": [
+            571208.6181818182,
+            579691.5818181818,
+            583711.9636363636,
+            585714.1454545455,
+            590138.7090909091,
+            584329.5818181818,
+            588219.4181818182,
+            596943.0909090909,
+            587546.6909090909,
+            588786.1636363637,
+            573013.9090909091,
+            563148.9636363636,
+            564424.6,
+            577219.9272727272,
+            582224.8545454545,
+            588495.6181818182,
+            573981.5636363636,
+            578217.5636363636,
+            579205.3818181818,
+            580709.5818181818,
+            579437.7636363637
+          ],
+          "unit": "ns/batch",
+          "median_ns": 580709.5818181818,
+          "ci99_ns": [
+            577219.9272727272,
+            587546.6909090909
+          ],
+          "minimum_ns": 563148.9636363636,
+          "maximum_ns": 596943.0909090909,
+          "relative_mad": 0.011585857014366792
+        },
+        "ratio": {
+          "samples": [
+            1.0113247932788476,
+            0.9927932504461072,
+            1.010674711141088,
+            1.0015582562428653,
+            1.0115905706015105,
+            0.851722887496141,
+            1.0036915494077234,
+            1.0206119542881416,
+            1.0068007118594144,
+            1.0039111106095848,
+            0.993522917430745,
+            0.9961938190696483,
+            1.0043196934878196,
+            1.0032356123011539,
+            1.0064047806539174,
+            1.022524388971774,
+            0.9915973481630217,
+            0.9963438009488302,
+            1.0060070594158874,
+            1.0003765151044854,
+            0.9954200605346619
+          ],
+          "median": 1.0036915494077234,
+          "ci99": [
+            0.9961938190696483,
+            1.0068007118594144
+          ],
+          "gate": "parity",
+          "relative_ci_width": 0.010567880935159042,
+          "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+        }
+      },
+      {
+        "id": "real-ball-ggh-complex-b32",
+        "baseline": {
+          "samples_ns": [
+            16403230.0,
+            16397185.0,
+            16303429.5,
+            16148974.0,
+            16255799.5,
+            16440265.5,
+            15955043.5,
+            16005693.5,
+            15913463.0,
+            15922878.0,
+            15954223.5,
+            15964363.5,
+            16021928.5,
+            16012673.5,
+            16122304.0,
+            16074159.0,
+            16056963.5,
+            16045979.0,
+            16043754.0,
+            16080039.0,
+            16110929.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 16056963.5,
+          "ci99_ns": [
+            16005693.5,
+            16148974.0
+          ],
+          "minimum_ns": 15913463.0,
+          "maximum_ns": 16440265.5,
+          "relative_mad": 0.005730255287682506
+        },
+        "candidate": {
+          "samples_ns": [
+            16331420.0,
+            16217094.5,
+            16113829.0,
+            16082023.5,
+            15967928.5,
+            15970398.5,
+            15897453.0,
+            15869893.0,
+            15730877.0,
+            15443341.5,
+            15775152.5,
+            15948593.0,
+            16181939.5,
+            16138094.5,
+            15923683.0,
+            16007303.5,
+            16307004.5,
+            16034708.5,
+            16027373.5,
+            15958158.0,
+            15938703.0
+          ],
+          "unit": "ns/batch",
+          "median_ns": 15970398.5,
+          "ci99_ns": [
+            15923683.0,
+            16113829.0
+          ],
+          "minimum_ns": 15443341.5,
+          "maximum_ns": 16331420.0,
+          "relative_mad": 0.006293236828122981
+        },
+        "ratio": {
+          "samples": [
+            0.9956222036757395,
+            0.9890169867571781,
+            0.9883705143141815,
+            0.9958541948237702,
+            0.9822911816794985,
+            0.9714197437991497,
+            0.9963904517088906,
+            0.9915154879105988,
+            0.9885263188785496,
+            0.9698838049252152,
+            0.9887759501426064,
+            0.9990121435157749,
+            1.0099870000044002,
+            1.0078326083398879,
+            0.9876803588370496,
+            0.9958408088410722,
+            1.0155721223380747,
+            0.9992976121930609,
+            0.9989790107726658,
+            0.9924203542043648,
+            0.9893099895108469
+          ],
+          "median": 0.9924203542043648,
+          "ci99": [
+            0.9885263188785496,
+            0.9989790107726658
+          ],
+          "gate": "improvement",
+          "relative_ci_width": 0.010532524700681181,
+          "definition": "slim candidate / original6b24 paired block latency;99% bootstrap median interval;CI width<=2%"
+        }
+      }
+    ],
+    "real_domain_gate_passed": false,
+    "all_families_passed": false,
+    "quiet_window_sha256": "24bd88bfdf998f27ef4597f247d8ccf219d51e92eca4db6e8c5f216c801bf974"
+  },
+  "limitations": [
+    "One first timing run; two real-input confidence widths exceed2% and remain inconclusive.",
+    "No new certified-planar full-core coverage is claimed.",
+    "Ignored highpoint rescue tests and unselected namespaces remain explicit; this is not complete project acceptance.",
+    "Binaries and full dependency archives are retained locally under target and hash-bound, not committed or guaranteed bit-reproducible.",
+    "Historical parent-directory timings concern a different original candidate and cannot be attributed to this slim variant.",
+    "Longer41-block protocol is registered only,unrun at packaging."
+  ],
+  "closure_metadata": "../slim/dependency-closure/",
+  "reproduction": "See README.md and retained scripts/build command manifests; use only the coherent complete-kinds dependency closure."
+}
