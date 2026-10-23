@@ -5,7 +5,7 @@
   "revision": null,
   "host": "AMD EPYC 9754 \u00b7 CPUs 0 / 254 \u00b7 identified kernel snapshots",
   "batch_width": null,
-  "measurement_note": "Latest optimized Rust6b24 passes eight numerical comparisons but has seven timing regressions and one noisy row; it predates later APIs/preparation. The separate original-IREGI/COLLIER table has seven COLLIER gains and one short-block inconclusive row. Private optimization cohorts do not close Rust performance acceptance. Historical sessions and80949 physical comparisons remain separate.",
+  "measurement_note": "Latest optimized TIRust 6b24 passes eight numerical comparisons but has seven timing regressions and one noisy row; it predates later APIs/preparation. The archival original-IREGI/COLLIER absolute-time table has seven COLLIER gains and one short-block inconclusive row. Private optimization cohorts do not close TIRust performance acceptance. Historical sessions and80949 physical comparisons remain separate.",
   "timing_provenance": {
     "source": "validation/benchmark/baseline-4c32ece/results.json",
     "revision": "4c32ecec25e3067cfd43a72cea204eab8cdc6bef",
@@ -11449,8 +11449,8 @@
   },
   "report_refresh": {
     "date": "2026-10-23",
-    "recorded_utc": "2026-10-23T21:19:56.392041+00:00",
-    "scope": "Evidence-only extension after the five completed timing cohorts: private selected-native whole-reduction correctness, private lazy receipt capture, a stopped exact fused-core CSE census incomplete N4 COLLIER correctness and a private thin-N6 rank2 rejection. No new timing, backend or production adoption. The initial eight IREGI/COLLIER timing rows remain unchanged, including one short-block inconclusive row. Primary measured Rust6b24 remains seven regressions and one noisy row; production remains06706e2.",
+    "recorded_utc": "2026-10-23T21:57:52.041957+00:00",
+    "scope": "Presentation-only checkpoint: label the implementation TIRust, put TIRust in every displayed timing-ratio numerator, and retain original IREGI/COLLIER absolute timings/outcomes while keeping reference/reference ratios in archival metadata. All measured inputs, values, uncertainties, gates and source scopes are unchanged. Original dotted-integral coverage and failed/noisy rows remain explicit. PyO3 and marimo work is planned, without an executed qualification claim; newly active private cohorts are excluded.",
     "new_evidence": [
       "stack_reuse_factory_qualification",
       "stack_reuse_integration",
@@ -43766,7 +43766,7 @@
       {
         "label": "Native master replay",
         "outcomes": "8 families: 8 gains; all 168 pairs faster.",
-        "decision": "Native/Symbolica ratios 0.143\u20130.809 on actual A0\u2013C0 master bundles. Raw kernels exclude adapter validation/allocation, recurrence and contraction. No production switch or IREGI parity claim.",
+        "decision": "TIRust(candidate)/TIRust(baseline) ratios 0.143\u20130.809 on actual A0\u2013C0 master bundles: native candidate, Symbolica baseline. Raw kernels exclude adapter validation/allocation, recurrence and contraction. No production switch or IREGI parity claim.",
         "source_key": "native_master_replay_performance"
       },
       {
@@ -48790,5 +48790,25 @@
         "The residual helper lacks explicit NaN guards; this audit enforced finite lhs, rhs, residual and normalized error for every actual identity slot. General malformed-data robustness is not qualified."
       ]
     }
+  },
+  "report_presentation_policy": {
+    "implementation_name": "TIRust",
+    "displayed_ratio_numerator": "TIRust",
+    "reference_comparison_ratios": [
+      "TIRust/IREGI",
+      "TIRust/COLLIER",
+      "TIRust/MadLoop"
+    ],
+    "optimization_ratio": "TIRust(candidate)/TIRust(baseline)",
+    "reference_only_cohort": "Absolute paired timings and qualified outcomes remain displayed; original reference/reference ratios and confidence intervals are archival metadata only.",
+    "cross_session_ratios": "Never derive TIRust/COLLIER from separate historical sessions.",
+    "historical_evidence_identity": "Source paths, rust_* data keys, exact numerical records and dependency/API names remain immutable.",
+    "new_four_engine_cohort": "Pending qualified results; no invented values."
+  },
+  "planned_python_tools": {
+    "status": "planned_not_qualified",
+    "plan": "PLAN.md",
+    "scope": "Friendly documented PyO3 bindings and reactive marimo notebooks following the pinned Symbolica Community extension guide; core remains Python-free.",
+    "executed_binding_or_notebook_validation_claimed": false
   }
 }
