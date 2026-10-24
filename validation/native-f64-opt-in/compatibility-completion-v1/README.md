@@ -1,0 +1,7 @@
+# Two-check metadata compatibility continuation
+
+This package records only the two combined-feature test metadata checks left unfinished by the preceding bounded attempt. The master test call has a 210-second limit, core tests 60 seconds, and the complete stage 300 seconds including cleanup. The core test call reuses the previously successful combined-feature master metadata; none of the six successful earlier calls is repeated.
+
+The cumulative matrix in qualification.json accounts for the default/selective eight successful checks, six successful broad/combined-library checks and these two final checks. Inspect its explicit status; a saved-evidence audit passing by itself never converts a failed compiler call into a pass. The original 60-second timeout, later aggregate-budget cancellation, unrun rows and false producer final guard remain immutable in capability-v1 and compatibility-v1. The independent later rehash is supplementary evidence, not a rewrite of those terminal records.
+
+This is metadata compatibility on the private qualified source snapshot. It adds no broad D0 runtime coverage, numerical benchmark, production integration or default-policy change. The actual public API and numerical qualification remain those documented in capability-v1. All exact sources are in that package's archive; this package binds the unchanged closure and retained master metadata by digest and preserves the continuation source, commands, logs and independent review.

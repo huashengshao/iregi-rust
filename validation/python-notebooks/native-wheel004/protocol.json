@@ -1,0 +1,180 @@
+{
+  "status": "FROZEN_AWAITING_ROOT_EXECUTION_GRANT",
+  "working_directory": "/shared/external/iregi/iregi-rust",
+  "wheel_path": "/shared/external/iregi/iregi-rust/target/python-interface-build/wheels-004/tirust-0.1.0-cp310-abi3-linux_x86_64.whl",
+  "wheel_sha256": "5653ece749b25a8f1c4f9f4ba5538e2b888021b9d3a3ec96ea6dabd26cf570e0",
+  "owner_preflight_receipts": [
+    {
+      "path": "target/python-interface-build/wheel-004-inspection.json",
+      "sha256": "54d9b76586e6b14280abdae023c5c2397614d5e776ec116ab606c1a87ebef901"
+    },
+    {
+      "path": "target/python-interface-build/wheel-004-import.json",
+      "sha256": "5530690703c8e4b82d57887f39cf66011b3d7a4229c91ccc96402eb41a2a5e9e"
+    },
+    {
+      "path": "target/python-interface-build/wheel-004-runtime.json",
+      "sha256": "949df28b2efff873f72e06633fb08512ff8ad6cf7ecc314c7045928e961a30d5"
+    },
+    {
+      "path": "target/python-interface-build/wheel-004-installed-typing.json",
+      "sha256": "e1a7f58d567b641d955ae0ab2bcbaefddeaa966b023d0ddb36e007a2b0524b64"
+    },
+    {
+      "path": "target/python-interface-build/wheel-004-qualification.json",
+      "sha256": "902b966aab4bcdafabff1cef861475ae469677df6838d4e58bf3d6489feb55eb"
+    }
+  ],
+  "prerequisites": [
+    "Owner confirms inspected wheel004 exact SHA/path and unchanged declared inputs",
+    "Fresh installed-owner identities and repeated initialization pass",
+    "17/17 numerical and12/12 interop/rendering tests terminal with zero skips",
+    "Installed consumer typing errors0/warnings0",
+    "Source manifest still matches every notebook/helper/test/DOT input"
+  ],
+  "execution_authorized_before_prerequisites": false,
+  "fresh_environment": ".local/notebooks-wheel004-env",
+  "requirements": "validation/python-notebooks/environment-requirements.txt",
+  "preserve_baseline_environment": ".local/notebooks-env",
+  "phases": [
+    {
+      "name": "fresh_install",
+      "cap_seconds": 180,
+      "commands": [
+        [
+          "python3",
+          "-m",
+          "venv",
+          ".local/notebooks-wheel004-env"
+        ],
+        [
+          ".local/notebooks-wheel004-env/bin/python",
+          "-m",
+          "pip",
+          "--disable-pip-version-check",
+          "install",
+          "--no-deps",
+          "-r",
+          "validation/python-notebooks/environment-requirements.txt"
+        ],
+        [
+          ".local/notebooks-wheel004-env/bin/python",
+          "-m",
+          "pip",
+          "--disable-pip-version-check",
+          "install",
+          "--no-deps",
+          "/shared/external/iregi/iregi-rust/target/python-interface-build/wheels-004/tirust-0.1.0-cp310-abi3-linux_x86_64.whl"
+        ]
+      ]
+    },
+    {
+      "name": "source_and_benchmark03_regression",
+      "total_cap_seconds": 120,
+      "commands": [
+        [
+          ".local/notebooks-wheel004-env/bin/marimo",
+          "check",
+          "--strict",
+          "examples/notebooks/01_numerator_to_integral.py",
+          "examples/notebooks/02_dots_and_derivatives.py",
+          "examples/notebooks/03_benchmark_explorer.py"
+        ],
+        [
+          ".local/notebooks-wheel004-env/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests/python",
+          "-p",
+          "test_gallery_evidence.py",
+          "-v"
+        ],
+        [
+          ".local/notebooks-wheel004-env/bin/python",
+          "validation/python-notebooks/benchmark-posthoc/execute_benchmark.py"
+        ]
+      ]
+    },
+    {
+      "name": "actual_native_notebooks",
+      "cap_seconds": 360,
+      "commands": [
+        [
+          ".local/notebooks-wheel004-env/bin/python",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests/python",
+          "-p",
+          "test_gallery_runtime.py",
+          "-k",
+          "NativeGalleryTests",
+          "-v"
+        ]
+      ]
+    },
+    {
+      "name": "single_export_each",
+      "per_command_cap_seconds": 180,
+      "total_cap_seconds": 360,
+      "commands": [
+        [
+          ".local/notebooks-wheel004-env/bin/marimo",
+          "export",
+          "html",
+          "examples/notebooks/01_numerator_to_integral.py",
+          "-o",
+          "target/gallery/wheel004-first.html"
+        ],
+        [
+          ".local/notebooks-wheel004-env/bin/marimo",
+          "export",
+          "html",
+          "examples/notebooks/02_dots_and_derivatives.py",
+          "-o",
+          "target/gallery/wheel004-dots.html"
+        ],
+        [
+          ".local/notebooks-wheel004-env/bin/marimo",
+          "export",
+          "html",
+          "examples/notebooks/03_benchmark_explorer.py",
+          "-o",
+          "target/gallery/wheel004-benchmarks.html"
+        ]
+      ]
+    },
+    {
+      "name": "real_browser",
+      "total_cap_seconds": 120,
+      "environment": ".local/notebooks-browser-env with existing Playwright1.55.0/Chromium140 and scoped recorded Nix loader",
+      "inputs": [
+        "target/gallery/wheel004-first.html",
+        "target/gallery/wheel004-dots.html",
+        "target/gallery/wheel004-benchmarks.html"
+      ],
+      "views": [
+        "desktop1440 light",
+        "mobile390 dark"
+      ],
+      "checks": [
+        "Actual graph SVG and math rich output; no replacement renderer",
+        "Successful embedded cells and exact native outputs",
+        "All03 cohort/gate source bindings unchanged; readable930px chart with controlled horizontal scroll",
+        "Console/page/HTTP/failed-request counts and normal CDN URLs",
+        "Targeted screenshots of graph/numerical cards/grid/chart, no document overflow"
+      ]
+    }
+  ],
+  "preservation": [
+    "Before/after source guards for each phase",
+    "Preserve every terminal result, cap, stderr/stdout and failed HTML",
+    "No automatic retries, skipped failures, mocks, weakened tolerances or display bypass",
+    "Archive source/protocol and exact HTML gzip; no wheel/compiled library/license credential in validation capsule",
+    "No Cargo/Rust/Fortran build or timing measurement by notebook agent"
+  ],
+  "report_only_after_terminal": "Integrate separate new fixed-wheel and notebook/browser capsules; baseline003 failures/measurements stay immutable."
+}

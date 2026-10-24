@@ -1,0 +1,60 @@
+{
+  "status": "independent-evidence-review-passed",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "created_utc": "2026-10-23T23:55:08.471347+00:00",
+  "scope": "Saved-data correctness and provenance audit of the optional native-f64-abc public policy; no new build, kernel execution or timing.",
+  "input_sha256": {
+    "target/native-f64-opt-in/qualification/whole-qualification-001/provenance-audit.json": "1dd7e01dbb9ee87b12bf0f07cd2841c135b59b1099d745288452dfbab3b29bed",
+    "target/native-f64-opt-in/qualification/whole-qualification-001/independent-numerical-audit.json": "ff1b405898364f50631f80c5d3371950a4f8ec1044fc95c852cf16c894e32b71",
+    "target/native-f64-opt-in/qualification/whole-qualification-001/results.json": "95f72e919877cfb6a3826eba935bed6cc20c74f7769621f6f56f0c5f10f8a977",
+    "target/native-f64-opt-in/qualification/whole-qualification-001/responses.jsonl": "6a46653425d0f6c2fa1afde5697cdd2592726407f0d302025929b02230931c7b",
+    "target/native-f64-opt-in/qualification/whole-qualification-001/independent-admission.json": "c184e8c0ce4605a4f1b41cf6d4e180a9b18e2389d0743a1e8f4ad85383e4e595"
+  },
+  "numerical_summary": {
+    "whole_families": 8,
+    "tensor_complex_values_per_backend": 1584,
+    "master_rows_per_backend": 297,
+    "six_master_complex_outputs_per_backend": 1782,
+    "max_candidate_vs_IREGI": 3.379393444298393e-13,
+    "max_baseline_vs_IREGI": 2.4603400458595e-13,
+    "max_candidate_vs_baseline": 2.060145367735415e-13,
+    "tolerance": 1e-10,
+    "selected_cases": 34,
+    "selected_successful_lanes": 57,
+    "selected_failed_lanes_retained": 21,
+    "selected_complex_outputs_per_backend": 342,
+    "unchanged_f64_cases": 21,
+    "unchanged_f64_successful_lanes": 30,
+    "unchanged_f64_failed_lanes_retained": 6,
+    "unchanged_f64_complex_outputs_per_backend": 318,
+    "extended_master_cases": 12,
+    "extended_master_successful_lanes": 19,
+    "extended_master_complex_outputs_per_backend": 114,
+    "whole_dual_complex_values_per_policy": 40,
+    "whole_DD_Float_complex_values_per_policy": 40,
+    "scaleless_lanes_independent_identity_checks": 9,
+    "cache_interleaved_records_exact": 8
+  },
+  "protocol_summary": {
+    "requests": 38,
+    "events": 76,
+    "TIRust_responses": 30,
+    "IREGI_responses": 8,
+    "stdout_RESULT_sequence_exact": true,
+    "whole_repeats_retained_and_controls_exact": true,
+    "input_closure_bindings": 325,
+    "preparation_bindings": 322,
+    "build_bindings": 323,
+    "unique_actual_files_rehashed_by_provenance_reviewer": 417,
+    "launch_commands_and_recorded_cleanup_pass": true,
+    "invalid_timing_request_controls": 4
+  },
+  "limitations": [
+    "No performance claim and no default-policy change.",
+    "Whole-reduction qualification covers the eight retained N2/N3 rank0/1 width1/32 fixture families.",
+    "Internal direct-master repeats and shape-error checks rely on reviewed executed Rust assertions; saved complete CONTROLS repeats, whole arrays, captures and cache snapshots were independently compared.",
+    "DoubleFloat observations preserve represented rational, precision and sign; internal limb-byte parity is not claimed.",
+    "Process termination is audited from saved records, not re-executed. Compiler logs were hashed by the provenance reviewer but did not have historical build-receipt log hashes.",
+    "Broad native-batch compatibility remains incomplete: original metadata timeout and unrun rows are preserved."
+  ]
+}

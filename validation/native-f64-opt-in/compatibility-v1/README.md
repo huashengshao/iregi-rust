@@ -1,0 +1,5 @@
+# Broad/both metadata compatibility continuation
+
+This separate evidence package preserves one metadata-only attempt on the same private public source as `../capability-v1`. Its commands are the original broad/both commands relocated to a new output directory. The authorized limits were 180 seconds per master/master-test call, 60 seconds per core/core-test call, and 600 seconds in aggregate including cleanup. All later rows stop at the first failure. Consult `qualification.json` for the actual outcome, including every incomplete row.
+
+The earlier 60-second timeout and seven unrun checks remain immutable in capability-v1. No code generation, numerical execution, kernel timing, production mutation or default-policy change is part of this continuation. A saved-evidence audit passing means the records are consistent; it does not convert a failed compiler step into a compatibility pass. This package links the complete qualified Rust source archive and dependency closure rather than duplicating them. Compiled metadata outputs are retained by digest and original path in the build receipt.

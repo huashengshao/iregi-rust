@@ -1,0 +1,58 @@
+{
+  "status": "source-review-passed-no-execution",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "created_utc": "2026-10-24T00:00:02.759530+00:00",
+  "input_sha256": {
+    "target/native-f64-opt-in/qualification/compatibility-preparation.json": "d91907ccc88aa0c2a41c519ab5ee64af080bf83c01c24e07520ca7984ecda12c",
+    "target/native-f64-opt-in/qualification/compatibility-command-plan.json": "918accbe6ad16c14698227ab4470d18018712da6403bd28c0a5520adb95c7516",
+    "target/native-f64-opt-in/qualification/build_compatibility.py": "7c0d22453c909325e7c1dcfa3a0305cc58813a954dbdd0c785d7ed56dd799f9e",
+    "target/native-f64-opt-in/qualification/prepare_compatibility.py": "48d3c3f85936bc50c3173a5e31d67ad9ae550f1f4ad036d26754eb1c61fd3bcb",
+    "target/native-f64-opt-in/qualification/compatibility-protocol.md": "40642a5df8e66da92ae03e50a19db147bf41f5b0c69db861dc89f7dc1e7a2b37",
+    "target/native-f64-opt-in/qualification/build.py": "33277f40de7f00a1fdb3b5c8bbf9c27369af2d310b60b70c9dd4cf32992c7768",
+    "target/native-f64-opt-in/qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/native-f64-opt-in/qualification/preparation.json": "157477b5ea67e01d7d89df18c8263710c6b9953b9b00c0f91067022375f2279f",
+    "target/native-f64-opt-in/qualification/metadata-command-plan.json": "8d307850214daa66e0ae3b6a67b49708dad465bbceb10f18a8e1d0a0035834ea",
+    "target/native-f64-opt-in/qualification/metadata-build-001/build.json": "bbbab6c542c40fc517ca521b49d9961cebf46df702688000d5b23660dc42d671"
+  },
+  "scope": "Narrow independent metadata command, source-binding and lifecycle review. No compiler, kernel, test or benchmark executed.",
+  "checks": {
+    "frozen_input_bindings": 228,
+    "prior_qualified_public_bindings_unchanged": 219,
+    "metadata_commands": 8,
+    "commands_exactly_match_frozen_original_after_output_directory_and_caps_only": true,
+    "ordered_configurations": [
+      "broad",
+      "both"
+    ],
+    "ordered_crates": [
+      "masters",
+      "core",
+      "masters-tests",
+      "core-tests"
+    ],
+    "all_commands_emit_metadata_only": true,
+    "all_outputs_rmeta": true,
+    "same_configuration_master_metadata_for_core": true,
+    "masters_and_master_tests_timeout_seconds": 180,
+    "core_and_core_tests_timeout_seconds": 60,
+    "aggregate_seconds": 600,
+    "work_deadline_seconds": 592,
+    "cleanup_reserve_seconds": 8,
+    "cpu_affinity": [
+      20,
+      21
+    ],
+    "stop_on_first_failure": true,
+    "no_retry": true,
+    "existing_owned_process_group_lifecycle_unchanged": true,
+    "terminal_persisted_before_final_guards": true,
+    "source_and_receipt_file_hashes_checked": 104,
+    "old_failure_attempt_preserved": true
+  },
+  "findings": [],
+  "limitations": [
+    "Metadata-only compatibility does not establish broad native D0 runtime correctness or any performance claim.",
+    "Retained dependency archive mappings were compared to the prior qualified preparation; large unchanged archives were not redundantly rehashed in this source review. Runtime wrapper independently guards every bound input before, between and after invocations.",
+    "Root execution permission is separate from this source review."
+  ]
+}

@@ -1,0 +1,60 @@
+error[E0277]: the trait bound `T: numerica::domains::float::Constructible` is not satisfied
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v2/source/symbolica/src/evaluate/uniform_branch_tests.rs:230:27
+    |
+230 |     let mut output = vec![Complex::<T>::new_zero(); rows * components];
+    |                           ^^^^^^^^^^^^^^^^^^^^^^^^ the trait `numerica::domains::float::Constructible` is not implemented for `T`
+    |
+note: required by a bound in `numerica::domains::float::Complex::<T>::new_zero`
+   --> dependencies/symbolica/lib/numerica/src/domains/float/complex.rs:87:12
+    |
+ 85 |     pub fn new_zero() -> Self
+    |            -------- required by a bound in this associated function
+ 86 |     where
+ 87 |         T: Constructible,
+    |            ^^^^^^^^^^^^^ required by this bound in `Complex::<T>::new_zero`
+help: consider further restricting type parameter `T` with trait `Constructible`
+    |
+228 | fn compare_numeric<T: Real + SingleFloat + numerica::domains::float::Constructible>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows: usize, components: usize) {
+    |                                          +++++++++++++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: numerica::domains::float::Constructible` is not satisfied
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v2/source/symbolica/src/evaluate/uniform_branch_tests.rs:234:34
+    |
+234 |     let mut frozen_output = vec![Complex::<T>::new_zero(); rows * components];
+    |                                  ^^^^^^^^^^^^^^^^^^^^^^^^ the trait `numerica::domains::float::Constructible` is not implemented for `T`
+    |
+note: required by a bound in `numerica::domains::float::Complex::<T>::new_zero`
+   --> dependencies/symbolica/lib/numerica/src/domains/float/complex.rs:87:12
+    |
+ 85 |     pub fn new_zero() -> Self
+    |            -------- required by a bound in this associated function
+ 86 |     where
+ 87 |         T: Constructible,
+    |            ^^^^^^^^^^^^^ required by this bound in `Complex::<T>::new_zero`
+help: consider further restricting type parameter `T` with trait `Constructible`
+    |
+228 | fn compare_numeric<T: Real + SingleFloat + numerica::domains::float::Constructible>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows: usize, components: usize) {
+    |                                          +++++++++++++++++++++++++++++++++++++++++
+
+error[E0277]: the trait bound `T: numerica::domains::float::Constructible` is not satisfied
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v2/source/symbolica/src/evaluate/uniform_branch_tests.rs:246:33
+    |
+246 |         let mut expected = vec![Complex::<T>::new_zero(); components];
+    |                                 ^^^^^^^^^^^^^^^^^^^^^^^^ the trait `numerica::domains::float::Constructible` is not implemented for `T`
+    |
+note: required by a bound in `numerica::domains::float::Complex::<T>::new_zero`
+   --> dependencies/symbolica/lib/numerica/src/domains/float/complex.rs:87:12
+    |
+ 85 |     pub fn new_zero() -> Self
+    |            -------- required by a bound in this associated function
+ 86 |     where
+ 87 |         T: Constructible,
+    |            ^^^^^^^^^^^^^ required by this bound in `Complex::<T>::new_zero`
+help: consider further restricting type parameter `T` with trait `Constructible`
+    |
+228 | fn compare_numeric<T: Real + SingleFloat + numerica::domains::float::Constructible>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows: usize, components: usize) {
+    |                                          +++++++++++++++++++++++++++++++++++++++++
+
+error: aborting due to 3 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

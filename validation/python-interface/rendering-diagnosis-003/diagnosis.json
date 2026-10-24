@@ -1,0 +1,17 @@
+{
+  "status": "CAUSE_CONFIRMED_NO_FIX_EXECUTED",
+  "wheel_sha256": "cdb52418ca8dd2909d6d2b88b6aed82c4d3ff64e9eb09a935336fbb2345d8ce0",
+  "method": "GDB17.2 child-only, original installed dev wheel, shipped Rust1.99 pretty-printers; no source/checkout mutation",
+  "observed_origin": "Array[Float(-2.0656971905204369), Float(0.19997417315702992)]",
+  "observed_command_coordinate": "Map[(Text(\"$serde_json::private::Number\"), Text(\"-1.5580763323135167\"))]",
+  "cause": "native SVG serde_json::Value command coordinates serialize as private Number marker maps under required exact JSON arbitrary_precision; CBOR numeric coordinate decoder correctly rejects maps",
+  "second_site": "SearchGeometry.edge_lines also passes serde_json::Value to CBOR and needs the same typed wire fix",
+  "not_the_cause": [
+    "third-coordinate tail",
+    "missing/corrupt fonts",
+    "invalid numerical coordinate geometry"
+  ],
+  "proposed_fix": "typed untagged line/cubic tuples and typed Vec<Line> collision records; no decoder relaxation, JSON feature disablement or layout algebra change",
+  "baseline_capsule": "validation/python-interface/checkpoint-wheel-003",
+  "baseline_qualification_sha256": "ca11354edf5dc5c3fad933f3fa07ce642a39428ab6f4d3b4f3322ca1ed55c73e"
+}

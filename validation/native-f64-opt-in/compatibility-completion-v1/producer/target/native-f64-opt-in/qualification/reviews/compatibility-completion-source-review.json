@@ -1,0 +1,62 @@
+{
+  "status": "source-review-passed-no-execution",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "created_utc": "2026-10-24T00:15:32.884189+00:00",
+  "scope": "Narrow mechanical command, retained metadata, source-binding and lifecycle review for exactly two unfinished combined-feature metadata checks.",
+  "input_sha256": {
+    "target/native-f64-opt-in/qualification/compatibility-completion-preparation.json": "fc899d56ca74f9f6df30e2fdc1840dd14ed62ba337b27c6b359912cf3cc4f119",
+    "target/native-f64-opt-in/qualification/compatibility-completion-command-plan.json": "b743b574085b4afded79f06ed3ff1d269384539a381e096b38784a2faa9cd8ad",
+    "target/native-f64-opt-in/qualification/build_compatibility_completion.py": "fc5ee76a12dc974faccea39318a4e9b5d72214cb31c1996e1a853a260fd135d5",
+    "target/native-f64-opt-in/qualification/prepare_compatibility_completion.py": "37f40bbf30b7b83684097cc2dab7ed780ccf4142f25082b7c253fa1ef8d112f9",
+    "target/native-f64-opt-in/qualification/compatibility-completion-proposal.md": "67f4fdccc051a41c231d9507cca9487b5ddf1977a285087d09c8639eaf884c28",
+    "target/native-f64-opt-in/qualification/compatibility-preparation.json": "d91907ccc88aa0c2a41c519ab5ee64af080bf83c01c24e07520ca7984ecda12c",
+    "target/native-f64-opt-in/qualification/compatibility-command-plan.json": "918accbe6ad16c14698227ab4470d18018712da6403bd28c0a5520adb95c7516",
+    "target/native-f64-opt-in/qualification/build.py": "33277f40de7f00a1fdb3b5c8bbf9c27369af2d310b60b70c9dd4cf32992c7768",
+    "target/native-f64-opt-in/qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/native-f64-opt-in/qualification/compatibility-build-001/build.json": "cf17193a73e404d8f5ffbcdfdc53ca693008570bcbf8ca505cda3e59754a9d8a",
+    "target/native-f64-opt-in/qualification/compatibility-build-001/both/libiregi_masters.rmeta": "b34c2f4d8cc40fec1f96a8935bcb3526b7738a9fe67f9f4561aaf036c332cc00",
+    "target/native-f64-opt-in/qualification/reviews/compatibility-build-001-independent-audit.json": "02374f8947c117d9a7cdb06874e3f6bb523dc08ad1bbaa8d1024232c334cf3c8"
+  },
+  "checks": {
+    "commands": 2,
+    "labels": [
+      "both-masters-tests",
+      "both-core-tests"
+    ],
+    "previous_completed_calls_repeated": 0,
+    "previous_228_input_bindings_unchanged": true,
+    "current_input_bindings": 238,
+    "source_and_receipt_hashes_checked": 114,
+    "command_changes_only": [
+      "new output directory and its dependency search path",
+      "master-test cap raised to authorized210seconds",
+      "core-test explicit master extern uses retained successful combined-feature metadata",
+      "core-test adds retained metadata directory dependency search path"
+    ],
+    "retained_master_bytes": 3266929,
+    "retained_master_sha256": "b34c2f4d8cc40fec1f96a8935bcb3526b7738a9fe67f9f4561aaf036c332cc00",
+    "metadata_only": true,
+    "same_compiler_linker_externs_features_environment": true,
+    "same_frozen_public_source_and_fixtures": true,
+    "same_owned_group_lifecycle": true,
+    "master_test_cap_seconds": 210,
+    "core_test_cap_seconds": 60,
+    "aggregate_seconds": 300,
+    "work_deadline_seconds": 292,
+    "cleanup_reserve_seconds": 8,
+    "cpu_affinity": [
+      20,
+      21
+    ],
+    "one_attempt_first_failure_stops": true,
+    "terminal_record_before_final_hashes": true,
+    "prior_incomplete_attempt_and_audit_bound": true
+  },
+  "findings": [],
+  "limitations": [
+    "No compiler, numerical kernel, test binary or timing ran during this review.",
+    "Metadata completion does not establish broad native-family runtime correctness or performance.",
+    "Prior failed/cancelled receipts and their unverified final in-run guard remain unchanged; retained metadata is admitted using separately recorded successful-step and later independent rehash evidence.",
+    "Large unchanged dependency archives were not rehashed in this source review; the wrapper guards all frozen bindings before, between and after execution."
+  ]
+}

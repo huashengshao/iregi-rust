@@ -1,0 +1,36 @@
+{
+  "schema": "iregi-source-review-v1",
+  "created_utc": "2026-10-23T23:37:59.070236+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "status": "no-remaining-source-review-blocker-in-public-test-validator",
+  "scope": "Read-only source audit of independent saved public-test log/metadata validator; no execution approval or result admission.",
+  "bindings": {
+    "target/native-f64-opt-in/qualification/validate_public_tests.py": "c7ab9e29798baac4e32700b88a2da65cc2d3c16533459f7e5752040f4aebb06f",
+    "target/native-f64-opt-in/qualification/run_public_tests.py": "826b3a3ef2c7a295eb10c9b479ac77cf5857a42c6bb27091bb33a77af41da3b1",
+    "target/native-f64-opt-in/qualification/preparation.json": "157477b5ea67e01d7d89df18c8263710c6b9953b9b00c0f91067022375f2279f",
+    "target/native-f64-opt-in/qualification/public-build-001/build.json": "a468aac3f7c39f1358c88e39fd6c62912e3f7cf744d2b653ece239898b92546c"
+  },
+  "checked": [
+    "All17 ordered configuration/crate/full-test-name records and4exact policy listing inventories required.",
+    "Each case log hash is checked, with exactly one libtest full-name header matching the requested case and exactly one1passed/0failed/0ignored/0measured summary.",
+    "Cases and listings require exact integer zero returncodes, no timeout/error/cancellation, positive integer owned groups and group-gone markers.",
+    "Commands must select CPU22 via the pinned taskset and the frozen executable with exact test/listing arguments.",
+    "Original and executed-copy executable hashes and complete build/preparation/runtime input mappings are admitted.",
+    "Aggregate elapsed must be finite, non-boolean, nonnegative and at most180seconds, with unchanged inputs and no cleanup errors.",
+    "Importing validator and runner defines functions/objects only; neither main executes on import."
+  ],
+  "resolved_findings": [
+    "Generic one-pass summaries previously allowed swapped successful case logs; final code additionally verifies the exact emitted libtest name.",
+    "Returncode equality previously admitted JSON false; final code requires exact int zero."
+  ],
+  "limitations": [
+    "New validator is separately bound here; it is not part of the already compiled219-input closure.",
+    "No compiler, test, numerical kernel, lifecycle test or timing was run by this source review.",
+    "Actual saved results require independent admission after the producer reaches terminal state."
+  ],
+  "mutations": {
+    "production": false,
+    "reviewed_sources": false,
+    "only_this_append_only_receipt_written": true
+  }
+}

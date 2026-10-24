@@ -1,0 +1,50 @@
+{
+  "schema": "iregi-source-review-v1",
+  "created_utc": "2026-10-23T23:30:24.654926+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "status": "no-remaining-blocker-in-reviewed-runtime-lifecycle-and-accounting-scope",
+  "scope": "Source-only lifecycle, owned-process provenance, complete stdout/raw response accounting, and public unit-runner exit admission. This is not runtime authorization or numerical admission.",
+  "bindings": {
+    "target/native-f64-opt-in/qualification/interactive.py": "18bd905384b99c45a8b1b21fa7e10e5024f7625ee62ec07069e193a53496d519",
+    "target/native-f64-opt-in/qualification/run_whole.py": "a1139ddc69110e07a10bf2d12d068002caa9ea79ebb412f4642788e7c822c203",
+    "target/native-f64-opt-in/qualification/validate_whole.py": "bedaac60f041e24a1d406adf7cee5dde2f676fdfcf9fd913b36cdb5e88806c9c",
+    "target/native-f64-opt-in/qualification/run_public_tests.py": "826b3a3ef2c7a295eb10c9b479ac77cf5857a42c6bb27091bb33a77af41da3b1"
+  },
+  "reviewed_protocol": {
+    "whole_request_count": 38,
+    "request_response_event_count": 76,
+    "tirust_responses": 30,
+    "iregi_responses": 8,
+    "whole_case_count": 8,
+    "initial_repeat_reference_requests": 24,
+    "control_requests": 2,
+    "retained_case_requests": 8,
+    "invalid_timing_requests": 4,
+    "whole_aggregate_cap_seconds": 120,
+    "runtime_cpu": 22,
+    "public_test_inventory": 17
+  },
+  "resolved_findings": [
+    "Complete raw stdout is retained and hashed for both sessions; pending/extra RESULT records are rejected before requests and after terminal drain.",
+    "Independent saved-data validation requires exact equality of emitted RESULT sequence/count and captured response events, including all 38 scheduled responses.",
+    "Exactly two launch records are required, with pinned taskset, CPU22, matching frozen executable paths, positive distinct integer process group IDs and matching terminal identities.",
+    "Terminal admission requires exit0, owned group gone and expected 30/8 received response counts.",
+    "Public unit listings and individual tests require execute status exited in addition to exit code and timeout checks, preventing continuation after lifecycle failure."
+  ],
+  "other_reviewed_properties": [
+    "All eight initial and retained case rows are prelisted; incomplete rows remain visible on producer failure.",
+    "Owned executable copies and source/closure hashes are checked; complete response admission is recomputed by the saved-data validator.",
+    "Current-process exact repeat comparison and retained-record checks are preserved; the independent validator uses canonical JSON with nonfinite JSON forbidden."
+  ],
+  "limitations": [
+    "The child-owned numerical admission.py implementation was outside this review and remains pending independent review.",
+    "No compiler, test, numerical kernel, process-lifecycle fault injection or timing was executed.",
+    "No complete runtime preparation freeze or execution grant is asserted by this receipt.",
+    "The already frozen metadata stage inputs were neither modified nor requalified."
+  ],
+  "mutations": {
+    "production": false,
+    "reviewed_sources": false,
+    "only_this_append_only_receipt_written": true
+  }
+}

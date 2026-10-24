@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "status": "build_and_necessary_domain_evidence_review_passed",
+  "reviewer": "/root/numeric_batch_audit/masters_review",
+  "scope": "Independent saved-data and provenance review of completed build002/domain002 only. No rerun, candidate import, compilation, Symbolica process, determinant/rank/inverse recomputation or scalar evaluation was performed.",
+  "bound_evidence_sha256": {
+    "target/public-highpoint/thin-n7-rank0-api2/protocol/protocol.json": "fb76a6ae1369251f7be249bc52076aac3f9237edc2cbb9f909ac2650ba0a36de",
+    "target/public-highpoint/thin-n7-rank0-api2/protocol/independent-review.json": "2e111456003163030cf489e14b66d60b823908740eed965d4461c98204549ac2",
+    "target/public-highpoint/thin-n7-rank0-api2/protocol/grants/build_driver.json": "d86fd77479ace80d38d58184f33573cc9e6876cd6ea5c599e94a4dc8d8246f93",
+    "target/public-highpoint/thin-n7-rank0-api2/protocol/grants/domain.json": "c558772fd86f23ee2818b17f1e88acf6298f80cd10deb7262fd73ee45eec3a31",
+    "target/public-highpoint/thin-n7-rank0-api2/runs/build_driver-002/run.json": "649b52a656e96df44dfe1c5008be5555a503075187679bc27e1495e0edc1f956",
+    "target/public-highpoint/thin-n7-rank0-api2/runs/domain-002/run.json": "661c21eee8e06c20382e1dca437ddc5d470b67f5d97459e8d38c59133661fa2d",
+    "target/public-highpoint/thin-n7-rank0-api2/runs/domain-002/domain.json": "31e75346b2d8ca0decc510d3e0236ddd278e3aa2efbd96a29012072ecf9382f3",
+    "target/public-highpoint/thin-n7-rank0-api2/runs/build_driver-002/driver": "cddfe23cb24e283bc69c46e083a544b7e1c2c3021caaad09f949de950ca2c049",
+    "target/public-highpoint/thin-n7-rank0-api2/runs/build_driver-002/driver.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/public-highpoint/thin-n7-rank0-api2/runs/domain-002/domain.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/public-highpoint/thin-n7-rank0/runs/build_driver-001/run.json": "1f5446113cb675611553808b84aa73d8809bc4f291b7b9e7a98e760ecb7cb9e6",
+    "target/public-highpoint/thin-n7-rank0/runs/build_driver-001/driver.log": "e1576aba575800b1bdfe973d991aeb311c9b25c0f2e3c69c4ad2c8007aa8ad9c"
+  },
+  "coverage": {
+    "files_rehashed": 250,
+    "build_input_bindings": 243,
+    "domain_input_bindings": 247,
+    "unchanged_core_source_files": 40,
+    "closed_dependency_inventory": {
+      "target/e6-direct-n2/deps": 113,
+      "target/e6-direct-n2/native": 3,
+      "target/core-fused-cse-census/supplemental-deps": 2
+    },
+    "retained_empty_logs": 2,
+    "recorded_six_systems": 7,
+    "recorded_five_subsets": 21,
+    "recorded_constant_charts": 84
+  },
+  "recorded_outcomes": {
+    "build_driver002": "passed",
+    "build_elapsed_seconds_including_postguards": 14.273434323025867,
+    "build_bound_seconds": 120,
+    "domain002": "passed",
+    "domain_elapsed_seconds_including_postguards": 8.391389093943872,
+    "domain_bound_seconds": 30,
+    "exit_codes": [
+      0,
+      0
+    ],
+    "timeouts": 0,
+    "cleanup_errors": 0,
+    "input_guards_unchanged": true
+  },
+  "domain_observations": {
+    "status": "necessary_domain_accepted",
+    "seven_six_systems_nonzero_determinants": [
+      "15/32",
+      "39/32",
+      "-23/32",
+      "-1/2",
+      "1/4",
+      "-39/32",
+      "-1/2"
+    ],
+    "five_coordinate_rank_counts": {
+      "rank4": 17,
+      "rank3": 4
+    },
+    "rank3_constant_charts": [
+      {
+        "omitted": [
+          1,
+          5
+        ],
+        "available_dropped_coordinate_rows": [
+          1
+        ]
+      },
+      {
+        "omitted": [
+          3,
+          4
+        ],
+        "available_dropped_coordinate_rows": [
+          0,
+          3
+        ]
+      },
+      {
+        "omitted": [
+          3,
+          6
+        ],
+        "available_dropped_coordinate_rows": [
+          3
+        ]
+      },
+      {
+        "omitted": [
+          4,
+          6
+        ],
+        "available_dropped_coordinate_rows": [
+          0
+        ]
+      }
+    ],
+    "positive_F_lower_bound": "15/16",
+    "normalization_q_squared": "4"
+  },
+  "checks": [
+    "Both immutable stage grants bind the final API2 protocol and narrow source review. The domain input map contains the exact successful build receipt, binary, log and earlier build grant.",
+    "All 247 domain-bound inputs were rehashed, including 240 frozen protocol inputs, the core archive, historical native closure, tool paths, prior failed001 history, both grants and the new driver binary. All output/log hashes match their recorded receipts.",
+    "Both commands match their protocol specifications. Exit, timeout, cleanup, interruption, missing-output and postguard records are successful and within the separate 120/30-second bounds.",
+    "The saved domain JSON contains all seven canonical six-line systems and 21 canonical double-pinch subsets. Dimensions, rank labels, zero/nonzero flags, 84 chart entries and rank-three constant-chart availability are internally consistent.",
+    "The audit reports F >= 15/16 and Q squared = 4. It establishes necessary domain acceptance only, without claiming successful full generic construction or numerical child/parent guards.",
+    "The old failed build001 receipt/log remain bound and unchanged; its domain001 was not run."
+  ],
+  "subsequent_capture": {
+    "status": "outside_this_review",
+    "observation": "A capture-002 directory appeared during the saved-data review. The owner confirmed a separate ROOT grant and active capture. Its result and progress were not inspected, hashed or qualified here."
+  },
+  "findings": [],
+  "open_blockers": [],
+  "limitations": [
+    "Determinant, inverse-condition and rank values are recorded outputs from the already executed exact Symbolica audit; they were not recomputed in this review.",
+    "Necessary geometric regularity does not establish constructor completion, numerical stability, scalar agreement or achieved requested precision.",
+    "Full generic construction, scalar capture, reference modes, independent oracle and comparison are outside this completed-gate review; no result for those stages is claimed.",
+    "The separate exact17 qualification and its ignored constructor/variant test retain their existing statuses. No higher-rank, Dual, batching, physical-graph, performance or production qualification follows from these two stages."
+  ]
+}

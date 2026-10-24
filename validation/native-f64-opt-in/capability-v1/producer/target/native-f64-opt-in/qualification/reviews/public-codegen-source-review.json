@@ -1,0 +1,62 @@
+{
+  "schema": "iregi-source-review-v1",
+  "created_utc": "2026-10-23T23:33:29.477573+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "status": "reviewed-public-codegen-recipe-unchanged-within-requested-scope",
+  "scope": "Narrow source, binding and command equality confirmation for the separately granted private public-source code generation stage. No compiler or tests launched by this review.",
+  "bindings": {
+    "target/native-f64-opt-in/qualification/preparation.json": "157477b5ea67e01d7d89df18c8263710c6b9953b9b00c0f91067022375f2279f",
+    "target/native-f64-opt-in/qualification/public-command-plan.json": "11964a86ce918c2bd98bde1f3ae112faaf53915a2a74be248f0ca23b4611cb4e",
+    "target/native-f64-opt-in/qualification/build.py": "33277f40de7f00a1fdb3b5c8bbf9c27369af2d310b60b70c9dd4cf32992c7768",
+    "target/native-f64-opt-in/qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/native-f64-opt-in/qualification/metadata-build-001/build.json": "bbbab6c542c40fc517ca521b49d9961cebf46df702688000d5b23660dc42d671"
+  },
+  "checks": {
+    "previous_bindings_preserved_exactly": 212,
+    "added_bindings_verified": 7,
+    "total_bindings": 219,
+    "public_source_files_rehashed": 75,
+    "fixture_copies_rehashed": 3,
+    "commands_compared_to_reviewed_metadata_recipe": 8,
+    "configurations": [
+      "default",
+      "selective"
+    ],
+    "invocations_per_configuration": 4,
+    "per_invocation_seconds": 180,
+    "aggregate_seconds": 360,
+    "cleanup_reserve_seconds": 8,
+    "compile_cpus": [
+      20,
+      21
+    ],
+    "optimization_level": 0,
+    "broad_feature_codegen": false,
+    "dependency_rebuild": false,
+    "observation_overlay_compiled": false,
+    "same_frozen_build_and_lifecycle_sources": true
+  },
+  "command_differences_from_metadata": [
+    "Remove --emit metadata.",
+    "Replace metadata-stage output directories/disambiguators with public-stage equivalents.",
+    "Produce rlibs and test binaries instead of rmeta files.",
+    "Set per-invocation bound to 180 seconds."
+  ],
+  "prior_metadata_result": {
+    "default_and_selective_passed": 8,
+    "broad_metadata_timeout_seconds": 60,
+    "later_broad_and_both_unrun": 7,
+    "compatibility_remains_incomplete": true,
+    "failed_metadata_receipt_preserved": true
+  },
+  "limitations": [
+    "No compiler, test binary, numerical kernel or timing was executed.",
+    "Large retained dependency archives were not rehashed by this narrow review; their mappings remain identical to the previously reviewed frozen closure and are checked by the build runner.",
+    "Public unit-test runtime, observation builds and numerical qualification remain separately gated."
+  ],
+  "mutations": {
+    "production": false,
+    "reviewed_sources": false,
+    "only_this_append_only_receipt_written": true
+  }
+}

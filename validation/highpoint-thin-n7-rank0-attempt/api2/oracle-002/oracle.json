@@ -1,0 +1,183 @@
+{
+  "status": "insufficient_convergence",
+  "runs": [
+    {
+      "order": 8,
+      "mapping": 0,
+      "ordering": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "status": "completed",
+      "points_evaluated": 262144,
+      "minimum_observed_F": 1.1563525931785994,
+      "maximum_observed_F": 4.293819918031113,
+      "oneloop_finite": -0.0001261106406194288,
+      "native_finite_imaginary": -0.001244662133681713,
+      "simplex_volume_from_rule": 0.0013888888888888892,
+      "validation_seconds": 0.11289838701486588
+    },
+    {
+      "order": 8,
+      "mapping": 1,
+      "ordering": [
+        6,
+        4,
+        2,
+        0,
+        5,
+        3,
+        1
+      ],
+      "status": "completed",
+      "points_evaluated": 262144,
+      "minimum_observed_F": 1.251850405784094,
+      "maximum_observed_F": 4.29931488434624,
+      "oneloop_finite": -0.00012611064868060212,
+      "native_finite_imaginary": -0.0012446622132423046,
+      "simplex_volume_from_rule": 0.0013888888888888892,
+      "validation_seconds": 0.029479641001671553
+    },
+    {
+      "order": 12,
+      "mapping": 0,
+      "ordering": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "status": "completed",
+      "points_evaluated": 2985984,
+      "minimum_observed_F": 1.0744708097689657,
+      "maximum_observed_F": 4.327357362645728,
+      "oneloop_finite": -0.00012611072929499413,
+      "native_finite_imaginary": -0.0012446630088744626,
+      "simplex_volume_from_rule": 0.0013888888888888883,
+      "validation_seconds": 0.3227161660324782
+    },
+    {
+      "order": 12,
+      "mapping": 1,
+      "ordering": [
+        6,
+        4,
+        2,
+        0,
+        5,
+        3,
+        1
+      ],
+      "status": "completed",
+      "points_evaluated": 2985984,
+      "minimum_observed_F": 1.1296806344902897,
+      "maximum_observed_F": 4.329909963520082,
+      "oneloop_finite": -0.00012611072932236817,
+      "native_finite_imaginary": -0.0012446630091446336,
+      "simplex_volume_from_rule": 0.0013888888888888883,
+      "validation_seconds": 0.33464844699483365
+    },
+    {
+      "order": 16,
+      "mapping": 0,
+      "ordering": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "status": "completed",
+      "points_evaluated": 16777216,
+      "minimum_observed_F": 1.0438767249249703,
+      "maximum_observed_F": 4.341772166718227,
+      "oneloop_finite": -0.0001261107293711429,
+      "native_finite_imaginary": -0.001244663009626021,
+      "simplex_volume_from_rule": 0.001388888888888889,
+      "validation_seconds": 1.8172083090757951
+    },
+    {
+      "order": 16,
+      "mapping": 1,
+      "ordering": [
+        6,
+        4,
+        2,
+        0,
+        5,
+        3,
+        1
+      ],
+      "status": "completed",
+      "points_evaluated": 16777216,
+      "minimum_observed_F": 1.0787750872108015,
+      "maximum_observed_F": 4.34379283417138,
+      "oneloop_finite": -0.0001261107293711768,
+      "native_finite_imaginary": -0.0012446630096263553,
+      "simplex_volume_from_rule": 0.001388888888888889,
+      "validation_seconds": 1.8047467479482293
+    }
+  ],
+  "fixture_sha256": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+  "script_sha256": "2c377e58a85e80de7ab2786b9c5d58471da72cfa8a121057ccba548d3bc952b3",
+  "python": "3.13.12 (main, Feb  3 2026, 17:53:27) [GCC 15.2.0]",
+  "numpy_version": "2.5.4",
+  "numpy_path": "/nix/store/0xfxw2wqm5hmjkzlc2hdvy7gmdyb17bv-python3.13-numpy-2.5.4/lib/python3.13/site-packages/numpy/__init__.py",
+  "scipy_version": "1.17.1",
+  "scipy_path": "/nix/store/aa51afs73ayq7jirfbhxsr1qqlhphrza-python3.13-scipy-1.17.1/lib/python3.13/site-packages/scipy/__init__.py",
+  "integrand_oneloop": "(-1)^7 Gamma(7-2)/F^(7-2) = -24/F^5",
+  "F": "sum(x*m_squared)-sum(x*p_squared)+(sum(x*p))^2, metric +---",
+  "native_conversion": "finite = i*pi^2*OneLoop finite; all poles vanish",
+  "positive_F_lower_bound": "15/16",
+  "pole_reason": "UV degree 4-14=-10; positive F excludes IR",
+  "uncertainty_kind": "successive fixed library rules, two mappings and floating floor; not a certified interval bound",
+  "order_policy": [
+    8,
+    12,
+    16
+  ],
+  "mappings": [
+    [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    [
+      6,
+      4,
+      2,
+      0,
+      5,
+      3,
+      1
+    ]
+  ],
+  "comparison": {
+    "oneloop_finite": -0.0001261107293711768,
+    "native_finite_imaginary": -0.0012446630096263553,
+    "estimated_native_absolute_uncertainty": 7.515583041646803e-13,
+    "order_and_mapping_differences": [
+      7.614877695419353e-14,
+      4.880861340095244e-14,
+      3.3881317890172014e-17
+    ],
+    "natural_scale": "1/1024",
+    "normalized_uncertainty": 7.695957034646326e-10,
+    "uncertainty_below_1e_minus_10": false
+  },
+  "elapsed_seconds": 4.427875868976116
+}

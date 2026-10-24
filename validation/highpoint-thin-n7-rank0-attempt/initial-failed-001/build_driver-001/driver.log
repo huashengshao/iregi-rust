@@ -1,0 +1,50 @@
+error[E0308]: mismatched types
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rank0/domain.rs:131:32
+    |
+131 |     let lower = minimum_mass - (&range * &range) / Rational::from(4);
+    |                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&Fraction<IntegerRing>`, found `Fraction<IntegerRing>`
+    |
+    = note: expected reference `&Fraction<_>`
+                  found struct `Fraction<_>`
+help: consider dereferencing the borrow
+    |
+131 |     let lower = *minimum_mass - (&range * &range) / Rational::from(4);
+    |                 +
+
+error[E0616]: field `metadata` of struct `BatchResult` is private
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rank0/driver.rs:254:45
+    |
+254 |         "convention":format!("{:?}", result.metadata.convention()),
+    |                                             ^^^^^^^^ private field
+    |
+help: a method `metadata` also exists, call it with parentheses
+    |
+254 |         "convention":format!("{:?}", result.metadata().convention()),
+    |                                                     ++
+
+error[E0616]: field `metadata` of struct `BatchResult` is private
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rank0/driver.rs:255:49
+    |
+255 |         "tensor_weights":format!("{:?}", result.metadata.tensor_weights()),
+    |                                                 ^^^^^^^^ private field
+    |
+help: a method `metadata` also exists, call it with parentheses
+    |
+255 |         "tensor_weights":format!("{:?}", result.metadata().tensor_weights()),
+    |                                                         ++
+
+error[E0616]: field `metadata` of struct `BatchResult` is private
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rank0/driver.rs:256:29
+    |
+256 |         "dual_shape":result.metadata.dual_shape(),
+    |                             ^^^^^^^^ private field
+    |
+help: a method `metadata` also exists, call it with parentheses
+    |
+256 |         "dual_shape":result.metadata().dual_shape(),
+    |                                     ++
+
+error: aborting due to 4 previous errors
+
+Some errors have detailed explanations: E0308, E0616.
+For more information about an error, try `rustc --explain E0308`.

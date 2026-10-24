@@ -1,0 +1,204 @@
+{
+  "schema_version": 1,
+  "status": "private_retained_n6_rank3_qualified",
+  "scope": "Private generic thin N6, retained base fixture, rank3, native Components, FromShifts/Preserve/unit powers/h0 and requested53. Exact symbolic tests also exercise generic indexing through rank7; they are not rank7 numerical qualification.",
+  "exact_tests": 25,
+  "qualified_working_bits": [
+    128,
+    256
+  ],
+  "requested_bits": 53,
+  "moments": 35,
+  "complex_slots_per_precision": 140,
+  "normalized_original_tolerance": "1e-10",
+  "precision_convergence_qualified": true,
+  "convergence_tolerance": "2^-80",
+  "maximum_original_error": "2.42535532243741603449671224686735379207866474916797779359579089335595915956736820521380036703601610693441033035698131267226033291684169251514219746992642970972736856869557210057459E-12",
+  "maximum_precision_difference": "1.47381326061908662702981943727571499048348306888959596802294356237589388086065103716107793365647750868402287203909686820861907365572735578692301642596091521335629798832104377776438E-34",
+  "records": [
+    {
+      "working_bits": 128,
+      "complex_slots": 140,
+      "real_components": 280,
+      "exact_zero_complex_poles": 105,
+      "maximum_original_error": "2.42535532243741603449667807315387495296999447033918020024206704262713490518117639742790600524472183053708467963730935287790573791647957270312803895851463363469287554285185590172835E-12",
+      "declared_bound_seconds": 180,
+      "elapsed_seconds": 56.47133663704153,
+      "fallback_used": [
+        true
+      ],
+      "analytic_used": [
+        true
+      ]
+    },
+    {
+      "working_bits": 256,
+      "complex_slots": 140,
+      "real_components": 280,
+      "exact_zero_complex_poles": 105,
+      "maximum_original_error": "2.42535532243741603449671224686735379207866474916797779359579089335595915956736820521380036703601610693441033035698131267226033291684169251514219746992642970972736856869557210057459E-12",
+      "declared_bound_seconds": 180,
+      "elapsed_seconds": 50.9979361849837,
+      "fallback_used": [
+        true
+      ],
+      "analytic_used": [
+        true
+      ]
+    }
+  ],
+  "numerical_attempts": [
+    {
+      "attempt": "n6-rank3-128-001",
+      "working_bits": 128,
+      "status": "passed",
+      "result_status": "all_lanes_success",
+      "declared_bound_seconds": 180,
+      "elapsed_seconds": 56.47133663704153,
+      "steps": [
+        {
+          "command": [
+            "taskset",
+            "-c",
+            "14",
+            "/shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic-fixed/build-001/driver",
+            "/shared/external/iregi/iregi-rust/validation/public-highpoint/fixture-conditioned_masses.json",
+            "6",
+            "3",
+            "pv",
+            "128",
+            "53",
+            "1",
+            "/shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic-fixed/n6-rank3-128-001/result.json"
+          ],
+          "exit_code": 0,
+          "seconds": 49.66822707594838
+        }
+      ],
+      "run_sha256": "aea2002029cc3f401dd690977aca9ba63f6c6fd9dc3af25c63ef5d486ec5a3bb",
+      "numerically_qualified": true
+    },
+    {
+      "attempt": "n6-rank3-256-001",
+      "working_bits": 256,
+      "status": "passed",
+      "result_status": "all_lanes_success",
+      "declared_bound_seconds": 180,
+      "elapsed_seconds": 50.9979361849837,
+      "steps": [
+        {
+          "command": [
+            "taskset",
+            "-c",
+            "14",
+            "/shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic-fixed/build-001/driver",
+            "/shared/external/iregi/iregi-rust/validation/public-highpoint/fixture-conditioned_masses.json",
+            "6",
+            "3",
+            "pv",
+            "256",
+            "53",
+            "1",
+            "/shared/external/iregi/iregi-rust/target/public-highpoint/thin-n6-generic-fixed/n6-rank3-256-001/result.json"
+          ],
+          "exit_code": 0,
+          "seconds": 45.85750920092687
+        }
+      ],
+      "run_sha256": "fc2869cae7e934e3adf80baea6019a0af225b007aaa5dc7eb43c0a144b01b169",
+      "numerically_qualified": true
+    }
+  ],
+  "comparator_attempts": [
+    {
+      "name": "comparison-128-256.json",
+      "status": "passed",
+      "sha256": "1b9635b490b8db88ea5add83f3d3d1ec8af130417c2deaa8f690fd3ace283198",
+      "error": null
+    },
+    {
+      "name": "comparison-128.json",
+      "status": "passed",
+      "sha256": "424ea4fb573a934a715aa2f300395092808bb803d76417904b074a0b1847a5b9",
+      "error": null
+    }
+  ],
+  "original_failure": {
+    "status": "test_compilation_failed",
+    "manifest_sha256": "034a3dc4885bb28240db006a5ba8d4324ce966b844f72f5386abef203e6cc8ff",
+    "corrected_only": "cfg(test) settings equality via serde_json::to_value"
+  },
+  "fixed_build_sha256": "0c01555ac79dc9703492a4f4288e471a50eb3d84f98411360a49b3c189ce755a",
+  "exact_run_sha256": "a19f9624edd2a571fa4a003a56ad4387f3ae03123f94345347bdddd549d2ed6c",
+  "numerical_protocol_sha256": "6979062d32069579b5d12f3d63b6a38e10eae9e3f60a257a60df04714f4348a3",
+  "base_rank2_qualification_sha256": "6ef88dfd99a32746f641b2485b2cd95b7bddfd186dc45148287874af764f4357",
+  "archive_members": 95,
+  "independent_audit_sha256": "3660255dd4059a5442f626412c97ee7751fab068c8d113ce81a47f5dc2d459eb",
+  "independent_audit_script_sha256": "72036c492a45c9e93cdbc6887fcd1d6b99993ed5a908cee7bb10d339aae983a4",
+  "payload_files": 54,
+  "external_artifact_count": 174,
+  "limitations": [
+    "No production adoption, performance, N7, generalized-input or SuppliedG qualification.",
+    "No rank3 lifecycle, numerical Dual, complex-mass or rank7 numerical coverage.",
+    "Existing ordinary primal sensitivity model; no rigorous compounded Taylor bound; quadrature imports unsupported.",
+    "Working precision records representation precision, not proof of achieved requested accuracy.",
+    "Executable/native binaries are not embedded; reproduction requires the recorded external closure and fresh attempt paths."
+  ],
+  "written_utc": "2026-10-23T22:55:32.966563+00:00",
+  "files": {
+    "payload-origins.json": "1a8b738c9e871d51dda4e9f8d1a3ce50179b5e7f65e1ec9555ed29538c50b1b7",
+    "sources.tar.gz": "8af71ee94b28213262c8b3dc0afd1adb3ad7cdfe0e74d037139a2d49340a7e37",
+    "archive-manifest.json": "4bb36177feaf54bfecf9135f3307a40a410cd44cd59ded19235432e331a38bf4",
+    "README.md": "2018d0cdbab2a918e304e720d81b06f4ecc45d12bdc46115734d9364f16573c5",
+    "external-artifact-hashes.json": "3f57499cdeb2fea77996adb390ab7c4542847a66ac4804f56f3f30a0d7c72260",
+    "original/source-review.json": "ac9b81db6c71b056544f3e095486a36561389a855918d19073d6890b114b7967",
+    "original/driver.rs": "d499c9ffb15659a268287560f51ace900cde91fa23b23878813dfdcac1085be9",
+    "original/build.py": "f7315841c1a49f203cdfa2b3062346424ed5fe4d8f09f57320cca4e1068e846b",
+    "original/run.py": "de0465f56fdca0a43fbdc7ff1d65c3cff7b574a2c1d7163cabc059345e6ac1b4",
+    "original/base.json": "b86482bd0d65c39c3b3f00fc100db1a7970e7cc6323c72416fed8749b2e50fd5",
+    "original/proposed-protocol.json": "211c1ada6c5ea6023dbb636614008681e729c59eb99b70bb8fe740a95d7c38d0",
+    "provenance/supplemental-dependencies.json": "1a08840ef5b9fc30a0fd44e84415bf08bf7281c82e8f2cef2378ba54f9fab75d",
+    "provenance/dependency-preparation.json": "8a3fe8b1000030cb3ccdcc65ea3c63b6598ce5857aafb5111637b04095a61c2e",
+    "reference/fixture-conditioned_masses.json": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+    "reference/compare_public.py": "bd7139b6f846b69706a89c6c72e426605aebd5fa4ffbb75dcf1bcfb83c04da9d",
+    "reference/qualification.json": "b1d907c08cd73708404a8ee18a239f2863316b4d4fbe110ee48aa3863acd8ca1",
+    "reference/reference-conditioned_masses.json": "9bc3f10ad27615f23ddb3c2f62169575378d32e6c35c9d2a9dd51223f9b39ec4",
+    "fixed/run.py": "0ffb7e8597371c8285b4fe6526503b3c6c9594aed1f976094484c1dae8727e91",
+    "fixed/package.py": "bb0a17afc9179b9766292b7f21494cfc146458e53383c48e2df8e2976d2c9cb2",
+    "fixed/base.json": "b86482bd0d65c39c3b3f00fc100db1a7970e7cc6323c72416fed8749b2e50fd5",
+    "fixed/source-review.json": "7db1c2b0db02f65af824ee585dc06920a90684ea57373017072b4b7b1f603a1b",
+    "fixed/numerical-protocol.json": "6979062d32069579b5d12f3d63b6a38e10eae9e3f60a257a60df04714f4348a3",
+    "fixed/independent-rank3-audit.py": "72036c492a45c9e93cdbc6887fcd1d6b99993ed5a908cee7bb10d339aae983a4",
+    "fixed/proposed-protocol.json": "69cda793aa2bf9c0e7b48fa4e079c002b4ff23ad162b6ad07ce1b7fd4a414e4c",
+    "fixed/independent-rank3-audit.json": "3660255dd4059a5442f626412c97ee7751fab068c8d113ce81a47f5dc2d459eb",
+    "fixed/build.py": "782cbb79206862cf0ada2641afab574c64c17e81824acf0989dfffe1287d5440",
+    "fixed/run-numeric.py": "8d547a3a5a79f5d886c4ed3bef6962bcdeab0a34e22beb2e73e3eff2d8e80a6b",
+    "fixed/comparison-128-256.json": "1b9635b490b8db88ea5add83f3d3d1ec8af130417c2deaa8f690fd3ace283198",
+    "fixed/driver.rs": "d499c9ffb15659a268287560f51ace900cde91fa23b23878813dfdcac1085be9",
+    "fixed/test-fix.json": "b7a594ca5d42de886fd254d3db1bcb44a394635dd4f4d63438e031cfd1d1f331",
+    "fixed/comparison-128.json": "424ea4fb573a934a715aa2f300395092808bb803d76417904b074a0b1847a5b9",
+    "fixed/compare.py": "47a26345e851ba38aa98a52d2b6ac1ce642c170ead611b5db1630d226109f768",
+    "rank2-base/archive-manifest.json": "b63fc7ad41312819cd75fe3cc35fb0a91e5ffc2750dc61f4af64e3b800d90411",
+    "rank2-base/qualification.json": "6ef88dfd99a32746f641b2485b2cd95b7bddfd186dc45148287874af764f4357",
+    "rank2-base/README.md": "09d648bee108ffc09ff0b81714efdd206f2e8b7095ea1357f2357a2df07592e9",
+    "fixed/n6-rank3-256-001/result.json": "1f48b25eee82a0183fc7f63e2fc05280c221a53a4445b0a90d415ade5873dc05",
+    "fixed/n6-rank3-256-001/step-0.log": "0d37fb792d1f9e4648fb8f9bb8b0019891c66ddd7090867472c19aa671c6ce1a",
+    "fixed/n6-rank3-256-001/run.json": "fc2869cae7e934e3adf80baea6019a0af225b007aaa5dc7eb43c0a144b01b169",
+    "fixed/exact-001/step-3.log": "1be9843cae946743ab621315b604a7dd2dc3582c26ed8b761fde672978eb58af",
+    "fixed/exact-001/step-4.log": "2e47e920e0246d36d95106ee49fccf0c1438966d7446bc652985575b63f155e8",
+    "fixed/exact-001/step-2.log": "ed52cdc430f5fe862d10c74befd1f703a3c54faff1c666665a15756e10348dcf",
+    "fixed/exact-001/step-1.log": "7f61181ca81d2b91278c748a4bd0fcc19554ab11a786f25eebd9d13a8fd4ea5e",
+    "fixed/exact-001/step-0.log": "2c9a055fb7ba90ef9d045f641beee8d1b2db4fb9f703224729a0129bdb8c79fa",
+    "fixed/exact-001/run.json": "a19f9624edd2a571fa4a003a56ad4387f3ae03123f94345347bdddd549d2ed6c",
+    "fixed/build-001/build.json": "0c01555ac79dc9703492a4f4288e471a50eb3d84f98411360a49b3c189ce755a",
+    "fixed/build-001/tests.log": "fa892043eeb00bf967512ecaf2ee72694586c08a985e75b8f23d2b8224623a20",
+    "fixed/build-001/core.log": "5167ab22f4d40d6b627b2e6d18fac8e59f3e1c24e43be0eec07b3039f03a82c0",
+    "fixed/build-001/driver.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fixed/n6-rank3-128-001/step-0.log": "355d37b423aea61be93536612fb5e715eae1629645ddb021c79129b0dcea548c",
+    "fixed/n6-rank3-128-001/result.json": "685901fbddcf268de8b9fd0357c6f61fee740a57c5f4f5bd6382df7387f08b57",
+    "fixed/n6-rank3-128-001/run.json": "aea2002029cc3f401dd690977aca9ba63f6c6fd9dc3af25c63ef5d486ec5a3bb",
+    "original/build-001/core.log": "6fa2bb789ea69bc9bc155049202909c345667be3af32243221bb0da54fbadf6f",
+    "original/build-001/tests.log": "b8a40c8c2fa98d56b0470615b0b11728527999b4c09aa7749ebe5322b82c5753",
+    "original/build-001/build.json": "034a3dc4885bb28240db006a5ba8d4324ce966b844f72f5386abef203e6cc8ff"
+  }
+}

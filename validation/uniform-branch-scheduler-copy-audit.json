@@ -1,0 +1,257 @@
+{
+  "byte_and_archive_checks": {
+    "archive_inventory_sha256": "9c62686c8e9eb883e5bb61b7e1860e25db069ef7cc8f38b274113b8ded8f7d7a",
+    "archive_member_originals_byte_equal": 356,
+    "archive_members": 356,
+    "archive_sha256": "97f5cad19d1721f6594c198052d1776994d8fe7f59f65f1801b1152fff3dae4c",
+    "copied_review_hashes": {
+      "reviews/0-independent-evidence-review.json": "01eb3215df8d6c2144c5908863eae4b6fd63dffe1c3ed3826a8cc25103a04c65",
+      "reviews/1-provenance-and-logs-audit.json": "555351f12e516a8a0129990153c8027adc8241ac33af6eb7d0411fbf2e2ebfa3"
+    },
+    "copy_origins_verified": 27,
+    "deterministic_gzip_header_and_tar_metadata": true,
+    "external_binary": {
+      "bytes": 157249952,
+      "included": false,
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+      "read_hash_only": true,
+      "sha256": "371c1877c5dd7a849e9811a52a0133278eaf9f1f84540c64e5d4a6febc8f8f90"
+    },
+    "generated_payloads": [
+      "README.md",
+      "archive-member-inventory.json",
+      "payload-origins.json",
+      "source-packets.tar.gz"
+    ],
+    "manifest_chain_exact": true,
+    "matching_path_only_pax_headers": 3,
+    "numeric_api_files": 3,
+    "original_proposal_files": 4,
+    "payload_files": 31,
+    "protected_and_tool_counts": [
+      617,
+      3
+    ],
+    "qualification_self_excluded": true,
+    "qualification_sha256": "5f8d8d5d925cc0c1e6d429e6182d041e8f0f50ed52cd3b7fb26b00168416d19a",
+    "scope_flags_preserved": true,
+    "source_packets": {
+      "qualification-plan-v2": {
+        "archived_files_with_manifest": 122,
+        "manifest_files": 121,
+        "manifest_sha256": "8648d5d0d4f14d076e4948ad6ef9985761bc1881a4595251ea58b431267189c9"
+      },
+      "qualification-plan-v3": {
+        "archived_files_with_manifest": 113,
+        "manifest_files": 112,
+        "manifest_sha256": "612cf32da49deb103a9eba6a027980b36523bffaaf3dc7bb9d5304a3f061855a"
+      },
+      "qualification-plan-v4": {
+        "archived_files_with_manifest": 114,
+        "manifest_files": 113,
+        "manifest_sha256": "e4e98b363bd047e5e16349c63ef4c463598288d84fb24090e153cbac851516d9"
+      }
+    }
+  },
+  "capsule_path": "/shared/external/iregi/iregi-rust/validation/uniform-branch-scheduler",
+  "created_utc": "2026-10-24T00:25:29.467779+00:00",
+  "limitations": [
+    "This preserves the saved local scheduler fixture qualification; it does not extend qualification to dependent masters/core, full reduction, optimized performance, or adoption.",
+    "No new numeric semantic review or execution was performed. The saved source-assertion gate does not expose raw numeric result arrays.",
+    "The 157249952-byte executable remains external; it was read only to verify its SHA-256 and size. Dependency archives remain external and were not comprehensively rehashed in this archive-copy audit."
+  ],
+  "peer_review_checks": {
+    "copied_review_bytes_and_origins_match": true,
+    "review0_input_hashes_rechecked": 14,
+    "review1_guard_binding_count_is_not_a_new_full_dependency_rehash": true,
+    "review1_recorded_guard_bindings_match_frozen_protocol": 620,
+    "reviewer": "control_points_review"
+  },
+  "qualification_flags": {
+    "dependent_core_master_qualified": false,
+    "full_reduction_qualified": false,
+    "local_fixture_qualified": true,
+    "performance_qualified": false,
+    "production_adoption_qualified": false,
+    "production_source_applied": false
+  },
+  "saved_test_checks": {
+    "all_receipt_log_hashes_match": true,
+    "compile_attempts": {
+      "001": {
+        "returncodes": [
+          1
+        ],
+        "sha256": "76651247d5e65be9e12f1ed92b7368363f8c3c1c9788fac50439f2f5f8279426",
+        "status": "failed",
+        "success": false
+      },
+      "002": {
+        "returncodes": [
+          1
+        ],
+        "sha256": "38d2c33cd4600aed885ded71bd8fb62d44d41ed628542a9aab5bdb2b3df317eb",
+        "status": "failed",
+        "success": false
+      },
+      "003": {
+        "returncodes": [
+          0
+        ],
+        "sha256": "8206d607aa6358aaa0bc37cb7b45089f2039ad1db9dfe04c21f3c7c0bc5700a2",
+        "status": "passed",
+        "success": true
+      }
+    },
+    "exact_test_count": 15,
+    "exact_test_names": [
+      "evaluate::batch::tests::batch_polynomial_and_buffer_shapes",
+      "evaluate::batch::tests::batch_constant_outputs_and_oversized_dimensions",
+      "evaluate::batch::tests::batch_complex_precision_domains_and_flattened_duals",
+      "evaluate::batch::tests::batch_calls_are_instruction_major_and_skip_inactive_lanes",
+      "evaluate::batch::tests::batch_shared_functions_keep_inactive_branches_lazy",
+      "evaluate::batch::uniform_branch_tests::uniform_nested_paths_skip_dispatch_and_keep_destination_labels_and_joins",
+      "evaluate::batch::uniform_branch_tests::prior_inactive_lanes_forbid_jumps_and_rejoin_in_original_order",
+      "evaluate::batch::uniform_branch_tests::inactive_external_continue_advances_pc_on_mixed_parent_lanes",
+      "evaluate::batch::uniform_branch_tests::shared_subset_callers_may_jump_without_waking_root_inactive_lanes",
+      "evaluate::batch::uniform_branch_tests::fixed_and_mixed_precision_static_dynamic_duals_keep_primal_branch",
+      "evaluate::batch::uniform_branch_tests::imaginary_conditions_and_signed_zero_inputs_preserve_bit_patterns",
+      "evaluate::test::completed_conditionals_reuse_only_their_parent_scope",
+      "evaluate::test::completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+      "evaluate::test::non_inlined_stack_reuse_preserves_nested_lazy_branches",
+      "evaluate::test::non_inlined_function_reuses_body_for_repeated_nested_calls"
+    ],
+    "failed": 0,
+    "ignored": 0,
+    "measured": 0
+  },
+  "schema_version": 1,
+  "scope": "Independent saved-byte/archive/provenance audit only; no compiler, tests, numerical kernels, timing, or binary execution. Capsule unchanged.",
+  "status": "passed",
+  "verified_payload_inventory": {
+    "README.md": {
+      "bytes": 2385,
+      "sha256": "e6365d547b4ad943afa6ea861352c6c51680593da3f305204f179ba14a27d48f"
+    },
+    "archive-member-inventory.json": {
+      "bytes": 102563,
+      "sha256": "9c62686c8e9eb883e5bb61b7e1860e25db069ef7cc8f38b274113b8ded8f7d7a"
+    },
+    "attempts/compile-001/compile.log": {
+      "bytes": 3873,
+      "sha256": "f057e6b8633ab265117db3210b0c017183dcc72a7aa80397251c7bda36159187"
+    },
+    "attempts/compile-001/receipt.json": {
+      "bytes": 6201,
+      "sha256": "76651247d5e65be9e12f1ed92b7368363f8c3c1c9788fac50439f2f5f8279426"
+    },
+    "attempts/compile-002/compile.log": {
+      "bytes": 3082,
+      "sha256": "bfa5f6fc3782c76a4a9e7dbf43b073748b7537570edc10588021cde1cd068d74"
+    },
+    "attempts/compile-002/receipt.json": {
+      "bytes": 6200,
+      "sha256": "38d2c33cd4600aed885ded71bd8fb62d44d41ed628542a9aab5bdb2b3df317eb"
+    },
+    "attempts/compile-003/compile.log": {
+      "bytes": 573,
+      "sha256": "a9b28d55b0c8d30df83c5e1aecab889676846d0ffe9588f245ce2adf8db47d05"
+    },
+    "attempts/compile-003/receipt.json": {
+      "bytes": 6316,
+      "sha256": "8206d607aa6358aaa0bc37cb7b45089f2039ad1db9dfe04c21f3c7c0bc5700a2"
+    },
+    "attempts/tests-003/actual-batch-and-six-focused.log": {
+      "bytes": 1242,
+      "sha256": "dbf4bcc23f96531b8f3c100404a1854c75c0ce9a080a7a19a2d16fc504f68b41"
+    },
+    "attempts/tests-003/completed_conditionals_reuse_only_their_parent_scope.log": {
+      "bytes": 195,
+      "sha256": "3a0a863dfec004d41dfb67c504525c6634f3e66e5fbfedda65f88c0d9f9060ae"
+    },
+    "attempts/tests-003/completed_shared_conditionals_keep_captures_and_mixed_dual_components.log": {
+      "bytes": 212,
+      "sha256": "f21fbca821d08979382bfc54c03ca1a0ea755e5a641a7f60a6efdde0cad2e0a8"
+    },
+    "attempts/tests-003/list-batch.log": {
+      "bytes": 1083,
+      "sha256": "51743cb468c79009780f00465e9f3309b2b57cd96f893a731942fc505b722477"
+    },
+    "attempts/tests-003/non_inlined_function_reuses_body_for_repeated_nested_calls.log": {
+      "bytes": 201,
+      "sha256": "2d3ff0647a3a5a5987b530f7e802a4e31cc07fb225d3b337b0ac966e9bea4067"
+    },
+    "attempts/tests-003/non_inlined_stack_reuse_preserves_nested_lazy_branches.log": {
+      "bytes": 197,
+      "sha256": "76dc002748cfa9752594bc480b7cd1ea262913fed0e297d2e04ef1b79d29c86d"
+    },
+    "attempts/tests-003/receipt.json": {
+      "bytes": 9279,
+      "sha256": "0776c4c636e792b2045bfdb74e949273ed807cc568ee20967ded804922f3f6cb"
+    },
+    "next-stage-proposal.md": {
+      "bytes": 8534,
+      "sha256": "bf52bb2793c7fc599c9bbf715f8f2259038fb7284a0d2af43aa544b340df51d7"
+    },
+    "package.py": {
+      "bytes": 10449,
+      "sha256": "74a5d660e39c369c8e44d9f3e85ad62523eb2cef9c6cc8e23bb38d01c11a2cbd"
+    },
+    "payload-origins.json": {
+      "bytes": 7017,
+      "sha256": "862425c16e1f1e700b70fb7f3d3ca8918a2daa53f82dbd4600154bd519d8890d"
+    },
+    "reviews/0-independent-evidence-review.json": {
+      "bytes": 5321,
+      "sha256": "01eb3215df8d6c2144c5908863eae4b6fd63dffe1c3ed3826a8cc25103a04c65"
+    },
+    "reviews/1-provenance-and-logs-audit.json": {
+      "bytes": 127440,
+      "sha256": "555351f12e516a8a0129990153c8027adc8241ac33af6eb7d0411fbf2e2ebfa3"
+    },
+    "source-packets.tar.gz": {
+      "bytes": 3782081,
+      "sha256": "97f5cad19d1721f6594c198052d1776994d8fe7f59f65f1801b1152fff3dae4c"
+    },
+    "source/constructor-trait-selection.patch": {
+      "bytes": 1940,
+      "sha256": "0624e67af71b2a9f967901d460e8eebe5481ee32356a53c50eea46a1954479a9"
+    },
+    "source/manifest.json": {
+      "bytes": 114143,
+      "sha256": "e4e98b363bd047e5e16349c63ef4c463598288d84fb24090e153cbac851516d9"
+    },
+    "source/narrow-source-review.json": {
+      "bytes": 1000,
+      "sha256": "cf050a1627b44f0b52c505514430f71597bf12c3cde780b1a1a537b083bf3c11"
+    },
+    "source/production-base-batch.rs": {
+      "bytes": 22620,
+      "sha256": "eb73974b0c176422863e4fbe512d392813d83085b2ae5c476db24d028012efcf"
+    },
+    "source/production-candidate-batch.rs": {
+      "bytes": 23826,
+      "sha256": "6db2acb4b342e5fb1ac78ac04f39abaf72541acff7279ddce505fcfe095a53bf"
+    },
+    "source/production-uniform-branch.patch": {
+      "bytes": 2919,
+      "sha256": "919d5f1519eb545590ef705378601ddd1c90396f96775f3065d342ac0e8e2c7c"
+    },
+    "source/protocol.json": {
+      "bytes": 106580,
+      "sha256": "093c8d1112b927851fe00c83d5eb7077e257c4e6789822a3abb9b3d7833e48f0"
+    },
+    "source/source-inventory.json": {
+      "bytes": 27534,
+      "sha256": "8dc6e04d6526dc3e8206e07c215ae9b3dda80eb185875e21140f1c70cd423f54"
+    },
+    "source/uniform_branch_baseline.rs": {
+      "bytes": 14242,
+      "sha256": "149aefbe702ac1037df769556a3c7d24530305c289db896bca857cb264048f83"
+    },
+    "source/uniform_branch_tests.rs": {
+      "bytes": 18744,
+      "sha256": "5d247f62f09b49a5832dc4fc39d5e30266454ffec32c79d251043e2091f70b45"
+    }
+  }
+}

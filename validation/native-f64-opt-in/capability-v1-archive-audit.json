@@ -1,0 +1,40 @@
+{
+  "status": "passed",
+  "scope": "archival bytes and receipt binding only; no numerical rerun, kernels, builds or mutation of the sealed bundle",
+  "created_utc": "2026-10-23T23:59:41.348258+00:00",
+  "bundle": "validation/native-f64-opt-in/capability-v1",
+  "manifest_sha256": "add753d600332917fdce0b60bbffc002de7fa267b5be8da2e37ad9d62ee02784",
+  "qualification_sha256": "3c7e5da1ab2edb171090753e4e7c69b5f912992da9a5396bd7b5db5d47e9f779",
+  "counts": {
+    "inventory_files": 118,
+    "top_level_manifest_self_exclusions": 1,
+    "actual_bundle_files": 119,
+    "archive_map_originals": 275,
+    "tar_members": 161,
+    "identity_copies": 110,
+    "gzip_copies": 4,
+    "external_hash_only_inputs": 124,
+    "prior_provenance_unique_actual_files": 417,
+    "retained_metadata_passed": 8,
+    "retained_metadata_failed": 1,
+    "retained_metadata_unrun": 7
+  },
+  "checks": {
+    "inventory_exact_and_all_hashes_match": true,
+    "all_275_original_bytes_equal_packaged_decompressed_bytes": true,
+    "tar_member_inventory_exact_and_regular": true,
+    "external_inputs_explicit_disjoint_and_well_formed": true,
+    "preparation_build_runtime_closures_all_archived_or_explicit_external": true,
+    "qualification_binds_current_peer_numerical_and_provenance_receipts": true,
+    "qualification_counts_equal_bound_peer_receipts": true,
+    "original_60s_timeout_and_seven_unrun_preserved": true,
+    "sealed_bundle_hashes_unchanged_after_audit": true
+  },
+  "bound_review_sha256": "623eeca27e72edce79488d2a4066ba7df722e73758da09b51b92575a97d9c813",
+  "bound_provenance_sha256": "1dd7e01dbb9ee87b12bf0f07cd2841c135b59b1099d745288452dfbab3b29bed",
+  "bound_numerical_audit_sha256": "ff1b405898364f50631f80c5d3371950a4f8ec1044fc95c852cf16c894e32b71",
+  "limitations": [
+    "External tools, binaries and dependency archives are explicitly hash-only, not redistributed; this archival check does not rerun or requalify them.",
+    "Numerical values and counts are checked for consistency with the bound independent review receipts; the historical numerical admission is not rerun."
+  ]
+}

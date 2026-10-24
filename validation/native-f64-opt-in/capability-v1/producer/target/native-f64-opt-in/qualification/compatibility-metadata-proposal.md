@@ -1,0 +1,11 @@
+# Remaining broad-feature metadata qualification — source-only proposal
+
+The first immutable metadata attempt remains failed: eight default/selective checks passed, broad-master metadata reached its 60-second invocation cap with no compiler diagnostic, and seven later checks were unrun. Public default/selective code generation and all 17 focused runtime tests subsequently passed. No broad-feature runtime or D0 native code generation is proposed.
+
+Complete the eight remaining checks in one separately frozen metadata-only attempt, restricted to broad and both features. Use the same 75 public source snapshots, dependency closure, pinned tools, flags and command construction as metadata attempt001. For each configuration type-check the master library, core library, master test source and core test source. The master rmeta is fresh and is the exact dependency of that configuration's core calls; generated modules are not stubbed, replaced or duplicated.
+
+The failed master parses 30,322,038 bytes of unchanged generated D0 and 342,337 bytes of dB0 in addition to the 2,857,226-byte ABC/constants selection. The selected master/library metadata calls took14.40/15.50 seconds; the broad call was still type-checking at60 seconds. This observed cost justifies a different preregistered compiler bound, not a numerical retry or a performance claim.
+
+Proposed caps:180 seconds for each of the four large master/library or master-test metadata calls,60 seconds for each of the four core calls, and600 seconds aggregate including the existing8-second cleanup reserve. This is an upper bound; the aggregate cap may leave later checks unrun. Stop at the first compiler/guard/cleanup failure. Preserve all eight statuses, all commands/logs and the initial60-second timeout; no cap extension or retry is implied. CPUs20/21, separate attempt directory and owned process groups; no Cargo, dependency rebuild, production edit, kernel or timing run.
+
+Before execution, freeze the exact eight commands and source/closure hashes and obtain independent source review plus ROOT's specific grant. Observation/whole-array qualification is a separate chain. Passing it cannot mark broad/both compatibility complete while this check remains unrun.

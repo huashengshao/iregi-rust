@@ -1,0 +1,62 @@
+{
+  "schema": "iregi-source-review-v1",
+  "created_utc": "2026-10-23T23:25:31.232888+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "status": "no-remaining-source-review-blocker-for-metadata-only",
+  "scope": "Read-only source, frozen command-plan, source/fixture equality and provenance-mapping review. This receipt is not execution approval and is not numerical, compiler or performance qualification.",
+  "bindings": {
+    "target/native-f64-opt-in/qualification/metadata-preparation.json": "30cb99984ef9362c6af70bb8d54a947541dc1457fc07618babfffa8a9b57c019",
+    "target/native-f64-opt-in/qualification/metadata-command-plan.json": "8d307850214daa66e0ae3b6a67b49708dad465bbceb10f18a8e1d0a0035834ea",
+    "target/native-f64-opt-in/qualification/build.py": "33277f40de7f00a1fdb3b5c8bbf9c27369af2d310b60b70c9dd4cf32992c7768",
+    "target/native-f64-opt-in/qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/native-f64-opt-in/qualification/protocol.md": "862c99addbb6c6c93aaeb76fa65b4cc519c07675f60a48d623c4b1d986f24d89"
+  },
+  "metadata_plan": {
+    "invocations": 16,
+    "configurations": [
+      "default",
+      "selective",
+      "broad",
+      "both"
+    ],
+    "invocations_per_configuration": 4,
+    "emit": "metadata",
+    "cpu_affinity": [
+      20,
+      21
+    ],
+    "per_invocation_timeout_seconds": 60,
+    "aggregate_cap_seconds": 180,
+    "cleanup_reserve_seconds": 8,
+    "commands_unchanged_from_preceding_review": true
+  },
+  "source_and_closure_review": {
+    "bound_inputs": 212,
+    "compiled_source_snapshots_compared_to_proposed": 75,
+    "fixture_copies_compared_to_originals": 3,
+    "retained_dependency_digest_mappings_compared": 116,
+    "existing_externs_bound": true,
+    "fresh_master_rmeta_per_configuration": true,
+    "source_fixture_tool_extern_mappings_unchanged_in_final_delta": true,
+    "large_dependency_archives_independently_rehashed": false
+  },
+  "resolved_findings": [
+    "Observation source path includes crates; its probe recipe supplies the required capture cfg. Those later stages are outside this metadata-only qualification.",
+    "Runtime runner compares its frozen expected hash instead of silently replacing it; executed test copies and listing log hashes are recorded. Later runtime grant remains separate.",
+    "Owned-process cleanup checks the process group after leader exit and uses bounded TERM/KILL/wait steps.",
+    "SIGINT/SIGTERM/SIGALRM are deferred during cleanup; cancellation is recorded without interrupting descendant termination.",
+    "Execute reports failure for cleanup errors, a remaining group, or cancellation; metadata build rejects it before another invocation.",
+    "Metadata invocation and aggregate bounds are reduced to 60 and 180 seconds, with an eight-second cleanup reserve and terminal records before post-execution guards."
+  ],
+  "limitations_and_deferred_work": [
+    "No compiler, unit test, numerical kernel, installation or timing was executed by this review.",
+    "Signal/process cleanup conclusions are source-reviewed; no lifecycle fault injection was authorized or executed.",
+    "The later public-test runner must require execute status exited, in addition to returncode/timeout checks, before its own separately reviewed freeze.",
+    "Only the first metadata stage is covered by the no-blocker conclusion. Public code generation, observation builds, runtime validation and performance work require separate grants and review."
+  ],
+  "mutations": {
+    "production": false,
+    "reviewed_sources": false,
+    "only_this_append_only_receipt_written": true
+  }
+}

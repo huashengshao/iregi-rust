@@ -1,0 +1,1201 @@
+--- a/crates/iregi-masters/Cargo.toml
++++ b/crates/iregi-masters/Cargo.toml
+@@ -8,6 +8,7 @@
+ [features]
+ default = []
+ native-batch = []
++native-f64-abc = []
+ 
+ [dependencies]
+ oneloop.workspace = true
+--- a/crates/iregi-masters/src/exact_plan.rs
++++ b/crates/iregi-masters/src/exact_plan.rs
+@@ -1,7 +1,7 @@
+ //! Precision-independent preparation for scalar-master batch evaluators.
+ 
+ use crate::{
+-    Complex, DualNumberStructure, MasterError, MasterEvaluator, NativeFloat, ScalarIntegral,
++    Complex, DualNumberStructure, MasterError, MasterEvaluator, MasterExecutionPolicy, NativeFloat, ScalarIntegral,
+     exact_scalar_master_evaluator, expressions, regular_bubble_finite, validate_dual_structure,
+ };
+ use symbolica::{
+@@ -73,12 +73,28 @@
+     where
+         Complex<T>: EvaluationDomain,
+     {
++        self.instantiate_with_policy(prototype, MasterExecutionPolicy::Default)
++    }
++
++    /// Instantiate with a requested policy. `Default` preserves this exact
++    /// plan's Symbolica backend. The selective policy replaces only ordinary
++    /// f64 A0/B0/C0; all Dual plans and other numeric domains remain Symbolica.
++    pub fn instantiate_with_policy<T: NativeFloat>(
++        &self,
++        prototype: T,
++        policy: MasterExecutionPolicy,
++    ) -> Result<MasterEvaluator<T>, MasterError>
++    where
++        Complex<T>: EvaluationDomain,
++    {
++        policy.validate_available()?;
+         MasterEvaluator::from_exact(
+             self.family,
+             prototype,
+             self.shape.clone(),
+             self.exact.clone(),
+-        )
++        )?
++        .select_execution_policy(policy)
+     }
+ 
+     pub fn family(&self) -> ScalarIntegral {
+--- /dev/null
++++ b/crates/iregi-masters/src/execution_policy_tests.rs
+@@ -0,0 +1,239 @@
++//! Public-constructor regression controls, with private inspection of the sixth
++//! domain output and lazy Dual child. These contain no copied kernel arithmetic.
++use super::*;
++use oneloop::rust_codegen::runtime::BatchExecutionPolicy;
++use symbolica::domains::float::Real;
++
++fn c(value: f64) -> Complex<f64> {
++    Complex::new(value, 0.)
++}
++
++fn metadata<T: NativeFloat>(values: &[Complex<T>]) -> Vec<(Option<String>, u32, bool)> {
++    values.iter().flat_map(|z| [&z.re, &z.im]).map(|x| {
++        let rational = x.exact_rational().map(|value| value.to_string());
++        assert_eq!(rational.is_some(), x.is_finite());
++        (rational, x.get_precision(), x.negative_sign())
++    }).collect()
++}
++
++fn snapshot<T: NativeFloat>(
++    batch: &MasterBatch<T>,
++    components: usize,
++    expected: &[Option<LaneError>],
++) -> Vec<Option<Vec<(Option<String>, u32, bool)>>> {
++    assert_eq!(batch.errors(), expected);
++    assert_eq!(batch.row_count(), expected.len());
++    assert_eq!(batch.component_count(), components);
++    assert_eq!(batch.values.len(), expected.len() * OUTPUTS * components);
++    expected.iter().enumerate().map(|(lane, error)| {
++        if let Some(error) = error {
++            assert_eq!(batch.lane(lane).unwrap_err(), error);
++            None
++        } else {
++            assert!(batch.lane(lane).is_ok());
++            let values = &batch.values[lane * OUTPUTS * components..(lane + 1) * OUTPUTS * components];
++            assert!(values.iter().all(|z| z.re.is_finite() && z.im.is_finite()));
++            Some(metadata(values))
++        }
++    }).collect()
++}
++
++#[test]
++fn existing_defaults_and_explicit_symbolica_remain_distinct() {
++    assert_eq!(MasterExecutionPolicy::default(), MasterExecutionPolicy::Default);
++    MasterExecutionPolicy::Default.validate_available().unwrap();
++    MasterExecutionPolicy::Symbolica.validate_available().unwrap();
++    assert_eq!(MasterEvaluator::new(ScalarIntegral::A0, 0.).unwrap().backend(), default_master_backend());
++    assert_eq!(MasterEvaluator::new_with_policy(ScalarIntegral::A0, 0., MasterExecutionPolicy::Default).unwrap().backend(), default_master_backend());
++    let mut explicit = MasterEvaluator::new_with_policy(ScalarIntegral::A0, 0., MasterExecutionPolicy::Symbolica).unwrap();
++    assert_eq!(explicit.backend(), MasterBackend::SymbolicaBatch);
++    assert!(!explicit.set_native_batch_policy(BatchExecutionPolicy::Whole));
++    let plan = ExactMasterPlan::new(ScalarIntegral::A0).unwrap();
++    assert_eq!(plan.instantiate(0.).unwrap().backend(), MasterBackend::SymbolicaBatch);
++    assert_eq!(plan.instantiate_with_policy(0., MasterExecutionPolicy::Default).unwrap().backend(), MasterBackend::SymbolicaBatch);
++}
++
++#[cfg(not(feature = "native-f64-abc"))]
++#[test]
++fn unavailable_selection_errors_before_fallback_or_preparation() {
++    let policy = MasterExecutionPolicy::NativeF64Abc;
++    assert!(matches!(policy.validate_available(), Err(MasterError::Preparation(_))));
++    for family in [ScalarIntegral::A0, ScalarIntegral::D0] {
++        assert!(matches!(MasterEvaluator::new_with_policy(family, 0., policy), Err(MasterError::Preparation(_))));
++    }
++    assert!(matches!(MasterEvaluator::new_dual_with_policy(ScalarIntegral::A0, 0., HyperDual::<f64>::new(vec![vec![0]]), policy), Err(MasterError::Preparation(_))));
++    let plan = ExactMasterPlan::new(ScalarIntegral::A0).unwrap();
++    assert!(matches!(plan.instantiate_with_policy(0., policy), Err(MasterError::Preparation(_))));
++    assert!(matches!(Pentagon6Plan::new_with_policy(policy), Err(MasterError::Preparation(_))));
++    assert!(matches!(Pentagon6Plan::new_dual_with_policy(HyperDual::<f64>::new(vec![vec![0]]), policy), Err(MasterError::Preparation(_))));
++}
++
++#[cfg(all(feature = "native-f64-abc", not(feature = "native-batch")))]
++#[test]
++fn selective_feature_does_not_enable_the_legacy_broad_constructor() {
++    assert!(matches!(MasterEvaluator::new_with_backend(ScalarIntegral::A0, 0., MasterBackend::RustBatch), Err(MasterError::Preparation(_))));
++}
++
++#[cfg(feature = "native-f64-abc")]
++#[test]
++fn selected_batches_keep_six_outputs_errors_and_own_repeats() {
++    let fixtures = [
++        (ScalarIntegral::A0, vec![2., 1.], vec![5., 4.], 0..1),
++        (ScalarIntegral::B0, vec![-3., 2., 5., 1.], vec![30., 2., 5., 1.], 1..3),
++        (ScalarIntegral::C0, vec![1., 2., 3., 5., 7., 11., 1.], vec![-1., -2., 30., 2., 3., 5., 1.], 3..6),
++    ];
++    for (family, first, physical, masses) in fixtures {
++        let first: Vec<_> = first.into_iter().map(c).collect();
++        let physical: Vec<_> = physical.into_iter().map(c).collect();
++        let mut complex = physical.clone();
++        for argument in masses { complex[argument].im = -0.1; }
++        let mut invalid = first.clone();
++        *invalid.last_mut().unwrap() = c(-1.);
++        let mut scaleless = vec![c(0.); family.arity()];
++        *scaleless.last_mut().unwrap() = c(1.);
++        let points = [first, physical, complex, invalid, scaleless];
++        let plan = ExactMasterPlan::new(family).unwrap();
++        let mut baseline = plan.instantiate_with_policy(0., MasterExecutionPolicy::Symbolica).unwrap();
++        let mut selected = plan.instantiate_with_policy(0., MasterExecutionPolicy::NativeF64Abc).unwrap();
++        assert_eq!(baseline.backend(), MasterBackend::SymbolicaBatch);
++        assert_eq!(selected.backend(), MasterBackend::RustBatch);
++        assert!(selected.dual_shape().is_none());
++        for storage in [BatchExecutionPolicy::Whole, BatchExecutionPolicy::FixedRows(std::num::NonZeroUsize::new(2).unwrap())] {
++            assert!(selected.set_native_batch_policy(storage));
++            for rows in [0, 1, 5, 3, 0, 1] {
++                let input = points[..rows].concat();
++                let original = metadata(&input);
++                let errors: Vec<_> = (0..rows).map(|lane| (lane == 3).then_some(LaneError::InvalidScale)).collect();
++                let a = baseline.evaluate_batch(&input, rows).unwrap();
++                let b = selected.evaluate_batch(&input, rows).unwrap();
++                let av = snapshot(&a, 1, &errors);
++                let bv = snapshot(&b, 1, &errors);
++                for lane in 0..rows {
++                    if errors[lane].is_some() { continue; }
++                    let scale = points[lane].iter().map(|z| z.re.hypot(z.im)).fold(1_f64, f64::max);
++                    let unit = match family { ScalarIntegral::A0 => scale, ScalarIntegral::C0 => 1. / scale, _ => 1. };
++                    for coefficient in 0..OUTPUTS {
++                        let x = &a.values[lane * OUTPUTS + coefficient];
++                        let y = &b.values[lane * OUTPUTS + coefficient];
++                        let denominator = (if coefficient == 5 { 1. } else { unit }) + x.re.hypot(x.im);
++                        assert!(denominator.is_finite() && denominator > 0.);
++                        let error = (x.re - y.re).hypot(x.im - y.im) / denominator;
++                        assert!(error.is_finite() && error <= 1e-10);
++                    }
++                }
++                for _ in 0..2 {
++                    assert_eq!(snapshot(&baseline.evaluate_batch(&input, rows).unwrap(), 1, &errors), av);
++                    assert_eq!(snapshot(&selected.evaluate_batch(&input, rows).unwrap(), 1, &errors), bv);
++                }
++                assert_eq!(metadata(&input), original);
++                assert!(matches!(selected.evaluate_batch(&[], 1), Err(MasterError::InputLength { .. })));
++                assert!(matches!(selected.evaluate_batch(&[], usize::MAX), Err(MasterError::SizeOverflow)));
++            }
++        }
++    }
++}
++
++#[cfg(feature = "native-f64-abc")]
++fn unchanged_numeric<T: NativeFloat>(prototype: T, point: &[Complex<T>])
++where Complex<T>: EvaluationDomain {
++    let original = metadata(point);
++    let plan = ExactMasterPlan::new(ScalarIntegral::A0).unwrap();
++    let mut baseline = plan.instantiate_with_policy(prototype.clone(), MasterExecutionPolicy::Symbolica).unwrap();
++    let mut selected = plan.instantiate_with_policy(prototype, MasterExecutionPolicy::NativeF64Abc).unwrap();
++    assert_eq!(selected.backend(), MasterBackend::SymbolicaBatch);
++    let expected = snapshot(&baseline.evaluate_batch(point, 1).unwrap(), 1, &[None]);
++    for _ in 0..3 {
++        assert_eq!(snapshot(&selected.evaluate_batch(point, 1).unwrap(), 1, &[None]), expected);
++    }
++    assert_eq!(metadata(point), original);
++}
++
++#[cfg(feature = "native-f64-abc")]
++#[test]
++fn higher_precision_and_unselected_families_remain_exact_symbolica() {
++    let one = DoubleFloat::from(1.);
++    let zero = DoubleFloat::from(0.);
++    let mass = one + one.from_i64(2).pow(80).inv();
++    assert_ne!(mass, one);
++    unchanged_numeric(zero, &[Complex::new(mass, zero), Complex::new(one, zero)]);
++    let mass = Float::with_val(256, 1) + Float::with_val(256, 2).pow(100).inv();
++    assert_ne!(mass, Float::with_val(256, 1));
++    unchanged_numeric(Float::new(128), &[Complex::new(mass, Float::new(64)), Complex::new(Float::with_val(128, 1), Float::new(256))]);
++    for (family, values) in [
++        (ScalarIntegral::DB0, vec![-3., 2., 5., 1.]),
++        (ScalarIntegral::D0, vec![-1., -2., -3., -4., -5., -6., 2., 3., 4., 5., 1.]),
++    ] {
++        let plan = ExactMasterPlan::new(family).unwrap();
++        let point: Vec<_> = values.into_iter().map(c).collect();
++        let mut a = plan.instantiate_with_policy(0., MasterExecutionPolicy::Symbolica).unwrap();
++        let mut b = plan.instantiate_with_policy(0., MasterExecutionPolicy::NativeF64Abc).unwrap();
++        assert_eq!(b.backend(), MasterBackend::SymbolicaBatch);
++        let expected = snapshot(&a.evaluate_batch(&point, 1).unwrap(), 1, &[None]);
++        for _ in 0..3 { assert_eq!(snapshot(&b.evaluate_batch(&point, 1).unwrap(), 1, &[None]), expected); }
++    }
++}
++
++#[test]
++fn explicit_dual_policy_keeps_lazy_scalar_children_symbolica() {
++    let mut policies = vec![MasterExecutionPolicy::Symbolica];
++    if cfg!(feature = "native-f64-abc") { policies.push(MasterExecutionPolicy::NativeF64Abc); }
++    let plan = ExactMasterPlan::new_dual(ScalarIntegral::A0, HyperDual::<f64>::new(vec![vec![0], vec![1]])).unwrap();
++    let point = [c(2.), c(0.), c(1.), c(0.)];
++    let mut reference = plan.instantiate_with_policy(0., MasterExecutionPolicy::Symbolica).unwrap();
++    let expected = snapshot(&reference.evaluate_batch(&point, 1).unwrap(), 2, &[None]);
++    for policy in policies {
++        let mut evaluator = plan.instantiate_with_policy(0., policy).unwrap();
++        assert_eq!(evaluator.backend(), MasterBackend::SymbolicaBatch);
++        for _ in 0..3 {
++            assert_eq!(snapshot(&evaluator.evaluate_batch(&point, 1).unwrap(), 2, &[None]), expected);
++            let child = evaluator.constant_evaluator.as_ref().expect("constant Dual scalar child");
++            assert_eq!(child.backend(), MasterBackend::SymbolicaBatch);
++            assert_eq!(child.execution_policy, MasterExecutionPolicy::Symbolica);
++        }
++    }
++    let mut legacy = plan.instantiate(0.).unwrap();
++    snapshot(&legacy.evaluate_batch(&point, 1).unwrap(), 2, &[None]);
++    assert_eq!(legacy.constant_evaluator.as_ref().unwrap().backend(), default_master_backend());
++}
++
++#[cfg(feature = "native-f64-abc")]
++#[test]
++fn one_component_and_seeded_dual_shapes_never_select_native() {
++    for shape in [vec![vec![0]], vec![vec![0], vec![1]]] {
++        for (family, values) in [
++            (ScalarIntegral::A0, vec![2., 1.]),
++            (ScalarIntegral::C0, vec![-1., -5., -4., 2., 3., 5., 1.]),
++        ] {
++            let components = shape.len();
++            let plan = ExactMasterPlan::new_dual(family, HyperDual::<f64>::new(shape.clone())).unwrap();
++            let mut input: Vec<_> = values.into_iter().flat_map(|value| std::iter::once(c(value)).chain(std::iter::repeat_n(c(0.), components - 1))).collect();
++            if components > 1 { input[1] = c(1.); }
++            let mut a = plan.instantiate_with_policy(0., MasterExecutionPolicy::Symbolica).unwrap();
++            let mut b = plan.instantiate_with_policy(0., MasterExecutionPolicy::NativeF64Abc).unwrap();
++            assert_eq!(b.backend(), MasterBackend::SymbolicaBatch);
++            assert!(b.dual_shape().is_some());
++            let expected = snapshot(&a.evaluate_batch(&input, 1).unwrap(), components, &[None]);
++            for _ in 0..3 { assert_eq!(snapshot(&b.evaluate_batch(&input, 1).unwrap(), components, &[None]), expected); }
++        }
++    }
++}
++
++symbolica::create_hyperdual_from_components!(PolicyStaticDual, [[0], [1]]);
++
++#[cfg(feature = "native-f64-abc")]
++#[test]
++fn static_and_dynamic_dual_adapters_keep_policy_and_shape() {
++    let mass = PolicyStaticDual::new_variable(0, c(2.));
++    let mut scale = PolicyStaticDual::new_variable(0, c(1.));
++    scale.values[1] = c(0.);
++    let mut stat = MasterEvaluator::new_dual_with_policy(ScalarIntegral::A0, 0., mass.clone(), MasterExecutionPolicy::NativeF64Abc).unwrap();
++    assert_eq!(stat.backend(), MasterBackend::SymbolicaBatch);
++    let expected = snapshot(&stat.evaluate_dual_batch(&[mass.clone(), scale.clone()], 1, |x| &x.values).unwrap(), 2, &[None]);
++    let shape = vec![vec![0], vec![1]];
++    let input = [HyperDual::from_values(shape.clone(), mass.values.to_vec()), HyperDual::from_values(shape.clone(), scale.values.to_vec())];
++    let mut dynamic = MasterEvaluator::new_dual_with_policy(ScalarIntegral::A0, 0., HyperDual::<f64>::new(shape), MasterExecutionPolicy::NativeF64Abc).unwrap();
++    assert_eq!(snapshot(&dynamic.evaluate_hyperdual_batch(&input, 1).unwrap(), 2, &[None]), expected);
++    let wrong = [HyperDual::from_values(vec![vec![0]], vec![c(2.)]), HyperDual::from_values(vec![vec![0]], vec![c(1.)])];
++    assert!(matches!(dynamic.evaluate_hyperdual_batch(&wrong, 1), Err(MasterError::InvalidShape(_))));
++    assert_eq!(snapshot(&dynamic.evaluate_hyperdual_batch(&input, 1).unwrap(), 2, &[None]), expected);
++}
+--- a/crates/iregi-masters/src/lib.rs
++++ b/crates/iregi-masters/src/lib.rs
+@@ -19,6 +19,8 @@
+ mod derivative_domain;
+ mod dual_validation;
+ mod exact_plan;
++#[cfg(test)]
++mod execution_policy_tests;
+ mod normalization;
+ mod pentagon6;
+ mod scale_transport;
+@@ -28,7 +30,7 @@
+     Pentagon6Batch, Pentagon6Diagnostic, Pentagon6Evaluator, Pentagon6LaneError, Pentagon6Options,
+     Pentagon6Plan,
+ };
+-#[cfg(feature = "native-batch")]
++#[cfg(any(feature = "native-batch", feature = "native-f64-abc"))]
+ mod native_batch;
+ 
+ pub use oneloop::{NativeFloat, ScalarIntegral};
+@@ -174,6 +176,34 @@
+     RustBatch,
+ }
+ 
++/// Requested scalar-master execution policy, separate from the observed backend.
++///
++/// The selective policy uses generated Rust only for ordinary, exact Rust `f64`
++/// A0/B0/C0. Other families, numeric domains, and every Dual shape use Symbolica.
++/// Enabling its feature alone does not change any existing constructor default.
++#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Hash)]
++pub enum MasterExecutionPolicy {
++    /// Preserve the constructor's existing backend behavior.
++    #[default]
++    Default,
++    /// Use Symbolica, including scalar children of constant Dual evaluations.
++    Symbolica,
++    /// Select ordinary f64 A0/B0/C0; requires the `native-f64-abc` feature.
++    NativeF64Abc,
++}
++
++impl MasterExecutionPolicy {
++    /// Reject unavailable explicit capabilities before symbolic preparation.
++    pub fn validate_available(self) -> Result<(), MasterError> {
++        if self == Self::NativeF64Abc && !cfg!(feature = "native-f64-abc") {
++            return Err(MasterError::Preparation(
++                "NativeF64Abc requires the native-f64-abc feature".into(),
++            ));
++        }
++        Ok(())
++    }
++}
++
+ /// Default scalar backend selected by this crate's compiled feature set.
+ /// Dual plans always use Symbolica's batch interpreter.
+ pub const fn default_master_backend() -> MasterBackend {
+@@ -189,6 +219,8 @@
+     Symbolica(BatchExpressionEvaluator<Complex<T>>),
+     #[cfg(feature = "native-batch")]
+     Rust(native_batch::NativeBatchEvaluator<T>),
++    #[cfg(feature = "native-f64-abc")]
++    Selected(native_batch::SelectedBatchEvaluator),
+ }
+ 
+ /// Prepared scalar-master instructions and reusable batch workspaces.
+@@ -203,6 +235,7 @@
+     prototype: T,
+     shape: Option<Vec<Vec<usize>>>,
+     components: usize,
++    execution_policy: MasterExecutionPolicy,
+     evaluator: PreparedMaster<T>,
+     input_workspace: Vec<Complex<T>>,
+     output_workspace: Vec<Complex<T>>,
+@@ -219,11 +252,31 @@
+     Complex<T>: EvaluationDomain,
+ {
+     pub fn new(family: ScalarIntegral, prototype: T) -> Result<Self, MasterError> {
+-        Self::new_with_backend(family, prototype, default_master_backend())
++        Self::new_with_policy(family, prototype, MasterExecutionPolicy::Default)
++    }
++
++    /// Prepare with an explicit backend policy. Unselected domains and families
++    /// use Symbolica even when the broad `native-batch` feature is also enabled.
++    pub fn new_with_policy(
++        family: ScalarIntegral,
++        prototype: T,
++        policy: MasterExecutionPolicy,
++    ) -> Result<Self, MasterError> {
++        policy.validate_available()?;
++        match policy {
++            MasterExecutionPolicy::Default => {
++                Self::new_with_backend(family, prototype, default_master_backend())
++            }
++            MasterExecutionPolicy::Symbolica | MasterExecutionPolicy::NativeF64Abc => {
++                ExactMasterPlan::new(family)?.instantiate_with_policy(prototype, policy)
++            }
++        }
+     }
+ 
+     /// Select the native generated kernels or the exact-expression interpreter.
+     /// Both execute instructions across batches; neither loops over scalar calls.
++    /// `RustBatch` retains its broad `native-batch` feature requirement. Use
++    /// [`Self::new_with_policy`] for the separate selective capability.
+     pub fn new_with_backend(
+         family: ScalarIntegral,
+         prototype: T,
+@@ -244,6 +297,7 @@
+                         prototype,
+                         shape: None,
+                         components: 1,
++                        execution_policy: MasterExecutionPolicy::Default,
+                         evaluator: PreparedMaster::Rust(evaluator),
+                         input_workspace: Vec::new(),
+                         output_workspace: Vec::new(),
+@@ -270,6 +324,8 @@
+             PreparedMaster::Symbolica(_) => MasterBackend::SymbolicaBatch,
+             #[cfg(feature = "native-batch")]
+             PreparedMaster::Rust(_) => MasterBackend::RustBatch,
++            #[cfg(feature = "native-f64-abc")]
++            PreparedMaster::Selected(_) => MasterBackend::RustBatch,
+         }
+     }
+ 
+@@ -281,6 +337,11 @@
+     ) -> bool {
+         #[cfg(feature = "native-batch")]
+         if let PreparedMaster::Rust(evaluator) = &mut self.evaluator {
++            evaluator.set_policy(policy);
++            return true;
++        }
++        #[cfg(feature = "native-f64-abc")]
++        if let PreparedMaster::Selected(evaluator) = &mut self.evaluator {
+             evaluator.set_policy(policy);
+             return true;
+         }
+@@ -305,7 +366,19 @@
+         prototype: T,
+         dual: D,
+     ) -> Result<Self, MasterError> {
+-        ExactMasterPlan::new_dual(family, dual)?.instantiate(prototype)
++        Self::new_dual_with_policy(family, prototype, dual, MasterExecutionPolicy::Default)
++    }
++
++    /// Prepare a Dual evaluator. Explicit policies keep the complete Dual path,
++    /// including lazy constant-kinematics scalar children, on Symbolica.
++    pub fn new_dual_with_policy<D: DualNumberStructure>(
++        family: ScalarIntegral,
++        prototype: T,
++        dual: D,
++        policy: MasterExecutionPolicy,
++    ) -> Result<Self, MasterError> {
++        policy.validate_available()?;
++        ExactMasterPlan::new_dual(family, dual)?.instantiate_with_policy(prototype, policy)
+     }
+ 
+     fn from_exact(
+@@ -335,6 +408,7 @@
+             prototype,
+             shape,
+             components,
++            execution_policy: MasterExecutionPolicy::Default,
+             evaluator: PreparedMaster::Symbolica(evaluator),
+             input_workspace: Vec::new(),
+             output_workspace: Vec::new(),
+@@ -345,6 +419,24 @@
+             constant_lanes: Vec::new(),
+             scale_transport: None,
+         })
++    }
++
++    fn select_execution_policy(mut self, policy: MasterExecutionPolicy) -> Result<Self, MasterError> {
++        policy.validate_available()?;
++        self.execution_policy = policy;
++        #[cfg(feature = "native-f64-abc")]
++        if policy == MasterExecutionPolicy::NativeF64Abc
++            && std::any::TypeId::of::<T>() == std::any::TypeId::of::<f64>()
++            && self.shape.is_none()
++            && self.components == 1
++            && matches!(self.family, ScalarIntegral::A0 | ScalarIntegral::B0 | ScalarIntegral::C0)
++        {
++            self.evaluator = PreparedMaster::Selected(
++                native_batch::SelectedBatchEvaluator::new(self.family)
++                    .map_err(MasterError::Preparation)?,
++            );
++        }
++        Ok(self)
+     }
+ 
+     pub fn family(&self) -> ScalarIntegral {
+@@ -480,6 +572,10 @@
+             PreparedMaster::Rust(evaluator) => evaluator
+                 .evaluate_batch(&self.input_workspace, &mut self.output_workspace, valid)
+                 .map_err(MasterError::Evaluation)?,
++            #[cfg(feature = "native-f64-abc")]
++            PreparedMaster::Selected(evaluator) => evaluator
++                .evaluate_batch(&self.input_workspace, &mut self.output_workspace, valid)
++                .map_err(MasterError::Evaluation)?,
+         }
+         self.restore_bubble_scale(input, row_width, result_width)?;
+         for (prepared, &lane) in self.valid_lanes.iter().enumerate() {
+@@ -519,8 +615,17 @@
+         }
+         if !self.constant_lanes.is_empty() {
+             if self.constant_evaluator.is_none() {
+-                self.constant_evaluator =
+-                    Some(Box::new(Self::new(self.family, self.prototype.clone())?));
++                let policy = match self.execution_policy {
++                    MasterExecutionPolicy::Default => MasterExecutionPolicy::Default,
++                    MasterExecutionPolicy::Symbolica | MasterExecutionPolicy::NativeF64Abc => {
++                        MasterExecutionPolicy::Symbolica
++                    }
++                };
++                self.constant_evaluator = Some(Box::new(Self::new_with_policy(
++                    self.family,
++                    self.prototype.clone(),
++                    policy,
++                )?));
+             }
+             let constants = self
+                 .constant_evaluator
+--- a/crates/iregi-masters/src/native_batch.rs
++++ b/crates/iregi-masters/src/native_batch.rs
+@@ -23,6 +23,7 @@
+ #[rustfmt::skip]
+ #[allow(clippy::all, unused_assignments, dead_code)]
+ #[path = "generated/db0.rs"]
++#[cfg(feature = "native-batch")]
+ mod db0;
+ #[rustfmt::skip]
+ #[allow(clippy::all, unused_assignments, dead_code)]
+@@ -31,6 +32,7 @@
+ #[rustfmt::skip]
+ #[allow(clippy::all, unused_assignments, dead_code)]
+ #[path = "generated/d0.rs"]
++#[cfg(feature = "native-batch")]
+ mod d0;
+ #[rustfmt::skip]
+ #[allow(clippy::all, unused_assignments, dead_code)]
+@@ -43,6 +45,7 @@
+ /// policy preserves that behavior across the complete input buffer. Optional
+ /// fixed blocks bound scratch storage without splitting individual rows.
+ #[derive(Clone)]
++#[cfg(feature = "native-batch")]
+ pub(crate) struct NativeBatchEvaluator<T: NativeFloat> {
+     family: ScalarIntegral,
+     context: Context<T>,
+@@ -50,6 +53,7 @@
+     policy: BatchExecutionPolicy,
+ }
+ 
++#[cfg(feature = "native-batch")]
+ impl<T: NativeFloat> NativeBatchEvaluator<T> {
+     pub(crate) fn new(family: ScalarIntegral, prototype: &T) -> Result<Self, String> {
+         Ok(Self {
+@@ -88,3 +92,65 @@
+         )
+     }
+ }
++
++/// Concrete-f64 dispatch over the same generated A0/B0/C0 modules.
++///
++/// Keeping this separate from the generic all-family dispatcher avoids compiling
++/// D0/dB0 for the selective feature. All validation and lane adaptation remains
++/// in `MasterEvaluator`; this owns only numeric constants and native scratch.
++#[cfg(feature = "native-f64-abc")]
++#[derive(Clone)]
++pub(crate) struct SelectedBatchEvaluator {
++    family: ScalarIntegral,
++    context: Context<f64>,
++    workspace: BatchWorkspace<f64>,
++    policy: BatchExecutionPolicy,
++}
++
++#[cfg(feature = "native-f64-abc")]
++impl SelectedBatchEvaluator {
++    pub(crate) fn new(family: ScalarIntegral) -> Result<Self, String> {
++        if !matches!(family, ScalarIntegral::A0 | ScalarIntegral::B0 | ScalarIntegral::C0) {
++            return Err("native-f64-abc supports ordinary f64 A0/B0/C0 only".into());
++        }
++        Ok(Self {
++            family,
++            context: Context::new(constants::CONSTANTS, 53)?,
++            workspace: BatchWorkspace::new(0.),
++            policy: BatchExecutionPolicy::Whole,
++        })
++    }
++
++    pub(crate) fn set_policy(&mut self, policy: BatchExecutionPolicy) {
++        self.policy = policy;
++    }
++
++    pub(crate) fn evaluate_batch<T: NativeFloat>(
++        &mut self,
++        input: &Vec<C<T>>,
++        output: &mut Vec<C<T>>,
++        rows: usize,
++    ) -> Result<(), String> {
++        let input = (input as &dyn std::any::Any)
++            .downcast_ref::<Vec<C<f64>>>()
++            .ok_or("native-f64-abc input type differs from f64")?;
++        let output = (output as &mut dyn std::any::Any)
++            .downcast_mut::<Vec<C<f64>>>()
++            .ok_or("native-f64-abc output type differs from f64")?;
++        let family = self.family;
++        let context = &self.context;
++        self.policy.evaluate(
++            input,
++            output,
++            rows,
++            (family.arity(), super::OUTPUTS),
++            &mut self.workspace,
++            |input, output, rows, workspace| match family {
++                ScalarIntegral::A0 => a0::evaluate_batch(input, output, rows, context, workspace),
++                ScalarIntegral::B0 => b0::evaluate_batch(input, output, rows, context, workspace),
++                ScalarIntegral::C0 => c0::evaluate_batch(input, output, rows, context, workspace),
++                _ => unreachable!("selected family validated at construction"),
++            },
++        )
++    }
++}
+--- a/crates/iregi-masters/src/pentagon6.rs
++++ b/crates/iregi-masters/src/pentagon6.rs
+@@ -7,7 +7,7 @@
+ 
+ use crate::{
+     Complex, DualNumberStructure, ExactMasterPlan, HyperDual, LaneError, MasterBackend,
+-    MasterError, MasterEvaluator, NativeFloat, ScalarIntegral, default_master_backend,
++    MasterError, MasterEvaluator, MasterExecutionPolicy, NativeFloat, ScalarIntegral, default_master_backend,
+     validate_dual_structure,
+ };
+ use std::{
+@@ -56,6 +56,7 @@
+     contraction: ExpressionEvaluator<Complex<Rational>>,
+     boxes: PentagonBoxPlan,
+     components: usize,
++    master_policy: MasterExecutionPolicy,
+     rules: Arc<Mutex<HashMap<(usize, u32), Arc<Vec<(Rational, Rational)>>>>>,
+ }
+ 
+@@ -67,15 +68,34 @@
+ 
+ impl Pentagon6Plan {
+     pub fn new() -> Result<Self, MasterError> {
+-        Self::build::<HyperDual<f64>>(None)
++        Self::new_with_policy(MasterExecutionPolicy::Default)
++    }
++
++    /// Select the policy for scalar dependencies. Explicit policies retain
++    /// Symbolica D0 boxes; the pentagon geometry and quadrature are unchanged.
++    pub fn new_with_policy(policy: MasterExecutionPolicy) -> Result<Self, MasterError> {
++        policy.validate_available()?;
++        Self::build::<HyperDual<f64>>(None, policy)
+     }
+ 
+     pub fn new_dual<D: DualNumberStructure>(dual: D) -> Result<Self, MasterError> {
++        Self::new_dual_with_policy(dual, MasterExecutionPolicy::Default)
++    }
++
++    /// Prepare a Dual pentagon with the same scalar-dependency policy.
++    pub fn new_dual_with_policy<D: DualNumberStructure>(
++        dual: D,
++        policy: MasterExecutionPolicy,
++    ) -> Result<Self, MasterError> {
++        policy.validate_available()?;
+         validate_dual_structure(&dual)?;
+-        Self::build(Some(&dual))
+-    }
+-
+-    fn build<D: DualNumberStructure>(dual: Option<&D>) -> Result<Self, MasterError> {
++        Self::build(Some(&dual), policy)
++    }
++
++    fn build<D: DualNumberStructure>(
++        dual: Option<&D>,
++        policy: MasterExecutionPolicy,
++    ) -> Result<Self, MasterError> {
+         let parameters: Vec<_> = (0..INPUTS).map(|i| variable(&format!("a{i}"))).collect();
+         let mut distances = vec![vec![Atom::new(); 5]; 5];
+         for (index, &(i, j)) in EDGES.iter().enumerate() {
+@@ -147,7 +167,8 @@
+                 ScalarIntegral::D0,
+                 BorrowedDual(dual),
+             )?),
+-            None if default_master_backend() == MasterBackend::RustBatch => PentagonBoxPlan::Native,
++            None if policy == MasterExecutionPolicy::Default
++                && default_master_backend() == MasterBackend::RustBatch => PentagonBoxPlan::Native,
+             None => PentagonBoxPlan::Exact(ExactMasterPlan::new(ScalarIntegral::D0)?),
+         };
+         Ok(Self {
+@@ -155,6 +176,7 @@
+             contraction,
+             components,
+             boxes,
++            master_policy: policy,
+             rules: Arc::new(Mutex::new(HashMap::new())),
+         })
+     }
+@@ -177,7 +199,9 @@
+             geometry: map(&self.geometry, &prototype),
+             contraction: map(&self.contraction, &prototype),
+             boxes: match &self.boxes {
+-                PentagonBoxPlan::Exact(plan) => plan.instantiate(prototype.clone())?,
++                PentagonBoxPlan::Exact(plan) => {
++                    plan.instantiate_with_policy(prototype.clone(), self.master_policy)?
++                }
+                 PentagonBoxPlan::Native => MasterEvaluator::new_with_backend(
+                     ScalarIntegral::D0,
+                     prototype.clone(),
+@@ -800,6 +824,19 @@
+ mod tests {
+     use super::*;
+     use crate::{DoubleFloat, Float};
++    #[test]
++    fn explicit_policy_keeps_pentagon_boxes_symbolica() {
++        let mut policies = vec![MasterExecutionPolicy::Symbolica];
++        if cfg!(feature = "native-f64-abc") {
++            policies.push(MasterExecutionPolicy::NativeF64Abc);
++        }
++        for policy in policies {
++            let plan = Pentagon6Plan::new_with_policy(policy).unwrap();
++            assert_eq!(plan.master_policy, policy);
++            assert!(matches!(&plan.boxes, PentagonBoxPlan::Exact(_)));
++            assert_eq!(plan.instantiate(0.).unwrap().boxes.backend(), MasterBackend::SymbolicaBatch);
++        }
++    }
+     const SAMPLE: [i64; 16] = [1, -1, -1, -1, 0, 0, 0, -2, -2, -2, 10, 12, 15, 18, 22, 1];
+     fn sample() -> Vec<Complex<f64>> {
+         SAMPLE.map(|re| Complex::new(re as f64, 0.)).to_vec()
+--- a/crates/iregi-rust/Cargo.toml
++++ b/crates/iregi-rust/Cargo.toml
+@@ -8,6 +8,10 @@
+ description = "Batched generic one-loop tensor integral reduction"
+ publish = false
+ 
++[features]
++default = []
++native-f64-abc = ["iregi-masters/native-f64-abc"]
++
+ [dependencies]
+ symbolica.workspace = true
+ iregi-masters.workspace = true
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -4,6 +4,10 @@
+ //! compiles all argument transformations and reduction arithmetic; this module
+ //! only validates and packs their numerical buffers.
+ 
++#[cfg(test)]
++#[path = "master_policy_tests.rs"]
++mod master_policy_tests;
++
+ use std::{
+     collections::HashMap,
+     sync::{Arc, Mutex, OnceLock},
+@@ -11,7 +15,7 @@
+ };
+ 
+ use iregi_masters::{
+-    ExactMasterPlan, LaneError, MasterBackend, MasterEvaluator, NativeFloat, Pentagon6Evaluator,
++    ExactMasterPlan, LaneError, MasterBackend, MasterEvaluator, MasterExecutionPolicy, NativeFloat, Pentagon6Evaluator,
+     Pentagon6LaneError, Pentagon6Options, Pentagon6Plan, ScalarIntegral,
+ };
+ use symbolica::{
+@@ -129,7 +133,7 @@
+ }
+ 
+ pub(crate) type ExactExecutionCache = Arc<
+-    Mutex<HashMap<Option<Vec<Vec<usize>>>, Arc<OnceLock<Result<Arc<PreparedExecution>, String>>>>>,
++    Mutex<HashMap<(Option<Vec<Vec<usize>>>, MasterExecutionPolicy), Arc<OnceLock<Result<Arc<PreparedExecution>, String>>>>>,
+ >;
+ 
+ struct PreparedMasterGroup {
+@@ -529,6 +533,7 @@
+ /// Immutable exact instructions. This graph contains no numeric samples,
+ /// rounded coefficients, scratch buffers, or reference back to ReductionPlan.
+ pub(crate) struct PreparedExecution {
++    master_policy: MasterExecutionPolicy,
+     basis: Vec<Monomial>,
+     parameters: usize,
+     layout: InputLayout,
+@@ -575,6 +580,7 @@
+         plan: &ReductionPlan,
+         dual: Option<&D>,
+         master_plans: &mut PreparedMasterCache,
++        master_policy: MasterExecutionPolicy,
+     ) -> Result<Self, ReductionError> {
+         let shape = dual.map(|value| {
+             value
+@@ -789,8 +795,8 @@
+                     } else {
+                         let exact = Arc::new(
+                             match dual {
+-                                Some(layout) => Pentagon6Plan::new_dual(BorrowedDual(layout)),
+-                                None => Pentagon6Plan::new(),
++                                Some(layout) => Pentagon6Plan::new_dual_with_policy(BorrowedDual(layout), master_policy),
++                                None => Pentagon6Plan::new_with_policy(master_policy),
+                             }
+                             .map_err(|error| ReductionError::Preparation(error.to_string()))?,
+                         );
+@@ -805,7 +811,9 @@
+                 }
+                 ScalarFamily::OneLoop(family) => family,
+             };
+-            if dual.is_none() && iregi_masters::default_master_backend() == MasterBackend::RustBatch
++            if master_policy == MasterExecutionPolicy::Default
++                && dual.is_none()
++                && iregi_masters::default_master_backend() == MasterBackend::RustBatch
+             {
+                 masters.push(PreparedMasterGroup {
+                     leaves,
+@@ -839,7 +847,7 @@
+         let fallback = plan
+             .fallback
+             .as_deref()
+-            .map(|fallback| prepare_exact(fallback, dual, master_plans))
++            .map(|fallback| prepare_exact(fallback, dual, master_plans, master_policy))
+             .transpose()?;
+         let jet_order = shape
+             .as_ref()
+@@ -850,8 +858,8 @@
+             let equal = ReductionPlan::lightlike_bubble(plan.settings.clone(), jet_order, true)?;
+             let unequal = ReductionPlan::lightlike_bubble(plan.settings.clone(), jet_order, false)?;
+             (
+-                Some(prepare_exact(&equal, dual, master_plans)?),
+-                Some(prepare_exact(&unequal, dual, master_plans)?),
++                Some(prepare_exact(&equal, dual, master_plans, master_policy)?),
++                Some(prepare_exact(&unequal, dual, master_plans, master_policy)?),
+             )
+         } else {
+             (None, None)
+@@ -862,6 +870,7 @@
+             shape.clone(),
+         );
+         Ok(Self {
++            master_policy,
+             basis: plan.basis.clone(),
+             parameters: plan.parameters.len(),
+             layout: plan.layout.clone(),
+@@ -898,6 +907,7 @@
+     plan: &ReductionPlan,
+     dual: Option<&D>,
+     master_plans: &mut PreparedMasterCache,
++    master_policy: MasterExecutionPolicy,
+ ) -> Result<Arc<PreparedExecution>, ReductionError> {
+     let shape = dual.map(|layout| {
+         layout
+@@ -912,12 +922,12 @@
+         .execution_cache
+         .lock()
+         .map_err(|_| ReductionError::Preparation("exact execution cache lock poisoned".into()))?
+-        .entry(shape)
++        .entry((shape, master_policy))
+         .or_default()
+         .clone();
+     entry
+         .get_or_init(|| {
+-            PreparedExecution::build(plan, dual, master_plans)
++            PreparedExecution::build(plan, dual, master_plans, master_policy)
+                 .map(Arc::new)
+                 .map_err(|error| error.to_string())
+         })
+@@ -937,6 +947,7 @@
+ /// sample `Unstable` for explicit precision rescue.
+ #[derive(Clone)]
+ pub struct Workspace<T: NativeFloat> {
++    master_policy: MasterExecutionPolicy,
+     prototype: T,
+     accuracy_bits: u32,
+     basis: Vec<Monomial>,
+@@ -991,7 +1002,22 @@
+     Complex<T>: EvaluationDomain,
+ {
+     pub fn new(plan: &ReductionPlan, prototype: T) -> Result<Self, ReductionError> {
+-        Self::prepare::<HyperDual<Complex<Rational>>>(plan, prototype, None)
++        Self::new_with_master_policy(plan, prototype, MasterExecutionPolicy::Default)
++    }
++
++    /// Prepare an explicit scalar-master execution policy for this workspace.
++    ///
++    /// `NativeF64Abc` requires the `native-f64-abc` feature and selects native
++    /// A0/B0/C0 only for plain f64 inputs. All other types/families use Symbolica.
++    /// The policy is inherited by recursive and lazily specialized workspaces.
++    pub fn new_with_master_policy(
++        plan: &ReductionPlan,
++        prototype: T,
++        master_policy: MasterExecutionPolicy,
++    ) -> Result<Self, ReductionError> {
++        master_policy.validate_available()
++            .map_err(|error| ReductionError::Preparation(error.to_string()))?;
++        Self::prepare::<HyperDual<Complex<Rational>>>(plan, prototype, None, master_policy)
+     }
+ 
+     /// Compile a static or dynamic Symbolica Dual layout. Inputs and outputs
+@@ -1001,21 +1027,38 @@
+         prototype: T,
+         dual: D,
+     ) -> Result<Self, ReductionError> {
++        Self::new_dual_with_master_policy(plan, prototype, dual, MasterExecutionPolicy::Default)
++    }
++
++    /// Prepare a Dual layout with an explicit master policy.
++    /// Explicit Symbolica and selective-native policies keep the complete Dual
++    /// path, including lazily evaluated constant jets, on Symbolica.
++    pub fn new_dual_with_master_policy<D: DualNumberStructure>(
++        plan: &ReductionPlan,
++        prototype: T,
++        dual: D,
++        master_policy: MasterExecutionPolicy,
++    ) -> Result<Self, ReductionError> {
++        master_policy.validate_available()
++            .map_err(|error| ReductionError::Preparation(error.to_string()))?;
+         iregi_masters::validate_dual_structure(&dual)
+             .map_err(|error| ReductionError::Preparation(error.to_string()))?;
+         let order = maximum_jet_order(dual.get_shape())?;
+         if order == plan.analytic_jet_order {
+-            return Self::prepare(plan, prototype, Some(&dual));
++            return Self::prepare(plan, prototype, Some(&dual), master_policy);
+         }
+         let specialized = plan.with_analytic_jet_order(order)?;
+-        Self::prepare(&specialized, prototype, Some(&dual))
++        Self::prepare(&specialized, prototype, Some(&dual), master_policy)
+     }
+ 
+     fn prepare<D: DualNumberStructure>(
+         plan: &ReductionPlan,
+         prototype: T,
+         dual: Option<&D>,
++        master_policy: MasterExecutionPolicy,
+     ) -> Result<Self, ReductionError> {
++        master_policy.validate_available()
++            .map_err(|error| ReductionError::Preparation(error.to_string()))?;
+         if prototype.get_precision() == 0 {
+             return Err(ReductionError::Preparation(
+                 "working precision must be positive".into(),
+@@ -1025,7 +1068,7 @@
+             iregi_masters::validate_dual_structure(layout)
+                 .map_err(|error| ReductionError::Preparation(error.to_string()))?;
+         }
+-        let exact = prepare_exact(plan, dual, &mut PreparedMasterCache::default())?;
++        let exact = prepare_exact(plan, dual, &mut PreparedMasterCache::default(), master_policy)?;
+         Self::instantiate(Some(plan), prototype, &exact)
+     }
+ 
+@@ -1064,7 +1107,7 @@
+                     leaves: group.leaves.clone(),
+                     evaluator: match &group.plan {
+                         PreparedMasterPlan::Exact(plan) => plan
+-                            .instantiate(prototype.clone())
++                            .instantiate_with_policy(prototype.clone(), exact.master_policy)
+                             .map(ScalarMasterEvaluator::OneLoop),
+                         PreparedMasterPlan::Native(family) => MasterEvaluator::new_with_backend(
+                             *family,
+@@ -1131,6 +1174,7 @@
+         let guard_context =
+             GuardContext::new(&exact.stability, &prototype, prototype.get_precision());
+         Ok(Self {
++            master_policy: exact.master_policy,
+             guard_context,
+             accuracy_bits: prototype.get_precision(),
+             prototype,
+@@ -1179,6 +1223,11 @@
+             profile: ExecutionProfile::default(),
+             diagnostics: Vec::new(),
+         })
++    }
++
++    /// Requested policy; individual master evaluators report their actual backend.
++    pub fn master_execution_policy(&self) -> MasterExecutionPolicy {
++        self.master_policy
+     }
+ 
+     pub fn component_count(&self) -> usize {
+@@ -1559,7 +1608,7 @@
+                                 let layout = self.shape.as_ref().map(|shape| {
+                                     HyperDual::<Complex<Rational>>::new(shape.clone())
+                                 });
+-                                Self::prepare(&plan, self.prototype.clone(), layout.as_ref())
++                                Self::prepare(&plan, self.prototype.clone(), layout.as_ref(), self.master_policy)
+                             })
+                             .and_then(|mut workspace| {
+                                 workspace.set_profiling(self.profiling);
+--- a/crates/iregi-rust/src/lib.rs
++++ b/crates/iregi-rust/src/lib.rs
+@@ -33,3 +33,6 @@
+     RescueTrigger,
+ };
+ pub use types::*;
++
++/// Scalar-master selection for explicitly configured workspaces.
++pub use iregi_masters::MasterExecutionPolicy;
+--- /dev/null
++++ b/crates/iregi-rust/src/master_policy_tests.rs
+@@ -0,0 +1,201 @@
++//! Public-constructor regression controls for explicit workspace master policy.
++use super::*;
++use crate::{Convention, ReductionSettings};
++use symbolica::domains::float::Float;
++
++fn bubble(rank: u16) -> ReductionPlan {
++    let mut settings = ReductionSettings::new(2, rank);
++    settings.convention = Convention::OneLoop;
++    ReductionPlan::new(settings).unwrap()
++}
++
++fn c(value: f64) -> Complex<f64> {
++    Complex::new(value, 0.)
++}
++
++fn assert_interpreter<T: NativeFloat>(workspace: &Workspace<T>)
++where
++    Complex<T>: EvaluationDomain,
++{
++    for group in &workspace.masters {
++        if let ScalarMasterEvaluator::OneLoop(evaluator) = &group.evaluator {
++            assert_eq!(evaluator.backend(), MasterBackend::SymbolicaBatch);
++        }
++    }
++    for child in [
++        workspace.fallback.as_deref(),
++        workspace.lightlike_equal.as_deref(),
++        workspace.lightlike_unequal.as_deref(),
++    ]
++    .into_iter()
++    .flatten()
++    {
++        assert_interpreter(child);
++    }
++}
++
++#[test]
++fn explicit_symbolica_overrides_the_legacy_feature_and_preserves_default_cache() {
++    let plan = bubble(1);
++    let explicit = Workspace::new_with_master_policy(&plan, 0., MasterExecutionPolicy::Symbolica)
++        .unwrap();
++    assert_eq!(explicit.master_execution_policy(), MasterExecutionPolicy::Symbolica);
++    assert_interpreter(&explicit);
++    let ordinary = Workspace::new(&plan, 0.).unwrap();
++    assert_eq!(ordinary.master_execution_policy(), MasterExecutionPolicy::Default);
++    assert!(ordinary.masters.iter().all(|group| match &group.evaluator {
++        ScalarMasterEvaluator::OneLoop(evaluator) => {
++            evaluator.backend() == iregi_masters::default_master_backend()
++        }
++        _ => true,
++    }));
++    assert_eq!(plan.execution_cache.lock().unwrap().len(), 2);
++    let _second = Workspace::new_with_master_policy(
++        &plan, Float::new(128), MasterExecutionPolicy::Symbolica,
++    ).unwrap();
++    assert_eq!(plan.execution_cache.lock().unwrap().len(), 2);
++}
++
++#[cfg(not(feature = "native-f64-abc"))]
++#[test]
++fn unavailable_selective_policy_fails_before_exact_preparation() {
++    // A downstream crate can enable the dependency feature directly through
++    // Cargo feature unification, without enabling this crate's forwarding flag.
++    if MasterExecutionPolicy::NativeF64Abc.validate_available().is_ok() {
++        return;
++    }
++    let plan = bubble(0);
++    let result = Workspace::new_with_master_policy(
++        &plan, 0., MasterExecutionPolicy::NativeF64Abc,
++    );
++    assert!(matches!(result, Err(ReductionError::Preparation(reason))
++        if reason.contains("native-f64-abc")));
++    assert!(plan.execution_cache.lock().unwrap().is_empty());
++    let dual = HyperDual::<Complex<Rational>>::new(vec![vec![0]]);
++    let result = Workspace::new_dual_with_master_policy(
++        &plan, 0., dual, MasterExecutionPolicy::NativeF64Abc,
++    );
++    assert!(matches!(result, Err(ReductionError::Preparation(reason))
++        if reason.contains("native-f64-abc")));
++    assert!(plan.execution_cache.lock().unwrap().is_empty());
++}
++
++#[cfg(feature = "native-f64-abc")]
++fn assert_selected_tree(workspace: &Workspace<f64>) {
++    assert_eq!(workspace.master_execution_policy(), MasterExecutionPolicy::NativeF64Abc);
++    for group in &workspace.masters {
++        if let ScalarMasterEvaluator::OneLoop(evaluator) = &group.evaluator {
++            let expected = if workspace.shape.is_none()
++                && matches!(evaluator.family(), ScalarIntegral::A0 | ScalarIntegral::B0 | ScalarIntegral::C0)
++            {
++                MasterBackend::RustBatch
++            } else {
++                MasterBackend::SymbolicaBatch
++            };
++            assert_eq!(evaluator.backend(), expected);
++        }
++    }
++    for child in [
++        workspace.fallback.as_deref(),
++        workspace.lightlike_equal.as_deref(),
++        workspace.lightlike_unequal.as_deref(),
++    ].into_iter().flatten() {
++        assert_selected_tree(child);
++    }
++    for child in workspace.zero_profiles.values() {
++        assert_selected_tree(child.as_ref().expect("selected zero-profile preparation failed"));
++    }
++}
++
++#[cfg(feature = "native-f64-abc")]
++#[test]
++fn selective_workspaces_keep_cache_policy_and_recursive_lane_semantics() {
++    let plan = bubble(1);
++    let mut native = Workspace::new_with_master_policy(
++        &plan, 0., MasterExecutionPolicy::NativeF64Abc,
++    ).unwrap();
++    let mut reference = Workspace::new_with_master_policy(
++        &plan, 0., MasterExecutionPolicy::Symbolica,
++    ).unwrap();
++    assert_eq!(plan.execution_cache.lock().unwrap().len(), 2);
++    assert_selected_tree(&native);
++    let batch = KinematicsBatch {
++        rows: 3,
++        components: 1,
++        values: [
++            [0., 0., 0., 0., 0., 1., 0., 0., 4., 9., 1.],
++            [2., 1., 0., 0., 2., 1., 0., 0., 0., 0., 1.],
++            [0., 0., 0., 0., 0., 1., 0., 0., 0., 0., 1.],
++        ].into_iter().flatten().map(c).collect(),
++    };
++    let actual = native.reduce_batch(&batch).unwrap();
++    let expected = reference.reduce_batch(&batch).unwrap();
++    assert_eq!(actual.basis, expected.basis);
++    assert_eq!(actual.components, expected.components);
++    assert_eq!(actual.metadata, expected.metadata);
++    assert_eq!(actual.statuses, expected.statuses);
++    assert_eq!(actual.fallback_used, expected.fallback_used);
++    assert_eq!(actual.analytic_used, expected.analytic_used);
++    for lane in 0..3 {
++        assert_eq!(actual.lane(lane).unwrap().len(), expected.lane(lane).unwrap().len());
++        for (left, right) in actual.lane(lane).unwrap().iter().zip(expected.lane(lane).unwrap()) {
++            assert!((left.re - right.re).abs() <= 1e-10 * (1. + right.re.abs()));
++            assert!((left.im - right.im).abs() <= 1e-10 * (1. + right.im.abs()));
++        }
++    }
++    assert!(!native.zero_profiles.is_empty());
++    assert_selected_tree(&native);
++    let reordered = KinematicsBatch {
++        rows: 3,
++        components: 1,
++        values: [2, 0, 1].into_iter()
++            .flat_map(|lane| batch.values[lane * 11..(lane + 1) * 11].iter().cloned())
++            .collect(),
++    };
++    let again = native.reduce_batch(&reordered).unwrap();
++    for (new, old) in [2, 0, 1].into_iter().enumerate() {
++        assert_eq!(again.lane(new).unwrap(), actual.lane(old).unwrap());
++        for (left, right) in again.lane(new).unwrap().iter().zip(actual.lane(old).unwrap()) {
++            assert_eq!(left.re.to_bits(), right.re.to_bits());
++            assert_eq!(left.im.to_bits(), right.im.to_bits());
++        }
++    }
++    let empty = native.reduce_batch(&KinematicsBatch {
++        rows: 0, components: 1, values: Vec::new(),
++    }).unwrap();
++    assert!(empty.statuses.is_empty());
++}
++
++#[cfg(feature = "native-f64-abc")]
++#[test]
++fn selective_policy_keeps_high_precision_and_component_one_duals_on_symbolica() {
++    let plan = bubble(0);
++    let precise = Workspace::new_with_master_policy(
++        &plan, Float::new(128), MasterExecutionPolicy::NativeF64Abc,
++    ).unwrap();
++    assert_interpreter(&precise);
++    let shape = HyperDual::<Complex<Rational>>::new(vec![vec![0]]);
++    let mut dual = Workspace::new_dual_with_master_policy(
++        &plan, 0., shape, MasterExecutionPolicy::NativeF64Abc,
++    ).unwrap();
++    assert_interpreter(&dual);
++    let mut reference = Workspace::new_dual_with_master_policy(
++        &plan, 0., HyperDual::<Complex<Rational>>::new(vec![vec![0]]), MasterExecutionPolicy::Symbolica,
++    ).unwrap();
++    let batch = KinematicsBatch {
++        rows: 1, components: 1,
++        values: [0., 0., 0., 0., 0., 1., 0., 0., 4., 9., 1.].map(c).to_vec(),
++    };
++    let actual = dual.reduce_batch(&batch).unwrap();
++    let expected = reference.reduce_batch(&batch).unwrap();
++    assert_eq!(actual.basis, expected.basis);
++    assert_eq!(actual.components, expected.components);
++    assert_eq!(actual.metadata, expected.metadata);
++    assert_eq!(actual.statuses, expected.statuses);
++    assert_eq!(actual.lane(0).unwrap(), expected.lane(0).unwrap());
++    for (left, right) in actual.lane(0).unwrap().iter().zip(expected.lane(0).unwrap()) {
++        assert_eq!(left.re.to_bits(), right.re.to_bits());
++        assert_eq!(left.im.to_bits(), right.im.to_bits());
++    }
++    assert_interpreter(&dual);
++}
+--- a/crates/iregi-rust/src/plan.rs
++++ b/crates/iregi-rust/src/plan.rs
+@@ -1560,8 +1560,10 @@
+         assert_eq!(second.dual_shape().unwrap(), second_shape);
+         let cache = specialized.execution_cache.lock().unwrap();
+         assert_eq!(cache.len(), 3);
+-        let first = cache[&Some(first_shape)].get().unwrap().as_ref().unwrap();
+-        let second = cache[&Some(second_shape)].get().unwrap().as_ref().unwrap();
++        let first = cache[&(Some(first_shape), crate::MasterExecutionPolicy::Default)]
++            .get().unwrap().as_ref().unwrap();
++        let second = cache[&(Some(second_shape), crate::MasterExecutionPolicy::Default)]
++            .get().unwrap().as_ref().unwrap();
+         assert!(!Arc::ptr_eq(first, second));
+     }
+ 

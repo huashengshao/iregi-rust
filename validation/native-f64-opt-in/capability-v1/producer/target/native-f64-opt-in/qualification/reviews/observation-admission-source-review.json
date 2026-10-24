@@ -1,0 +1,71 @@
+{
+  "status": "source-review-passed-no-execution",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "created_utc": "2026-10-23T23:46:08.376927+00:00",
+  "input_sha256": {
+    "target/native-f64-opt-in/qualification/admission.py": "b352979ff9d5365b978d21b7f728d006b15cf179cd3be61401977c4af934d2e7",
+    "target/native-f64-opt-in/qualification/source/probe.rs": "fff3bfc4320c3c8ee4e94a68b9cbd8ad1f171c851d1866a3d61e8cbfcc486fb9",
+    "target/native-f64-opt-in/qualification/source/core_probe.rs": "5ee3931a3177d70aebe13a47dc913a5e94fec11a43c377c8b5e08a1229d15d97",
+    "target/native-f64-opt-in/qualification/source/master_controls.rs": "8ccc3d5254c445443621fab9016b80cef05bea3f69640e3387c4d7eed49b9881",
+    "target/native-f64-opt-in/qualification/source/SOURCE-SHA256SUMS": "6b5dceffd10a925e5dac80c62cd448661c375f2472bb5e3b6ab8cd15464e72bf",
+    "target/native-f64-opt-in/qualification/build.py": "33277f40de7f00a1fdb3b5c8bbf9c27369af2d310b60b70c9dd4cf32992c7768",
+    "target/native-f64-opt-in/qualification/build_observation.py": "0ca73e17c920cd0c9c42c31b58db013148b8abea2349aa8e41d2bffbb314eb8d",
+    "target/native-f64-opt-in/qualification/prepare_observation.py": "1311784cf77a0cfe58027bef534b333f63354e387c717cfc745868d99899bcb2",
+    "target/native-f64-opt-in/qualification/interactive.py": "18bd905384b99c45a8b1b21fa7e10e5024f7625ee62ec07069e193a53496d519",
+    "target/native-f64-opt-in/qualification/run_whole.py": "ab44a66eb0c738b100ac69408adb30297311154d4cef292fff50a8268b947451",
+    "target/native-f64-opt-in/qualification/validate_whole.py": "bee8f2bc4f4b1b7b18ef2babc14cab4744a7534956bfd9e7bf1d94bb45719ab2",
+    "target/native-f64-opt-in/qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/native-f64-opt-in/qualification/control-inventory.json": "598ef503aa007845a8fdf52941434f2f02fdc095650a8a1bfa4e2de0bdaefbf9",
+    "target/native-f64-opt-in/qualification/observation-preparation.json": "08ef3d4f77a98032f4e279a28d781ff00d0d3d2ad4d849d179b1094715c65df6",
+    "target/native-f64-opt-in/qualification/observation-command-plan.json": "d537eca80f3b084bcf75254e1c730519566e1d2ac79a226e8bcf176f2a12d0f6",
+    "target/native-f64-opt-in/qualification/protocol.md": "862c99addbb6c6c93aaeb76fa65b4cc519c07675f60a48d623c4b1d986f24d89"
+  },
+  "checks": {
+    "frozen_manifest_input_count": 322,
+    "source_and_public_snapshot_bindings_rehashed": 161,
+    "recipe_AST_identical_to_reviewed_public_build": true,
+    "invocations": 3,
+    "configuration": "selective only",
+    "optimization": 0,
+    "compile_cpus": [
+      20,
+      21
+    ],
+    "aggregate_cap_seconds": 180,
+    "cleanup_reserve_seconds": 8,
+    "overlay_unchanged_files": 73,
+    "overlay_changed_files": [
+      "iregi-masters/src/lib.rs",
+      "iregi-rust/src/execution.rs",
+      "iregi-rust/src/lib.rs"
+    ],
+    "overlay_added_files": [
+      "iregi-rust/src/master_capture.rs"
+    ],
+    "capture_module_byte_identical": true,
+    "generated_arithmetic_unchanged": true,
+    "selected_cases_expected": 34,
+    "unchanged_f64_cases_expected": 21,
+    "extended_master_cases_expected": 12,
+    "extended_master_successful_lanes_expected": 19,
+    "whole_dual_cases_expected": 1,
+    "extended_whole_cases_expected": 2,
+    "interleaved_cache_records": 8,
+    "all_selected_six_outputs_recomputed": true,
+    "threshold": 1e-10,
+    "failed_lanes_explicit_null_outputs": true,
+    "complete_tensor_and_master_shape_checks": true,
+    "exact_value_precision_sign_unchanged_policy_checks": true,
+    "precision_beyond53_input_identity_checks": true,
+    "fallback_and_analytic_absence_explicit": true
+  },
+  "findings": [],
+  "limitations": [
+    "Source-only admission review; no compiler, numerical kernel, runtime test or timing was executed by this reviewer.",
+    "Internal repeated-call and scaleless analytic checks execute as reviewed Rust assertions; the Python admission independently compares saved first snapshots, complete six-output cross-backend values and supplied metadata.",
+    "Float and DoubleFloat controls establish represented value, component precision and sign equivalence between policies; DoubleFloat limb representation is not exported or claimed.",
+    "No historical cross-process numerical bit-identity gate is imposed.",
+    "Retained dependency archive bytes were not redundantly rehashed in this source review; their frozen mappings and earlier qualification provenance remain bound.",
+    "Broad native-batch compatibility remains incomplete following the preserved metadata timeout."
+  ]
+}
