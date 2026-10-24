@@ -1,0 +1,103 @@
+{
+  "status": "source_only_include_closure_complete",
+  "initial_inventory_finding": "The three core fixtures were insufficient for the copied external integration tests; their four additional include targets are also bound and copied. No build or test was attempted.",
+  "fixtures": {
+    "validation/generalized-pv/reference-capture.json": {
+      "sha256": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+      "bytes": 128865
+    },
+    "validation/generalized-pv/reference-mixed-capture.json": {
+      "sha256": "a9764b9335d66508eb48995ab74d0a52b5ada73706592847b68559b5ddb84b8e",
+      "bytes": 48349
+    },
+    "validation/generalized-pv/reference-complex-capture.json": {
+      "sha256": "e38cb153b46f4ab0e4784da38b814d32f26552c5f33d3e4bb0fc67181c4a852f",
+      "bytes": 44795
+    },
+    "validation/reference/fixtures.json": {
+      "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+      "bytes": 161965
+    },
+    "validation/physical/gghh-tensor-reference.json": {
+      "sha256": "77e89aff57b11a64eae5b6e833f6bea1df3ab6acfd3ee4b6f13f02f7d707ad43",
+      "bytes": 21054
+    },
+    "validation/reference/snapping/reductions.json": {
+      "sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305",
+      "bytes": 211942
+    },
+    "validation/pv-high-rank/lightlike-feynman-parameters.json": {
+      "sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0",
+      "bytes": 20134
+    }
+  },
+  "include_sites": [
+    {
+      "source": "crates/iregi-rust/tests/generalized_pv.rs",
+      "include": "../../../validation/generalized-pv/reference-capture.json",
+      "resolved": "validation/generalized-pv/reference-capture.json",
+      "sha256": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc"
+    },
+    {
+      "source": "crates/iregi-rust/tests/generalized_pv.rs",
+      "include": "../../../validation/generalized-pv/reference-mixed-capture.json",
+      "resolved": "validation/generalized-pv/reference-mixed-capture.json",
+      "sha256": "a9764b9335d66508eb48995ab74d0a52b5ada73706592847b68559b5ddb84b8e"
+    },
+    {
+      "source": "crates/iregi-rust/tests/generalized_pv.rs",
+      "include": "../../../validation/generalized-pv/reference-complex-capture.json",
+      "resolved": "validation/generalized-pv/reference-complex-capture.json",
+      "sha256": "e38cb153b46f4ab0e4784da38b814d32f26552c5f33d3e4bb0fc67181c4a852f"
+    },
+    {
+      "source": "crates/iregi-rust/tests/oracle.rs",
+      "include": "../../../validation/reference/fixtures.json",
+      "resolved": "validation/reference/fixtures.json",
+      "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef"
+    },
+    {
+      "source": "crates/iregi-rust/tests/physical_box.rs",
+      "include": "../../../validation/physical/gghh-tensor-reference.json",
+      "resolved": "validation/physical/gghh-tensor-reference.json",
+      "sha256": "77e89aff57b11a64eae5b6e833f6bea1df3ab6acfd3ee4b6f13f02f7d707ad43"
+    },
+    {
+      "source": "crates/iregi-rust/tests/legacy_rescue.rs",
+      "include": "../../../validation/reference/snapping/reductions.json",
+      "resolved": "validation/reference/snapping/reductions.json",
+      "sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305"
+    },
+    {
+      "source": "crates/iregi-rust/src/pv.rs",
+      "include": "../../../validation/pv-high-rank/lightlike-feynman-parameters.json",
+      "resolved": "validation/pv-high-rank/lightlike-feynman-parameters.json",
+      "sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0"
+    },
+    {
+      "source": "crates/iregi-rust/src/pv.rs",
+      "include": "../../../validation/pv-high-rank/lightlike-feynman-parameters.json",
+      "resolved": "validation/pv-high-rank/lightlike-feynman-parameters.json",
+      "sha256": "467546efc3072bec5ee791de460071b7002cb9b1d038bfc99b958f1f6b3e45d0"
+    },
+    {
+      "source": "crates/iregi-rust/src/rescue.rs",
+      "include": "../../../validation/reference/fixtures.json",
+      "resolved": "validation/reference/fixtures.json",
+      "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef"
+    },
+    {
+      "source": "crates/iregi-rust/src/plan.rs",
+      "include": "../../../validation/reference/fixtures.json",
+      "resolved": "validation/reference/fixtures.json",
+      "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef"
+    },
+    {
+      "source": "crates/iregi-rust/src/snapping.rs",
+      "include": "../../../validation/reference/snapping/reductions.json",
+      "resolved": "validation/reference/snapping/reductions.json",
+      "sha256": "3768a66c0c5130b72b00eabfa6c8c17f589c23ace6e2ef5c6193767c23ff9305"
+    }
+  ],
+  "tests_executed": false
+}

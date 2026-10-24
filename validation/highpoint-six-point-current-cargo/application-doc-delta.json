@@ -1,0 +1,35 @@
+{
+  "scope": "qualified private patch applied followed by explicitly authorized module/doc changes; current Cargo qualification is separate",
+  "application_receipt_sha256": "b9d1630d85c57dff2e19d88d094ec9f44005a6ea466230a6a140400873bcf48f",
+  "private_patch_sha256": "b3e7b8aeeaa56a9d6fe5fd54b53d01b0adcd16fc5c47737ee50574c3ea6a4013",
+  "private_source_manifest_sha256": "96a5a02990da0cc57014d7d339b8de9189198dbcd8959188bb4fc4946b843038",
+  "candidate_files": 59,
+  "current_files_equal_private_candidate": 57,
+  "authorized_documentation_differences": [
+    {
+      "path": "crates/iregi-rust/src/six_point.rs",
+      "qualified_private_source_sha256": "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+      "actual_current_sha256": "8e4341a868ff5fe50310c930d38c730fd59a96c01132495ff22054c8aaf7f72f"
+    },
+    {
+      "path": "docs/six-point.md",
+      "qualified_private_source_sha256": "b7e705486fe761b5e0f47c0eeb759de892b1ddf635b2773af14c01c7039760f7",
+      "actual_current_sha256": "e3618202f292860ab1c1824921f04879daaaa5e1177a0d5dfbad142ed0535dc8"
+    }
+  ],
+  "module_rust_body_byte_identical_after_import_anchor": true,
+  "current_module_hash_bound_by_382_source_freeze": true,
+  "docs_at_capture": {
+    "docs/six-point.md": "e3618202f292860ab1c1824921f04879daaaa5e1177a0d5dfbad142ed0535dc8",
+    "README.md": "8fd25a7c0f2725e229b6853eff972c80f51ffd92f3b207809761233d61a0e8fb"
+  },
+  "root_readme_diff": "diff --git a/README.md b/README.md\nindex 0d1be24..0567c91 100644\n--- a/README.md\n+++ b/README.md\n@@ -100,6 +100,11 @@ lanes and Taylor components remain separate. `DoubleFloat` and arbitrary\n precision `Float` use the same API, with constants converted directly at the\n working precision. Independent workspaces own their numerical scratch storage.\n \n+The retained massive triangle and box cases also validate first, second and\n+mixed squared-mass derivatives against raised-power IBP reductions across all\n+four Laurent slots. See the [C0/D0 qualification](validation/c0d0-dual-identity/README.md)\n+for the tested inputs, precision settings and independent audits.\n+\n For `Float`, the workspace prototype sets constant precision; supplied values\n retain their represented values and arithmetic precision. Accuracy requests\n are never silently lowered. Checks use each contribution's tracked precision\n@@ -155,6 +160,15 @@ Cartesian inputs. Ordinary reduction does not invoke it automatically. See the\n [API and qualification](docs/research/certified-planar-api.md) for supported\n settings, precision convergence and independent mixed-Dual comparisons.\n \n+`SixPointReductionPlan` and `SixPointWorkspace<T>` provide an explicit batched\n+six-point path through rank three, using preserved Cartesian shifts, unit\n+powers and native raw moments. Its retained Float128/Float256 fixtures pass\n+complete-array reference and convergence checks; failed neighbors, workspace\n+reuse and numerator contractions have separate lifecycle checks. The ordinary\n+reducer's defaults remain unchanged. See the [six-point API](docs/six-point.md)\n+for its input layout, example, numerical scope and remaining precision/Dual\n+qualification.\n+\n Derived scalar invariants are checked before selecting analytic branches or\n evaluating masters. Exact represented-input polynomial checks prevent a rounded\n zero from selecting a scaleless formula. Relative conditioning estimates also\n",
+  "isolated_qualification_unmodified_sha256": "97ff1fc6866115d64d2b21c46e20ad25449e39392b06c7913e076e5b19abe428",
+  "isolated_production_build_qualified_remains": false,
+  "preliminary_read_only_ledger_check": "An initial assertion expected only the module-doc difference; the already-authorized docs/six-point.md footer is also among the52candidate files. Corrected inventory expects exactly these two documented differences; no production or numerical source change.",
+  "source_manifest_entries": 59,
+  "application_file_subset": 52,
+  "application_files_equal_after_authorized_doc_updates": 50,
+  "existing_retained_validation_fixtures": 7,
+  "retained_validation_fixture_hashes_unchanged": true
+}

@@ -1,0 +1,35 @@
+{
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "precondition": "ROOT must grant the named family a serialized Symbolica runtime lease; these commands have not run",
+  "environment_setup": "source scripts/env.sh",
+  "families": {
+    "C0": {
+      "command": [
+        ".local/tirust-wheel-004-env/bin/python",
+        "-I",
+        "target/c0d0-dual-identity/run_bounded.py",
+        "C0",
+        "--attempt",
+        "attempt001"
+      ],
+      "cpu": 0,
+      "threads": 1,
+      "wall_bound_seconds": 180,
+      "terminate_grace_seconds": 10
+    },
+    "D0": {
+      "command": [
+        ".local/tirust-wheel-004-env/bin/python",
+        "-I",
+        "target/c0d0-dual-identity/run_bounded.py",
+        "D0",
+        "--attempt",
+        "attempt001"
+      ],
+      "cpu": 0,
+      "threads": 1,
+      "wall_bound_seconds": 360,
+      "terminate_grace_seconds": 10
+    }
+  }
+}

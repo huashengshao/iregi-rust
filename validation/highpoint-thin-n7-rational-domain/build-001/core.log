@@ -1,0 +1,111 @@
+warning: unused import: `thin_seven::assemble_thin_seven_moments`
+ --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/plan.rs:4:16
+  |
+4 | pub(crate) use thin_seven::assemble_thin_seven_moments;
+  |                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused imports: `ThinSevenChart` and `ThinSixGeometry`
+  --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv.rs:22:29
+   |
+22 | pub(crate) use thin_seven::{ThinSevenChart, ThinSevenGeometry, ThinSixGeometry};
+   |                             ^^^^^^^^^^^^^^                     ^^^^^^^^^^^^^^^
+
+warning: unused import: `tensor_basis`
+ --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n6.rs:7:33
+  |
+7 |     Workspace, basis::{Monomial,tensor_basis}, execution::validate_input_row};
+  |                                 ^^^^^^^^^^^^
+
+warning: method `last_chart_masks` is never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/certified_planar.rs:298:19
+    |
+197 | / impl<T: NativeFloat> CertifiedPlanarWorkspace<T>
+198 | | where
+199 | |     Complex<T>: EvaluationDomain,
+    | |_________________________________- method in this implementation
+...
+298 |       pub(crate) fn last_chart_masks(&self) -> &[Option<ChartKey>] {
+    |                     ^^^^^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: method `check_batch` is never used
+  --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/exact_zero_certificate.rs:89:19
+   |
+70 | impl ExactZeroConstraintWorkspace {
+   | --------------------------------- method in this implementation
+...
+89 |     pub(crate) fn check_batch(
+   |                   ^^^^^^^^^^^
+
+warning: function `certified_relation_coordinates` is never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/invariant_certificate.rs:550:15
+    |
+550 | pub(crate) fn certified_relation_coordinates(
+    |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated function `new_certified_planar` is never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/plan.rs:155:19
+    |
+ 93 | impl ReductionPlan {
+    | ------------------ associated function in this implementation
+...
+155 |     pub(crate) fn new_certified_planar(
+    |                   ^^^^^^^^^^^^^^^^^^^^
+
+warning: fields `owner`, `active`, `expression`, and `label` are never read
+  --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv.rs:52:9
+   |
+50 | pub(crate) struct CoordinateConstraint {
+   |                   -------------------- fields in this struct
+51 |     /// Alias whose graph reachability determines whether this topology is used.
+52 |     pub owner: Atom,
+   |         ^^^^^
+53 |     /// Nonzero only when the rank-deficient identity branch is selected.
+54 |     pub active: Atom,
+   |         ^^^^^^
+55 |     /// Raw-coordinate polynomial, without aliases or master dependence.
+56 |     pub expression: Atom,
+   |         ^^^^^^^^^^
+57 |     pub label: String,
+   |         ^^^^^
+   |
+   = note: `CoordinateConstraint` has derived impls for the traits `Debug` and `Clone`, but these are intentionally ignored during dead code analysis
+
+warning: method `coordinate_constraints` is never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv.rs:275:19
+    |
+ 91 | impl PvCompiler {
+    | --------------- method in this implementation
+...
+275 |     pub(crate) fn coordinate_constraints(&self) -> &[CoordinateConstraint] {
+    |                   ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: methods `inspect_lane_with_accuracy`, `inspect_primal_lane`, and `inspect_output_precision_lane` are never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/stability.rs:732:19
+    |
+ 79 | impl StabilityPlan {
+    | ------------------ methods in this implementation
+...
+732 |     pub(crate) fn inspect_lane_with_accuracy<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+880 |     pub(crate) fn inspect_primal_lane<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^
+...
+993 |     pub(crate) fn inspect_output_precision_lane<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: method `inspect_quadrature_lane` is never used
+   --> /shared/external/iregi/iregi-rust/target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/stability/quadrature.rs:211:19
+    |
+206 | impl StabilityPlan {
+    | ------------------ method in this implementation
+...
+211 |     pub(crate) fn inspect_quadrature_lane<T: NativeFloat>(
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: 11 warnings emitted
+

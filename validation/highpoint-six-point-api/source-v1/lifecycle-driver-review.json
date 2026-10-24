@@ -1,0 +1,149 @@
+{
+  "build_qualified": false,
+  "compiler_test_kernel_comparator_or_numerical_execution": false,
+  "driver_sha256": "0866ab1e5f8eb5c24a73b8186fd7c475d15860f72aeb0858c99e67e0b6dc83f0",
+  "expected_coverage": {
+    "calls": 11,
+    "components": 1,
+    "contracted_complex_slots": 68,
+    "empty_calls": 2,
+    "laurent_slots_per_moment": 4,
+    "moments_per_success": 15,
+    "rejected_lanes": 7,
+    "requested_accuracy_bits": 53,
+    "successful_lanes": 17,
+    "successful_moment_complex_slots": 1020,
+    "working_precision": 128
+  },
+  "findings": [],
+  "future_qualifier_requirements": [
+    "Require exact schedule, fixture/input identity, metadata/basis, all 1020 native moment slots, 68 contracted slots and expected 17-success/7-rejection classification.",
+    "Require all packing_contract_pass flags and two empty_work_and_diagnostics_reset flags. Capture exit intentionally does not itself gate packing or work counts.",
+    "Validate certificate/execution counter schemas and current-call relationships; contraction evaluated_rows must equal successful lanes, including zero on empty calls.",
+    "Compare every successful original-reference moment using the unchanged dimensional 1e-10 gate. Contraction is mixed rank: use an explicitly documented conservative normalization and compare all four slots to the same linear combination of bound original moments as well as captured moment arithmetic.",
+    "Retain exact precision/sign/value differences against singletons as diagnostics, without silently substituting bitwise identity for numerical qualification.",
+    "Require successful bounded driver completion and complete saved ledger; API/contraction errors or malformed layouts cannot qualify."
+  ],
+  "historical_driver_sha256": "c496497778ce15c57963ccfa167b1d6f1d6ebc001a956149248b81f0b195316c",
+  "input_sha256": {
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/basis.rs": "5d245fd11b81bd59105d554d9a33cd7441e3d5c7954621b998057c328a667178",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_scalar.rs": "36a7ff3a558c7edf59734be51131d683586384e88405b8615615b5e8f79eb587",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/contraction.rs": "7d2a7dc0172b4ebdbe4785324d7597b5547a97975ea3f1e184d48ea69bddebcd",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution.rs": "85d9f8b1bb1a8a57c6ad609176387c579f70d97b7a8335b4688f873003a9aff4",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/lib.rs": "f3a79f783dc32d60aa4703bf88c9dcb23bcaf274ae02aae3d37aa02ca5ac165d",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/six_point.rs": "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/thin_n6.rs": "4b7df6612a23f8c948e9987675f6bfc6131b69b93403ff8543dc99e1c8265183",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/types.rs": "8afef0cd9693baa26001b506c66e28323dcbfd3741696b06956634c922635a2f",
+    "target/public-highpoint/six-point-integration/package-audit.json": "1633c4b424e51a6cedeb0ae183b22cb90f5f511308a007189dd6c6935289757d",
+    "target/public-highpoint/six-point-integration/public-lifecycle-driver.rs": "0866ab1e5f8eb5c24a73b8186fd7c475d15860f72aeb0858c99e67e0b6dc83f0",
+    "target/public-highpoint/six-point-integration/public-lifecycle-source.json": "2f3d65c6d77c4ae21c882e2828cc0f5b7b31383874adce28b69fa6ce8490905b",
+    "target/public-highpoint/six-point-integration/source.json": "0780ac6981595179aa6c810d4e7ca38dd6ce90d187429416a5fb25fd2be2cdff",
+    "target/public-highpoint/thin-n6-mask/lifecycle_driver.rs": "c496497778ce15c57963ccfa167b1d6f1d6ebc001a956149248b81f0b195316c"
+  },
+  "integrated_lifecycle_qualified": false,
+  "limitations": [
+    "This is a source review, not Rust type checking or runtime validation. No compiler or evaluator was run.",
+    "The new driver does not create numerical acceptance or performance evidence.",
+    "Failed controls provide rejection/cleanup coverage only; no numerical array is fabricated for them.",
+    "Whole-program public integration and ordinary-default equivalence remain separate pending gates."
+  ],
+  "production_or_frozen_source_edits": false,
+  "recorded_utc": "2026-10-24T00:09:35.161995+00:00",
+  "reviewed_delta": [
+    "Public SixPointReductionPlan/SixPointWorkspace aliases replace private entrypoints; no changes to retained fixture decoding, exact input conversion, rank2 Float128/request53 settings or the eleven-call schedule.",
+    "Exports child/parent CertificateExecutionStats and requires both to be zero in empty-call reset flags. Stats are Copy and compared using existing PartialEq; immutable workspace borrows do not overlap later mutable calls.",
+    "Adds existing public ContractionPlan adapter and ContractionWorkspace with ordered monomials 1,q0,q1,q2*q3 and exact native coefficients 2,-3,1,4. The adapter reuses the parent raw basis and native conventions; no private imported parameter access.",
+    "Contraction receives the complete actual BatchResult, including failed neighbors. Every successful contraction exports all four Laurent slots with exact rational, precision and sign representation; statuses and route flags must match the moment result.",
+    "One reduction workspace and one contraction workspace are reused across singleton, mixed, reordered, chunked, repeated and empty cases. Each capture records current diagnostics/counters, including contraction evaluated_rows.",
+    "Historical singleton moment comparison remains an exact value/precision/sign inventory only. Driver status is capture/status-contract success, never numerical acceptance."
+  ],
+  "reviewer": "/root/highpoint_coverage/evidence_review",
+  "schedule": [
+    {
+      "fixture_indices": [
+        0
+      ],
+      "name": "singleton_base"
+    },
+    {
+      "fixture_indices": [
+        1
+      ],
+      "name": "singleton_scaled"
+    },
+    {
+      "fixture_indices": [
+        2
+      ],
+      "name": "singleton_singular"
+    },
+    {
+      "fixture_indices": [],
+      "name": "empty_after_failure"
+    },
+    {
+      "fixture_indices": [
+        0,
+        2,
+        1,
+        0,
+        2
+      ],
+      "name": "mixed"
+    },
+    {
+      "fixture_indices": [
+        2,
+        0,
+        1,
+        2,
+        0
+      ],
+      "name": "reordered"
+    },
+    {
+      "fixture_indices": [
+        0,
+        2
+      ],
+      "name": "mixed_chunk_first"
+    },
+    {
+      "fixture_indices": [
+        1,
+        0,
+        2
+      ],
+      "name": "mixed_chunk_second"
+    },
+    {
+      "fixture_indices": [
+        0,
+        1,
+        0,
+        1,
+        0
+      ],
+      "name": "repeated_good"
+    },
+    {
+      "fixture_indices": [],
+      "name": "empty_after_repetition"
+    },
+    {
+      "fixture_indices": [
+        0
+      ],
+      "name": "base_after_empty"
+    }
+  ],
+  "schema_version": 1,
+  "source_api_checks": [
+    "Both public plan/workspace types and CertificateExecutionStats are exported from lib.rs; signatures used by the driver exist.",
+    "Monomial is a public tuple struct with Serialize; coefficient and monomial order matches ContractionPlan input order.",
+    "ExecutionStats and CertificateExecutionStats are Copy/PartialEq/Default, so recording fields from the shared stats reference does not move borrowed fields.",
+    "Contraction workspace checks full basis, convention, tensor weights, Dual shape, row/component dimensions and buffers before evaluation; it retains input failure statuses and flags.",
+    "Numerical prototype is Float128 and exact integer coefficients are converted through from_rational. No f64 round-trip is used for captured values or coefficients."
+  ],
+  "status": "passed_independent_source_only_lifecycle_driver_review"
+}

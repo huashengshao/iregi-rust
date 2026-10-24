@@ -1,0 +1,26 @@
+{
+  "status": "saved_data_gate_failed",
+  "checks": 1308,
+  "failures": [
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('ordinary_0', 128): native spacelike value purely imaginary"
+  ],
+  "exceptions": [
+    {
+      "type": "ValueError",
+      "message": "Unexpected nonzero real component; fixed rational audit does not apply",
+      "traceback": "Traceback (most recent call last):\n  File \"/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/attempt001/C0/saved_data_gate.py\", line 223, in main\n    compare_saved(item, by_key[\"dual_unit\", bits][\"values\"][component][pole], by_key[f\"ordinary_{component}\", bits][\"values\"][0][pole], component, pole, \"identities\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/attempt001/C0/saved_data_gate.py\", line 204, in compare_saved\n    raise ValueError(\"Unexpected nonzero real component; fixed rational audit does not apply\")\nValueError: Unexpected nonzero real component; fixed rational audit does not apply\n"
+    }
+  ],
+  "verified": null,
+  "receipt_sha256": "444d8aa807dd6aa3e14d0bdb2c8ece95facca7515bab996877985a5fb04ee9ca"
+}

@@ -1,0 +1,328 @@
+{
+  "command": [
+    "taskset",
+    "-c",
+    "0",
+    "/shared/external/iregi/iregi-rust/.local/tirust-wheel-004-env/bin/python",
+    "-I",
+    "/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/probe.py",
+    "D0",
+    "--output",
+    "/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/attempt001/D0/results.json"
+  ],
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "family": "D0",
+  "work_bound_seconds": 360,
+  "total_bound_seconds": 380,
+  "cleanup_and_bookkeeping_reserve_seconds": 20,
+  "status": "passed",
+  "passed": true,
+  "cleanup_errors": [],
+  "manifest_sha256": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243",
+  "lifecycle_sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+  "numerical_evidence": "target/c0d0-dual-identity/attempt001/D0/results.json",
+  "guarded_inputs": {
+    "target/c0d0-dual-identity/probe.py": "a52c8b474bc2b92375f8db6ef3436db1d223577dc97f975f7fa55d3ecc6c652b",
+    "target/c0d0-dual-identity/run_bounded.py": "755c6fece0db0ccbfb60fda2c469a9b5345cb86bb85b1f8c227e0231c4aa470d",
+    "target/c0d0-dual-identity/inputs.json": "1cccdc719d4f403d42595643b9b2f5b277d733054ad40661271ab051462076d6",
+    "target/c0d0-dual-identity/protocol.md": "38b66546d4a4d76e5245fbf9456da149e814815dce3f7475d2bb745185b1d008",
+    "target/c0d0-dual-identity/audit.md": "417b3178b0891b913ffef15d93c17cb92764c059b923259eb92652133427ef8c",
+    "target/c0d0-dual-identity/wheel004-source-evidence/crates/iregi-python/src/scalar.rs": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/lib/numerica/src/domains/dual.rs": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6",
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/src/evaluate/dual.rs": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+    "target/c0d0-dual-identity/wheel004-source-evidence/python/tirust/_tirust.pyi": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+    "target/c0d0-dual-identity/wheel004-source-evidence/tests/python/test_tirust_numerics.py": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+    "validation/python-interface/checkpoint-wheel-004/qualification.json": "546c9eb2c369312e544d22eb9c69c633cc070490c2be453c97b5d3da03b3e9d2",
+    "validation/python-interface/checkpoint-wheel-004/sources.tar.gz": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+    "validation/generalized-pv/reference-capture.json": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.pyi": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_types/symbolica/core.pyi": "cf09f394787c481b8ca5b07c54d02216e6a98381c480b02066f1fff5180d028f",
+    "target/c0d0-dual-identity/source-review.json": "b9e60282173a847866827e9458ce63437c88bf752b8882e6eaff1db470de1971",
+    "target/c0d0-dual-identity/commands.json": "fece0f6c2bfb1884fc387215a6eacde551e55e31adc383586db826af08b3d623",
+    "target/c0d0-dual-identity/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/c0d0-dual-identity/source-review-lifecycle.json": "d2b392f848c67984dc16697cd6e90c7d7e7b1638ff7a5141f99d69784c4640f3",
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.abi3.so": "cd4df512a134bb239678c9b9ba321a52f133f838f53f5886ada985f72d74df86",
+    "target/c0d0-dual-identity/manifest.json": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243"
+  },
+  "environment": {
+    "PYTHONPATH": null,
+    "PYTHONNOUSERSITE": "1",
+    "RAYON_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "RUST_MIN_STACK": "67108864",
+    "IREGI_DUAL_CASE_FILTER": null,
+    "IREGI_DUAL_SKIP_CASE": null
+  },
+  "guards_before": {
+    "target/c0d0-dual-identity/probe.py": {
+      "actual": "a52c8b474bc2b92375f8db6ef3436db1d223577dc97f975f7fa55d3ecc6c652b",
+      "expected": "a52c8b474bc2b92375f8db6ef3436db1d223577dc97f975f7fa55d3ecc6c652b",
+      "match": true
+    },
+    "target/c0d0-dual-identity/run_bounded.py": {
+      "actual": "755c6fece0db0ccbfb60fda2c469a9b5345cb86bb85b1f8c227e0231c4aa470d",
+      "expected": "755c6fece0db0ccbfb60fda2c469a9b5345cb86bb85b1f8c227e0231c4aa470d",
+      "match": true
+    },
+    "target/c0d0-dual-identity/inputs.json": {
+      "actual": "1cccdc719d4f403d42595643b9b2f5b277d733054ad40661271ab051462076d6",
+      "expected": "1cccdc719d4f403d42595643b9b2f5b277d733054ad40661271ab051462076d6",
+      "match": true
+    },
+    "target/c0d0-dual-identity/protocol.md": {
+      "actual": "38b66546d4a4d76e5245fbf9456da149e814815dce3f7475d2bb745185b1d008",
+      "expected": "38b66546d4a4d76e5245fbf9456da149e814815dce3f7475d2bb745185b1d008",
+      "match": true
+    },
+    "target/c0d0-dual-identity/audit.md": {
+      "actual": "417b3178b0891b913ffef15d93c17cb92764c059b923259eb92652133427ef8c",
+      "expected": "417b3178b0891b913ffef15d93c17cb92764c059b923259eb92652133427ef8c",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/crates/iregi-python/src/scalar.rs": {
+      "actual": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+      "expected": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/lib/numerica/src/domains/dual.rs": {
+      "actual": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6",
+      "expected": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/src/evaluate/dual.rs": {
+      "actual": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+      "expected": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/python/tirust/_tirust.pyi": {
+      "actual": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "expected": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/tests/python/test_tirust_numerics.py": {
+      "actual": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+      "expected": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+      "match": true
+    },
+    "validation/python-interface/checkpoint-wheel-004/qualification.json": {
+      "actual": "546c9eb2c369312e544d22eb9c69c633cc070490c2be453c97b5d3da03b3e9d2",
+      "expected": "546c9eb2c369312e544d22eb9c69c633cc070490c2be453c97b5d3da03b3e9d2",
+      "match": true
+    },
+    "validation/python-interface/checkpoint-wheel-004/sources.tar.gz": {
+      "actual": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+      "expected": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+      "match": true
+    },
+    "validation/generalized-pv/reference-capture.json": {
+      "actual": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+      "expected": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+      "match": true
+    },
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.pyi": {
+      "actual": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "expected": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "match": true
+    },
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_types/symbolica/core.pyi": {
+      "actual": "cf09f394787c481b8ca5b07c54d02216e6a98381c480b02066f1fff5180d028f",
+      "expected": "cf09f394787c481b8ca5b07c54d02216e6a98381c480b02066f1fff5180d028f",
+      "match": true
+    },
+    "target/c0d0-dual-identity/source-review.json": {
+      "actual": "b9e60282173a847866827e9458ce63437c88bf752b8882e6eaff1db470de1971",
+      "expected": "b9e60282173a847866827e9458ce63437c88bf752b8882e6eaff1db470de1971",
+      "match": true
+    },
+    "target/c0d0-dual-identity/commands.json": {
+      "actual": "fece0f6c2bfb1884fc387215a6eacde551e55e31adc383586db826af08b3d623",
+      "expected": "fece0f6c2bfb1884fc387215a6eacde551e55e31adc383586db826af08b3d623",
+      "match": true
+    },
+    "target/c0d0-dual-identity/lifecycle.py": {
+      "actual": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+      "expected": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+      "match": true
+    },
+    "target/c0d0-dual-identity/source-review-lifecycle.json": {
+      "actual": "d2b392f848c67984dc16697cd6e90c7d7e7b1638ff7a5141f99d69784c4640f3",
+      "expected": "d2b392f848c67984dc16697cd6e90c7d7e7b1638ff7a5141f99d69784c4640f3",
+      "match": true
+    },
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.abi3.so": {
+      "actual": "cd4df512a134bb239678c9b9ba321a52f133f838f53f5886ada985f72d74df86",
+      "expected": "cd4df512a134bb239678c9b9ba321a52f133f838f53f5886ada985f72d74df86",
+      "match": true
+    },
+    "target/c0d0-dual-identity/manifest.json": {
+      "actual": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243",
+      "expected": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243",
+      "match": true
+    }
+  },
+  "pre_run_unchanged": true,
+  "process": {
+    "command": [
+      "taskset",
+      "-c",
+      "0",
+      "/shared/external/iregi/iregi-rust/.local/tirust-wheel-004-env/bin/python",
+      "-I",
+      "/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/probe.py",
+      "D0",
+      "--output",
+      "/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/attempt001/D0/results.json"
+    ],
+    "status": "exited",
+    "timeout_seconds": 354.2222584129777,
+    "owned_process_group": 591337,
+    "returncode": 0,
+    "group_existed_at_cleanup": false,
+    "owned_group_gone": true,
+    "elapsed_seconds": 50.16093254904263
+  },
+  "elapsed_seconds": 61.87076009402517,
+  "guards_after": {
+    "target/c0d0-dual-identity/probe.py": {
+      "actual": "a52c8b474bc2b92375f8db6ef3436db1d223577dc97f975f7fa55d3ecc6c652b",
+      "expected": "a52c8b474bc2b92375f8db6ef3436db1d223577dc97f975f7fa55d3ecc6c652b",
+      "match": true
+    },
+    "target/c0d0-dual-identity/run_bounded.py": {
+      "actual": "755c6fece0db0ccbfb60fda2c469a9b5345cb86bb85b1f8c227e0231c4aa470d",
+      "expected": "755c6fece0db0ccbfb60fda2c469a9b5345cb86bb85b1f8c227e0231c4aa470d",
+      "match": true
+    },
+    "target/c0d0-dual-identity/inputs.json": {
+      "actual": "1cccdc719d4f403d42595643b9b2f5b277d733054ad40661271ab051462076d6",
+      "expected": "1cccdc719d4f403d42595643b9b2f5b277d733054ad40661271ab051462076d6",
+      "match": true
+    },
+    "target/c0d0-dual-identity/protocol.md": {
+      "actual": "38b66546d4a4d76e5245fbf9456da149e814815dce3f7475d2bb745185b1d008",
+      "expected": "38b66546d4a4d76e5245fbf9456da149e814815dce3f7475d2bb745185b1d008",
+      "match": true
+    },
+    "target/c0d0-dual-identity/audit.md": {
+      "actual": "417b3178b0891b913ffef15d93c17cb92764c059b923259eb92652133427ef8c",
+      "expected": "417b3178b0891b913ffef15d93c17cb92764c059b923259eb92652133427ef8c",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/crates/iregi-python/src/scalar.rs": {
+      "actual": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+      "expected": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/lib/numerica/src/domains/dual.rs": {
+      "actual": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6",
+      "expected": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/src/evaluate/dual.rs": {
+      "actual": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+      "expected": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/python/tirust/_tirust.pyi": {
+      "actual": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "expected": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "match": true
+    },
+    "target/c0d0-dual-identity/wheel004-source-evidence/tests/python/test_tirust_numerics.py": {
+      "actual": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+      "expected": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+      "match": true
+    },
+    "validation/python-interface/checkpoint-wheel-004/qualification.json": {
+      "actual": "546c9eb2c369312e544d22eb9c69c633cc070490c2be453c97b5d3da03b3e9d2",
+      "expected": "546c9eb2c369312e544d22eb9c69c633cc070490c2be453c97b5d3da03b3e9d2",
+      "match": true
+    },
+    "validation/python-interface/checkpoint-wheel-004/sources.tar.gz": {
+      "actual": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+      "expected": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+      "match": true
+    },
+    "validation/generalized-pv/reference-capture.json": {
+      "actual": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+      "expected": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+      "match": true
+    },
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.pyi": {
+      "actual": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "expected": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+      "match": true
+    },
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_types/symbolica/core.pyi": {
+      "actual": "cf09f394787c481b8ca5b07c54d02216e6a98381c480b02066f1fff5180d028f",
+      "expected": "cf09f394787c481b8ca5b07c54d02216e6a98381c480b02066f1fff5180d028f",
+      "match": true
+    },
+    "target/c0d0-dual-identity/source-review.json": {
+      "actual": "b9e60282173a847866827e9458ce63437c88bf752b8882e6eaff1db470de1971",
+      "expected": "b9e60282173a847866827e9458ce63437c88bf752b8882e6eaff1db470de1971",
+      "match": true
+    },
+    "target/c0d0-dual-identity/commands.json": {
+      "actual": "fece0f6c2bfb1884fc387215a6eacde551e55e31adc383586db826af08b3d623",
+      "expected": "fece0f6c2bfb1884fc387215a6eacde551e55e31adc383586db826af08b3d623",
+      "match": true
+    },
+    "target/c0d0-dual-identity/lifecycle.py": {
+      "actual": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+      "expected": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+      "match": true
+    },
+    "target/c0d0-dual-identity/source-review-lifecycle.json": {
+      "actual": "d2b392f848c67984dc16697cd6e90c7d7e7b1638ff7a5141f99d69784c4640f3",
+      "expected": "d2b392f848c67984dc16697cd6e90c7d7e7b1638ff7a5141f99d69784c4640f3",
+      "match": true
+    },
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.abi3.so": {
+      "actual": "cd4df512a134bb239678c9b9ba321a52f133f838f53f5886ada985f72d74df86",
+      "expected": "cd4df512a134bb239678c9b9ba321a52f133f838f53f5886ada985f72d74df86",
+      "match": true
+    },
+    "target/c0d0-dual-identity/manifest.json": {
+      "actual": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243",
+      "expected": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243",
+      "match": true
+    }
+  },
+  "post_run_unchanged": true,
+  "probe_status": "passed",
+  "probe_complete": true,
+  "probe_passed": true,
+  "counts": {
+    "evaluations": 14,
+    "successful_evaluations": 14,
+    "identities": 48,
+    "identities_passed": 48,
+    "precision_comparisons": 48,
+    "precision_comparisons_passed": 48
+  },
+  "last_event": {
+    "elapsed_ns": 49254980195,
+    "phase": "complete",
+    "passed": true,
+    "counts": {
+      "evaluations": 14,
+      "successful_evaluations": 14,
+      "identities": 48,
+      "identities_passed": 48,
+      "precision_comparisons": 48,
+      "precision_comparisons_passed": 48
+    }
+  },
+  "evidence_sha256": {
+    "results.json": "4460c0434c9fa9aaaae678d56ba4c48afa90f5d8ef312e4855807e4262b4b69b",
+    "runtime.log": "b7e7beb9459a306795ddc3b7cc99ce55bd3ed3458894de0ab00e5596aa2cb077",
+    "process-terminal.json": "97f42d700dbb9a6b4462d3dc1d285a7b97df2d9f5bb5d3c3542b8918b941b947"
+  },
+  "admission_boundary": "Pending signals and total elapsed time checked again after this atomic save",
+  "deadline_exceeded": false,
+  "cancellation": null,
+  "pending_admission_signals": []
+}

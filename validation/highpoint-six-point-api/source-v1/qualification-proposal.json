@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "status": "proposed_source_only_not_execution_authorization",
+  "source_manifest": "target/public-highpoint/six-point-integration/source.json",
+  "source_manifest_sha256": "0780ac6981595179aa6c810d4e7ca38dd6ce90d187429416a5fb25fd2be2cdff",
+  "public_scope": {
+    "n": 6,
+    "rank_limit": 3,
+    "algorithm": "PV",
+    "unit_powers": true,
+    "h": 0,
+    "coordinate_input": true,
+    "preserve": true,
+    "native_components": true,
+    "numerical_taylor_components": 1
+  },
+  "proposed_stages": [
+    {
+      "name": "isolated_build",
+      "bound_seconds": 180,
+      "cpu": "14,15",
+      "products": [
+        "candidate library",
+        "candidate unit-test binary",
+        "public six_point example",
+        "unchanged production-baseline library",
+        "paired ordinary driver",
+        "public lifecycle/contraction driver"
+      ],
+      "dependencies": "Reuse exact frozen native debug dependency closure plus supplemental thiserror; no live -L fallback, no dependency build. Bind full native/toolchain/extern closure before execution.",
+      "gate": "Every command exit0, complete output inventory, all input/source/binary hashes unchanged; failure retained, no retries or extension."
+    },
+    {
+      "name": "focused_exact_and_policy",
+      "bound_seconds": 180,
+      "cpu": "14",
+      "membership": "25 qualified mathematical/context tests plus 8 new policy/API/isolation tests; declare exact fully-qualified names before running.",
+      "gate": "33 unique tests passed, no ignored or unbound test; timeout retained."
+    },
+    {
+      "name": "ordinary_default_equivalence",
+      "bound_seconds_each_variant": 120,
+      "variants": [
+        "baseline",
+        "candidate"
+      ],
+      "cpu": "14",
+      "membership": "The unchanged 12-case paired fixture family: four settings across f64/DoubleFloat/Float128, 5lanes, repeated calls and second-order Dual.",
+      "gate": "Complete exact equality of successful native arrays, contractions, statuses, flags, metadata, reported precision/signs, diagnostics, counters and inputs. Guards are counted separately from numerical agreements."
+    },
+    {
+      "name": "public_rank3_float128",
+      "bound_seconds": 180,
+      "cpu": "14",
+      "fixture": "validation/public-highpoint/fixture-conditioned_masses.json",
+      "fixture_rows": [
+        0
+      ],
+      "working_bits": 128,
+      "requested_bits": 53,
+      "native_slots": 140,
+      "gate": "All35moments/140slots successful and native-order agreement against untouched stable original IBP at dimensionally normalized1e-10. No rank7 inclusion."
+    },
+    {
+      "name": "public_rank3_float256",
+      "conditional_on": "public_rank3_float128 full original agreement and explicit root coordination",
+      "bound_seconds": 180,
+      "cpu": "14",
+      "working_bits": 256,
+      "requested_bits": 53,
+      "native_slots": 140,
+      "gate": "Repeat all140native slots vs original at1e-10; Float128/256 convergence below2^-80; historical private outputs compared numerically with full difference inventories, not presumed bitwise reproducible."
+    },
+    {
+      "name": "public_rank2_lifecycle_and_contraction",
+      "conditional_on": "public rank3 gate and reviewed lifecycle comparator",
+      "bound_seconds": 180,
+      "cpu": "14",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "schedule": "Unchanged retained11calls with base/scaled successes, failedneighbor, reordered/chunked samples, repetition, emptycalls.",
+      "native_slots": "17successful lanes\u00d760slots=1020;765exactzero poles.",
+      "contraction": "Each successful lane has four additional native Laurent coefficients for2-3q0+q1+4q2q3 via existing Symbolica contraction. No manual contraction implementation. Saved-data oracle sums retained full arrays independently.",
+      "gate": "Complete successful arrays at unchanged normalized1e-10 vs corresponding original/reference controls; failed lanes inaccessible, empty/reset and work-accounting contracts, full four-slot contraction, coefficient/status/flag identity. Root reviews actual protocol before run."
+    }
+  ],
+  "limits": [
+    "No timing/performance gate or broad-domain claim.",
+    "Build/tests/numerics are not authorized by this proposed record.",
+    "Failed original rank7 acceptance and all historical timeout/rejection artifacts remain unchanged.",
+    "Public f64/DoubleFloat, complex-mass and numerical Dual success qualification remains separate."
+  ],
+  "historical_evidence": [
+    "validation/highpoint-thin-n6-generic/qualification.json",
+    "validation/highpoint-thin-n6-mask/qualification.json",
+    "validation/highpoint-thin-n6-rank7-phase/qualification.json"
+  ],
+  "driver_bindings": {
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/examples/six_point.rs": "587f00313bfa996bab946d5e41ad99fb4942a6e2f35c503d26c5670b8bf623c0",
+    "target/public-highpoint/six-point-integration/public-lifecycle-driver.rs": "0866ab1e5f8eb5c24a73b8186fd7c475d15860f72aeb0858c99e67e0b6dc83f0",
+    "target/public-highpoint/six-point-integration/public-lifecycle-source.json": "2f3d65c6d77c4ae21c882e2828cc0f5b7b31383874adce28b69fa6ce8490905b"
+  }
+}

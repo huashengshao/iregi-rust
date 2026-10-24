@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "status": "capsule_review_passed",
+  "reviewer": "/root/numeric_batch_audit/masters_review",
+  "capsule": "validation/highpoint-thin-n7-rational-domain",
+  "manifest_sha256": "a79e493db46d18386db027f6628f4c5e354da6b0a83594974d89e5704dd51025",
+  "archive_sha256": "a77f7c50e4602dcf6bbf401258d04f5297080238933f437f4bf11dcc8841517f",
+  "runtime_review_sha256": "1cf5e6ee3ebfe9251b62815cfbf33133615211cd18bf0ff24ea9308f0e3ebfc0",
+  "qualification_sha256": "fcdad4c62d0c9ad2a8c734ab3a1329c6dad20508ab667efd3c1f88a0d6a03f89",
+  "scope": "Independent immutable-capsule validation only: file reads/hashes, archive metadata/member inspection and independent deterministic serialization. No candidate imports, packager execution, build, exact test, constructor, numerical evaluation or live process census.",
+  "coverage": {
+    "filesystem_files": 67,
+    "manifest_bound_payload_files": 66,
+    "byte_identical_origin_payloads": 62,
+    "archive_members": 53,
+    "core_source_files": 40,
+    "source_and_protocol_extras": 13,
+    "logs": 27,
+    "terminal_sidecars": 27,
+    "stage_receipts": 3,
+    "frozen_protocol_inputs_rehashed": 282,
+    "closed_artifact_hashes_rechecked": 118,
+    "parent_manifests_rechecked": 3
+  },
+  "checks": [
+    "Filesystem set exactly equals the manifest file set plus the manifest itself; every file size/hash matches. All62 origin-mapped evidence files are byte-identical to current retained originals.",
+    "Archive has exactly53 sorted regular UTF-8 text members, including exactly the40 manifest source/fixture files and13 named source/protocol/grant/packager extras. All sizes/hashes match manifest/origins and current original bytes; no binary, rlib, native dependency, cache or credential payload is included.",
+    "All tar entries use fixed0644 mode, zero uid/gid/mtime, empty owner names and no PAX metadata. Gzip has zero mtime and no filename flag. Independent reconstruction from archive member bytes exactly reproduces the original compressed archive without executing package.py.",
+    "The package retains the exact qualification and saved-data review, all three stage receipts, every selected test log, all27 terminal sidecars, constructor result and runtime release/completion records. No ignored test log or extra attempt is introduced.",
+    "The282-input map and118-artifact closure exactly match the archived frozen protocol, and all current hashes/inventories still agree. Three historical parent manifest hashes/sizes match and remain separate.",
+    "README and manifest retain the bounded claim: private build,22 selected exact tests and generic rank0 constructor completion only. Numerical reduction, workspace/arrays, performance acceptance and adoption remain unqualified; the original ignored constructor-variant test remains UNRUN."
+  ],
+  "findings": [],
+  "limitations": [
+    "The package retains hashes rather than compiled dependencies/toolchains, so it is an evidence archive rather than a self-contained rebuild environment.",
+    "This archive review does not extend the numerical or performance scope of the independently verified constructor-only result."
+  ]
+}

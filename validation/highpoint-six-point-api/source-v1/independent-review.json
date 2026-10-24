@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "status": "passed_source_only_independent_review_of_non_owned_slices_with_owned_implementation_record",
+  "reviewer": "/root/highpoint_coverage/evidence_review",
+  "recorded_utc": "2026-10-24T00:00:21.364565+00:00",
+  "scope": "Isolated current-production integration source only. The three execution files below were implemented by this reviewer and are explicitly excluded from independent-review claims. No production source was edited.",
+  "implementation_ownership": {
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution.rs": "85d9f8b1bb1a8a57c6ad609176387c579f70d97b7a8335b4688f873003a9aff4",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution/planar_fallback.rs": "3289a3899881351f5671ebf4c3c1fbf5d5b1a46994566aebd77623fa53752ffd",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution/policy_tests.rs": "a95ff37c9450a04e23eafaf5c772f6b436b245b2b94612b7cbbe293658335f4f"
+  },
+  "independently_reviewed_sources": [
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/six_point.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/thin_n6.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_planar.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_scalar.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/types.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/stability.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/plan.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/pv.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/lib.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/contraction.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_planar/mask_tests.rs",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/examples/six_point.rs"
+  ],
+  "owned_execution_independence": "Parent /root/highpoint_coverage separately reviewed the execution diff and retry module, requested nested-counter and route-flag corrections, and reported those changes sound; this record itself is author self-review for the three owned files.",
+  "mathematical_routine_equality": [
+    {
+      "routine": "thin_six_weights",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/pv.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/pv.rs",
+      "baseline_file_sha256": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d",
+      "routine_bytes_sha256": "633ac0e33697645113d70de52800d76fc0e4008da3aa09996b2d2e339909a055",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    },
+    {
+      "routine": "planar_chart_cofactor_polynomials",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/pv.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/pv.rs",
+      "baseline_file_sha256": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d",
+      "routine_bytes_sha256": "a5b4a043f9374aff67f6e404d2b33e04b813aefff0d1fae4c49c32ff3b01a6ef",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    },
+    {
+      "routine": "new_thin_six",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/plan.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/plan.rs",
+      "baseline_file_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+      "routine_bytes_sha256": "00a34695475228b8115e8d6b77dad84ff88efeac6cdd5b71591b03f660007ff1",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    },
+    {
+      "routine": "thin_six_external_primal_seeds",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/plan.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/plan.rs",
+      "baseline_file_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+      "routine_bytes_sha256": "db425a000b51c588fc1965014b0927a6fa6b5630fe36bf6dbe3b47f1c7ada3cb",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    },
+    {
+      "routine": "assemble_thin_six_moments",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/plan.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/plan.rs",
+      "baseline_file_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+      "routine_bytes_sha256": "2d5bce47f2e2282fa173ffdbce26d5fe3118aa67650279dc7abf9251fac15736",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    },
+    {
+      "routine": "apply_final_uv_power_counting",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/plan.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/plan.rs",
+      "baseline_file_sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+      "routine_bytes_sha256": "fcb7fd61f18189b64f4c6cec14e8c2300a264d97bf57eaba9caf001e3ebd0c97",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    },
+    {
+      "routine": "certify_inactive_masks",
+      "candidate_source": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_planar.rs",
+      "baseline_source": "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/certified_planar.rs",
+      "baseline_file_sha256": "65dcbb0e4e63bae1ec7079e9d9113d7efccc08d0c80b4d6902beae5671cfdc9f",
+      "routine_bytes_sha256": "ac85165d8a136bde281fa6e7252441b8ca8e0bb1fb982225dc7ce56ac6e4ab92",
+      "byte_identical": true,
+      "extraction": "From the function signature line through its closing brace at the declared indentation; preceding documentation excluded."
+    }
+  ],
+  "mathematical_routines_byte_identical": 7,
+  "policy_tests": {
+    "count": 5,
+    "names": [
+      "workspace_policy_default_preserves_values_without_sidecar_allocation",
+      "workspace_policy_isolates_retry_while_sharing_exact_arithmetic_cache",
+      "workspace_policy_survives_dual_specialization_eager_and_lazy_children",
+      "workspace_policy_certificate_totals_reset_before_empty_and_invalid_calls",
+      "workspace_policy_counts_nested_analytic_work_without_changing_ordinary_counts"
+    ],
+    "executed": false,
+    "scope": "Source witnesses for ordinary output/statistics and allocation preservation, local policy with shared exact preparation, Dual/eager/lazy propagation, fresh counters on invalid/empty calls, and actual nested N1 analytic dispatch accounting."
+  },
+  "resolved_findings": [
+    {
+      "path": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_planar.rs",
+      "finding": "The new cofactor-mask diagnostic was emitted even for the public mask-disabled plan, where no cofactor proof had run.",
+      "resolution": "Diagnostic is now gated by self.plan.cofactor_masks; public constructor retains five constraints and no cofactor passes.",
+      "resolved": true
+    },
+    {
+      "path": "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/six_point.rs",
+      "finding": "Documentation could attribute historical private numerical qualification to the new unbuilt public API, and join scaled input to both precisions.",
+      "resolution": "Now explicitly historical private base128/256 and scaled Float128 lifecycle only, with integrated public gate pending.",
+      "resolved": true
+    }
+  ],
+  "source_checks": {
+    "public_domain": "Six propagators, rank<=3, six unit powers, dimension shift0, PV, FromShifts/Preserve, IregiNative/Components are rejected or accepted before symbolic construction. No public numerical Dual constructor.",
+    "ordinary_default": "Public Workspace::new/new_dual use ORDINARY(false,false); exact preparation/arithmetic remains shared and policy independent. Ordinary numerical routing and existing counter arithmetic remain on their previous paths. Disabled sidecar vectors are empty and export/cloning is skipped. This is a source conclusion, not executed equivalence proof.",
+    "policy_and_caches": "Policy is fixed per numeric workspace, propagates through eager children, analytic jet specialization and lazy profiles. Structural masks/topology remain in their own cache identities. Certified charts force retry off while preserving requested envelope retention. Public and private mask plans own separate immutable caches.",
+    "sidecars_and_failures": "Successful primary/export and analytic/Hybrid/planar scatters couple actual returned primals and native precision to output-indexed operands. Disabled targets no-op without allocation; enabled targets reject missing source envelopes. Ordinary successful status is not replaced by a sidecar error; the six-point consumer rejects unsupported context. Quadrature routes remain unsupported.",
+    "counters_and_flags": "Fresh aggregate planar certificate work resets before batch and typed-Dual validation. Invoked child work is harvested before errors; cached previous-call counters are not summed. Opted-in nested analytic/Hybrid counters and analytic-attempt flags are retained; ordinary accounting is unchanged. Thin wrapper harvests child/parent execution and certificate totals before propagating results and collects all six child attempt flags.",
+    "mathematical_scope": "Seven central routines are byte-identical to the qualified private baseline: Symbolica weights, Cramer cofactor numerators, private parent construction, child mass dimensions, complete-slot assembly, final UV rule and full-shape mask certificates. No proof receipt transfer or receipt implementation is present.",
+    "contraction_and_metadata": "Public adapter uses the existing ContractionPlan on the private parent without exposing imported parameter count. Parent input layout remains31 complex parameters; all four Laurent slots and established basis/metadata survive packing and scatter."
+  },
+  "limitations": [
+    "No compiler, Rust test, Symbolica evaluator, numerical driver or comparator was executed for this review.",
+    "The five policy tests and all restored exact/semantic tests remain unrun in this integrated source snapshot.",
+    "Source identity of selected routines does not prove the full integration equivalent; bounded build, restored exact tests, ordinary regression and full public rank3/lifecycle gates remain necessary.",
+    "No integrated public numerical qualification, numerical Dual accuracy, generic-domain, complex-mass, rank7 acceptance or performance claim.",
+    "Hashes bind the observed frozen source snapshot and historical baseline; they do not require future mutable production to remain unchanged."
+  ],
+  "compiler_test_kernel_or_comparator_execution": false,
+  "production_source_edits": false,
+  "build_qualified": false,
+  "integrated_numerical_qualification": false,
+  "input_sha256": {
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/examples/six_point.rs": "587f00313bfa996bab946d5e41ad99fb4942a6e2f35c503d26c5670b8bf623c0",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_planar/mask_tests.rs": "e90f536e1a14f4389db7bc7e8cf440d0a3dd1fdf406408bad451b007c3f65e39",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_planar.rs": "7d7c1dc39c7f09c9e4d6ebf40ff5f9fc56abd566ce065d8b9c34df1ff081b634",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/certified_scalar.rs": "36a7ff3a558c7edf59734be51131d683586384e88405b8615615b5e8f79eb587",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/contraction.rs": "7d2a7dc0172b4ebdbe4785324d7597b5547a97975ea3f1e184d48ea69bddebcd",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution/planar_fallback.rs": "3289a3899881351f5671ebf4c3c1fbf5d5b1a46994566aebd77623fa53752ffd",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution/policy_tests.rs": "a95ff37c9450a04e23eafaf5c772f6b436b245b2b94612b7cbbe293658335f4f",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/execution.rs": "85d9f8b1bb1a8a57c6ad609176387c579f70d97b7a8335b4688f873003a9aff4",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/lib.rs": "f3a79f783dc32d60aa4703bf88c9dcb23bcaf274ae02aae3d37aa02ca5ac165d",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/plan.rs": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/pv.rs": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/six_point.rs": "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/stability.rs": "f6c9ad7bed125cd48f71a4d8b8afd09ef64d91bde04def055ba0bc5580151ed5",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/thin_n6.rs": "4b7df6612a23f8c948e9987675f6bfc6131b69b93403ff8543dc99e1c8265183",
+    "target/public-highpoint/six-point-integration/core/crates/iregi-rust/src/types.rs": "8afef0cd9693baa26001b506c66e28323dcbfd3741696b06956634c922635a2f",
+    "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/certified_planar.rs": "65dcbb0e4e63bae1ec7079e9d9113d7efccc08d0c80b4d6902beae5671cfdc9f",
+    "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/plan.rs": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+    "target/public-highpoint/thin-n6-generic-fixed/core/crates/iregi-rust/src/pv.rs": "e490efbb9f8072bf7f9f81c72cce1c06f9e0baa35ee7300a656c45ec6906254d"
+  }
+}

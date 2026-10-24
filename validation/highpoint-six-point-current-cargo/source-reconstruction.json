@@ -1,0 +1,63 @@
+{
+  "scope": "Exact reconstruction of the 382 guarded current non-Python core/test/example and pinned numeric-owner source files; not a complete Cargo/native build-input closure.",
+  "base_repository": "https://github.com/huashengshao/iregi-rust",
+  "base_commit": "4fe1a1e5c07f41fb75fc6cec9ea5b57f54d80e09",
+  "unchanged_current_files_from_base": 365,
+  "current_source_files_changed_from_base": [
+    "crates/iregi-rust/examples/six_point.rs",
+    "crates/iregi-rust/src/certified_planar.rs",
+    "crates/iregi-rust/src/certified_planar/mask_tests.rs",
+    "crates/iregi-rust/src/certified_scalar.rs",
+    "crates/iregi-rust/src/contraction.rs",
+    "crates/iregi-rust/src/execution.rs",
+    "crates/iregi-rust/src/execution/planar_fallback.rs",
+    "crates/iregi-rust/src/execution/policy_tests.rs",
+    "crates/iregi-rust/src/lib.rs",
+    "crates/iregi-rust/src/plan.rs",
+    "crates/iregi-rust/src/pv.rs",
+    "crates/iregi-rust/src/six_point.rs",
+    "crates/iregi-rust/src/stability.rs",
+    "crates/iregi-rust/src/stability/context_tests.rs",
+    "crates/iregi-rust/src/thin_n6.rs",
+    "crates/iregi-rust/src/thin_n6/generic_tests.rs",
+    "crates/iregi-rust/src/types.rs"
+  ],
+  "changed_source_overlay": "canonical qualifiedV2 archive; actual module header supplied by small current-doc overlay",
+  "canonical_source_archive": {
+    "path": "validation/highpoint-six-point-api/qualified-v2/sources.tar.gz",
+    "sha256": "382071ba92e2d76e19ad84d83b7d94736a41089f12762a22f123d375fc1963af"
+  },
+  "canonical_source_manifest": {
+    "path": "validation/highpoint-six-point-api/qualified-v2/source.json",
+    "sha256": "96a5a02990da0cc57014d7d339b8de9189198dbcd8959188bb4fc4946b843038"
+  },
+  "canonical_patch_sha256": "b3e7b8aeeaa56a9d6fe5fd54b53d01b0adcd16fc5c47737ee50574c3ea6a4013",
+  "documentation_only_patch_sha256": "e7f2912281519b207ecf67a15983503f1a6857280667b1a846120a273cbe5b0e",
+  "small_overlay_sha256": "13a0c1b5baf1c1e683161f48e43ee82926979a8be307815f31024777341a4dcc",
+  "small_overlay_files": {
+    "crates/iregi-rust/src/six_point.rs": {
+      "sha256": "8e4341a868ff5fe50310c930d38c730fd59a96c01132495ff22054c8aaf7f72f",
+      "bytes": 6510
+    },
+    "docs/six-point.md": {
+      "sha256": "e3618202f292860ab1c1824921f04879daaaa5e1177a0d5dfbad142ed0535dc8",
+      "bytes": 4913
+    },
+    "README.md": {
+      "sha256": "8fd25a7c0f2725e229b6853eff972c80f51ffd92f3b207809761233d61a0e8fb",
+      "bytes": 13307
+    }
+  },
+  "source_freeze_sha256": "29824df6521f39588bf848014c4ac58ee2bc13fb5b44dc0066d78134e046ec22",
+  "recipe": [
+    "Start with the exact base commit and retain the canonical source archive identified above.",
+    "Overlay the root-relative canonical qualifiedV2 source archive (or apply qualified-private-source.patch).",
+    "Overlay current-doc-overlay.tar.gz, or apply documentation-only.patch.",
+    "Verify every file in source-freeze.json before the exact Cargo commands."
+  ],
+  "private_qualification_unmodified": {
+    "path": "validation/highpoint-six-point-api/qualification.json",
+    "sha256": "97ff1fc6866115d64d2b21c46e20ad25449e39392b06c7913e076e5b19abe428",
+    "production_build_qualified": false
+  }
+}

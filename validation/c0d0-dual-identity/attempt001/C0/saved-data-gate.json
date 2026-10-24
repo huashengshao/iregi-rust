@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "scope": "Independent saved-data C0 receipt arithmetic and evidence closure only",
+  "utc": "2026-10-24T00:45:19.606078+00:00",
+  "native_imports": false,
+  "native_or_symbolica_runtime": false,
+  "new_integral_evaluations": 0,
+  "frozen_files_modified": false,
+  "supervisor_exit": {
+    "value": 0,
+    "source": "Parent terminal notice after collecting session 74574; not inferred from child returncode"
+  },
+  "gate_source_sha256": "fa116e0e2f9e872b2c927d5b517461d38b1da2498c591ed34a375f576829b601",
+  "interpreter": "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+  "checks": 1308,
+  "failures": [
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 128): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('dual_unit', 256): native spacelike value purely imaginary",
+    "('ordinary_0', 128): native spacelike value purely imaginary"
+  ],
+  "exceptions": [
+    {
+      "type": "ValueError",
+      "message": "Unexpected nonzero real component; fixed rational audit does not apply",
+      "traceback": "Traceback (most recent call last):\n  File \"/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/attempt001/C0/saved_data_gate.py\", line 223, in main\n    compare_saved(item, by_key[\"dual_unit\", bits][\"values\"][component][pole], by_key[f\"ordinary_{component}\", bits][\"values\"][0][pole], component, pole, \"identities\")\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/shared/external/iregi/iregi-rust/target/c0d0-dual-identity/attempt001/C0/saved_data_gate.py\", line 204, in compare_saved\n    raise ValueError(\"Unexpected nonzero real component; fixed rational audit does not apply\")\nValueError: Unexpected nonzero real component; fixed rational audit does not apply\n"
+    }
+  ],
+  "artifact_sha256": {
+    "capture.json": "52435655929f89d33dac73f33bcbc96606fa2b4edf5a8191b567e7a2879bd3d5",
+    "process-terminal.json": "913d9f591727317085a335d9b761b74dafe94211a44cfcfee2dd1bcccb3b738c",
+    "results.json": "c3e947d64295ede1a3cd86c5e920d7d33e450fcab2b24ff7ca850e4c2e046920",
+    "runtime.log": "462ac90721748e50e2d5037ee54180c6bc2218f212fb61cf43daf471eb889887"
+  },
+  "current_guard_hashes": {
+    "target/c0d0-dual-identity/probe.py": "a52c8b474bc2b92375f8db6ef3436db1d223577dc97f975f7fa55d3ecc6c652b",
+    "target/c0d0-dual-identity/run_bounded.py": "755c6fece0db0ccbfb60fda2c469a9b5345cb86bb85b1f8c227e0231c4aa470d",
+    "target/c0d0-dual-identity/inputs.json": "1cccdc719d4f403d42595643b9b2f5b277d733054ad40661271ab051462076d6",
+    "target/c0d0-dual-identity/protocol.md": "38b66546d4a4d76e5245fbf9456da149e814815dce3f7475d2bb745185b1d008",
+    "target/c0d0-dual-identity/audit.md": "417b3178b0891b913ffef15d93c17cb92764c059b923259eb92652133427ef8c",
+    "target/c0d0-dual-identity/wheel004-source-evidence/crates/iregi-python/src/scalar.rs": "72825f6b6f9c172589626238b5e34d5dab163bf8efc4b4d1d2231cdae3d720b2",
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/lib/numerica/src/domains/dual.rs": "6c6a4d34576930bb5c5f6e7be69c2eedcbca30625405ac4098b46ab6631d9ee6",
+    "target/c0d0-dual-identity/wheel004-source-evidence/dependencies/symbolica/src/evaluate/dual.rs": "a9cca05c3894dc2f98fb4126caa733afd1650620757d34ca2fd2cd4f193ffa33",
+    "target/c0d0-dual-identity/wheel004-source-evidence/python/tirust/_tirust.pyi": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+    "target/c0d0-dual-identity/wheel004-source-evidence/tests/python/test_tirust_numerics.py": "df4bacb025609b6101c51a487570e0a98aed18278b7b397c2427652f7a4c1fd8",
+    "validation/python-interface/checkpoint-wheel-004/qualification.json": "546c9eb2c369312e544d22eb9c69c633cc070490c2be453c97b5d3da03b3e9d2",
+    "validation/python-interface/checkpoint-wheel-004/sources.tar.gz": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+    "validation/generalized-pv/reference-capture.json": "7529013ffd218551af10c05787c91b3c93fa9752ebef61c4a671094be9ff80cc",
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.pyi": "80f593c9862792d840a833f73d65c28f292328f05598e0d5bb8cbb53f8083c34",
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_types/symbolica/core.pyi": "cf09f394787c481b8ca5b07c54d02216e6a98381c480b02066f1fff5180d028f",
+    "target/c0d0-dual-identity/source-review.json": "b9e60282173a847866827e9458ce63437c88bf752b8882e6eaff1db470de1971",
+    "target/c0d0-dual-identity/commands.json": "fece0f6c2bfb1884fc387215a6eacde551e55e31adc383586db826af08b3d623",
+    "target/c0d0-dual-identity/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/c0d0-dual-identity/source-review-lifecycle.json": "d2b392f848c67984dc16697cd6e90c7d7e7b1638ff7a5141f99d69784c4640f3",
+    ".local/tirust-wheel-004-env/lib/python3.13/site-packages/tirust/_tirust.abi3.so": "cd4df512a134bb239678c9b9ba321a52f133f838f53f5886ada985f72d74df86",
+    "target/c0d0-dual-identity/manifest.json": "24d5dc7992e67371df6a2a248cb1f0211b3f5fbf15a6257089fd5d14183b7243"
+  },
+  "owned_process_group": {
+    "id": 346829,
+    "absent_at_gate": true
+  },
+  "passed": false,
+  "status": "saved_data_gate_failed"
+}

@@ -1,0 +1,57 @@
+{
+  "scope": "root-authorized actual current non-Python public six-point Cargo integration build, no numerical execution",
+  "authorization": "ONE library --no-run test build <=1200s/64GiB, then only on build+guards PASS ONE same-cache six_point example build <=300s/32GiB; taskset20-27/jobs8/locked/offline/-vv/json; final sources frozen; no runtime listing/tests/example execution while D0 runtime CPU0 active; no automatic retry.",
+  "source_freeze_sha256": "29824df6521f39588bf848014c4ac58ee2bc13fb5b44dc0066d78134e046ec22",
+  "preparation_sha256": "1886adfe6a4b6503c72c2eaa8b3f16754c22d3df8330f45ee0c9a087b541dfca",
+  "commands": [
+    [
+      "taskset",
+      "-c",
+      "20-27",
+      "cargo",
+      "test",
+      "--locked",
+      "--offline",
+      "-p",
+      "iregi-rust",
+      "--lib",
+      "--no-run",
+      "--jobs",
+      "8",
+      "-vv",
+      "--message-format=json"
+    ],
+    [
+      "taskset",
+      "-c",
+      "20-27",
+      "cargo",
+      "build",
+      "--locked",
+      "--offline",
+      "-p",
+      "iregi-rust",
+      "--example",
+      "six_point",
+      "--jobs",
+      "8",
+      "-vv",
+      "--message-format=json"
+    ]
+  ],
+  "overall_cap_seconds": [
+    1200,
+    300
+  ],
+  "execution_cap_seconds": [
+    1180,
+    280
+  ],
+  "postprocess_reserve_seconds": 20,
+  "sampled_whole_pg_rss_caps_bytes": [
+    68719476736,
+    34359738368
+  ],
+  "cache_policy": "unchanged existing target/cargo-build; no profile/feature/cache surgery",
+  "sole_cargo_actor": "/root/python_interface"
+}

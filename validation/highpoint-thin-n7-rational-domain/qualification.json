@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "status": "private_build_exact_and_rank0_constructor_passed",
+  "source_manifest": "target/public-highpoint/thin-n7-rational-domain/source.json",
+  "source_manifest_sha256": "eb5e566adb6760944816c8e57af53f7eee8b5cae7d591130bfe1dd64fedb1916",
+  "protocol": "target/public-highpoint/thin-n7-rational-domain/protocol/protocol.json",
+  "protocol_sha256": "1459ae7c604460d788285b5548613ed822771acbaf8d1d47d0da9da6c010b880",
+  "source_review": "target/public-highpoint/thin-n7-rational-domain/protocol/independent-review.json",
+  "source_review_sha256": "4ba9bb4ccd0150931f99e081c5d5e5f675884db6324f000b75ef27106653b2ea",
+  "base_phase_capsule": "validation/highpoint-thin-n7-phase-attribution/manifest.json",
+  "base_phase_capsule_sha256": "576467463f7e9f0837e7f58bb75325d060edea22040ebc57d84a32e479e80f57",
+  "stages": {
+    "build": {
+      "receipt": "target/public-highpoint/thin-n7-rational-domain/runs/build-001/run.json",
+      "receipt_sha256": "d36c48e86fa7251604809ce2d420ed0d6ca4a8ccb385493985cb9367fa896018",
+      "status": "passed",
+      "elapsed_seconds_including_postguards": 56.6160113979131,
+      "bound_seconds": 180,
+      "inputs_unchanged": true
+    },
+    "exact": {
+      "receipt": "target/public-highpoint/thin-n7-rational-domain/runs/exact-001/run.json",
+      "receipt_sha256": "dd65b5523d8e8bedbe010573d070f1cd65c916fcf3b606451ecd4998f89ff1e0",
+      "status": "passed",
+      "elapsed_seconds_including_postguards": 38.06944764300715,
+      "bound_seconds": 180,
+      "inputs_unchanged": true
+    },
+    "prepare": {
+      "receipt": "target/public-highpoint/thin-n7-rational-domain/runs/prepare-001/run.json",
+      "receipt_sha256": "ef2d06cf4821bab39fa7fec4ca704adb283ae332c88255dba754ea7859ddef6d",
+      "status": "passed",
+      "elapsed_seconds_including_postguards": 66.6599516129354,
+      "bound_seconds": 150,
+      "inputs_unchanged": true
+    }
+  },
+  "test_inventory": [
+    {
+      "name": "plan::thin_seven::tests::thin_seven_constructor_rejects_unsupported_settings_before_geometry",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/plan/thin_seven.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-00.log"
+    },
+    {
+      "name": "plan::thin_seven::tests::thin_seven_variant_rebuild_retains_child_topology_and_native_context",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/plan/thin_seven.rs",
+      "selected": false,
+      "status": "unrun_explicitly_ignored"
+    },
+    {
+      "name": "pv::thin_seven::tests::thin_seven_geometry_six_chart_order_and_all_five_rhs_identities",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv/thin_seven.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-02.log"
+    },
+    {
+      "name": "pv::thin_seven::tests::thin_seven_geometry_retains_unavailable_six_children",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv/thin_seven.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-03.log"
+    },
+    {
+      "name": "pv::thin_seven::tests::thin_seven_geometry_keeps_primal_zero_mixed_direction_weight",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv/thin_seven.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-04.log"
+    },
+    {
+      "name": "pv::thin_seven::tests::thin_seven_geometry_rejects_invalid_or_all_singular_parent",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv/thin_seven.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-05.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_subsets_have_canonical_unique_original_line_identity",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-06.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_all_ranks_all_four_slots_follow_two_lowerings_and_both_paths",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-07.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_each_chart_keeps_origin_and_omitted_column_mapping",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-08.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_unavailable_inner_geometry_is_not_silent_zero",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-09.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_complete_chart_if_keeps_inactive_inner_poles_lazy_with_duals",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-10.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_assembly_rejects_malformed_geometry_and_child_layouts",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-11.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_synthetic_uv_cancellation_occurs_before_the_final_uv_rule",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-12.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_mixed_only_outer_and_two_level_weights_keep_all_taylor_terms",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-13.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_final_uv_rule_changes_only_uv_and_retains_logarithmic_boundary",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-14.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_mandatory_children_preserve_subset_lane_failure_and_route_flags",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-15.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_child_success_without_current_actual_route_envelope_is_rejected",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-16.log"
+    },
+    {
+      "name": "thin_n7::tests::seven_point_complete_layout_binds_ordered_shape_and_all_lane_buffers",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/thin_n7/tests.rs",
+      "selected": true,
+      "status": "passed",
+      "log": "test-17.log"
+    },
+    {
+      "name": "pv::thin_seven::rational_domain_tests::exact_domain_preserves_full_ordered_generic_variable_map",
+      "selected": true,
+      "status": "passed",
+      "scope": "New exact coefficient-domain source regression; no numerical kernel.",
+      "log": "test-18.log"
+    },
+    {
+      "name": "pv::thin_seven::rational_domain_tests::exact_domain_matches_visible_atom_determinant_and_all_rhs_columns",
+      "selected": true,
+      "status": "passed",
+      "scope": "New exact coefficient-domain source regression; no numerical kernel.",
+      "log": "test-19.log"
+    },
+    {
+      "name": "pv::thin_seven::rational_domain_tests::exact_domain_cancels_a_removable_symbolic_pivot",
+      "selected": true,
+      "status": "passed",
+      "scope": "New exact coefficient-domain source regression; no numerical kernel.",
+      "log": "test-20.log"
+    },
+    {
+      "name": "pv::thin_seven::rational_domain_tests::exact_domain_rejects_added_variables_opaque_calls_and_nonpolynomial_entries",
+      "selected": true,
+      "status": "passed",
+      "scope": "New exact coefficient-domain source regression; no numerical kernel.",
+      "log": "test-21.log"
+    },
+    {
+      "name": "pv::thin_seven::tests::thin_seven_geometry_preserves_exact_complex_atom_coefficients",
+      "source": "target/public-highpoint/thin-n7-rational-domain/core/crates/iregi-rust/src/pv/thin_seven.rs",
+      "selected": true,
+      "status": "passed",
+      "scope": "Direct exact complex coordinates/masses: original AtomField all-five-column identity, i absent from geometry map, and canceled common nonpolynomial mass offset rejected.",
+      "log": "test-22.log"
+    }
+  ],
+  "tests_passed": 22,
+  "tests_failed": 0,
+  "tests_explicitly_ignored_unrun": 1,
+  "constructor": {
+    "alias_count": 259,
+    "basis_count": 1,
+    "constructor_completed": true,
+    "elapsed_seconds": 58.442222272,
+    "numerical_arrays": false,
+    "schema_version": 1,
+    "scope": "Generic private ThinSevenReductionPlan::new only; no numerical kinematics, workspace, masters, arrays, oracle, reference or performance acceptance",
+    "settings": {
+      "algorithm": "PassarinoVeltman",
+      "convention": "IregiNative",
+      "dimension_shift": 0,
+      "input_policy": "Preserve",
+      "invariants": "FromShifts",
+      "powers": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "propagators": 7,
+      "rank": 0,
+      "tensor_weights": "Components"
+    },
+    "status": "constructor_complete",
+    "workspace_created": false
+  },
+  "phase_markers": [
+    {
+      "phase": "thin N7 matrix assembly [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "2.72185ms",
+      "seconds": 0.00272185
+    },
+    {
+      "phase": "thin N7 determinant [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "400.6085ms",
+      "seconds": 0.4006085
+    },
+    {
+      "phase": "thin N7 RHS assembly [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "255.33\u00b5s",
+      "seconds": 0.00025533
+    },
+    {
+      "phase": "thin N7 inverse [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "6.197074676s",
+      "seconds": 6.197074676
+    },
+    {
+      "phase": "thin N7 inverse times RHS [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "993.165276ms",
+      "seconds": 0.9931652759999999
+    },
+    {
+      "phase": "thin N7 exact solution certificate [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "1.730538979s",
+      "seconds": 1.730538979
+    },
+    {
+      "phase": "thin N7 weight aliases [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "270.265265ms",
+      "seconds": 0.27026526500000003
+    },
+    {
+      "phase": "thin N7 six-line chart [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "9.596615524s",
+      "seconds": 9.596615524
+    },
+    {
+      "phase": "thin N7 matrix assembly [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "1.343805ms",
+      "seconds": 0.001343805
+    },
+    {
+      "phase": "thin N7 determinant [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "351.390695ms",
+      "seconds": 0.351390695
+    },
+    {
+      "phase": "thin N7 RHS assembly [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "267.311\u00b5s",
+      "seconds": 0.00026731099999999995
+    },
+    {
+      "phase": "thin N7 inverse [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "6.028776845s",
+      "seconds": 6.028776845
+    },
+    {
+      "phase": "thin N7 inverse times RHS [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "988.39924ms",
+      "seconds": 0.98839924
+    },
+    {
+      "phase": "thin N7 exact solution certificate [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "1.73924021s",
+      "seconds": 1.73924021
+    },
+    {
+      "phase": "thin N7 weight aliases [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "284.832137ms",
+      "seconds": 0.284832137
+    },
+    {
+      "phase": "thin N7 six-line chart [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "9.396169948s",
+      "seconds": 9.396169948
+    },
+    {
+      "phase": "thin N7 matrix assembly [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "1.218315ms",
+      "seconds": 0.001218315
+    },
+    {
+      "phase": "thin N7 determinant [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "343.190105ms",
+      "seconds": 0.343190105
+    },
+    {
+      "phase": "thin N7 RHS assembly [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "264.181\u00b5s",
+      "seconds": 0.000264181
+    },
+    {
+      "phase": "thin N7 inverse [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "5.881288168s",
+      "seconds": 5.881288168
+    },
+    {
+      "phase": "thin N7 inverse times RHS [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "984.061663ms",
+      "seconds": 0.984061663
+    },
+    {
+      "phase": "thin N7 exact solution certificate [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "1.745527672s",
+      "seconds": 1.745527672
+    },
+    {
+      "phase": "thin N7 weight aliases [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "286.366932ms",
+      "seconds": 0.286366932
+    },
+    {
+      "phase": "thin N7 six-line chart [0, 1, 3, 4, 5, 6]",
+      "raw_duration": "9.243791784s",
+      "seconds": 9.243791784
+    },
+    {
+      "phase": "thin N7 matrix assembly [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "1.179915ms",
+      "seconds": 0.0011799150000000001
+    },
+    {
+      "phase": "thin N7 determinant [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "344.325889ms",
+      "seconds": 0.34432588900000005
+    },
+    {
+      "phase": "thin N7 RHS assembly [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "252.841\u00b5s",
+      "seconds": 0.000252841
+    },
+    {
+      "phase": "thin N7 inverse [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "5.83660237s",
+      "seconds": 5.83660237
+    },
+    {
+      "phase": "thin N7 inverse times RHS [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "981.655055ms",
+      "seconds": 0.9816550549999999
+    },
+    {
+      "phase": "thin N7 exact solution certificate [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "1.202932825s",
+      "seconds": 1.202932825
+    },
+    {
+      "phase": "thin N7 weight aliases [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "174.236992ms",
+      "seconds": 0.17423699199999998
+    },
+    {
+      "phase": "thin N7 six-line chart [0, 1, 2, 4, 5, 6]",
+      "raw_duration": "8.542843882s",
+      "seconds": 8.542843882
+    },
+    {
+      "phase": "thin N7 matrix assembly [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "789.413\u00b5s",
+      "seconds": 0.000789413
+    },
+    {
+      "phase": "thin N7 determinant [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "225.286405ms",
+      "seconds": 0.225286405
+    },
+    {
+      "phase": "thin N7 RHS assembly [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "173.83\u00b5s",
+      "seconds": 0.00017383
+    },
+    {
+      "phase": "thin N7 inverse [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "4.001982918s",
+      "seconds": 4.001982918
+    },
+    {
+      "phase": "thin N7 inverse times RHS [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "633.547342ms",
+      "seconds": 0.633547342
+    },
+    {
+      "phase": "thin N7 exact solution certificate [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "1.21837631s",
+      "seconds": 1.21837631
+    },
+    {
+      "phase": "thin N7 weight aliases [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "174.133651ms",
+      "seconds": 0.174133651
+    },
+    {
+      "phase": "thin N7 six-line chart [0, 1, 2, 3, 5, 6]",
+      "raw_duration": "6.255805766s",
+      "seconds": 6.255805766
+    },
+    {
+      "phase": "thin N7 matrix assembly [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "791.973\u00b5s",
+      "seconds": 0.000791973
+    },
+    {
+      "phase": "thin N7 determinant [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "260.070488ms",
+      "seconds": 0.26007048800000004
+    },
+    {
+      "phase": "thin N7 RHS assembly [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "220.471\u00b5s",
+      "seconds": 0.000220471
+    },
+    {
+      "phase": "thin N7 inverse [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "4.035473518s",
+      "seconds": 4.035473518
+    },
+    {
+      "phase": "thin N7 inverse times RHS [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "633.428671ms",
+      "seconds": 0.633428671
+    },
+    {
+      "phase": "thin N7 exact solution certificate [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "1.215671581s",
+      "seconds": 1.215671581
+    },
+    {
+      "phase": "thin N7 weight aliases [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "174.584513ms",
+      "seconds": 0.174584513
+    },
+    {
+      "phase": "thin N7 six-line chart [0, 1, 2, 3, 4, 6]",
+      "raw_duration": "6.321749811s",
+      "seconds": 6.321749811
+    },
+    {
+      "phase": "thin N7 matrix assembly [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "787.083\u00b5s",
+      "seconds": 0.0007870829999999999
+    },
+    {
+      "phase": "thin N7 determinant [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "235.510281ms",
+      "seconds": 0.235510281
+    },
+    {
+      "phase": "thin N7 RHS assembly [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "180.09\u00b5s",
+      "seconds": 0.00018009
+    },
+    {
+      "phase": "thin N7 inverse [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "3.993273407s",
+      "seconds": 3.993273407
+    },
+    {
+      "phase": "thin N7 inverse times RHS [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "631.833076ms",
+      "seconds": 0.631833076
+    },
+    {
+      "phase": "thin N7 exact solution certificate [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "1.18176081s",
+      "seconds": 1.18176081
+    },
+    {
+      "phase": "thin N7 weight aliases [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "173.881401ms",
+      "seconds": 0.17388140100000002
+    },
+    {
+      "phase": "thin N7 six-line chart [0, 1, 2, 3, 4, 5]",
+      "raw_duration": "6.218618003s",
+      "seconds": 6.218618003
+    },
+    {
+      "phase": "thin N7 all geometry",
+      "raw_duration": "55.580885106s",
+      "seconds": 55.580885106
+    },
+    {
+      "phase": "thin N7 parent basis and imported layout",
+      "raw_duration": "3.937884ms",
+      "seconds": 0.003937884
+    },
+    {
+      "phase": "thin N7 parent assembly",
+      "raw_duration": "8.50007ms",
+      "seconds": 0.008500069999999998
+    },
+    {
+      "phase": "thin N7 final UV rule",
+      "raw_duration": "388.472\u00b5s",
+      "seconds": 0.00038847199999999995
+    },
+    {
+      "phase": "thin N7 parent plan",
+      "raw_duration": "55.606671558s",
+      "seconds": 55.606671558
+    },
+    {
+      "phase": "thin N7 generic N5 child plan",
+      "raw_duration": "2.834655241s",
+      "seconds": 2.834655241
+    }
+  ],
+  "runtime_completion": "target/public-highpoint/thin-n7-rational-domain/runtime-completion.json",
+  "runtime_completion_sha256": "7fe46b5b56b3afb7808992885d40acda1263e67eac260e781e8b164c7c3ab64f",
+  "scope": "Single generic Q-to-Z rational-polynomial N7 matrix candidate with Gaussian-validated original AtomField compatibility for direct exact complex fixtures. Existing all-five-RHS/full-basis/guard identities retained. Build and22 selected exact tests passed; generic private rank0 constructor completed. No workspace, master evaluation, numerical coefficient arrays, comparison to IREGI, precision convergence, optimized benchmark, performance acceptance or production adoption. Historical failed capture and marker-only timeout remain unchanged.",
+  "limitations": [
+    "The ignored generic constructor-variant unit test remains UNRUN despite separate rank0 constructor helper completion.",
+    "Only private constructor preparation is observed; numerical guard behavior after changed expression representation still needs separate qualification.",
+    "Historical native dependency profile opt2/debug2 and private core/helper opt0/debug0; preparation markers are diagnostic, not full-call or optimized timing."
+  ]
+}

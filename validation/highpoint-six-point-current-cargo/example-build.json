@@ -1,0 +1,257 @@
+{
+  "scope": "actual current locked Cargo; compile only; no tests/listing/example execution",
+  "command": [
+    "taskset",
+    "-c",
+    "20-27",
+    "cargo",
+    "build",
+    "--locked",
+    "--offline",
+    "-p",
+    "iregi-rust",
+    "--example",
+    "six_point",
+    "--jobs",
+    "8",
+    "-vv",
+    "--message-format=json"
+  ],
+  "started_unix": 1792803476.3469455,
+  "overall_cap_seconds": 300,
+  "execution_cap_seconds": 280,
+  "postprocess_reserve_seconds": 20,
+  "sampled_whole_pg_rss_cap_bytes": 34359738368,
+  "source_freeze_sha256": "29824df6521f39588bf848014c4ac58ee2bc13fb5b44dc0066d78134e046ec22",
+  "grant_sha256": "d18c002a522322ec8ed367bee7344c380ea4b911a298c6a919a423f9fafcd269",
+  "preparation_sha256": "1886adfe6a4b6503c72c2eaa8b3f16754c22d3df8330f45ee0c9a087b541dfca",
+  "profile_overrides": false,
+  "runtime_execution_authorized": false,
+  "status": "completed",
+  "exit_code": 0,
+  "execution_seconds": 19.36289798503276,
+  "remaining_owned_processes": [],
+  "terminal_before_hash": true,
+  "seconds_including_cleanup_hashes_receipts": 21.992207563016564,
+  "peak_sampled_whole_pg_rss_bytes": 944771072,
+  "source_files": 382,
+  "changed_source_inputs": [],
+  "changed_tools": [],
+  "guard_check_performed": true,
+  "within_overall_cap": true,
+  "compiler_artifact_count": 141,
+  "selected_current_artifact_identities": {
+    "numerica": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/dependencies/symbolica/lib/numerica#3.0.1",
+        "features": [
+          "bincode",
+          "float-mpfr",
+          "integer-gmp",
+          "serde"
+        ],
+        "profile": {
+          "opt_level": "2",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": true,
+        "kind": [
+          "lib"
+        ],
+        "executable": null,
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnumerica-61ae94f4d09cbb0d.rlib": {
+            "bytes": 31417308,
+            "sha256": "9afee1ed32345a4d130d9a293420503d314e4da00e2b9ea42525ea0a402b3b45"
+          },
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libnumerica-61ae94f4d09cbb0d.rmeta": {
+            "bytes": 5408814,
+            "sha256": "aa54df958b1b3b1ab76131233507ff6fce599badc049a355c13e7c2d38f729d3"
+          }
+        }
+      }
+    ],
+    "graphica": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/dependencies/symbolica/lib/graphica#3.0.1",
+        "features": [],
+        "profile": {
+          "opt_level": "2",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": true,
+        "kind": [
+          "lib"
+        ],
+        "executable": null,
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libgraphica-91376e9b98628e70.rlib": {
+            "bytes": 635634,
+            "sha256": "35ef3986a588964d1fe3afb1f694ca634814843302b0714f57e689eb67a83284"
+          },
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libgraphica-91376e9b98628e70.rmeta": {
+            "bytes": 369500,
+            "sha256": "49442c5e56ab9776f0046292a9247566bbbb0eabe95ba5da09504feedc82fc6f"
+          }
+        }
+      }
+    ],
+    "symbolica": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/dependencies/symbolica#3.0.1",
+        "features": [
+          "bincode",
+          "float-mpfr",
+          "integer-gmp",
+          "native_code_generation",
+          "serde",
+          "tracing_max_level_info"
+        ],
+        "profile": {
+          "opt_level": "2",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": true,
+        "kind": [
+          "lib"
+        ],
+        "executable": null,
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-ab4b96ed149fef12.rlib": {
+            "bytes": 583985048,
+            "sha256": "e9f6cf8ec24783485ebe3cf5f6ce4e16ef4e040daa04d9eeb044a9b306cb8b61"
+          },
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libsymbolica-ab4b96ed149fef12.rmeta": {
+            "bytes": 22172810,
+            "sha256": "8f368a16aa8f74c7afaaed2391ccfcb9b5b07b0719c9778d3ef79066cbaef9ec"
+          }
+        }
+      }
+    ],
+    "oneloop": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/dependencies/oneloopmaster#oneloop@0.1.0",
+        "features": [
+          "default",
+          "generated-evaluators",
+          "prebuilt",
+          "rust-codegen"
+        ],
+        "profile": {
+          "opt_level": "2",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": true,
+        "kind": [
+          "lib"
+        ],
+        "executable": null,
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liboneloop-0669bd482868cb5e.rlib": {
+            "bytes": 398380106,
+            "sha256": "65ea2bd9b500ee8d859a340d22fd799f0a735d66d01c27663331c7e6bc3d160a"
+          },
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/liboneloop-0669bd482868cb5e.rmeta": {
+            "bytes": 20963450,
+            "sha256": "b17c1c15a0f65dc035a1063ca3e1f0cfe961e6d8231fb3998e8b86cf85ceb684"
+          }
+        }
+      }
+    ],
+    "iregi_masters": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/crates/iregi-masters#0.1.0",
+        "features": [
+          "default"
+        ],
+        "profile": {
+          "opt_level": "0",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": true,
+        "kind": [
+          "lib"
+        ],
+        "executable": null,
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libiregi_masters-e179fec49b5394db.rlib": {
+            "bytes": 48216462,
+            "sha256": "129741cdc4609f0f2afed33194d0fe19171da0ed8c60abbef14dd161e69f0e64"
+          },
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libiregi_masters-e179fec49b5394db.rmeta": {
+            "bytes": 912001,
+            "sha256": "c3e410a8649ad88c0186c01c14e4f7849c52cfd82c3f225817308e630927fd50"
+          }
+        }
+      }
+    ],
+    "iregi_rust": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/crates/iregi-rust#0.1.0",
+        "features": [],
+        "profile": {
+          "opt_level": "0",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": false,
+        "kind": [
+          "lib"
+        ],
+        "executable": null,
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libiregi_rust-e84be32aff265e18.rlib": {
+            "bytes": 44122246,
+            "sha256": "1a83129bb057ab7f2212a71a4d62ce442bc36e625e6531809d521da0770ea123"
+          },
+          "/shared/external/iregi/iregi-rust/target/cargo-build/debug/deps/libiregi_rust-e84be32aff265e18.rmeta": {
+            "bytes": 2168474,
+            "sha256": "3233be395942f629aa88b56eb51338322b243d8ad396970c09c8298d108cfaa4"
+          }
+        }
+      }
+    ],
+    "six_point": [
+      {
+        "package_id": "path+file:///shared/external/iregi/iregi-rust/crates/iregi-rust#0.1.0",
+        "features": [],
+        "profile": {
+          "opt_level": "0",
+          "debuginfo": 2,
+          "debug_assertions": true,
+          "overflow_checks": true,
+          "test": false
+        },
+        "fresh": false,
+        "kind": [
+          "example"
+        ],
+        "executable": "/shared/external/iregi/iregi-rust/target/debug/examples/six_point",
+        "files": {
+          "/shared/external/iregi/iregi-rust/target/debug/examples/six_point": {
+            "bytes": 547326528,
+            "sha256": "563613ff31c79d7d0d7c2cf412d85c192a1d45803f7fa0c11e63a0cfca3ba1b9"
+          }
+        }
+      }
+    ]
+  },
+  "pass": true
+}

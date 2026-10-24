@@ -1,0 +1,18 @@
+{
+  "status": "source_only_malformed_input_hardening",
+  "base_source_manifest": "target/public-highpoint/six-point-integration/source.json",
+  "base_source_manifest_sha256": "0780ac6981595179aa6c810d4e7ca38dd6ce90d187429416a5fb25fd2be2cdff",
+  "before_thin_n6_sha256": "4b7df6612a23f8c948e9987675f6bfc6131b69b93403ff8543dc99e1c8265183",
+  "after_thin_n6_sha256": "eb111ac086fcee826cce0d11ec366bae13aaad941de77cb6cec700b7c1587048",
+  "changed_files": [
+    "crates/iregi-rust/src/thin_n6.rs"
+  ],
+  "changes": [
+    "Reset diagnostics with clear before validation; do not allocate per-row diagnostics until checked input/output dimensions pass.",
+    "Reject zero stored components in addition to input component mismatch.",
+    "One cheap regression with synthetic N1 scratch, six malformed/overflow controls and empty success; no reduction evaluator runs in that test."
+  ],
+  "new_test": "thin_n6::tests::malformed_dimensions_reset_before_any_row_sized_allocation",
+  "previous_source_immutable": true,
+  "compiler_or_runtime_execution": false
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "scope": "Source-only until a separately granted serialized runtime; installed wheel004, one lane per family",
+  "precisions": [128, 256],
+  "accuracy_bits": 53,
+  "shape": [[0, 0], [1, 0], [0, 1], [2, 0], [1, 1], [0, 2]],
+  "laurent_names": ["uv_single", "ir_single", "ir_double", "finite"],
+  "tolerance": "1e-10",
+  "base_algorithm": "hybrid",
+  "oracle_algorithm": "ibp",
+  "dimension_shift": 0,
+  "rank": 0,
+  "convention": "iregi",
+  "input_policy": "preserve",
+  "mass_seed_values": [["4", "1", "0", "0", "0", "0"], ["9", "0", "1", "0", "0", "0"]],
+  "component_powers_prefix": [[1, 1], [2, 1], [1, 2], [3, 1], [2, 2], [1, 3]],
+  "component_weights": ["1", "1", "1", "1", "1", "1"],
+  "families": {
+    "C0": {
+      "propagators": 3,
+      "shifts": [["0", "0", "0", "0"], ["0", "1", "0", "0"], ["0", "0", "2", "0"]],
+      "masses_squared": ["4", "9", "16"],
+      "mu": "3",
+      "characteristic_scale": "4",
+      "wall_bound_seconds": 180,
+      "geometry_source": "validation/generalized-pv/reference-capture.json#n3_p123_h4_mode0",
+      "geometry_only_reuse": "The source case has powers [1,2,3], h=4. This identity test uses ordinary C0: unit powers, h=0. No original-Fortran numeric comparison is claimed for the new cases."
+    },
+    "D0": {
+      "propagators": 4,
+      "shifts": [["0", "0", "0", "0"], ["0", "1", "0", "0"], ["0", "0", "2", "0"], ["0", "0", "0", "3"]],
+      "masses_squared": ["4", "9", "16", "25"],
+      "mu": "3",
+      "characteristic_scale": "5",
+      "wall_bound_seconds": 360,
+      "geometry_source": "validation/generalized-pv/reference-capture.json#n4_unit_h1_mode0",
+      "geometry_only_reuse": "The source case has unit powers, h=1. This identity test uses ordinary D0: unit powers, h=0. No original-Fortran numeric comparison is claimed for the new cases."
+    }
+  }
+}
