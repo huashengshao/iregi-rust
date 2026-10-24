@@ -1,0 +1,212 @@
+{
+  "scope": "tests",
+  "protocol_sha256": "093c8d1112b927851fe00c83d5eb7077e257c4e6789822a3abb9b3d7833e48f0",
+  "runner_sha256": "e70f0100dd6ced5b6cd9ac8fac3bb0ffb46b3fa7c63b0682e93b70eeb5b74c73",
+  "status": "passed",
+  "steps": [
+    {
+      "name": "list-batch",
+      "args": [
+        "evaluate::batch::",
+        "--list"
+      ],
+      "timeout_seconds": 15,
+      "expected_test_count": 11,
+      "expected_test_names": [
+        "evaluate::batch::tests::batch_polynomial_and_buffer_shapes",
+        "evaluate::batch::tests::batch_constant_outputs_and_oversized_dimensions",
+        "evaluate::batch::tests::batch_complex_precision_domains_and_flattened_duals",
+        "evaluate::batch::tests::batch_calls_are_instruction_major_and_skip_inactive_lanes",
+        "evaluate::batch::tests::batch_shared_functions_keep_inactive_branches_lazy",
+        "evaluate::batch::uniform_branch_tests::uniform_nested_paths_skip_dispatch_and_keep_destination_labels_and_joins",
+        "evaluate::batch::uniform_branch_tests::prior_inactive_lanes_forbid_jumps_and_rejoin_in_original_order",
+        "evaluate::batch::uniform_branch_tests::inactive_external_continue_advances_pc_on_mixed_parent_lanes",
+        "evaluate::batch::uniform_branch_tests::shared_subset_callers_may_jump_without_waking_root_inactive_lanes",
+        "evaluate::batch::uniform_branch_tests::fixed_and_mixed_precision_static_dynamic_duals_keep_primal_branch",
+        "evaluate::batch::uniform_branch_tests::imaginary_conditions_and_signed_zero_inputs_preserve_bit_patterns"
+      ],
+      "command": [
+        "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+        "-c",
+        "32,33",
+        "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+        "evaluate::batch::",
+        "--list"
+      ],
+      "status": "passed",
+      "owned_process_group": 3274665,
+      "returncode": 0,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.018048504018224776,
+      "log_sha256": "51743cb468c79009780f00465e9f3309b2b57cd96f893a731942fc505b722477"
+    },
+    {
+      "name": "actual-batch-and-six-focused",
+      "args": [
+        "evaluate::batch::",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 60,
+      "expected_pass_count": 11,
+      "expected_test_names": [
+        "evaluate::batch::tests::batch_polynomial_and_buffer_shapes",
+        "evaluate::batch::tests::batch_constant_outputs_and_oversized_dimensions",
+        "evaluate::batch::tests::batch_complex_precision_domains_and_flattened_duals",
+        "evaluate::batch::tests::batch_calls_are_instruction_major_and_skip_inactive_lanes",
+        "evaluate::batch::tests::batch_shared_functions_keep_inactive_branches_lazy",
+        "evaluate::batch::uniform_branch_tests::uniform_nested_paths_skip_dispatch_and_keep_destination_labels_and_joins",
+        "evaluate::batch::uniform_branch_tests::prior_inactive_lanes_forbid_jumps_and_rejoin_in_original_order",
+        "evaluate::batch::uniform_branch_tests::inactive_external_continue_advances_pc_on_mixed_parent_lanes",
+        "evaluate::batch::uniform_branch_tests::shared_subset_callers_may_jump_without_waking_root_inactive_lanes",
+        "evaluate::batch::uniform_branch_tests::fixed_and_mixed_precision_static_dynamic_duals_keep_primal_branch",
+        "evaluate::batch::uniform_branch_tests::imaginary_conditions_and_signed_zero_inputs_preserve_bit_patterns"
+      ],
+      "command": [
+        "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+        "-c",
+        "32,33",
+        "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+        "evaluate::batch::",
+        "--test-threads=1"
+      ],
+      "status": "passed",
+      "owned_process_group": 3276126,
+      "returncode": 0,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.16544864501338452,
+      "log_sha256": "dbf4bcc23f96531b8f3c100404a1854c75c0ce9a080a7a19a2d16fc504f68b41"
+    },
+    {
+      "name": "completed_conditionals_reuse_only_their_parent_scope",
+      "args": [
+        "evaluate::test::completed_conditionals_reuse_only_their_parent_scope",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 30,
+      "expected_pass_count": 1,
+      "expected_test_names": [
+        "evaluate::test::completed_conditionals_reuse_only_their_parent_scope"
+      ],
+      "command": [
+        "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+        "-c",
+        "32,33",
+        "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+        "evaluate::test::completed_conditionals_reuse_only_their_parent_scope",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "status": "passed",
+      "owned_process_group": 3276583,
+      "returncode": 0,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.016896098968572915,
+      "log_sha256": "3a0a863dfec004d41dfb67c504525c6634f3e66e5fbfedda65f88c0d9f9060ae"
+    },
+    {
+      "name": "completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+      "args": [
+        "evaluate::test::completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 30,
+      "expected_pass_count": 1,
+      "expected_test_names": [
+        "evaluate::test::completed_shared_conditionals_keep_captures_and_mixed_dual_components"
+      ],
+      "command": [
+        "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+        "-c",
+        "32,33",
+        "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+        "evaluate::test::completed_shared_conditionals_keep_captures_and_mixed_dual_components",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "status": "passed",
+      "owned_process_group": 3277007,
+      "returncode": 0,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.016840529046021402,
+      "log_sha256": "f21fbca821d08979382bfc54c03ca1a0ea755e5a641a7f60a6efdde0cad2e0a8"
+    },
+    {
+      "name": "non_inlined_stack_reuse_preserves_nested_lazy_branches",
+      "args": [
+        "evaluate::test::non_inlined_stack_reuse_preserves_nested_lazy_branches",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 30,
+      "expected_pass_count": 1,
+      "expected_test_names": [
+        "evaluate::test::non_inlined_stack_reuse_preserves_nested_lazy_branches"
+      ],
+      "command": [
+        "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+        "-c",
+        "32,33",
+        "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+        "evaluate::test::non_inlined_stack_reuse_preserves_nested_lazy_branches",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "status": "passed",
+      "owned_process_group": 3277294,
+      "returncode": 0,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.016961509943939745,
+      "log_sha256": "76dc002748cfa9752594bc480b7cd1ea262913fed0e297d2e04ef1b79d29c86d"
+    },
+    {
+      "name": "non_inlined_function_reuses_body_for_repeated_nested_calls",
+      "args": [
+        "evaluate::test::non_inlined_function_reuses_body_for_repeated_nested_calls",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "timeout_seconds": 30,
+      "expected_pass_count": 1,
+      "expected_test_names": [
+        "evaluate::test::non_inlined_function_reuses_body_for_repeated_nested_calls"
+      ],
+      "command": [
+        "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+        "-c",
+        "32,33",
+        "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/unit-tests",
+        "evaluate::test::non_inlined_function_reuses_body_for_repeated_nested_calls",
+        "--exact",
+        "--test-threads=1"
+      ],
+      "status": "passed",
+      "owned_process_group": 3277960,
+      "returncode": 0,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.017049559974111617,
+      "log_sha256": "2d3ff0647a3a5a5987b530f7e802a4e31cc07fb225d3b337b0ac966e9bea4067"
+    }
+  ],
+  "cleanup_errors": [],
+  "success": true,
+  "aggregate_budget_seconds": 180,
+  "tirust_reduction_kernel_evaluation": false,
+  "performance_measurement": false,
+  "guard_before": true,
+  "binary_sha256": "371c1877c5dd7a849e9811a52a0133278eaf9f1f84540c64e5d4a6febc8f8f90",
+  "compile_receipt": {
+    "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v4/compile-003/receipt.json",
+    "sha256": "8206d607aa6358aaa0bc37cb7b45089f2039ad1db9dfe04c21f3c7c0bc5700a2"
+  },
+  "guard_after": true,
+  "elapsed_seconds_diagnostic": 14.839503254042938,
+  "deadline_exceeded": false
+}

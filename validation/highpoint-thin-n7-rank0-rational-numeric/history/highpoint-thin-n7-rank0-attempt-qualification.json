@@ -1,0 +1,388 @@
+{
+  "schema_version": 1,
+  "status": "numerical_qualification_failed",
+  "created_utc": "2026-10-24T00:04:15.143764+00:00",
+  "scope": "One private N7 rank0 dyadic fixture, ordinary Float128/request53. Exact-domain audit passed; generic numerical capture timed out before workspace/scalar evaluation. No numerical Rust result, no precision-convergence, high-rank/Dual/general-domain/performance or production qualification.",
+  "source_protocol": {
+    "path": "target/public-highpoint/thin-n7-rank0-api2/protocol/protocol.json",
+    "sha256": "fb76a6ae1369251f7be249bc52076aac3f9237edc2cbb9f909ac2650ba0a36de"
+  },
+  "source_review": {
+    "path": "target/public-highpoint/thin-n7-rank0-api2/protocol/independent-review.json",
+    "sha256": "2e111456003163030cf489e14b66d60b823908740eed965d4461c98204549ac2"
+  },
+  "prior_failed_build": {
+    "receipt": "target/public-highpoint/thin-n7-rank0/runs/build_driver-001/run.json",
+    "sha256": "1f5446113cb675611553808b84aa73d8809bc4f291b7b9e7a98e760ecb7cb9e6",
+    "compiler_errors": "Four driver/helper API errors; fixed only borrowed Rational operand and three public metadata() getters in separately frozen API2 source."
+  },
+  "exact_only_qualification": {
+    "path": "validation/highpoint-thin-n7-exact/qualification.json",
+    "sha256": "932e4e9c1d581833693dc4040405f943a8e7f916c5050a1fa54f95f2f5c51e77",
+    "status": "17 selected exact tests passed; ignored generic constructor test remains UNRUN"
+  },
+  "stages": [
+    {
+      "stage": "build_driver",
+      "receipt": "target/public-highpoint/thin-n7-rank0-api2/runs/build_driver-002/run.json",
+      "sha256": "649b52a656e96df44dfe1c5008be5555a503075187679bc27e1495e0edc1f956",
+      "status": "passed",
+      "seconds_including_postguards": 14.273434323025867,
+      "inputs_unchanged": true,
+      "total_bound_exceeded": false,
+      "subprocesses": [
+        {
+          "name": "driver",
+          "exit_code": 0,
+          "timeout": false,
+          "cleanup_errors": [],
+          "within_bound": true
+        }
+      ],
+      "error": null,
+      "outputs": {
+        "target/public-highpoint/thin-n7-rank0-api2/runs/build_driver-002/driver": "cddfe23cb24e283bc69c46e083a544b7e1c2c3021caaad09f949de950ca2c049",
+        "target/public-highpoint/thin-n7-rank0-api2/runs/build_driver-002/driver.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "stage": "domain",
+      "receipt": "target/public-highpoint/thin-n7-rank0-api2/runs/domain-002/run.json",
+      "sha256": "661c21eee8e06c20382e1dca437ddc5d470b67f5d97459e8d38c59133661fa2d",
+      "status": "passed",
+      "seconds_including_postguards": 8.391389093943872,
+      "inputs_unchanged": true,
+      "total_bound_exceeded": false,
+      "subprocesses": [
+        {
+          "name": "exact_domain",
+          "exit_code": 0,
+          "timeout": false,
+          "cleanup_errors": [],
+          "within_bound": true
+        }
+      ],
+      "error": null,
+      "outputs": {
+        "target/public-highpoint/thin-n7-rank0-api2/runs/domain-002/domain.json": "31e75346b2d8ca0decc510d3e0236ddd278e3aa2efbd96a29012072ecf9382f3",
+        "target/public-highpoint/thin-n7-rank0-api2/runs/domain-002/domain.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "stage": "capture",
+      "receipt": "target/public-highpoint/thin-n7-rank0-api2/runs/capture-002/run.json",
+      "sha256": "64877dd9b7ac67813eecfa00de4269e3510eb7a5e0c70ec4b391dab86d7925ed",
+      "status": "failed",
+      "seconds_including_postguards": 300.92811570793856,
+      "inputs_unchanged": true,
+      "total_bound_exceeded": true,
+      "subprocesses": [
+        {
+          "name": "rank0_capture",
+          "exit_code": -15,
+          "timeout": true,
+          "cleanup_errors": [],
+          "within_bound": true
+        }
+      ],
+      "error": "AssertionError: rank0_capture failed",
+      "outputs": {
+        "target/public-highpoint/thin-n7-rank0-api2/runs/capture-002/result.json": "c7cd465d7d3e3fb9c9fc5629f68f1c2e4682ae03db05ab6e080b0a8cfe9a6bc0",
+        "target/public-highpoint/thin-n7-rank0-api2/runs/capture-002/capture.log": "38c112640a57b846894fb4dabbc571a7a4e9cd163a52eed47c96b3c38b2ddf57"
+      }
+    },
+    {
+      "stage": "reference",
+      "receipt": "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/run.json",
+      "sha256": "763a3027c86144fc0217c52da7464c0bbe772fa773f3ad17d7668fb4ee189429",
+      "status": "passed",
+      "seconds_including_postguards": 12.321722290012985,
+      "inputs_unchanged": true,
+      "total_bound_exceeded": false,
+      "subprocesses": [
+        {
+          "name": "original_mode0",
+          "exit_code": 0,
+          "timeout": false,
+          "cleanup_errors": [],
+          "within_bound": true
+        },
+        {
+          "name": "original_mode1",
+          "exit_code": 0,
+          "timeout": false,
+          "cleanup_errors": [],
+          "within_bound": true
+        },
+        {
+          "name": "original_mode2",
+          "exit_code": 0,
+          "timeout": false,
+          "cleanup_errors": [],
+          "within_bound": true
+        }
+      ],
+      "error": null,
+      "outputs": {
+        "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/mode0.log": "ed5cceadffd85a374a8e2b0aadadcef00cf0ad9a1d87a0b3d47143f1cf7db965",
+        "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/mode1.log": "b9e8294d327663f9d12d1d9fdc9b49186a7bcf588b1aa05f8b8987016021502d",
+        "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/mode2.log": "2982cad5a17b399eec5df43f0fb3c2fa247278e48f188a7d05be0da75524e805"
+      }
+    },
+    {
+      "stage": "oracle",
+      "receipt": "target/public-highpoint/thin-n7-rank0-api2/runs/oracle-002/run.json",
+      "sha256": "c01c8afceb84679cb1ccf8f675ac6510e0d70897346aaa96e9bc904142a9f3d2",
+      "status": "failed",
+      "seconds_including_postguards": 12.049576458055526,
+      "inputs_unchanged": true,
+      "total_bound_exceeded": false,
+      "subprocesses": [
+        {
+          "name": "six_fixed_simplex_rules",
+          "exit_code": 2,
+          "timeout": false,
+          "cleanup_errors": [],
+          "within_bound": true
+        }
+      ],
+      "error": "AssertionError: six_fixed_simplex_rules failed",
+      "outputs": {
+        "target/public-highpoint/thin-n7-rank0-api2/runs/oracle-002/oracle.json": "61e399954a471b68ef924f9aa26cfafebc677c6a35bd01c6ff35cb510b6d24d0",
+        "target/public-highpoint/thin-n7-rank0-api2/runs/oracle-002/oracle.log": "11f02c272067f8b647726b0865e44012cfc9e189b9d7590dee7b1064b3508d9d"
+      }
+    },
+    {
+      "stage": "compare",
+      "receipt": "target/public-highpoint/thin-n7-rank0-api2/runs/compare-002/run.json",
+      "sha256": "57060823c4e11a6e0be7916f1ac290812808b82cb948d546ac4c79bc85f52276",
+      "status": "failed",
+      "seconds_including_postguards": 3.057994969887659,
+      "inputs_unchanged": true,
+      "total_bound_exceeded": false,
+      "subprocesses": [],
+      "error": "AssertionError: ",
+      "outputs": {}
+    }
+  ],
+  "domain": {
+    "accepted": true,
+    "six_determinants": [
+      "15/32",
+      "39/32",
+      "-23/32",
+      "-1/2",
+      "1/4",
+      "-39/32",
+      "-1/2"
+    ],
+    "six_raw_infinity_conditions": [
+      "3055/16",
+      "1869/26",
+      "5271/46",
+      "34075/256",
+      "20951/64",
+      "5405/78",
+      "1265/8"
+    ],
+    "five_coordinate_ranks": [
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      4,
+      3,
+      4,
+      4,
+      4,
+      4,
+      4,
+      3,
+      4,
+      3,
+      4,
+      3,
+      4
+    ],
+    "positive_F_lower_bound": "15/16",
+    "Q_squared": "4"
+  },
+  "capture": {
+    "last_status": "preparing_plan",
+    "rust_numeric_slots_available": 0,
+    "native_array_qualified": false,
+    "generic_plan_completed": false,
+    "workspace_prepared": false,
+    "working_precision": 128,
+    "requested_precision": 53,
+    "precision_convergence": "UNRUN: only one working precision was requested; no numeric output obtained"
+  },
+  "original_reference_observations": [
+    {
+      "mode": 0,
+      "log": "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/mode0.log",
+      "sha256": "ed5cceadffd85a374a8e2b0aadadcef00cf0ad9a1d87a0b3d47143f1cf7db965",
+      "responses": [
+        {
+          "id": "n7_rank0_mode0",
+          "stable": true,
+          "poles": [
+            "uv1",
+            "ir1",
+            "ir2",
+            "finite"
+          ],
+          "moments": [
+            [
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "5.10802853588650193E-015",
+                "-1.24466300962361356E-003"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "mode": 1,
+      "log": "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/mode1.log",
+      "sha256": "b9e8294d327663f9d12d1d9fdc9b49186a7bcf588b1aa05f8b8987016021502d",
+      "responses": [
+        {
+          "id": "n7_rank0_mode1",
+          "stable": false,
+          "poles": [
+            "uv1",
+            "ir1",
+            "ir2",
+            "finite"
+          ],
+          "moments": [
+            [
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ]
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "mode": 2,
+      "log": "target/public-highpoint/thin-n7-rank0-api2/runs/reference-002/mode2.log",
+      "sha256": "2982cad5a17b399eec5df43f0fb3c2fa247278e48f188a7d05be0da75524e805",
+      "responses": [
+        {
+          "id": "n7_rank0_mode2",
+          "stable": true,
+          "poles": [
+            "uv1",
+            "ir1",
+            "ir2",
+            "finite"
+          ],
+          "moments": [
+            [
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "0.00000000000000000E+000",
+                "0.00000000000000000E+000"
+              ],
+              [
+                "5.10802853588650193E-015",
+                "-1.24466300962361356E-003"
+              ]
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "independent_oracle": {
+    "status": "insufficient_convergence",
+    "rules_completed": 6,
+    "fixed_orders": [
+      8,
+      12,
+      16
+    ],
+    "mappings": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      [
+        6,
+        4,
+        2,
+        0,
+        5,
+        3,
+        1
+      ]
+    ],
+    "comparison_estimate": {
+      "oneloop_finite": -0.0001261107293711768,
+      "native_finite_imaginary": -0.0012446630096263553,
+      "estimated_native_absolute_uncertainty": 7.515583041646803e-13,
+      "order_and_mapping_differences": [
+        7.614877695419353e-14,
+        4.880861340095244e-14,
+        3.3881317890172014e-17
+      ],
+      "natural_scale": "1/1024",
+      "normalized_uncertainty": 7.695957034646326e-10,
+      "uncertainty_below_1e_minus_10": false
+    },
+    "qualified": false,
+    "reason": "Fixed12-to16/order-and-mapping estimate gives normalized uncertainty7.695957e-10, above frozen1e-10. No extraorders or relaxed threshold."
+  },
+  "comparison": {
+    "status": "not_spawned_fail_closed",
+    "reason": "Capture total_bound_exceeded=true caused immutable prerequisite admission to reject before comparator spawn. No agreement/qualification computed."
+  },
+  "all_owned_processes_exited": true,
+  "source_core_fixture_and_thresholds_unchanged": true,
+  "next_action": "Source-only structural-plan cost diagnosis; no new runtime/fixture/orders/retries authorized by this record."
+}

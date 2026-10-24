@@ -1,0 +1,106 @@
+{
+  "status": "runtime-source-review-passed-not-executed",
+  "recorded_utc": "2026-10-24T01:07:24.201119+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "scope": "Independent source, schema, schedule, byte and guard review only. No probe, compiler, parser control, numerical kernel or timing executed.",
+  "bindings": {
+    "target/guard-performance-review/dependent-runtime-proposal/protocol.json": "3eaba2080aed332358fbbf3d1e9e89a04d731089f85ccc3820a342b01d8a68fe",
+    "target/guard-performance-review/dependent-runtime-proposal/manifest.json": "ec6084918722e7715c5d0e3b2e2fed06f99cb8004fbd2f198bced61f000bc37d",
+    "target/guard-performance-review/dependent-runtime-proposal/README.md": "9e15c914914e5fb9988640ca41f876520682d8753d80488a09ad0479e7a9090d",
+    "target/guard-performance-review/dependent-runtime-proposal/run.py": "7ffac4c4b26e77c1f1a8a6deda3bbc64493bcf74a1b8b75f74e118ccc48dc776",
+    "target/guard-performance-review/dependent-runtime-proposal/admission.py": "338284647acae2115a5be3501911500cf0c9eee26e7f03429933f13477329d7d",
+    "target/guard-performance-review/dependent-runtime-proposal/interactive.py": "1add99bb13707c340d634984ba91d5b11c4f5b5060dd1f9d69e8980a0f4cd4ed",
+    "target/guard-performance-review/dependent-runtime-proposal/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/guard-performance-review/dependent-runtime-proposal/prepare_shapes.py": "4c4773d6b31b7c312b640c57bc13de6f1deb99a490c815971f2053a0842afd0c",
+    "target/guard-performance-review/dependent-runtime-proposal/prepare_protocol.py": "182d4530c508ee03a33c701c9fa80e7dcb18172a233ba0d8196fd689a2c7f01c",
+    "target/guard-performance-review/dependent-runtime-proposal/control-shapes.json": "d656aaa8af9ae1ff549cc1c8e0b278bf5f816b574b52faa12da96a072ca06cb2",
+    "target/guard-performance-review/dependent-runtime-proposal/admission-schema-hardening.patch": "2110f2071767aba8beda90948b70d70b713f85eb290edb3a0119fea06d226dc0",
+    "target/guard-performance-review/dependent-runtime-proposal/metadata-preservation.patch": "52e826dc009c2f14a330c018392e7f642ea2bef1e0d52d54647bea66b0d952ac",
+    "target/guard-performance-review/dependent-runtime-proposal/draft-001/protocol.json": "09c5c1e5a9d3f520c3ff6385348798714a9af1e54f7f7adecb89146223dc0f7e",
+    "target/guard-performance-review/dependent-runtime-proposal/draft-001/manifest.json": "337c56f0e1b3159d73c77de15d9c9d8691cbb5760c3d8a9a260107493c287c73",
+    "target/guard-performance-review/dependent-runtime-proposal/draft-001/admission.py": "711cb6b8ea19f67106026827aa37d04be162b2ebc9ed9c44ff6a97a62caa406d"
+  },
+  "checks": {
+    "all_manifest_payload_hashes_verified": 22,
+    "protected_input_hashes_rechecked": 1138,
+    "tool_hashes_rechecked": 3,
+    "initial9payload_packet_and_manifest_preserved": true,
+    "only_admission_and_protocol_preparation_logic_changed": true,
+    "run_helpers_fixtures_identical_to_initial_packet": true,
+    "non_guard_protocol_fields_identical_to_initial": true,
+    "schedule": {
+      "protocol_requests": 60,
+      "responses_per_process": 30,
+      "initial_plus_own_repeat_requests": 32,
+      "controls_plus_own_repeat_requests": 4,
+      "retained_requests": 16,
+      "reject_timing_or_selector_requests": 8,
+      "request_execution_sequential": true
+    },
+    "frozen_families": 8,
+    "fresh_owned_probe_copies": 2,
+    "cpu_affinity": "32",
+    "aggregate_seconds": 240,
+    "work_deadline_seconds": 220,
+    "cleanup_reserve_seconds": 20,
+    "source_build_and_copies_guarded_before_after": true,
+    "protocol_build_receipt_and_frozen_copies_guarded_around_each_request": true,
+    "complete_raw_request_response_and_stdout_stderr_retained": true,
+    "extra_or_unsolicited_RESULT_rejected": true,
+    "requires_both_normal_zero_exits_and_owned_groups_gone": true,
+    "terminal_and_cleanup_saved_before_final_hashes": true,
+    "failure_stop_and_no_retry": true,
+    "cross_archive_equality": "complete JSON records including plan_reused",
+    "own_repeat_retained_equality": "complete records excluding only plan_reused; Rust producer additionally asserts its own exact repeats",
+    "numeric_metadata": "exact binary rational, component precision, zero sign; required four-field schema for inputs/core/captures and three-field direct-master outputs",
+    "known_domain_precisions": {
+      "f64": 53,
+      "DoubleFloat": 106,
+      "Float": "preserve recorded positive precision, Fraction-only comparison"
+    },
+    "strict_integer_bool_indices_degrees_shapes_masks_flags": true,
+    "exact_all_nested_key_sets_and_comparison_strings": true,
+    "expected_failed_lanes_null_and_errors_retained": true,
+    "full_tensor_laurent_taylor_and_six_master_components_admitted": true,
+    "shape_projection": {
+      "master_cases": 67,
+      "master_rows": 133,
+      "selected_cases_rows": [
+        34,
+        78
+      ],
+      "unchanged_cases_rows": [
+        21,
+        36
+      ],
+      "extended_cases_rows": [
+        12,
+        19
+      ],
+      "core_controls": 3,
+      "core_output_counts": [
+        40,
+        20,
+        20
+      ],
+      "historical_result_values_copied": false
+    }
+  },
+  "resolved_findings": [
+    "Boolean/integer substitutions in indices, shapes, components, flags and cache metadata are rejected by strict types or exact JSON comparison.",
+    "Required finite fields are context-specific rather than optional across every numeric record.",
+    "Known f64 and DoubleFloat precision fields must be53 and106 respectively; no f64 conversion added for extended precision.",
+    "Nested selected/unchanged/master/cache/step inventories are exact, including required unchanged_comparison."
+  ],
+  "independent_child_review": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+    "scope": "Projection against retained fixture records, producer field/type/mask/domain correspondence, and all four narrow admission fixes independently source-reviewed."
+  },
+  "limitations": [
+    "Source review is not executed runtime qualification or malformed-parser-control evidence; no new values were evaluated.",
+    "DoubleFloat equality is represented rational value, precision and sign, not a claim of exported limb-bit identity.",
+    "Owned lifecycle and raw accounting await saved-record verification after a separately granted run.",
+    "No numerical lease, benchmark, performance, full-domain acceptance or production adoption is inferred.",
+    "Existing local15-test scheduler evidence and source-bound compile/link evidence retain their separate scopes."
+  ]
+}

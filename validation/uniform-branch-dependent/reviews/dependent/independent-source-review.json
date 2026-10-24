@@ -1,0 +1,69 @@
+{
+  "status": "private-source-review-passed-live-guard-blocked",
+  "recorded_utc": "2026-10-24T00:48:42.306225+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "scope": "Source and command metadata review only; no compiler, test binary, numerical kernel, runtime qualification, or timing.",
+  "bindings": {
+    "target/guard-performance-review/dependent-chain-proposal/protocol.json": "24a99d65f584119805a5bf5abc5f82c2d3f04387394224103d9998fb9b9aa5c7",
+    "target/guard-performance-review/dependent-chain-proposal/build.py": "73a6940205dc76cf92dc205a6669f088622f12d6a549c8debc73a87c494d8fd6",
+    "target/guard-performance-review/dependent-chain-proposal/prepare_sources.py": "6af7ecac5b68253dafccfc406ccb9183f5230efa486195f74ff6f3addf0c4095",
+    "target/guard-performance-review/dependent-chain-proposal/prepare_protocol.py": "f60a865c03b32bc1345ec14ec5ba4fe394cdd72053662315181c950df21f151b",
+    "target/guard-performance-review/dependent-chain-proposal/source-inventory.json": "75e7aeca55e774768c533a7ac5de714d4a3e035d64983f6fc399369d3460a584",
+    "target/guard-performance-review/dependent-chain-proposal/observation-only.patch": "3d678961afbce373e8165b824f44b246598d2cb91a9e776ede658988325abe7f",
+    "target/guard-performance-review/dependent-chain-proposal/core_probe.rs.patch": "4f6fd358dc0501d7306e5114cf6c0d13e5cc38f72f9d286b4e73e71f7cee3fbd",
+    "target/guard-performance-review/dependent-chain-proposal/master_controls.rs.patch": "0742ab7af47e1c7fe8d2c81c58dbe82dabef6cfa85e3706ac438a79c45f35804",
+    "target/guard-performance-review/dependent-chain-proposal/source/probe/probe.rs": "9060f3136db5797d1f1d6dbac7a9db575a7681f5fd52fbf3124bb19eed4f9176",
+    "target/guard-performance-review/dependent-chain-proposal/source/probe/core_probe.rs": "69b8ee17e8b37a0650117182b82956083cee901f04d1976d162c304667fbe24e",
+    "target/guard-performance-review/dependent-chain-proposal/source/probe/master_controls.rs": "b1e3b5f96b4bc177381e552c6ea119086b4cc0c3212a477887ca1d3854f385f4",
+    "target/guard-performance-review/dependent-chain-proposal/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824"
+  },
+  "checks": {
+    "private_source_hashes": 112,
+    "frozen_live_origin_files": 108,
+    "modified_library_sources": [
+      "crates/iregi-masters/src/lib.rs",
+      "crates/iregi-rust/src/execution.rs",
+      "crates/iregi-rust/src/lib.rs"
+    ],
+    "observation_only": true,
+    "capture_module_sha256": "616cf5840097d28d691b35b874fdcbe8b01600461b3a0637345a6715db1bb95b",
+    "common_source_for_both_variants": true,
+    "exact_normalized_command_pairs": 4,
+    "sequential_compiler_count": 8,
+    "compiler_cap_seconds": 180,
+    "aggregate_budget_seconds": 900,
+    "work_deadline_seconds": 880,
+    "cleanup_reserve_seconds": 20,
+    "same_profile_environment_features_per_pair": true,
+    "no_native_policy_features_or_constructor_calls": true,
+    "variant_matching_symbolica_oneloop_masters_core_externs": true,
+    "no_opposite_variant_search_paths": true,
+    "mandatory_exact_single_archive_map_paths": true,
+    "lifecycle_byte_identical_to_prior_review": true,
+    "terminal_record_precedes_postguards": true,
+    "prior_outputs_guarded_through_later_steps_and_final": true,
+    "first_failure_stops": true
+  },
+  "fixture_review": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+    "exact_applied_patches": true,
+    "numeric_inputs_error_masks_types_precision_dual_shapes_seeds_preserved": true,
+    "all_six_master_outputs_and_components_preserved": true,
+    "two_own_repeats_and_input_preservation_retained": true,
+    "generic_instance_comparison": "exact represented value, precision and sign; independent same-archive instances",
+    "cross_archive_comparator": "future separately reviewed and authorized external stage"
+  },
+  "blocking_guard": {
+    "path": "crates/iregi-rust/src/six_point.rs",
+    "expected_sha256": "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+    "observed_sha256": "8e4341a868ff5fe50310c930d38c730fd59a96c01132495ff22054c8aaf7f72f",
+    "difference": "Five documentation comment lines update public-API qualification scope; no Rust behavioral difference. Existing protocol will reject this changed live input before compiler launch.",
+    "execution_ready": false
+  },
+  "limitations": [
+    "All private source hashes and origin comparisons were inspected, but this source review did not repeat every one of the 1086 large protected artifact hashes; runner must enforce its entire frozen map.",
+    "Map-based linkage is a future required observation, not yet produced evidence.",
+    "No numerical, performance, adoption or compiler authorization is inferred from this review.",
+    "Immutable protocol/source proposal must be preserved before correcting the live-source guard."
+  ]
+}

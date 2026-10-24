@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "status": "bounded_phase_attribution_observed_constructor_incomplete",
+  "created_utc": "2026-10-24T00:24:44.756394+00:00",
+  "scope": "One marker-only private N7rank0 generic constructor diagnostic. No math/solver/guard changes; no workspace/master/numerical arrays/reference/oracle. Diagnostic times are not performance acceptance.",
+  "stage_results": {
+    "build": {
+      "status": "passed",
+      "receipt_sha256": "aa156807fc7a503773a8f0c1c896fc1feff528f3eaec72013f086bd2d79bfe31",
+      "elapsed_total_seconds": 21.293211774900556
+    },
+    "prepare": {
+      "status": "failed",
+      "receipt_sha256": "3361f5c639818ec835f267a8dcd8f6aadb0bac3ca8569233f997a16bb7512b39",
+      "elapsed_total_seconds": 116.60430224903394,
+      "aggregate_bound_seconds": 150,
+      "compute_deadline_seconds": 110,
+      "process_elapsed_including_cleanup_seconds": 110.01638896204531,
+      "exit_code": -15,
+      "timeout": true,
+      "cleanup_errors": [],
+      "within_total_bound": true
+    }
+  },
+  "completed_inclusive_phases": [
+    {
+      "label": "thin N7 matrix assembly [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "422.472\u00b5s",
+      "seconds": 0.00042247199999999996
+    },
+    {
+      "label": "thin N7 determinant [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "91.135789116s",
+      "seconds": 91.135789116
+    },
+    {
+      "label": "thin N7 RHS assembly [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "58.101\u00b5s",
+      "seconds": 5.8101e-05
+    },
+    {
+      "label": "thin N7 inverse [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "11.651817528s",
+      "seconds": 11.651817528
+    },
+    {
+      "label": "thin N7 inverse times RHS [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "4.297019913s",
+      "seconds": 4.297019913
+    },
+    {
+      "label": "thin N7 weight aliases [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "5.50516ms",
+      "seconds": 0.00550516
+    },
+    {
+      "label": "thin N7 six-line chart [1, 2, 3, 4, 5, 6]",
+      "raw_duration": "107.091421371s",
+      "seconds": 107.091421371
+    },
+    {
+      "label": "thin N7 matrix assembly [0, 2, 3, 4, 5, 6]",
+      "raw_duration": "102.441\u00b5s",
+      "seconds": 0.000102441
+    }
+  ],
+  "unresolved_nested_phases": [
+    "thin N7 parent plan",
+    "thin N7 all geometry",
+    "thin N7 six-line chart [0, 2, 3, 4, 5, 6]",
+    "thin N7 determinant [0, 2, 3, 4, 5, 6]"
+  ],
+  "attribution": "First ordered six-line system completed. Its determinant91.135789116s exceeded inverse11.651817528s and inverse-times-RHS4.297019913s. The second determinant was active at cap. No later phase was reached; this does not attribute the earlier300s capture retrospectively or bound total constructor cost.",
+  "implication": "A rank0 constant-RHS specialization saves inverse/RHS work but cannot remove the observed first determinant cost. Investigate existing exact polynomial/rational-polynomial matrix domain before shared opaque helpers.",
+  "all_owned_processes_reaped": true,
+  "inputs_unchanged": true,
+  "bindings": {
+    "target/public-highpoint/thin-n7-phase-attribution/source.json": "a870a1711131a89916170b6e00855151ff72aa1ea38a364f0bcdacda5b246b0b",
+    "target/public-highpoint/thin-n7-phase-attribution/phase-instrumentation.patch": "19a2ec890c76bb1347de6c33f13231426274669db8c0f53b943003d343314767",
+    "target/public-highpoint/thin-n7-phase-attribution/protocol/protocol.json": "31d6ffbbf2bc3a8b55e2fc8bf58525faf87fee0d0fe94c2a2b7a9141da8b6bd0",
+    "target/public-highpoint/thin-n7-phase-attribution/protocol/independent-review.json": "b8c36654f721f04dbc0da5d58c8d0d4c94748999fb281ad3cb2052bf58cb1fbc",
+    "target/public-highpoint/thin-n7-phase-attribution/protocol/grants/build.json": "6703708d3e02c0d38de38f0568c6f6a318b09cca5d4b88ca21fdfad469e80530",
+    "target/public-highpoint/thin-n7-phase-attribution/protocol/grants/prepare.json": "c545553c37a375a420aaac7905380e506b2272e4be640c7ed55174607f7f30d2",
+    "target/public-highpoint/thin-n7-phase-attribution/runs/build-001/libiregi_rust.rlib": "576cba8baf088bce84749090f74649ff62a76945be787788ba4162ed65fbb9ab",
+    "target/public-highpoint/thin-n7-phase-attribution/runs/build-001/driver": "c025c7d01ddb0fdfd228b3bd8baa317adacb7e9ff29a32694d8f6455ebfbd47a",
+    "target/public-highpoint/thin-n7-phase-attribution/runs/prepare-001/preparation.log": "9665177ef98ea92c1ec6656cf6c92c365c74cae42833b1aab5d35af354235011",
+    "target/public-highpoint/thin-n7-phase-attribution/runs/prepare-001/result.json": "97aa32a81638153d2a26ff5d56d9cbbc30640a7cffaf2b3d46085082e04be041",
+    "validation/highpoint-thin-n7-rank0-attempt/manifest.json": "2a50ce92d032aec631be983b754a828b28015a0715c22da8b68f217a15ccdb24"
+  },
+  "no_retries": true,
+  "no_production_or_dependency_changes": true
+}

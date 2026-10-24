@@ -1,0 +1,47 @@
+error[E0277]: the trait bound `numerica::domains::float::Float: numerica::domains::float::Constructible` is not satisfied
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v3/source/symbolica/src/evaluate/uniform_branch_tests.rs:284:17
+    |
+284 |                 compare_numeric(exact.clone().map_coeff_with_prec(&|v| Complex::new(v.re.to_multi_prec_float(192), v.im.to_multi_pr...
+    |                 ^^^^^^^^^^^^^^^ the trait `numerica::domains::float::Constructible` is not implemented for `numerica::domains::float::Float`
+    |
+    = help: the following other types implement trait `numerica::domains::float::Constructible`:
+              Dual<T>
+              Fraction<numerica::domains::integer::IntegerRing>
+              HyperDual<T>
+              UniformMixedStaticDual<T>
+              UniformStaticDual<T>
+              f64
+              numerica::domains::float::Complex<T>
+              numerica::domains::float::DoubleFloat
+              numerica::domains::float::F64
+note: required by a bound in `compare_numeric`
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v3/source/symbolica/src/evaluate/uniform_branch_tests.rs:228:44
+    |
+228 | fn compare_numeric<T: Real + SingleFloat + Constructible>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows...
+    |                                            ^^^^^^^^^^^^^ required by this bound in `compare_numeric`
+
+error[E0277]: the trait bound `numerica::domains::float::Float: numerica::domains::float::Constructible` is not satisfied
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v3/source/symbolica/src/evaluate/uniform_branch_tests.rs:309:17
+    |
+309 |                 compare_numeric(exact.clone().map_coeff_with_prec(&|v|Complex::new(v.re.to_multi_prec_float(192),v.im.to_multi_prec...
+    |                 ^^^^^^^^^^^^^^^ the trait `numerica::domains::float::Constructible` is not implemented for `numerica::domains::float::Float`
+    |
+    = help: the following other types implement trait `numerica::domains::float::Constructible`:
+              Dual<T>
+              Fraction<numerica::domains::integer::IntegerRing>
+              HyperDual<T>
+              UniformMixedStaticDual<T>
+              UniformStaticDual<T>
+              f64
+              numerica::domains::float::Complex<T>
+              numerica::domains::float::DoubleFloat
+              numerica::domains::float::F64
+note: required by a bound in `compare_numeric`
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/qualification-plan-v3/source/symbolica/src/evaluate/uniform_branch_tests.rs:228:44
+    |
+228 | fn compare_numeric<T: Real + SingleFloat + Constructible>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows...
+    |                                            ^^^^^^^^^^^^^ required by this bound in `compare_numeric`
+
+error: aborting due to 2 previous errors
+
+For more information about this error, try `rustc --explain E0277`.

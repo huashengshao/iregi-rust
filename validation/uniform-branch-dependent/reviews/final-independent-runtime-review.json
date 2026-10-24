@@ -1,0 +1,140 @@
+{
+  "status": "saved-evidence-audit-passed",
+  "created_utc": "2026-10-24T01:25:00.797244+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "producer_status": "passed-awaiting-independent-saved-data-review",
+  "scope": "Independent saved-data reconstruction and provenance review of one untimed generic-only original/candidate scheduler cohort. No producer admission module was imported or executed; no compiler, kernel, probe, test binary, numerical rerun, or performance timing was executed.",
+  "bindings_sha256": {
+    "target/guard-performance-review/dependent-runtime-proposal/qualification-001/results.json": "7d6e7bd39be493228187c6392224e1b9e6191627c6c9f92f4e85bc862697a9d7",
+    "target/guard-performance-review/dependent-runtime-proposal/qualification-001/responses.jsonl": "750310b9290ae9e9aa6f396dfae5837187dbf9f451bdc1fce950f5d2a288b21e",
+    "target/guard-performance-review/dependent-runtime-proposal/qualification-001/baseline.stdout.log": "e6bb732833f14f24f5f59d91bc88b40430fc4814d785119c7aa6cd8e2ba735a2",
+    "target/guard-performance-review/dependent-runtime-proposal/qualification-001/candidate.stdout.log": "e6bb732833f14f24f5f59d91bc88b40430fc4814d785119c7aa6cd8e2ba735a2",
+    "target/guard-performance-review/dependent-runtime-proposal/qualification-001/baseline.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/guard-performance-review/dependent-runtime-proposal/qualification-001/candidate.stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/guard-performance-review/dependent-runtime-proposal/protocol.json": "3eaba2080aed332358fbbf3d1e9e89a04d731089f85ccc3820a342b01d8a68fe",
+    "target/guard-performance-review/dependent-runtime-proposal/manifest.json": "ec6084918722e7715c5d0e3b2e2fed06f99cb8004fbd2f198bced61f000bc37d",
+    "target/guard-performance-review/dependent-runtime-proposal/admission.py": "338284647acae2115a5be3501911500cf0c9eee26e7f03429933f13477329d7d",
+    "target/guard-performance-review/dependent-runtime-proposal/run.py": "7ffac4c4b26e77c1f1a8a6deda3bbc64493bcf74a1b8b75f74e118ccc48dc776",
+    "target/guard-performance-review/dependent-runtime-proposal/control-shapes.json": "d656aaa8af9ae1ff549cc1c8e0b278bf5f816b574b52faa12da96a072ca06cb2",
+    "target/guard-performance-review/dependent-runtime-proposal/reviews/independent-runtime-source-review.json": "4b519d23b81d6750e056fcc7944ced45f3d3d5c5fb751a121414b6a77bfd2352",
+    "target/guard-performance-review/dependent-runtime-proposal/reviews/runtime-001-independent-provenance-review.json": "f76f93132265d15ac2916a52a42c1d30a608984859bf115ca2adadedad61595c"
+  },
+  "findings": [],
+  "raw_reconstruction": {
+    "events": 120,
+    "requests": 60,
+    "requests_per_engine": 30,
+    "exact_1_through_60_request_response_serials": true,
+    "request_schedule_and_payloads_reconstructed_from_frozen_inputs": true,
+    "all_response_records_equal_corresponding_stdout_RESULT": true,
+    "stdout_RESULT_lines_per_engine": 30,
+    "stdout_files_byte_identical": true,
+    "stderr_files_empty": true,
+    "full_cross_archive_response_pairs": 30,
+    "case_own_repeats": 16,
+    "case_retained_repeats": 16,
+    "control_own_repeats": 2,
+    "invalid_request_rejections": 8,
+    "exact_comparison": "Recursive type-sensitive object/array comparison with binary64 byte comparison for JSON floats, preserving signed zero; cross-archive complete records have no field exclusions. Own and retained case repeats exclude only plan_reused.",
+    "complete_before_after_control_records_match": true
+  },
+  "numerical_record_checks": {
+    "all_tensor_laurent_and_taylor_slots_present": true,
+    "all_six_master_outputs_present": true,
+    "captured_family_order_requests_valid_lanes_and_components_checked": true,
+    "exact_execution_counters_checked": true,
+    "status_diagnostics_fallback_analytic_and_input_preservation_checked": true,
+    "ordinary_f64_values_match_saved_rationals_and_zero_signs": true,
+    "numbers_have_context_specific_exact_three_or_four_field_schemas": true,
+    "f64_precision": 53,
+    "DoubleFloat_precision": 106,
+    "Float_precision": "Positive saved per-component precision, compared exactly across archives; saved values validated using Fraction only, without Float-to-f64 conversion.",
+    "nonfinite_input_components_retained": 3,
+    "successful_outputs_finite": true,
+    "error_lane_outputs_null": true,
+    "all_complete_contexts_and_keysets_checked": true
+  },
+  "coverage_per_engine_initial_or_control_record": {
+    "whole_families": 8,
+    "whole_tensor_complex_values": 1584,
+    "whole_master_complex_values": 1782,
+    "direct_master_cases": 67,
+    "direct_master_rows": 133,
+    "direct_master_successful_lanes": 106,
+    "direct_master_expected_failed_lanes": 27,
+    "direct_master_successful_complex_values": 774,
+    "direct_groups": [
+      {
+        "name": "selected_families",
+        "cases": 34,
+        "rows": 78,
+        "successful_lanes": 57,
+        "failed_lanes": 21,
+        "complex_values": 342
+      },
+      {
+        "name": "unchanged_paths",
+        "cases": 21,
+        "rows": 36,
+        "successful_lanes": 30,
+        "failed_lanes": 6,
+        "complex_values": 318
+      },
+      {
+        "name": "extended_unchanged_paths",
+        "cases": 12,
+        "rows": 19,
+        "successful_lanes": 19,
+        "failed_lanes": 0,
+        "complex_values": 114
+      }
+    ],
+    "whole_control_tensor_values": [
+      40,
+      20,
+      20
+    ],
+    "whole_control_master_values": [
+      36,
+      18,
+      18
+    ],
+    "cache_expected_records": 4,
+    "cache_step_indices": [
+      2,
+      1,
+      0,
+      3,
+      2,
+      0,
+      3,
+      1
+    ],
+    "cache_step_records_exact": true
+  },
+  "provenance": {
+    "independent_child_review": "target/guard-performance-review/dependent-runtime-proposal/reviews/runtime-001-independent-provenance-review.json",
+    "independent_child_review_sha256": "f76f93132265d15ac2916a52a42c1d30a608984859bf115ca2adadedad61595c",
+    "protected_files_rehashed": 1138,
+    "tools_rehashed": 3,
+    "manifest_payloads_verified": 22,
+    "frozen_probes_match_built_archives_and_grant": true,
+    "both_processes_exit_zero_and_groups_gone": true,
+    "guard_before": true,
+    "guard_after": true,
+    "cleanup_errors": [],
+    "elapsed_seconds": 213.9005353100365,
+    "work_limit_seconds": 220,
+    "aggregate_limit_seconds": 240,
+    "deadline_exceeded": false,
+    "separate_grant_and_prior_lease_release_verified": true
+  },
+  "limitations": [
+    "Evidence is restricted to the frozen opt0 ordinary N2/N3 rank0/rank1 widths1/32 and declared direct numeric/Dual/cache controls; it does not establish arbitrary kinematic or full-domain equivalence.",
+    "Exact cross-archive agreement is not a new independent integral-accuracy oracle. Previous reference accuracy evidence retains its original scope.",
+    "DoubleFloat comparison covers represented value, precision and sign; no individual-limb bitwise claim is made.",
+    "Repeated direct controls executed internal assertions; saved complete controls additionally agree across processes and repeated requests.",
+    "No whole-call performance, production adoption, broad native backend, or new public SixPoint numerical claim follows.",
+    "The initial source proposal wording is historical; the separately verified root runtime grant and lease release authorize this completed attempt."
+  ]
+}

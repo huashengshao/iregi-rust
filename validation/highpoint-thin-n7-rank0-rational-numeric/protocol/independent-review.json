@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "status": "source_review_passed",
+  "protocol_sha256": "f5ea7bc86befd8cb43ac145093d8535ddd9c732b7984d028957bc4883ccb5d1e",
+  "reviewed_utc": "2026-10-24T01:09:56.723072+00:00",
+  "reviewer": "/root/numeric_batch_audit/masters_review",
+  "scope": "Source-only admission review of one private N7 rank-zero Float128/Float256 numerical vertical-slice protocol. No candidate imports, build, tests, numerical kernels, captures or comparator execution were performed.",
+  "findings": [],
+  "resolved_findings": [
+    {
+      "issue": "Standalone comparator could otherwise admit a replaced result or detached reference log despite successful saved receipts.",
+      "resolution": "The final comparator checks each capture result against the capture receipt output hash and fixture/protocol input hashes. Historical fixture, reference receipt, request files and logs are protocol-pinned, and each log is checked against the historical reference receipt output hash. All three original request files are checked field-by-field against the exact fixture."
+    }
+  ],
+  "verified_inputs": {
+    "protocol_input_count": 315,
+    "all_current_input_hashes_match": true,
+    "closed_search_directories": {
+      "target/e6-direct-n2/deps": 113,
+      "target/e6-direct-n2/native": 3,
+      "target/core-fused-cse-census/supplemental-deps": 2
+    },
+    "source_manifest_sha256": "62207f70f69c38ad414cefeaa24f803dcf2e911eb7704b0dbbf7f664d255dd26",
+    "source_reviewed_hashes": {
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/README.md": "ac6dd53e56464aec950314785158f2b216094b6216b9a47df2c20c8a87478e11",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/source.json": "62207f70f69c38ad414cefeaa24f803dcf2e911eb7704b0dbbf7f664d255dd26",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/driver.patch": "3636cc7f4260020e24239070fc00792d7c51c2da29260997c79d693e5c87e893",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/driver.rs": "8ef2f064f15fc8948c80ae011606c4ec3a14561fbba7a455478019b669f896ff",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/domain.rs": "32699f2f249932303cf426e11c3839f7138b76f7084794b1b304db675936052c",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/fixture.json": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/compare.py": "d770da4e4f0d3b828eb5efee088bd86e2363aeeef541140a77dd48a8714abc01",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/protocol/common.py": "99abfd7910c4a58b0ed10b5a3d9780f70de975e2967629105d6556640a4ecf98",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/protocol/run.py": "4faff644be9dfbb6ce2d3db09fefa5d077a7cfc32193991abdf82b7f8f9ee102",
+      "target/public-highpoint/thin-n7-rank0-rational-numeric/protocol/protocol.json": "f5ea7bc86befd8cb43ac145093d8535ddd9c732b7984d028957bc4883ccb5d1e"
+    },
+    "reference_request_hashes": {
+      "target/public-highpoint/thin-n7-rank0-api2/protocol/reference-mode0.txt": "e2634008696041ce3e49ee2763a4a6d07084ada060915d7cf6448de6869bc351",
+      "target/public-highpoint/thin-n7-rank0-api2/protocol/reference-mode1.txt": "036b502c7024083d4eb5dc971e9ca430ab6b7dc602387f909f7e761217e6e2d7",
+      "target/public-highpoint/thin-n7-rank0-api2/protocol/reference-mode2.txt": "d5bf364c5496c41485ba640709251a57ffaa9642e9500dfb630ed1bdd05ce31a"
+    },
+    "reference_log_hashes": {
+      "validation/highpoint-thin-n7-rank0-attempt/api2/reference-002/mode0.log": "ed5cceadffd85a374a8e2b0aadadcef00cf0ad9a1d87a0b3d47143f1cf7db965",
+      "validation/highpoint-thin-n7-rank0-attempt/api2/reference-002/mode1.log": "b9e8294d327663f9d12d1d9fdc9b49186a7bcf588b1aa05f8b8987016021502d",
+      "validation/highpoint-thin-n7-rank0-attempt/api2/reference-002/mode2.log": "2982cad5a17b399eec5df43f0fb3c2fa247278e48f188a7d05be0da75524e805"
+    },
+    "reference_receipt_sha256": "763a3027c86144fc0217c52da7464c0bbe772fa773f3ad17d7668fb4ee189429"
+  },
+  "mechanical_source_checks": {
+    "driver_exact_delta": "Only the accepted working-bits condition changes from working_bits != 128 to !matches!(working_bits, 128 | 256).",
+    "domain_and_fixture": "Byte-identical to retained API2 originals; their declared origin and candidate hashes match.",
+    "core": "No core source or core build change; accepted archive hash 2e0dda36e06091883e5e781b1ae46074d4e141ab9888293d9b3fd35e6238f741 is among the verified inputs.",
+    "python": "compare.py, common.py and run.py were read and AST-parsed without import or execution."
+  },
+  "numerical_definition_review": {
+    "scope": "One fixed ordinary lane, N7/rank0/unit powers/dimension0/PV/FromShifts/Preserve, native four complex Laurent slots, requested53. Each precision starts a fresh generic plan.",
+    "fixture": "All shifts, masses, powers, scale and modes agree exactly with all three retained original input requests. The unchanged domain auditor supplies F>=15/16 and Q^2=4.",
+    "reference": "Stable original modes0 and2 must agree for all four native complex slots at normalized1e-10. Unstable mode1 remains recorded and is excluded from qualified agreement.",
+    "precision": "All four complex slots must converge from128 to256 bits at normalized2^-80. Normalization is max(1/1024, reference norm). Inputs must round-trip exactly; output rational strings must be finite and complete.",
+    "oracle": "Prior fixed scalar-oracle result remains inconclusive and is neither rerun nor promoted."
+  },
+  "lifecycle_review": {
+    "stages": [
+      "build_driver",
+      "capture128",
+      "capture256",
+      "compare"
+    ],
+    "budgets": {
+      "build_driver": {
+        "overall_seconds": 120,
+        "postguard_reserve_seconds": 25,
+        "subprocess_seconds": 90
+      },
+      "capture128": {
+        "overall_seconds": 300,
+        "postguard_reserve_seconds": 30,
+        "subprocess_seconds": 260,
+        "compute_seconds": 258
+      },
+      "capture256": {
+        "overall_seconds": 300,
+        "postguard_reserve_seconds": 30,
+        "subprocess_seconds": 260,
+        "compute_seconds": 258
+      },
+      "compare": {
+        "overall_seconds": 30,
+        "postguard_reserve_seconds": 10,
+        "subprocess_seconds": 18
+      }
+    },
+    "guarding": "Immutable per-stage grants bind protocol/review and prerequisite receipt hashes; all source/tool/dependency/prerequisite outputs are checked before and after stages. Each subprocess owns a new process group; observed terminal state is saved before TERM/KILL/reap, final stage status before postguard hashing; timeout, interruption, cleanup, missing output, provenance or total-bound failure disqualifies. No retry or dependency build is scheduled.",
+    "at_review": "No stage grants or runs directory existed."
+  },
+  "limits": [
+    "This receipt does not grant execution.",
+    "No numerical, performance, independent scalar-oracle, higher-rank, Dual, batching, general-domain or production qualification is asserted.",
+    "The source review does not replace required saved-result and terminal/provenance review after any authorized execution."
+  ]
+}

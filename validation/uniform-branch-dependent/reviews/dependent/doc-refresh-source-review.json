@@ -1,0 +1,50 @@
+{
+  "status": "source-refresh-review-passed",
+  "recorded_utc": "2026-10-24T00:49:41.732467+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "scope": "Narrow source-only review of authorized module-documentation refresh; no compiler/runtime/numerical execution.",
+  "bindings": {
+    "target/guard-performance-review/dependent-chain-proposal/protocol.json": "2e9732b14c6cc2b352fc43a4dcd0f5910ef36036b392c6188bffb681e291c814",
+    "target/guard-performance-review/dependent-chain-proposal/source-inventory.json": "0b2cc7f83c4aba2377acda572e1463da5e75f15dcae16aa29aec3a95ea993e75",
+    "target/guard-performance-review/dependent-chain-proposal/refresh_sixpoint_docs.py": "80ab2db8f17bbce9dc12017e066147d3b56c34225c8fbb6c86f3c0409e79f8d6",
+    "target/guard-performance-review/dependent-chain-proposal/six-point-doc-only-refresh.patch": "55eb287bae02c5f31d91dad37e454083c34e4713343b7d056fd1cf51663e9fc0",
+    "target/guard-performance-review/dependent-chain-proposal/build.py": "73a6940205dc76cf92dc205a6669f088622f12d6a549c8debc73a87c494d8fd6",
+    "target/guard-performance-review/dependent-chain-proposal/draft-001/protocol.json": "24a99d65f584119805a5bf5abc5f82c2d3f04387394224103d9998fb9b9aa5c7",
+    "target/guard-performance-review/dependent-chain-proposal/draft-001/source-inventory.json": "75e7aeca55e774768c533a7ac5de714d4a3e035d64983f6fc399369d3460a584",
+    "target/guard-performance-review/dependent-chain-proposal/draft-001/preflight-001-live-drift.json": "6217ea66e0290ea0bbaa82aa7e1bebbdcf81aac31ad10733ad4841824323b4d7",
+    "target/guard-performance-review/dependent-chain-proposal/draft-001/six_point.rs": "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+    "target/guard-performance-review/dependent-chain-proposal/reviews/independent-source-review.json": "a166fe46e6e30e8d3fa3a1916cbcc3a19eb3100a437df0cb442a6d26e8bb1e50"
+  },
+  "checks": {
+    "all_eight_step_records_exactly_unchanged": true,
+    "all_non_guard_protocol_fields_unchanged_except_timestamp": true,
+    "only_private_source_change": "source/crates/iregi-rust/src/six_point.rs",
+    "private_source_hashes_verified": 112,
+    "current_live_origin_hashes_verified": 108,
+    "source_outside_module_doc_lines_byte_identical": true,
+    "actual_delta": "Five module documentation lines replaced; qualified-public-API wording only.",
+    "fixture_runner_lifecycle_capture_bytes_unchanged": true,
+    "old_blocked_review_and_initial_draft_preserved": true,
+    "old_guard_entries_changed": {
+      "crates/iregi-rust/src/six_point.rs": [
+        "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+        "8e4341a868ff5fe50310c930d38c730fd59a96c01132495ff22054c8aaf7f72f"
+      ],
+      "target/guard-performance-review/dependent-chain-proposal/source-inventory.json": [
+        "75e7aeca55e774768c533a7ac5de714d4a3e035d64983f6fc399369d3460a584",
+        "0b2cc7f83c4aba2377acda572e1463da5e75f15dcae16aa29aec3a95ea993e75"
+      ],
+      "target/guard-performance-review/dependent-chain-proposal/source/crates/iregi-rust/src/six_point.rs": [
+        "ea256a4e5540366e2db10c12bb898718289f8269dd57b6956a0b11960dbe4cf8",
+        "8e4341a868ff5fe50310c930d38c730fd59a96c01132495ff22054c8aaf7f72f"
+      ]
+    },
+    "new_protected_count": 1093,
+    "new_tools_count": 3
+  },
+  "limitations": [
+    "Existing blocked review remains historically valid and immutable; this separate receipt confirms its documented drift is resolved in the fresh proposal.",
+    "No compiler or runtime grant is inferred; source protocol still states PROPOSAL_ONLY_NO_BUILD_OR_RUNTIME_GRANT.",
+    "This narrow refresh review rechecked all108 live source origins and112 private source files; final compiler runner must enforce every1093 protected artifact and3 tool bindings."
+  ]
+}

@@ -1,0 +1,29 @@
+--- frozen-v3/uniform_branch_tests.rs
++++ proposed/uniform_branch_tests.rs
+@@ -225,13 +225,13 @@
+         .vectorize(&Dualizer::new(shape, vec![])).unwrap()
+ }
+ 
+-fn compare_numeric<T: Real + SingleFloat + Constructible>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows: usize, components: usize) {
+-    let mut batch = scalar.clone().into_batch_evaluator();
+-    let mut output = vec![Complex::<T>::new_zero(); rows * components];
++fn compare_numeric<T: Real + SingleFloat>(mut scalar: ExpressionEvaluator<Complex<T>>, input: Vec<Complex<T>>, rows: usize, components: usize) {
++    let mut batch = scalar.clone().into_batch_evaluator();
++    let mut output = vec![<Complex<T> as FloatLike>::new_zero(); rows * components];
+     let (candidate_result, candidate_trace) = traced(|| batch.evaluate_batch(&input, &mut output, rows));
+     candidate_result.unwrap();
+     let mut frozen = scalar.clone().into_frozen_batch_evaluator();
+-    let mut frozen_output = vec![Complex::<T>::new_zero(); rows * components];
++    let mut frozen_output = vec![<Complex<T> as FloatLike>::new_zero(); rows * components];
+     let (frozen_result, frozen_trace) = traced(|| frozen.evaluate_batch(&input, &mut frozen_output, rows));
+     frozen_result.unwrap();
+     assert_eq!(active_trace(&candidate_trace), active_trace(&frozen_trace));
+@@ -243,7 +243,7 @@
+         assert_eq!(format!("{actual:?}"), format!("{original:?}"));
+     }
+     for (row, actual) in input.chunks_exact(2 * components).zip(output.chunks_exact(components)) {
+-        let mut expected = vec![Complex::<T>::new_zero(); components];
++        let mut expected = vec![<Complex<T> as FloatLike>::new_zero(); components];
+         scalar.evaluate(row, &mut expected);
+         assert!(actual.iter().chain(&expected).all(|value| value.re.is_finite() && value.im.is_finite()), "polynomial fixture produced a nonfinite value");
+         assert_eq!(actual, expected);

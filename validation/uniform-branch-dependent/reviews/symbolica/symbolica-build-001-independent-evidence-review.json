@@ -1,0 +1,64 @@
+{
+  "status": "saved-evidence-audit-passed",
+  "recorded_utc": "2026-10-24T00:45:41.512356+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "scope": "Read-only saved artifact/source/log audit; no compiler, test binary, numerical kernel or timing executed by reviewer.",
+  "bindings": {
+    "target/guard-performance-review/dependent-relink-qualification/protocol.json": "3324807578af3d6d04f8ef552d54469d786ccb78222ea6492a8c7144a5ebf99d",
+    "target/guard-performance-review/dependent-relink-qualification/build.py": "70ed81b5b59e6aa4ad78e88fedbf933c09d0c7b06156c5faa32eab0d348586cf",
+    "target/guard-performance-review/dependent-relink-qualification/prepare.py": "951dc1b59eff4f8056fff6a1e472507fe1e4325404f787e1c3a69f8b4f937a08",
+    "target/guard-performance-review/dependent-relink-qualification/source-inventory.json": "d67f044ee8ab85319e6b3a025c1c549ba43d98f73afd86aac02357a817c6a064",
+    "target/guard-performance-review/dependent-relink-qualification/reviews/independent-source-preflight-review.json": "67808c9bdb06bd7f2dc517e5ac1ce2f3b096da28a513d0c484904b6b4bb412a0",
+    "target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/build.json": "bff644a54ce86a749f866236247e38e85fd53ebe7e74470ae8749222e232dcbd",
+    "target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/baseline.log": "14a7bcb3f6efc48da8a7a00094cf094f5bf20240e37660096182431bf9ac109d",
+    "target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/candidate.log": "530e117f368f56f6f78a51c0984300b604c2fe326a669a21a64a425e5fb03a21",
+    "target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/baseline/libsymbolica.rlib": "c3803fc5cd35ee6f0a392e42cb7429067c69c961dc3e107548cdc6837fe8a5b9",
+    "target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/candidate/libsymbolica.rlib": "85989aa37b835fe0d898354b04a604195f2188c60668b24539a0be2efb1d33e3"
+  },
+  "checks": {
+    "protected_inputs_rehashed": 838,
+    "tools_rehashed": 3,
+    "source_preflight_retained": true,
+    "exact_commands_environment_caps_and_output_paths_match_protocol": true,
+    "sequential_compilers": 2,
+    "successful_clean_owned_process_groups": 2,
+    "single_regular_ar_archive_per_variant": true,
+    "exact_build_directory_inventory": true,
+    "log_hashes_and_sizes_verified": true,
+    "compiler_errors": 0,
+    "preexisting_unused_result_warnings_per_log": 1,
+    "inputs_unchanged": true,
+    "per_step_elapsed_seconds": [
+      54.42399501404725,
+      58.23340775095858
+    ],
+    "per_step_cap_seconds": 180,
+    "aggregate_elapsed_seconds": 128.3560700569069,
+    "effective_work_deadline_seconds": 400,
+    "aggregate_budget_seconds": 420,
+    "cleanup_postguard_reserve_seconds": 20,
+    "cleanup_errors": [],
+    "deadline_exceeded": false
+  },
+  "independent_child_review": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+    "checks": "Exact commands, environments, caps, output identities, logs, recorded lifecycle and archive hashes independently agree."
+  },
+  "outputs": [
+    {
+      "variant": "baseline",
+      "bytes": 276158384,
+      "sha256": "c3803fc5cd35ee6f0a392e42cb7429067c69c961dc3e107548cdc6837fe8a5b9"
+    },
+    {
+      "variant": "candidate",
+      "bytes": 276165664,
+      "sha256": "85989aa37b835fe0d898354b04a604195f2188c60668b24539a0be2efb1d33e3"
+    }
+  ],
+  "limitations": [
+    "Two Symbolica rlib build artifacts only; no dependent linkage has been qualified.",
+    "No new numerical or performance qualification, production adoption, or dependent compiler grant is inferred.",
+    "Successful process-group cleanup and elapsed measurements are checked against saved lifecycle records; reviewer did not observe running processes."
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "status": "source-preflight-review-passed-no-execution",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "digest_coreviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+  "created_utc": "2026-10-24T00:29:11.521799+00:00",
+  "input_sha256": {
+    "target/guard-performance-review/dependent-relink-qualification/protocol.json": "3324807578af3d6d04f8ef552d54469d786ccb78222ea6492a8c7144a5ebf99d",
+    "target/guard-performance-review/dependent-relink-qualification/source-inventory.json": "d67f044ee8ab85319e6b3a025c1c549ba43d98f73afd86aac02357a817c6a064",
+    "target/guard-performance-review/dependent-relink-qualification/prepare.py": "951dc1b59eff4f8056fff6a1e472507fe1e4325404f787e1c3a69f8b4f937a08",
+    "target/guard-performance-review/dependent-relink-qualification/build.py": "70ed81b5b59e6aa4ad78e88fedbf933c09d0c7b06156c5faa32eab0d348586cf",
+    "target/guard-performance-review/dependent-relink-qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/guard-performance-review/dependent-relink-qualification/README.md": "053fb826eb8ab8c29c162307f775db018d130d87fe4f932a0907a484520ce790"
+  },
+  "scope": "Independent mechanical source/command/lifecycle review and actual preflight digest audit for exactly two uninstrumented Symbolica rlibs.",
+  "checks": {
+    "variants": [
+      "baseline",
+      "candidate"
+    ],
+    "source_files_per_variant": 91,
+    "baseline_equals_qualified_original_inventory": true,
+    "candidate_only_changed_file": "src/evaluate/batch.rs",
+    "baseline_batch_sha256": "eb73974b0c176422863e4fbe512d392813d83085b2ae5c476db24d028012efcf",
+    "candidate_batch_sha256": "6db2acb4b342e5fb1ac78ac04f39abaf72541acff7279ddce505fcfe095a53bf",
+    "custom_trace_and_frozen_evaluator_modules_absent": true,
+    "commands": 2,
+    "commands_exact_v4_derivation_only_test_to_rlib_paths_metadata_ids": true,
+    "same_28_externs_features_native_closure_and_profile": true,
+    "environment_only_manifest_directory_relocated": true,
+    "distinct_variant_metadata_identity": true,
+    "cpu_affinity": [
+      32,
+      33
+    ],
+    "per_compiler_cap_seconds": 180,
+    "aggregate_seconds": 420,
+    "work_deadline_seconds": 400,
+    "cleanup_reserve_seconds": 20,
+    "same_reviewed_owned_group_lifecycle": true,
+    "reserve_selected_before_alarm_arming": true,
+    "terminal_saved_before_hashing": true,
+    "completed_output_guarded_during_remaining_stage": true,
+    "protocol_guarded_before_between_after": true,
+    "first_failure_stops_no_retry": true,
+    "protected_input_actual_hashes_matched": 838,
+    "tool_actual_hashes_matched": 3,
+    "prior617protected_bindings_unchanged": true,
+    "prior_v2_preserved_bindings": 124,
+    "prior_v3_preserved_bindings": 115,
+    "durable_capsule_bindings_unchanged": 32
+  },
+  "findings": [],
+  "limitations": [
+    "No compiler, test binary, dependent library, numerical kernel or timing was executed by reviewers.",
+    "Verification uses the 400-second work deadline; the larger reserve retains time for owned cleanup and final bookkeeping, without extending normal work beyond that deadline.",
+    "A regular ar header and output digest establish a build artifact only. Future dependencies must link against their matching new Symbolica identity.",
+    "No OneLoop, masters, core or probe build, full-reduction numerical qualification, performance conclusion or production adoption is covered."
+  ]
+}

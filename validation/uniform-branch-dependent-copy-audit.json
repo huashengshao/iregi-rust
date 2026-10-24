@@ -1,0 +1,83 @@
+{
+  "status": "capsule-byte-provenance-audit-passed",
+  "created_utc": "2026-10-24T01:29:52.242619+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "scope": "Independent read/hash, direct-copy, archive-stream and preserved-history audit. No compiler, kernel, probe, numerical rerun, performance timing, producer import, extraction, or capsule mutation.",
+  "bindings_sha256": {
+    "validation/uniform-branch-dependent/qualification.json": "240c3a6190f34e782d336423321890c05e3f3e0172dfff3fb98229d0f4e1ea6e",
+    "validation/uniform-branch-dependent/payload-origins.json": "cf086b7a7b68a6296d62dd641821f16badc23b4ae88521a5568214ca6636eae0",
+    "validation/uniform-branch-dependent/external-artifacts.json": "f0529a58a4c32f708144a065d20935d9376655092bf55a273893e0580b2c01fd",
+    "validation/uniform-branch-dependent/package.py": "b545064c5a35e399f43bf970659b30baf053f3f9bbf1e9fad08f97ddeab130f3",
+    "validation/uniform-branch-dependent/source-context.tar.gz.members.json": "63aaba8ec43f3b536affc6323eb745ebcccc7cc274dba47834d14f2d0e75fb1a",
+    "validation/uniform-branch-dependent/link-maps.tar.gz.members.json": "538614b0a70b1b5c879d4acb2b79622112774bb971b1bb862e6b996a7da7d058",
+    "validation/uniform-branch-dependent/numerical-records.tar.gz.members.json": "ed47fbe17df29817baf707c9ff27d35cb117e97232805655b2fef4f7c96d3362",
+    "validation/uniform-branch-dependent/prior-local/qualification.json": "5f8d8d5d925cc0c1e6d429e6182d041e8f0f50ed52cd3b7fb26b00168416d19a",
+    "validation/uniform-branch-dependent/reviews/final-independent-runtime-review.json": "16dfb0c23dc50f8b7fdd18a9e9c1b52b9af9c33acb55a3e891db5dd9ea6d93f8",
+    "target/guard-performance-review/dependent-capsule-preparation/reviews/independent-archive-byte-audit.json": "168a2d22360b65d2e7cfd5b39478d5552641b989b838d171000eac8aa6fc4382"
+  },
+  "findings": [],
+  "checks": {
+    "payloads": 72,
+    "payload_bytes": 24705252,
+    "complete_tree_files_including_self_excluded_manifest": 73,
+    "all_payload_hashes_and_sizes_verified": true,
+    "direct_copies_byte_compared_with_origins": 63,
+    "prior_local_files_verified": 32,
+    "prior_local_qualification_sha256": "5f8d8d5d925cc0c1e6d429e6182d041e8f0f50ed52cd3b7fb26b00168416d19a",
+    "failed_compile_001_status": "failed",
+    "failed_compile_001_errors": 3,
+    "failed_compile_002_status": "failed",
+    "failed_compile_002_errors": 2,
+    "compile_003_and_15_test_evidence_preserved": true,
+    "external_build_products_rehashed": 12,
+    "external_products_not_copied": true,
+    "old_runtime_protocol_sha256": "09c5c1e5a9d3f520c3ff6385348798714a9af1e54f7f7adecb89146223dc0f7e",
+    "old_runtime_manifest_sha256": "337c56f0e1b3159d73c77de15d9c9d8691cbb5760c3d8a9a260107493c287c73",
+    "failed_doc_preflight_sha256": "6217ea66e0290ea0bbaa82aa7e1bebbdcf81aac31ad10733ad4841824323b4d7",
+    "final_runtime_protocol_sha256": "3eaba2080aed332358fbbf3d1e9e89a04d731089f85ccc3820a342b01d8a68fe",
+    "final_runtime_manifest_sha256": "ec6084918722e7715c5d0e3b2e2fed06f99cb8004fbd2f198bced61f000bc37d",
+    "producer_build_grants_leases_and_review_bindings_verified": true,
+    "qualified_counts_match_independent_runtime_audit": true,
+    "only_dependent_fixture_qualification_flag_true": true,
+    "production_full_coverage_native_composition_performance_adoption_flags_false": true
+  },
+  "archive_audit": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+    "receipt": "target/guard-performance-review/dependent-capsule-preparation/reviews/independent-archive-byte-audit.json",
+    "receipt_sha256": "168a2d22360b65d2e7cfd5b39478d5552641b989b838d171000eac8aa6fc4382",
+    "all_member_bytes_equal_origins": true,
+    "member_count": 354,
+    "uncompressed_bytes": 391575250,
+    "archives": [
+      {
+        "name": "source-context.tar.gz",
+        "members": 347,
+        "bytes": 56722593,
+        "manifest_member_counts": {
+          "symbolica": 190,
+          "dependent": 134,
+          "runtime": 23
+        }
+      },
+      {
+        "name": "link-maps.tar.gz",
+        "members": 2,
+        "bytes": 320877277
+      },
+      {
+        "name": "numerical-records.tar.gz",
+        "members": 5,
+        "bytes": 13975380
+      }
+    ],
+    "sorted_unique_safe_relative_regular_members_only": true,
+    "normalized_ownership_mode_time_and_gzip_header_verified": true,
+    "no_extra_or_omitted_members": true
+  },
+  "limitations": [
+    "This is packaging integrity of the previously audited frozen opt0 fixture cohort, not a new numerical test.",
+    "Large build products remain externally hash/size-bound; capsule-only reproduction requires the recorded compiler/dependency closure and Symbolica license.",
+    "Failed constructor compilations and the historical blocked documentation preflight remain failed historical records.",
+    "No performance, full-domain acceptance, native-master composition, production source application, or adoption is authorized by this audit."
+  ]
+}

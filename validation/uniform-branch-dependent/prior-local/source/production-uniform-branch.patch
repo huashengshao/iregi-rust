@@ -1,0 +1,60 @@
+--- a/src/evaluate/batch.rs
++++ b/src/evaluate/batch.rs
+@@ -208,21 +208,41 @@
+             resume[*lane] = 0;
+         }
+         let mut temporary = T::new_zero();
+-        for (pc, (instruction, _)) in instructions.iter().enumerate() {
++        let mut pc = 0;
++        while pc < instructions.len() {
++            let instruction_index = pc;
++            let (instruction, _) = &instructions[pc];
++            // Advance before dispatch: inactive external calls use `continue`.
++            // Uniform forward branches may replace this default next index.
++            pc += 1;
+             match instruction {
+                 Instr::Label(_) => {
+                     active.clear();
+-                    active.extend(lanes.iter().copied().filter(|lane| resume[*lane] <= pc));
++                    active.extend(lanes.iter().copied().filter(|lane| resume[*lane] <= instruction_index));
+                 }
+                 Instr::Goto(label) => {
+-                    debug_assert!(label.0 > pc, "Batch programs have forward branches");
++                    debug_assert!(
++                        label.0 > instruction_index,
++                        "Batch programs have forward branches"
++                    );
++                    let all_callers_active = active.len() == lanes.len();
+                     for lane in active.iter() {
+                         resume[*lane] = label.0;
+                     }
+                     active.clear();
++                    if all_callers_active {
++                        // Every caller lane resumes at this same label. No
++                        // intervening instruction can have an active lane.
++                        // Execute the destination Label to restore `active`.
++                        pc = label.0;
++                    }
+                 }
+                 Instr::IfElse(condition, label) => {
+-                    debug_assert!(label.0 > pc, "Batch programs have forward branches");
++                    debug_assert!(
++                        label.0 > instruction_index,
++                        "Batch programs have forward branches"
++                    );
++                    let all_callers_active = active.len() == lanes.len();
+                     active.retain(|lane| {
+                         if stack[condition * stride + lane].is_fully_zero() {
+                             resume[*lane] = label.0;
+@@ -231,6 +251,11 @@
+                             true
+                         }
+                     });
++                    if all_callers_active && active.is_empty() {
++                        // All caller lanes chose the false arm. Keep their
++                        // original resume writes and enter at its Label.
++                        pc = label.0;
++                    }
+                 }
+                 Instr::Add(out, args) | Instr::Mul(out, args) => {
+                     for lane in active.iter().copied() {

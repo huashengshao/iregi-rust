@@ -1,0 +1,179 @@
+{
+  "status": "saved-evidence-audit-passed",
+  "recorded_utc": "2026-10-24T00:59:44.170483+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "scope": "Read/hash saved compiler records, artifacts and linker maps only; no compiler, probe, numerical kernel or timing executed by reviewer.",
+  "bindings": {
+    "target/guard-performance-review/dependent-chain-proposal/protocol.json": "2e9732b14c6cc2b352fc43a4dcd0f5910ef36036b392c6188bffb681e291c814",
+    "target/guard-performance-review/dependent-chain-proposal/build.py": "73a6940205dc76cf92dc205a6669f088622f12d6a549c8debc73a87c494d8fd6",
+    "target/guard-performance-review/dependent-chain-proposal/manifest.json": "401857d72471c92016f3eeb482f6b2fd87ce119a76c23e2da1f4bc393667898f",
+    "target/guard-performance-review/dependent-chain-proposal/source-inventory.json": "0b2cc7f83c4aba2377acda572e1463da5e75f15dcae16aa29aec3a95ea993e75",
+    "target/guard-performance-review/dependent-chain-proposal/reviews/independent-source-review.json": "a166fe46e6e30e8d3fa3a1916cbcc3a19eb3100a437df0cb442a6d26e8bb1e50",
+    "target/guard-performance-review/dependent-chain-proposal/reviews/doc-refresh-source-review.json": "f371410dcde70c16a4149fa10c3ec94624a08ff452280a896066ad1d7b757656",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/build.json": "36dc506beedf0ac9c217a6549e297efc054a975fb1043f6f7fcd0b903a30455d",
+    "target/guard-performance-review/dependent-chain-build-grant-001.json": "7543f05207f1180317b10d07b87b927a002b634f6dcb1b69232512e14df08c90",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline-core.log": "20543ee600d1f0260a73c25e9a0ce27bb33f53c4017c27e34225f4730efece84",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline-masters.log": "79b57349aac10994fb17edcf9e26359502bd012991a9ad6d8e886a752fc528d6",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline-oneloop.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline-probe.log": "41705f56dac78bdd72dcd226b4017eb34223d984614478e8f5e71ffd765751b6",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate-core.log": "20543ee600d1f0260a73c25e9a0ce27bb33f53c4017c27e34225f4730efece84",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate-masters.log": "79b57349aac10994fb17edcf9e26359502bd012991a9ad6d8e886a752fc528d6",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate-oneloop.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate-probe.log": "41705f56dac78bdd72dcd226b4017eb34223d984614478e8f5e71ffd765751b6"
+  },
+  "checks": {
+    "protected_inputs_rehashed": 1093,
+    "tools_rehashed": 3,
+    "all_guard_bindings_match": true,
+    "exact_granted_commands": 8,
+    "all_command_environment_features_extern_output_records_match": true,
+    "all_steps_successful_zero_exit": true,
+    "distinct_owned_groups_recorded_gone": 8,
+    "cleanup_errors": [],
+    "deadline_exceeded": false,
+    "guard_before": true,
+    "guard_after": true,
+    "step_elapsed_seconds": [
+      37.030578603968024,
+      2.471893946058117,
+      4.573115737992339,
+      14.542393581941724,
+      36.98274245404173,
+      2.3698683709371835,
+      5.075966864009388,
+      15.942984923021868
+    ],
+    "per_step_cap_seconds": 180,
+    "aggregate_elapsed_seconds": 192.3193748811027,
+    "effective_work_deadline_seconds": 880,
+    "aggregate_budget_seconds": 900,
+    "cleanup_reserve_seconds": 20,
+    "all8_actual_output_hashes_sizes_and_archive_or_ELF_headers_match": true,
+    "actual2_link_maps_hashes_sizes_match": true,
+    "both_link_maps_reparsed_independently_streaming": true,
+    "each_link_map_has_exactly_its_own_symbolica_oneloop_masters_core_archive_paths": true,
+    "both_archival_source_failures_and_doc_drift_preserved": true,
+    "all8_log_hashes_and_complete19file_directory_match": true,
+    "compiler_error_diagnostics": 0,
+    "unused_or_dead_code_warnings": 30
+  },
+  "outputs": {
+    "baseline-oneloop": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/liboneloop.rlib",
+      "sha256": "83aad52c3ca37f15fd38d6b2924dabeecf354ee4f1b634895f937b94dab997aa",
+      "bytes": 98660372
+    },
+    "baseline-masters": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/libiregi_masters.rlib",
+      "sha256": "bf6cf71a1387913e74f3af52de792605a9149f4b3ef01e4134a3cc18b051155a",
+      "bytes": 11854144
+    },
+    "baseline-core": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/libiregi_rust.rlib",
+      "sha256": "97241122c628eae255e4f480494c2298f129eaa885965a108247d1ef98ff3f7c",
+      "bytes": 17796186
+    },
+    "baseline-probe": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/probe",
+      "sha256": "bac1e59917f815f8316ade7b3d4bdcdae7d285c5386c42e205d6c1ce7f8b60bb",
+      "bytes": 104676560,
+      "archive_binding": {
+        "symbolica": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/baseline/libsymbolica.rlib"
+          ],
+          "expected_sha256": "c3803fc5cd35ee6f0a392e42cb7429067c69c961dc3e107548cdc6837fe8a5b9"
+        },
+        "oneloop": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/liboneloop.rlib"
+          ],
+          "expected_sha256": "83aad52c3ca37f15fd38d6b2924dabeecf354ee4f1b634895f937b94dab997aa"
+        },
+        "iregi_masters": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/libiregi_masters.rlib"
+          ],
+          "expected_sha256": "bf6cf71a1387913e74f3af52de792605a9149f4b3ef01e4134a3cc18b051155a"
+        },
+        "iregi_rust": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/libiregi_rust.rlib"
+          ],
+          "expected_sha256": "97241122c628eae255e4f480494c2298f129eaa885965a108247d1ef98ff3f7c"
+        }
+      },
+      "link_map": {
+        "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/baseline/probe.link-map",
+        "sha256": "8ca9f581204d4bb3f9455971b50078182b405adc74d0f7f0db1f9d2fd4d300a5",
+        "bytes": 160348458
+      },
+      "one_symbolica_archive_linked": true
+    },
+    "candidate-oneloop": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/liboneloop.rlib",
+      "sha256": "472d92f2a4388d33566e00feb0ce471484a51342bf08a792e482a0482a04b512",
+      "bytes": 98655776
+    },
+    "candidate-masters": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/libiregi_masters.rlib",
+      "sha256": "57b41b4878e3296240272dfe5a4fdce89f8e2a9a00c03f9854c933a259363bfd",
+      "bytes": 11839276
+    },
+    "candidate-core": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/libiregi_rust.rlib",
+      "sha256": "a9551503c059d0d3d3fdf635cd6a1ddbb6a33c1adfbafdd16ee0168ed5aa0186",
+      "bytes": 17807356
+    },
+    "candidate-probe": {
+      "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/probe",
+      "sha256": "b04c13f91c5d9303e16d79cd0dd1bab6aa2efd8660cc19bd0b727b94f9bef44a",
+      "bytes": 104680280,
+      "archive_binding": {
+        "symbolica": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-relink-qualification/symbolica-build-001/candidate/libsymbolica.rlib"
+          ],
+          "expected_sha256": "85989aa37b835fe0d898354b04a604195f2188c60668b24539a0be2efb1d33e3"
+        },
+        "oneloop": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/liboneloop.rlib"
+          ],
+          "expected_sha256": "472d92f2a4388d33566e00feb0ce471484a51342bf08a792e482a0482a04b512"
+        },
+        "iregi_masters": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/libiregi_masters.rlib"
+          ],
+          "expected_sha256": "57b41b4878e3296240272dfe5a4fdce89f8e2a9a00c03f9854c933a259363bfd"
+        },
+        "iregi_rust": {
+          "paths": [
+            "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/libiregi_rust.rlib"
+          ],
+          "expected_sha256": "a9551503c059d0d3d3fdf635cd6a1ddbb6a33c1adfbafdd16ee0168ed5aa0186"
+        }
+      },
+      "link_map": {
+        "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-chain-proposal/chain-build-001/candidate/probe.link-map",
+        "sha256": "8fd485d9bfdf7ff3a7be5a0a6368f11239aeac745dd89b64c5a4ca9d11323465",
+        "bytes": 160528819
+      },
+      "one_symbolica_archive_linked": true
+    }
+  },
+  "map_lines_scanned": {
+    "baseline": 732704,
+    "candidate": 732741
+  },
+  "independent_child_review": {
+    "reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+    "scope": "Exact grant/protocol/step arrays/environment/features/caps,8logs,owned lifecycle,complete output/path crossreferences and19file directory inventory. Large output/map/input hashes independently owned by parent reviewer."
+  },
+  "limitations": [
+    "This establishes successful recorded compilation and matching static archive map evidence only. The linked probes were not run and numerical behavior remains unqualified.",
+    "No performance or production-adoption acceptance, future runtime grant, or timing authorization follows from these build records.",
+    "Process-group cleanup and elapsed values are audited from saved records, not observed again by launching processes."
+  ]
+}
