@@ -1,0 +1,27 @@
+{
+  "focused_tests": [
+    "stability::arguments::tests::positive_argument_envelope_retains_internal_monomial_taylor_cancellation",
+    "stability::arguments::tests::argument_conditioning_respects_requested_accuracy_and_defers_exact_zeros",
+    "stability::arguments::tests::subnormal_distance_cannot_pass_with_an_underflowed_error_estimate"
+  ],
+  "regression_controls": [
+    "stability::arguments::tests::mixed_float_precision_is_respected_without_counting_cancellation_twice",
+    "stability::arguments::tests::mixed_precision_higher_taylor_coefficients_keep_their_own_precision",
+    "stability::arguments::tests::sparse_distance_polynomials_preserve_full_reordered_parameter_and_mixed_jet_layout",
+    "invariant_certificate::tests::exact_gram_certificate_isolates_lanes_and_uses_alternative_charts",
+    "invariant_certificate::tests::certificate_checks_every_mixed_taylor_component",
+    "invariant_certificate::tests::scalar_certificate_preserves_translation_and_diagnoses_rank_loss",
+    "invariant_certificate::tests::absent_regular_chart_does_not_claim_lower_rank",
+    "invariant_certificate::tests::numeric_conversion_retains_bits_beyond_binary64",
+    "invariant_certificate::tests::tiny_nonzero_residual_is_never_accepted_by_a_roundoff_tolerance",
+    "invariant_certificate::tests::six_point_scalar_continuation_needs_no_real_minkowski_signature",
+    "invariant_certificate::tests::certified_covectors_keep_linear_relations_after_translation",
+    "invariant_certificate::tests::sparse_zero_polynomials_preserve_wide_ordered_mixed_certificate_layout",
+    "stability::tests::no_leaf_master_activation_preserves_output_and_monitor_alias_contexts",
+    "stability::tests::inactive_master_requests_are_skipped_per_sample",
+    "stability::tests::master_dependent_activation_is_conservative_and_not_circular",
+    "seven_point::tests::unsupported_domain_is_rejected_before_symbolic_preparation"
+  ],
+  "ignored_numeric_driver": "thin_n7::numeric_probe::capture_complete_moments_from_fixture",
+  "scope": "19 targeted sparse polynomial declaration/whole-input mixed Taylor/certification/no-leaf+with-leaf activation/public rank guard checks. No integral driver."
+}

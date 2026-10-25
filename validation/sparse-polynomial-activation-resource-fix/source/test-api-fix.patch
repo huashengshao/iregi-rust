@@ -1,0 +1,38 @@
+--- a/crates/iregi-rust/src/stability/arguments.rs
++++ b/crates/iregi-rust/src/stability/arguments.rs
+@@ -407,7 +407,7 @@
+         let distance = (&x - &y).pow(2)
+             + Atom::num(Rational::from((3, 4))) * &x
+             + Atom::num(Rational::from((5, 8)));
+-        let polynomials = [distance.clone(), &distance * &Rational::from((7, 16))];
++        let polynomials = [distance.clone(), Atom::num(Rational::from((7, 16))) * &distance];
+         let small = ArgumentStabilityPlan::prepare(&small_parameters, &polynomials).unwrap();
+         let wide = ArgumentStabilityPlan::prepare(&wide_parameters, &polynomials).unwrap();
+         assert_eq!(wide.expressions(), small.expressions());
+@@ -440,7 +440,7 @@
+                 prototype.from_rational(&value.im),
+             )
+         };
+-        let mut small_exact = compile(&small, &small_parameters).into_batch_evaluator();
++        let mut small_exact = compile(&small, &small_parameters);
+         let mut small_numeric = compile(&small, &small_parameters)
+             .map_coeff_with_prec(&numeric, 128)
+             .into_batch_evaluator();
+@@ -491,9 +491,14 @@
+         let mut exact_output = vec![exact_zero.clone(); output_len];
+         let mut small_output = vec![numeric(&exact_zero); output_len];
+         let mut wide_output = small_output.clone();
+-        small_exact
+-            .evaluate_batch(&small_input, &mut exact_output, rows)
+-            .unwrap();
++        // Symbolica's exact ring evaluator supplies the independent expected
++        // Taylor values; Float evaluation below remains batched across all lanes.
++        let exact_field = symbolica::domains::float::FloatField::from_rep(exact_zero);
++        for (input, output) in small_input.chunks_exact(2 * components).zip(
++            exact_output.chunks_exact_mut(polynomials.len() * components),
++        ) {
++            small_exact.evaluate_in_ring(input, output, &exact_field);
++        }
+         small_numeric
+             .evaluate_batch(&small_float_input, &mut small_output, rows)
+             .unwrap();

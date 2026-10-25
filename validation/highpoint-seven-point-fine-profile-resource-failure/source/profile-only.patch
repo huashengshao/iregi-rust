@@ -1,0 +1,121 @@
+--- a/crates/iregi-rust/src/execution.rs
++++ b/crates/iregi-rust/src/execution.rs
+@@ -698,11 +698,25 @@
+         let distance_zeros = if distance_polynomials.is_empty() {
+             None
+         } else {
++            let _conditioning = crate::pv::PreparationTimer::new(
++                std::env::var_os("IREGI_PREPARATION_PROFILE").is_some(),
++                format_args!("workspace distance-zero conditioning"),
++            );
+             let conditioning = Arc::new(ArgumentStabilityPlan::prepare(
+                 &plan.parameters,
+                 &distance_polynomials,
+             )?);
++            drop(_conditioning);
++            let _envelope = crate::pv::PreparationTimer::new(
++                std::env::var_os("IREGI_PREPARATION_PROFILE").is_some(),
++                format_args!("workspace distance-zero exact envelope"),
++            );
+             let envelope = compile_exact(conditioning.expressions(), &plan.parameters, &[], dual)?;
++            drop(_envelope);
++            let _certificate = crate::pv::PreparationTimer::new(
++                std::env::var_os("IREGI_PREPARATION_PROFILE").is_some(),
++                format_args!("workspace distance-zero exact certificate"),
++            );
+             let certificate = match dual {
+                 Some(layout) => ExactZeroConstraintPlan::new_dual(
+                     &plan.parameters,
+@@ -711,6 +725,7 @@
+                 ),
+                 None => ExactZeroConstraintPlan::new(&plan.parameters, &distance_polynomials),
+             }?;
++            drop(_certificate);
+             argument_expressions.extend(distance_polynomials);
+             Some(PreparedDistanceZeros {
+                 argument_offset: distance_offset,
+--- a/crates/iregi-rust/src/stability.rs
++++ b/crates/iregi-rust/src/stability.rs
+@@ -96,6 +96,9 @@
+             output_dimensions: Vec::new(),
+             layout: plan.layout.clone(),
+         };
++        let profile = std::env::var_os("IREGI_PREPARATION_PROFILE").is_some();
++        let timer = |stage: &str| crate::pv::PreparationTimer::new(profile, format_args!("{stage}"));
++        let _dimensions = timer("stability dimensions and alias definitions");
+         let mut indices = HashMap::new();
+         let mut dimensions = HashMap::new();
+         for (i, parameter) in plan.parameters.iter().enumerate() {
+@@ -124,6 +127,8 @@
+             }
+         }
+         let definitions: HashMap<_, _> = plan.aliases.iter().cloned().collect();
++        drop(_dimensions);
++        let _uses = timer("stability root alias uses");
+         // Propagate use conditions backwards through the topologically ordered
+         // aliases. A union of paths is represented by Symbolica's lazy IF;
+         // inactive generic branches must never become eager monitor roots.
+@@ -133,16 +138,26 @@
+         for expression in plan.moments.iter().flatten() {
+             collect_alias_uses(expression.as_view(), &always, &definitions, &mut uses);
+         }
++        drop(_uses);
++        let _reachability = timer("stability backward alias reachability");
+         let mut reachable = HashMap::new();
+-        for (alias, body) in plan.aliases.iter().rev() {
++        for (index, (alias, body)) in plan.aliases.iter().rev().enumerate() {
++            if profile && index % 128 == 0 {
++                eprintln!("iregi stability reachability {index}/{} aliases", plan.aliases.len());
++            }
+             if let Some(paths) = uses.remove(alias) {
+                 let active = monitor.intern_predicate(union_paths(paths), &mut predicate_indices);
+                 collect_alias_uses(body.as_view(), &active, &definitions, &mut uses);
+                 reachable.insert(alias.clone(), active);
+             }
+         }
++        drop(_reachability);
++        let _local = timer("stability local recurrence monitors");
+         let mut denominators = BTreeSet::new();
+-        for (alias, body) in &plan.aliases {
++        for (index, (alias, body)) in plan.aliases.iter().enumerate() {
++            if profile && index % 128 == 0 {
++                eprintln!("iregi stability local monitors {index}/{} aliases", plan.aliases.len());
++            }
+             let dimension = mass_dimension(body.as_view(), &dimensions).unwrap_or(0);
+             dimensions.insert(alias.clone(), dimension);
+             let Some(active) = reachable.get(alias) else {
+@@ -159,6 +174,8 @@
+             );
+             collect_denominators(body.as_view(), active, &mut denominators);
+         }
++        drop(_local);
++        let _moments = timer("stability output moment monitors");
+         let base_dimension = 4 + 2 * i32::from(plan.settings.dimension_shift)
+             - 2 * plan
+                 .settings
+@@ -182,6 +199,8 @@
+                 collect_denominators(expression.as_view(), &always, &mut denominators);
+             }
+         }
++        drop(_moments);
++        let _denominators = timer("stability denominator monitors");
+         for (denominator, active) in denominators {
+             // A denominator may be a named invariant. Inspect that one body
+             // as well, without substituting the entire upstream graph.
+@@ -197,9 +216,16 @@
+                 &mut indices,
+             );
+         }
++        drop(_denominators);
++        let _primal = timer("stability primal amplitudes");
+         monitor.prepare_primal_amplitudes(plan, &reachable, base_dimension)?;
++        drop(_primal);
++        let _activations = timer("stability master activations");
+         monitor.prepare_master_activations(plan);
++        drop(_activations);
++        let _snapping = timer("stability snapping diagnostics");
+         monitor.prepare_snapping_diagnostics(plan)?;
++        drop(_snapping);
+         Ok(monitor)
+     }
+ 

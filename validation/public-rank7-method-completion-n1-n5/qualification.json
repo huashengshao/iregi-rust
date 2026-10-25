@@ -1,0 +1,140 @@
+{
+  "status": "terminal_fixed_catalog_six_qualified_families_plus_explicit_N5_actual_method_gap",
+  "families": [
+    {
+      "family": "n1-rank7-hybrid",
+      "status": "passed_complete_family",
+      "elapsed_seconds_diagnostic_only": 26.399797284044325,
+      "unrun_labels": [],
+      "receipt_sha256": "51867d1049bf98441d33f2fa9ba7a56aa76d1d4d6babbcfa89f6986e22795498"
+    },
+    {
+      "family": "n2-rank7-hybrid",
+      "status": "passed_complete_family",
+      "elapsed_seconds_diagnostic_only": 78.61850192700513,
+      "unrun_labels": [],
+      "receipt_sha256": "f588df65451e083e12c4a2a2507e8d9ebe67d2bc82311e590d2621cab41fbdc8"
+    },
+    {
+      "family": "n3-rank7-hybrid",
+      "status": "passed_complete_family",
+      "elapsed_seconds_diagnostic_only": 165.14619263797067,
+      "unrun_labels": [],
+      "receipt_sha256": "22976887e40dc1e8e53af4cfe40dc99239692fcabc015bc257e51fd04e994e47"
+    },
+    {
+      "family": "n4-rank7-ibp",
+      "status": "passed_complete_family",
+      "elapsed_seconds_diagnostic_only": 732.5296899889363,
+      "unrun_labels": [],
+      "receipt_sha256": "0f68df49594283b4febad8b6144cf8af020da2a4f6d6d40974b58762d1074099"
+    },
+    {
+      "family": "n4-rank7-hybrid",
+      "status": "passed_complete_family",
+      "elapsed_seconds_diagnostic_only": 908.2138789339224,
+      "unrun_labels": [],
+      "receipt_sha256": "aeb9b10fa3f6df73775cc1a33985fbee8a09e48b42b1dac4e1100c615d3718b5"
+    },
+    {
+      "family": "n5-rank7-ibp",
+      "status": "failed_or_incomplete_family",
+      "elapsed_seconds_diagnostic_only": 204.9035047609359,
+      "unrun_labels": [
+        "n5-rank7-ibp-Float256-001"
+      ],
+      "receipt_sha256": "b28319f7248a32af18f2f3a52f56458c4346983d38956d1d078f4f7fa25ac08c"
+    },
+    {
+      "family": "n5-rank7-hybrid",
+      "status": "passed_complete_family",
+      "elapsed_seconds_diagnostic_only": 437.72720855195075,
+      "unrun_labels": [],
+      "receipt_sha256": "90217725ea7a0f7a9b3f7c93c3003ae13b9e365f4c7d04d36ecb50d96920d489"
+    }
+  ],
+  "all_seven_families_terminal": true,
+  "all_requested_method_families_qualified": false,
+  "passed_complete_families": 6,
+  "native_captures": 13,
+  "strict_method_failure": "n5-rank7-ibp actualPassarinoVeltman Float128;Float256UNRUN",
+  "N5_actual_PV_output_diagnostic": {
+    "status": "passed_actual_PV_completion_output_diagnostic",
+    "pure_IBP_coverage_qualified": false,
+    "original_strict_method_gate": "FAILED unchanged",
+    "Float256": "UNRUN unchanged",
+    "counts": {
+      "quad_reference_slots": 1320,
+      "inherited_PV_slots": 1320
+    },
+    "maximum_normalized_errors": {
+      "quad_reference_slots": "7.960160860848525883204968760739613511545043941984436074828813945363642501362733128189574927091598511E-17",
+      "inherited_PV_slots": "2.711709365078444073902665060314142368772994614876184077660215601794749223430521921243039495775245443E-31"
+    },
+    "maximum_witnesses": {
+      "quad_reference_slots": {
+        "moment": 203,
+        "monomial": [
+          0,
+          0,
+          6,
+          0
+        ],
+        "slot": 0
+      },
+      "inherited_PV_slots": {
+        "moment": 267,
+        "monomial": [
+          1,
+          5,
+          1,
+          0
+        ],
+        "slot": 3
+      }
+    },
+    "preparation_notes": [
+      "IBP tensor completion uses PV: reduction preparation: IBP dimension recurrence has a zero epsilon-independent divisor for 5 propagators at shift 1; ordinary four-dimensional tensors may use PV completion, but a standalone shifted scalar is not determined by the available A0-D0 Laurent orders"
+    ],
+    "actual_algorithm": "PassarinoVeltman",
+    "fallback_used": [
+      false
+    ],
+    "analytic_used": [
+      false
+    ],
+    "execution": {
+      "analytic_rows": 0,
+      "argument_rows": 1,
+      "fallback_rows": 0,
+      "fallback_successes": 0,
+      "input_rows": 1,
+      "master_family_batches": 4,
+      "master_rows": 30,
+      "pentagon_box_rows": 0,
+      "reduction_rows": 1
+    },
+    "source_result_sha256": "2e365fcc28f7f84ac86f3d5b2d3888d1713b92be3766c28460455f9a7ca9c5d0",
+    "reference_tolerance": "1e-10",
+    "inherited_PV_tolerance": "2^-80",
+    "native_jobs": 0,
+    "performance_qualified": false
+  },
+  "replayed_counts": {
+    "reference_slots": 15840,
+    "precision_pairs": 7920,
+    "IR_zero_slots": 7920,
+    "inherited_PV_slots": 15840,
+    "N5_actual_PV_diagnostic_quad_slots": 1320,
+    "N5_actual_PV_diagnostic_old_PV_slots": 1320
+  },
+  "independent_reference": "admitted quad original IREGI IBP",
+  "source_context": "selected actual-Cargo 77-source parent; no later main equivalence claim",
+  "batch_scope": "one exact original base row per new case; parent N2 postfix separately tests three rows",
+  "reference_tolerance": "1e-10 dimensional mixed norm",
+  "precision_and_PV_tolerance": "2^-80",
+  "native_products_included": false,
+  "fresh_native_hash_or_process_attestation_in_portable_check": false,
+  "full_rank7_domain_qualified": false,
+  "performance_qualified": false
+}

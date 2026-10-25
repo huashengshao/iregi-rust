@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "status": "source_review_passed",
+  "reviewer": "/root/seven_point_api/seven_protocol",
+  "recorded_utc": "2026-10-25T20:19:26.064933+00:00",
+  "findings": [],
+  "patch_sha256": "7f8a9d4fb1e9b9dd8b25323d48bf1f2be436a8e5366286eb0f000f11d2f2c4c2",
+  "sources": {
+    "target/main-private-seven-probe-proposal/preparation-stage-proposal/rebased-v2/recipe.json": "709d2f689ec6e3b4c7a169dd01f9c5f25a44d788cb99f764e8fbab32e78d41ce",
+    "target/main-private-seven-probe-proposal/preparation-stage-proposal/rebased-v2/profile-only-after-dual.patch": "7f8a9d4fb1e9b9dd8b25323d48bf1f2be436a8e5366286eb0f000f11d2f2c4c2",
+    "target/highpoint-dual-current-rebase-v1/candidate/crates/iregi-rust/src/execution.rs": "88428a435bd78b98d08db78cce5897a3797712af40380aac6dd248c90dbea1f2",
+    "target/main-private-seven-probe-proposal/preparation-stage-proposal/rebased-v2/candidate/crates/iregi-rust/src/execution.rs": "0135879308ea07559d49eeb73f23f031c1d5252716b8150e5d11554aba0742da",
+    "target/highpoint-dual-current-rebase-v1/candidate/crates/iregi-rust/src/stability.rs": "5aedb79ea4f527305dc021c582d096f23ff15185a4635d5d99a21429b015e7c3",
+    "target/main-private-seven-probe-proposal/preparation-stage-proposal/rebased-v2/candidate/crates/iregi-rust/src/stability.rs": "5b98332d878be900b10889e4853c864e5987767d20267f3e896c805398159836",
+    "crates/iregi-rust/src/pv.rs": "aae9ed1825c4eac3379450add52fa1c06c83266c727fac9068c278b5ba7d952b"
+  },
+  "corrected_initial_finding": {
+    "original_patch_sha256": "b35f77a1f37ce46eddf7c3d520a044d2f92f54cf91bbad1e58accdae125a9a35",
+    "issue": "PreparationTimer expects fmt::Arguments, while original local closure supplied &str.",
+    "resolution": "Rebased candidate passes format_args!(\"{stage}\"); timer immediately owns its formatted String, so no label borrow escapes."
+  },
+  "checks": {
+    "two_exact_reviewed_Dual_baselines_and_candidates_match": true,
+    "patch_payload_matches_candidate_minus_baseline": true,
+    "rebased_change_list_equals_original_instrumentation_except_required_fmt_fix": true,
+    "existing_PreparationTimer_constructor_lifetime_conforms": true,
+    "begin_markers_precede_each_named_expensive_stage": true,
+    "explicit_drops_close_adjacent_scopes_and_RAII_handles_early_returns": true,
+    "enumerate_preserves_reverse_and_forward_alias_order": true,
+    "progress_every128_aliases_only_if_profile_environment_present": true,
+    "progress_outputs_only_static_labels_and_counts": true,
+    "algebra_formulas_branches_gates_thresholds_unchanged": true,
+    "no_expression_or_secret_dump_added": true
+  },
+  "application_preconditions": [
+    "Apply only after resume_auditor exact nine-file Dual patch application and Python/CLI source lease release.",
+    "Reconcile final merged source context without dropping Dual component logic; the reviewed patch baseline is exact88428a43/5aedb79e.",
+    "Compilation remains a separate root-approved joint-build gate. This review launches no fresh integral or numerical retry."
+  ],
+  "fresh_failed_capture_sha256": "2308648f446bd84d0af64d361e1fd27390ec3cda2a82043c0de0ee01a00d9cea",
+  "failed128_arrays": 0,
+  "capture256_unrun": true,
+  "prior_failures_rewritten": false,
+  "production_mutations": false,
+  "Cargo_or_compiler_execution": false,
+  "evaluator_execution": false,
+  "numerical_or_performance_qualification": false,
+  "execution_grant": false,
+  "scope": "Concise source/API review of two-file profile-only instrumentation after exact Dual baseline. No remaining source blocker found; no actual application, compilation or numerical work performed."
+}
