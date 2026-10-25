@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "status": "passed-archival-checker-source-review-only",
+  "reviewer": "/root/dual_sensitivity_research/numeric_comparator/source_audit",
+  "checker": {
+    "path": "target/highpoint-dual-sensitivity/rectangular-v1/portable-proposal/check.py",
+    "sha256": "cdf90a2774b8e4b7d7f85214c5091ae26cfc204743289343f8687d6af53e94fd",
+    "bytes": 3792
+  },
+  "parent_portable_api_source": {
+    "path": "validation/highpoint-dual-sensitivity/portable.py",
+    "sha256": "963ba777b3120cf7223a9ee7eb3917a39a4bc2b0b271d1ccb19f5cd3c4986e27",
+    "bytes": 13167
+  },
+  "source_proposal_manifest": {
+    "path": "target/highpoint-dual-sensitivity/rectangular-v1/source-v1.json",
+    "sha256": "700c8fccc3cfa976116068bb0fac24426c68e72f112af596dae915765ef7aa6b"
+  },
+  "source_patch": {
+    "path": "target/highpoint-dual-sensitivity/rectangular-v1/rectangular-capture-v1.patch",
+    "sha256": "fd3237d1ff0563a4bc2d7b5a02184525f4fb9b21743ced229fbcd64ffdd36e05"
+  },
+  "blocking_findings": [],
+  "checked": [
+    "Checker reads its own complete manifest-described file inventory, rejects unexpected files except bytecode-cache exclusions, and validates each descriptor with exact SHA256 and byte count before importing parent code.",
+    "Proposal members must be relative normalized names without parent traversal and may not be direct symlinks. This checker is an archival reproduction tool, not a hardened adversarial filesystem sandbox.",
+    "Parent capsule is found from repository ancestors using Cargo.toml and capsule manifest presence, then its exact manifest SHA and sealed_private_full_component_n6_saved_correctness status are required.",
+    "All parent capsule files, including imported portable.py and payload archive, are hash/size checked against the pinned parent manifest before import or reconstruction.",
+    "Actual portable.py load_parent(root) returns(candidate_bytes, inherited_files, borrowed_bytes), matching use of base,unused,borrowed here.",
+    "Actual archive(body,member_descriptors) returns exact named byte mapping and rejects invalid archive paths, duplicate/nonregular members, compiled payloads and license literals; checker passes the correct payload member map.",
+    "Actual reconstruct_sources(base,payload,borrowed) reconstructs numerical-v2 in memory from committed parent source/patch bytes; no historical private ignored directory is read by this call.",
+    "Actual apply_source_patch accepts the new helper diff and returns(result_bytes, changed_names), matching checker use. Final complete93descriptor comparison closes all source bytes, not only patch names.",
+    "Checker independently pins embedded parent completed-cohort summary and numerical-v2 source manifest to proposal metadata, then requires exact two-file changed-list metadata and93 reconstructed files.",
+    "Source scope requires rectangular shape00,10,01,11, six helper tests explicitly unexecuted, and boolean false compilation/tests/numeric_execution_authorized/public_promotion/performance_claim flags.",
+    "Output explicitly says passed_source_reconstruction_only and no Rust compilation, tests, evaluators, numerical execution authorization or public Dual qualification.",
+    "No producer admission, private runtime tree, Symbolica/backend library, compiler/evaluator subprocess or integral execution is imported or invoked. Dynamic parent module imports only standard-library facilities and declares constants/functions.",
+    "sys.dont_write_bytecode is set before importing the parent module, and checker performs no explicit file writes."
+  ],
+  "pending_packaging_gates": [
+    "At source review, portable-proposal/manifest.json has not yet been created. Final parent_manifest SHA, own file descriptors and exact copy inventory must be populated and verified after parent sealing.",
+    "This reviewer did not execute checker, reconstruct sources, open payload archives, scan dependency trees or run any numerical engine. Eventual saved-byte reconstruction success is separate evidence.",
+    "Existing source-manifest helper/capture review and false execution flags must remain intact; source reconstruction does not qualify the six tests or any integral.",
+    "Plain json.loads is acceptable for these exactly bound committed inputs; strict duplicate-key rejection would be optional defensive hardening, not a mathematical blocker."
+  ],
+  "checker_executed": false,
+  "source_reconstruction_executed": false,
+  "compiler_tests_evaluator_or_integral_executed": false,
+  "runtime_execution_authorized": false,
+  "public_dual_qualified": false,
+  "performance_claim": false
+}

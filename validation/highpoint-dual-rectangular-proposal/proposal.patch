@@ -1,0 +1,470 @@
+--- a/core/crates/iregi-rust/src/highpoint_component_probe.rs
++++ b/core/crates/iregi-rust/src/highpoint_component_probe.rs
+@@ -1,6 +1,8 @@
+ //! Capture-only full-Taylor sensitivity observer. No public API or reduction mathematics changes.
+ #[path = "jet_inputs.rs"]
+ mod jet_inputs;
++#[path = "rectangular_inputs.rs"]
++mod rectangular_inputs;
+ 
+ use crate::thin_n6::{ThinSixReductionPlan, ThinSixWorkspace};
+ use crate::{
+@@ -604,6 +606,164 @@
+     Ok(0)
+ }
+ 
++fn capture_rectangular<T: NativeFloat>(
++    domain: &str,
++    prototype: T,
++    fixture: &Path,
++    output: &Path,
++) -> Result<u8, Box<dyn Error>>
++where
++    Complex<T>: EvaluationDomain,
++{
++    let started = Instant::now();
++    let base = base_input(fixture)?;
++    let prepared = rectangular_inputs::prepare(&base)?;
++    let exact = prepared.input;
++    let shape = prepared.shape;
++    let mut row = Vec::with_capacity(exact.len());
++    for x in &exact {
++        let value = prototype.from_rational(x);
++        if value.exact_rational().as_ref() != Some(x) {
++            return Err("rectangular input is not exactly represented".into());
++        }
++        row.push(Complex::new(value, prototype.zero()));
++    }
++    let mut invalid = row.clone();
++    invalid[30 * rectangular_inputs::COMPONENTS] = Complex::new(prototype.zero(), prototype.zero());
++    let rows = [row, invalid];
++    let mut settings = ReductionSettings::new(6, 0);
++    settings.algorithm = Algorithm::PassarinoVeltman;
++    let mut record = json!({"schema_version":1,"status":"preparing_structural_plan","domain":domain,
++        "mode":"independent_mass0_squared_times_dilation_rectangular_dual","settings":settings,"working_bits":prototype.get_precision(),
++        "requested_bits":53,"components":rectangular_inputs::COMPONENTS,"ordered_shape":shape,"fixture":fixture.to_string_lossy(),
++        "represented_input_rows":rows.iter().map(|row|represented(row)).collect::<Vec<_>>(),
++        "derivative_identity":"F(a,b)=(1+b)^-8 I6(m0_squared+a/(1+b)^2); rectangular first-order a,b; no pure second mass derivative",
++        "expected_unit_dot_multipliers":prepared.expected.iter().map(|weights|weights.iter().map(ToString::to_string).collect::<Vec<_>>()).collect::<Vec<_>>(),
++        "limits":"SOURCE-ONLY proposed capture. Independent mass0 squared and dilation directions, rectangular first order only. No second mass derivative, finite differences, arbitrary independent higher/mixed directions, rigorous enclosure, public promotion or performance claim. The parent full-component cohort is preserved unchanged.","calls":[]});
++    write(output, &record)?;
++    let plan = match ThinSixReductionPlan::new(settings) {
++        Ok(plan) => plan,
++        Err(error) => {
++            record["status"] = json!("plan_preparation_failed");
++            record["error"] = json!(error.to_string());
++            record["elapsed_seconds"] = json!(started.elapsed().as_secs_f64());
++            write(output, &record)?;
++            return Ok(2);
++        }
++    };
++    record["basis"] = json!(plan.basis().iter().map(|m| m.0).collect::<Vec<_>>());
++    record["status"] = json!("preparing_workspace");
++    write(output, &record)?;
++    let mut workspace =
++        match ThinSixWorkspace::new_dual(&plan, prototype.clone(), HyperDual::<u8>::new(shape)) {
++            Ok(workspace) => workspace,
++            Err(error) => {
++                record["status"] = json!("workspace_preparation_failed");
++                record["error"] = json!(error.to_string());
++                record["elapsed_seconds"] = json!(started.elapsed().as_secs_f64());
++                write(output, &record)?;
++                return Ok(2);
++            }
++        };
++    if let Err(error) = workspace.set_accuracy_precision(53) {
++        record["status"] = json!("accuracy_configuration_failed");
++        record["error"] = json!(error.to_string());
++        record["elapsed_seconds"] = json!(started.elapsed().as_secs_f64());
++        write(output, &record)?;
++        return Ok(2);
++    }
++    let schedule: [(&str, &[usize]); 5] = [
++        ("singleton_rectangular", &[0]),
++        ("mixed_rectangular_invalid", &[0, 1, 0]),
++        ("reordered_rectangular", &[0, 0, 1]),
++        ("empty", &[]),
++        ("singleton_again", &[0]),
++    ];
++    let mut successes = 0;
++    let mut invalid_rejections = 0;
++    let mut unexpected = Vec::new();
++    for (name, indices) in schedule {
++        record["status"] = json!("evaluating_batch");
++        record["active_call"] = json!(name);
++        write(output, &record)?;
++        let input = KinematicsBatch {
++            rows: indices.len(),
++            components: rectangular_inputs::COMPONENTS,
++            values: indices
++                .iter()
++                .flat_map(|&index| rows[index].iter().cloned())
++                .collect(),
++        };
++        let before = represented(&input.values);
++        let result = match workspace.reduce_batch(&input) {
++            Ok(result) => result,
++            Err(error) => {
++                let stats = workspace.last_execution();
++                let call = json!({"name":name,"profile_indices":indices,"status":"batch_error","error":error.to_string(),
++                    "input_preserved_exactly":before==represented(&input.values),"diagnostics":workspace.last_diagnostics(),
++                    "execution":{"parent_input_rows":stats.parent_input_rows,"child_batch_calls":stats.child_batch_calls,
++                        "packed_child_rows":stats.packed_child_rows,"parent_batch_calls":stats.parent_batch_calls,"packed_parent_rows":stats.packed_parent_rows,
++                        "child_execution":execution(stats.child_execution),"parent_execution":execution(stats.parent_execution),
++                        "child_certificate_execution":certificate(stats.child_certificate_execution),"parent_certificate_execution":certificate(stats.parent_certificate_execution)},
++                    "child_component_observation":workspace.last_child_sensitivity_observation().cloned().unwrap_or(Value::Null)});
++                record["calls"].as_array_mut().unwrap().push(call);
++                record["status"] = json!("batch_error");
++                record["error"] = json!(error.to_string());
++                record["elapsed_seconds"] = json!(started.elapsed().as_secs_f64());
++                write(output, &record)?;
++                return Ok(2);
++            }
++        };
++        let stats = workspace.last_execution();
++        let mut lanes = Vec::new();
++        for lane in 0..indices.len() {
++            let values = result.lane(lane).ok();
++            let correct = if indices[lane] == 1 {
++                let correct = values.is_none()
++                    && matches!(result.statuses[lane], LaneStatus::InvalidInput(_));
++                if correct {
++                    invalid_rejections += 1;
++                }
++                correct
++            } else {
++                let correct = values.is_some() && result.statuses[lane] == LaneStatus::Success;
++                if correct {
++                    successes += 1;
++                }
++                correct
++            };
++            if !correct {
++                unexpected.push(
++                    json!({"call":name,"lane":lane,"status":format!("{:?}",result.statuses[lane])}),
++                );
++            }
++            lanes.push(json!({"row":lane,"profile":indices[lane],"status":format!("{:?}",result.statuses[lane]),
++                "values":values.map(represented),"component_context":component_context(&result,lane,prototype.get_precision(),53),
++                "fallback_used":result.fallback_used[lane],"analytic_used":result.analytic_used[lane]}));
++        }
++        let call = json!({"name":name,"status":"captured","profile_indices":indices,"components":rectangular_inputs::COMPONENTS,"lanes":lanes,
++            "input_preserved_exactly":before==represented(&input.values),"diagnostics":workspace.last_diagnostics(),
++            "metadata":{"convention":result.metadata().convention(),"tensor_weights":result.metadata().tensor_weights(),"dual_shape":result.metadata().dual_shape()},
++            "execution":{"parent_input_rows":stats.parent_input_rows,"child_batch_calls":stats.child_batch_calls,
++                "packed_child_rows":stats.packed_child_rows,"parent_batch_calls":stats.parent_batch_calls,"packed_parent_rows":stats.packed_parent_rows,
++                "child_execution":execution(stats.child_execution),"parent_execution":execution(stats.parent_execution),
++                "child_certificate_execution":certificate(stats.child_certificate_execution),"parent_certificate_execution":certificate(stats.parent_certificate_execution)},
++            "child_component_observation":workspace.last_child_sensitivity_observation().cloned().unwrap_or(Value::Null),
++            "sidecar_guard_probes":result.statuses.iter().position(|status|*status==LaneStatus::Success)
++                .map(|row|context_guard_probes(&result,row,prototype.get_precision(),53))});
++        record["calls"].as_array_mut().unwrap().push(call);
++        write(output, &record)?;
++    }
++    record["status"] = json!("capture_complete_not_yet_qualified");
++    record["successful_lanes"] = json!(successes);
++    record["expected_invalid_rejections_confirmed"] = json!(invalid_rejections == 2);
++    record["intended_successes_available"] = json!(successes == 6);
++    record["unexpected_outcomes"] = json!(unexpected);
++    record["elapsed_seconds"] = json!(started.elapsed().as_secs_f64());
++    write(output, &record)?;
++    Ok(0)
++}
++
+ pub fn run() -> Result<u8, Box<dyn Error>> {
+     let args: Vec<_> = std::env::args().collect();
+     if args.len() != 4 {
+@@ -615,11 +775,9 @@
+         return Err("refusing to overwrite a capture".into());
+     }
+     match args[1].as_str() {
+-        "Float128Scale" => capture("Float128", Float::new(128), true, fixture, output),
+-        "Float256Scale" => capture("Float256", Float::new(256), true, fixture, output),
+-        "Float128Mass0" => capture_mass0("Float128", Float::new(128), fixture, output),
+-        "Float256Mass0" => capture_mass0("Float256", Float::new(256), fixture, output),
+-        _ => Err("unsupported fixed component sensitivity probe domain".into()),
++        "Float128Rectangular" => capture_rectangular("Float128", Float::new(128), fixture, output),
++        "Float256Rectangular" => capture_rectangular("Float256", Float::new(256), fixture, output),
++        _ => Err("unsupported fixed rectangular component sensitivity probe domain".into()),
+     }
+ }
+ 
+--- /dev/null
++++ b/core/crates/iregi-rust/src/rectangular_inputs.rs
+@@ -0,0 +1,276 @@
++//! Exact rectangular mass0/dilation input jets for one finite scalar N6.
++//!
++//! Parameter order is 24 Cartesian shifts, six real squared masses, then mu.
++//! The two independent variables are additive first squared mass `a` and
++//! dimensionless common dilation `b`.  Inputs are q=(1+b)q0,
++//! m_j^2=(1+b)^2 m_j0^2 + delta(j,0)*a, mu=(1+b)mu0.
++//!
++//! Symbolica generates every input component with its existing Dualizer. An
++//! independent ordinary symbolic-derivative evaluator generates the response
++//! matrix over abstract unit-power and dotted scalar values. No Taylor algebra
++//! or numeric scalar-integral evaluation is implemented in this helper.
++
++use symbolica::{
++    atom::{Atom, AtomCore},
++    domains::{
++        dual::{DualNumberStructure, HyperDual},
++        float::Complex,
++        rational::{Rational, Q},
++    },
++    evaluate::{Dualizer, ExpressionEvaluator},
++};
++
++pub const PARAMETERS: usize = 31;
++pub const COMPONENTS: usize = 4;
++pub const SHAPE: [[usize; 2]; COMPONENTS] = [[0, 0], [1, 0], [0, 1], [1, 1]];
++pub const MASS_ALIAS: &str = "iregi_validation::rectangular_mass0_a";
++pub const DILATION_ALIAS: &str = "iregi_validation::rectangular_dilation_b";
++pub const UNIT_ALIAS: &str = "iregi_validation::rectangular_abstract_unit";
++pub const DOT_ALIAS: &str = "iregi_validation::rectangular_abstract_dot0";
++
++#[derive(Clone, Debug)]
++pub struct PreparedJets {
++    /// Parameter-major, then ordered Taylor component. Length 31*4=124.
++    pub input: Vec<Rational>,
++    /// Four rows, each [unit-power scalar multiplier, dotted scalar multiplier].
++    /// Columns are distinct independently evaluated native Laurent arrays;
++    /// this helper never evaluates either integral.
++    pub expected: Vec<[Rational; 2]>,
++    /// Exactly [[0,0],[1,0],[0,1],[1,1]], separate from sample lanes.
++    pub shape: Vec<Vec<usize>>,
++}
++
++/// Ordinary symbolic differentiation and exact evaluation at a=b=unit=dot=0.
++/// Differentiating abstract unit/dot symbols extracts the two linear columns.
++/// The actual input jets use the separate vectorized Dualizer route below.
++fn response_coefficients(
++    unit_factor: Atom,
++    dot_factor: Atom,
++) -> Result<Vec<[Rational; 2]>, String> {
++    let a_symbol = symbolica::symbol!(MASS_ALIAS);
++    let b_symbol = symbolica::symbol!(DILATION_ALIAS);
++    let unit_symbol = symbolica::symbol!(UNIT_ALIAS);
++    let dot_symbol = symbolica::symbol!(DOT_ALIAS);
++    let variables = [
++        Atom::var(a_symbol),
++        Atom::var(b_symbol),
++        Atom::var(unit_symbol),
++        Atom::var(dot_symbol),
++    ];
++    let response = Atom::var(unit_symbol) * unit_factor + Atom::var(dot_symbol) * dot_factor;
++    let da = response.derivative(a_symbol);
++    let roots = [
++        response.clone(),
++        da.clone(),
++        response.derivative(b_symbol),
++        da.derivative(b_symbol),
++    ];
++    // Each represented exponent is zero or one, so every Taylor factorial is
++    // one. The [1,1] slot is an ordinary mixed derivative, without a factor1/2.
++    let derivative_roots: Vec<_> = roots
++        .iter()
++        .flat_map(|root| [root.derivative(unit_symbol), root.derivative(dot_symbol)])
++        .collect();
++    let exact: ExpressionEvaluator<Complex<Rational>> =
++        Atom::evaluator_multiple(&derivative_roots, &variables)
++            .direct_translation(true)
++            .cores(1)
++            .horner_iterations(0)
++            .build()
++            .map_err(|error| format!("expected derivative evaluator preparation: {error}"))?;
++    let mut evaluator = exact
++        .map_to_ring(&Q)
++        .map_err(|error| format!("expected rational evaluator preparation: {error}"))?;
++    let mut values = vec![Rational::from(0); COMPONENTS * 2];
++    evaluator.evaluate_in_ring(&vec![Rational::from(0); variables.len()], &mut values, &Q);
++    Ok(values
++        .chunks_exact(2)
++        .map(|row| [row[0].clone(), row[1].clone()])
++        .collect())
++}
++
++/// Prepare exact additive-mass/dilation jets with both variable seeds equal1.
++pub fn prepare(base: &[Rational]) -> Result<PreparedJets, String> {
++    if base.len() != PARAMETERS {
++        return Err(format!(
++            "expected {PARAMETERS} exact real parameters, received {}",
++            base.len()
++        ));
++    }
++    let a = Atom::var(symbolica::symbol!(MASS_ALIAS));
++    let b = Atom::var(symbolica::symbol!(DILATION_ALIAS));
++    let lambda = Atom::num(1) + &b;
++    let lambda_squared = lambda.pow(2);
++    let expressions: Vec<_> = base
++        .iter()
++        .enumerate()
++        .map(|(parameter, value)| {
++            let factor = if (24..30).contains(&parameter) {
++                &lambda_squared
++            } else {
++                &lambda
++            };
++            let scaled = Atom::num(value.clone()) * factor;
++            if parameter == 24 {
++                scaled + &a
++            } else {
++                scaled
++            }
++        })
++        .collect();
++    let variables = [a.clone(), b];
++    let shape: Vec<Vec<usize>> = SHAPE.iter().map(|component| component.to_vec()).collect();
++    let dual = HyperDual::<Complex<Rational>>::new(shape.clone());
++    let reported_shape: Vec<Vec<usize>> = dual
++        .get_shape()
++        .iter()
++        .map(|component| component.to_vec())
++        .collect();
++    if reported_shape != shape || dual.get_len() != COMPONENTS {
++        return Err("Symbolica did not preserve the complete rectangular Taylor shape".into());
++    }
++    // Inspect Symbolica's existing table instead of implementing multiplication.
++    // This is the ancestor-closed quotient modulo a^2 and b^2. Both a*b and b*a
++    // reach component3, while no pure-square component is represented.
++    let table = dual.get_multiplication_table();
++    if !table.contains(&(1, 2, 3))
++        || !table.contains(&(2, 1, 3))
++        || table.iter().any(|&(left, right, _)| {
++            (left == 1 && right == 1) || (left == 2 && right == 2)
++        })
++    {
++        return Err("Symbolica rectangular multiplication table differs from ordered shape".into());
++    }
++    let exact: ExpressionEvaluator<Complex<Rational>> =
++        Atom::evaluator_multiple(&expressions, &variables)
++            .direct_translation(true)
++            .cores(1)
++            .horner_iterations(0)
++            .build()
++            .map_err(|error| format!("input evaluator preparation: {error}"))?;
++    let mut evaluator = exact
++        .vectorize(&Dualizer::new(dual, vec![]))
++        .map_err(|error| format!("input Dualizer preparation: {error}"))?
++        .map_to_ring(&Q)
++        .map_err(|error| format!("input rational evaluator preparation: {error}"))?;
++    let mut seeds = vec![Rational::from(0); 2 * COMPONENTS];
++    seeds[1] = Rational::from(1); // additive mass a, component[1,0].
++    seeds[COMPONENTS + 2] = Rational::from(1); // dilation b, component[0,1].
++    let mut input = vec![Rational::from(0); PARAMETERS * COMPONENTS];
++    evaluator.evaluate_in_ring(&seeds, &mut input, &Q);
++    if input
++        .chunks_exact(COMPONENTS)
++        .zip(base)
++        .any(|(jet, value)| &jet[0] != value)
++    {
++        return Err("rectangular input changed a primal base parameter".into());
++    }
++
++    // In D=4 the finite unit-power scalar N6 has dimension-8. Rescaling all
++    // shifts, ordinary squared masses and mu by lambda factors the response as
++    // lambda^-8 I6(m0^2+a/lambda^2). Keeping only the first mass derivative gives
++    // lambda^-8 * unit + a*lambda^-10 * dot. This identity fixes the functions;
++    // Symbolica, rather than a literal coefficient matrix, derives all slots.
++    let expected = response_coefficients(lambda.pow(-8), a * lambda.pow(-10))?;
++    if expected.len() != COMPONENTS {
++        return Err("expected coefficient matrix has incomplete component inventory".into());
++    }
++    Ok(PreparedJets {
++        input,
++        expected,
++        shape,
++    })
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++    use symbolica::domains::integer::Integer;
++
++    fn base() -> Vec<Rational> {
++        (1..=PARAMETERS).map(|value| Rational::from(value as i64)).collect()
++    }
++
++    #[test]
++    fn rectangular_order_has_no_pure_second_derivatives() {
++        let prepared = prepare(&base()).unwrap();
++        assert_eq!(prepared.shape, vec![vec![0, 0], vec![1, 0], vec![0, 1], vec![1, 1]]);
++        assert_eq!(prepared.input.len(), PARAMETERS * COMPONENTS);
++        assert_eq!(prepared.expected.len(), COMPONENTS);
++        assert!(!prepared.shape.contains(&vec![2, 0]));
++        assert!(!prepared.shape.contains(&vec![0, 2]));
++    }
++
++    #[test]
++    fn additive_mass_is_independent_of_common_dilation() {
++        let values = base();
++        let prepared = prepare(&values).unwrap();
++        for (parameter, jet) in prepared.input.chunks_exact(COMPONENTS).enumerate() {
++            assert_eq!(jet[0], values[parameter]);
++            assert_eq!(jet[1], Rational::from(i64::from(parameter == 24)));
++            let slope = if (24..30).contains(&parameter) { 2 } else { 1 };
++            assert_eq!(jet[2], values[parameter].clone() * Rational::from(slope));
++            // A co-scaled additive perturbation lambda^2*(m0^2+a) would have
++            // a nonzero mixed input, so this catches that different direction.
++            assert_eq!(jet[3], Rational::from(0));
++        }
++    }
++
++    #[test]
++    fn symbolic_response_matches_independent_homogeneity_identity() {
++        let matrix = prepare(&base()).unwrap().expected;
++        // Analytic identity checks only. Production coefficients above are
++        // generated by ordinary Symbolica derivatives, never this test data.
++        assert_eq!(matrix[0][0], Rational::from(1));
++        assert_eq!(matrix[0][1], Rational::from(0));
++        assert_eq!(matrix[1][0], Rational::from(0));
++        assert_eq!(matrix[1][1], Rational::from(1));
++        assert_eq!(matrix[2][0], Rational::from(-8));
++        assert_eq!(matrix[2][1], Rational::from(0));
++        assert_eq!(matrix[3][0], Rational::from(0));
++        assert_eq!(matrix[3][1], Rational::from(-10));
++    }
++
++    #[test]
++    fn mixed_response_distinguishes_additive_from_coscaled_mass() {
++        let actual = prepare(&base()).unwrap().expected;
++        let a = Atom::var(symbolica::symbol!(MASS_ALIAS));
++        let b = Atom::var(symbolica::symbol!(DILATION_ALIAS));
++        let lambda = Atom::num(1) + b;
++        // Deliberately different direction m0^2=lambda^2*(m0_base^2+a),
++        // independently differentiated by the same ordinary Symbolica API.
++        let co_scaled = response_coefficients(lambda.pow(-8), a * lambda.pow(-8)).unwrap();
++        assert_eq!(actual[1], co_scaled[1]);
++        assert_eq!(co_scaled[3][1], Rational::from(-8));
++        assert_eq!(actual[3][1], Rational::from(-10));
++        assert_ne!(actual[3], co_scaled[3]);
++    }
++
++    #[test]
++    fn exact_base_beyond_binary64_keeps_unit_direction_seeds() {
++        let exact = Rational::from((
++            Integer::from(1_152_921_504_606_846_977_i64),
++            Integer::from(1_152_921_504_606_846_976_i64),
++        ));
++        assert_ne!(exact, Rational::from(1));
++        let mut values = base();
++        for parameter in [5, 24, 30] {
++            values[parameter] = exact.clone();
++        }
++        let prepared = prepare(&values).unwrap();
++        for parameter in [5, 24, 30] {
++            assert_eq!(prepared.input[parameter * COMPONENTS], exact);
++        }
++        assert_eq!(prepared.input[24 * COMPONENTS + 1], Rational::from(1));
++        assert_eq!(prepared.input[5 * COMPONENTS + 2], exact);
++        assert_eq!(prepared.expected, prepare(&base()).unwrap().expected);
++    }
++
++    #[test]
++    fn rejects_incomplete_or_extra_base_parameters() {
++        assert!(prepare(&base()[..PARAMETERS - 1]).is_err());
++        let mut extra = base();
++        extra.push(Rational::from(0));
++        assert!(prepare(&extra).is_err());
++    }
++}

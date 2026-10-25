@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "status": "passed_private_narrow_full_component_correctness_cohort_pending_independent_saved_audit",
+  "created_utc": "2026-10-25T13:45:52.782107+00:00",
+  "protocol": {
+    "path": "target/highpoint-dual-sensitivity/numerical-v1/protocol.json",
+    "sha256": "36c9555660757cc064d7987590d3414809a5805ea65fedca0907f88c02674410"
+  },
+  "grant_sha256": "df2c80d5095aa317377093f78880d883b93802b8ef6ab14121a0a82fd2a86de3",
+  "source_manifest_sha256": "dfd61c594979b41057d3ef745eab60cf96ffb5b86fbd1c8aa97828da673ca045",
+  "stages": [
+    {
+      "operation": "build",
+      "receipt": "target/highpoint-dual-sensitivity/numerical-v1/build-001/build.json",
+      "sha256": "9d011e08855eac402c9defc5487b417f3a9f5d6f0f97d315fea18129ad406854",
+      "status": "passed",
+      "elapsed_seconds": 58.56124181300402,
+      "owned_process_groups": [
+        1927379,
+        1937849
+      ],
+      "all_groups_terminal_absent": true,
+      "inputs_unchanged": true
+    },
+    {
+      "operation": "Float128Mass0",
+      "receipt": "target/highpoint-dual-sensitivity/numerical-v1/runtime-Float128Mass0-001/run.json",
+      "sha256": "7cba0e8fa77c97e51b4351e4d4068bdebed023004b38fb190d115b9cfb701657",
+      "status": "passed",
+      "elapsed_seconds": 118.45882500894368,
+      "owned_process_groups": [
+        1986773
+      ],
+      "all_groups_terminal_absent": true,
+      "inputs_unchanged": true
+    },
+    {
+      "operation": "Float256Mass0",
+      "receipt": "target/highpoint-dual-sensitivity/numerical-v1/runtime-Float256Mass0-001/run.json",
+      "sha256": "1c4688db0f13ceba1652f3c4f4e2e737d3ef0acc1aa122271925748625df51b2",
+      "status": "passed",
+      "elapsed_seconds": 123.66982123907655,
+      "owned_process_groups": [
+        2146178
+      ],
+      "all_groups_terminal_absent": true,
+      "inputs_unchanged": true
+    },
+    {
+      "operation": "Float128Scale",
+      "receipt": "target/highpoint-dual-sensitivity/numerical-v1/runtime-Float128Scale-001/run.json",
+      "sha256": "90445895b196f3c596263a6e453c695cf6aa22fb0f03232781caa403417dd5e5",
+      "status": "passed",
+      "elapsed_seconds": 263.82160870404914,
+      "owned_process_groups": [
+        2316441
+      ],
+      "all_groups_terminal_absent": true,
+      "inputs_unchanged": true
+    },
+    {
+      "operation": "Float256Scale",
+      "receipt": "target/highpoint-dual-sensitivity/numerical-v1/runtime-Float256Scale-001/run.json",
+      "sha256": "1bd33b26021da794ed09f6aac84935a1bdc0ca2cfafc633f4ab7e965aea8c56c",
+      "status": "passed",
+      "elapsed_seconds": 372.59365398506634,
+      "owned_process_groups": [
+        2479594
+      ],
+      "all_groups_terminal_absent": true,
+      "inputs_unchanged": true
+    },
+    {
+      "operation": "saved-gate",
+      "receipt": "target/highpoint-dual-sensitivity/numerical-v1/saved-gate-001/run.json",
+      "sha256": "0322c7a4ab1d5ff6175a7eb54b0c920f8208d80ffb77f687f7ae6f8324e6c226",
+      "status": "passed",
+      "elapsed_seconds": 14.225728738005273,
+      "owned_process_groups": [
+        2709233
+      ],
+      "all_groups_terminal_absent": true,
+      "inputs_unchanged": true
+    }
+  ],
+  "saved_comparison": {
+    "path": "target/highpoint-dual-sensitivity/numerical-v1/saved-gate-001/comparison.json",
+    "sha256": "bcd751217d117a2dbca29b37ca787be5ddc1e9a6b8c3459a2d5107e37f5f59fc",
+    "status": "passed_saved_numerical_gates_only"
+  },
+  "parent_complex_laurent_taylor_slots": 528,
+  "child_rows": 156,
+  "paired_complex_components": 264,
+  "paired_max_normalized_error": "5.277961863410644250957962576533334929076587527506337722181523003122847333381395437866986956399643694823920244846948149808812350359208218563948910120491456240616858238419368940645642678746422953617348962998013734612082166E-34",
+  "domains": {
+    "Float128Mass0": {
+      "passed": true,
+      "coverage": {
+        "calls": 3,
+        "child_rows": 18,
+        "complex_output_slots": 24,
+        "empty_calls": 1,
+        "expected_calls": 3,
+        "expected_child_rows": 18,
+        "expected_complex_output_slots": 24,
+        "expected_invalid_rejections": 1,
+        "expected_successes": 3,
+        "invalid_rejections": 1,
+        "successful_lanes": 3
+      },
+      "target_max_normalized_error": {
+        "generic_IBP_unit": "3.555440351829826990364892127505843311399979579508839650001702879085806430176073392601311295520547828389147947585233066235738352503827393708929542694877143380595281957800198430229067713098288920156035337737787958812851402E-37",
+        "independent_generic_IBP_dot0": "6.824820794318307330053837726501666660851250753819866611536366682312442364309171222279796726311540354675680986970847409704610533161798713095520315003054393357414288816669561029247269563538475733421937153134422089641639385E-34",
+        "original_IREGI_dot0_general": "1.174217292376917541240987838320941788889846102473504443377774814916199159529403502483118386311528404719595388408741988123681556328369903269981040929933088421282587062845818374037681800709369688194427887664640494718282899E-13",
+        "original_IREGI_dot0_scalar": "1.174217292376917541240987838320941788889846102473504443377774814916199159529403502483118386311528404719595388408741988123681556328369903269981040929933088421282587062845818374037681800709369688194427887664640494718282899E-13",
+        "same_profile_first_available": "0",
+        "untouched_original_IBP_primal": "8.174807886595464830235800181672702927745819287824343685571205844140131650454961574182048613303633859273870392166746025797965011426019474406694407356891234326780302552222670347132726529781124159280650574641553017776286294E-14"
+      }
+    },
+    "Float128Scale": {
+      "passed": true,
+      "coverage": {
+        "calls": 5,
+        "child_rows": 60,
+        "complex_output_slots": 240,
+        "empty_calls": 1,
+        "expected_calls": 5,
+        "expected_child_rows": 60,
+        "expected_complex_output_slots": 240,
+        "expected_invalid_rejections": 2,
+        "expected_successes": 10,
+        "invalid_rejections": 2,
+        "successful_lanes": 10
+      },
+      "target_max_normalized_error": {
+        "generic_IBP_unit_times_Symbolica_homogeneity": "1.171804790874804507077065690495513766534806404743256003058008129786443124979585667943136251822399899838805204758928519573107928712070370381174089551727303336806641878705179805560701488031472638078879835059930017962945327E-35",
+        "same_profile_first_available": "0",
+        "untouched_original_IBP_primal": "8.174807886595464830235800181672702927745819287824343685571205844140131650454961574182048613303633859273870392166746025797965011426019474406694407356891234326780302552222670347132726529781124159280650574641553017776286294E-14"
+      }
+    },
+    "Float256Mass0": {
+      "passed": true,
+      "coverage": {
+        "calls": 3,
+        "child_rows": 18,
+        "complex_output_slots": 24,
+        "empty_calls": 1,
+        "expected_calls": 3,
+        "expected_child_rows": 18,
+        "expected_complex_output_slots": 24,
+        "expected_invalid_rejections": 1,
+        "expected_successes": 3,
+        "invalid_rejections": 1,
+        "successful_lanes": 3
+      },
+      "target_max_normalized_error": {
+        "generic_IBP_unit": "0",
+        "independent_generic_IBP_dot0": "4.706018982461443455879874009182526206748695921415130410585465337223678820161488982070204011537800222936029695132285037204111081972992942417529513228806194362157078534314555969327739414691363332182263163983964908571423568E-74",
+        "original_IREGI_dot0_general": "1.174217292376917541245124268168922710086257772556395881274434906920885106621626722419710073655217013829680470660778104154371711751158875736528178786320878179301013922198188412576275835178166340111708611777717269304891461E-13",
+        "original_IREGI_dot0_scalar": "1.174217292376917541245124268168922710086257772556395881274434906920885106621626722419710073655217013829680470660778104154371711751158875736528178786320878179301013922198188412576275835178166340111708611777717269304891461E-13",
+        "same_profile_first_available": "0",
+        "untouched_original_IBP_primal": "8.174807886595464830229127244956190696643001533967927248849586466426743046168743800319506050642759379688136818588641474871662889822131727231705096855480509387410836421981302787524226351288218544515096738355728466717813023E-14"
+      }
+    },
+    "Float256Scale": {
+      "passed": true,
+      "coverage": {
+        "calls": 5,
+        "child_rows": 60,
+        "complex_output_slots": 240,
+        "empty_calls": 1,
+        "expected_calls": 5,
+        "expected_child_rows": 60,
+        "expected_complex_output_slots": 240,
+        "expected_invalid_rejections": 2,
+        "expected_successes": 10,
+        "invalid_rejections": 2,
+        "successful_lanes": 10
+      },
+      "target_max_normalized_error": {
+        "generic_IBP_unit_times_Symbolica_homogeneity": "5.025295653039135417288411168483069253929545800183774752985673696880975380830394473269174339646391776645264015462461219076783372777059529158759903157825209628403804067546962563921431415396718003208791429811176866976836333E-74",
+        "same_profile_first_available": "0",
+        "untouched_original_IBP_primal": "8.174807886595464830229127244956190696643001533967927248849586466426743046168743800319506050642759379688136818588641474871662889822131727231705096855480509387410836421981302787524226351288218544515096738355728466717813023E-14"
+      }
+    }
+  },
+  "limitations": [
+    "Private N6 rank0 unit-power Euclidean fixture only; two-component independent first mass-squared derivative and six-component coherent-dilation controls.",
+    "Full-component value/precision/signed-zero/route/guard transport is checked, not a rigorous achieved-error enclosure.",
+    "Six-scale jets are one physical direction, not general independent higher/mixed mass or shift derivatives.",
+    "Independent saved audit is still pending; no finite differences, public highpoint Dual promotion, E6 quadrature uncertainty, or performance claim.",
+    "New predeclared correctness budgets; preserve old180-second cache-pilot partial captures/timeouts."
+  ]
+}

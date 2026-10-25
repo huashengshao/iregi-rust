@@ -1,0 +1,11 @@
+# Rejected COLI N6/rank7 diagnostic
+
+The one finite COLI-mode1 N6/rank7 CHECK request completed, with fresh driver-only linking, exact first-six ec27 fixture inputs at mu3, all28 Fortran modules protected and all source/artifact guards passing. Both owned compiler/native process groups are gone. The request invokes five public tensor calls including UV/IR parameter probes. No COLLIER or IREGI library was rebuilt.
+
+The numerical lane is rejected: native error flag0 and accuracy flag−2. Its accepted moments remain null. All330×4 diagnostic positions are preserved, including315 null/missing coefficients. At the unchanged dimensionally normalized1e-10 gate, each comparison with TIRust256 and the three original IREGI modes fails316 positions:315 missing values and one finite mismatch. The independent audit also compares the independently admitted stable quad-original IBP array, with316 failures. Original PV remains a native-unstable diagnostic comparand.
+
+All three pole-parameter probes report HUGE sentinels and fail. The separate zero count for available Laurent pole residues does **not** mean those probes pass. These rejected/incomplete diagnostics cannot qualify a rank-seven reference or adjudicate the earlier90-slot original-double discrepancy. No performance claim follows from the supervised correctness durations.
+
+The initial finite-v1 build invocation failed its PATH environment preflight before hashing or compiler entry. Its receipt and launch contract remain unchanged. A separately reviewed finite-v2 namespace restores the exact declared environment before tasksetCPU28 and completes the unchanged60/15/40 link,180/30/120 capture and120/15 saved comparison. There was no native-integral retry or tolerance change.
+
+`stdout.log` preserves raw status and diagnostics; `comparison.json` preserves every missing/mismatching location; `independent-saved-review.json` reconstructs all1320 positions without importing the producer comparator. `evidence.tar.gz` retains exact repository-relative source/protocol/grant/launch/log evidence and the additive quad-reference audit. Binaries and dependency caches are excluded and remain hash references; complete transitive native/compiler/system-link provenance is not inferred. Packaging runs no compiler, reference or numerical comparator.

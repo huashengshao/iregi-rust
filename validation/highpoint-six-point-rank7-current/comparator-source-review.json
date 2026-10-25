@@ -1,0 +1,34 @@
+{
+  "status": "passed-independent-comparator-source-review",
+  "reviewer": "/root/dual_sensitivity_research",
+  "comparator_sha256": "d5cad6644afd6abf12ae4ff003fb56d5e96e9ddd3fc395147c580ff934cb5104",
+  "scope": "Saved complete current-Cargo N6 rank7 Float128/256 arrays against actual original quad IBP, plus saved represented-rational precision convergence; no reducer/reference/producer executed by review.",
+  "reference_recipe_sha256": "70183c97f533945de3af3a951fb90e052a33ebeccbc0430d70d105ab61f3b75b",
+  "reference_request_sha256": "dc33722c2f7272e61f2cb8b31fbb16873e36b56bb87a102bc2120a047912ed79",
+  "reference_stdout_sha256": "2d3066f86365580c9c0a6a544e5dd4c1af7fed8c7ea08763d37766cbca7b881d",
+  "reference_shape_checked": [
+    330,
+    4,
+    2
+  ],
+  "exact_fixture_mapping": "Request header N6 rank7 h0 IBP,mu3; all24 shifts+6 complex squared masses+scale independently match both candidate exact input rows; unit powers and native raw candidate settings checked explicitly.",
+  "captures": {
+    "128": {
+      "result_sha256": "bf229bc48f08ec58b0a996e6d3a25ad6502b2db4f55e8e1ab68444fe16d7bc4d",
+      "moments": 330
+    },
+    "256": {
+      "result_sha256": "7eefc360d40cf313854eec63de8cc614ecf2b13e4989f36a3fee8516eda045f7",
+      "moments": 330
+    }
+  },
+  "mathematics": "Exact Fraction squared Euclidean complex error / max(unit^2, |reference|^2), unit=2^(rank-8), gate 1e-10; this fixed fixture has characteristic mass2. All330x4 complex slots in each type, all1320 precision pairs at2^-80. Decimal100sqrt only display, not pass decision. Odd signs/order native and unchanged. Successful/stable/source and packing gates explicit.",
+  "limits": [
+    "Comparator does not qualify lifecycle/contractions/performance/complete goal.",
+    "It does not independently validate per-output precision or signed-zero metadata; generic driver must retain/check those separately.",
+    "Hash provenance is emitted rather than hard-coded; root and saved-audit capsule must bind comparator/recipe/reference/captures.",
+    "For defensive reuse outside bound data, check expected complex tuple lengths explicitly; actual retained source response was independently confirmed330x4x2 here."
+  ],
+  "blocking_findings": [],
+  "execution_authorized_by_review": false
+}

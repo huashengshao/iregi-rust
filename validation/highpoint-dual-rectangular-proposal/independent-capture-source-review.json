@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "status": "passed-independent-capture-source-review-only",
+  "reviewer": "/root/dual_sensitivity_research/numeric_comparator/source_audit",
+  "scope": "Independent scrutiny of isolated rectangular capture implementation and exact source delta; no compiler, evaluator, test, integral or dependency bulk hashing.",
+  "bindings": {
+    "target/highpoint-dual-sensitivity/rectangular-v1/source-v1.json": "700c8fccc3cfa976116068bb0fac24426c68e72f112af596dae915765ef7aa6b",
+    "target/highpoint-dual-sensitivity/numerical-v1/source-v2.json": "dfd61c594979b41057d3ef745eab60cf96ffb5b86fbd1c8aa97828da673ca045",
+    "target/highpoint-dual-sensitivity/rectangular-v1/rectangular-capture-v1.patch": "fd3237d1ff0563a4bc2d7b5a02184525f4fb9b21743ced229fbcd64ffdd36e05",
+    "target/highpoint-dual-sensitivity/numerical-v1/qualification-summary.json": "fd236533883fb3219e72f667219eee474bc8d1920f21eb6a1b1c5e450f340386",
+    "target/highpoint-dual-sensitivity/rectangular-v1/helper-source-review.json": "fd461602c04ff8d4a0771f351b3362e97d75c54a1c30e51701d52b1066eeeb39",
+    "target/highpoint-dual-sensitivity/rectangular-v1/helper-source-review-note-supplement.json": "de699fc1c1e81246c5bbca73332ea228c701e937da3366b68d1e02fbf4fbdbfa",
+    "target/highpoint-dual-sensitivity/rectangular-v1/RESEARCH.md": "f04657cbf7ed93304f2285608dfe16db977a7c023101323e4883e1397146d748",
+    "target/highpoint-dual-sensitivity/numerical-v1/source-v2/core/crates/iregi-rust/src/highpoint_component_probe.rs": "9bf19d74357b5520ce5c3455d1f5619101cf8c281d8f300cec7acdfad466dfdf",
+    "target/highpoint-dual-sensitivity/rectangular-v1/source-v1/core/crates/iregi-rust/src/highpoint_component_probe.rs": "c0e283d07166ce9ee743e10aea08101b5f3967c57d702cf00af6527c0d86a0c9",
+    "target/highpoint-dual-sensitivity/rectangular-v1/source-v1/core/crates/iregi-rust/src/rectangular_inputs.rs": "84c6230f8a8e41383ade760264596f61365e9d3661f95bf86279ce96c6560aa5",
+    "target/highpoint-dual-sensitivity/rectangular-v1/source-v1/core/crates/iregi-rust/src/thin_n6.rs": "db8e6617dabd5134f521f2a5b92856c2e485b014c7034306701ca5a64e52c9de",
+    "target/highpoint-dual-sensitivity/rectangular-v1/source-v1/core/crates/iregi-rust/src/lib.rs": "db1e68dcd6337d5bd48f39223b11e369230edd64db9a61b86225b0880dbf2177",
+    "target/highpoint-dual-sensitivity/rectangular-v1/source-v1/main.rs": "97d8d759ad7a10c43eb3c4ca4d71a986481c6e4a41d85e56b78e79372a181de0"
+  },
+  "manifest_files": 93,
+  "manifest_changed_or_added_files": [
+    "core/crates/iregi-rust/src/highpoint_component_probe.rs",
+    "core/crates/iregi-rust/src/rectangular_inputs.rs"
+  ],
+  "unchanged_source_manifest_entries": 91,
+  "inherited_probe_byte_equality_after_removing_only_rectangular_module_function_and_dispatch_delta": true,
+  "blocking_findings": [],
+  "checked": [
+    "Exact manifest inventory is93 entries, delta from numerical-v1/source-v2 is only the capture module plus new rectangular helper; other91 entries retain identical digest/size metadata.",
+    "Frozen helper digest matches independently reviewed84c6230f source; source-v1, patch, actual parent qualification summary and both helper review artifacts are bound.",
+    "New module path mirrors the existing jet helper path and remains cfg-contained in the private capture module. Existing thin-N6 post-layout hook still calls the same observe_children function before parent import.",
+    "PreparedJets field moves input then shape are legal for a non-Drop Rust struct; remaining expected field is borrowed directly afterward without accessing the whole partially moved struct.",
+    "31 parameters times4components gives124 exact represented inputs. Rational-to-native conversion is verified by exact-rational roundtrip at both admitted Float128/256 domains.",
+    "Invalid control zeros exactly mu primal at index30*4=120 while retaining every other primal/derivative component; preserve-input observations serialize full native value/precision/sign metadata.",
+    "Shape00,10,01,11 has no pure20or02 slot. Inputs use additive mass0 a and independent dilation b; symbolic expected matrix represents lambda^-8*unit+a*lambda^-10*dot0, not co-scaled additive mass.",
+    "Five fixed calls singleton,mixed,reordered,empty,singleton-again contain6 positive rows and2 invalid rows. Empty call still captures counters/diagnostics, no successful sidecar probe.",
+    "Every lane captures all returned Laurent/Taylor components, fallback and analytic flags, raw and validated context plus route metadata; component_context and observe_children inherited byte-identical.",
+    "All child observations are taken only after complete layout validation; subset-major packing and invalid-row exclusion remain unchanged in thin_n6. All successful parent sidecar guards loop over16 complex slots and demand4*16+4=68 mutation checks.",
+    "Plan, workspace, accuracy-configuration and batch-returned errors are checkpointed as explicit failure JSON with elapsed time and nonzero exit. Every completed call and final summary is written separately.",
+    "Earlier four-domain cohort source functions and artifacts are unchanged; this private executable dispatch intentionally admits only the new two rectangular domain names.",
+    "No custom algebra, Taylor arithmetic or numerical scalar target calculation is introduced by the capture overlay."
+  ],
+  "limitations_and_nonblocking_findings": [
+    "Inherited write helper uses std::fs::write: saved JSON is available after a completed write but no fsync/sync_all or atomic rename provides power-loss durability. Future lifecycle runner must preserve partial/missing files and stderr.",
+    "Base-input parsing, Symbolica helper preparation and exact conversion precede initial capture JSON; failures there return stderr/exit2 without a result JSON. These must be retained as failed captures by the future runner.",
+    "The source limits string still identifies this as a source-only proposal. Any eventual runtime qualification must be carried by separate evidence, not inferred from the driver returning exit0.",
+    "No actual typecheck, six helper tests, integral results, all-Laurent reference comparisons,128/256 convergence, finite differences or runtime process lifecycle has been executed by this reviewer.",
+    "No pure second additive-mass jet is requested; the represented mixed physical derivative can contain higher internal chain-rule derivatives, which Symbolica handles. This review does not claim arbitrary second mass derivatives are qualified.",
+    "No public Dual promotion, E6 backend uncertainty transport, rigorous derivative enclosure, current-Cargo or performance qualification is implied."
+  ],
+  "source_only": true,
+  "runtime_execution_authorized": false,
+  "public_promotion": false,
+  "performance_claim": false
+}

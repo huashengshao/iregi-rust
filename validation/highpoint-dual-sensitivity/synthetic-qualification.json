@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "status": "private_core_build_and_19_synthetic_regressions_passed",
+  "qualified_domain": "Actual frozen89-file private core fork of88-filecachecandidate; opt-in fullcomponent amplitudes through private thinN6. No numerical integral qualification.",
+  "bound_documents": {
+    "source-v3.json": "a0ae4b8190091e4f25530d9f5f47b68d0463ab404e45b2b542878f169b8a23c8",
+    "component-sensitivity-v3.patch": "aec0419b4de081d9add943174d543b8d9da8c601ca954c46f2f0874183dbd2b2",
+    "independent-source-review-v3.json": "1ee4df66c11f9b4121442adefa0a99c19a4cea82579f786d116c301f650eacb3",
+    "qualification-draft.json": "7bc93e9533703054c0e785ad69b75d972d43ff4594399e4248890860e2ae2cb9",
+    "qualification-runner-review.json": "9b429c66f6dcac536ee580542e9e0dbd6a19730926538fd80be6c598b93694a5",
+    "qualification-protocol.json": "7fcd859b2a5b6381c099f4b8989847efa921ef7039a4836b733f27f284647271",
+    "execution-release.json": "f5d73c74dab2ad7b5e0dbc3ebc0ae4cd38d05e12c2f64dd1bae2fee9746fe5a8",
+    "build-001/build.json": "75913a4b6da8a32245de639cb234c21ecb2f6c8301fbe3c5649a2b3dc6ea6633",
+    "tests-001/tests.json": "1c01b2ebf28ac51d8073e6546024ea10d856e39a50a986c0222d8becd163f5b8",
+    "source-v1.json": "65529f432fbcf38ebb12c0b4adcbd4e2ac1a5a9afbc32e6aab3ed70088ee7ce0",
+    "source-v2.json": "fdaa02e981858fec199d777641739fd1ba09f94358e39bdca9ffe5b4d0a65b11",
+    "independent-source-review-v1.json": "ceab7f22e3038416cf894ac3c330e17efe220e2789a6278e3061d5ec7bcd16f5",
+    "independent-source-review-v2.json": "d281dcb600883d5d21e5ba30b09c88133bf2140aece42d45b2ae9bd57fba29c1"
+  },
+  "source_files": 89,
+  "changed_source_files": [
+    "crates/iregi-rust/src/execution.rs",
+    "crates/iregi-rust/src/stability/components.rs",
+    "crates/iregi-rust/src/stability.rs",
+    "crates/iregi-rust/src/thin_n6.rs",
+    "crates/iregi-rust/src/types.rs"
+  ],
+  "source_new_tests": 11,
+  "compile": {
+    "status": "passed",
+    "steps": 2,
+    "seconds": 68.97430057299789,
+    "inclusive_bound_seconds": 180,
+    "reserved_postwork_seconds": 20,
+    "cpu_affinity": [
+      24,
+      25
+    ],
+    "products": {
+      "libcomponent_candidate.rlib": "0422f94245ff56c3f0b15de2361dc083c473dbda447031068ee6240a59a870d7",
+      "component-tests": "08a323a80d7fffc213a4ab9d78eeb4c09e9dbad4f0cb34bff77c0a1c89a4e0d3"
+    }
+  },
+  "tests": {
+    "status": "passed",
+    "commands": 20,
+    "selected": 19,
+    "actual_passed": 19,
+    "failed": 0,
+    "ignored": 0,
+    "seconds": 13.047046791994944,
+    "inclusive_bound_seconds": 180,
+    "reserved_postwork_seconds": 20,
+    "cpu_affinity": [
+      26
+    ],
+    "exact_names": [
+      "stability::components::tests::earlier_alias_cancellation_and_all_mixed_products_remain_visible",
+      "stability::components::tests::imported_derivative_amplitude_survives_zero_primal_weight",
+      "stability::components::tests::complex_coefficient_magnitudes_are_not_derivatives_of_abs",
+      "stability::components::tests::signed_predicates_keep_inactive_singular_coefficient_lazy_per_lane",
+      "stability::components::tests::nonlinear_masters_and_master_dependent_predicates_are_explicitly_rejected",
+      "stability::components::tests::invalid_imported_lane_does_not_pollute_neighbor_or_next_call",
+      "stability::components::tests::exact_prepared_sensitivity_never_reinterprets_reordered_shape",
+      "stability::components::tests::full_component_guard_detects_uncertainty_that_primal_does_not_contain",
+      "types::primal_envelope_tests::full_component_context_rejects_missing_stale_and_invalid_derivative_operands",
+      "types::primal_envelope_tests::full_component_context_binds_nonprimal_float_precision",
+      "types::primal_envelope_tests::full_component_context_binds_signed_zero_in_primals_and_higher_jets",
+      "types::primal_envelope_tests::ordinary_destination_does_not_allocate_or_inspect_private_envelopes",
+      "types::primal_envelope_tests::private_envelope_scatter_preserves_every_slot_and_route",
+      "types::primal_envelope_tests::private_envelope_replacement_clears_missing_failed_and_quadrature_context",
+      "types::primal_envelope_tests::private_envelope_rejects_equal_size_different_shape_basis_and_convention",
+      "types::primal_envelope_tests::private_envelope_rejects_stale_values_sparse_maps_and_nonfinite_amplitudes",
+      "types::primal_envelope_tests::private_envelope_preserves_operand_precision_and_binds_returned_precision",
+      "thin_n6::tests::malformed_dimensions_reset_before_any_row_sized_allocation",
+      "thin_n6::tests::actual_assembly_all_slots_and_mixed_dual_sentinels"
+    ],
+    "executed_binary_sha256": "08a323a80d7fffc213a4ab9d78eeb4c09e9dbad4f0cb34bff77c0a1c89a4e0d3",
+    "outputs": {
+      "frozen-component-tests": "08a323a80d7fffc213a4ab9d78eeb4c09e9dbad4f0cb34bff77c0a1c89a4e0d3"
+    }
+  },
+  "source_scope": {
+    "native_master_archive_reused": "/shared/external/iregi/iregi-rust/target/native-f64-opt-in/qualification/observation-build-001/selective/libiregi_masters.rlib",
+    "current_cargo_build": false,
+    "public_api_or_default_promotion": false,
+    "numeric_integral_or_reference_evaluation": false,
+    "finite_differences": false,
+    "performance_benchmark": false,
+    "rigorous_error_certificate": false,
+    "main_source_edits_for_prototype": false
+  },
+  "lifecycle": {
+    "all_owned_groups_terminal": true,
+    "owned_groups": [
+      3488620,
+      3498684,
+      3723542,
+      3723581,
+      3723597,
+      3723629,
+      3723657,
+      3723662,
+      3723673,
+      3723687,
+      3723704,
+      3723728,
+      3723756,
+      3723768,
+      3723777,
+      3723815,
+      3723820,
+      3723836,
+      3723844,
+      3723859,
+      3723878,
+      3725199
+    ],
+    "postguard_inputs_unchanged": true,
+    "cleanup_errors": []
+  },
+  "limitations": [
+    "Private captured-artifact build, not actual currentCargo/fullfeature/whole-suite qualification.",
+    "Synthetic exact-integer/complex coefficient, alias cancellation, lazybranch, mixedjet, fullsnapshot and structural assembly tests; no physical highpoint Dual integral.",
+    "Numerical N6 higher/mixed jets, independent mass/shift identities and precision-refined finite differences remain required before any publicDual exposure.",
+    "E6 quadrature-error transport remains unsupported; no false zero backend error inserted.",
+    "Coefficient/internalroundoff and underflow model is heuristic; no certified interval claim.",
+    "Unused ordinary multi-component exact preparation still clones recipe graphhandles; no performance measured.",
+    "V1 signedzero and fixture-size source defects, V2 fixture-size defects retained; V3 independently reviewed repairs."
+  ]
+}
