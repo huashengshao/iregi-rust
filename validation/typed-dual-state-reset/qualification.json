@@ -1,0 +1,31 @@
+{
+  "status": "passed-targeted-public-typed-Dual-observation-reset",
+  "production_scope": "Workspace::reduce_dual_batch clears last_execution, last_profile and last_diagnostics before any typed preflight return; preserves requested input_rows without arithmetic. Existing certificate reset retained.",
+  "production_files": [
+    "crates/iregi-rust/src/execution.rs"
+  ],
+  "test_files": [
+    "crates/iregi-rust/tests/typed_dual_state_reset.rs"
+  ],
+  "tests": [
+    "typed_errors_clear_real_bubble_work_and_legacy_boundary_diagnostics",
+    "genuine_mass_dual_recovers_after_malformed_typed_length_and_shape"
+  ],
+  "final_build_receipt": "target/typed-dual-reset-proposal/build-003/receipt.json",
+  "final_test_receipt": "target/typed-dual-reset-proposal/tests-003/receipt.json",
+  "successful_build_seconds": 18.064700203947723,
+  "successful_tests_seconds": 15.363542748964392,
+  "preserved_failures": {
+    "build-001": "test called crate-private certificate accessor; compile-only failure, no tests ran",
+    "tests-002": "zero-threshold fixture had no active branch message; replaced with existing threshold1/4 boundary fixture without relaxing assertion"
+  },
+  "intermediate_build": "build-002 passed; tests-002 failed the fixture-specific diagnostic assertion",
+  "new_algebra": false,
+  "performance_claim": false,
+  "rank7_or_general_Dual_qualification": false,
+  "limits": [
+    "Captured Cargo source/lock/manifests and core/master source hashes are exact; no complete dependency archive/environment closure is claimed.",
+    "Compiled test binaries omitted from portable payload; actual binary hashes, Cargo artifact events and saved owned-process cleanup receipts retained.",
+    "Historical proposal.json is intentionally source-only/pre-authorization; this qualification and terminal receipts describe actual later execution."
+  ]
+}
