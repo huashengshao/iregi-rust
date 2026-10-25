@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "status": "source-only-lease-log-v2-hardening-complete-pending-independent-successor-review",
+  "author": "/root/scheduler_perf_resume/deps_recipe_review",
+  "source_manifest_sha256": "873491ac84dc3d594c5b766ae0e6f2b1eb218ed7c0b6587920d91c7a48d2b5c4",
+  "preserved_old21_file_manifest_sha256": "482687cd5665800b718edf8ee7f30897c54dfc3bbdca86b0a5b0f899b7a0613b",
+  "prior_source_manifest_sha256": "c9323c479d8ae066bd8cf7c7b550169db8c588663c980f1e7b810d40e4b725b0",
+  "prior_source_review_sha256": "36e7ad1584bdb24659175a4d351216ee5cf5b363903a157207c99962df1ff281",
+  "exact_source_deltas": {
+    "common.py": "Pure validate_quiet_grant checks exact unique run_id, absolute attempt_directory, one_shot=true, nonempty root_authority plus existing source/CPU/lease/budget fields.",
+    "prepare.py": "Record run_id and validate same actual immutable grant before writing actual protocol.",
+    "run.py": "Validate same one-shot grant before process launch and record run_id; existing mkdir(exist_ok=False) rejects used attempt.",
+    "analyze.py": "Validate same grant and actual CLI attempt directory/run_id; require exact six-label stdout/stderr inventories and directly rehash all twelve saved regular logs.",
+    "test_sources.py": "Finite in-memory lease mocks and temporary non-executable log fixtures, plus prior source-only mocks; no real grant or performance data."
+  },
+  "metadata_deltas": [
+    "protocol-template.json one-shot resource fields",
+    "README root lease and log custody descriptions",
+    "source-manifest.json successor binding",
+    "exact five source patches"
+  ],
+  "unchanged_files_sha256": {
+    "interactive.py": "4312b1d2ae966b40b2a8e57034b08ae9dd7459ff98ee01681a6134d1ecc8f41d",
+    "admission.py": "a01ece532cb9367b6011f6e8bfafb1f1437c5e56ad9b612bc71e5ec4581bb4a1",
+    "captured_admission.py": "338284647acae2115a5be3501911500cf0c9eee26e7f03429933f13477329d7d",
+    "reference_admission.py": "9ed7b456975febb3a8ca93475cf1cd5b3ccb70b8bfd6a1398a38869941d8c219",
+    "wrapper_adapters.py": "f77970c7ec7ef54baccb7c3d1fde235469adb711d3f77bb6b7c3614b17d55a28",
+    "projection.py": "dd6b4d56d75d230608d5bc60503462cd070a6d47c1253428347ff3f51abf9173",
+    "lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "control-shapes.json": "d656aaa8af9ae1ff549cc1c8e0b278bf5f816b574b52faa12da96a072ca06cb2",
+    "source-origins.json": "3bc7f4f53891ceb5f887a30484a59e9e38ad479ac6d44518dda9a666228273eb",
+    "historical-comparison-origins.json": "b56e807f05a38c2e9c970b2932da5e248fde4fc6d687526c695c0e65ac7b385d",
+    "source-review.json": "36e7ad1584bdb24659175a4d351216ee5cf5b363903a157207c99962df1ff281"
+  },
+  "mathematical_reduction_or_reference_normalization_changed": false,
+  "request_statistics_or_cohort_policy_changed": false,
+  "fixed_bounds": {
+    "preflight": [
+      180,
+      20
+    ],
+    "timing": [
+      900,
+      30
+    ]
+  },
+  "hash_circularity_resolution": "Unique attempt/run ID/source/CPU/budget is inside actual root grant. Preparer binds grant bytes; external independent generated-protocol SHA review follows. No protocol hash inside grant.",
+  "mock_tests_receipt_sha256": "aa371467e9fbf2e6d44202e8ee5142782bb28e26963af0090d9f86e605f50bf7",
+  "mock_negative_cases": {
+    "one_shot_lease": 8,
+    "saved_log_custody": 5
+  },
+  "actual_protocol_prepared": false,
+  "root_resource_or_quiet_grant_created": false,
+  "compiler_probe_numerical_or_timing_executed": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

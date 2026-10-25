@@ -1,0 +1,15 @@
+warning: unused `Result` that must be used
+   --> /shared/external/iregi/iregi-rust/target/guard-performance-review/dependent-relink-qualification/source/baseline/symbolica/src/atom.rs:776:9
+    |
+776 |         self.export(&mut data);
+    |         ^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: this `Result` may be an `Err` variant, which should be handled
+    = note: `#[warn(unused_must_use)]` (part of `#[warn(unused)]`) on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+776 |         let _ = self.export(&mut data);
+    |         +++++++
+
+warning: 1 warning emitted
+

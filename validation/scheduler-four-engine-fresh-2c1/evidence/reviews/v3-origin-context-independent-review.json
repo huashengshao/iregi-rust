@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/scheduler_perf_resume/fresh_recipe_audit",
+  "created_utc": "2026-10-25T11:15:34.419532+00:00",
+  "status": "cleared_origin_decoupling_for_unchanged_bounded_build_only",
+  "protocol_sha256": "6100e81c0ca46880003a26d222807ef14e4349d7aca579cff059f23a5854aa74",
+  "previous_reviewed_protocol_sha256": "32166bee3cb21e6cd7c1536766f940c78a54ee102ad065657c3c7395d974d19a",
+  "previous_review_sha256": "22fba4d03e356ba3c62322fc21e19fa2f35d16f6183f6f3d297a6cbd1e3464ff",
+  "scope": "Independent read/hash/AST review plus read-only git cat-file --batch. No compiler, executable-under-test, numerical kernel or timing launched. This change releases live provenance origins while retaining frozen actual inputs; it does not change any codegen command, resource envelope or mathematical gate.",
+  "bindings": {
+    "target/guard-performance-review/optimized-performance-proposal/v3/protocol.json": "6100e81c0ca46880003a26d222807ef14e4349d7aca579cff059f23a5854aa74",
+    "target/guard-performance-review/optimized-performance-proposal/v3/protocol-with-live-origins.json": "32166bee3cb21e6cd7c1536766f940c78a54ee102ad065657c3c7395d974d19a",
+    "target/guard-performance-review/optimized-performance-proposal/v3/pinned-origin-context.json": "f6f65bb4eed3f245b5bd18eefa000bc17864d0270010aa871e79f921d6445358",
+    "target/guard-performance-review/optimized-performance-proposal/v3/pin_origin_context.py": "d25fad0359b56f29a753320481b6a4f434875dc275c4bfc8e7aa5ef5bf64c128",
+    "target/guard-performance-review/optimized-performance-proposal/reviews/v3-continuation-independent-source-review.json": "22fba4d03e356ba3c62322fc21e19fa2f35d16f6183f6f3d297a6cbd1e3464ff"
+  },
+  "checks": {
+    "exact_live_origins_removed": 257,
+    "added_context_guards": 4,
+    "changed_common_bindings": 0,
+    "unchanged_compiler_command_objects": 9,
+    "unchanged_tool_bindings": true,
+    "independent_git_blob_reads": 257,
+    "git_blob_bytes_verified": 48886536,
+    "git_revision": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+    "active_guards_rehashed": 666,
+    "active_guard_bytes_rehashed": 814666387,
+    "active_guard_hash_mismatches": [],
+    "actual_proof_binding_requirements_retained": 288,
+    "released_origin_intersection_with_actual_proof_bindings": 0,
+    "active_guard_physical_resolved_path_overlap_with_released_origins": 0,
+    "origin_context_preparer_ast_valid": true
+  },
+  "reasoning": [
+    "All257released origin hashes exactly match committed Git blob bytes at2c1f334; independent batch framing verified canonical SHA/blob/byte-count headers and complete stream consumption.",
+    "Every remaining common guard value is unchanged. Actual private source copies, generated assets, compiler tools, lower artifacts, metadata logs and project archive bindings remain protected. No active guard resolves physically to a released live origin.",
+    "Frozen compiler source and manifest directories are under private target snapshots. The Rust compiler reads those snapshots and exact guarded extern archives; it does not read the newly released production source trees/Cargo files during these direct rustc commands.",
+    "The preserved original continuation protocol and prior source review are newly hash guarded alongside origin-pinning source and context manifest. The source-only initial Git header-format failure was retained before protocol mutation.",
+    "The prior build/provenance source review therefore remains applicable with a narrower active filesystem guard set and explicit immutable source-cohort identity. No runtime, mathematical or performance qualification is implied."
+  ],
+  "required_reporting_label": "Pinned2c1f334 source cohort in inherited frozen optimized lower dependency context. Do not relabel this experiment as latest production main after integration.",
+  "blocking_findings": [],
+  "numerical_qualified": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

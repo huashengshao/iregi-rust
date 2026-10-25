@@ -1,0 +1,14 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-uncaptured-proposal/draft-cpu32/prepare.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-uncaptured-proposal/prepare.py
+@@ -118,9 +118,9 @@
+     shapes = HERE/'control-shapes.json'
+     assert sha(shapes) == captured_protocol['control_shapes_sha256']
+     add(shapes)
+-    # The untouched inherited transport intentionally pins CPU32 for this
++    # The untouched inherited transport intentionally pins CPU34 for this
+     # untimed qualification. Quiet-window timing will need a separate adapter.
+-    assert template['cpu_affinity'] == captured_protocol['cpu_affinity'] == '32'
++    assert template['cpu_affinity'] == captured_protocol['cpu_affinity'] == '34'
+     assert sha(HERE/'lifecycle.py') == 'c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824'
+     tools = dict(captured_protocol['tool_sha256'])
+     tools[str(Path(sys.executable).resolve())] = sha(Path(sys.executable).resolve())

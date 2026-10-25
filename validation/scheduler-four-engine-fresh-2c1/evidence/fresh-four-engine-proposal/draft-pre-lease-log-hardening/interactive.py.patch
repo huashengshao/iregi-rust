@@ -1,0 +1,15 @@
+--- target/guard-performance-review/dependent-runtime-proposal/interactive.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/interactive.py
+@@ -5,9 +5,10 @@
+ class Session:
+     def __init__(self,label):
+         self.label=label;self.owner=None;self.log=None;self.stdout_log=None;self.selector=None;self.buffer=b'';self.responses=0
+-    def start(self,binary,taskset,folder,budget,persist):
++    def start(self,binary,taskset,folder,budget,persist,cpu):
+         budget.remaining();self.log=(folder/(self.label+'.stderr.log')).open('x');self.stdout_log=(folder/(self.label+'.stdout.log')).open('xb')
+-        command=[taskset,'-c','32',str(binary)]
++        assert type(cpu)is int and cpu>=0
++        command=[taskset,'-c',str(cpu),str(binary)]
+         self.owner=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=self.log,bufsize=0,start_new_session=True)
+         persist({'label':self.label,'command':command,'owned_process_group':self.owner.pid,'status':'running'})
+         os.set_blocking(self.owner.stdin.fileno(),False);os.set_blocking(self.owner.stdout.fileno(),False)

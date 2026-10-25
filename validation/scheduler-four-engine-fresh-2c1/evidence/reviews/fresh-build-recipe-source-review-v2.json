@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/scheduler_perf_resume/fresh_recipe_audit",
+  "created_utc": "2026-10-25T10:46:00.247045+00:00",
+  "status": "cleared_source_review_for_fourteen_build_only_steps",
+  "protocol_sha256": "4821d86ef2ecfc5be1490da7b88f631a22db9386cc02697f7b506897dd1fac67",
+  "prior_protocol_sha256": "a96eef066657607ef51f14d471f181a57a7c220223b170d806243270c452a06f",
+  "scope": "Independent read/hash/AST review only. No compiler, library evaluation, integral, test or timing was executed by this review. Root resource coordination and grant remain separate.",
+  "bindings": {
+    "protected_files": 736,
+    "protected_bytes": 357110071,
+    "all_rehashed_exactly": true,
+    "python_ast_parses": 3,
+    "command_objects_equal_v1": true,
+    "fresh_source_files_equal_v1": 4,
+    "v2_added_context_bindings": 57,
+    "v2_changed_previous_binding": "prepare_fresh.py"
+  },
+  "reviewed_recipe": {
+    "per_variant": [
+      "fresh Symbolica rlib",
+      "fresh OneLoop rlib",
+      "fresh shared masters rlib with read-only observation accessor",
+      "fresh captured core rlib",
+      "unchanged captured probe executable",
+      "fresh uncaptured core rlib",
+      "new uncaptured probe executable"
+    ],
+    "variants": [
+      "baseline",
+      "candidate"
+    ],
+    "compiler_steps": 14,
+    "features": "Matched Symbolica bincode/float-mpfr/integer-gmp/native_code_generation/serde/tracing_max_level_info; OneLoop default/generated-evaluators/prebuilt/rust-codegen. Core/masters no native-batch feature. Same pinned lower dependency archives shared between variants.",
+    "environment": "Explicit crate name/version/manifest directory, scheduler variant and Symbolica version supplied. Existing compiler wrapper/RUSTFLAGS overrides rejected. env! uses inspected source coherently.",
+    "archive_binding": "Every reverse-dependent explicit extern points at its own variant fresh predecessor. Lower ABI closure and native files remain hash-pinned; probe link maps must contain exactly intended Symbolica/OneLoop/masters/core archives. Old Symbolica/OneLoop/core archives are not explicit externs.",
+    "profile": "Matched opt3/cgu16/embed-bitcode/debug_assertions=no/overflow_checks=no; final probe ThinLTO; no fast math. Inherited lower dependency profile is explicitly historical optimized context, not current Cargo feature identity.",
+    "source_identity": "Baseline Symbolica source matches current source including poly0004; candidate differs only evaluate/batch.rs. Core cfg observation overlay is common; captured probe source is unchanged. New timing probe/control snapshots hash-pinned.",
+    "capture_absence": "Uncaptured core and probe commands omit iregi_qualification_capture. Generated timing wrapper compile_error rejects that cfg and has no set/take capture calls. Shared masters cfg exposes only private_six_values read-only accessor, with no executed instrumentation.",
+    "timing_body": "One Instant pair around fixed iteration block. reduce_batch, full success status scan, owned black_box result and drop occur inside each iteration; input/plan/workspace preparation, input metadata, final full-output observation and JSON serialization occur outside. Profiling is disabled. Timing request requires matching variant, repeats=1 and positive signed32 iterations.",
+    "full_qualification": "Captured optimized probe retains original whole-call corpus/controls code. Uncaptured controls retain exact master_controls.rs and unchanged core controls; subsequent runtime protocol must compare full capture projection and every saved value before any performance result.",
+    "termination": "Shared helper SHA c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824. Each rustc starts in an owned process group, leader and descendants are cleaned, terminal receipt precedes postguards, and status exited implies returncode=0 and owned_group_gone. First failure stops; no retry/budget extension."
+  },
+  "v1_finding_resolved": {
+    "finding": "Prior protocol did not continuously guard 56 current Numerica/Graphica context files or historical Cargo.lock despite source equality/context assertions. Inherited runtime archives themselves were already guarded.",
+    "resolution": "v2 adds exactly these 57 bindings, preserving v1 complete proposal under draft-001 without changing any compiler command or generated Rust."
+  },
+  "nonblocking_limitations": [
+    "Individual compiler caps sum to 5040s, exceeding 3600s aggregate. This is intentionally bounded by hard aggregate deadline; later products may remain unrun if earlier stages consume their caps.",
+    "30s nominal cleanup/postguard reserve is conservative: verify() calls budget.remaining() against work_deadline, so postguards reaching the reserve fail rather than consume it. This does not allow overrun or unsafe success; it may reject a build near its work deadline.",
+    "All filesystem source/path/ABI conclusions are scoped to pinned proposal bytes. Compiler success, actual link maps, complete numerical equality and performance are not established by source review.",
+    "CPU32,33 affinity and concurrency/quiet-window ownership must be coordinated by root. This receipt is not a runtime or timing resource grant."
+  ],
+  "blocking_findings": [],
+  "numerical_qualified": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

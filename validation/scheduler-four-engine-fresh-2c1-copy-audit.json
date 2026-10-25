@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "status": "passed-independent-saved-capsule-copy-origin-audit",
+  "reviewer": "/root/resume_auditor",
+  "recorded_utc": "2026-10-25T13:12:43.539041+00:00",
+  "manifest_sha256": "10e7fe97afeb2e6e7e4de0fe48716c4d85c37d6f945d3b6f0361ee88aef02d0f",
+  "checks": 2880,
+  "payloads": 235,
+  "actual_non_root_files": 237,
+  "supplemental_omitted_nested_manifest_bindings": {
+    "evidence/fresh-uncaptured-proposal/draft-cpu32/manifest.json": {
+      "sha256": "f72d6c6deb8f63d0d64a6333fd33ea857474cce9d4f61c453240164588da38da",
+      "bytes": 1782
+    },
+    "evidence/fresh-four-engine-proposal/draft-pre-lease-log-hardening/manifest.json": {
+      "sha256": "482687cd5665800b718edf8ee7f30897c54dfc3bbdca86b0a5b0f899b7a0613b",
+      "bytes": 2380
+    }
+  },
+  "finding": "Original package and portable verifier exclude all manifest.json basenames. Two historical nested draft manifests were copied but omitted from top manifest; this adjacent audit binds their exact bytes and origins without changing sealed payloads.",
+  "payload_bytes": 27259255,
+  "direct_origins_verified": 220,
+  "archives": {
+    "numerical-records.tar.gz": {
+      "members": 36,
+      "uncompressed_bytes": 152683065,
+      "sha256": "663e72f583d68062bdcbafd99efa833fa0c419295cc2124fe3656cf5b3c19cc1"
+    },
+    "link-maps.tar.gz": {
+      "members": 4,
+      "uncompressed_bytes": 128857590,
+      "sha256": "8a33197cc7d2fdaa83bbaf307e9171305b4060228fd86a6cf11373a77b29b6c4"
+    },
+    "source-snapshot.tar.gz": {
+      "members": 293,
+      "uncompressed_bytes": 51694073,
+      "sha256": "b3b847625639bca5d02ecae22bdf3455fb170881d4a8cb22a7efa520f813c4ef"
+    },
+    "provenance-metadata.tar.gz": {
+      "members": 152,
+      "uncompressed_bytes": 1358701,
+      "sha256": "8b14fcf89e680e2bb872dffa89445d348825d88ba9246a9bac844468921792f2"
+    }
+  },
+  "archive_origins_verified": 485,
+  "portable_verifier": {
+    "command": [
+      "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+      "-B",
+      "/shared/external/iregi/iregi-rust/validation/scheduler-four-engine-fresh-2c1/verify.py"
+    ],
+    "sha256": "8b339606076aad6f065363760f4ab19e837c0fbccc7c9ff4a93d5ae49e40783e",
+    "returncode": 0,
+    "output": {
+      "status": "passed-portable-saved-evidence-verification",
+      "files": 235,
+      "archive_members": {
+        "numerical-records.tar.gz": 36,
+        "link-maps.tar.gz": 4,
+        "source-snapshot.tar.gz": 293,
+        "provenance-metadata.tar.gz": 152
+      },
+      "timing_requests": 1768,
+      "timing_events": 3536,
+      "quartets": 384,
+      "ratios": 40,
+      "acceptance_eligibility": false,
+      "scope": "Payload/raw accounting and derived-table integrity; original independent numerical/statistical audits are retained. No compiler/integral/timing execution."
+    }
+  },
+  "context_cpu_rows_independently_recomputed": [
+    {
+      "cpu": 34,
+      "counter_delta_first8_fields": [
+        63671,
+        0,
+        6449,
+        5029,
+        77,
+        610,
+        29,
+        0
+      ],
+      "total_ticks": 75865,
+      "non_idle_fraction": 0.9326962367363079
+    },
+    {
+      "cpu": 290,
+      "counter_delta_first8_fields": [
+        50843,
+        0,
+        1358,
+        22820,
+        248,
+        575,
+        9,
+        0
+      ],
+      "total_ticks": 75853,
+      "non_idle_fraction": 0.6958854626712193
+    }
+  ],
+  "timing_requests": 1768,
+  "timing_events": 3536,
+  "quartets": 384,
+  "ratios": 40,
+  "all_ratios_have_TIRust_numerator": true,
+  "raw_gate_counts": {
+    "regression": 12,
+    "inconclusive-noise": 16,
+    "improvement": 2,
+    "inconclusive-short-block": 10
+  },
+  "acceptance_eligibility": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false,
+  "scope": "Byte-identical saved payload/archive/source origins and portable raw-accounting/derived-table verification. Prior sealed independent mathematical/bootstrap audits retained, not rerun. Private pinned2c1 generic-Symbolica context, not latest production/native-master performance. SMT interval includes setup/polling; no per-block interference attribution. No integral, compiler, producer or timing execution.",
+  "audit_source_sha256": "fe759274962863a02421186857f56c5e310df9629f0646b65d5daf65d869a6c8"
+}

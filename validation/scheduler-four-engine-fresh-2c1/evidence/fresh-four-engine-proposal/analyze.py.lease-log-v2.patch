@@ -1,0 +1,34 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening/analyze.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/analyze.py
+@@ -7,6 +7,18 @@
+ import sys
+ sys.dont_write_bytecode=True
+ import common as c
++
++def verify_saved_logs(folder,receipt):
++ # Exact inventories plus actual persisted bytes: producer hash declarations
++ # alone are not evidence that stdout/stderr custody survived after cleanup.
++ for stream in['stdout','stderr']:
++  wanted=receipt[stream+'_sha256']
++  assert type(wanted)is dict and set(wanted)==set(c.LABELS),'Saved '+stream+' label inventory differs'
++  for label in c.LABELS:
++   path=folder/(label+'.'+stream+'.log')
++   assert path.is_file()and not path.is_symlink(),'Saved log is missing or is a symlink'
++   assert c.ref.sha(path)==wanted[label],'Saved '+stream+' bytes changed: '+label
++ return True
+ 
+ def summarize(row,admitted):
+  blocks=row.get('blocks',[]);timings={engine:[]for engine in c.ENGINES};short=0
+@@ -52,6 +64,12 @@
+   assert release['quiet_grant_sha256']==p['quiet_grant']['sha256']and release['cpu']==p['cpu']
+  try:
+   assert receipt['global_lifecycle_clean']is True and receipt['guard_before']is True and receipt['guard_after']is True
++  verify_saved_logs(folder,receipt)
++  assert str(folder)==p['attempt_directory']and receipt['run_id']==p['run_id'],'Actual attempt/run ID differs from prepared one-shot context'
++  if p['mode']=='timing':
++   assert c.exact(receipt['quiet_grant'],p['quiet_grant'])
++   assert c.ref.sha(p['quiet_grant']['path'])==p['quiet_grant']['sha256']
++   c.validate_quiet_grant(p,c.read(p['quiet_grant']['path']))
+   assert not any(key in receipt for key in ['error','guard_error','cancellation'])and receipt['cleanup_errors']==[]and receipt['deadline_exceeded']is False
+   assert receipt['pinned_source_revision']==p['pinned_source_revision']==c.PIN and receipt['cpu']==p['cpu']
+   elapsed=[receipt[key]for key in['numerical_elapsed_seconds','cleanup_finished_elapsed_seconds','elapsed_seconds']]

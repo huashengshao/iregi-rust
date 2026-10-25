@@ -1,0 +1,34 @@
+{
+  "status": "passed-pure-saved-fixture-tests-only",
+  "scope": "Historical saved captured records transformed in memory solely to test schemas/projection. These are not observed fresh capture-free results.",
+  "historical_fixture_receipt_sha256": "7d6e7bd39be493228187c6392224e1b9e6191627c6c9f92f4e85bc862697a9d7",
+  "historical_fixture_raw_sha256": "750310b9290ae9e9aa6f396dfae5837187dbf9f451bdc1fce950f5d2a288b21e",
+  "normal_fixture_projections": 52,
+  "historical_raw_events_parsed": 120,
+  "changed_admission_functions": [
+    "captures",
+    "response"
+  ],
+  "direct_scalar_and_other_admission_functions_unchanged": true,
+  "negative_cases": [
+    "plan_reused must match same phase",
+    "nonempty whole-core captures rejected",
+    "unknown result field rejected",
+    "capture flag true rejected",
+    "scope must explicitly be capture-free",
+    "normal payload must match exactly",
+    "direct master schema still checked",
+    "cache observation captures must be empty"
+  ],
+  "negative_case_count": 8,
+  "source_sha256": {
+    "test_projection.py": "1417b4d92124e724b1c6fee6db80357b00c4c1ee22ef88b36f7ad766e607c402",
+    "projection.py": "dd6b4d56d75d230608d5bc60503462cd070a6d47c1253428347ff3f51abf9173",
+    "admission.py": "a01ece532cb9367b6011f6e8bfafb1f1437c5e56ad9b612bc71e5ec4581bb4a1",
+    "captured_admission.py": "338284647acae2115a5be3501911500cf0c9eee26e7f03429933f13477329d7d"
+  },
+  "preparer_or_runner_invoked": false,
+  "compiler_or_numerical_executable_launched": false,
+  "fresh_numerical_qualified": false,
+  "performance_qualified": false
+}

@@ -1,0 +1,67 @@
+{
+  "api": {
+    "stratified": "summarize_stratified(left,right,numerator_first,admitted=True,short=False)",
+    "summarize": "summarize(left,right,admitted=True,short=False)"
+  },
+  "bootstrap": {
+    "interval": "linear quantiles0.005,0.995",
+    "relative_ci_width_maximum": 0.02,
+    "resamples": 10000,
+    "sampler": "fresh random.Random(seed).choices(values,k=len(values)) for each resample",
+    "seed": 173,
+    "statistic": "statistics.median"
+  },
+  "gates": {
+    "historical": [
+      "correctness-failed",
+      "improvement",
+      "parity",
+      "regression",
+      "inconclusive-noise"
+    ],
+    "outer": [
+      "inconclusive-incomplete-family",
+      "inconclusive-short-block",
+      "correctness-or-cohort-failed"
+    ]
+  },
+  "pinned_source_revision": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+  "producer_statistics_imported_or_called": false,
+  "read_for_semantics_sha256": {
+    "target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/analyze.py": "63dbe55d82b27bb3ee62d7e641ae225de70aad4ec5159070777c677c3f8132da",
+    "validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7"
+  },
+  "real_bootstrap_executed": false,
+  "same_cohort": {
+    "families": 8,
+    "quartets": 48,
+    "ratio_cells": 40,
+    "ratios_per_family": 5,
+    "strata_sizes": [
+      24,
+      24
+    ]
+  },
+  "saved_timing_values_read": false,
+  "scope": "Independent stdlib source preparation. No actual bootstrap or timing corpus read. No compiler, probe, numerical library, integral or process-under-test launch. Actual statistics wait for root quiet lease release and independent terminal admission.",
+  "source_only_tests": {
+    "errors": 0,
+    "failures": 0,
+    "numerical_or_compiler_or_probe_process_launched": false,
+    "real_bootstrap_executed": false,
+    "saved_timing_values_read": false,
+    "source_sha256": {
+      "test_statistics_source_only.py": "df87be6c73c0233d02cebb51fca2b4b926b016e28ed42fd9f9166f8e6060811f",
+      "timing_statistics.py": "f520a7c9ed85165a429077335cb00969878ee54acb7d0e620209e8cf4bbe72bd"
+    },
+    "status": "passed-source-only-mocks",
+    "tests": 6
+  },
+  "source_sha256": {
+    "target/guard-performance-review/optimized-performance-proposal/independent-timing-audit/README.md": "306ef38265d5200fc176e14aa5742fb8c4ba4252f986d68623a2492b87b78925",
+    "target/guard-performance-review/optimized-performance-proposal/independent-timing-audit/source-only-test-results.json": "81e7ebce8058544f1f90077303066ac51b93a0c5f04a1da1cfe89ba0985185ad",
+    "target/guard-performance-review/optimized-performance-proposal/independent-timing-audit/test_statistics_source_only.py": "df87be6c73c0233d02cebb51fca2b4b926b016e28ed42fd9f9166f8e6060811f",
+    "target/guard-performance-review/optimized-performance-proposal/independent-timing-audit/timing_statistics.py": "f520a7c9ed85165a429077335cb00969878ee54acb7d0e620209e8cf4bbe72bd"
+  },
+  "status": "passed-source-only-review-and-six-mock-tests"
+}

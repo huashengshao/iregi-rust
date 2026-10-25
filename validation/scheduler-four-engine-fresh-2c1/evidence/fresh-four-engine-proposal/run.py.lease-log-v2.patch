@@ -1,0 +1,17 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening/run.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/run.py
+@@ -21,12 +21,11 @@
+  cpu=p['cpu'];assert type(cpu)is int and cpu in os.sched_getaffinity(0)
+  if p['mode']=='timing':
+   grant=c.read(p['quiet_grant']['path']);assert digest(p['quiet_grant']['path'])==p['quiet_grant']['sha256']
+-  assert grant['status']=='granted'and grant['cpu']==cpu and grant['allowed_process_labels']==c.LABELS
+-  assert grant['aggregate_budget_seconds']==p['aggregate_budget_seconds']and grant['cleanup_postguard_reserve_seconds']==p['cleanup_postguard_reserve_seconds']
++  c.validate_quiet_grant(p,grant)
+  folder=Path(p['attempt_directory']);folder.mkdir(exist_ok=False)
+  budget=Budget(p['aggregate_budget_seconds']);budget.work_deadline=budget.deadline-p['cleanup_postguard_reserve_seconds']
+  bindings={Path(path):wanted for path,wanted in p['protected_sha256'].items()}
+- record={'schema_version':1,'status':'preparing','mode':p['mode'],'scope':p['scope'],'pinned_source_revision':c.PIN,
++ record={'schema_version':1,'status':'preparing','mode':p['mode'],'run_id':p['run_id'],'scope':p['scope'],'pinned_source_revision':c.PIN,
+   'protocol':str(protocol_path),'protocol_sha256':reviewed,'runner_sha256':digest(Path(__file__)),
+   'started_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'cpu':cpu,
+   'aggregate_budget_seconds':p['aggregate_budget_seconds'],'cleanup_postguard_reserve_seconds':p['cleanup_postguard_reserve_seconds'],

@@ -1,0 +1,31 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening/common.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/common.py
+@@ -35,6 +35,28 @@
+  result=max(n+1,math.ceil(n*TARGET_NS/elapsed))
+  assert result<=MAX_COUNT,'shared signed32 iteration count overflow'
+  return result
++
++def validate_quiet_grant(protocol,grant):
++ # The unique absolute attempt is the one-shot resource boundary. Full protocol
++ # SHA is reviewed after grant bytes are bound, avoiding a hash circularity.
++ assert protocol['mode']==grant['mode']=='timing'
++ assert protocol['pinned_source_revision']==grant['pinned_source_revision']==PIN
++ assert type(protocol['run_id'])is str and protocol['run_id']
++ assert grant['run_id']==protocol['run_id']and grant['one_shot']is True
++ attempt=protocol['attempt_directory']
++ assert type(attempt)is str and Path(attempt).is_absolute()and'..'not in Path(attempt).parts
++ assert str(Path(attempt))==attempt and grant['attempt_directory']==attempt
++ assert type(grant['root_authority'])is str and grant['root_authority'].strip()
++ assert type(grant['grant_id'])is str and grant['grant_id']
++ assert grant['grant_id']==protocol['quiet_grant']['grant_id']
++ assert grant['status']=='granted'and type(grant['cpu'])is int and grant['cpu']==protocol['cpu']
++ assert grant['allowed_process_labels']==LABELS
++ assert grant['source_manifest_sha256']==protocol['source_manifest_sha256']
++ assert grant['aggregate_budget_seconds']==protocol['aggregate_budget_seconds']
++ assert grant['cleanup_postguard_reserve_seconds']==protocol['cleanup_postguard_reserve_seconds']
++ assert grant['cpu_exclusive']is True and grant['no_other_project_compilers_or_numerics']is True
++ assert type(grant['smt_siblings'])is list and all(type(cpu)is int and cpu>=0 for cpu in grant['smt_siblings'])
++ return True
+ 
+ def request_payload(label,case,batch,stage,n=1,warmup=0):
+  samples=case['samples'][:batch]

@@ -1,0 +1,90 @@
+--- target/guard-performance-review/dependent-chain-proposal/source/probe/core_probe.rs
++++ fresh-source/uncaptured_core_probe.rs
+@@ -19,26 +19,15 @@
+     json!({"input_rows":s.input_rows,"argument_rows":s.argument_rows,"master_family_batches":s.master_family_batches,"master_rows":s.master_rows,"pentagon_box_rows":s.pentagon_box_rows,"reduction_rows":s.reduction_rows,"fallback_rows":s.fallback_rows,"fallback_successes":s.fallback_successes,"analytic_rows":s.analytic_rows})
+ }
+ 
+-fn check_backends(captures: &Value) {
+-    let captures=captures.as_array().expect("capture array");
+-    assert!(!captures.is_empty(),"qualification fixture produced no observed masters");
+-    for capture in captures { assert_eq!(capture["backend"],json!("SymbolicaBatch")); }
+-}
+ 
+ fn observe<T: NativeFloat>(workspace: &mut Workspace<T>, batch: &KinematicsBatch<T>,
+     moments: usize, dual: bool) -> Result<Value,String>
+ where Complex<T>: EvaluationDomain {
+-    assert!(core_impl::take_master_captures().is_empty(),"unconsumed capture");
+     workspace.set_profiling(false);
+-    core_impl::set_master_capture(true);
+     let result=workspace.reduce_batch(batch);
+-    let captures=core_impl::take_master_captures();
+-    core_impl::set_master_capture(false);
+     assert!(workspace.last_profile().is_none(),"profiling unexpectedly enabled");
+     let result=result.map_err(|e|e.to_string())?;
+     assert_eq!(result.statuses.len(),batch.rows);
+-    let captures=serde_json::to_value(captures).unwrap();
+-    check_backends(&captures);
+     let lanes:Vec<_>=(0..batch.rows).map(|lane|match result.lane(lane){
+         Ok(values)=>{
+             assert_eq!(values.len(),moments*4*batch.components);
+@@ -58,7 +47,7 @@
+         Err(error)=>json!({"status":format!("{error:?}"),"represented":null,"moments":null,"fallback_used":result.fallback_used[lane],"analytic_used":result.analytic_used[lane]}),
+     }).collect();
+     Ok(json!({"stable":result.statuses.iter().all(|s|*s==LaneStatus::Success),"lanes":lanes,
+-        "diagnostics":workspace.last_diagnostics(),"master_captures":captures,"execution":execution(workspace)}))
++        "diagnostics":workspace.last_diagnostics(),"master_captures":[],"execution":execution(workspace)}))
+ }
+ 
+ pub fn run(request: &crate::Request, prepared: &mut Option<Prepared>, plans: &mut crate::PlanCache) -> Result<Value,String> {
+@@ -86,17 +75,46 @@
+         *prepared=Some(Prepared{key,workspace:Workspace::new(plan,0.).map_err(|e|e.to_string())?,degrees:plan.basis().iter().map(|m|m.rank()).collect()});
+     }
+     let p=prepared.as_mut().unwrap();
++    let measured=request.engine.is_some();
++    p.workspace.set_profiling(false);
++    let mut every_call_successful=true;
++    let mut total_ns=Vec::<f64>::new();
++    let mut elapsed_ns=Vec::<u128>::new();
++    if measured {
++        if request.engine.as_deref()!=Some(env!("TIRUST_SCHEDULER_VARIANT")) || request.repeats!=1 || request.iterations==0 || request.iterations>i32::MAX as usize {
++            return Err("timing requires own variant and one positive signed32 fixed-count block".into());
++        }
++        for _ in 0..request.warmup {
++            let result=p.workspace.reduce_batch(std::hint::black_box(&batch)).map_err(|e|e.to_string())?;
++            every_call_successful &= result.statuses.iter().all(|s|*s==LaneStatus::Success);
++            std::hint::black_box(result);
++        }
++        let start=std::time::Instant::now();
++        for _ in 0..request.iterations {
++            let result=p.workspace.reduce_batch(std::hint::black_box(&batch)).map_err(|e|e.to_string())?;
++            every_call_successful &= result.statuses.iter().all(|s|*s==LaneStatus::Success);
++            std::hint::black_box(result);
++        }
++        let duration=start.elapsed().as_nanos();
++        elapsed_ns.push(duration);
++        total_ns.push(duration as f64/request.iterations as f64);
++    } else if request.warmup!=0 || request.repeats!=0 || request.iterations!=0 {
++        return Err("untimed request must not carry timing counts".into());
++    }
+     let mut record=observe(&mut p.workspace,&batch,p.degrees.len(),false)?;
++    assert!(every_call_successful,"timed public call failed");
+     assert!(record["stable"].as_bool().unwrap(),"frozen qualification family failed");
+-    for _ in 0..2 {
+-        assert_eq!(observe(&mut p.workspace,&batch,p.degrees.len(),false)?,record,"own complete repeated record changed");
++    if !measured {
++        for _ in 0..2 {
++            assert_eq!(observe(&mut p.workspace,&batch,p.degrees.len(),false)?,record,"own complete repeated record changed");
++        }
+     }
+     assert_eq!(batch.values.iter().map(numbers).collect::<Vec<_>>(),input_before);
+     let object=record.as_object_mut().unwrap();
+     for (key,value) in json!({"id":request.id,"n":request.n,"rank":request.rank,"batch":batch.rows,"plan_reused":reused,"degrees":p.degrees,
+-        "requested_master_backend":"SymbolicaBatch","scope":"untimed generic-only scheduler whole-reduction qualification",
+-        "total_ns":[],"elapsed_ns":[],"iterations":0,"capture_enabled":true,"profiling_enabled":false,
+-        "own_repeated_outputs_exact":true,"input_unchanged":true}).as_object().unwrap() {object.insert(key.clone(),value.clone());}
++        "requested_master_backend":"SymbolicaBatch","scope":if measured{"whole-public-call fixed-count timing"}else{"untimed capture-free scheduler whole-reduction qualification"},
++        "total_ns":total_ns,"elapsed_ns":elapsed_ns,"iterations":if measured{request.iterations}else{0},"capture_enabled":false,"profiling_enabled":false,
++        "own_repeated_outputs_exact":!measured,"input_unchanged":true}).as_object().unwrap() {object.insert(key.clone(),value.clone());}
+     Ok(record)
+ }
+ 

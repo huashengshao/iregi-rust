@@ -1,0 +1,19 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening/prepare.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/prepare.py
+@@ -67,7 +67,7 @@
+  add(source_manifest)
+  for path in HERE.glob('*.py'):ast.parse(path.read_text(),filename=str(path))
+  runtime=dict(template);caps=template['fixed_stage_bounds'][args.mode]
+- runtime.update(status='SOURCE_REVIEW_REQUIRED_NO_NUMERICAL_OR_TIMING_GRANT',mode=args.mode,cpu=args.cpu,
++ runtime.update(status='SOURCE_REVIEW_REQUIRED_NO_NUMERICAL_OR_TIMING_GRANT',mode=args.mode,run_id=args.run_id,cpu=args.cpu,
+   pinned_source_revision=c.PIN,scope=template['scope'],recorded_utc=datetime.datetime.now(datetime.timezone.utc).isoformat(),
+   aggregate_budget_seconds=caps['aggregate_budget_seconds'],cleanup_postguard_reserve_seconds=caps['cleanup_postguard_reserve_seconds'],
+   effective_work_deadline_seconds=caps['aggregate_budget_seconds']-caps['cleanup_postguard_reserve_seconds'],
+@@ -93,6 +93,7 @@
+   assert type(grant['smt_siblings'])is list and all(type(cpu)is int and cpu>=0 for cpu in grant['smt_siblings'])
+   assert type(grant['grant_id'])is str and grant['grant_id']
+   runtime['quiet_grant']={'path':str(grant_path),'sha256':c.ref.sha(grant_path),'grant_id':grant['grant_id']}
++  c.validate_quiet_grant(runtime,grant)
+  runtime['protected_sha256']=bindings
+  runtime['tool_sha256']=dict(source_protocols['captured']['tool_sha256'])
+  runtime['tool_sha256'][str(Path(sys.executable).resolve())]=c.ref.sha(Path(sys.executable).resolve())

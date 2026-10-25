@@ -1,0 +1,160 @@
+{
+  "scope": "Descriptive medians of retained fixed same-input warm-workspace kernel blocks. Batch32 per-sample throughput is complete32-sample call median divided by32; not an independent latency measurement. Private pinned2c1 generic-Symbolica scheduler cohort; shared-host SMT contention makes final performance acceptance ineligible.",
+  "acceptance_eligibility": false,
+  "summary_path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/timing-fresh2c1-001/summary.json",
+  "summary_sha256": "eeecc2968d3df6ac3fe4f7e3d77b6e9a820bed9306d1cd13a3249bb404342395",
+  "rows": [
+    {
+      "id": "n2-r0-massive",
+      "batch": 1,
+      "quartets": 48,
+      "source_row_status": "completed",
+      "short_blocks": 0,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 2208.52168672034,
+        "candidateTIRust": 2277.879125011059,
+        "iregi": 944.2809615441329,
+        "collier": 760.48386858946
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 2208.52168672034,
+        "candidateTIRust": 2277.879125011059,
+        "iregi": 944.2809615441329,
+        "collier": 760.48386858946
+      }
+    },
+    {
+      "id": "n2-r0-massive",
+      "batch": 32,
+      "quartets": 48,
+      "source_row_status": "completed",
+      "short_blocks": 0,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 43880.673051806705,
+        "candidateTIRust": 40940.304962995215,
+        "iregi": 28438.3025685677,
+        "collier": 24661.19558119286
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 1371.2710328689595,
+        "candidateTIRust": 1279.3845300936005,
+        "iregi": 888.6969552677406,
+        "collier": 770.6623619122769
+      }
+    },
+    {
+      "id": "n2-r1-massive",
+      "batch": 1,
+      "quartets": 48,
+      "source_row_status": "completed",
+      "short_blocks": 0,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 7098.780735986403,
+        "candidateTIRust": 7291.4362413480785,
+        "iregi": 3188.0432344489045,
+        "collier": 1199.4691997182185
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 7098.780735986403,
+        "candidateTIRust": 7291.4362413480785,
+        "iregi": 3188.0432344489045,
+        "collier": 1199.4691997182185
+      }
+    },
+    {
+      "id": "n2-r1-massive",
+      "batch": 32,
+      "quartets": 48,
+      "source_row_status": "short-block-inconclusive",
+      "short_blocks": 1,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 264384.7827868853,
+        "candidateTIRust": 259023.20286885247,
+        "iregi": 157851.61211943795,
+        "collier": 65059.392271662764
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 8262.024462090165,
+        "candidateTIRust": 8094.47508965164,
+        "iregi": 4932.862878732436,
+        "collier": 2033.1060084894614
+      }
+    },
+    {
+      "id": "n3-r0-massive",
+      "batch": 1,
+      "quartets": 48,
+      "source_row_status": "completed",
+      "short_blocks": 0,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 31145.383884892086,
+        "candidateTIRust": 31746.11257553957,
+        "iregi": 7817.793179856115,
+        "collier": 6235.337640287769
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 31145.383884892086,
+        "candidateTIRust": 31746.11257553957,
+        "iregi": 7817.793179856115,
+        "collier": 6235.337640287769
+      }
+    },
+    {
+      "id": "n3-r0-massive",
+      "batch": 32,
+      "quartets": 48,
+      "source_row_status": "short-block-inconclusive",
+      "short_blocks": 50,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 412616.83778966137,
+        "candidateTIRust": 382027.982174688,
+        "iregi": 164618.84937611409,
+        "collier": 130903.77896613191
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 12894.276180926918,
+        "candidateTIRust": 11938.374442959,
+        "iregi": 5144.339043003565,
+        "collier": 4090.743092691622
+      }
+    },
+    {
+      "id": "n3-r1-massive",
+      "batch": 1,
+      "quartets": 48,
+      "source_row_status": "completed",
+      "short_blocks": 0,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 43298.805504891396,
+        "candidateTIRust": 42682.95683413475,
+        "iregi": 16051.603714143592,
+        "collier": 9676.705466202398
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 43298.805504891396,
+        "candidateTIRust": 42682.95683413475,
+        "iregi": 16051.603714143592,
+        "collier": 9676.705466202398
+      }
+    },
+    {
+      "id": "n3-r1-massive",
+      "batch": 32,
+      "quartets": 48,
+      "source_row_status": "completed",
+      "short_blocks": 0,
+      "engine_median_ns_per_complete_batch_call": {
+        "baselineTIRust": 964618.4631043257,
+        "candidateTIRust": 906793.6666666666,
+        "iregi": 525433.3155216285,
+        "collier": 314702.3040712468
+      },
+      "engine_ns_per_sample_from_median_batch_call": {
+        "baselineTIRust": 30144.326972010178,
+        "candidateTIRust": 28337.302083333332,
+        "iregi": 16419.79111005089,
+        "collier": 9834.447002226463
+      }
+    }
+  ]
+}

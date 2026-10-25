@@ -1,0 +1,60 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening/test_sources.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/test_sources.py
+@@ -6,6 +6,7 @@
+ import hashlib
+ import json
+ import sys
++import tempfile
+ sys.dont_write_bytecode=True
+ import common as c
+ import analyze
+@@ -35,6 +36,41 @@
+  try:c.next_count(c.MAX_COUNT,1)
+  except AssertionError:pass
+  else:raise AssertionError('signed32 overflow admitted')
++ # Resource-gate fixtures are in-memory only and confer no real authorization.
++ protocol={'mode':'timing','pinned_source_revision':c.PIN,'run_id':'pure-mock-one',
++  'attempt_directory':'/pure-mock-context/attempt-one','cpu':34,'source_manifest_sha256':'0'*64,
++  'aggregate_budget_seconds':900,'cleanup_postguard_reserve_seconds':30,'quiet_grant':{'grant_id':'pure-mock-not-a-grant'}}
++ grant={'mode':'timing','pinned_source_revision':c.PIN,'run_id':protocol['run_id'],
++  'attempt_directory':protocol['attempt_directory'],'one_shot':True,'root_authority':'pure mock only; no resource authorization',
++  'grant_id':'pure-mock-not-a-grant','status':'granted','cpu':34,'allowed_process_labels':c.LABELS,
++  'source_manifest_sha256':'0'*64,'aggregate_budget_seconds':900,'cleanup_postguard_reserve_seconds':30,
++  'cpu_exclusive':True,'no_other_project_compilers_or_numerics':True,'smt_siblings':[290]}
++ assert c.validate_quiet_grant(protocol,grant)is True
++ lease_negative=[]
++ for field,value in[('attempt_directory','/pure-mock-context/attempt-two'),('run_id','pure-mock-two'),('one_shot',False),('root_authority','  '),('grant_id','different'),('cpu',35),('source_manifest_sha256','1'*64),('no_other_project_compilers_or_numerics',False)]:
++  changed=copy.deepcopy(grant);changed[field]=value
++  try:c.validate_quiet_grant(protocol,changed)
++  except AssertionError:lease_negative.append(field)
++  else:raise AssertionError('Bad lease admitted: '+field)
++ log_negative=[]
++ with tempfile.TemporaryDirectory(prefix='pure-log-custody-',dir=HERE)as temporary:
++  folder=Path(temporary);receipt={'stdout_sha256':{},'stderr_sha256':{}}
++  for label in c.LABELS:
++   for stream in['stdout','stderr']:
++    path=folder/(label+'.'+stream+'.log');path.write_text('pure fixture only '+label+' '+stream+'\n');receipt[stream+'_sha256'][label]=sha(path)
++  assert analyze.verify_saved_logs(folder,receipt)is True
++  for stream in['stdout','stderr']:
++   for extra in[False,True]:
++    changed=copy.deepcopy(receipt)
++    if extra:changed[stream+'_sha256']['extra-label']='0'*64
++    else:changed[stream+'_sha256'].pop(c.LABELS[0])
++    try:analyze.verify_saved_logs(folder,changed)
++    except AssertionError:log_negative.append(stream+('-extra'if extra else'-missing'))
++    else:raise AssertionError('Wrong log inventory admitted')
++  path=folder/(c.LABELS[0]+'.stdout.log');path.write_text('changed pure fixture bytes')
++  try:analyze.verify_saved_logs(folder,receipt)
++  except AssertionError:log_negative.append('changed-saved-bytes')
++  else:raise AssertionError('Changed saved log admitted')
+  original=c.ref.h.ratio_summary
+  def mock_ratio(numerator,denominator,correctness):
+   assert len(numerator)==len(denominator)and len(numerator)in[24,48]
+@@ -57,6 +93,6 @@
+  assert template['processes']is None and template['qualifications']is None and template['quiet_grant']is None
+  assert template['request_policy']['orders']==[list(order)for order in c.ORDERS]
+  for mode,cap,reserve in[('preflight',180,20),('timing',900,30)]:assert template['fixed_stage_bounds'][mode]=={'aggregate_budget_seconds':cap,'cleanup_postguard_reserve_seconds':reserve}
+- output={'status':'passed-source-asts-and-pure-mock-tests-only','source_asts':parsed,'serialized_fresh_request_payloads':payloads,'balanced_permutations':24,'quartets':48,'ratios_all_TIRust_numerator':5,'mock_gate_paths_checked':['complete','row-local-short','global-failure','incomplete'],'bootstrap_executed':False,'actual_timing_or_numeric_data_generated':False,'compiler_probe_preparer_runner_launched':False,'source_sha256':{path.name:sha(path)for path in[HERE/'test_sources.py',HERE/'run.py',HERE/'analyze.py',HERE/'common.py',HERE/'prepare.py']}}
++ output={'status':'passed-source-asts-and-pure-mock-tests-only','source_asts':parsed,'serialized_fresh_request_payloads':payloads,'balanced_permutations':24,'quartets':48,'ratios_all_TIRust_numerator':5,'mock_gate_paths_checked':['complete','row-local-short','global-failure','incomplete'],'one_shot_lease_negative_cases':lease_negative,'saved_log_negative_cases':log_negative,'bootstrap_executed':False,'actual_timing_or_numeric_data_generated':False,'compiler_probe_preparer_runner_launched':False,'source_sha256':{path.name:sha(path)for path in[HERE/'test_sources.py',HERE/'run.py',HERE/'analyze.py',HERE/'common.py',HERE/'prepare.py']}}
+  (HERE/'pure-source-tests.json').write_text(json.dumps(output,indent=2)+'\n');print(json.dumps(output))
+ if __name__=='__main__':main()

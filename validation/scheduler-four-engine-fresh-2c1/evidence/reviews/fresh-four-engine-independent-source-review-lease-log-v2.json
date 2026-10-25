@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "status": "passed-independent-successor-source-review-actual-protocol-and-execution-prerequisites-still-required",
+  "source_admitted": true,
+  "reviewer": "/root/scheduler_perf_resume/four_engine_source_audit",
+  "reviewed_directory": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal",
+  "source_manifest_sha256": "873491ac84dc3d594c5b766ae0e6f2b1eb218ed7c0b6587920d91c7a48d2b5c4",
+  "author_source_review": {
+    "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/source-review-lease-log-v2.json",
+    "sha256": "5ac991593e0c636c6b14e29ae01b59f184dcd33a0f773f39c14f3fa8e1f96e29"
+  },
+  "prior_full_independent_review": {
+    "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/reviews/fresh-four-engine-independent-source-review-c9323c.json",
+    "sha256": "7785cfd20a4d6fe3686cbfb04e34266af2030793b2b4e5922dcacf241f896958",
+    "source_manifest_sha256": "c9323c479d8ae066bd8cf7c7b550169db8c588663c980f1e7b810d40e4b725b0",
+    "all_retained_math_API_cohort_statistical_and_lifecycle_checks_still_apply": true
+  },
+  "scope": "Independent narrow successor source review, including all changed Python/README/template/test payloads and refreshed hashes. The prior full review covers the unchanged admission, projection, transport, lifecycle, references and statistical helper. No numerical executable, compiler, preparer, cohort or real bootstrap was launched by this review.",
+  "successor_payload_hashes_checked": 24,
+  "payload_hash_mismatches": [],
+  "preserved_original_snapshot": {
+    "path": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening",
+    "original_21_files_byte_identical": true,
+    "source_manifest_sha256": "c9323c479d8ae066bd8cf7c7b550169db8c588663c980f1e7b810d40e4b725b0",
+    "source_review_sha256": "36e7ad1584bdb24659175a4d351216ee5cf5b363903a157207c99962df1ff281"
+  },
+  "changed_existing_payloads": [
+    "README.md",
+    "analyze.py",
+    "common.py",
+    "prepare.py",
+    "protocol-template.json",
+    "pure-source-tests.json",
+    "run.py",
+    "test_sources.py"
+  ],
+  "frozen_executable_source_sha256": {
+    "run.py": "439890eb4682446fb37958db64fe95d5f381a68ed09735235b0b1d66bb3a7e14",
+    "analyze.py": "63dbe55d82b27bb3ee62d7e641ae225de70aad4ec5159070777c677c3f8132da",
+    "prepare.py": "117d4f70ec9317aed4331911a7fd2f261b20e6079f6a4c6fab869f8aba649df1",
+    "common.py": "d710fed5248457cda3eb6ea92c27b14dbf48d92991198ae700477232b9ef550a",
+    "test_sources.py": "656575f1998d9d9aa91edf7022faadf5dd82bcb726a10884667caf3195391e3a"
+  },
+  "resolved_findings": [
+    {
+      "id": "quiet-grant-not-bound-to-one-attempt",
+      "status": "resolved",
+      "evidence": "common.validate_quiet_grant now requires exact run_id, canonical absolute attempt_directory, one_shot=true, nonempty root_authority and grant_id, along with all existing pinned source/CPU/allowed process/budget/exclusive/SMT fields. prepare.py, run.py and analyze.py invoke this same validator. run.py validates before mkdir/process launch and still rejects an existing attempt directory. Receipt records run_id; analyzer requires actual resolved CLI attempt folder and receipt run_id to match the prepared context. Independent generated-protocol SHA remains the explicit execution input, avoiding a circular grant-SHA/protocol-SHA dependency."
+    },
+    {
+      "id": "saved-stdout-stderr-digests-not-admitted",
+      "status": "resolved",
+      "evidence": "analyze.verify_saved_logs requires each stdout/stderr digest map to contain exactly all six labels, requires the twelve corresponding regular nonsymlink files, and directly rehashes each against the terminal receipt. This check runs inside the global admission gate before statistics. Missing, extra or changed log evidence therefore disqualifies every speed gate."
+    }
+  ],
+  "blocking_findings": [],
+  "independent_source_hardening_tests": {
+    "status": "passed",
+    "all_12_current_Python_sources_AST_parsed": true,
+    "positive_pure_fixture_grant_accepted": true,
+    "grant_negative_cases_rejected": [
+      "different attempt_directory",
+      "different run_id",
+      "one_shot false",
+      "blank root_authority",
+      "different grant_id",
+      "different CPU",
+      "different total budget",
+      "different cleanup reserve",
+      "different source manifest",
+      "CPU exclusive false",
+      "other project jobs permitted",
+      "missing allowed process label"
+    ],
+    "positive_twelve_log_fixture_accepted": true,
+    "log_negative_cases_rejected": [
+      "stdout extra inventory label",
+      "stdout missing inventory label",
+      "stdout changed bytes",
+      "stdout missing file",
+      "stdout symlink",
+      "stderr extra inventory label",
+      "stderr missing inventory label",
+      "stderr changed bytes",
+      "stderr missing file",
+      "stderr symlink"
+    ],
+    "fixture_location": "temporary directory removed after test",
+    "reviewed_source_files_modified": false,
+    "actual_grant_created": false,
+    "real_bootstrap_executed": false,
+    "compiler_preparer_probe_integral_or_timing_launched": false
+  },
+  "unchanged_requirements": {
+    "six_owned_four_timed_processes": true,
+    "eight_N2_N3_r0_r1_batch1_batch32_families": true,
+    "64_CASE_first_initial_responses": true,
+    "full_tensor_Laurent_and_six_master_before_after_checks": true,
+    "fresh_fourteen_product_build_and_captured60_uncaptured60_52projections": true,
+    "pinned2c1f334_source": true,
+    "48_quartets_all24permutations_twice_Random173": true,
+    "shared_positive_signed32_counts_and_100ms_blocks": true,
+    "warmup10_only_first_calibration": true,
+    "five_TIRust_numerator_paired_ratios": true,
+    "10000_bootstrap_99percentCI_relative_width_at_most2percent": true,
+    "no_CI_reruns_or_adaptive_extensions": true,
+    "global_clean_vs_row_local_short_distinction": true,
+    "fixed_preflight180seconds_reserve20_and_timing900seconds_reserve30": true,
+    "terminal_cleanup_and_quiet_release_before_statistics": true,
+    "historical_raw_results_preserved": true,
+    "production_adoption_not_authorized": true
+  },
+  "remaining_actual_execution_prerequisites": [
+    "Actual fresh complete independent qualification admissions and their full-review hash links",
+    "Actual generated preflight protocol and all bindings independently inspected by exact SHA before execution",
+    "Root numerical allocation and requested CPU34 resource coordination",
+    "Passed same-source same-CPU preflight plus independent complete saved-data review before timing preparation",
+    "Actual root one-shot quiet grant after correctness and other project jobs settle; unique attempt, CPU and SMT exclusion bind the finite900second/30reserve allocation",
+    "Exact root terminal quiet-release record before real timing statistics"
+  ],
+  "numerical_executed": false,
+  "performance_measured": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

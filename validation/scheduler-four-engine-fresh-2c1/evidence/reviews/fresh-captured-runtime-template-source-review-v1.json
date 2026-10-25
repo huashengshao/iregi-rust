@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/scheduler_perf_resume/fresh_recipe_audit",
+  "created_utc": "2026-10-25T10:53:19.409889+00:00",
+  "status": "source_template_cleared_awaiting_generated_artifacts_and_separate_runtime_grant",
+  "scope": "Source-only template review. No preparer execution, compiler, numerical process, test, integral or timing. Dynamic successful build receipt and generated runtime protocol are not available/qualified by this template review.",
+  "source_sha256": {
+    "target/guard-performance-review/optimized-performance-proposal/prepare_fresh_runtime.py": "343c7e30f1b5ecb82579e035bd932cecc1401d7f4fcaa1d93b818ca968582942",
+    "target/guard-performance-review/dependent-runtime-proposal/run.py": "7ffac4c4b26e77c1f1a8a6deda3bbc64493bcf74a1b8b75f74e118ccc48dc776",
+    "target/guard-performance-review/dependent-runtime-proposal/admission.py": "338284647acae2115a5be3501911500cf0c9eee26e7f03429933f13477329d7d",
+    "target/guard-performance-review/dependent-runtime-proposal/interactive.py": "1add99bb13707c340d634984ba91d5b11c4f5b5060dd1f9d69e8980a0f4cd4ed",
+    "target/guard-performance-review/dependent-runtime-proposal/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "target/guard-performance-review/dependent-runtime-proposal/control-shapes.json": "d656aaa8af9ae1ff549cc1c8e0b278bf5f816b574b52faa12da96a072ca06cb2",
+    "validation/native-master-replay/inputs.json": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef"
+  },
+  "adapted_run_py_sha256": "7662e44a81bd18a76cd3cbf456ffe4b6997e6c41deb2f5b8988d32a9237969d5",
+  "findings": {
+    "paths_and_schema": "Copied run.py replaces exactly one HERE assignment. All referenced protocol fields are provided by prepare_fresh_runtime.py; cwd, qualification-001, control-shapes.json and inputs resolve coherently. Admission imports only colocated preserved helpers. Existing captured probe input/output schema is unchanged.",
+    "unchanged_corpus": "Four N2/N3 rank0/1 cases and singleton/batch32 produce eight families. Each has baseline/candidate initial request plus own-repeat (32 requests), controls plus own controls-repeat (4), retained workspace sequence (16), and four rejected timing fields on both variants (8), totaling60 and30 per process. Plan reuse is removed only in own/retained canonical equality, never numerical/status/master fields.",
+    "complete_admission": "Retained strict admission.py inspects exact schema and all tensor/Laurent/Taylor/master represented rationals, precisions, signs, native bit equivalence, diagnostics, success/fallback/analytic statuses and execution counters. Complete current cross-archive outputs must match. Input/control shapes preserved; historical opt0 output values are not substituted for fresh opt3 qualification.",
+    "successful_build_gate": "Preparer requires passed/success build, exact current build protocol hash, before/after guards, empty cleanup errors and all14 passed stages. It rehashes every protected/tool source and all14 fresh output artifacts plus four maps against receipt bytes/hash before creating runtime protocol. Captured probes come from variant-probe-captured entries and retain four intended archive bindings.",
+    "source_and_artifact_provenance": "Runtime protects build protocol/receipt, preparer, reviewed build source receipt, all inherited bound source/tool inputs, all fresh outputs/maps, every original copied helper and every generated helper, source-origins manifest, controls and inputs. freeze_binary creates fresh hash-identical owned executable copies; source and executed artifacts guarded throughout requests and after terminal cleanup.",
+    "fixed_lifecycle": "300s aggregate, work deadline280s,20s declared reserve. Exact lifecycle helper SHA verified. Two owned sessions are pinnedCPU32 by unchanged interactive.py; launched processes have new sessions/processgroups. Shared bounded close_all sends QUIT, kills any remaining owned group and reaps/checks both; zero returncodes, owned_group_gone and30responses each are mandatory.",
+    "failure_semantics": "First failed schema/value/hash/timeout/cancellation assertion goes to failed receipt and closes both sessions. Request and response events are retained. Terminal cleanup is recorded before final raw/stdout/stderr hashing. No retry, timing path, production change or timing-count admission is introduced."
+  },
+  "blocking_findings": [],
+  "nonblocking_limitations": [
+    "The preparer creates the runtime directory before validating completed build success. Running it prematurely would preserve an empty/partial directory and require an explicit new attempt rather than retrying the same path; parent intends invocation only after successful terminal build.",
+    "Runtime tool hashes inherit the build tools but do not bind the Python interpreter. Historical retained runtime used the same arrangement. Adding sys.executable would strengthen interpreter provenance without changing corpus semantics.",
+    "Postguard verify uses budget.remaining against work deadline, conservatively failing if postguards enter cleanup reserve. This may reject near-deadline runs; it cannot admit an overrun.",
+    "This source template review does not approve a numerical resource slot. Exact generated protocol/artifact bindings and CPU quiet window must be reviewed/coordinated separately after all14 builds pass."
+  ],
+  "executables_launched": 0,
+  "numerical_executed": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

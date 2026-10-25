@@ -1,0 +1,102 @@
+{
+  "status": "source-research-complete-no-build-or-run",
+  "created_utc": "2026-10-24T01:38:26.395543+00:00",
+  "reviewer": "/root/native_stack_batch/peer_cse_review",
+  "observed_head": "007ca9f7b1f3cd2005e0d4df1fcfb24f55aaecc7",
+  "scope": "Retained reference interfaces, exact eight-family protocol, historical failed family, uncertainty rules, and source-freshness constraints for a separately proposed fresh matched optimized scheduler cohort. No new build, numerical execution, timing, statistical rerun, or live edit.",
+  "bindings_sha256": {
+    "validation/native-master-replay/inputs.json": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+    "validation/benchmark/run.py": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+    "validation/benchmark/driver.f90": "f58a1d1b29b4d879729dde12408d97c188d2c8f410440856df7e8b1f9ac13e2d",
+    "target/benchmark/reference-build.json": "488782471657193e0e09f69c283cb82d8534577bb4fccd23f3087192c0f2f782",
+    "validation/collier-reference/driver.f90": "acf580303a242745420bd6b612ba4fe1fe373117b651d6855013827e35b0287f",
+    "validation/collier-reference/ready-initial8-v3/build.json": "654d6221d0169ba06d0f2ae7f9615737d6b67aae0f0b57539e74ad518902fc80",
+    "validation/collier-reference/ready-initial8-v3/correctness.json": "de40173c8ec11c8750c4cb614bb73a64e3037eac90402c9f1a39696e0ade135b",
+    "validation/collier-reference/ready-initial8-v3/producer/validation/collier-reference/run.py": "979046300446dc037c52927436696b4bcac2a289439abb699d85f6b19a63d134",
+    "target/selected-native-optimized/four-engine-v3/adopted-timing-protocol.md": "329368e6a70aeaacacc76ddd85da84cdd5a8c6b269287522bea1d3e3f95ea0c1",
+    "target/selected-native-optimized/four-engine-v3/run_timing.py": "da98dcea10a0122efa01506654ba3b15c7e3500d44f2b5d5603f06607a39b46c",
+    "target/selected-native-optimized/four-engine-v3/analyze.py": "9474275ee8e07a86d317d1c7056256b5c5b993a82924189e1f70fa57390f7379",
+    "target/selected-native-optimized/four-engine-v3/preparation.py": "0b012b436dd4d38b70ac6bafa1a10750e3d501b97af466739be4a7c53daa4db5",
+    "target/selected-native-optimized/four-engine-v3/timing-quiet254/receipt.json": "1db4c97f2bd0e256e14b9603e840ce22f7cd98e127f0f0673aa6e8f7cfe1e3b3",
+    "target/selected-native-optimized/four-engine-v3/timing-quiet254/summary.json": "e4b807914566d52e61798848344a59455f21f839d70f2faa2fca592f3a2513c3",
+    "validation/selected-native-four-engine/posthoc-revision2/terminal_admission.py": "9dba093aafd7d5a5ec6fb96ce280e0ad70fb74ad123e162b4013750df29c2a72",
+    "validation/selected-native-four-engine/posthoc-revision2/summary.json": "424cb4028459324b796085e5446c979f75de796eb0aa747e6f2335f654116275",
+    "target/selected-native-optimized/closure-audit.json": "7faf196a9b4befa33cb7d55d3dc3dd4d8917c6ddba0ee1a5a93716b6086c72c8",
+    "target/selected-native-optimized/build-001/build.json": "95b0dd15d4e3cd4914ce05c7ad370ace0bbca2f3cea28b8379215fb099a3ef0a",
+    "target/selected-native-optimized/source/core_probe.rs": "c0233803c9b3ab4576a66f4c226e1af365b5eb7632cd71a6583a475ae39a65d2"
+  },
+  "fixtures": {
+    "path": "validation/native-master-replay/inputs.json",
+    "sha256": "65d0d2fd554807478569ac88b6d689c9132ce541e98cfb2a3a55b8ef98e5c7ef",
+    "families": "N2/N3 rank0/rank1 positive-real massive Euclidean samples, widths1/32 in that order; same stored32 samples per topology/rank, common mu3",
+    "outputs": "All four native Laurent slots for every Cartesian moment through requested rank;1584 tensor complex values across eight families. This is whole reduction only, not numerator preparation/end-to-end physical evaluation."
+  },
+  "reference_interfaces": {
+    "iregi": {
+      "binary": "target/benchmark/iregi-benchmark",
+      "sha256": "4c2241f6dd557db4e9348f0fd397484a72d71f83b953a6efc8010c61d1bdd389",
+      "bytes": 3936264,
+      "mode": "Hybrid2",
+      "build": "target/benchmark/reference-build.json",
+      "compiler": "pinned GFortran15.2.0, -O3 -std=legacy -fallow-argument-mismatch; objects also -fPIC",
+      "routing": "same numerical shifts and squared masses serialized with17 significant digits",
+      "cache": "INITIREGI(true,2,1e-12), ONSHELL false, ML5 true and scale outside timer; each lane reduces and frees numerical cache with IREGI_FREE_PS inside timer",
+      "wire": "BENCH id mode n rank mu batch warmup 1 iterations; then n momentum/mass rows per lane. READY/RESULT/QUIT; no CHECK command."
+    },
+    "collier": {
+      "binary": "target/reference/collier/build-attempt001/collier-benchmark",
+      "sha256": "33704d629e547fe817a3982451cde1fc796d832fb51476c6ef07dffbe37c175a",
+      "bytes": 3697240,
+      "mode": "COLLIER1.2.10 COLI mode1",
+      "build": "validation/collier-reference/ready-initial8-v3/build.json",
+      "compiler": "same pinned GFortran15.2.0, Release -O3 legacy/mismatch/Wtabs; no fast-math",
+      "cache": "InitCacheSystem(0,n) retains internal-only memoization, with InitEvent on each root tensor call; no cross-event numerical cache",
+      "wire": "Same row serialization; CHECK enables independent pole probes, BENCH omits them. Do not use the later N4 diagnostic schema.",
+      "checks": "CHECK warmup0 iterations1 gives complete arrays plus three finite nonnegative UV/IRsingle/IRdouble pole residuals per lane<=1e-12. BENCH requires pole_check_errors=null. Every call folds ErrFlag==0 and AccFlag==0 into stable; individual flag values are not exposed.",
+      "normalization": "Native UV=i*pi^2*UV; finite=i*pi^2*(tensor-(EulerGamma+log(pi))*UV); IR slots zero only in this qualified massive IR-finite domain. Independent UV checks B0=i*pi^2, rank1=-i*pi^2*p1/2, triangleUV0."
+    },
+    "shared_limits": "Default Fortran INTEGER loop/request counters imply signed32-bit counts; calibration must cap/reject overflow. Each reference reports floating ns per complete batch call; elapsed is reconstructed ns/call*iterations, not raw exported integer ticks. Parse/allocation/init/warmup/JSON/transport excluded; complete per-call status checks, transformations and numerical cache reset remain timed."
+  },
+  "fresh_cohort_recommendation": {
+    "engines": "Two newly optimized generic Symbolica TIRust chains differing only by reviewed scheduler candidate, plus the same hash-pinned IREGI and COLLIER binaries. Use explicit scheduler-baseline/candidate labels; the old selected-native candidate is a different experiment.",
+    "build_scope": "New matched compiler/features/profile and exact current source closure required. Rebuild affected Symbolica and reverse dependents coherently; old optimized native adapter/whole binary cannot establish current-source parity. Verify linker maps contain only each intended archive chain.",
+    "preparation": "Freeze new exact optimized qualification snapshots, then same CASE-first eight-family sequence with immediate repeats before controls in each fresh process. Historical initialization diagnostic found schedule-dependent ULPs but did not prove cause. Prepare plans/inputs and structural caches outside timer; preserve numerical-cache policy.",
+    "timing_body": "Use the retained complete public-call pattern: one Instant pair per fixed-count Rust block, black_box input and owned output, status checking and output drop inside; capture/profile off; final complete arrays outside timer. Do not substitute the currently untimed opt0 qualification harness.",
+    "protocol": "48quartets, all24 four-engine permutations twice, Random(173); matching positive shared count across all four. Start n1;10warm calls only in first calibration round; later calibration/acceptance warmup0. At most8rounds; fastest>=100ms; otherwise n=max(n+1,ceil(n*110000000/min_elapsed_ns)), subject to integer32 limit. Fixed accepted count. Retain all8 families and every short/failed/unrun block.",
+    "gates": "Before/after each family: every tensor/Laurent coefficient, own exact represented outputs/precision/sign/context, allsix master captures outside timing, allsuccess statuses and stable, COLLIER pole checks and independentUV identities. Cross-reference mixed error abs(a-b)/(E^(4+degree-2N)+abs(b))<=1e-10 with E=max(1,mu,abs(shifts),sqrt(abs(mass_squared))).",
+    "statistics": "Five fresh same-quartet ratios: both TIRust variants/IREGI, both/COLLIER, scheduler-candidate/baseline. Median of paired ratios;10000 seeded173 bootstrap median resamples, linear quantiles0.005/0.995; width(high-low)/median<=0.02; improvement high<1, parity low<=1<=high, regression low>1, otherwise noise-inconclusive. Report order strata24/24 and slower-pair counts. No multiplying or pooling prior sessions.",
+    "terminal_policy": "Preregister clean global termination separately from raw-derived row-local short-block status, preserving all ratios of a short family as inconclusive. The reviewed posthoc terminal_admission.py is a source model; new protocol must be reviewed before any measurements. Every global hash/process/cleanup/deadline/numeric failure remains disqualifying.",
+    "resource_scope": "Prior700s/100ms/48quartet four-engine cohort is a reproducible reference protocol, not a newly granted resource budget. Freeze new bound and CPU quiet-window grant before run; minimum acceptance workload153.6s excludes slower-engine imbalance, calibration and admission. No CI-dependent extension/retry."
+  },
+  "historical_failure": {
+    "family": "n2-r0-massive",
+    "batch": 1,
+    "row_position_zero_based": 0,
+    "engine": "collier",
+    "quartet_zero_based": 32,
+    "raw_serial": 159,
+    "iterations": 134147,
+    "elapsed_ns": 99893971,
+    "minimum_ns": 100000000,
+    "producer_status": "inconclusive-or-failed",
+    "raw_sha256": "c6621c221f1e0526ac50e4b1e5785e5f296e600b6f00277f4882f15ef42547e8",
+    "frozen_summary_sha256": "e4b807914566d52e61798848344a59455f21f839d70f2faa2fca592f3a2513c3",
+    "frozen_verdict": "5short-block inconclusive ratios plus35correctness-or-cohort-failed due aggregate-status admission; all raw data retained",
+    "posthoc_revision2_sha256": "424cb4028459324b796085e5446c979f75de796eb0aa747e6f2335f654116275",
+    "posthoc_scope": "Separately labelled posthoc admission-only correction admits other7families, keeps this family inconclusive and all statistic values unchanged. It is not the last/eighth row by index. No old speed claim is refreshed."
+  },
+  "freshness": {
+    "old_closure_revision": "6b24c0372022e22606a1ac85f30c7fa579fb41f0",
+    "old_audit_then_current": "b71d5f898882d4d959a16fa667e66c746f483492",
+    "old_core_source_origin": "06706e2 historical private source snapshot",
+    "old_profile": "retained release runtime opt3/cgu1/ThinLTO-compatible; new sharedmasters+cores opt3/cgu16/embed-bitcode, debug and overflow checks off; finalprobe ThinLTO",
+    "confirmed_live_mismatch": "Symbolica src/poly.rs old04d32da6ac2caa940fc5baa9ac7f1b095183467012be65880428da9ecf32695c vs current0f246ceca41a50213458c51d0c103e36f85d023616120d5789482fd35a65d6d2. batch.rs,evaluate.rs,oneloopmaster evaluators.rs and masters lib.rs checked equal individually; that does not make the full closure current.",
+    "scope": "Owner separately auditing all current-vs-frozen changes including poly0004. These old build/source receipts are provenance only, not a reusable current-source equality certificate."
+  },
+  "independent_reference_reviewer": "/root/native_stack_batch/peer_cse_review/warm_timing_review",
+  "limitations": [
+    "Read-only source research, not full closure requalification or actual protocol approval.",
+    "Reference binary/driver/helper/input hashes checked; the complete historical202IREGI/53COLLIER source/object maps were not rehashed in this task.",
+    "No new speedup/parity result, adoption, or numerical/performance execution authorized."
+  ]
+}

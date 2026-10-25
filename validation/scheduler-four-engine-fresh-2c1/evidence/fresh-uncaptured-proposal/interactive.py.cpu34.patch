@@ -1,0 +1,11 @@
+--- target/guard-performance-review/optimized-performance-proposal/fresh-uncaptured-proposal/draft-cpu32/interactive.py
++++ target/guard-performance-review/optimized-performance-proposal/fresh-uncaptured-proposal/interactive.py
+@@ -7,7 +7,7 @@
+         self.label=label;self.owner=None;self.log=None;self.stdout_log=None;self.selector=None;self.buffer=b'';self.responses=0
+     def start(self,binary,taskset,folder,budget,persist):
+         budget.remaining();self.log=(folder/(self.label+'.stderr.log')).open('x');self.stdout_log=(folder/(self.label+'.stdout.log')).open('xb')
+-        command=[taskset,'-c','32',str(binary)]
++        command=[taskset,'-c','34',str(binary)]
+         self.owner=subprocess.Popen(command,stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=self.log,bufsize=0,start_new_session=True)
+         persist({'label':self.label,'command':command,'owned_process_group':self.owner.pid,'status':'running'})
+         os.set_blocking(self.owner.stdin.fileno(),False);os.set_blocking(self.owner.stdout.fileno(),False)

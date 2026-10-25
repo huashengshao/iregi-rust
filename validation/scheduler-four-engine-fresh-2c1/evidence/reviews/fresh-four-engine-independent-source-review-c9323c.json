@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "status": "changes-required-source-only-no-execution-admission",
+  "reviewer": "/root/scheduler_perf_resume/four_engine_source_audit",
+  "reviewed_directory": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal",
+  "source_manifest_sha256": "c9323c479d8ae066bd8cf7c7b550169db8c588663c980f1e7b810d40e4b725b0",
+  "author_source_review_sha256": "36e7ad1584bdb24659175a4d351216ee5cf5b363903a157207c99962df1ff281",
+  "reviewed_snapshot_files": 21,
+  "payload_hashes_checked": 19,
+  "historical_helper_hashes_checked": 10,
+  "manifest_payload_mismatches": [],
+  "historical_helper_mismatches": [],
+  "scope": "Independent source, protocol schema, transport, lifecycle, saved-data admission and statistical wiring review. Original selected-native four-engine-v3 sources were read as historical references only. No historical timing result was reused, recomputed or overwritten.",
+  "instructions_read": ["/shared/external/iregi/iregi-rust/AGENTS.md"],
+  "findings": [
+    {
+      "id": "quiet-grant-not-bound-to-one-attempt",
+      "priority": 1,
+      "blocking_before_execution": true,
+      "files": [
+        {"path": "prepare.py", "line": 87},
+        {"path": "run.py", "line": 23},
+        {"path": "protocol-template.json", "line": 392}
+      ],
+      "problem": "The immutable quiet-grant contract binds source manifest, CPU, allowed process labels and one invocation's budget, but not the specific attempt directory. prepare.py can therefore create multiple timing run IDs using the same grant bytes, and each run.py invocation independently receives a new 900-second budget. The private attempt directory prevents overwriting one attempt, but does not prevent a grant from being applied to another new attempt. Root explicitly requires unique-attempt positive one-shot timing admission.",
+      "required_change": "Require the root grant to bind the absolute attempt_directory and identify its positive one-shot authority. Check the binding in preparation, before process launch and in saved admission. Retain all existing CPU/source/budget/SMT/quiet checks. The independently reviewed generated-protocol SHA must remain an explicit execution input. Avoid a circular protocol-SHA/grant-SHA binding if the protocol itself embeds the grant SHA.",
+      "math_gate_change_required": false
+    },
+    {
+      "id": "saved-stdout-stderr-digests-not-admitted",
+      "priority": 2,
+      "blocking_before_execution": true,
+      "files": [
+        {"path": "analyze.py", "line": 63},
+        {"path": "run.py", "line": 144}
+      ],
+      "problem": "The runner writes stdout_sha256 and stderr_sha256 after owned cleanup, but analyze.py only rehashes protected/tool/input files, raw.jsonl and executables. None of the twelve retained per-process stdout/stderr logs is rehashed during saved-data admission. A changed or missing log can therefore coexist with a clean analyzer admission despite the terminal receipt claiming exact saved log identities.",
+      "required_change": "Require exact six-label inventories in receipt stdout_sha256 and stderr_sha256, and rehash every corresponding label.stdout.log and label.stderr.log before statistics. Treat any missing, extra or changed retained log as a global provenance failure. Keep raw event accounting and all mathematical gates unchanged.",
+      "math_gate_change_required": false
+    }
+  ],
+  "source_checks": {
+    "six_owned_processes_four_timed_engines": "passed: run.py launches the frozen six labels; captured companions are excluded from measured() calls",
+    "single_granted_cpu": "passed: Session.start receives cpu explicitly; all children launch through taskset on that CPU; runner affinity also becomes that CPU",
+    "eight_family_inventory": "passed: four pinned cases times batch widths 1 and 32; pinned input digest is checked during preparation",
+    "case_first_initialization": "passed: eight coordinates, four TIRust processes, immediate own repeat per process, exactly 64 responses before any CONTROLS",
+    "qualification_gates": "passed source contract: fresh captured and uncaptured 60 requests / 120 events, linked independent full-review paths, 52 same-phase projections, complete direct master controls and pinned2c1f334 source; actual future admission remains deferred",
+    "fourteen_product_build": "passed schema review: preparer requires passed coherent 14-step build admission and all four named upstream archive bindings for four TIRust products; actual current build output schema matches accesses",
+    "full_before_after_records": "passed: six complete replies per family, complete represented tensor/Laurent arrays, successful statuses, all captured six-output master records, direct controls and exact own saved snapshots",
+    "projection": "passed: only master_captures and explicit root scope/capture mode are removed; plan_reused and direct scalar-master controls survive; revisited-family own snapshot comparison alone permits documented reuse metadata difference",
+    "references": "passed source review: frozen helper uses original IREGI Hybrid2 and COLLIER COLI mode1, unchanged normalized1e-10 all-coefficient comparisons, finite nonnegative separated pole probes<=1e-12 and UV identities",
+    "timed_public_call_scope": "passed source review of fresh uncaptured_core_probe.rs: one Instant pair per fixed count; reduce_batch inputs/results black_box; per-call success checks and owned result drops occur before stop; capture hooks excluded and profiling disabled",
+    "calibration": "passed: shared positive signed32 count starts1, at most8 rounds, warmup10 only on first round, fastest elapsed>=100ms required, next count=max(n+1,ceil(n*110ms/min_elapsed)), overflow rejected",
+    "balanced_quartets": "passed: all24 permutations twice, Random173 shuffle, same list for all eight families, 48 fixed-count quartets, no numerical retry/CI extension/replacement path",
+    "raw_accounting": "passed event-stream source review: exact stages and serials, request/response pairing, process response counts, derived durations, calibration arithmetic and complete48quartets; saved stdout/stderr binding remains a requested fix",
+    "lifecycle_and_budgets": "passed except requested one-shot grant binding: fixed180s/20s reserve preflight and900s/30s reserve timing, owned whole-process-group cleanup precedes postguards, exits0 and groups gone required; unrelated jobs are excluded by root lease rather than killed",
+    "global_vs_row_local": "passed: numeric/control/source/process/raw/deadline/incomplete-corpus failures disqualify the cohort; only acceptance intervals below100ms are row-local and mark all five ratios of that family inconclusive",
+    "ratios": "passed: baselineTIRust/IREGI, candidateTIRust/IREGI, baselineTIRust/COLLIER, candidateTIRust/COLLIER, candidateTIRust/baselineTIRust",
+    "statistics": "passed source review: exact hash-bound helper uses10000 Random173 median resamples, linear0.005/0.995 quantiles, width/median<=0.02 and original improvement/parity/regression gates; preserves48 pairs,24/24 order strata and slower-pair counts",
+    "quiet_release_before_statistics": "passed source ordering: timing analysis requires separate root release hash linked to terminal receipt, grant hash and CPU before reaching any real bootstrap call",
+    "preflight_before_timing": "passed source contract: timing preparation requires passed independent preflight, same qualifications, source manifest and CPU; generated protocol still requires independent review and root numerical authorization",
+    "historical_preservation": "passed: new immutable destination/attempt paths; no reviewed historical result changes; no pooled sessions or inferred cross-session ratios"
+  },
+  "independent_source_tests": {
+    "status": "passed-AST-and-pure-mock-routing-only",
+    "python_sources_parsed": 12,
+    "fresh_payloads_serialized": 48,
+    "balanced_permutations": 24,
+    "quartets": 48,
+    "mock_ratio_helper_calls": 45,
+    "paths_checked": ["complete", "row-local-short", "global-failure", "incomplete"],
+    "reviewed_files_modified": false,
+    "real_bootstrap_executed": false,
+    "compiler_preparer_probe_integral_or_timing_launched": false
+  },
+  "parallel_source_review": {
+    "reviewer": "/root/scheduler_perf_resume/four_engine_source_audit/statistics_read",
+    "scope": "analyzer/common/projection/frozen statistics helper source-only",
+    "blocking_findings": [],
+    "real_bootstrap_executed": false,
+    "files_modified": false
+  },
+  "required_before_measurement": [
+    "Successor source snapshot resolving the two concrete findings, with refreshed source manifest and author review and independent re-review",
+    "Actual fresh coherent build/captured/uncaptured independent admissions with exact artifacts and full reviews",
+    "Prepared protocol independently reviewed by actual SHA; no source-only template substitutes",
+    "Passed same-source same-CPU preflight and independent complete saved-data review before timing",
+    "Root confirms correctness and other project jobs have settled, then gives finite unique-attempt quiet grant",
+    "Owned cleanup, postguards and exact root quiet release before real statistics"
+  ],
+  "numerical_executed": false,
+  "performance_measured": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

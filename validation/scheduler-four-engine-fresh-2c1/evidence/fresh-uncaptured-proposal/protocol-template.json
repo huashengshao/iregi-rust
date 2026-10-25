@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "status": "SOURCE_ONLY_TEMPLATE_ACTUAL_BUILD_AND_CAPTURED_ADMISSION_DEFERRED",
+  "cwd": "/shared/external/iregi/iregi-rust",
+  "scope": "Pinned2c1f334 opt3 capture-free uniform-branch scheduler qualification/projection only, shared frozen optimized lower dependency context. Eightfamilies,60requests,52normal same-phase saved captured projections. No timing, no production application.",
+  "aggregate_budget_seconds": 300,
+  "cleanup_postguard_reserve_seconds": 20,
+  "effective_work_deadline_seconds": 280,
+  "cpu_affinity": "34",
+  "request_count": 60,
+  "responses_per_process": 30,
+  "normal_responses_projected": 52,
+  "projection_policy": "Only recursively remove master_captures and root result.scope/result.capture_enabled. Every other field including plan_reused must equal the same saved captured phase. Direct all-six scalar controls remain exact.",
+  "captured_anchor": null,
+  "probes": null,
+  "build_receipt": null,
+  "build_receipt_sha256": null,
+  "taskset": null,
+  "inputs": null,
+  "inputs_sha256": null,
+  "control_shapes": null,
+  "control_shapes_sha256": null,
+  "protected_sha256": null,
+  "tool_sha256": null,
+  "captured_independent_admission_contract": {
+    "status": "passed",
+    "receipt_sha256": "<actual captured results.json hash>",
+    "raw_sha256": "<actual captured responses.jsonl hash>",
+    "request_count": 60,
+    "raw_event_count": 120,
+    "all_complete_records_and_controls_checked": true,
+    "full_review_path": "<actual fresh captured independent full review path>",
+    "full_review_sha256": "<actual full review hash>",
+    "pinned_source_revision": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2"
+  },
+  "four_invalid_request_controls": [
+    {
+      "field": "engine",
+      "value": "baseline",
+      "effective_iterations": 0,
+      "effective_repeats": 0,
+      "expected": "wrapped result.error: timing requires own variant and one positive signed32 fixed-count block; guard is before Instant/iteration loop"
+    },
+    {
+      "field": "warmup",
+      "value": 1,
+      "expected": "invalid_request: untimed request must not carry timing counts"
+    },
+    {
+      "field": "repeats",
+      "value": 1,
+      "expected": "invalid_request: untimed request must not carry timing counts"
+    },
+    {
+      "field": "iterations",
+      "value": 1,
+      "expected": "invalid_request: untimed request must not carry timing counts"
+    }
+  ],
+  "environment": "Source scripts/env.sh and private license silently; record presence only.",
+  "failure_policy": "Stop on first numerical/projection/protocol/hash/cancellation/timeout/cleanup failure; preserve first terminal evidence and unrun rows. No retry or extension.",
+  "next_gate": "Independent complete saved-data audit of actual uncaptured60requests, all52projections, direct scalar controls, raw accounting, terminal groups and hashes. Separate preregistered preflight/quiet grant needed for timing.",
+  "numerical_executed": false,
+  "numerical_qualified": false,
+  "performance_qualified": false,
+  "production_adoption_authorized": false
+}

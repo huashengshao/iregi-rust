@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "status": "passed-counter-and-scope-audit",
+  "reviewer": "/root/scheduler_perf_resume/fresh_recipe_audit",
+  "pinned_source_revision": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+  "scope": "Separate final acceptance context for the sealed experimental scheduler cohort. Saved raw timing, CI values and preregistered statistical gates remain unchanged.",
+  "observation_before_utc": "2026-10-25T12:20:53.427863+00:00",
+  "observation_after_utc": "2026-10-25T12:33:32.231334+00:00",
+  "observation_span_seconds": 758.803471,
+  "cpu_rows_independently_recomputed": [
+    {
+      "cpu": 34,
+      "counter_delta_first8_fields": [
+        63671,
+        0,
+        6449,
+        5029,
+        77,
+        610,
+        29,
+        0
+      ],
+      "total_ticks": 75865,
+      "non_idle_fraction": 0.9326962367363079
+    },
+    {
+      "cpu": 290,
+      "counter_delta_first8_fields": [
+        50843,
+        0,
+        1358,
+        22820,
+        248,
+        575,
+        9,
+        0
+      ],
+      "total_ticks": 75853,
+      "non_idle_fraction": 0.6958854626712193
+    }
+  ],
+  "observation_scope_limit": "The interval includes setup, source review and polling gaps as well as kernel measurements. Aggregate counters and last-CPU process samples cannot attribute interference to individual paired blocks or quantify its effect on any ratio.",
+  "root_project_quiet_lease": "The root held other project compiler and numerical jobs; this did not reserve the physical core against unrelated host activity.",
+  "material_environment_caveat": "Reserved physical core sibling CPU290 had substantial unrelated/background activity, approximately69.6% non-idle over the observation interval. This does not support an uncontended or isolated-host performance claim.",
+  "acceptance_eligibility": false,
+  "acceptance_ineligibility_reason": "Reserved physical core sibling had substantial unrelated activity.",
+  "statistical_gate_counts_unchanged": {
+    "regression": 12,
+    "inconclusive-noise": 16,
+    "improvement": 2,
+    "inconclusive-short-block": 10
+  },
+  "raw_timings_or_bootstrap_or_gates_mutated": false,
+  "uncontended_parity_claim_eligible": false,
+  "global_performance_claim_eligible": false,
+  "default_or_production_adoption_authorized": false,
+  "new_measurement_or_repeat_run_performed": false,
+  "bindings_sha256": {
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/contention-context-fresh2c1-001/before.json": "f35b89d31de96b3a3d5324f5989d484e54d71af70681bed14ca014708343f08a",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/contention-context-fresh2c1-001/after.json": "2c0c6e1c8ac7f6c86973b18657900c4a20087d81af8660030837933d2001894b",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/contention-context-fresh2c1-001/summary.json": "091749c81b22516ce4ec8b092447048d5cc8d7dbee59db7fe5c8222f6aaea06b",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/independent-timing-audit/audit-001/full-review.json": "ca9ce926009cd6d26b08b93d120fa48829d5767de7ed036f2ca8b896f72904d0",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/independent-timing-audit/audit-001/admission.json": "a9bced63ed013f28bc572bdb766c6dbb969572a663fa32c85d54b88034f2cbac",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/timing-fresh2c1-001/receipt.json": "bc441421f9100a5e08bd1586fb455bd9a0cec24d933675a309a244c5aac1e547",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/timing-fresh2c1-001-protocol.json": "a6b139ca7a2cb703b686e8e8278f7b27e35d27c588807e085814a448d84f9cdf",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/root-quiet-lease-fresh2c1-001.json": "dcfbeaf6279812de3a2791966757cc322bcd5f202f5c9a550b600c19e0fdcd20",
+    "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/root-quiet-release-fresh2c1-001.json": "543db466ffe74446ac4d467e87818e2e62604e4257dabe9eea050a4a692f6f5f"
+  },
+  "checker_sha256": "944699876784e54d68d7897beba1eeaa35531f36d0eae1eba8fd8cb163e24887",
+  "recorded_utc": "2026-10-25T12:38:12.071498+00:00"
+}

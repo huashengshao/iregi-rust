@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "status": "additive-independent-bindings-preserving-original-seal",
+  "recorded_utc": "2026-10-25T13:13:39.128891+00:00",
+  "original_manifest_sha256": "10e7fe97afeb2e6e7e4de0fe48716c4d85c37d6f945d3b6f0361ee88aef02d0f",
+  "original_sealed_payloads": 235,
+  "additive_nested_manifests": 2,
+  "actual_non_root_files": 237,
+  "files": [
+    {
+      "path": "evidence/fresh-four-engine-proposal/draft-pre-lease-log-hardening/manifest.json",
+      "sha256": "482687cd5665800b718edf8ee7f30897c54dfc3bbdca86b0a5b0f899b7a0613b",
+      "bytes": 2380,
+      "origin": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-four-engine-proposal/draft-pre-lease-log-hardening/manifest.json",
+      "origin_sha256": "482687cd5665800b718edf8ee7f30897c54dfc3bbdca86b0a5b0f899b7a0613b"
+    },
+    {
+      "path": "evidence/fresh-uncaptured-proposal/draft-cpu32/manifest.json",
+      "sha256": "f72d6c6deb8f63d0d64a6333fd33ea857474cce9d4f61c453240164588da38da",
+      "bytes": 1782,
+      "origin": "/shared/external/iregi/iregi-rust/target/guard-performance-review/optimized-performance-proposal/fresh-uncaptured-proposal/draft-cpu32/manifest.json",
+      "origin_sha256": "f72d6c6deb8f63d0d64a6333fd33ea857474cce9d4f61c453240164588da38da"
+    }
+  ],
+  "copy_audit_sha256": "d7dc707aaa7992f9386088f60b16acb6118355bb221d897233b36c1da479d038",
+  "checker_sha256": "601212f7585ee8428164033793f585938b5d2d7fda36d486b0e740812433d081",
+  "reason": "Original package/portable verifier excluded every manifest.json basename; these two historical nested draft files were copied but omitted from top seal. This additive inventory binds both exact payloads and original source copies. Original235 payload seal and verifier remain unchanged.",
+  "reproduce": "python3 -B validation/scheduler-four-engine-fresh-2c1/verify.py && python3 -B validation/scheduler-four-engine-fresh-2c1-supplement-check.py --origins",
+  "acceptance_eligibility": false,
+  "new_integral_or_compiler_or_timing_execution": false
+}

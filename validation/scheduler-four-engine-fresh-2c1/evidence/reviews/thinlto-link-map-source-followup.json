@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/scheduler_perf_resume/fresh_recipe_audit",
+  "recorded_utc": "2026-10-25T10:55:40.548482+00:00",
+  "status": "source_only_thinlto_map_admission_incompatibility_confirmed",
+  "scope": "Additional source research prompted by parent; no compiler/test/integral/runtime launch. Not a revision of frozen build protocol or an exemption from current exact archive-map gate.",
+  "compiler_source": {
+    "path": "/nix/store/1qg7z7i461qsv0lczc40nyi8ps6snlca-rustc-1.99.0/lib/rustlib/rustc-src/rust/compiler/rustc_codegen_ssa/src/back/link.rs",
+    "sha256": "899fef8fc3d24571fb29fe5a00151058124ad60720e83fd20b4e83dc2e7caec5",
+    "rustc_binary_sha256": "9ea4b7398bce9713ac47ea137032cf985ec6b5ea21be152beda9bd77320dc13f",
+    "sections": [
+      {
+        "start_line": 3693,
+        "end_line": 3724,
+        "text": "\n// Adds the static \"rlib\" versions of all crates to the command line.\n// There's a bit of magic which happens here specifically related to LTO,\n// namely that we remove upstream object files.\n//\n// When performing LTO, almost(*) all of the bytecode from the upstream\n// libraries has already been included in our object file output. As a\n// result we need to remove the object files in the upstream libraries so\n// the linker doesn't try to include them twice (or whine about duplicate\n// symbols). We must continue to include the rest of the rlib, however, as\n// it may contain static native libraries which must be linked in.\n//\n// (*) Crates marked with `#![no_builtins]` don't participate in LTO and\n// their bytecode wasn't included. The object files in those libraries must\n// still be passed to the linker.\n//\n// Note, however, that if we're not doing LTO we can just pass the rlib\n// blindly to the linker (fast) because it's fine if it's not actually\n// included as we're at the end of the dependency chain.\nfn add_static_crate(\n    cmd: &mut dyn Linker,\n    sess: &Session,\n    archive_builder_builder: &dyn ArchiveBuilderBuilder,\n    rmeta_link_cache: &mut RmetaLinkCache,\n    crate_info: &CrateInfo,\n    tmpdir: &Path,\n    cnum: CrateNum,\n    bundled_lib_file_names: &FxIndexSet<Symbol>,\n) {\n    let src = &crate_info.used_crate_source[&cnum];\n    let cratepath = src.rlib.as_ref().unwrap();\n"
+      },
+      {
+        "start_line": 3725,
+        "end_line": 3778,
+        "text": "    let mut link_upstream =\n        |path: &Path| cmd.link_staticlib_by_path(&rehome_lib_path(sess, path), false);\n\n    if !are_upstream_rust_objects_already_included(sess) || ignored_for_lto(sess, crate_info, cnum)\n    {\n        link_upstream(cratepath);\n        return;\n    }\n\n    let dst = tmpdir.join(cratepath.file_name().unwrap());\n    let name = cratepath.file_name().unwrap().to_str().unwrap();\n    let name = &name[3..name.len() - 5]; // chop off lib/.rlib\n    let bundled_lib_file_names = bundled_lib_file_names.clone();\n\n    sess.prof.generic_activity_with_arg(\"link_altering_rlib\", name).run(|| {\n        let upstream_rust_objects_already_included =\n            are_upstream_rust_objects_already_included(sess);\n        let is_builtins = sess.target.no_builtins || !crate_info.is_no_builtins.contains(&cnum);\n\n        let mut archive = archive_builder_builder.new_archive_builder(sess);\n        if let Err(error) = archive.add_archive(\n            cratepath,\n            AddArchiveKind::Rlib(rmeta_link_cache, &|f, entry_kind| {\n                if f == METADATA_FILENAME || f == rmeta_link::FILENAME {\n                    return true;\n                }\n\n                // If we're performing LTO and this is a rust-generated object\n                // file, then we don't need the object file as it's part of the\n                // LTO module. Note that `#![no_builtins]` is excluded from LTO,\n                // though, so we let that object file slide.\n                if upstream_rust_objects_already_included\n                    && entry_kind == ArchiveEntryKind::RustObj\n                    && is_builtins\n                {\n                    return true;\n                }\n\n                // We skip native libraries because:\n                // 1. This native libraries won't be used from the generated rlib,\n                //    so we can throw them away to avoid the copying work.\n                // 2. We can't allow it to be a single remaining entry in archive\n                //    as some linkers may complain on that.\n                if bundled_lib_file_names.contains(&Symbol::intern(f)) {\n                    return true;\n                }\n\n                false\n            }),\n        ) {\n            sess.dcx().emit_fatal(diagnostics::RlibArchiveBuildFailure {\n                path: cratepath.clone(),\n                error,\n            });"
+      },
+      {
+        "start_line": 3798,
+        "end_line": 3808,
+        "text": "pub(crate) fn are_upstream_rust_objects_already_included(sess: &Session) -> bool {\n    match sess.lto() {\n        config::Lto::Fat => true,\n        config::Lto::Thin => {\n            // If we defer LTO to the linker, we haven't run LTO ourselves, so\n            // any upstream object files have not been copied yet.\n            !sess.opts.cg.linker_plugin_lto.enabled()\n        }\n        config::Lto::No | config::Lto::ThinLocal => false,\n    }\n}"
+      }
+    ]
+  },
+  "finding": "The current probe uses -C lto=thin without linker-plugin-lto. are_upstream_rust_objects_already_included returns true; add_static_crate removes metadata and Rust object archive members. A residual native archive may be emitted under temporary directory; empty pure Rust residual archives are not linked. Therefore original source rlib absolute paths are not guaranteed to appear in final linker map even when exactly the intended rlibs supplied all upstream IR. The current exact-original-four-path map gate can conservatively fail at its first optimized probe.",
+  "implication": "Prior source review established coherent explicit dependency chain and conservative failure behavior; it did not establish an actual optimized linker map. Existing map gate must remain unchanged for active attempt, preserve first terminal evidence and all artifacts, and do not execute its unqualified binary. Any new build/admission strategy requires a separate reviewed protocol and root resource coordination.",
+  "possible_future_strategies": [
+    "Use matched optimized probes with LTO off if that is the desired benchmark profile, preserving direct original archive-map evidence; this changes the final optimization profile and requires a new proposal and numerical qualification.",
+    "For intended ThinLTO, develop a separately reviewed provenance proof of pre-LTO compiler input selection (e.g. exact hash-bound fresh externs plus traced successful archive opens and a clean dependency search directory excluding stale Symbolica/OneLoop/IREGI copies), while retaining final link map for transformed native objects. This is a future design, not permission to relax current map admission."
+  ],
+  "stale_search_context_observed": [
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_masters-736462b347335a0f.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_prepare-b6f3066dd631bcd7.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-8e79cbf264045859.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_rust-b16ff118efb36669.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-2ae1abcc9fd9c0db.rmeta",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libsymbolica-8e79cbf264045859.rmeta",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_cli-9d9d965bec95d6e4.rmeta",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/liboneloop-6117c7de19c8681b.rmeta",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_masters-736462b347335a0f.rmeta",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/liboneloop-6117c7de19c8681b.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_cli-9d9d965bec95d6e4.rlib",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_prepare-b6f3066dd631bcd7.rmeta",
+    "target/benchmark/dependency-closures/6b24c03-complete-kinds/deps/libiregi_rust-b16ff118efb36669.rmeta"
+  ],
+  "numerical_qualified": false,
+  "performance_qualified": false,
+  "active_protocol_changed": false
+}
