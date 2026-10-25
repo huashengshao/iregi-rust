@@ -1,14 +1,16 @@
 {
   "schema_version": 1,
-  "recorded_utc": "2026-10-25T10:49:26.623949+00:00",
+  "recorded_utc": "2026-10-25T12:15:52.972553+00:00",
   "status": "source-reviewed-rendered-and-deterministically-rebuilt",
-  "scope": "Resumed constructor checkpoint: seven new focused tests pass; twenty earlier tests remain historical. No production backend adoption, new tensor numerical result or timing measurement. Preserve all282handoff result values unchanged.",
+  "scope": "Optional generated f64 ABC policy integrated with current locked Cargo default/selective builds,26 focused tests and400 original-reference tensor comparisons; complete private native/N6 regressions and partial highpoint type pilot preserved. Legacy broad metadata timeout/both unrun retained. No new kernel timings, no default backend change; preserve all284 prior raw result values.",
   "report_artifacts": {
-    "docs/benchmark.typ": "9c51a6b099702557c9e98b63caf715057e0d0fe632ade1923c6f1d1a71af8aab",
-    "docs/data/results.json": "38870c60b2ddafc2ab9dfcb7e4aab6f2b32b13ac71e7fec1131704dd103b9ac4",
-    "docs/benchmark.pdf": "7d1db1c900b185eb1a341e31fa89d0bdb34d906ea2ab290c19c9f3a436c57a18",
+    "docs/benchmark.typ": "d7a3c38394ada07eced8c368539d704b38b20e59629578566d08bba93f4084db",
+    "docs/data/results.json": "4340496af3fe7ee5e8d587c959aa81afe2165c1b8bf18ae4296a5cf3564d9332",
+    "docs/benchmark.pdf": "be3a62c46f6d2d31ceeac8bb643ae8c5673c375d9d0da8baf4ab6dc9b98d3447",
     "scripts/build-benchmark-report.sh": "8b3bc58adffff6fcf9fd8ff075dff21602a6122cf6ee8e9daf67ab1f566c0ca1",
-    "scripts/check-benchmark-report.py": "ed5ac011874fb36a4fc8417e551bd0107d3da0b439565c43b18d719e35a4d003"
+    "scripts/check-benchmark-report.py": "ed5ac011874fb36a4fc8417e551bd0107d3da0b439565c43b18d719e35a4d003",
+    "docs/conventions.typ": "ceb2f1f1c7902d5b72b48174a33cb6ed6929809f4f002cc4362d340c325457fe",
+    "docs/algebra-reuse.typ": "c4b1b2449f07d6e2d68cb707986b27165e7fae5c2775c8edb8fc1a5fce8a2e43"
   },
   "typst_version": "typst 0.15.1 (9dfd3a08)",
   "creation_timestamp_utc": "2026-10-25T00:00:00+00:00",
@@ -23,12 +25,12 @@
     "--creation-timestamp",
     "1792886400",
     "docs/benchmark.typ",
-    "target/resume-20261025-render/independent.pdf"
+    "target/resume-20261025-render/native-final-independent.pdf"
   ],
   "byte_identical_rebuild": true,
-  "page_count": 31,
-  "render_check": "New page31 inspected at1500px; no clipping or spill. All earlier content unchanged except report-date header. Independent fixed-timestamp rebuild byte-identical.",
-  "source_ledger_count": 220,
+  "page_count": 33,
+  "render_check": "Pages31/32/33 inspected at1500px; all tables and prose fit. Independent fixed-timestamp native-final-independent.pdf matches byte-for-byte.",
+  "source_ledger_count": 229,
   "source_ledger": [
     {
       "key": "stack_reuse_factory_qualification",
@@ -1129,6 +1131,51 @@
       "key": "native_policy_six_point_constructor_qualification",
       "source": "validation/native-f64-sixpoint-constructors/qualification.json",
       "sha256": "a2df4383da9fa77e53c456749367eb76457cac3a187c139540e8cb532163b345"
+    },
+    {
+      "source": "validation/native-f64-sixpoint-whole/qualification.json",
+      "sha256": "c8935a56935faa522a583a6e1837391975717da0b14ddccc96f34efede6438b7",
+      "key": "native_policy_whole38_qualification"
+    },
+    {
+      "source": "validation/native-f64-sixpoint-whole-copy-audit.json",
+      "sha256": "fc021ed539d50f907f7dabe11e4d24dfae5950982cad516945f45ea0de5a3a20",
+      "key": "native_policy_whole38_copy_audit"
+    },
+    {
+      "source": "validation/native-f64-sixpoint-regression/qualification.json",
+      "sha256": "7b9214a784d8ac39d5e05d3503fefd8289926ec676944ce8c7fc7c601030ee67",
+      "key": "native_policy_retained_n6_regression_qualification"
+    },
+    {
+      "source": "validation/native-f64-sixpoint-regression.copy-audit.json",
+      "sha256": "973f0a36bbb6dcb97b5b4f500171142d5bc6045fd3ffdf78ed98b19ac12ca3b4",
+      "key": "native_policy_retained_n6_copy_audit"
+    },
+    {
+      "source": "validation/highpoint-six-point-numeric-types/qualification.json",
+      "sha256": "c3982195d7d133f6a13b7137f83f21208db4b1d9c113a6a4ac478359586bfc37",
+      "key": "highpoint_six_point_numeric_types_pilot_qualification"
+    },
+    {
+      "source": "validation/routing-rational-preparation/qualification.json",
+      "sha256": "85a9e252e365def50b5d2545089c37131d06ec666e68bc9eb7811caf70ad3c84",
+      "key": "routing_rational_preparation_qualification"
+    },
+    {
+      "source": "validation/routing-rational-preparation.copy-audit.json",
+      "sha256": "b063cf5b1f1f3833e3e937851faff4a23c7e2aed23879905b621d34a677cd9e1",
+      "key": "routing_rational_preparation_copy_audit"
+    },
+    {
+      "source": "validation/native-f64-sixpoint-current-cargo/qualification.json",
+      "sha256": "c589b6b57ac39352d09a38b60d0b7566f2347d00663f0e04881a32dcf4fc37b2",
+      "key": "native_policy_current_cargo_qualification"
+    },
+    {
+      "source": "validation/native-f64-sixpoint-current-cargo-independent-review.json",
+      "sha256": "e12876f47be8143325427079c414ab7414cdd0005ce997c74d5cef8e9e6655b1",
+      "key": "native_policy_current_cargo_independent_review"
     }
   ],
   "independent_arithmetic_review": {
@@ -2446,5 +2493,43 @@
     "production_backend_adopted": false,
     "report_updated_on": "2026-10-25",
     "historical_measurement_date_unchanged": true
+  },
+  "resumed_native_policy_checkpoint": {
+    "base_commit": "0e63734a634967c5fc99379025477cc8a179e22f",
+    "previous_report_proof_sha256": "19b495846b4b83c086a68112671822d844119bdf3ea16b61eecbaab53edeeb67",
+    "previous_report_artifacts": {
+      "docs/benchmark.typ": "9c51a6b099702557c9e98b63caf715057e0d0fe632ade1923c6f1d1a71af8aab",
+      "docs/data/results.json": "38870c60b2ddafc2ab9dfcb7e4aab6f2b32b13ac71e7fec1131704dd103b9ac4",
+      "docs/benchmark.pdf": "7d1db1c900b185eb1a341e31fa89d0bdb34d906ea2ab290c19c9f3a436c57a18",
+      "scripts/build-benchmark-report.sh": "8b3bc58adffff6fcf9fd8ff075dff21602a6122cf6ee8e9daf67ab1f566c0ca1",
+      "scripts/check-benchmark-report.py": "ed5ac011874fb36a4fc8417e551bd0107d3da0b439565c43b18d719e35a4d003"
+    },
+    "previous_raw_records_preserved": 284,
+    "new_result_keys": [
+      "native_policy_whole38_qualification",
+      "native_policy_whole38_copy_audit",
+      "native_policy_retained_n6_regression_qualification",
+      "native_policy_retained_n6_copy_audit",
+      "highpoint_six_point_numeric_types_pilot_qualification",
+      "routing_rational_preparation_qualification",
+      "routing_rational_preparation_copy_audit",
+      "native_policy_current_cargo_qualification",
+      "native_policy_current_cargo_independent_review"
+    ],
+    "production_optional_policy_integrated": true,
+    "default_backend_changed": false,
+    "current_cargo_qualification_source": "validation/native-f64-sixpoint-current-cargo/qualification.json",
+    "current_cargo_qualification_sha256": "c589b6b57ac39352d09a38b60d0b7566f2347d00663f0e04881a32dcf4fc37b2",
+    "current_cargo_copy_audit_source": "validation/native-f64-sixpoint-current-cargo-copy-audit.json",
+    "current_cargo_copy_audit_sha256": "0a9ead031bc0d680c7945099ea534b4895eb7a0d899ac6ed2227df0eb7024cdf",
+    "current_Cargo_selected_tests": 26,
+    "current_Cargo_reference_complex_slots": 400,
+    "full_legacy_metadata_matrix_passed": false,
+    "legacy_broad_metadata": "240s timeout; both-feature row unrun; no retry",
+    "higher_point_Dual_or_rank_envelope_promoted": false,
+    "new_kernel_timing_or_parity_claim": false,
+    "source_and_result_capsule_portable_checks_passed": 5,
+    "literal_license_and_compiled_capsule_payload_scan": "565files/members; no literal license or ELF/ar payload",
+    "historical_review_records": "Earlier nested checkpoint fields retain their original contexts; the current top-level scope supersedes historical pause/pending status."
   }
 }

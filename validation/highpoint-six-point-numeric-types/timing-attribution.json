@@ -1,0 +1,933 @@
+{
+  "schema_version": 1,
+  "status": "saved_log_and_source_only_timing_attribution",
+  "scope": "private typed scalar N6 pilot; no new integral, evaluator, compiler, profile, benchmark or retry executed",
+  "production_changed": false,
+  "timing_claim": "Repeated approximately 21\u201323 second scalar-master exact-evaluator preparation is directly observed. Numerical-kernel duration, fractional attribution and performance extrapolation are unmeasured.",
+  "aggregation_policy": {
+    "sum_emitted_intervals": false,
+    "subtract_from_runner_elapsed": false,
+    "extrapolate_throughput_or_completion_time": false,
+    "reason": "Scopes may occur within later numerical calls; the text stream lacks full nesting and completion markers."
+  },
+  "runs": [
+    {
+      "domain": "Float128Dual",
+      "working_bits": 128,
+      "components": 6,
+      "run_status": "failed",
+      "capture_status": "evaluating_batch",
+      "active_call_at_last_capture": "mixed",
+      "completed_call_names": [
+        "singleton_affine"
+      ],
+      "runner_elapsed_seconds": 164.43604339903686,
+      "step_elapsed_seconds": 154.29679604794364,
+      "step_timeout_seconds": 153.6431389969075,
+      "lifecycle_bound_seconds": 180,
+      "postwork_reserve_seconds": 20,
+      "owned_group_gone": true,
+      "elapsed_scope": "Runner/step aggregate includes preparation, computation and lifecycle overhead; not a numerical-kernel benchmark.",
+      "scalar_master_preparation_events": [
+        {
+          "line": 11,
+          "preparation_block_ordinal": 1,
+          "label": "scalar master exact evaluators",
+          "reported_value": "22.110825",
+          "reported_unit": "s",
+          "seconds_decimal": "22.110825",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 22.110825s"
+        },
+        {
+          "line": 19,
+          "preparation_block_ordinal": 2,
+          "label": "scalar master exact evaluators",
+          "reported_value": "0.000040",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000040",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 0.000040s"
+        },
+        {
+          "line": 31,
+          "preparation_block_ordinal": 3,
+          "label": "scalar master exact evaluators",
+          "reported_value": "21.548351",
+          "reported_unit": "s",
+          "seconds_decimal": "21.548351",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 21.548351s"
+        },
+        {
+          "line": 43,
+          "preparation_block_ordinal": 4,
+          "label": "scalar master exact evaluators",
+          "reported_value": "20.799653",
+          "reported_unit": "s",
+          "seconds_decimal": "20.799653",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 20.799653s"
+        }
+      ],
+      "reported_timing_events": [
+        {
+          "line": 2,
+          "preparation_block_ordinal": null,
+          "label": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]",
+          "reported_value": "2.529497",
+          "reported_unit": "s",
+          "seconds_decimal": "2.529497",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.529497s"
+        },
+        {
+          "line": 4,
+          "preparation_block_ordinal": null,
+          "label": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]",
+          "reported_value": "2.595557",
+          "reported_unit": "s",
+          "seconds_decimal": "2.595557",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.595557s"
+        },
+        {
+          "line": 5,
+          "preparation_block_ordinal": 1,
+          "label": "stability expressions",
+          "reported_value": "0.163133",
+          "reported_unit": "s",
+          "seconds_decimal": "0.163133",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.163133s"
+        },
+        {
+          "line": 6,
+          "preparation_block_ordinal": 1,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000379",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000379",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000379s"
+        },
+        {
+          "line": 7,
+          "preparation_block_ordinal": 1,
+          "label": "argument exact evaluator",
+          "reported_value": "0.003276",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003276",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.003276s"
+        },
+        {
+          "line": 8,
+          "preparation_block_ordinal": 1,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000003",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000003",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000003s"
+        },
+        {
+          "line": 9,
+          "preparation_block_ordinal": 1,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.313055",
+          "reported_unit": "s",
+          "seconds_decimal": "0.313055",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.313055s"
+        },
+        {
+          "line": 10,
+          "preparation_block_ordinal": 1,
+          "label": "primal exact evaluator",
+          "reported_value": "0.003221",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003221",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.003221s"
+        },
+        {
+          "line": 11,
+          "preparation_block_ordinal": 1,
+          "label": "scalar master exact evaluators",
+          "reported_value": "22.110825",
+          "reported_unit": "s",
+          "seconds_decimal": "22.110825",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 22.110825s"
+        },
+        {
+          "line": 12,
+          "preparation_block_ordinal": 1,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.098721",
+          "reported_unit": "s",
+          "seconds_decimal": "0.098721",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.098721s"
+        },
+        {
+          "line": 13,
+          "preparation_block_ordinal": 2,
+          "label": "stability expressions",
+          "reported_value": "0.864120",
+          "reported_unit": "s",
+          "seconds_decimal": "0.864120",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.864120s"
+        },
+        {
+          "line": 14,
+          "preparation_block_ordinal": 2,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000428",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000428",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000428s"
+        },
+        {
+          "line": 15,
+          "preparation_block_ordinal": 2,
+          "label": "argument exact evaluator",
+          "reported_value": "0.005560",
+          "reported_unit": "s",
+          "seconds_decimal": "0.005560",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.005560s"
+        },
+        {
+          "line": 16,
+          "preparation_block_ordinal": 2,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000016",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000016",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000016s"
+        },
+        {
+          "line": 17,
+          "preparation_block_ordinal": 2,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.723679",
+          "reported_unit": "s",
+          "seconds_decimal": "0.723679",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.723679s"
+        },
+        {
+          "line": 18,
+          "preparation_block_ordinal": 2,
+          "label": "primal exact evaluator",
+          "reported_value": "0.004396",
+          "reported_unit": "s",
+          "seconds_decimal": "0.004396",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.004396s"
+        },
+        {
+          "line": 19,
+          "preparation_block_ordinal": 2,
+          "label": "scalar master exact evaluators",
+          "reported_value": "0.000040",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000040",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 0.000040s"
+        },
+        {
+          "line": 20,
+          "preparation_block_ordinal": 2,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.044257",
+          "reported_unit": "s",
+          "seconds_decimal": "0.044257",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.044257s"
+        },
+        {
+          "line": 22,
+          "preparation_block_ordinal": 2,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "163.277134",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.163277134",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 163.277134ms"
+        },
+        {
+          "line": 24,
+          "preparation_block_ordinal": 2,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "144.549245",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.144549245",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 144.549245ms"
+        },
+        {
+          "line": 25,
+          "preparation_block_ordinal": 3,
+          "label": "stability expressions",
+          "reported_value": "0.036917",
+          "reported_unit": "s",
+          "seconds_decimal": "0.036917",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.036917s"
+        },
+        {
+          "line": 26,
+          "preparation_block_ordinal": 3,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000011",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000011",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000011s"
+        },
+        {
+          "line": 27,
+          "preparation_block_ordinal": 3,
+          "label": "argument exact evaluator",
+          "reported_value": "0.003260",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003260",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.003260s"
+        },
+        {
+          "line": 28,
+          "preparation_block_ordinal": 3,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000028",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000028",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000028s"
+        },
+        {
+          "line": 29,
+          "preparation_block_ordinal": 3,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.095208",
+          "reported_unit": "s",
+          "seconds_decimal": "0.095208",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.095208s"
+        },
+        {
+          "line": 30,
+          "preparation_block_ordinal": 3,
+          "label": "primal exact evaluator",
+          "reported_value": "0.000764",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000764",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.000764s"
+        },
+        {
+          "line": 31,
+          "preparation_block_ordinal": 3,
+          "label": "scalar master exact evaluators",
+          "reported_value": "21.548351",
+          "reported_unit": "s",
+          "seconds_decimal": "21.548351",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 21.548351s"
+        },
+        {
+          "line": 32,
+          "preparation_block_ordinal": 3,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.080627",
+          "reported_unit": "s",
+          "seconds_decimal": "0.080627",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.080627s"
+        },
+        {
+          "line": 34,
+          "preparation_block_ordinal": 3,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "158.23398",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.15823398",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 158.23398ms"
+        },
+        {
+          "line": 36,
+          "preparation_block_ordinal": 3,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "142.891431",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.142891431",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 142.891431ms"
+        },
+        {
+          "line": 37,
+          "preparation_block_ordinal": 4,
+          "label": "stability expressions",
+          "reported_value": "0.034703",
+          "reported_unit": "s",
+          "seconds_decimal": "0.034703",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.034703s"
+        },
+        {
+          "line": 38,
+          "preparation_block_ordinal": 4,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000010",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000010",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000010s"
+        },
+        {
+          "line": 39,
+          "preparation_block_ordinal": 4,
+          "label": "argument exact evaluator",
+          "reported_value": "0.003256",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003256",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.003256s"
+        },
+        {
+          "line": 40,
+          "preparation_block_ordinal": 4,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000035",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000035",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000035s"
+        },
+        {
+          "line": 41,
+          "preparation_block_ordinal": 4,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.101088",
+          "reported_unit": "s",
+          "seconds_decimal": "0.101088",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.101088s"
+        },
+        {
+          "line": 42,
+          "preparation_block_ordinal": 4,
+          "label": "primal exact evaluator",
+          "reported_value": "0.000797",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000797",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.000797s"
+        },
+        {
+          "line": 43,
+          "preparation_block_ordinal": 4,
+          "label": "scalar master exact evaluators",
+          "reported_value": "20.799653",
+          "reported_unit": "s",
+          "seconds_decimal": "20.799653",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 20.799653s"
+        },
+        {
+          "line": 44,
+          "preparation_block_ordinal": 4,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.084030",
+          "reported_unit": "s",
+          "seconds_decimal": "0.084030",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.084030s"
+        }
+      ],
+      "last_log_line": "iregi preparation numeric coefficient mapping: 0.084030s",
+      "timing_coverage": "No nested scope IDs, timestamps, numerical-kernel stage timings, per-call durations, or complete preparation boundaries are recorded; events are preserved individually and not added or subtracted."
+    },
+    {
+      "domain": "Float256Dual",
+      "working_bits": 256,
+      "components": 6,
+      "run_status": "failed",
+      "capture_status": "evaluating_batch",
+      "active_call_at_last_capture": "singleton_affine",
+      "completed_call_names": [],
+      "runner_elapsed_seconds": 164.1595425189007,
+      "step_elapsed_seconds": 153.6299661269877,
+      "step_timeout_seconds": 153.02785743505228,
+      "lifecycle_bound_seconds": 180,
+      "postwork_reserve_seconds": 20,
+      "owned_group_gone": true,
+      "elapsed_scope": "Runner/step aggregate includes preparation, computation and lifecycle overhead; not a numerical-kernel benchmark.",
+      "scalar_master_preparation_events": [
+        {
+          "line": 11,
+          "preparation_block_ordinal": 1,
+          "label": "scalar master exact evaluators",
+          "reported_value": "22.827833",
+          "reported_unit": "s",
+          "seconds_decimal": "22.827833",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 22.827833s"
+        },
+        {
+          "line": 19,
+          "preparation_block_ordinal": 2,
+          "label": "scalar master exact evaluators",
+          "reported_value": "0.000008",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000008",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 0.000008s"
+        },
+        {
+          "line": 31,
+          "preparation_block_ordinal": 3,
+          "label": "scalar master exact evaluators",
+          "reported_value": "21.854441",
+          "reported_unit": "s",
+          "seconds_decimal": "21.854441",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 21.854441s"
+        }
+      ],
+      "reported_timing_events": [
+        {
+          "line": 2,
+          "preparation_block_ordinal": null,
+          "label": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]",
+          "reported_value": "2.530237",
+          "reported_unit": "s",
+          "seconds_decimal": "2.530237",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.530237s"
+        },
+        {
+          "line": 4,
+          "preparation_block_ordinal": null,
+          "label": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]",
+          "reported_value": "2.510264",
+          "reported_unit": "s",
+          "seconds_decimal": "2.510264",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "iregi IBP preparation Cayley scalar solve [0, 1, 2, 3, 4]: 2.510264s"
+        },
+        {
+          "line": 5,
+          "preparation_block_ordinal": 1,
+          "label": "stability expressions",
+          "reported_value": "0.164573",
+          "reported_unit": "s",
+          "seconds_decimal": "0.164573",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.164573s"
+        },
+        {
+          "line": 6,
+          "preparation_block_ordinal": 1,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000052",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000052",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000052s"
+        },
+        {
+          "line": 7,
+          "preparation_block_ordinal": 1,
+          "label": "argument exact evaluator",
+          "reported_value": "0.003353",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003353",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.003353s"
+        },
+        {
+          "line": 8,
+          "preparation_block_ordinal": 1,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000004",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000004",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000004s"
+        },
+        {
+          "line": 9,
+          "preparation_block_ordinal": 1,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.314797",
+          "reported_unit": "s",
+          "seconds_decimal": "0.314797",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.314797s"
+        },
+        {
+          "line": 10,
+          "preparation_block_ordinal": 1,
+          "label": "primal exact evaluator",
+          "reported_value": "0.003242",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003242",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.003242s"
+        },
+        {
+          "line": 11,
+          "preparation_block_ordinal": 1,
+          "label": "scalar master exact evaluators",
+          "reported_value": "22.827833",
+          "reported_unit": "s",
+          "seconds_decimal": "22.827833",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 22.827833s"
+        },
+        {
+          "line": 12,
+          "preparation_block_ordinal": 1,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.105098",
+          "reported_unit": "s",
+          "seconds_decimal": "0.105098",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.105098s"
+        },
+        {
+          "line": 13,
+          "preparation_block_ordinal": 2,
+          "label": "stability expressions",
+          "reported_value": "0.878135",
+          "reported_unit": "s",
+          "seconds_decimal": "0.878135",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.878135s"
+        },
+        {
+          "line": 14,
+          "preparation_block_ordinal": 2,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000055",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000055",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000055s"
+        },
+        {
+          "line": 15,
+          "preparation_block_ordinal": 2,
+          "label": "argument exact evaluator",
+          "reported_value": "0.005134",
+          "reported_unit": "s",
+          "seconds_decimal": "0.005134",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.005134s"
+        },
+        {
+          "line": 16,
+          "preparation_block_ordinal": 2,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000006",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000006",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000006s"
+        },
+        {
+          "line": 17,
+          "preparation_block_ordinal": 2,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.787212",
+          "reported_unit": "s",
+          "seconds_decimal": "0.787212",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.787212s"
+        },
+        {
+          "line": 18,
+          "preparation_block_ordinal": 2,
+          "label": "primal exact evaluator",
+          "reported_value": "0.004786",
+          "reported_unit": "s",
+          "seconds_decimal": "0.004786",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.004786s"
+        },
+        {
+          "line": 19,
+          "preparation_block_ordinal": 2,
+          "label": "scalar master exact evaluators",
+          "reported_value": "0.000008",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000008",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 0.000008s"
+        },
+        {
+          "line": 20,
+          "preparation_block_ordinal": 2,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.045778",
+          "reported_unit": "s",
+          "seconds_decimal": "0.045778",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.045778s"
+        },
+        {
+          "line": 22,
+          "preparation_block_ordinal": 2,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "142.876306",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.142876306",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 142.876306ms"
+        },
+        {
+          "line": 24,
+          "preparation_block_ordinal": 2,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "143.279418",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.143279418",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 143.279418ms"
+        },
+        {
+          "line": 25,
+          "preparation_block_ordinal": 3,
+          "label": "stability expressions",
+          "reported_value": "0.042493",
+          "reported_unit": "s",
+          "seconds_decimal": "0.042493",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.042493s"
+        },
+        {
+          "line": 26,
+          "preparation_block_ordinal": 3,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000012",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000012",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000012s"
+        },
+        {
+          "line": 27,
+          "preparation_block_ordinal": 3,
+          "label": "argument exact evaluator",
+          "reported_value": "0.003524",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003524",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.003524s"
+        },
+        {
+          "line": 28,
+          "preparation_block_ordinal": 3,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000037",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000037",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000037s"
+        },
+        {
+          "line": 29,
+          "preparation_block_ordinal": 3,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.094905",
+          "reported_unit": "s",
+          "seconds_decimal": "0.094905",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.094905s"
+        },
+        {
+          "line": 30,
+          "preparation_block_ordinal": 3,
+          "label": "primal exact evaluator",
+          "reported_value": "0.000811",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000811",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.000811s"
+        },
+        {
+          "line": 31,
+          "preparation_block_ordinal": 3,
+          "label": "scalar master exact evaluators",
+          "reported_value": "21.854441",
+          "reported_unit": "s",
+          "seconds_decimal": "21.854441",
+          "classification": "preparation",
+          "raw_line": "iregi preparation scalar master exact evaluators: 21.854441s"
+        },
+        {
+          "line": 32,
+          "preparation_block_ordinal": 3,
+          "label": "numeric coefficient mapping",
+          "reported_value": "0.073332",
+          "reported_unit": "s",
+          "seconds_decimal": "0.073332",
+          "classification": "preparation",
+          "raw_line": "iregi preparation numeric coefficient mapping: 0.073332s"
+        },
+        {
+          "line": 34,
+          "preparation_block_ordinal": 3,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "150.233901",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.150233901",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 150.233901ms"
+        },
+        {
+          "line": 36,
+          "preparation_block_ordinal": 3,
+          "label": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]",
+          "reported_value": "152.59641",
+          "reported_unit": "ms",
+          "seconds_decimal": "0.15259641",
+          "classification": "symbolic_plan_preparation",
+          "raw_line": "PV prepare end pentagon constant identity [0, 1, 2, 3, 4]: 152.59641ms"
+        },
+        {
+          "line": 37,
+          "preparation_block_ordinal": 4,
+          "label": "stability expressions",
+          "reported_value": "0.040994",
+          "reported_unit": "s",
+          "seconds_decimal": "0.040994",
+          "classification": "preparation",
+          "raw_line": "iregi preparation stability expressions: 0.040994s"
+        },
+        {
+          "line": 38,
+          "preparation_block_ordinal": 4,
+          "label": "quadrature-stability exact evaluators",
+          "reported_value": "0.000019",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000019",
+          "classification": "preparation",
+          "raw_line": "iregi preparation quadrature-stability exact evaluators: 0.000019s"
+        },
+        {
+          "line": 39,
+          "preparation_block_ordinal": 4,
+          "label": "argument exact evaluator",
+          "reported_value": "0.003802",
+          "reported_unit": "s",
+          "seconds_decimal": "0.003802",
+          "classification": "preparation",
+          "raw_line": "iregi preparation argument exact evaluator: 0.003802s"
+        },
+        {
+          "line": 40,
+          "preparation_block_ordinal": 4,
+          "label": "snapping diagnostic exact evaluator",
+          "reported_value": "0.000039",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000039",
+          "classification": "preparation",
+          "raw_line": "iregi preparation snapping diagnostic exact evaluator: 0.000039s"
+        },
+        {
+          "line": 41,
+          "preparation_block_ordinal": 4,
+          "label": "reduction exact evaluator",
+          "reported_value": "0.102118",
+          "reported_unit": "s",
+          "seconds_decimal": "0.102118",
+          "classification": "preparation",
+          "raw_line": "iregi preparation reduction exact evaluator: 0.102118s"
+        },
+        {
+          "line": 42,
+          "preparation_block_ordinal": 4,
+          "label": "primal exact evaluator",
+          "reported_value": "0.000876",
+          "reported_unit": "s",
+          "seconds_decimal": "0.000876",
+          "classification": "preparation",
+          "raw_line": "iregi preparation primal exact evaluator: 0.000876s"
+        }
+      ],
+      "last_log_line": "iregi preparation primal exact evaluator: 0.000876s",
+      "timing_coverage": "No nested scope IDs, timestamps, numerical-kernel stage timings, per-call durations, or complete preparation boundaries are recorded; events are preserved individually and not added or subtracted."
+    }
+  ],
+  "recommendations": [
+    {
+      "existing_api": "iregi_masters::ExactMasterPlan::new_dual / instantiate",
+      "source": "crates/iregi-masters/src/exact_plan.rs:35,69",
+      "use": "Retain or Arc-share exact rational master programs by family and complete ordered Dual shape. Instantiate directly at each numeric domain and requested working precision to retain independent numerical buffers. This reuses exact compilation without promoting rounded constants.",
+      "status": "Existing public API. No cross-plan cache wiring or runtime validation performed in this note."
+    },
+    {
+      "existing_api": "ReductionPlan clone + Workspace::new_dual; private prepare_exact / PreparedMasterCache",
+      "source": "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/execution.rs:159,175,1038,1062",
+      "use": "Retain the same immutable structural plan (or its clone sharing Arc caches) across workspace creation. prepare_exact already uses an ordered-shape OnceLock; one PreparedMasterCache shares family programs within a recursive prepare. Separate lazy chart preparations currently start fresh default master caches; future context plumbing can reuse exact family programs while keeping chart expressions/certificates separate.",
+      "status": "Existing per-plan and recursive reuse verified by source. Wider shared preparation context is a proposed future code change, not an existing public constructor."
+    },
+    {
+      "existing_api": "PlanarFallback retained workspace / CertifiedPlanarWorkspace chart cache",
+      "source": "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/execution/planar_fallback.rs:10,107; target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/certified_planar.rs:200,517",
+      "use": "Retain each workspace across the intended schedule. Lazy planar retry keeps its prepared workspace and charts keyed by chart/mask. Do not reconstruct a numerical workspace per sample or make runtime certificate state globally reusable.",
+      "status": "The capture already retains one ThinSixWorkspace through all calls. No claim that repeated lines are caused by reconstructing the outer workspace."
+    },
+    {
+      "existing_api": "ExpressionEvaluator::clone / map_coeff_with_prec / into_batch_evaluator",
+      "source": "dependencies/symbolica/src/evaluate/evaluator.rs:7,653; dependencies/symbolica/src/evaluate/batch.rs:53",
+      "use": "Clone prepared exact expressions and map exact coefficients directly for each target domain/precision, then own one batch workspace per concurrent evaluator. BatchExpressionEvaluator retains allocation up to the largest batch seen.",
+      "status": "Existing Symbolica APIs. Clone is not evidence of zero-cost copying or shared mutable numerical buffers."
+    },
+    {
+      "existing_api": "ExpressionEvaluator<Complex<Rational>>::map_to_ring; EvaluationDomain",
+      "source": "dependencies/symbolica/src/evaluate/evaluator.rs:620; dependencies/symbolica/src/evaluate/domain.rs:6",
+      "use": "map_to_ring consumes an exact evaluator and maps coefficients into a supported algebraic ring; reuse via exact.clone().map_to_ring(...) for polynomial/rational input work. It rejects external functions and cannot substitute for numerical log/dilog scalar-master preparation. EvaluationDomain is a numeric-domain/function-resolution trait, not a prepared cache object.",
+      "status": "Existing APIs; no PreparedScalarMasters symbol found in current crates, dependencies/oneloopmaster, dependencies/symbolica or source trees searched under target."
+    }
+  ],
+  "cache_context_constraints": [
+    "Exact master cache keys must preserve family, complete ordered Dual shape (ordinary None differs from one primal-only Dual component), expression/codegen revision and any backend/expression configuration.",
+    "Only exact rational instruction programs can be reused across numeric precision/domain. Rounded evaluators retain working precision and type; reinstantiate from exact rather than padding a low-precision evaluator.",
+    "Mutable numerical buffers, normalization, policy, requested accuracy, precision and derivative context belong to each owning workspace. Result caches additionally require exact input samples, scale and derivative context; no value-cache proposal is made.",
+    "Runtime planar rank/cofactor certificates must remain fresh for every represented input and every Taylor component. Structural reuse cannot authorize dropping terms from a new sample.",
+    "Preparation errors cached by OnceLock remain errors; a wider context must preserve error and backend semantics, independent concurrency and lane failures."
+  ],
+  "derivative_qualification": "Child sensitivity/error imports remain primal-only. The partial affine scale-jet identity does not qualify requested-53 derivative uncertainty, independent directions, public N6 Dual, full six-component schedule or paired precision convergence.",
+  "source_log_bindings_sha256": {
+    "target/public-highpoint/numeric-types-dual/source/capture.rs": "2acc0befe6e0b43f8a83c20e9390cb68bb2975475251932bebf7cdeb4cb763b5",
+    "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/execution.rs": "85d9f8b1bb1a8a57c6ad609176387c579f70d97b7a8335b4688f873003a9aff4",
+    "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/execution/planar_fallback.rs": "3289a3899881351f5671ebf4c3c1fbf5d5b1a46994566aebd77623fa53752ffd",
+    "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/certified_planar.rs": "7d7c1dc39c7f09c9e4d6ebf40ff5f9fc56abd566ce065d8b9c34df1ff081b634",
+    "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/plan.rs": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+    "target/public-highpoint/numeric-types-dual/core/crates/iregi-rust/src/thin_n6.rs": "eb111ac086fcee826cce0d11ec366bae13aaad941de77cb6cec700b7c1587048",
+    "target/public-highpoint/numeric-types-dual/RESULTS.md": "76ff0c0352de3d80d5ba57ed5eb691f739644655823ab1c7abab262d4664d270",
+    "target/public-highpoint/numeric-types-dual/qualification.json": "c3982195d7d133f6a13b7137f83f21208db4b1d9c113a6a4ac478359586bfc37",
+    "target/public-highpoint/numeric-types-dual/protocol.json": "9d84e08c824f5b155a75a770ea0a4f4d453b96d8f178e93d6aebb262ad66b566",
+    "target/public-highpoint/numeric-types-dual/run-Float128Dual-001/step-0.log": "4b063652b5096180e1813226ffabad34f0e80b0c2f143462ef371b62a9ded60f",
+    "target/public-highpoint/numeric-types-dual/run-Float128Dual-001/run.json": "cdc8ab16cecad31e144b638754ca5bdef058f502e9b6e0bd042a752f66c0917c",
+    "target/public-highpoint/numeric-types-dual/run-Float128Dual-001/result.json": "ccb86a6d130832d96d834f60d5d1db39b13c48be5a9c139057b1a6619821de61",
+    "target/public-highpoint/numeric-types-dual/run-Float256Dual-001/step-0.log": "53b35f13015e2229382e2fd2a1f94ba2eea1b0c8c89eccad6ed0cb8e69888216",
+    "target/public-highpoint/numeric-types-dual/run-Float256Dual-001/run.json": "eb3bf0d47435f67eb0a6807d2404262c1f1a378bd38407653b2bd955f59048c4",
+    "target/public-highpoint/numeric-types-dual/run-Float256Dual-001/result.json": "9de499433ed9e5c9c338effba1986a13d62fe4ca215d1b3348d1a5b63092e60d",
+    "crates/iregi-masters/src/exact_plan.rs": "45725ad21d3e2940cc3929a4fe4547d869fb5fc8c11c0092ed560943dee44507",
+    "crates/iregi-masters/src/lib.rs": "bc2d91c5bb357526768929adce4628cc0a17aac5f8d6f009a6b5a0e8aceab97a",
+    "dependencies/symbolica/src/evaluate/domain.rs": "9548271ea5a544599a712e5d6c9120b53bb8b91c674f0c1406c38b0edd6dabf7",
+    "dependencies/symbolica/src/evaluate/evaluator.rs": "7ab103a6720528435e480442bb29b805d377759d554787578b7ed85973b3ebf9",
+    "dependencies/symbolica/src/evaluate/batch.rs": "eb73974b0c176422863e4fbe512d392813d83085b2ae5c476db24d028012efcf"
+  }
+}

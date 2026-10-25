@@ -107670,5 +107670,1924 @@
       "larger_stage_started": false
     }
   },
-  "report_updated_on": "2026-10-25"
+  "report_updated_on": "2026-10-25",
+  "native_policy_whole38_qualification": {
+    "source": "validation/native-f64-sixpoint-whole/qualification.json",
+    "sha256": "c8935a56935faa522a583a6e1837391975717da0b14ddccc96f34efede6438b7",
+    "snapshot": {
+      "status": "private-actual-base-combined-candidate-whole38-qualified",
+      "created_utc": "2026-10-25T11:07:21.285477+00:00",
+      "producer": "/root/native_whole_port",
+      "source_context": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+      "combined_patch_sha256": "70b5f94487f79d25c9bc831c0895fe2970ba8e222297ba0baf9f683d67101f9a",
+      "source": {
+        "actual_baseline_files": 80,
+        "candidate_files": 85,
+        "observation_changes_per_variant": 3,
+        "observation_added_modules_per_variant": 1,
+        "reused_candidate_captured_master_files": 30,
+        "fresh_rustc_products": 4,
+        "source_and_command_review_sha256": "be86028a6c364e76bab6460840d3e82332605c074e614b15e53ce8f36420a8aa",
+        "build_saved_audit_sha256": "b585cfb0253e03105191b02044a4e45acf99051d66de69e3828fb397e04032df"
+      },
+      "build": {
+        "status": "passed",
+        "receipt_member": "observation-build-001/build.json",
+        "receipt_sha256": "7029be6f7444366864d8d9ddad933f2ccd47090e2a2befda2d764842a385b4c8",
+        "elapsed_seconds": 68.3931473379489,
+        "aggregate_cap_seconds": 180,
+        "cleanup_reserve_seconds": 8,
+        "compile_cpus": [
+          6,
+          7
+        ],
+        "protected_inputs": 776,
+        "owned_groups": 4,
+        "all_groups_gone": true,
+        "diagnostic_duration_not_performance": true,
+        "outputs": {
+          "baseline-masters": {
+            "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/baseline/libiregi_masters.rlib",
+            "sha256": "dba976ecae3ddd653fa1718a58c20ae6b67fc49e8ca26f9d3c58ba49670ed20d",
+            "bytes": 21026916
+          },
+          "baseline-core": {
+            "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/baseline/libiregi_rust_baseline.rlib",
+            "sha256": "30f87ecb8fdf22222ef9d3743570bc2bc805813445559d10ce3010ae8e17fc35",
+            "bytes": 21049070
+          },
+          "candidate-core": {
+            "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/candidate/libiregi_rust_candidate.rlib",
+            "sha256": "9444af2de6d0f2a82b65a1a46ed4a8eb5f877ae79add746929820eb7715c0ec7",
+            "bytes": 21105780
+          },
+          "selective-probe": {
+            "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/probe",
+            "sha256": "3dedaf7c218f1676b27dbf3d03227cfcd8dcd2dae53d0fd19201c36444e5207c",
+            "bytes": 92809376
+          }
+        }
+      },
+      "runtime": {
+        "status": "passed",
+        "receipt_member": "whole-qualification-001/results.json",
+        "receipt_sha256": "09f3b84aa25567b82ff7942d9bf726068d79f5ed84076803d8ce2734610e6247",
+        "saved_admission_member": "whole-qualification-001/independent-admission.json",
+        "saved_admission_sha256": "bb333f746b3c6be0938181690f44d2758cd8293cdb76a075cb991312ff12cb71",
+        "raw_member": "whole-qualification-001/responses.jsonl",
+        "raw_sha256": "69a1a91d3b5504ee41afad6ae84d835325f237e10eb8f6fc2b92f356030fdfc0",
+        "elapsed_seconds": 64.3619755100226,
+        "aggregate_cap_seconds": 120,
+        "cleanup_reserve_seconds": 8,
+        "cpu": 22,
+        "protected_inputs": 782,
+        "requests": 38,
+        "TIRust_requests": 30,
+        "IREGI_requests": 8,
+        "raw_events": 76,
+        "families": 8,
+        "tensor_complex_slots_per_variant": 1584,
+        "master_complex_slots_per_variant": 1782,
+        "direct_selected_master_cases": 34,
+        "candidate_unchanged_master_cases": 21,
+        "actual_base_unchanged_master_cases": 21,
+        "precision_master_cases_per_source": 12,
+        "whole_f64_Dual_controls": 1,
+        "whole_DoubleFloat_Float_controls": 2,
+        "cache_interleaving_steps": 8,
+        "invalid_timing_request_controls": 4,
+        "all_own_and_retained_full_records_exact": true,
+        "owned_groups": 2,
+        "all_groups_gone": true,
+        "kernel_timing": false,
+        "diagnostic_duration_not_performance": true
+      },
+      "comparisons": {
+        "gate": 1e-10,
+        "tensor_normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))",
+        "maximum_cross_source_tensor_error": 2.060145367735415e-13,
+        "maximum_original_reference_tensor_error": 3.3775669420228794e-13,
+        "maximum_captured_master_error": 1.694832829752953e-14,
+        "unchanged_numeric_paths": "all complete six-output/tensor records exact by represented rational, precision, sign, inputs/errors and metadata"
+      },
+      "independent_audits": {
+        "runtime_closure": {
+          "member": "reviews/external-runtime-closure-audit.json",
+          "sha256": "39125e993c8d81ab4e81ce3f283830482d4441733d6b0f4320ebb85767e58515"
+        },
+        "runtime_numerical": {
+          "member": "reviews/external-runtime-numerical-audit.json",
+          "sha256": "0f6dbdb80f77371b0720ac23c1f710017f3c5b36bc06f15b356e9cec98263497"
+        }
+      },
+      "not_qualified_by_this_capsule": {
+        "retained_six_point_reference_convergence_lifecycle": true,
+        "current_Cargo_feature_forwarding": true,
+        "production_application_or_default_adoption": true,
+        "performance_or_parity": true,
+        "broad_native_runtime": true,
+        "public_SixPoint_Dual_f64_DoubleFloat_or_generalized_envelope": true,
+        "rank_seven_or_N7": true
+      },
+      "production_mutations": false,
+      "compiler_execution": true,
+      "Cargo_execution": false,
+      "numerical_execution": true,
+      "benchmark_execution": false,
+      "automatic_retries": false,
+      "compiled_artifacts_committed": false
+    }
+  },
+  "native_policy_whole38_copy_audit": {
+    "source": "validation/native-f64-sixpoint-whole-copy-audit.json",
+    "sha256": "fc021ed539d50f907f7dabe11e4d24dfae5950982cad516945f45ea0de5a3a20",
+    "snapshot": {
+      "status": "passed-independent-whole-compact-capsule-copy-audit",
+      "created_utc": "2026-10-25T11:10:04.847630+00:00",
+      "reviewer": "/root/resume_auditor",
+      "scope": "CPU10 source/text archive member/origin/parent reconstruction and qualification-scope integrity only; no numerical/compiler/test/benchmark execution or full782inputrehash.",
+      "manifest_sha256": "db63a31404929a04eb7058edd4264401c8db13b7af4fc7a76a42385e5dbfdec9",
+      "qualification_sha256": "c8935a56935faa522a583a6e1837391975717da0b14ddccc96f34efede6438b7",
+      "evidence_archive_sha256": "440e10d6580dde671a0e0e6597be84df830a86a2ad78cb5ece07d6bb13f30976",
+      "compressed_bytes": 673223,
+      "payload_members": 57,
+      "exact_copy_origins": 57,
+      "parent_inherited_source_files": 165,
+      "capture_overrides": 8,
+      "complete_reconstructed_observation_source_files": 167,
+      "ELF_ar_or_literal_license_payloads": 0,
+      "independent_numerical_and_provenance_audits_preserved": true,
+      "findings": [],
+      "limits": [
+        "Privateeightlowpointfamilycorrectness only; no retainedN6/currentCargo/defaultadoption/performance promotion.",
+        "This finalcopyaudit binds immutablemanifest; do not reopenit merely to insertthisouteraudit."
+      ]
+    }
+  },
+  "native_policy_retained_n6_regression_qualification": {
+    "source": "validation/native-f64-sixpoint-regression/qualification.json",
+    "sha256": "7b9214a784d8ac39d5e05d3503fefd8289926ec676944ce8c7fc7c601030ee67",
+    "snapshot": {
+      "status": "private-combined-native-policy-retained-n6-regression-qualified",
+      "created_utc": "2026-10-25T11:19:47.168547+00:00",
+      "source_context": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+      "private_combined_patch_sha256": "70b5f94487f79d25c9bc831c0895fe2970ba8e222297ba0baf9f683d67101f9a",
+      "scope": "Both combined optional native-policy core chains, frozen old non-Python dependency context/opt0 project code; regression only, no current Cargo or production/performance qualification",
+      "compiler_products": 7,
+      "runtime_stages": 10,
+      "saved_gates": 8,
+      "failed_or_unrun_stages": [],
+      "independent_numeric_audit_status": "independent-retained-n6-saved-numerical-audit-passed",
+      "independent_numeric_audit_sha256": "84c4f7ea26fcead4f164458ad13fafd2e66af8e90129ee5d855d8af2ac05d953",
+      "independent_numeric_checks": 178352,
+      "independent_provenance_audit_status": "passed-independent-retained-n6-provenance-audit",
+      "independent_provenance_audit_sha256": "187256e843fe27c2fbf197aa8ffb76b220a979cee097835b08a150d34a65c049",
+      "independent_provenance_bound_files": 740,
+      "totals": {
+        "ordinary_paired_cases": 24,
+        "ordinary_successful_lanes": 84,
+        "ordinary_matching_failed_controls": 36,
+        "ordinary_native_complex_taylor_slots": 4400,
+        "rank3_original_complex_slot_comparisons": 560,
+        "rank3_convergence_complex_slot_comparisons": 280,
+        "rank3_exact_zero_complex_poles": 420,
+        "lifecycle_calls": 22,
+        "lifecycle_successful_lanes": 34,
+        "lifecycle_failure_controls": 14,
+        "lifecycle_empty_calls": 4,
+        "lifecycle_native_complex_slots": 2040,
+        "lifecycle_contracted_complex_slots": 136
+      },
+      "working_precisions": [
+        128,
+        256
+      ],
+      "requested_bits": 53,
+      "original_tolerance": "1e-10",
+      "convergence_tolerance": "2^-80",
+      "maximum_original_error": "2.425355322437416e-12",
+      "maximum_convergence_error": "1.4738132606190866e-34",
+      "historical_rank3_exact_differences": 0,
+      "lifecycle_singleton_value_precision_sign_differences": 0,
+      "compiler_cap_seconds": 180,
+      "compiler_postwork_reserve_seconds": 25,
+      "ordinary_cap_seconds": 120,
+      "highpoint_cap_seconds": 180,
+      "runtime_postwork_reserve_seconds": 20,
+      "owned_groups": 17,
+      "all_owned_groups_absent": true,
+      "constructor_policies": "SixPoint parent and children explicitly Symbolica; ordinary default constructors unchanged; no backend argument added to public SixPoint",
+      "not_qualified_by_this_capsule": {
+        "current_cargo_feature_forwarding": true,
+        "production_application_or_default_adoption": true,
+        "explicit_native_abc_execution": true,
+        "broad_native_runtime": true,
+        "public_highpoint_dual": true,
+        "n6_f64_or_doublefloat_accuracy": true,
+        "complex_mass_generalized_or_higher_rank_highpoint": true,
+        "n7_or_rank7": true,
+        "performance_or_parity": true
+      },
+      "production_mutations": false,
+      "current_cargo_execution": false,
+      "benchmark_execution": false,
+      "source_integrity_note": "Compiler environment is applied by the hash-bound runner using the frozen command recipe; no per-step env field is claimed. Original outputs lack byte-count fields where absent; actual SHA guards establish artifact identity."
+    }
+  },
+  "native_policy_retained_n6_copy_audit": {
+    "source": "validation/native-f64-sixpoint-regression.copy-audit.json",
+    "sha256": "973f0a36bbb6dcb97b5b4f500171142d5bc6045fd3ffdf78ed98b19ac12ca3b4",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "passed",
+      "created_utc": "2026-10-25T11:31:53.141427+00:00",
+      "reviewer": "/root/six_point_regression_prep/source_protocol_review",
+      "scope": "Independent saved-only capsule portability, exact-copy, archive/content/source reconstruction and omission audit; independent no-origin saved-number replay. No new integral, compiler, scalar master, producer admission or benchmark execution.",
+      "capsule": "validation/native-f64-sixpoint-regression",
+      "capsule_files": {
+        "README.md": {
+          "bytes": 4868,
+          "sha256": "76bf6499377273944e2cdaf7d28f452b367a7c32a70a722f61b58c0feb263e27"
+        },
+        "check.py": {
+          "bytes": 10916,
+          "sha256": "69866bb5d73708e0000d8af9223d462abb03721b64624968a45aee5647ff96ac"
+        },
+        "evidence.tar.gz": {
+          "bytes": 885035,
+          "sha256": "6b6ec0cd3fdf1079c03517d06814a5be6fcb0b37550234dae4e7f1610cc16584"
+        },
+        "manifest.json": {
+          "bytes": 24877,
+          "sha256": "9831da171aba9fd3a944522a27096422eff229a382d340de3484986da95ae32b"
+        },
+        "omitted-artifacts.json": {
+          "bytes": 4602,
+          "sha256": "06de73d6f8e7efd071e8bcc99f085edfd35e1e36dd8f7a609354851d02ed9839"
+        },
+        "package.py": {
+          "bytes": 11134,
+          "sha256": "43b25a4c7b8315c447078871220a92981b83b96013e3458ba111ae1d2dee7052"
+        },
+        "parent.json": {
+          "bytes": 67768,
+          "sha256": "11a79b5072b662541684d24be60c1f5b299bf320c9cd426d36ed933f03f7e0ac"
+        },
+        "qualification.json": {
+          "bytes": 3182,
+          "sha256": "7b9214a784d8ac39d5e05d3503fefd8289926ec676944ce8c7fc7c601030ee67"
+        }
+      },
+      "checks": {
+        "exact_capsule_membership": true,
+        "archive_payloads": 81,
+        "archive_compressed_bytes": 885035,
+        "all_member_types_paths_sizes_and_hashes_checked": true,
+        "all_81_origin_files_byte_identical": true,
+        "all_metadata_hashes_checked_by_no_origin_checker": true,
+        "parent_archive_and_manifest_exact_hashes_verified": true,
+        "inherited_source_files": {
+          "base": 80,
+          "proposed": 85,
+          "compiled": 85
+        },
+        "total_inherited_source_files": 250,
+        "reused_file_count": 22,
+        "all_reused_file_sizes_and_hashes_match": true,
+        "omitted_compiled_products": 17,
+        "all_17_omission_hashes_bound_to_exact_build_runtime_receipts": true,
+        "all_17_retained_original_artifact_sizes_and_hashes_independently_match": true,
+        "ELF_or_ar_payloads": 0,
+        "provided_license_occurrences": 0,
+        "bytecode_excluded": true,
+        "deterministic_archive_reconstruction_byte_identical": true,
+        "portable_saved_replay": {
+          "command": [
+            "python3",
+            "validation/native-f64-sixpoint-regression/check.py"
+          ],
+          "exit_code": 0,
+          "status": "passed",
+          "origins_checked": false,
+          "independent_saved_checks": 178352,
+          "reported_archive_payloads": 81,
+          "reported_inherited_source_files": 250,
+          "reported_compiled_products_omitted": 17
+        },
+        "independent_audit_source": {
+          "path": "reviews/audit_six_regression_independent.py",
+          "sha256": "c0f6a3338807684192707e30bb53cf62bc0d774dbfaed69ced6223c70449b65f",
+          "imports": [
+            "decimal",
+            "fractions",
+            "pathlib",
+            "datetime",
+            "hashlib",
+            "json",
+            "math",
+            "re",
+            "sys"
+          ],
+          "only_stdlib_imports": true,
+          "no_dynamic_import_eval_exec_compile_in_preserved_audit": true,
+          "main_not_invoked_by_portable_replay": true,
+          "producer_common_harness_comparator_modules_not_imported": true,
+          "portable_loader": "check.py uses Python exec(compile(...)) solely to load this exact pinned reviewed independent stdlib checker module, then calls its saved-data functions. This does not run a Rust compiler or production numerical evaluator."
+        },
+        "existing_numeric_audit_sha256": "84c4f7ea26fcead4f164458ad13fafd2e66af8e90129ee5d855d8af2ac05d953",
+        "existing_provenance_audit_sha256": "187256e843fe27c2fbf197aa8ffb76b220a979cee097835b08a150d34a65c049",
+        "original_and_convergence_tolerances_unchanged": [
+          "1e-10",
+          "2^-80"
+        ]
+      },
+      "packaging_only_correction": {
+        "initial_path_origin_metadata_key_mismatch": "Corrected before accepted capsule validation; earlier checker and failure retained separately in target/native-f64-sixpoint-port/six-regression-packaging-history.",
+        "created_utc": "Frozen capture summary timestamp makes regeneration deterministic.",
+        "raw_numerical_payloads_or_producer_sources_or_admission_changed": false
+      },
+      "findings": [],
+      "blockers": [],
+      "limitations": [
+        "Inherited Rust algebra/core sources are reconstructed from the hash-bound wind-down parent rather than duplicated in the new archive.",
+        "Omitted executables and rlibs remain guarded metadata; portable validation does not require or claim their physical availability in a fresh checkout. Their retained originals were additionally checked in this audit.",
+        "Saved-data replay is not a new independent integral evaluation and adds no topology/precision/public Dual/generalized coverage.",
+        "Frozen old non-Python opt0 dependency context only; no current Cargo feature qualification, production/default adoption, explicit native dispatch, or performance claim follows."
+      ],
+      "execution": {
+        "compilers": false,
+        "integral_evaluators": false,
+        "scalar_masters": false,
+        "benchmarks": false,
+        "producer_modules": false,
+        "new_numerical_jobs": false,
+        "capsule_or_production_mutations": false,
+        "only_saved_data_integrity_and_stdlib_reference_arithmetic": true
+      }
+    }
+  },
+  "highpoint_six_point_numeric_types_pilot_qualification": {
+    "source": "validation/highpoint-six-point-numeric-types/qualification.json",
+    "sha256": "c3982195d7d133f6a13b7137f83f21208db4b1d9c113a6a4ac478359586bfc37",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "private_typed_scalar_n6_pilot_completed_with_failures",
+      "recorded_utc": "2026-10-25T11:04:13.773317+00:00",
+      "scope": "One retained real massive rank-zero unit-power unshifted PV scalar N6 point; ordinary f64/DoubleFloat and six-component dynamic Float128/256 scale jets. Private isolated core with frozen dependency objects, not current Cargo or public API.",
+      "protocol_sha256": "9d84e08c824f5b155a75a770ea0a4f4d453b96d8f178e93d6aebb262ad66b566",
+      "source_manifest_sha256": "5acb0c7b6e7b9e522aca025fcf0320c5bf6024c3a1ec7f44b4c8598078bf12e4",
+      "build_receipt_sha256": "7406cae536d858e62a6806402d45cb3c4af93ce8e7209758dc41370049f5cf32",
+      "terminal_summary_sha256": "b493dc3e79c13439733fcb95fd2218ba6e6733db73ec306915fe0db01419453b",
+      "numerical_release_sha256": "544bd26f6e3cca5749bc1575d86dedfe41f2c227af78c6cc03fabb09b9a92702",
+      "source_protocol_input_bindings": 219,
+      "bindings_per_domain_comparison": 231,
+      "independent_saved_audits": {
+        "numeric": {
+          "path": "target/resume-20261025-review/typed-n6-independent-saved-numeric-audit.json",
+          "sha256": "c08655b8565c848f2749763d5f65639e798c43da1382da3634246192bc8fe0c2"
+        },
+        "provenance": {
+          "path": "target/resume-20261025-review/typed-n6-independent-provenance-audit.json",
+          "sha256": "438446e353fd66d26225c78e47ce1f65082d970078c8d1e032e9e673819e234c"
+        }
+      },
+      "build_qualified": true,
+      "build_seconds": 35.64409074897412,
+      "build_bound_seconds": 90,
+      "build_reserve_seconds": 25,
+      "runtime_bound_seconds_per_type": 180,
+      "runtime_reserve_seconds": 20,
+      "domain_results": {
+        "f64": {
+          "status": "failed",
+          "passed": false,
+          "provenance_valid": true,
+          "provenance_errors": [],
+          "coverage": {
+            "calls": 5,
+            "complex_slots": 0,
+            "empty_calls": 1,
+            "expected_calls": 5,
+            "expected_complex_slots": 40,
+            "invalid_rejections": 2,
+            "original_primal_comparisons": 0,
+            "successful_lanes": 0,
+            "symbolic_identity_comparisons": 0
+          },
+          "private_dilation_identity_qualified": false,
+          "public_dual_qualified": false,
+          "derivative_uncertainty_transport_qualified": false,
+          "failure_count": 12,
+          "numeric_failed_comparisons": 0,
+          "binding_count": 231
+        },
+        "DoubleFloat": {
+          "status": "passed",
+          "passed": true,
+          "provenance_valid": true,
+          "provenance_errors": [],
+          "coverage": {
+            "calls": 5,
+            "complex_slots": 40,
+            "empty_calls": 1,
+            "expected_calls": 5,
+            "expected_complex_slots": 40,
+            "invalid_rejections": 2,
+            "original_primal_comparisons": 40,
+            "successful_lanes": 10,
+            "symbolic_identity_comparisons": 40
+          },
+          "private_dilation_identity_qualified": false,
+          "public_dual_qualified": false,
+          "derivative_uncertainty_transport_qualified": false,
+          "failure_count": 0,
+          "numeric_failed_comparisons": 0,
+          "binding_count": 231
+        },
+        "Float128Dual": {
+          "status": "failed",
+          "passed": false,
+          "provenance_valid": true,
+          "provenance_errors": [],
+          "coverage": {
+            "calls": 1,
+            "complex_slots": 24,
+            "empty_calls": 0,
+            "expected_calls": 5,
+            "expected_complex_slots": 240,
+            "invalid_rejections": 0,
+            "original_primal_comparisons": 4,
+            "successful_lanes": 1,
+            "symbolic_identity_comparisons": 24
+          },
+          "private_dilation_identity_qualified": false,
+          "public_dual_qualified": false,
+          "derivative_uncertainty_transport_qualified": false,
+          "failure_count": 7,
+          "numeric_failed_comparisons": 0,
+          "binding_count": 231
+        },
+        "Float256Dual": {
+          "status": "failed",
+          "passed": false,
+          "provenance_valid": true,
+          "provenance_errors": [],
+          "coverage": {
+            "calls": 0,
+            "complex_slots": 0,
+            "empty_calls": 0,
+            "expected_calls": 5,
+            "expected_complex_slots": 240,
+            "invalid_rejections": 0,
+            "original_primal_comparisons": 0,
+            "successful_lanes": 0,
+            "symbolic_identity_comparisons": 0
+          },
+          "private_dilation_identity_qualified": false,
+          "public_dual_qualified": false,
+          "derivative_uncertainty_transport_qualified": false,
+          "failure_count": 7,
+          "numeric_failed_comparisons": 0,
+          "binding_count": 231
+        }
+      },
+      "DoubleFloat_numerical_qualified_in_declared_private_scope": true,
+      "f64_numerical_qualified": false,
+      "Float128Dual_numerical_qualified": false,
+      "Float256Dual_numerical_qualified": false,
+      "partial_Float128_affine_prefix": {
+        "successful_lanes": 1,
+        "complete_complex_slots": 24,
+        "exact_pole_zeros": 18,
+        "available_target_comparisons_passed": true,
+        "full_domain_qualified": false
+      },
+      "independently_checked_available_output_complex_slots": 64,
+      "independently_checked_input_complex_slots": 1736,
+      "maximum_normalized_errors": {
+        "DoubleFloat": {
+          "untouched_original_IBP_primal": "8.174807886595464522071215276442222920272627299223512313634111758898455408739332703754132450553291098667481180241342767429346158980299318887068140699574403099033044696341354154699202094299768292727777870213807717301720028E-14",
+          "qualified_Float256_scalar_times_symbolic_multiplier": "6.419978175090340297763631838933174424302842777129621154480910001721774838481873532195318695506295185650764516067429591335864918795904255021411203323940575512997408625810637234547926650371005389795687389700889475432860096E-30",
+          "same_profile_first_available": "0"
+        },
+        "Float128Dual": {
+          "untouched_original_IBP_primal": "8.174807886595464830235800181672702927745819287824343685571205844140131650454961574182048613303633859273870392166746025797965011426019474406694407356891234326780302552222670347132726529781124159280650574641553017776286294E-14",
+          "qualified_Float256_scalar_times_symbolic_multiplier": "1.012747995372455784755209429883776623697950646801851065369663043440121247247350119341990392907572736260307352598087525126259812506275736232417597833107068082659043964241621370354832051390759886842119092128065833859288795E-34",
+          "same_profile_first_available": "0"
+        }
+      },
+      "complete_precision_convergence_qualified": false,
+      "paired_comparisons": 0,
+      "source_and_process_provenance_qualified": true,
+      "all_six_owned_process_groups_absent": true,
+      "all_numerical_attempts_terminal": true,
+      "numerical_lease_released": true,
+      "no_retries_or_bound_extensions": true,
+      "failed_or_missing_arrays_count_as_agreement": false,
+      "production_source_edits": false,
+      "production_adoption": false,
+      "current_cargo_build_qualified": false,
+      "public_dual_qualified": false,
+      "derivative_uncertainty_transport_qualified": false,
+      "performance_qualified": false,
+      "limits": [
+        "Only one physical point; ordinary positive profiles repeat the same primal.",
+        "Two formal variables parameterize one physical dilation direction; arbitrary independent masses/invariants are not tested.",
+        "The Float128 affine prefix passes available target checks but the full schedule times out; Float256 returns no complete array.",
+        "The product-profile mixed response and complete reordered/batched Dual lifecycle remain unqualified.",
+        "Child sensitivity and imported error context are primal-only; partial identity agreement provides no achieved derivative-error enclosure.",
+        "No static Dual, generalized powers/dimension shifts, higher-rank or public type promotion follows.",
+        "Explicit Rust/native archives and four executables are guarded; complete wrapper-subtool/OS/sysroot closure is not claimed.",
+        "These unoptimized qualification-stage aggregate times are diagnostic lifecycle measurements, not benchmark timings or parity evidence."
+      ]
+    }
+  },
+  "routing_rational_preparation_qualification": {
+    "source": "validation/routing-rational-preparation/qualification.json",
+    "sha256": "85a9e252e365def50b5d2545089c37131d06ec666e68bc9eb7811caf70ad3c84",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "private_algebra_qualification_passed",
+      "implementation": "TIRust",
+      "production_applied": false,
+      "base_commit": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+      "protocol_sha256": "db71a781e007593bc67f4c88e19da61aca61b627b07df5a343c6b1686fd38fda",
+      "retained_build_protocol_sha256": "69faa595de7a10af64a98ac0b522d4d1933c26926a69f8282951ce8f6f2b381e",
+      "first_build_failure_preserved": true,
+      "first_build_elapsed_seconds": 5.839872570941225,
+      "corrected_build_passed": true,
+      "corrected_build_elapsed_seconds": 24.534508788958192,
+      "test_binary_sha256": "83a78ded64b7b606ef09dcfcffa60b2b4b058d9263d768e40c6498ac5f60c8ba",
+      "scheduling_aborted_exact_stage_preserved": true,
+      "aborted_exact_stage_elapsed_seconds": 42.17212947795633,
+      "previously_completed_guarded_cases": [
+        "ibp::routing_rational::tests::inhomogeneous_polynomial_and_distance_alias_rows_reconstruct_exactly",
+        "ibp::routing_rational::tests::underdetermined_solution_keeps_original_library_free_variable_choice",
+        "ibp::routing_rational::tests::inconsistent_constant_then_constrained_homogeneous_relation_is_preserved",
+        "ibp::routing_rational::tests::gaussian_coefficients_use_exact_existing_complex_field",
+        "ibp::routing_rational::tests::rational_and_gaussian_fractional_symbolic_entries_roundtrip_exactly",
+        "ibp::routing_rational::tests::real_n6_n7_five_row_systems_match_atom_field",
+        "ibp::routing_rational::tests::homogeneous_search_can_skip_an_inconsistent_first_fixed_column",
+        "ibp::routing_rational::tests::high_degree_or_nonaffine_entries_keep_original_atom_field",
+        "ibp::routing_rational::tests::opaque_and_nonpolynomial_coefficients_keep_original_atom_field"
+      ],
+      "previously_executed_unadmitted_case": [
+        "ibp::routing_rational::tests::floating_literals_are_not_silently_rationalized"
+      ],
+      "continuation_stage_status": "passed",
+      "continuation_elapsed_seconds": 52.35939128207974,
+      "continuation_completed_cases": [
+        "ibp::routing_rational::tests::floating_literals_are_not_silently_rationalized",
+        "ibp::routing_rational::tests::invalid_constraint_and_unknown_rhs_symbols_fail_explicitly",
+        "ibp::routing_rational::tests::actual_scalar_compiler_generic_distance_aliases_select_rational_routing",
+        "ibp::routing_rational::tests::actual_scalar_compiler_unaliased_quadratic_routing_keeps_atom_field",
+        "ibp::tests::routing_relations_satisfy_exact_denominator_identities",
+        "ibp::tests::certified_covectors_preserve_cartesian_denominator_relations",
+        "ibp::tests::routing_reduction_preserves_generalized_powers_and_negative_dimensions"
+      ],
+      "selected_cases": [
+        "ibp::routing_rational::tests::inhomogeneous_polynomial_and_distance_alias_rows_reconstruct_exactly",
+        "ibp::routing_rational::tests::underdetermined_solution_keeps_original_library_free_variable_choice",
+        "ibp::routing_rational::tests::inconsistent_constant_then_constrained_homogeneous_relation_is_preserved",
+        "ibp::routing_rational::tests::gaussian_coefficients_use_exact_existing_complex_field",
+        "ibp::routing_rational::tests::rational_and_gaussian_fractional_symbolic_entries_roundtrip_exactly",
+        "ibp::routing_rational::tests::real_n6_n7_five_row_systems_match_atom_field",
+        "ibp::routing_rational::tests::homogeneous_search_can_skip_an_inconsistent_first_fixed_column",
+        "ibp::routing_rational::tests::high_degree_or_nonaffine_entries_keep_original_atom_field",
+        "ibp::routing_rational::tests::opaque_and_nonpolynomial_coefficients_keep_original_atom_field",
+        "ibp::routing_rational::tests::floating_literals_are_not_silently_rationalized",
+        "ibp::routing_rational::tests::invalid_constraint_and_unknown_rhs_symbols_fail_explicitly",
+        "ibp::routing_rational::tests::actual_scalar_compiler_generic_distance_aliases_select_rational_routing",
+        "ibp::routing_rational::tests::actual_scalar_compiler_unaliased_quadratic_routing_keeps_atom_field",
+        "ibp::tests::routing_relations_satisfy_exact_denominator_identities",
+        "ibp::tests::certified_covectors_preserve_cartesian_denominator_relations",
+        "ibp::tests::routing_reduction_preserves_generalized_powers_and_negative_dimensions"
+      ],
+      "completed_cases": [
+        "ibp::routing_rational::tests::inhomogeneous_polynomial_and_distance_alias_rows_reconstruct_exactly",
+        "ibp::routing_rational::tests::underdetermined_solution_keeps_original_library_free_variable_choice",
+        "ibp::routing_rational::tests::inconsistent_constant_then_constrained_homogeneous_relation_is_preserved",
+        "ibp::routing_rational::tests::gaussian_coefficients_use_exact_existing_complex_field",
+        "ibp::routing_rational::tests::rational_and_gaussian_fractional_symbolic_entries_roundtrip_exactly",
+        "ibp::routing_rational::tests::real_n6_n7_five_row_systems_match_atom_field",
+        "ibp::routing_rational::tests::homogeneous_search_can_skip_an_inconsistent_first_fixed_column",
+        "ibp::routing_rational::tests::high_degree_or_nonaffine_entries_keep_original_atom_field",
+        "ibp::routing_rational::tests::opaque_and_nonpolynomial_coefficients_keep_original_atom_field",
+        "ibp::routing_rational::tests::floating_literals_are_not_silently_rationalized",
+        "ibp::routing_rational::tests::invalid_constraint_and_unknown_rhs_symbols_fail_explicitly",
+        "ibp::routing_rational::tests::actual_scalar_compiler_generic_distance_aliases_select_rational_routing",
+        "ibp::routing_rational::tests::actual_scalar_compiler_unaliased_quadratic_routing_keeps_atom_field",
+        "ibp::tests::routing_relations_satisfy_exact_denominator_identities",
+        "ibp::tests::certified_covectors_preserve_cartesian_denominator_relations",
+        "ibp::tests::routing_reduction_preserves_generalized_powers_and_negative_dimensions"
+      ],
+      "remaining_unadmitted_cases": [],
+      "complete_original_sixteen_case_gate_passed": true,
+      "discovered_cases": 39,
+      "bound_inputs": 176,
+      "closed_search_directories": 2,
+      "new_exact_cases": 13,
+      "existing_recurrence_cases": 3,
+      "source_and_exact_independent_review": "reviews/composite16-root-independent-saved-audit.json",
+      "independent_exact_audit_sha256": "f90159f1026745b9f596104aa083cbd5a7f2d2801c33fd37464f436f6f50abf5",
+      "all_owned_groups_gone": true,
+      "full_core_integration_qualified": false,
+      "current_cargo_qualified": false,
+      "scalar_numerical_reference_qualified": false,
+      "generalized_highpoint_qualified": false,
+      "dual_accuracy_qualified": false,
+      "performance_qualified": false,
+      "dependency_context": "Existing immutable historical e6-direct-n2 native Symbolica/Cargo archive closure, not the later current native-Cargo feature graph. No dependency rebuild; no claim of latest source-patch or performance equivalence.",
+      "diagnostic_durations_are_not_benchmarks": true,
+      "archive": {
+        "path": "source-results.tar.gz",
+        "sha256": "5f6544b3bb6c53107acf820e68a56f85c18c7ee81b58c169b6384da4f0cb11ee",
+        "bytes": 183330,
+        "members": 82,
+        "member_bindings": {
+          "README.md": {
+            "sha256": "fb0b417295ed1358cd897d589fa394fb09362d7dd0f122402148010f94dffa97",
+            "bytes": 4292
+          },
+          "base/crates/iregi-rust/src/ibp.rs": {
+            "sha256": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+            "bytes": 99838
+          },
+          "base/crates/iregi-rust/src/plan.rs": {
+            "sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+            "bytes": 83468
+          },
+          "base.json": {
+            "sha256": "4a0809a1e4bf16d44ded4acbdd59cef8850c7000b91d68e598d85270a0d3e19c",
+            "bytes": 235
+          },
+          "bound-inputs/highpoint-generalized-resume.md": {
+            "sha256": "9a8d4cdc0d641d88f0dfd7ad95ca518628f2199c8a66ea43967b4c8b57f34853",
+            "bytes": 20841
+          },
+          "bound-inputs/manifest.json": {
+            "sha256": "3f5c2b22c00c47a858398414bfda91ece113f78422ebfe3e3c0d47e014a525af",
+            "bytes": 347
+          },
+          "core/crates/iregi-rust/src/ibp/routing_rational.rs": {
+            "sha256": "dd58ca5ea80f017bc976144e0f10e2b889341e23e35ec8dabf2ed5028ab96ffb",
+            "bytes": 24681
+          },
+          "core/crates/iregi-rust/src/ibp.rs": {
+            "sha256": "de9d53acc5dfc66f0b6da0c08e3dbfdcacee891ae50fb8233ae448cff144580f",
+            "bytes": 99196
+          },
+          "harness.rs": {
+            "sha256": "b83be49b85593c2837a9c5d9986647d23b41a6e46b64c3cca2cfc1827852c3b9",
+            "bytes": 55
+          },
+          "history/reviewed-v1/README.md": {
+            "sha256": "f390ef20776337ac9505f0f0099e7818401301ff0dae168f87a3dac1a8c7ba28",
+            "bytes": 3217
+          },
+          "history/reviewed-v1/proposal.json": {
+            "sha256": "0c1f0aea42b91dbb10e199a072d9eed8dc8abba6bd9976131f1614b4177d3dfb",
+            "bytes": 3017
+          },
+          "history/reviewed-v1/proposal.patch": {
+            "sha256": "c65f74ae755bcf39cf21deb189249d2736f22852dbc91598fcb20d7c32fca4c4",
+            "bytes": 22851
+          },
+          "history/reviewed-v1/source-audit.json": {
+            "sha256": "b6a60daa234e3144ba9d43e73a9dafa7a9d8558d27bcf207abde20951d84ce16",
+            "bytes": 2929
+          },
+          "package.py": {
+            "sha256": "7e646e9f8ac6b66bb6665ed79d614d15586e186b2337dc76d446e41e5dbabb66",
+            "bytes": 5910
+          },
+          "portable-check.py": {
+            "sha256": "30589ec94e05e19a6e4eafaeff6f34820d2f913d18a086354477ec87c93a378b",
+            "bytes": 4753
+          },
+          "proposal.json": {
+            "sha256": "1c991033cca1c11ebd57c7844bea1705691b402a0cec8518977c457bc7370844",
+            "bytes": 3683
+          },
+          "proposal.patch": {
+            "sha256": "e551a7a06c10992144a68494e60a464c43917b3a0ac937a44d537a09b4553369",
+            "bytes": 28941
+          },
+          "protocol/README.md": {
+            "sha256": "4f558199e003dd3166e0bc970ce006a091e944acb45540d00a09f043130614f1",
+            "bytes": 3005
+          },
+          "protocol/common.py": {
+            "sha256": "542e82dd0d7ff5ff987d88c297e5b6a796222f411dbb4dfdf5dab052eda39d56",
+            "bytes": 3409
+          },
+          "protocol/grants/build.json": {
+            "sha256": "a8e5e07d2fc7f7db37fd7e9c720ba82100362fb01bc484b9191ededb58a76bec",
+            "bytes": 641
+          },
+          "protocol/lifecycle.py": {
+            "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+            "bytes": 5033
+          },
+          "protocol/prepare.py": {
+            "sha256": "8b9ed4c347a39e1b021dd1101336d5005dade1bf5c8784cd7e7af3e1886bd44a",
+            "bytes": 4744
+          },
+          "protocol/protocol.json": {
+            "sha256": "8a4bf3aaf17c0bfaee88eec5c4d8d0e074b26dacdfe162ab38b39febc15b4adb",
+            "bytes": 34489
+          },
+          "protocol/run.py": {
+            "sha256": "3182caa794149e2f07d6d9ff69e40287c02345834b1d047f5d41a913412d3114",
+            "bytes": 5725
+          },
+          "protocol/source-review.json": {
+            "sha256": "9c95472f8bfaa6d4d4fee938a4b45e9fbf443c01e94cdf8554630f20030acc7d",
+            "bytes": 3103
+          },
+          "protocol-continuation-v4/README.md": {
+            "sha256": "0e7d7dd6dc34f035655f0cdafc3b130a8d2b7f7b12c28597fa7007fb17e5d5ad",
+            "bytes": 2477
+          },
+          "protocol-continuation-v4/common.py": {
+            "sha256": "f033404ac34da4e6fe7f8bead1d9fe3e9030148965de2714309a1e52eae07cd8",
+            "bytes": 3441
+          },
+          "protocol-continuation-v4/lifecycle.py": {
+            "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+            "bytes": 5033
+          },
+          "protocol-continuation-v4/prepare.py": {
+            "sha256": "50fe54eda1733150603afef62616d81ea98f1543205367cba0dc2c139cabd4eb",
+            "bytes": 4825
+          },
+          "protocol-continuation-v4/protocol.json": {
+            "sha256": "c57a101f496cb8a7af3a4b2677f41ed72322c16f5d3ed96f5cc63e73f4307cdd",
+            "bytes": 40664
+          },
+          "protocol-continuation-v4/run.py": {
+            "sha256": "5e92828b953ea0ccd66466592bf002228aabd824491faa06a3565c3dd10ee2c6",
+            "bytes": 5836
+          },
+          "protocol-continuation-v4/runner-diff.patch": {
+            "sha256": "7c577646b1d8cf97fb0952a4d7b96d77b904c95e392f59e38fc7982d9ad1b616",
+            "bytes": 2123
+          },
+          "protocol-continuation-v5-cpu8/README.md": {
+            "sha256": "65247527ab632efdc73908b510c600da82f2be74079c4cad0bbf73141e5cc48d",
+            "bytes": 3065
+          },
+          "protocol-continuation-v5-cpu8/affinity-diff.patch": {
+            "sha256": "578459c9dabc16a68ff754575d681b08c2a0902deca7c2e50f31adf83a528fe3",
+            "bytes": 6991
+          },
+          "protocol-continuation-v5-cpu8/common.py": {
+            "sha256": "df22d99b38a4d74bf8a2df2de09c2252f73ebadef4bb4a2b18441a0666c2474f",
+            "bytes": 3446
+          },
+          "protocol-continuation-v5-cpu8/grants/exact.json": {
+            "sha256": "8cd73633f2e124e626c62f002fda7d72eeabc5cc918aed32e0f57eda34493bc8",
+            "bytes": 712
+          },
+          "protocol-continuation-v5-cpu8/lifecycle.py": {
+            "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+            "bytes": 5033
+          },
+          "protocol-continuation-v5-cpu8/prepare.py": {
+            "sha256": "bd5c2161d0de6334a4eb02f780aa7d303e2958ea3dbbb33c74937fd8f459cfcb",
+            "bytes": 5290
+          },
+          "protocol-continuation-v5-cpu8/protocol.json": {
+            "sha256": "db71a781e007593bc67f4c88e19da61aca61b627b07df5a343c6b1686fd38fda",
+            "bytes": 42108
+          },
+          "protocol-continuation-v5-cpu8/run.py": {
+            "sha256": "5e92828b953ea0ccd66466592bf002228aabd824491faa06a3565c3dd10ee2c6",
+            "bytes": 5836
+          },
+          "protocol-continuation-v5-cpu8/runner-diff.patch": {
+            "sha256": "7c577646b1d8cf97fb0952a4d7b96d77b904c95e392f59e38fc7982d9ad1b616",
+            "bytes": 2123
+          },
+          "protocol-env-v3/README.md": {
+            "sha256": "7aeca0648fc6503940b8d9b5881464a3e47085f3d14383e69584eb021cb3f596",
+            "bytes": 3769
+          },
+          "protocol-env-v3/common.py": {
+            "sha256": "35583247e8756364065752de6949f20f1161db40890d9e131c0fa50ef4083449",
+            "bytes": 3432
+          },
+          "protocol-env-v3/grants/build.json": {
+            "sha256": "d2408da0e8c4b49047da28428ccd0fd6c41136d6a114a44b9f20f878b57e9a2c",
+            "bytes": 553
+          },
+          "protocol-env-v3/grants/exact.json": {
+            "sha256": "27031100ac291cb0c939c4b6cbf90fbc5a92c2a1060ad885d68615e03e44c4e6",
+            "bytes": 783
+          },
+          "protocol-env-v3/lifecycle.py": {
+            "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+            "bytes": 5033
+          },
+          "protocol-env-v3/prepare.py": {
+            "sha256": "b8bc54bb33762aea3492dd5021000f59a288e4d858610ec43a7ae7a3e0bb9015",
+            "bytes": 5418
+          },
+          "protocol-env-v3/protocol.json": {
+            "sha256": "69faa595de7a10af64a98ac0b522d4d1933c26926a69f8282951ce8f6f2b381e",
+            "bytes": 35672
+          },
+          "protocol-env-v3/run.py": {
+            "sha256": "5f81480dd0388e66905556df1ec3da93322cf8366622f66e19880162a102504c",
+            "bytes": 5699
+          },
+          "protocol-env-v3/source-review.json": {
+            "sha256": "9e29bcd8654b3402f2c644947b2e177984be72e356cd5be8a3282a6dc905f60c",
+            "bytes": 3843
+          },
+          "reviews/build-001-failure.json": {
+            "sha256": "3bd843142653ae6e7c29522b193730b31c5c825677311217a11dbc54021cf6da",
+            "bytes": 2469
+          },
+          "reviews/build-env-v3-root-independent-audit.json": {
+            "sha256": "8879da7a02ae1af37dd964bc27c75cdb87def22a66b46deb7ddf23a848a3db5a",
+            "bytes": 681
+          },
+          "reviews/composite16-root-independent-saved-audit.json": {
+            "sha256": "f90159f1026745b9f596104aa083cbd5a7f2d2801c33fd37464f436f6f50abf5",
+            "bytes": 3734
+          },
+          "reviews/continuation-v5-root-source-review.json": {
+            "sha256": "871542dfd6fc02964d56843029e6c72ca7ae2858d4d182d126a481bcb1f43f02",
+            "bytes": 787
+          },
+          "reviews/exact-env-v3-scheduling-abort-local.json": {
+            "sha256": "01b80e2d5b648c8e791a95a82371e41b47f825f36d9323fe87e45761c295e7ed",
+            "bytes": 3224
+          },
+          "runs/build-001/00-compile-tests.log": {
+            "sha256": "64b54ff82e6fb3ce8ff552bff4fa36bdc62781625492360d784e4d0aa8d7eb32",
+            "bytes": 35379
+          },
+          "runs/build-001/result.json": {
+            "sha256": "0ae71b6f014a45ea76e48f3a95c8a3a90eef0e13e866cc2bd770b7c6af299573",
+            "bytes": 1910
+          },
+          "runs-continuation-v5-cpu8/exact-001/00-listing.log": {
+            "sha256": "6ec60228409cf184ae3e60925fe2923f5ad2ca145c4c2e87d34146bb07604f1f",
+            "bytes": 3256
+          },
+          "runs-continuation-v5-cpu8/exact-001/01-test-00.log": {
+            "sha256": "2f756df3af6eaf5a22555e654b2f143c00a28598d3e2af691531a63f13db8580",
+            "bytes": 203
+          },
+          "runs-continuation-v5-cpu8/exact-001/02-test-01.log": {
+            "sha256": "9e46fe8ef6249377ae424e41cce6b49a3477e2783c20fe7ff7f7efc95eb1bf33",
+            "bytes": 214
+          },
+          "runs-continuation-v5-cpu8/exact-001/03-test-02.log": {
+            "sha256": "8b8eb850f4def476a158b9a69b42152ed6d1930db7c880be0a6679612340c452",
+            "bytes": 227
+          },
+          "runs-continuation-v5-cpu8/exact-001/04-test-03.log": {
+            "sha256": "c739760979adb20884d75a8ccafd65c3e3c58b1a3d70e0e3fa368ea1c238601a",
+            "bytes": 223
+          },
+          "runs-continuation-v5-cpu8/exact-001/05-test-04.log": {
+            "sha256": "cfc5cdfaa90a88fd29cbd66b8d36a03e683340c3751f003a6a85f1321795bc4d",
+            "bytes": 192
+          },
+          "runs-continuation-v5-cpu8/exact-001/06-test-05.log": {
+            "sha256": "f4349a06019624a585fcceb5b61cb273eb88b56488084de933492f490010291e",
+            "bytes": 198
+          },
+          "runs-continuation-v5-cpu8/exact-001/07-test-06.log": {
+            "sha256": "1b410383c0c4f2b9695ac44a6cd6d1acf9f6d55f3d75e9991701271fc6f939ce",
+            "bytes": 208
+          },
+          "runs-continuation-v5-cpu8/exact-001/result.json": {
+            "sha256": "c0645b94f0bebcdaac7bb612253d04d0276ec1a7174282e79236f09ad3f8b285",
+            "bytes": 7224
+          },
+          "runs-env-v3/build-001/00-compile-tests.log": {
+            "sha256": "37267daf06b53b9748b6378c13de983b3c76aad9479aaa0c33f662998b8ee2d4",
+            "bytes": 504
+          },
+          "runs-env-v3/build-001/result.json": {
+            "sha256": "d7fb5dec6e45bd63fd675481b139079a5e2f1496f2749d620fb29c3ae7e1f3f0",
+            "bytes": 1946
+          },
+          "runs-env-v3/exact-001/00-listing.log": {
+            "sha256": "6ec60228409cf184ae3e60925fe2923f5ad2ca145c4c2e87d34146bb07604f1f",
+            "bytes": 3256
+          },
+          "runs-env-v3/exact-001/01-test-00.log": {
+            "sha256": "45d007671a6cc6e97c502ce5f060b528687e8e71b3dbeb09e5da58398b5a7b4c",
+            "bytes": 224
+          },
+          "runs-env-v3/exact-001/02-test-01.log": {
+            "sha256": "2c1b55931dca0fe55bbfa08ee3fa1520cc2ae38fb900f91cc02460046bf65ac8",
+            "bytes": 224
+          },
+          "runs-env-v3/exact-001/03-test-02.log": {
+            "sha256": "4357c4710c166d2ed440e7dbe5bab00c30934f878ab33921c5e125bb63a345f4",
+            "bytes": 228
+          },
+          "runs-env-v3/exact-001/04-test-03.log": {
+            "sha256": "e776d48c45134e92b8264de495c94d0672ab726513d8260e2f3abb910ec32a1c",
+            "bytes": 210
+          },
+          "runs-env-v3/exact-001/05-test-04.log": {
+            "sha256": "fa0fc13578c6c09cec0f936766afe7865d0db40c54040a0f59bce30d50e39ce2",
+            "bytes": 223
+          },
+          "runs-env-v3/exact-001/06-test-05.log": {
+            "sha256": "bcccaafc615d627a4b3f7c892c3200d1fe59b670b62e9fc66566acff58ae58e0",
+            "bytes": 200
+          },
+          "runs-env-v3/exact-001/07-test-06.log": {
+            "sha256": "95158568cc58b688658dfa525d80d6303bc2df752f72d024074e16bb1834e4de",
+            "bytes": 218
+          },
+          "runs-env-v3/exact-001/08-test-07.log": {
+            "sha256": "a8bbd4680c9ca24395a076cb99a77dbc359ba728575cf344cfe31f224f7bdfc7",
+            "bytes": 213
+          },
+          "runs-env-v3/exact-001/09-test-08.log": {
+            "sha256": "579fa1fe5d2aaad1d6be46ac096779e750f9a583b24f3e1f316b776d1d3ecb31",
+            "bytes": 218
+          },
+          "runs-env-v3/exact-001/10-test-09.log": {
+            "sha256": "cc62ad3ff20a4fe6a0ff2f0ed851f143077602a1bd2423455d2809b326ac86ad",
+            "bytes": 203
+          },
+          "runs-env-v3/exact-001/result.json": {
+            "sha256": "1093c280c38617acd5e4b01c898d686e8f3a1fcd1b07d45e9d9cda03bb80e893",
+            "bytes": 11085
+          },
+          "source-audit-v2.json": {
+            "sha256": "80be9de74c573d1b399d7d39e3abc5adb9450caa1d3e66045b92858f7afa7843",
+            "bytes": 3312
+          },
+          "source-audit.json": {
+            "sha256": "b6a60daa234e3144ba9d43e73a9dafa7a9d8558d27bcf207abde20951d84ce16",
+            "bytes": 2929
+          }
+        }
+      },
+      "excluded_compiled_cache_files": [
+        "runs-continuation-v5-cpu8/exact-001/tests",
+        "runs-env-v3/build-001/tests",
+        "runs-env-v3/exact-001/tests"
+      ]
+    }
+  },
+  "routing_rational_preparation_copy_audit": {
+    "source": "validation/routing-rational-preparation.copy-audit.json",
+    "sha256": "b063cf5b1f1f3833e3e937851faff4a23c7e2aed23879905b621d34a677cd9e1",
+    "snapshot": {
+      "status": "passed",
+      "reviewer": "/root/six_point_regression_prep",
+      "created_utc": "2026-10-25T11:47:56.536234+00:00",
+      "scope": "Independent read-only portable capsule/archive/origin copy and saved composite gate audit. No tested Rust or Symbolica code, evaluator, integral or benchmark was executed.",
+      "capsule_files": {
+        "README.md": {
+          "path": "validation/routing-rational-preparation/README.md",
+          "sha256": "c84d366e763fe79ad7db8b07d583cd511ad7c72874dbb31d9acae21aaf289377",
+          "bytes": 4390
+        },
+        "check.py": {
+          "path": "validation/routing-rational-preparation/check.py",
+          "sha256": "30589ec94e05e19a6e4eafaeff6f34820d2f913d18a086354477ec87c93a378b",
+          "bytes": 4753
+        },
+        "qualification.json": {
+          "path": "validation/routing-rational-preparation/qualification.json",
+          "sha256": "85a9e252e365def50b5d2545089c37131d06ec666e68bc9eb7811caf70ad3c84",
+          "bytes": 20451
+        },
+        "source-results.tar.gz": {
+          "path": "validation/routing-rational-preparation/source-results.tar.gz",
+          "sha256": "5f6544b3bb6c53107acf820e68a56f85c18c7ee81b58c169b6384da4f0cb11ee",
+          "bytes": 183330
+        }
+      },
+      "archive_members": 82,
+      "exact_origin_copies": {
+        "README.md": {
+          "path": "target/routing-rational-proposal/README.md",
+          "sha256": "fb0b417295ed1358cd897d589fa394fb09362d7dd0f122402148010f94dffa97",
+          "bytes": 4292
+        },
+        "base/crates/iregi-rust/src/ibp.rs": {
+          "path": "target/routing-rational-proposal/base/crates/iregi-rust/src/ibp.rs",
+          "sha256": "9321912a5ae44cbba8d9b9a226be665eb245059a40fc67bfb1c4117b91b11111",
+          "bytes": 99838
+        },
+        "base/crates/iregi-rust/src/plan.rs": {
+          "path": "target/routing-rational-proposal/base/crates/iregi-rust/src/plan.rs",
+          "sha256": "ba570a695a7459d9e6a9b53daf054c00592926b85c4af28d359ea00e5b86de98",
+          "bytes": 83468
+        },
+        "base.json": {
+          "path": "target/routing-rational-proposal/base.json",
+          "sha256": "4a0809a1e4bf16d44ded4acbdd59cef8850c7000b91d68e598d85270a0d3e19c",
+          "bytes": 235
+        },
+        "bound-inputs/highpoint-generalized-resume.md": {
+          "path": "target/routing-rational-proposal/bound-inputs/highpoint-generalized-resume.md",
+          "sha256": "9a8d4cdc0d641d88f0dfd7ad95ca518628f2199c8a66ea43967b4c8b57f34853",
+          "bytes": 20841
+        },
+        "bound-inputs/manifest.json": {
+          "path": "target/routing-rational-proposal/bound-inputs/manifest.json",
+          "sha256": "3f5c2b22c00c47a858398414bfda91ece113f78422ebfe3e3c0d47e014a525af",
+          "bytes": 347
+        },
+        "core/crates/iregi-rust/src/ibp/routing_rational.rs": {
+          "path": "target/routing-rational-proposal/core/crates/iregi-rust/src/ibp/routing_rational.rs",
+          "sha256": "dd58ca5ea80f017bc976144e0f10e2b889341e23e35ec8dabf2ed5028ab96ffb",
+          "bytes": 24681
+        },
+        "core/crates/iregi-rust/src/ibp.rs": {
+          "path": "target/routing-rational-proposal/core/crates/iregi-rust/src/ibp.rs",
+          "sha256": "de9d53acc5dfc66f0b6da0c08e3dbfdcacee891ae50fb8233ae448cff144580f",
+          "bytes": 99196
+        },
+        "harness.rs": {
+          "path": "target/routing-rational-proposal/harness.rs",
+          "sha256": "b83be49b85593c2837a9c5d9986647d23b41a6e46b64c3cca2cfc1827852c3b9",
+          "bytes": 55
+        },
+        "history/reviewed-v1/README.md": {
+          "path": "target/routing-rational-proposal/history/reviewed-v1/README.md",
+          "sha256": "f390ef20776337ac9505f0f0099e7818401301ff0dae168f87a3dac1a8c7ba28",
+          "bytes": 3217
+        },
+        "history/reviewed-v1/proposal.json": {
+          "path": "target/routing-rational-proposal/history/reviewed-v1/proposal.json",
+          "sha256": "0c1f0aea42b91dbb10e199a072d9eed8dc8abba6bd9976131f1614b4177d3dfb",
+          "bytes": 3017
+        },
+        "history/reviewed-v1/proposal.patch": {
+          "path": "target/routing-rational-proposal/history/reviewed-v1/proposal.patch",
+          "sha256": "c65f74ae755bcf39cf21deb189249d2736f22852dbc91598fcb20d7c32fca4c4",
+          "bytes": 22851
+        },
+        "history/reviewed-v1/source-audit.json": {
+          "path": "target/routing-rational-proposal/history/reviewed-v1/source-audit.json",
+          "sha256": "b6a60daa234e3144ba9d43e73a9dafa7a9d8558d27bcf207abde20951d84ce16",
+          "bytes": 2929
+        },
+        "package.py": {
+          "path": "target/routing-rational-proposal/package.py",
+          "sha256": "7e646e9f8ac6b66bb6665ed79d614d15586e186b2337dc76d446e41e5dbabb66",
+          "bytes": 5910
+        },
+        "portable-check.py": {
+          "path": "target/routing-rational-proposal/portable-check.py",
+          "sha256": "30589ec94e05e19a6e4eafaeff6f34820d2f913d18a086354477ec87c93a378b",
+          "bytes": 4753
+        },
+        "proposal.json": {
+          "path": "target/routing-rational-proposal/proposal.json",
+          "sha256": "1c991033cca1c11ebd57c7844bea1705691b402a0cec8518977c457bc7370844",
+          "bytes": 3683
+        },
+        "proposal.patch": {
+          "path": "target/routing-rational-proposal/proposal.patch",
+          "sha256": "e551a7a06c10992144a68494e60a464c43917b3a0ac937a44d537a09b4553369",
+          "bytes": 28941
+        },
+        "protocol/README.md": {
+          "path": "target/routing-rational-proposal/protocol/README.md",
+          "sha256": "4f558199e003dd3166e0bc970ce006a091e944acb45540d00a09f043130614f1",
+          "bytes": 3005
+        },
+        "protocol/common.py": {
+          "path": "target/routing-rational-proposal/protocol/common.py",
+          "sha256": "542e82dd0d7ff5ff987d88c297e5b6a796222f411dbb4dfdf5dab052eda39d56",
+          "bytes": 3409
+        },
+        "protocol/grants/build.json": {
+          "path": "target/routing-rational-proposal/protocol/grants/build.json",
+          "sha256": "a8e5e07d2fc7f7db37fd7e9c720ba82100362fb01bc484b9191ededb58a76bec",
+          "bytes": 641
+        },
+        "protocol/lifecycle.py": {
+          "path": "target/routing-rational-proposal/protocol/lifecycle.py",
+          "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+          "bytes": 5033
+        },
+        "protocol/prepare.py": {
+          "path": "target/routing-rational-proposal/protocol/prepare.py",
+          "sha256": "8b9ed4c347a39e1b021dd1101336d5005dade1bf5c8784cd7e7af3e1886bd44a",
+          "bytes": 4744
+        },
+        "protocol/protocol.json": {
+          "path": "target/routing-rational-proposal/protocol/protocol.json",
+          "sha256": "8a4bf3aaf17c0bfaee88eec5c4d8d0e074b26dacdfe162ab38b39febc15b4adb",
+          "bytes": 34489
+        },
+        "protocol/run.py": {
+          "path": "target/routing-rational-proposal/protocol/run.py",
+          "sha256": "3182caa794149e2f07d6d9ff69e40287c02345834b1d047f5d41a913412d3114",
+          "bytes": 5725
+        },
+        "protocol/source-review.json": {
+          "path": "target/routing-rational-proposal/protocol/source-review.json",
+          "sha256": "9c95472f8bfaa6d4d4fee938a4b45e9fbf443c01e94cdf8554630f20030acc7d",
+          "bytes": 3103
+        },
+        "protocol-continuation-v4/README.md": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/README.md",
+          "sha256": "0e7d7dd6dc34f035655f0cdafc3b130a8d2b7f7b12c28597fa7007fb17e5d5ad",
+          "bytes": 2477
+        },
+        "protocol-continuation-v4/common.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/common.py",
+          "sha256": "f033404ac34da4e6fe7f8bead1d9fe3e9030148965de2714309a1e52eae07cd8",
+          "bytes": 3441
+        },
+        "protocol-continuation-v4/lifecycle.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/lifecycle.py",
+          "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+          "bytes": 5033
+        },
+        "protocol-continuation-v4/prepare.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/prepare.py",
+          "sha256": "50fe54eda1733150603afef62616d81ea98f1543205367cba0dc2c139cabd4eb",
+          "bytes": 4825
+        },
+        "protocol-continuation-v4/protocol.json": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/protocol.json",
+          "sha256": "c57a101f496cb8a7af3a4b2677f41ed72322c16f5d3ed96f5cc63e73f4307cdd",
+          "bytes": 40664
+        },
+        "protocol-continuation-v4/run.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/run.py",
+          "sha256": "5e92828b953ea0ccd66466592bf002228aabd824491faa06a3565c3dd10ee2c6",
+          "bytes": 5836
+        },
+        "protocol-continuation-v4/runner-diff.patch": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v4/runner-diff.patch",
+          "sha256": "7c577646b1d8cf97fb0952a4d7b96d77b904c95e392f59e38fc7982d9ad1b616",
+          "bytes": 2123
+        },
+        "protocol-continuation-v5-cpu8/README.md": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/README.md",
+          "sha256": "65247527ab632efdc73908b510c600da82f2be74079c4cad0bbf73141e5cc48d",
+          "bytes": 3065
+        },
+        "protocol-continuation-v5-cpu8/affinity-diff.patch": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/affinity-diff.patch",
+          "sha256": "578459c9dabc16a68ff754575d681b08c2a0902deca7c2e50f31adf83a528fe3",
+          "bytes": 6991
+        },
+        "protocol-continuation-v5-cpu8/common.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/common.py",
+          "sha256": "df22d99b38a4d74bf8a2df2de09c2252f73ebadef4bb4a2b18441a0666c2474f",
+          "bytes": 3446
+        },
+        "protocol-continuation-v5-cpu8/grants/exact.json": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/grants/exact.json",
+          "sha256": "8cd73633f2e124e626c62f002fda7d72eeabc5cc918aed32e0f57eda34493bc8",
+          "bytes": 712
+        },
+        "protocol-continuation-v5-cpu8/lifecycle.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/lifecycle.py",
+          "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+          "bytes": 5033
+        },
+        "protocol-continuation-v5-cpu8/prepare.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/prepare.py",
+          "sha256": "bd5c2161d0de6334a4eb02f780aa7d303e2958ea3dbbb33c74937fd8f459cfcb",
+          "bytes": 5290
+        },
+        "protocol-continuation-v5-cpu8/protocol.json": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/protocol.json",
+          "sha256": "db71a781e007593bc67f4c88e19da61aca61b627b07df5a343c6b1686fd38fda",
+          "bytes": 42108
+        },
+        "protocol-continuation-v5-cpu8/run.py": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/run.py",
+          "sha256": "5e92828b953ea0ccd66466592bf002228aabd824491faa06a3565c3dd10ee2c6",
+          "bytes": 5836
+        },
+        "protocol-continuation-v5-cpu8/runner-diff.patch": {
+          "path": "target/routing-rational-proposal/protocol-continuation-v5-cpu8/runner-diff.patch",
+          "sha256": "7c577646b1d8cf97fb0952a4d7b96d77b904c95e392f59e38fc7982d9ad1b616",
+          "bytes": 2123
+        },
+        "protocol-env-v3/README.md": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/README.md",
+          "sha256": "7aeca0648fc6503940b8d9b5881464a3e47085f3d14383e69584eb021cb3f596",
+          "bytes": 3769
+        },
+        "protocol-env-v3/common.py": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/common.py",
+          "sha256": "35583247e8756364065752de6949f20f1161db40890d9e131c0fa50ef4083449",
+          "bytes": 3432
+        },
+        "protocol-env-v3/grants/build.json": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/grants/build.json",
+          "sha256": "d2408da0e8c4b49047da28428ccd0fd6c41136d6a114a44b9f20f878b57e9a2c",
+          "bytes": 553
+        },
+        "protocol-env-v3/grants/exact.json": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/grants/exact.json",
+          "sha256": "27031100ac291cb0c939c4b6cbf90fbc5a92c2a1060ad885d68615e03e44c4e6",
+          "bytes": 783
+        },
+        "protocol-env-v3/lifecycle.py": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/lifecycle.py",
+          "sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+          "bytes": 5033
+        },
+        "protocol-env-v3/prepare.py": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/prepare.py",
+          "sha256": "b8bc54bb33762aea3492dd5021000f59a288e4d858610ec43a7ae7a3e0bb9015",
+          "bytes": 5418
+        },
+        "protocol-env-v3/protocol.json": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/protocol.json",
+          "sha256": "69faa595de7a10af64a98ac0b522d4d1933c26926a69f8282951ce8f6f2b381e",
+          "bytes": 35672
+        },
+        "protocol-env-v3/run.py": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/run.py",
+          "sha256": "5f81480dd0388e66905556df1ec3da93322cf8366622f66e19880162a102504c",
+          "bytes": 5699
+        },
+        "protocol-env-v3/source-review.json": {
+          "path": "target/routing-rational-proposal/protocol-env-v3/source-review.json",
+          "sha256": "9e29bcd8654b3402f2c644947b2e177984be72e356cd5be8a3282a6dc905f60c",
+          "bytes": 3843
+        },
+        "reviews/build-001-failure.json": {
+          "path": "target/routing-rational-proposal/reviews/build-001-failure.json",
+          "sha256": "3bd843142653ae6e7c29522b193730b31c5c825677311217a11dbc54021cf6da",
+          "bytes": 2469
+        },
+        "reviews/build-env-v3-root-independent-audit.json": {
+          "path": "target/routing-rational-proposal/reviews/build-env-v3-root-independent-audit.json",
+          "sha256": "8879da7a02ae1af37dd964bc27c75cdb87def22a66b46deb7ddf23a848a3db5a",
+          "bytes": 681
+        },
+        "reviews/composite16-root-independent-saved-audit.json": {
+          "path": "target/routing-rational-proposal/reviews/composite16-root-independent-saved-audit.json",
+          "sha256": "f90159f1026745b9f596104aa083cbd5a7f2d2801c33fd37464f436f6f50abf5",
+          "bytes": 3734
+        },
+        "reviews/continuation-v5-root-source-review.json": {
+          "path": "target/routing-rational-proposal/reviews/continuation-v5-root-source-review.json",
+          "sha256": "871542dfd6fc02964d56843029e6c72ca7ae2858d4d182d126a481bcb1f43f02",
+          "bytes": 787
+        },
+        "reviews/exact-env-v3-scheduling-abort-local.json": {
+          "path": "target/routing-rational-proposal/reviews/exact-env-v3-scheduling-abort-local.json",
+          "sha256": "01b80e2d5b648c8e791a95a82371e41b47f825f36d9323fe87e45761c295e7ed",
+          "bytes": 3224
+        },
+        "runs/build-001/00-compile-tests.log": {
+          "path": "target/routing-rational-proposal/runs/build-001/00-compile-tests.log",
+          "sha256": "64b54ff82e6fb3ce8ff552bff4fa36bdc62781625492360d784e4d0aa8d7eb32",
+          "bytes": 35379
+        },
+        "runs/build-001/result.json": {
+          "path": "target/routing-rational-proposal/runs/build-001/result.json",
+          "sha256": "0ae71b6f014a45ea76e48f3a95c8a3a90eef0e13e866cc2bd770b7c6af299573",
+          "bytes": 1910
+        },
+        "runs-continuation-v5-cpu8/exact-001/00-listing.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/00-listing.log",
+          "sha256": "6ec60228409cf184ae3e60925fe2923f5ad2ca145c4c2e87d34146bb07604f1f",
+          "bytes": 3256
+        },
+        "runs-continuation-v5-cpu8/exact-001/01-test-00.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/01-test-00.log",
+          "sha256": "2f756df3af6eaf5a22555e654b2f143c00a28598d3e2af691531a63f13db8580",
+          "bytes": 203
+        },
+        "runs-continuation-v5-cpu8/exact-001/02-test-01.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/02-test-01.log",
+          "sha256": "9e46fe8ef6249377ae424e41cce6b49a3477e2783c20fe7ff7f7efc95eb1bf33",
+          "bytes": 214
+        },
+        "runs-continuation-v5-cpu8/exact-001/03-test-02.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/03-test-02.log",
+          "sha256": "8b8eb850f4def476a158b9a69b42152ed6d1930db7c880be0a6679612340c452",
+          "bytes": 227
+        },
+        "runs-continuation-v5-cpu8/exact-001/04-test-03.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/04-test-03.log",
+          "sha256": "c739760979adb20884d75a8ccafd65c3e3c58b1a3d70e0e3fa368ea1c238601a",
+          "bytes": 223
+        },
+        "runs-continuation-v5-cpu8/exact-001/05-test-04.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/05-test-04.log",
+          "sha256": "cfc5cdfaa90a88fd29cbd66b8d36a03e683340c3751f003a6a85f1321795bc4d",
+          "bytes": 192
+        },
+        "runs-continuation-v5-cpu8/exact-001/06-test-05.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/06-test-05.log",
+          "sha256": "f4349a06019624a585fcceb5b61cb273eb88b56488084de933492f490010291e",
+          "bytes": 198
+        },
+        "runs-continuation-v5-cpu8/exact-001/07-test-06.log": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/07-test-06.log",
+          "sha256": "1b410383c0c4f2b9695ac44a6cd6d1acf9f6d55f3d75e9991701271fc6f939ce",
+          "bytes": 208
+        },
+        "runs-continuation-v5-cpu8/exact-001/result.json": {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/result.json",
+          "sha256": "c0645b94f0bebcdaac7bb612253d04d0276ec1a7174282e79236f09ad3f8b285",
+          "bytes": 7224
+        },
+        "runs-env-v3/build-001/00-compile-tests.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/build-001/00-compile-tests.log",
+          "sha256": "37267daf06b53b9748b6378c13de983b3c76aad9479aaa0c33f662998b8ee2d4",
+          "bytes": 504
+        },
+        "runs-env-v3/build-001/result.json": {
+          "path": "target/routing-rational-proposal/runs-env-v3/build-001/result.json",
+          "sha256": "d7fb5dec6e45bd63fd675481b139079a5e2f1496f2749d620fb29c3ae7e1f3f0",
+          "bytes": 1946
+        },
+        "runs-env-v3/exact-001/00-listing.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/00-listing.log",
+          "sha256": "6ec60228409cf184ae3e60925fe2923f5ad2ca145c4c2e87d34146bb07604f1f",
+          "bytes": 3256
+        },
+        "runs-env-v3/exact-001/01-test-00.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/01-test-00.log",
+          "sha256": "45d007671a6cc6e97c502ce5f060b528687e8e71b3dbeb09e5da58398b5a7b4c",
+          "bytes": 224
+        },
+        "runs-env-v3/exact-001/02-test-01.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/02-test-01.log",
+          "sha256": "2c1b55931dca0fe55bbfa08ee3fa1520cc2ae38fb900f91cc02460046bf65ac8",
+          "bytes": 224
+        },
+        "runs-env-v3/exact-001/03-test-02.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/03-test-02.log",
+          "sha256": "4357c4710c166d2ed440e7dbe5bab00c30934f878ab33921c5e125bb63a345f4",
+          "bytes": 228
+        },
+        "runs-env-v3/exact-001/04-test-03.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/04-test-03.log",
+          "sha256": "e776d48c45134e92b8264de495c94d0672ab726513d8260e2f3abb910ec32a1c",
+          "bytes": 210
+        },
+        "runs-env-v3/exact-001/05-test-04.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/05-test-04.log",
+          "sha256": "fa0fc13578c6c09cec0f936766afe7865d0db40c54040a0f59bce30d50e39ce2",
+          "bytes": 223
+        },
+        "runs-env-v3/exact-001/06-test-05.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/06-test-05.log",
+          "sha256": "bcccaafc615d627a4b3f7c892c3200d1fe59b670b62e9fc66566acff58ae58e0",
+          "bytes": 200
+        },
+        "runs-env-v3/exact-001/07-test-06.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/07-test-06.log",
+          "sha256": "95158568cc58b688658dfa525d80d6303bc2df752f72d024074e16bb1834e4de",
+          "bytes": 218
+        },
+        "runs-env-v3/exact-001/08-test-07.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/08-test-07.log",
+          "sha256": "a8bbd4680c9ca24395a076cb99a77dbc359ba728575cf344cfe31f224f7bdfc7",
+          "bytes": 213
+        },
+        "runs-env-v3/exact-001/09-test-08.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/09-test-08.log",
+          "sha256": "579fa1fe5d2aaad1d6be46ac096779e750f9a583b24f3e1f316b776d1d3ecb31",
+          "bytes": 218
+        },
+        "runs-env-v3/exact-001/10-test-09.log": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/10-test-09.log",
+          "sha256": "cc62ad3ff20a4fe6a0ff2f0ed851f143077602a1bd2423455d2809b326ac86ad",
+          "bytes": 203
+        },
+        "runs-env-v3/exact-001/result.json": {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/result.json",
+          "sha256": "1093c280c38617acd5e4b01c898d686e8f3a1fcd1b07d45e9d9cda03bb80e893",
+          "bytes": 11085
+        },
+        "source-audit-v2.json": {
+          "path": "target/routing-rational-proposal/source-audit-v2.json",
+          "sha256": "80be9de74c573d1b399d7d39e3abc5adb9450caa1d3e66045b92858f7afa7843",
+          "bytes": 3312
+        },
+        "source-audit.json": {
+          "path": "target/routing-rational-proposal/source-audit.json",
+          "sha256": "b6a60daa234e3144ba9d43e73a9dafa7a9d8558d27bcf207abde20951d84ce16",
+          "bytes": 2929
+        }
+      },
+      "deterministic_archive_byte_identity": true,
+      "archived_ELF_or_ar_files": 0,
+      "provided_license_occurrences": 0,
+      "omitted_compiled_binaries": [
+        {
+          "path": "target/routing-rational-proposal/runs-continuation-v5-cpu8/exact-001/tests",
+          "sha256": "83a78ded64b7b606ef09dcfcffa60b2b4b058d9263d768e40c6498ac5f60c8ba",
+          "bytes": 333023288
+        },
+        {
+          "path": "target/routing-rational-proposal/runs-env-v3/build-001/tests",
+          "sha256": "83a78ded64b7b606ef09dcfcffa60b2b4b058d9263d768e40c6498ac5f60c8ba",
+          "bytes": 333023288
+        },
+        {
+          "path": "target/routing-rational-proposal/runs-env-v3/exact-001/tests",
+          "sha256": "83a78ded64b7b606ef09dcfcffa60b2b4b058d9263d768e40c6498ac5f60c8ba",
+          "bytes": 333023288
+        }
+      ],
+      "preserved_failure": {
+        "missing_CARGO_CRATE_NAME_diagnostics": 48,
+        "status": "failed",
+        "compiled_binary_or_tests": false
+      },
+      "preserved_scheduling_cancel": {
+        "status": "failed",
+        "guarded_cases": 9,
+        "executed_but_unadmitted_case": "ibp::routing_rational::tests::floating_literals_are_not_silently_rationalized",
+        "unattempted_later_cases": 6,
+        "old_cpu6_continuation_unexecuted": true
+      },
+      "composite_gate": {
+        "original_unique_cases": 16,
+        "previous_guarded": 9,
+        "newly_guarded": 7,
+        "full_listing": 39,
+        "selected_log_checks": [
+          {
+            "name": "ibp::routing_rational::tests::inhomogeneous_polynomial_and_distance_alias_rows_reconstruct_exactly",
+            "log": "runs-env-v3/exact-001/01-test-00.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::underdetermined_solution_keeps_original_library_free_variable_choice",
+            "log": "runs-env-v3/exact-001/02-test-01.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::inconsistent_constant_then_constrained_homogeneous_relation_is_preserved",
+            "log": "runs-env-v3/exact-001/03-test-02.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::gaussian_coefficients_use_exact_existing_complex_field",
+            "log": "runs-env-v3/exact-001/04-test-03.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::rational_and_gaussian_fractional_symbolic_entries_roundtrip_exactly",
+            "log": "runs-env-v3/exact-001/05-test-04.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::real_n6_n7_five_row_systems_match_atom_field",
+            "log": "runs-env-v3/exact-001/06-test-05.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::homogeneous_search_can_skip_an_inconsistent_first_fixed_column",
+            "log": "runs-env-v3/exact-001/07-test-06.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::high_degree_or_nonaffine_entries_keep_original_atom_field",
+            "log": "runs-env-v3/exact-001/08-test-07.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::opaque_and_nonpolynomial_coefficients_keep_original_atom_field",
+            "log": "runs-env-v3/exact-001/09-test-08.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::floating_literals_are_not_silently_rationalized",
+            "log": "runs-continuation-v5-cpu8/exact-001/01-test-00.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::invalid_constraint_and_unknown_rhs_symbols_fail_explicitly",
+            "log": "runs-continuation-v5-cpu8/exact-001/02-test-01.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::actual_scalar_compiler_generic_distance_aliases_select_rational_routing",
+            "log": "runs-continuation-v5-cpu8/exact-001/03-test-02.log"
+          },
+          {
+            "name": "ibp::routing_rational::tests::actual_scalar_compiler_unaliased_quadratic_routing_keeps_atom_field",
+            "log": "runs-continuation-v5-cpu8/exact-001/04-test-03.log"
+          },
+          {
+            "name": "ibp::tests::routing_relations_satisfy_exact_denominator_identities",
+            "log": "runs-continuation-v5-cpu8/exact-001/05-test-04.log"
+          },
+          {
+            "name": "ibp::tests::certified_covectors_preserve_cartesian_denominator_relations",
+            "log": "runs-continuation-v5-cpu8/exact-001/06-test-05.log"
+          },
+          {
+            "name": "ibp::tests::routing_reduction_preserves_generalized_powers_and_negative_dimensions",
+            "log": "runs-continuation-v5-cpu8/exact-001/07-test-06.log"
+          }
+        ],
+        "complete_gate_passed": true,
+        "all_source_bindings_previously_independently_checked": 176
+      },
+      "owned_group_absence": [
+        {
+          "receipt": "runs/build-001/result.json",
+          "group": 1603665,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/build-001/result.json",
+          "group": 1822223,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2207278,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2209751,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2214120,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2219029,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2221685,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2226078,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2229812,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2231951,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2235361,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2238298,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-env-v3/exact-001/result.json",
+          "group": 2240740,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3034226,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3035404,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3038074,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3039292,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3041976,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3043136,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3045170,
+          "currently_absent": true
+        },
+        {
+          "receipt": "runs-continuation-v5-cpu8/exact-001/result.json",
+          "group": 3046224,
+          "currently_absent": true
+        }
+      ],
+      "limitations": {
+        "production_applied": false,
+        "full_core_integration_qualified": false,
+        "current_cargo_qualified": false,
+        "scalar_numerical_reference_qualified": false,
+        "generalized_highpoint_qualified": false,
+        "dual_accuracy_qualified": false,
+        "performance_qualified": false
+      },
+      "portable_checker": {
+        "command": [
+          "python3",
+          "validation/routing-rational-preparation/check.py"
+        ],
+        "executed_separately_via_tool": true,
+        "returncode": 0,
+        "stdout": "{\"status\": \"passed\", \"exact_cases\": 16, \"archive_members\": 82, \"preserved_failed_build\": true, \"preserved_scheduling_abort\": true, \"no_rust_symbolica_or_integral_executed\": true}\n"
+      },
+      "production_mutations": false,
+      "numerical_or_performance_qualification": false,
+      "Cargo_or_rustc_or_Symbolica_or_integral_or_benchmark_executed": false,
+      "blocking_findings": []
+    }
+  },
+  "native_policy_current_cargo_qualification": {
+    "source": "validation/native-f64-sixpoint-current-cargo/qualification.json",
+    "sha256": "c589b6b57ac39352d09a38b60d0b7566f2347d00663f0e04881a32dcf4fc37b2",
+    "snapshot": {
+      "status": "current-Cargo-native-policy-qualified-with-legacy-metadata-timeout",
+      "created_utc": "2026-10-25T12:08:20.135767+00:00",
+      "producer": "/root/native_whole_port",
+      "native_only_qualification_passed": true,
+      "full_metadata_matrix_passed": false,
+      "source": {
+        "live_source_files": 399,
+        "preparation_inputs": 431,
+        "matched_qualified_production_files": 85,
+        "additional_public_API_validation_example": 1,
+        "preparation_sha256": "b6c1ffa05448639ac4b4cb4c7854b06ed70635c68bb5a2a00ef43f68f3b21b0d",
+        "source_freeze_sha256": "6605f42e362030621783fb7b44bc4af9cf8a8504dc335efac573510c79526832",
+        "commands_sha256": "200da3e345eaa01deb94f10d8aede5c47e170c5f615a9aecb0a6eee5b63c08a4",
+        "Cargo_lock_sha256": "33865b33512eb2a5f7f9f7d54075baee1c8c7e90167ae8f5b87019966c381d80",
+        "native_patch_sha256": "70b5f94487f79d25c9bc831c0895fe2970ba8e222297ba0baf9f683d67101f9a"
+      },
+      "metadata": {
+        "status": "failed-broad-fixed-cap-timeout-both-unrun",
+        "member": "runs/metadata-001/results.json",
+        "sha256": "d464807a2a494577c113c6338974b94ef9b94c3ca393c155853fa72aa95b8fb7",
+        "elapsed_seconds": 329.1285619640257,
+        "aggregate_cap_seconds": 600,
+        "default": "passed",
+        "selective": "passed",
+        "broad": "fixed240s-timeout",
+        "both": "unrun",
+        "no_broad_or_both_codegen": true,
+        "no_retry": true
+      },
+      "native_only_continuation": {
+        "freeze_sha256": "4bb801f841a6ae64403cf38081b70c1c21b4692b2fd5fca53921eb4fdf09b712",
+        "independent_source_review_sha256": "e5d8d69cb8c0c365014200793bac7433900cef309fe5bc2d448b3a17d2a03ff6",
+        "scope": "Exact successful default/selective metadata admits only their original bounded builds; failed matrix retained unmodified."
+      },
+      "stages": {
+        "build-default": {
+          "member": "runs/build-default-001/results.json",
+          "sha256": "c9cc6d8084c802a3806eaf8885e8d0936f26f046414321e864fd984a977cbf19",
+          "elapsed_seconds": 80.72702834196389,
+          "aggregate_cap_seconds": 600,
+          "reserve_seconds": 40,
+          "protected_inputs": 433,
+          "owned_groups": 2
+        },
+        "tests-default": {
+          "member": "runs/tests-default-001/results.json",
+          "sha256": "88676a5d319e7dda5d330d94b500dedbeb8bf07e8b0e15a3f6565deace02a6b7",
+          "elapsed_seconds": 37.14187975600362,
+          "aggregate_cap_seconds": 180,
+          "reserve_seconds": 20,
+          "protected_inputs": 448,
+          "owned_groups": 11
+        },
+        "probe-default": {
+          "member": "runs/probe-default-001/results.json",
+          "sha256": "dd237131d74a28c80ba24511a4fdd4e130f07b0af8555eedd46882db400e6fee",
+          "elapsed_seconds": 11.058692535036243,
+          "aggregate_cap_seconds": 120,
+          "reserve_seconds": 20,
+          "protected_inputs": 448,
+          "owned_groups": 1
+        },
+        "build-selective": {
+          "member": "runs/build-selective-001/results.json",
+          "sha256": "d366b8541e0444e36ce10d49256e7b8d1f9213510b744c5c92da888e9f28da2f",
+          "elapsed_seconds": 157.75646994193085,
+          "aggregate_cap_seconds": 600,
+          "reserve_seconds": 40,
+          "protected_inputs": 433,
+          "owned_groups": 2
+        },
+        "tests-selective": {
+          "member": "runs/tests-selective-001/results.json",
+          "sha256": "39df74b6f278113f934e59a4b6bfa98a9ab41aa588d6b3fcb0cd8e5e760c444c",
+          "elapsed_seconds": 88.08870814903639,
+          "aggregate_cap_seconds": 240,
+          "reserve_seconds": 20,
+          "protected_inputs": 448,
+          "owned_groups": 19
+        },
+        "probe-selective": {
+          "member": "runs/probe-selective-001/results.json",
+          "sha256": "bd0ef4acdbbec1a4861a9877d456448bdab1832c7ed52edf3caa07e990beae77",
+          "elapsed_seconds": 12.557315773912705,
+          "aggregate_cap_seconds": 120,
+          "reserve_seconds": 20,
+          "protected_inputs": 448,
+          "owned_groups": 1
+        }
+      },
+      "correctness": {
+        "selected_exact_tests": 26,
+        "default_tests": 9,
+        "selective_tests": 17,
+        "test_listings": 4,
+        "one_pass_per_selected_test": true,
+        "five_lane_N3_rank1_probes": 2,
+        "valid_lanes_per_probe": 4,
+        "invalid_lanes_per_probe": 1,
+        "unique_physical_points": 3,
+        "native_tensor_complex_slots_per_policy": 80,
+        "policies_compared_to_original_reference": 5,
+        "original_reference_complex_comparisons": 400,
+        "selected_vs_symbolica_complex_comparisons": 80,
+        "complete_default_and_explicit_symbolica_records_exact": true,
+        "comparison_tolerance": 1e-10,
+        "comparisons": {
+          "default": {
+            "default": {
+              "status": "passed",
+              "errors": [],
+              "max_error": 1.2905948985356286e-13,
+              "tolerance": 1e-10,
+              "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+            },
+            "symbolica": {
+              "status": "passed",
+              "errors": [],
+              "max_error": 1.2905948985356286e-13,
+              "tolerance": 1e-10,
+              "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+            }
+          },
+          "selective": {
+            "default": {
+              "status": "passed",
+              "errors": [],
+              "max_error": 1.2905948985356286e-13,
+              "tolerance": 1e-10,
+              "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+            },
+            "symbolica": {
+              "status": "passed",
+              "errors": [],
+              "max_error": 1.2905948985356286e-13,
+              "tolerance": 1e-10,
+              "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+            },
+            "selected": {
+              "status": "passed",
+              "errors": [],
+              "max_error": 2.3459644808672206e-13,
+              "tolerance": 1e-10,
+              "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+            },
+            "selected_vs_symbolica": {
+              "status": "passed",
+              "errors": [],
+              "max_error": 1.4845898049765225e-13,
+              "tolerance": 1e-10,
+              "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+            }
+          }
+        },
+        "maximum_original_reference_error": 2.3459644808672206e-13,
+        "generic_ordinary_precision_Dual_and_type_exclusion_assertions": "actual selected Cargo unit tests; no new high-point derivative numerical envelope"
+      },
+      "comparison_helper_sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+      "independent_audits": {
+        "current-cargo-default-independent-provenance-audit.json": {
+          "member": "reviews/external-current-cargo-default-independent-provenance-audit.json",
+          "sha256": "4f08ffd7c361c6f4be36087ae2a3cd0a59c1022ec3e686e8980480602ccfaffc"
+        },
+        "current-cargo-metadata-independent-saved-audit.json": {
+          "member": "reviews/external-current-cargo-metadata-independent-saved-audit.json",
+          "sha256": "1ae03d64cdf7811ff39ab6afc463d33baa8ea55810a3ec7b29d4242ab729bd8c"
+        },
+        "current-cargo-probe-independent-numeric-audit.json": {
+          "member": "reviews/external-current-cargo-probe-independent-numeric-audit.json",
+          "sha256": "53ff317c04353e89d92f6bd18e6b95caba17fa1e76f74a1f29dbe791fcc0d6d7"
+        },
+        "current-cargo-selective-independent-provenance-audit.json": {
+          "member": "reviews/external-current-cargo-selective-independent-provenance-audit.json",
+          "sha256": "d83d1389fb8c05c2e96a185a67add19e5adb937adb6d1d26b9164a0565f8093d"
+        }
+      },
+      "native_archive_guard_scope": "three archives previously linked by the same lockednative context now pre/post guarded; actual emitted units/link paths recorded separately; not complete transitive build-input closure",
+      "all_owned_groups_absent_at_release": true,
+      "diagnostic_durations_are_not_performance_measurements": true,
+      "not_qualified_by_this_capsule": {
+        "full_legacy_metadata_matrix": true,
+        "broad_or_both_native_runtime": true,
+        "performance_or_parity": true,
+        "N6_or_N7_numerical_envelope": true,
+        "new_generalized_or_highpoint_Dual_envelope": true,
+        "CLI_or_Python_runtime": true,
+        "complete_transitive_native_build_input_closure": true
+      },
+      "Cargo_execution": true,
+      "compiler_execution": true,
+      "numerical_execution": true,
+      "benchmark_execution": false,
+      "automatic_retries": false,
+      "compiled_artifacts_committed": false
+    }
+  },
+  "native_policy_current_cargo_independent_review": {
+    "source": "validation/native-f64-sixpoint-current-cargo-independent-review.json",
+    "sha256": "e12876f47be8143325427079c414ab7414cdd0005ce997c74d5cef8e9e6655b1",
+    "snapshot": {
+      "status": "passed-independent-current-cargo-native-policy-saved-qualification",
+      "reviewer": "/root/resume_auditor",
+      "created_utc": "2026-10-25T12:07:36.798128+00:00",
+      "scope": "Current locked/offline Cargo optional native ABC policy, default/selective source/feature/runtime proof and low-point f64 tensor arrays. Preserved broad metadata timeout/both-unrun. No highpoint/currentN7/generalized/Dual-numerical/performance extension.",
+      "independent_audits": {
+        "current-cargo-metadata-independent-saved-audit.json": {
+          "path": "target/resume-20261025-review/current-cargo-metadata-independent-saved-audit.json",
+          "sha256": "1ae03d64cdf7811ff39ab6afc463d33baa8ea55810a3ec7b29d4242ab729bd8c",
+          "status": "passed-independent-saved-partial-cargo-metadata-audit"
+        },
+        "current-cargo-default-independent-provenance-audit.json": {
+          "path": "target/resume-20261025-review/current-cargo-default-independent-provenance-audit.json",
+          "sha256": "4f08ffd7c361c6f4be36087ae2a3cd0a59c1022ec3e686e8980480602ccfaffc",
+          "status": "passed-independent-current-cargo-configuration-provenance-audit"
+        },
+        "current-cargo-selective-independent-provenance-audit.json": {
+          "path": "target/resume-20261025-review/current-cargo-selective-independent-provenance-audit.json",
+          "sha256": "d83d1389fb8c05c2e96a185a67add19e5adb937adb6d1d26b9164a0565f8093d",
+          "status": "passed-independent-current-cargo-configuration-provenance-audit"
+        },
+        "current-cargo-probe-independent-numeric-audit.json": {
+          "path": "target/resume-20261025-review/current-cargo-probe-independent-numeric-audit.json",
+          "sha256": "53ff317c04353e89d92f6bd18e6b95caba17fa1e76f74a1f29dbe791fcc0d6d7",
+          "status": "independent-current-cargo-probe-saved-numerical-audit-passed"
+        }
+      },
+      "source_preparation_sha256": "b6c1ffa05448639ac4b4cb4c7854b06ed70635c68bb5a2a00ef43f68f3b21b0d",
+      "source_freeze_sha256": "6605f42e362030621783fb7b44bc4af9cf8a8504dc335efac573510c79526832",
+      "lease_release_sha256": "d28671f90c0769037535071d12bf3726defa307452691293d03e90c9f6b16be8",
+      "all39owned_groups_actually_absent": true,
+      "configurations": [
+        "default",
+        "selective"
+      ],
+      "exact_named_tests": 26,
+      "complete_listings": 4,
+      "physical_unique_probe_points": 3,
+      "probe_complex_reference_slots": 400,
+      "probe_cross_policy_complex_slots": 80,
+      "independent_numeric_checks": 18255,
+      "maximum_original_error": {
+        "default": 1.2905948985356286e-13,
+        "selected": 2.3459644808672206e-13
+      },
+      "mixed_normalized_tolerance": 1e-10,
+      "retained_metadata_status": {
+        "default": "passed",
+        "selective": "passed",
+        "broad": "failed-fixed-240-second-timeout",
+        "both": "unrun"
+      },
+      "source_guard_review_complete": true,
+      "source_lease_release_recommendation": "No independent review work still requires live root Rust/Cargo sources. Root may release its source freeze after receiving this receipt; historical frozen source evidence must remain unchanged.",
+      "numeric_checker_attribution": {
+        "author_and_reviewer": "/root/resume_auditor/whole_probe_review",
+        "execution_of_unchanged_stdlib_source": "/root/resume_auditor",
+        "checker_sha256": "709708da4da28d4bca07efc6ec50b78043e6dcffd76dbd47ddf456bd5487f5ce",
+        "no_producer_imports_or_integral_evaluation": true
+      },
+      "native_closure_limit": "Three preexisting GMP/MPFR/MPC archives guarded plus actual Cargo artifacts/native link identities; complete native transitive/OS/wrapper-subtool source closure is not claimed.",
+      "compiler_integral_benchmark_execution_by_auditor": false,
+      "findings": []
+    }
+  }
 }

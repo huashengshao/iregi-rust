@@ -1,0 +1,196 @@
+{
+  "status": "current-Cargo-native-policy-qualified-with-legacy-metadata-timeout",
+  "created_utc": "2026-10-25T12:08:20.135767+00:00",
+  "producer": "/root/native_whole_port",
+  "native_only_qualification_passed": true,
+  "full_metadata_matrix_passed": false,
+  "source": {
+    "live_source_files": 399,
+    "preparation_inputs": 431,
+    "matched_qualified_production_files": 85,
+    "additional_public_API_validation_example": 1,
+    "preparation_sha256": "b6c1ffa05448639ac4b4cb4c7854b06ed70635c68bb5a2a00ef43f68f3b21b0d",
+    "source_freeze_sha256": "6605f42e362030621783fb7b44bc4af9cf8a8504dc335efac573510c79526832",
+    "commands_sha256": "200da3e345eaa01deb94f10d8aede5c47e170c5f615a9aecb0a6eee5b63c08a4",
+    "Cargo_lock_sha256": "33865b33512eb2a5f7f9f7d54075baee1c8c7e90167ae8f5b87019966c381d80",
+    "native_patch_sha256": "70b5f94487f79d25c9bc831c0895fe2970ba8e222297ba0baf9f683d67101f9a"
+  },
+  "metadata": {
+    "status": "failed-broad-fixed-cap-timeout-both-unrun",
+    "member": "runs/metadata-001/results.json",
+    "sha256": "d464807a2a494577c113c6338974b94ef9b94c3ca393c155853fa72aa95b8fb7",
+    "elapsed_seconds": 329.1285619640257,
+    "aggregate_cap_seconds": 600,
+    "default": "passed",
+    "selective": "passed",
+    "broad": "fixed240s-timeout",
+    "both": "unrun",
+    "no_broad_or_both_codegen": true,
+    "no_retry": true
+  },
+  "native_only_continuation": {
+    "freeze_sha256": "4bb801f841a6ae64403cf38081b70c1c21b4692b2fd5fca53921eb4fdf09b712",
+    "independent_source_review_sha256": "e5d8d69cb8c0c365014200793bac7433900cef309fe5bc2d448b3a17d2a03ff6",
+    "scope": "Exact successful default/selective metadata admits only their original bounded builds; failed matrix retained unmodified."
+  },
+  "stages": {
+    "build-default": {
+      "member": "runs/build-default-001/results.json",
+      "sha256": "c9cc6d8084c802a3806eaf8885e8d0936f26f046414321e864fd984a977cbf19",
+      "elapsed_seconds": 80.72702834196389,
+      "aggregate_cap_seconds": 600,
+      "reserve_seconds": 40,
+      "protected_inputs": 433,
+      "owned_groups": 2
+    },
+    "tests-default": {
+      "member": "runs/tests-default-001/results.json",
+      "sha256": "88676a5d319e7dda5d330d94b500dedbeb8bf07e8b0e15a3f6565deace02a6b7",
+      "elapsed_seconds": 37.14187975600362,
+      "aggregate_cap_seconds": 180,
+      "reserve_seconds": 20,
+      "protected_inputs": 448,
+      "owned_groups": 11
+    },
+    "probe-default": {
+      "member": "runs/probe-default-001/results.json",
+      "sha256": "dd237131d74a28c80ba24511a4fdd4e130f07b0af8555eedd46882db400e6fee",
+      "elapsed_seconds": 11.058692535036243,
+      "aggregate_cap_seconds": 120,
+      "reserve_seconds": 20,
+      "protected_inputs": 448,
+      "owned_groups": 1
+    },
+    "build-selective": {
+      "member": "runs/build-selective-001/results.json",
+      "sha256": "d366b8541e0444e36ce10d49256e7b8d1f9213510b744c5c92da888e9f28da2f",
+      "elapsed_seconds": 157.75646994193085,
+      "aggregate_cap_seconds": 600,
+      "reserve_seconds": 40,
+      "protected_inputs": 433,
+      "owned_groups": 2
+    },
+    "tests-selective": {
+      "member": "runs/tests-selective-001/results.json",
+      "sha256": "39df74b6f278113f934e59a4b6bfa98a9ab41aa588d6b3fcb0cd8e5e760c444c",
+      "elapsed_seconds": 88.08870814903639,
+      "aggregate_cap_seconds": 240,
+      "reserve_seconds": 20,
+      "protected_inputs": 448,
+      "owned_groups": 19
+    },
+    "probe-selective": {
+      "member": "runs/probe-selective-001/results.json",
+      "sha256": "bd0ef4acdbbec1a4861a9877d456448bdab1832c7ed52edf3caa07e990beae77",
+      "elapsed_seconds": 12.557315773912705,
+      "aggregate_cap_seconds": 120,
+      "reserve_seconds": 20,
+      "protected_inputs": 448,
+      "owned_groups": 1
+    }
+  },
+  "correctness": {
+    "selected_exact_tests": 26,
+    "default_tests": 9,
+    "selective_tests": 17,
+    "test_listings": 4,
+    "one_pass_per_selected_test": true,
+    "five_lane_N3_rank1_probes": 2,
+    "valid_lanes_per_probe": 4,
+    "invalid_lanes_per_probe": 1,
+    "unique_physical_points": 3,
+    "native_tensor_complex_slots_per_policy": 80,
+    "policies_compared_to_original_reference": 5,
+    "original_reference_complex_comparisons": 400,
+    "selected_vs_symbolica_complex_comparisons": 80,
+    "complete_default_and_explicit_symbolica_records_exact": true,
+    "comparison_tolerance": 1e-10,
+    "comparisons": {
+      "default": {
+        "default": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.2905948985356286e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "symbolica": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.2905948985356286e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        }
+      },
+      "selective": {
+        "default": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.2905948985356286e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "symbolica": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.2905948985356286e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "selected": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 2.3459644808672206e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        },
+        "selected_vs_symbolica": {
+          "status": "passed",
+          "errors": [],
+          "max_error": 1.4845898049765225e-13,
+          "tolerance": 1e-10,
+          "normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))"
+        }
+      }
+    },
+    "maximum_original_reference_error": 2.3459644808672206e-13,
+    "generic_ordinary_precision_Dual_and_type_exclusion_assertions": "actual selected Cargo unit tests; no new high-point derivative numerical envelope"
+  },
+  "comparison_helper_sha256": "22488d58c1cbed9520728f62efa67f98250cffdef8b88ec8b85cc72b9b99e6b7",
+  "independent_audits": {
+    "current-cargo-default-independent-provenance-audit.json": {
+      "member": "reviews/external-current-cargo-default-independent-provenance-audit.json",
+      "sha256": "4f08ffd7c361c6f4be36087ae2a3cd0a59c1022ec3e686e8980480602ccfaffc"
+    },
+    "current-cargo-metadata-independent-saved-audit.json": {
+      "member": "reviews/external-current-cargo-metadata-independent-saved-audit.json",
+      "sha256": "1ae03d64cdf7811ff39ab6afc463d33baa8ea55810a3ec7b29d4242ab729bd8c"
+    },
+    "current-cargo-probe-independent-numeric-audit.json": {
+      "member": "reviews/external-current-cargo-probe-independent-numeric-audit.json",
+      "sha256": "53ff317c04353e89d92f6bd18e6b95caba17fa1e76f74a1f29dbe791fcc0d6d7"
+    },
+    "current-cargo-selective-independent-provenance-audit.json": {
+      "member": "reviews/external-current-cargo-selective-independent-provenance-audit.json",
+      "sha256": "d83d1389fb8c05c2e96a185a67add19e5adb937adb6d1d26b9164a0565f8093d"
+    }
+  },
+  "native_archive_guard_scope": "three archives previously linked by the same lockednative context now pre/post guarded; actual emitted units/link paths recorded separately; not complete transitive build-input closure",
+  "all_owned_groups_absent_at_release": true,
+  "diagnostic_durations_are_not_performance_measurements": true,
+  "not_qualified_by_this_capsule": {
+    "full_legacy_metadata_matrix": true,
+    "broad_or_both_native_runtime": true,
+    "performance_or_parity": true,
+    "N6_or_N7_numerical_envelope": true,
+    "new_generalized_or_highpoint_Dual_envelope": true,
+    "CLI_or_Python_runtime": true,
+    "complete_transitive_native_build_input_closure": true
+  },
+  "Cargo_execution": true,
+  "compiler_execution": true,
+  "numerical_execution": true,
+  "benchmark_execution": false,
+  "automatic_retries": false,
+  "compiled_artifacts_committed": false
+}

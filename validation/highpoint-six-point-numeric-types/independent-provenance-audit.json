@@ -1,0 +1,118 @@
+{
+  "status": "passed-independent-typed-n6-provenance-and-failure-audit",
+  "created_utc": "2026-10-25T11:02:55.417936+00:00",
+  "reviewer": "/root/resume_auditor",
+  "scope": "Independent exactsource/native/toolclosure and savedbuild/runtime commands/grants/ownedELF/terminal/comparatorbinding checks. No producer imports, compilation, kernel, integral or benchmark executed.",
+  "protocol_input_bindings_rehashed": 219,
+  "build_input_bindings": 221,
+  "build_commands_independently_reconstructed": 2,
+  "runtime_command_bindings_independently_reconstructed": 4,
+  "domains": {
+    "f64": {
+      "run_sha256": "e291565f9f6867363bb48538da7e40add561872d3e9aa8fc0ea8eb77b19994d3",
+      "result_sha256": "7e7e37330318ce49e1afaa4d8efd31844873718201b38c4ff4a049903d2698a0",
+      "comparison_sha256": "4bdf5b4af0cfa198f87c36011356aafd249ca76d8873b57e0857d336f9358229",
+      "bound_inputs": 227,
+      "comparison_bound_inputs": 231,
+      "process_status": "passed",
+      "elapsed_seconds": 68.56770506792236,
+      "work_alarm": false
+    },
+    "DoubleFloat": {
+      "run_sha256": "acd5c53ed656c9596d479d9a4fbceabbd056f5e07ae0f52da50c217bf17770aa",
+      "result_sha256": "051c33491295e24a4b07ddee45b0e0abfa16b32b7f7d1f544b4d752b122d36ff",
+      "comparison_sha256": "f3beb68179aee34948f5a92d605feb065c997266d57ecd1985f3e395ae032d7f",
+      "bound_inputs": 227,
+      "comparison_bound_inputs": 231,
+      "process_status": "passed",
+      "elapsed_seconds": 43.91288082697429,
+      "work_alarm": false
+    },
+    "Float128Dual": {
+      "run_sha256": "cdc8ab16cecad31e144b638754ca5bdef058f502e9b6e0bd042a752f66c0917c",
+      "result_sha256": "ccb86a6d130832d96d834f60d5d1db39b13c48be5a9c139057b1a6619821de61",
+      "comparison_sha256": "4a3b9d482f80e00b41540eeb481975835d6f29ce3b944f2ede4aa710d2260ecf",
+      "bound_inputs": 227,
+      "comparison_bound_inputs": 231,
+      "process_status": "failed",
+      "elapsed_seconds": 164.43604339903686,
+      "work_alarm": true
+    },
+    "Float256Dual": {
+      "run_sha256": "eb3bf0d47435f67eb0a6807d2404262c1f1a378bd38407653b2bd955f59048c4",
+      "result_sha256": "9de499433ed9e5c9c338effba1986a13d62fe4ca215d1b3348d1a5b63092e60d",
+      "comparison_sha256": "4a3b54e9c8545cfa3cc058d9ed2af8c50af426373306c3c90541c166460a834d",
+      "bound_inputs": 227,
+      "comparison_bound_inputs": 231,
+      "process_status": "failed",
+      "elapsed_seconds": 164.1595425189007,
+      "work_alarm": true
+    }
+  },
+  "owned_process_groups": [
+    {
+      "phase": "build-core",
+      "owned_process_group": 799658,
+      "currently_absent": true
+    },
+    {
+      "phase": "build-driver",
+      "owned_process_group": 810031,
+      "currently_absent": true
+    },
+    {
+      "phase": "f64",
+      "owned_process_group": 833991,
+      "currently_absent": true,
+      "process_outcome": "passed"
+    },
+    {
+      "phase": "DoubleFloat",
+      "owned_process_group": 890083,
+      "currently_absent": true,
+      "process_outcome": "passed"
+    },
+    {
+      "phase": "Float128Dual",
+      "owned_process_group": 974226,
+      "currently_absent": true,
+      "process_outcome": "failed"
+    },
+    {
+      "phase": "Float256Dual",
+      "owned_process_group": 1118163,
+      "currently_absent": true,
+      "process_outcome": "failed"
+    }
+  ],
+  "numerical_audit_sha256": "c08655b8565c848f2749763d5f65639e798c43da1382da3634246192bc8fe0c2",
+  "paired_gate": {
+    "passed": false,
+    "available_matching_complex_slots": 0,
+    "precision_convergence_qualified": false
+  },
+  "artifact_sha256": {
+    "target/public-highpoint/numeric-types-dual/protocol.json": "9d84e08c824f5b155a75a770ea0a4f4d453b96d8f178e93d6aebb262ad66b566",
+    "target/public-highpoint/numeric-types-dual/build-001/build.json": "7406cae536d858e62a6806402d45cb3c4af93ce8e7209758dc41370049f5cf32",
+    "target/public-highpoint/numeric-types-dual/run-f64-001/run.json": "e291565f9f6867363bb48538da7e40add561872d3e9aa8fc0ea8eb77b19994d3",
+    "target/public-highpoint/numeric-types-dual/run-f64-001/result.json": "7e7e37330318ce49e1afaa4d8efd31844873718201b38c4ff4a049903d2698a0",
+    "target/public-highpoint/numeric-types-dual/comparison-f64.json": "4bdf5b4af0cfa198f87c36011356aafd249ca76d8873b57e0857d336f9358229",
+    "target/public-highpoint/numeric-types-dual/run-DoubleFloat-001/run.json": "acd5c53ed656c9596d479d9a4fbceabbd056f5e07ae0f52da50c217bf17770aa",
+    "target/public-highpoint/numeric-types-dual/run-DoubleFloat-001/result.json": "051c33491295e24a4b07ddee45b0e0abfa16b32b7f7d1f544b4d752b122d36ff",
+    "target/public-highpoint/numeric-types-dual/comparison-DoubleFloat.json": "f3beb68179aee34948f5a92d605feb065c997266d57ecd1985f3e395ae032d7f",
+    "target/public-highpoint/numeric-types-dual/run-Float128Dual-001/run.json": "cdc8ab16cecad31e144b638754ca5bdef058f502e9b6e0bd042a752f66c0917c",
+    "target/public-highpoint/numeric-types-dual/run-Float128Dual-001/result.json": "ccb86a6d130832d96d834f60d5d1db39b13c48be5a9c139057b1a6619821de61",
+    "target/public-highpoint/numeric-types-dual/comparison-Float128Dual.json": "4a3b9d482f80e00b41540eeb481975835d6f29ce3b944f2ede4aa710d2260ecf",
+    "target/public-highpoint/numeric-types-dual/run-Float256Dual-001/run.json": "eb3bf0d47435f67eb0a6807d2404262c1f1a378bd38407653b2bd955f59048c4",
+    "target/public-highpoint/numeric-types-dual/run-Float256Dual-001/result.json": "9de499433ed9e5c9c338effba1986a13d62fe4ca215d1b3348d1a5b63092e60d",
+    "target/public-highpoint/numeric-types-dual/comparison-Float256Dual.json": "4a3b54e9c8545cfa3cc058d9ed2af8c50af426373306c3c90541c166460a834d",
+    "target/public-highpoint/numeric-types-dual/saved-gates-terminal.json": "b493dc3e79c13439733fcb95fd2218ba6e6733db73ec306915fe0db01419453b",
+    "target/public-highpoint/numeric-types-dual/numerical-release.json": "544bd26f6e3cca5749bc1575d86dedfe41f2c227af78c6cc03fabb09b9a92702"
+  },
+  "findings": [],
+  "limitations": [
+    "Only DoubleFloat ordinary fixedpoint complete numericalgate passed. f64positiveguardfailureandbothDualworktimeouts remainfailures, notwithstandingcleanprocessprovenance and24availableFloat128slots.",
+    "No publicDual, requestedderivativeuncertainty or performance qualification.",
+    "Oldisolated frozenRust/nativearchives and selectedtoolpaths bound; no complete transitivewrapper/sysroot or currentCargofeaturegraph claim."
+  ]
+}

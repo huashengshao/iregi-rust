@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "created_utc": "2026-10-25T11:31:53.141427+00:00",
+  "reviewer": "/root/six_point_regression_prep/source_protocol_review",
+  "scope": "Independent saved-only capsule portability, exact-copy, archive/content/source reconstruction and omission audit; independent no-origin saved-number replay. No new integral, compiler, scalar master, producer admission or benchmark execution.",
+  "capsule": "validation/native-f64-sixpoint-regression",
+  "capsule_files": {
+    "README.md": {
+      "bytes": 4868,
+      "sha256": "76bf6499377273944e2cdaf7d28f452b367a7c32a70a722f61b58c0feb263e27"
+    },
+    "check.py": {
+      "bytes": 10916,
+      "sha256": "69866bb5d73708e0000d8af9223d462abb03721b64624968a45aee5647ff96ac"
+    },
+    "evidence.tar.gz": {
+      "bytes": 885035,
+      "sha256": "6b6ec0cd3fdf1079c03517d06814a5be6fcb0b37550234dae4e7f1610cc16584"
+    },
+    "manifest.json": {
+      "bytes": 24877,
+      "sha256": "9831da171aba9fd3a944522a27096422eff229a382d340de3484986da95ae32b"
+    },
+    "omitted-artifacts.json": {
+      "bytes": 4602,
+      "sha256": "06de73d6f8e7efd071e8bcc99f085edfd35e1e36dd8f7a609354851d02ed9839"
+    },
+    "package.py": {
+      "bytes": 11134,
+      "sha256": "43b25a4c7b8315c447078871220a92981b83b96013e3458ba111ae1d2dee7052"
+    },
+    "parent.json": {
+      "bytes": 67768,
+      "sha256": "11a79b5072b662541684d24be60c1f5b299bf320c9cd426d36ed933f03f7e0ac"
+    },
+    "qualification.json": {
+      "bytes": 3182,
+      "sha256": "7b9214a784d8ac39d5e05d3503fefd8289926ec676944ce8c7fc7c601030ee67"
+    }
+  },
+  "checks": {
+    "exact_capsule_membership": true,
+    "archive_payloads": 81,
+    "archive_compressed_bytes": 885035,
+    "all_member_types_paths_sizes_and_hashes_checked": true,
+    "all_81_origin_files_byte_identical": true,
+    "all_metadata_hashes_checked_by_no_origin_checker": true,
+    "parent_archive_and_manifest_exact_hashes_verified": true,
+    "inherited_source_files": {
+      "base": 80,
+      "proposed": 85,
+      "compiled": 85
+    },
+    "total_inherited_source_files": 250,
+    "reused_file_count": 22,
+    "all_reused_file_sizes_and_hashes_match": true,
+    "omitted_compiled_products": 17,
+    "all_17_omission_hashes_bound_to_exact_build_runtime_receipts": true,
+    "all_17_retained_original_artifact_sizes_and_hashes_independently_match": true,
+    "ELF_or_ar_payloads": 0,
+    "provided_license_occurrences": 0,
+    "bytecode_excluded": true,
+    "deterministic_archive_reconstruction_byte_identical": true,
+    "portable_saved_replay": {
+      "command": [
+        "python3",
+        "validation/native-f64-sixpoint-regression/check.py"
+      ],
+      "exit_code": 0,
+      "status": "passed",
+      "origins_checked": false,
+      "independent_saved_checks": 178352,
+      "reported_archive_payloads": 81,
+      "reported_inherited_source_files": 250,
+      "reported_compiled_products_omitted": 17
+    },
+    "independent_audit_source": {
+      "path": "reviews/audit_six_regression_independent.py",
+      "sha256": "c0f6a3338807684192707e30bb53cf62bc0d774dbfaed69ced6223c70449b65f",
+      "imports": [
+        "decimal",
+        "fractions",
+        "pathlib",
+        "datetime",
+        "hashlib",
+        "json",
+        "math",
+        "re",
+        "sys"
+      ],
+      "only_stdlib_imports": true,
+      "no_dynamic_import_eval_exec_compile_in_preserved_audit": true,
+      "main_not_invoked_by_portable_replay": true,
+      "producer_common_harness_comparator_modules_not_imported": true,
+      "portable_loader": "check.py uses Python exec(compile(...)) solely to load this exact pinned reviewed independent stdlib checker module, then calls its saved-data functions. This does not run a Rust compiler or production numerical evaluator."
+    },
+    "existing_numeric_audit_sha256": "84c4f7ea26fcead4f164458ad13fafd2e66af8e90129ee5d855d8af2ac05d953",
+    "existing_provenance_audit_sha256": "187256e843fe27c2fbf197aa8ffb76b220a979cee097835b08a150d34a65c049",
+    "original_and_convergence_tolerances_unchanged": [
+      "1e-10",
+      "2^-80"
+    ]
+  },
+  "packaging_only_correction": {
+    "initial_path_origin_metadata_key_mismatch": "Corrected before accepted capsule validation; earlier checker and failure retained separately in target/native-f64-sixpoint-port/six-regression-packaging-history.",
+    "created_utc": "Frozen capture summary timestamp makes regeneration deterministic.",
+    "raw_numerical_payloads_or_producer_sources_or_admission_changed": false
+  },
+  "findings": [],
+  "blockers": [],
+  "limitations": [
+    "Inherited Rust algebra/core sources are reconstructed from the hash-bound wind-down parent rather than duplicated in the new archive.",
+    "Omitted executables and rlibs remain guarded metadata; portable validation does not require or claim their physical availability in a fresh checkout. Their retained originals were additionally checked in this audit.",
+    "Saved-data replay is not a new independent integral evaluation and adds no topology/precision/public Dual/generalized coverage.",
+    "Frozen old non-Python opt0 dependency context only; no current Cargo feature qualification, production/default adoption, explicit native dispatch, or performance claim follows."
+  ],
+  "execution": {
+    "compilers": false,
+    "integral_evaluators": false,
+    "scalar_masters": false,
+    "benchmarks": false,
+    "producer_modules": false,
+    "new_numerical_jobs": false,
+    "capsule_or_production_mutations": false,
+    "only_saved_data_integrity_and_stdlib_reference_arithmetic": true
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "status": "private-actual-base-combined-candidate-whole38-qualified",
+  "created_utc": "2026-10-25T11:07:21.285477+00:00",
+  "producer": "/root/native_whole_port",
+  "source_context": "2c1f3342e189a20fef3bbf7dd9e0baa372e2b4a2",
+  "combined_patch_sha256": "70b5f94487f79d25c9bc831c0895fe2970ba8e222297ba0baf9f683d67101f9a",
+  "source": {
+    "actual_baseline_files": 80,
+    "candidate_files": 85,
+    "observation_changes_per_variant": 3,
+    "observation_added_modules_per_variant": 1,
+    "reused_candidate_captured_master_files": 30,
+    "fresh_rustc_products": 4,
+    "source_and_command_review_sha256": "be86028a6c364e76bab6460840d3e82332605c074e614b15e53ce8f36420a8aa",
+    "build_saved_audit_sha256": "b585cfb0253e03105191b02044a4e45acf99051d66de69e3828fb397e04032df"
+  },
+  "build": {
+    "status": "passed",
+    "receipt_member": "observation-build-001/build.json",
+    "receipt_sha256": "7029be6f7444366864d8d9ddad933f2ccd47090e2a2befda2d764842a385b4c8",
+    "elapsed_seconds": 68.3931473379489,
+    "aggregate_cap_seconds": 180,
+    "cleanup_reserve_seconds": 8,
+    "compile_cpus": [
+      6,
+      7
+    ],
+    "protected_inputs": 776,
+    "owned_groups": 4,
+    "all_groups_gone": true,
+    "diagnostic_duration_not_performance": true,
+    "outputs": {
+      "baseline-masters": {
+        "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/baseline/libiregi_masters.rlib",
+        "sha256": "dba976ecae3ddd653fa1718a58c20ae6b67fc49e8ca26f9d3c58ba49670ed20d",
+        "bytes": 21026916
+      },
+      "baseline-core": {
+        "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/baseline/libiregi_rust_baseline.rlib",
+        "sha256": "30f87ecb8fdf22222ef9d3743570bc2bc805813445559d10ce3010ae8e17fc35",
+        "bytes": 21049070
+      },
+      "candidate-core": {
+        "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/candidate/libiregi_rust_candidate.rlib",
+        "sha256": "9444af2de6d0f2a82b65a1a46ed4a8eb5f877ae79add746929820eb7715c0ec7",
+        "bytes": 21105780
+      },
+      "selective-probe": {
+        "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/whole/observation-build-001/probe",
+        "sha256": "3dedaf7c218f1676b27dbf3d03227cfcd8dcd2dae53d0fd19201c36444e5207c",
+        "bytes": 92809376
+      }
+    }
+  },
+  "runtime": {
+    "status": "passed",
+    "receipt_member": "whole-qualification-001/results.json",
+    "receipt_sha256": "09f3b84aa25567b82ff7942d9bf726068d79f5ed84076803d8ce2734610e6247",
+    "saved_admission_member": "whole-qualification-001/independent-admission.json",
+    "saved_admission_sha256": "bb333f746b3c6be0938181690f44d2758cd8293cdb76a075cb991312ff12cb71",
+    "raw_member": "whole-qualification-001/responses.jsonl",
+    "raw_sha256": "69a1a91d3b5504ee41afad6ae84d835325f237e10eb8f6fc2b92f356030fdfc0",
+    "elapsed_seconds": 64.3619755100226,
+    "aggregate_cap_seconds": 120,
+    "cleanup_reserve_seconds": 8,
+    "cpu": 22,
+    "protected_inputs": 782,
+    "requests": 38,
+    "TIRust_requests": 30,
+    "IREGI_requests": 8,
+    "raw_events": 76,
+    "families": 8,
+    "tensor_complex_slots_per_variant": 1584,
+    "master_complex_slots_per_variant": 1782,
+    "direct_selected_master_cases": 34,
+    "candidate_unchanged_master_cases": 21,
+    "actual_base_unchanged_master_cases": 21,
+    "precision_master_cases_per_source": 12,
+    "whole_f64_Dual_controls": 1,
+    "whole_DoubleFloat_Float_controls": 2,
+    "cache_interleaving_steps": 8,
+    "invalid_timing_request_controls": 4,
+    "all_own_and_retained_full_records_exact": true,
+    "owned_groups": 2,
+    "all_groups_gone": true,
+    "kernel_timing": false,
+    "diagnostic_duration_not_performance": true
+  },
+  "comparisons": {
+    "gate": 1e-10,
+    "tensor_normalization": "abs(a-b)/(E^(4+rank-2*n)+abs(b)); E=max(1,mu,abs(shifts),sqrt(abs(mass_squared)))",
+    "maximum_cross_source_tensor_error": 2.060145367735415e-13,
+    "maximum_original_reference_tensor_error": 3.3775669420228794e-13,
+    "maximum_captured_master_error": 1.694832829752953e-14,
+    "unchanged_numeric_paths": "all complete six-output/tensor records exact by represented rational, precision, sign, inputs/errors and metadata"
+  },
+  "independent_audits": {
+    "runtime_closure": {
+      "member": "reviews/external-runtime-closure-audit.json",
+      "sha256": "39125e993c8d81ab4e81ce3f283830482d4441733d6b0f4320ebb85767e58515"
+    },
+    "runtime_numerical": {
+      "member": "reviews/external-runtime-numerical-audit.json",
+      "sha256": "0f6dbdb80f77371b0720ac23c1f710017f3c5b36bc06f15b356e9cec98263497"
+    }
+  },
+  "not_qualified_by_this_capsule": {
+    "retained_six_point_reference_convergence_lifecycle": true,
+    "current_Cargo_feature_forwarding": true,
+    "production_application_or_default_adoption": true,
+    "performance_or_parity": true,
+    "broad_native_runtime": true,
+    "public_SixPoint_Dual_f64_DoubleFloat_or_generalized_envelope": true,
+    "rank_seven_or_N7": true
+  },
+  "production_mutations": false,
+  "compiler_execution": true,
+  "Cargo_execution": false,
+  "numerical_execution": true,
+  "benchmark_execution": false,
+  "automatic_retries": false,
+  "compiled_artifacts_committed": false
+}

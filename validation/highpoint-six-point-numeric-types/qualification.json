@@ -1,0 +1,172 @@
+{
+  "schema_version": 1,
+  "status": "private_typed_scalar_n6_pilot_completed_with_failures",
+  "recorded_utc": "2026-10-25T11:04:13.773317+00:00",
+  "scope": "One retained real massive rank-zero unit-power unshifted PV scalar N6 point; ordinary f64/DoubleFloat and six-component dynamic Float128/256 scale jets. Private isolated core with frozen dependency objects, not current Cargo or public API.",
+  "protocol_sha256": "9d84e08c824f5b155a75a770ea0a4f4d453b96d8f178e93d6aebb262ad66b566",
+  "source_manifest_sha256": "5acb0c7b6e7b9e522aca025fcf0320c5bf6024c3a1ec7f44b4c8598078bf12e4",
+  "build_receipt_sha256": "7406cae536d858e62a6806402d45cb3c4af93ce8e7209758dc41370049f5cf32",
+  "terminal_summary_sha256": "b493dc3e79c13439733fcb95fd2218ba6e6733db73ec306915fe0db01419453b",
+  "numerical_release_sha256": "544bd26f6e3cca5749bc1575d86dedfe41f2c227af78c6cc03fabb09b9a92702",
+  "source_protocol_input_bindings": 219,
+  "bindings_per_domain_comparison": 231,
+  "independent_saved_audits": {
+    "numeric": {
+      "path": "target/resume-20261025-review/typed-n6-independent-saved-numeric-audit.json",
+      "sha256": "c08655b8565c848f2749763d5f65639e798c43da1382da3634246192bc8fe0c2"
+    },
+    "provenance": {
+      "path": "target/resume-20261025-review/typed-n6-independent-provenance-audit.json",
+      "sha256": "438446e353fd66d26225c78e47ce1f65082d970078c8d1e032e9e673819e234c"
+    }
+  },
+  "build_qualified": true,
+  "build_seconds": 35.64409074897412,
+  "build_bound_seconds": 90,
+  "build_reserve_seconds": 25,
+  "runtime_bound_seconds_per_type": 180,
+  "runtime_reserve_seconds": 20,
+  "domain_results": {
+    "f64": {
+      "status": "failed",
+      "passed": false,
+      "provenance_valid": true,
+      "provenance_errors": [],
+      "coverage": {
+        "calls": 5,
+        "complex_slots": 0,
+        "empty_calls": 1,
+        "expected_calls": 5,
+        "expected_complex_slots": 40,
+        "invalid_rejections": 2,
+        "original_primal_comparisons": 0,
+        "successful_lanes": 0,
+        "symbolic_identity_comparisons": 0
+      },
+      "private_dilation_identity_qualified": false,
+      "public_dual_qualified": false,
+      "derivative_uncertainty_transport_qualified": false,
+      "failure_count": 12,
+      "numeric_failed_comparisons": 0,
+      "binding_count": 231
+    },
+    "DoubleFloat": {
+      "status": "passed",
+      "passed": true,
+      "provenance_valid": true,
+      "provenance_errors": [],
+      "coverage": {
+        "calls": 5,
+        "complex_slots": 40,
+        "empty_calls": 1,
+        "expected_calls": 5,
+        "expected_complex_slots": 40,
+        "invalid_rejections": 2,
+        "original_primal_comparisons": 40,
+        "successful_lanes": 10,
+        "symbolic_identity_comparisons": 40
+      },
+      "private_dilation_identity_qualified": false,
+      "public_dual_qualified": false,
+      "derivative_uncertainty_transport_qualified": false,
+      "failure_count": 0,
+      "numeric_failed_comparisons": 0,
+      "binding_count": 231
+    },
+    "Float128Dual": {
+      "status": "failed",
+      "passed": false,
+      "provenance_valid": true,
+      "provenance_errors": [],
+      "coverage": {
+        "calls": 1,
+        "complex_slots": 24,
+        "empty_calls": 0,
+        "expected_calls": 5,
+        "expected_complex_slots": 240,
+        "invalid_rejections": 0,
+        "original_primal_comparisons": 4,
+        "successful_lanes": 1,
+        "symbolic_identity_comparisons": 24
+      },
+      "private_dilation_identity_qualified": false,
+      "public_dual_qualified": false,
+      "derivative_uncertainty_transport_qualified": false,
+      "failure_count": 7,
+      "numeric_failed_comparisons": 0,
+      "binding_count": 231
+    },
+    "Float256Dual": {
+      "status": "failed",
+      "passed": false,
+      "provenance_valid": true,
+      "provenance_errors": [],
+      "coverage": {
+        "calls": 0,
+        "complex_slots": 0,
+        "empty_calls": 0,
+        "expected_calls": 5,
+        "expected_complex_slots": 240,
+        "invalid_rejections": 0,
+        "original_primal_comparisons": 0,
+        "successful_lanes": 0,
+        "symbolic_identity_comparisons": 0
+      },
+      "private_dilation_identity_qualified": false,
+      "public_dual_qualified": false,
+      "derivative_uncertainty_transport_qualified": false,
+      "failure_count": 7,
+      "numeric_failed_comparisons": 0,
+      "binding_count": 231
+    }
+  },
+  "DoubleFloat_numerical_qualified_in_declared_private_scope": true,
+  "f64_numerical_qualified": false,
+  "Float128Dual_numerical_qualified": false,
+  "Float256Dual_numerical_qualified": false,
+  "partial_Float128_affine_prefix": {
+    "successful_lanes": 1,
+    "complete_complex_slots": 24,
+    "exact_pole_zeros": 18,
+    "available_target_comparisons_passed": true,
+    "full_domain_qualified": false
+  },
+  "independently_checked_available_output_complex_slots": 64,
+  "independently_checked_input_complex_slots": 1736,
+  "maximum_normalized_errors": {
+    "DoubleFloat": {
+      "untouched_original_IBP_primal": "8.174807886595464522071215276442222920272627299223512313634111758898455408739332703754132450553291098667481180241342767429346158980299318887068140699574403099033044696341354154699202094299768292727777870213807717301720028E-14",
+      "qualified_Float256_scalar_times_symbolic_multiplier": "6.419978175090340297763631838933174424302842777129621154480910001721774838481873532195318695506295185650764516067429591335864918795904255021411203323940575512997408625810637234547926650371005389795687389700889475432860096E-30",
+      "same_profile_first_available": "0"
+    },
+    "Float128Dual": {
+      "untouched_original_IBP_primal": "8.174807886595464830235800181672702927745819287824343685571205844140131650454961574182048613303633859273870392166746025797965011426019474406694407356891234326780302552222670347132726529781124159280650574641553017776286294E-14",
+      "qualified_Float256_scalar_times_symbolic_multiplier": "1.012747995372455784755209429883776623697950646801851065369663043440121247247350119341990392907572736260307352598087525126259812506275736232417597833107068082659043964241621370354832051390759886842119092128065833859288795E-34",
+      "same_profile_first_available": "0"
+    }
+  },
+  "complete_precision_convergence_qualified": false,
+  "paired_comparisons": 0,
+  "source_and_process_provenance_qualified": true,
+  "all_six_owned_process_groups_absent": true,
+  "all_numerical_attempts_terminal": true,
+  "numerical_lease_released": true,
+  "no_retries_or_bound_extensions": true,
+  "failed_or_missing_arrays_count_as_agreement": false,
+  "production_source_edits": false,
+  "production_adoption": false,
+  "current_cargo_build_qualified": false,
+  "public_dual_qualified": false,
+  "derivative_uncertainty_transport_qualified": false,
+  "performance_qualified": false,
+  "limits": [
+    "Only one physical point; ordinary positive profiles repeat the same primal.",
+    "Two formal variables parameterize one physical dilation direction; arbitrary independent masses/invariants are not tested.",
+    "The Float128 affine prefix passes available target checks but the full schedule times out; Float256 returns no complete array.",
+    "The product-profile mixed response and complete reordered/batched Dual lifecycle remain unqualified.",
+    "Child sensitivity and imported error context are primal-only; partial identity agreement provides no achieved derivative-error enclosure.",
+    "No static Dual, generalized powers/dimension shifts, higher-rank or public type promotion follows.",
+    "Explicit Rust/native archives and four executables are guarded; complete wrapper-subtool/OS/sysroot closure is not claimed.",
+    "These unoptimized qualification-stage aggregate times are diagnostic lifecycle measurements, not benchmark timings or parity evidence."
+  ]
+}
