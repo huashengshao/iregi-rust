@@ -1,0 +1,104 @@
+{
+  "status": "passed_independent_saved_copy_source_assertion_review",
+  "findings": [],
+  "reviewer": "/root/dual_pilot_finish/runner_review",
+  "reviewed_utc": "2026-10-25T23:36:07.196717+00:00",
+  "capsule_manifest_sha256": "378ac418805b999522d18cb7f1306feeaa5738de570cf3d80df978f69ec3370c",
+  "capsule_file_sha256": {
+    "package.py": "9d85b15793bc577b15f7c8e55fbab0b6b643c2993e18b76b70e54a9a544c7739",
+    "payload.tar.gz": "26870399e50a729c533f6e9d633c7dfb42fe5724ef48be7ee497022f56d66baf",
+    "README.md": "9092878cc7eee1146039977d38d91ddbcd90d60ec323fe9da9462647ee0f440c",
+    "check.py": "c35044930613695c8a3f1b32b3abe414621d2827681bb568f03a598775972044",
+    "qualification.json": "ab92f3224380671147021be52746347bd23dea5aaaf3d7160a0c05ee68d99f26"
+  },
+  "parent_manifest_sha256": {
+    "validation/python-interface/checkpoint-wheel-004/manifest.json": "9e4d57b2a9a739021e4ed3ff00f15c1fc65c88a9912d05122463c39989060216",
+    "validation/python-interface/facade-wheel-002/manifest.json": "5db39dbfd48ecfe3fefeb0851613921752a36e251801d806177312ef788b7fb6",
+    "validation/collinear-rank6-parameter-oracle/manifest.json": "f24015e7e39244c75cc51ffb44e2929dbb1a79ce4a242c9cebdc3379925b12b5"
+  },
+  "archive_sha256": {
+    "validation/affine-collinear-current-core/payload.tar.gz": "26870399e50a729c533f6e9d633c7dfb42fe5724ef48be7ee497022f56d66baf",
+    "validation/collinear-rank6-parameter-oracle/payload.tar.gz": "f7efd625dd78745e4a77de5e16c92c2e3fa76f7641ecc0286f2e1b006c1be99e",
+    "validation/python-interface/checkpoint-wheel-004/sources.tar.gz": "7e069179f2965266523b948635da11840e0a58974fc1965ea02641982a8a1ca6",
+    "validation/python-interface/facade-wheel-002/sources.tar.gz": "777aece566b2b9c89c5d35c6aaee694267f7610c438920946245a4b01f5ea804"
+  },
+  "copy_checks": {
+    "restored_aliases": 449,
+    "own_regular_payload_members": 140,
+    "own_non_source_evidence_compared_to_original_bytes": 96,
+    "exact_compiled_source_bodies_compared_to_original_build004_archive": 349,
+    "inherited_source_bodies": 305,
+    "own_source_delta": 44,
+    "all_archive_members_guarded_safe_and_no_ELF": true,
+    "all_selected_file_sizes_and_hashes_verified": true,
+    "parent_archive_descriptors_and_borrowed_member_descriptors_verified": true,
+    "original_source_archive_sha256": "84aeb79226721ba8b82a65afa45680bb1cadd99b86bfea52efcb4b29ebfc303d",
+    "format_after_build004_eight_preformat_source_hashes_retained": true,
+    "adjacent_minimal_checkout_receipt_sha256": "aeae52a6fd05c75890dd3cda7a20c418b4ee72680f5ffb839d92cdf61d97a254"
+  },
+  "actual_build_association": {
+    "build": "target/affine-component-joint-current-cargo/build-004",
+    "actual_Cargo_log_event_equals_saved_artifact": true,
+    "Cargo_build_finished_success": true,
+    "command": "cargo test --locked --offline -p iregi-rust --lib --no-run --message-format=json -j 2",
+    "default_feature_library_test_profile": true,
+    "Cargo_event_fresh": false,
+    "all_349_source_hashes_match_build_protocol_inputs": true,
+    "all_selected_test_receipts_bind_same_original_executable_sha256": "8a35605982e51a81484f940954785b4f94abfb44621839d3ed285cc7f009bdd4",
+    "omitted_executable_rehashed_or_executed": false
+  },
+  "strict_saved_test_evidence": {
+    "core_passed": 16,
+    "core_fixed_90_second_timeouts_retained": 2,
+    "plain_ignored_numeric_test_explicitly_selected_and_passed": 1,
+    "selected_dilation_ignored_numeric_test_explicitly_selected_and_passed": 1,
+    "component_passed": 10,
+    "checked_facade_passed": 4,
+    "each_success_exact_selector_names_same_test_and_log_has_one_pass_zero_fail_zero_ignore": true,
+    "total_successful_selected_test_logs": 32,
+    "failed_build_attempts_001_002_003_retained": true
+  },
+  "compiled_numeric_assertions_read": {
+    "basis_order_matches_first_210_oracle_entries": true,
+    "native_slot_order": [
+      "uv1",
+      "ir1",
+      "ir2",
+      "finite"
+    ],
+    "precisions": [
+      128,
+      256
+    ],
+    "plain_all_840_complex_slots_at_each_precision": true,
+    "selected_dilation_all_840_primals_and_840_jets_at_each_precision": true,
+    "oracle_mixed_absolute_relative_tolerance": "1e-10 * max(3^(rank-2), abs(expected))",
+    "precision_pair_tolerance": "2^-80, after exact promotion to Float256",
+    "plain_precision_pairs": 840,
+    "selected_dilation_precision_pairs": 1680,
+    "selected_dilation_response": "rank + 4 - 2*N = rank - 2, from existing Symbolica response",
+    "plain_invalid_mu_neighbor_inaccessible_and_good_duplicates_equal": true,
+    "plain_and_selected_dilation_input_value_equality_asserted": true,
+    "one_chart_batch_and_analytic_used_asserted": true,
+    "independent_numeric_arrays_exported": false,
+    "independently_recomputed_native_arrays": false
+  },
+  "portable_checker": {
+    "source_inspected_stdlib_only": true,
+    "default_saved_replay_exit_code": 0,
+    "default_saved_replay_status": "passed_saved_source_and_strict_test_replay",
+    "new_minimal_checkout_not_repeated": "Existing hash-bound adjacent receipt independently read; original source reconstruction additionally compared directly to build004 archive."
+  },
+  "scope_limits": [
+    "Evidence is strict saved Rust test logs plus exact compiled assertion source, not an independent native-array mathematical replay.",
+    "Oracle admission is empirical parameter-quadrature convergence at 1e-10, not a rigorous bound; the 2^-80 pair establishes Rust precision consistency.",
+    "Selected first dilation direction only; no general Dual, mixed derivatives, derivative uncertainty, arbitrary N, rank7, physical, or performance qualification.",
+    "Input-value equality does not independently prove signed-zero or precision-metadata bit preservation; tests do not explicitly assert fallback=false.",
+    "Executable/compiler/OS closure and process absence remain historical attestations; no native executable, compiler, producer, integral, or PID probe was run."
+  ],
+  "reviewer_initial_assumption_corrected": {
+    "initial_copy_check_failed_on": "crates/iregi-rust/src/affine_descent_guard.rs",
+    "reason": "Live main had the explicitly recorded post-build rustfmt formatting. The correct compiled copy origin is the immutable build004 source archive, whose exact 349 bodies match restored bytes.",
+    "capsule_or_producer_changes": false
+  }
+}

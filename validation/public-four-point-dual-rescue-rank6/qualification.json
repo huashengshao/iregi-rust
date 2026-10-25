@@ -1,0 +1,196 @@
+{
+  "status": "passed_independent_saved_public_N4R6_dual_rescue_audit",
+  "passed": true,
+  "comparison_counts": {
+    "qualified_Float128_control": 15120,
+    "original_quad_response": 15120,
+    "scale2": 5040
+  },
+  "max_normalized_errors": {
+    "qualified_Float128_control": "9.57114328684148991333040570011234106953279236847548178628209424765510645956078738264245963E-17",
+    "original_quad_response": "1.67253610033501100118491644672507286133631982123035719745344867727131161444825346293718667E-16",
+    "scale2": "4.07126258024262308529963399516136436581550489180255177052787428990687754784683136366892806E-73"
+  },
+  "binary64_representable_coordinates_checked": 30240,
+  "actual_stage_counters_and_statuses": [
+    {
+      "name": "static_base",
+      "counters": {
+        "accepted_rows": 1,
+        "corrected_successful_rows": 0,
+        "primary": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 4,
+          "master_rows": 15,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 1
+        },
+        "requested_rows": 1,
+        "verification": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 4,
+          "master_rows": 15,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 1
+        },
+        "working": {
+          "analytic_rows": 0,
+          "argument_rows": 1,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 1,
+          "master_family_batches": 4,
+          "master_rows": 15,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 1
+        }
+      },
+      "primary_statuses": [
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 2; this estimate is not a certified error bound\")"
+      ],
+      "rescue_statuses": [
+        "Converged { working_bits: 128, verification_bits: 256, primary_agreed: None }"
+      ]
+    },
+    {
+      "name": "dynamic_odd3",
+      "counters": {
+        "accepted_rows": 2,
+        "corrected_successful_rows": 0,
+        "primary": {
+          "analytic_rows": 0,
+          "argument_rows": 2,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 3,
+          "master_family_batches": 4,
+          "master_rows": 30,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 2
+        },
+        "requested_rows": 2,
+        "verification": {
+          "analytic_rows": 0,
+          "argument_rows": 2,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 2,
+          "master_family_batches": 4,
+          "master_rows": 30,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 2
+        },
+        "working": {
+          "analytic_rows": 0,
+          "argument_rows": 2,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 2,
+          "master_family_batches": 4,
+          "master_rows": 30,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 2
+        }
+      },
+      "primary_statuses": [
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 2; this estimate is not a certified error bound\")",
+        "InvalidInput(\"mu must be positive and real\")",
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 2; this estimate is not a certified error bound\")"
+      ],
+      "rescue_statuses": [
+        "Converged { working_bits: 128, verification_bits: 256, primary_agreed: None }",
+        "NotRequested",
+        "Converged { working_bits: 128, verification_bits: 256, primary_agreed: None }"
+      ]
+    },
+    {
+      "name": "dynamic_empty",
+      "counters": {
+        "accepted_rows": 0,
+        "corrected_successful_rows": 0,
+        "primary": {
+          "analytic_rows": 0,
+          "argument_rows": 0,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 0,
+          "master_family_batches": 0,
+          "master_rows": 0,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 0
+        },
+        "requested_rows": 0,
+        "verification": {
+          "analytic_rows": 0,
+          "argument_rows": 0,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 0,
+          "master_family_batches": 0,
+          "master_rows": 0,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 0
+        },
+        "working": {
+          "analytic_rows": 0,
+          "argument_rows": 0,
+          "fallback_rows": 0,
+          "fallback_successes": 0,
+          "input_rows": 0,
+          "master_family_batches": 0,
+          "master_rows": 0,
+          "pentagon_box_rows": 0,
+          "reduction_rows": 0
+        }
+      },
+      "primary_statuses": [],
+      "rescue_statuses": []
+    }
+  ],
+  "preserved_previous_guard_failures": [
+    {
+      "case": "typed-n4/mixed-f64",
+      "capture_sha256": "09c02c02a4d25a98a105416f8da68a921f3f4c34094816737c8b4f0931a76ada",
+      "guard_statuses": [
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 2; this estimate is not a certified error bound\")",
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 2; this estimate is not a certified error bound\")",
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_8, Taylor component 2; this estimate is not a certified error bound\")"
+      ]
+    },
+    {
+      "case": "n5/plain-f64",
+      "capture_sha256": "f681f8fc9e4d14c0c103cfb30801c858c8ec34bafb76157905271e46c159eda9",
+      "guard_statuses": [
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_27, Taylor component 0; this estimate is not a certified error bound\")",
+        "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 53 in recurrence pv_node_27, Taylor component 0; this estimate is not a certified error bound\")"
+      ]
+    },
+    {
+      "case": "n5/plain-dd96",
+      "capture_sha256": "f14129a8b1fc3ec0b1ada75ff9ec458033053933a300ca07f4ddcab3ba21e910",
+      "guard_statuses": [
+        "Unstable(\"estimated compounded master cancellation exceeds 2^(19-96) with operand-dependent roundoff at configured precision 106 in moment [1, 5, 0, 0], Laurent slot 3; primal-only sensitivity estimate, not a certified error bound\")",
+        "Unstable(\"estimated compounded master cancellation exceeds 2^(19-96) with operand-dependent roundoff at configured precision 106 in moment [1, 5, 0, 0], Laurent slot 3; primal-only sensitivity estimate, not a certified error bound\")"
+      ]
+    }
+  ],
+  "limitations": [
+    "One fixed massive spacelike N4rank6 unitpower/h0/PV f64 mixed-Dual public rescue cohort only; no public highpoint, arbitrary branch or generalized all-feature inference.",
+    "Internal working128 and verification256 arrays are not serialized, so their mutual comparison is observed through Converged status and counters only. Independent external Float128/256 pair qualification belongs to the inherited24-case audit.",
+    "Exact binary64 representation and stored53-bit metadata are checked. Nearest rounding of hidden verification256 cannot be independently reconstructed; nearest casts of the external128 control are diagnostic only, especially near roundoff zeros.",
+    "Generic detailed stage reports and accepted sensitivity envelopes remain explicitly unavailable; no claim to transport or certify them.",
+    "Saved artifact/source guard and process cleanup associations are checked as metadata. No ELF/source snapshot/archive closure read or current process census.",
+    "No performance, rigorous error bound, physical numerator or finite-difference qualification."
+  ],
+  "independent_saved_audit_sha256": "f65dca69d4b95be77b5ba9285f03e2c7ec5a429b8ee21e2ce0f1cbf8a5112127",
+  "independent_checker_sha256": "6a13a88d9c30b733d3afcb619e1e46c19dede6420698292f0ceef70748bab76e",
+  "scope": "one actual public TensorRescueWorkspace::new_dual massive spacelike N4R6 unit/h0/PV f64 mixed-Dual cohort; internal128/256 arrays not serialized or independently audited; exact returned values and retained originating guards are qualified"
+}
