@@ -36,3 +36,17 @@ python3 scripts/prepare-symbolica-patch.py --vendor \
 
 The generated output is verified against this directory's inventory. Omit
 `--vendor` to restore the complete patched upstream source instead.
+
+## Python complex native operands
+
+Patch6 fixes confirmed loss of a high-precision complex component when the
+other component has lower precision and a native Python number is used as an
+operand. Native operands now use the larger component working precision.
+Existing Float/ComplexFloat operands retain their own precision; the public
+minimum-component precision property is unchanged. All arithmetic remains in
+Numerica. Six focused regression tests are included. Source/API review passes.
+The corrected fresh wheel passes all 60 numerical/interoperability tests and
+installed typing. Two failed historical trait-surface observations are retained;
+the observer now excludes Rust-only `real_classify` and mutating `set_precision`.
+Python floats retain read-only precision and immutable `with_precision` copies.
+See `validation/python-interface/facade-wheel-002` for exact source/artifact scope.

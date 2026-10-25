@@ -2277,7 +2277,7 @@ impl PythonComplexFloat {
         let p = if value.is_instance_of::<PythonFloat>() || value.is_instance_of::<Self>() {
             None
         } else {
-            Some(self.precision_property())
+            Some(self.0.re.prec().max(self.0.im.prec()))
         };
         complex_input(value, p)
     }
@@ -2294,7 +2294,7 @@ impl PythonComplexFloat {
         let p = if other.is_instance_of::<PythonFloat>() || other.is_instance_of::<Self>() {
             None
         } else {
-            Some(self.precision_property())
+            Some(self.0.re.prec().max(self.0.im.prec()))
         };
         let rhs = match complex_input(other, p) {
             Ok(v) => v,

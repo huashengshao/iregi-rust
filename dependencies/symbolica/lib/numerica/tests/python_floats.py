@@ -229,8 +229,10 @@ class CompleteFloatAPI(unittest.TestCase):
             for trait in traits:
                 body = source.split(f"pub trait {trait}:", 1)[1].split("\n}", 1)[0]
                 for name in re.findall(r"    fn (\w+)", body):
-                    # These Rust trait methods are not part of the Python API.
-                    if name in {"real_cmp", "needs_rescaling", "copy_sign"}:
+                    # These Rust trait methods are not part of the Python API;
+                    # real_classify returns Rust's FpCategory classification;
+                    # immutable Python floats use with_precision, not set_precision.
+                    if name in {"real_cmp", "real_classify", "needs_rescaling", "copy_sign", "set_precision"}:
                         continue
                     with self.subTest(cls=cls.__name__, trait=trait, method=name):
                         self.assertTrue(callable(getattr(cls, name, None)))

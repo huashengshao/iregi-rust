@@ -1,7 +1,7 @@
 # Symbolica evaluator patch series
 
 The series applies to `alphal00p/symbolica` revision
-`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all five patches
+`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all six patches
 and their source hashes. The retained source is in `dependencies/symbolica`;
 its `IREGI_PROVENANCE.json` inventories every upstream or patched file.
 
@@ -110,3 +110,17 @@ core/frontend builds retain their normal optimization profile. Evidence and
 limits are in `validation/symbolica-scoped-condition-facts/qualification.json`.
 These compiler tests alone qualify no new tensor arrays, generalized domains,
 N7 rank-seven results or performance ratios.
+
+## Python complex native operands
+
+Patch6 fixes confirmed loss of a high-precision complex component when the
+other component has lower precision and a native Python number is used as an
+operand. Native operands now use the larger component working precision.
+Existing Float/ComplexFloat operands retain their own precision; the public
+minimum-component precision property is unchanged. All arithmetic remains in
+Numerica. Six focused regression tests are included. Source/API review passes.
+The corrected fresh wheel passes all 60 numerical/interoperability tests and
+installed typing. Two failed historical trait-surface observations are retained;
+the observer now excludes Rust-only `real_classify` and mutating `set_precision`.
+Python floats retain read-only precision and immutable `with_precision` copies.
+See `validation/python-interface/facade-wheel-002` for exact source/artifact scope.

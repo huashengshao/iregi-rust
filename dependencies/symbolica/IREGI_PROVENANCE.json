@@ -21,6 +21,10 @@
     {
       "path": "0005-reuse-dominating-condition-facts.patch",
       "sha256": "5582e023c8d293a9e17310637aeee7009a3104a4024b9253c3e108c1ecabf5c5"
+    },
+    {
+      "path": "0006-preserve-complex-native-operand-precision.patch",
+      "sha256": "c0a34d436435f35a9649c6e2d71beec329278471fef1caaad123192fcf0322f3"
     }
   ],
   "included_paths": [
@@ -535,8 +539,8 @@
     },
     {
       "path": "lib/numerica/src/domains/float/python.rs",
-      "sha256": "ff8c9874fc5838bce7119df16a48748726e745d2862a9caf5a7f9fc419403ce5",
-      "bytes": 97624
+      "bytes": 97650,
+      "sha256": "169403a10f12e455321de2f3327a14347acfc1809677230c7fd008c4d5e08381"
     },
     {
       "path": "lib/numerica/src/domains/float/rational.rs",
@@ -629,9 +633,14 @@
       "bytes": 2338
     },
     {
+      "path": "lib/numerica/tests/python_complex_native_precision.py",
+      "bytes": 2601,
+      "sha256": "cb7b2b0524aa141626f386eb1b08becef4cd857b5b5e6cf86724b86537c7f8af"
+    },
+    {
       "path": "lib/numerica/tests/python_floats.py",
-      "sha256": "8a336564c116a81dc028e87048617725da577d30143d49bf9058f16190c1062f",
-      "bytes": 23596
+      "sha256": "7770e460de4055876b48ed2894917f663c0dd3eb1d7c7f18c0c144572ae5a657",
+      "bytes": 23793
     },
     {
       "path": "src/api.rs",
@@ -1129,8 +1138,8 @@
       "bytes": 44840
     }
   ],
-  "file_count": 218,
-  "total_bytes": 9599053,
+  "file_count": 219,
+  "total_bytes": 9601877,
   "original_license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
   "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
   "metadata": "IREGI_UPSTREAM_VERSION is read by the build.rs metadata-only patch; displayed version9cdc2949-iregi-scope-cache cannot inherit the embedding repository Git label. Git metadata is watched only when the explicit version cannot be used.",
@@ -1139,7 +1148,9 @@
     "validation/rescue-pentagon-rank7.json",
     "validation/symbolica-production-qualification.json",
     "validation/symbolica-build-metadata/results.json",
-    "validation/symbolica-scoped-condition-facts/qualification.json"
+    "validation/symbolica-scoped-condition-facts/qualification.json",
+    "validation/python-interface/facade-wheel-002/manifest.json"
   ],
-  "status": "Pinned patched source selected by root Cargo; patch5 has 18 focused actual-Cargo evaluator runtime tests. Integral-array and performance qualification are recorded separately and are not implied by evaluator tests."
+  "status": "Pinned patched source selected by root Cargo; patch5 has 18 focused actual-Cargo evaluator runtime tests. Integral-array and performance qualification are recorded separately and are not implied by evaluator tests.",
+  "native_operand_precision_status": "Confirmed old-wheel truncation; source/API reviewed; corrected fresh wheel passes6new numerical regressions+19upstream tests+29historical+4facade+N6+N7scalar tests (60total), installed typing0errors/0warnings. Two test-observer failures retained."
 }
