@@ -122166,5 +122166,875 @@
         "sha256": "7a5f85d0755419dc2d355f4a3d6ca6173b51d76f4e282a5337a876a4a9afb3b7"
       }
     }
+  },
+  "rank7_ibp_n2_postfix_qualification": {
+    "source": "validation/public-rank7-ibp-n2-postfix/qualification.json",
+    "sha256": "0ad9edcfd0b96bf0cc71984ccf01c151343a6dd395d61a5680b95d5acbb765bb",
+    "snapshot": {
+      "status": "passed_restricted_N2_rank7_IBP_three_massive_rows",
+      "requested_bits": 53,
+      "working_bits": [
+        128,
+        256
+      ],
+      "moments_per_lane": 330,
+      "native_slots": [
+        "uv1",
+        "ir1",
+        "ir2",
+        "finite"
+      ],
+      "reference_slots": 7920,
+      "precision_pairs": 3960,
+      "scaling_slots": 2640,
+      "IR_zero_slots": 3960,
+      "reference_tolerance": "1e-10",
+      "precision_scaling_tolerance": "2^-80",
+      "maximum_reference_error": "1.838386417982165706927508130759280455161178220626371958365308808574375158028247802515024096787660356E-16",
+      "maximum_precision_error": "7.57821215390e-37",
+      "scaling_and_IR_residual": "exact represented zero",
+      "actual_algorithm": "Ibp",
+      "fallback_used": false,
+      "analytic_used": false,
+      "actual_owned_executable_sha256": "803ef733a09e0b54f169ccf8547881d9420745872fce5d5007aaa5cfe6fcbccd",
+      "native_stage_receipt_sha256": "6179cc0179413ca4d60ba270d7ffc4254a2104ad543671b98e5af9feb56d7a57",
+      "comparison_sha256": "93b75316059e5cca76410f93dafedcf912c1905601e937fe7e1afe73f5fa37bd",
+      "independent_math_receipt_sha256": "8df8e86464e3d4f6147abd7f4161a45eedcb5b4a49311eb87e3c02a880b0bcbf",
+      "independent_metadata_review_sha256": "0aff12d6b81a06cc16036e2640e50061e2236cc546af4f3514f55cd1865a5162",
+      "independent_checker_code_review_sha256": "952eca8836de4ec4a44bee2e6eaadcc3e8c99f21b16dc78b416f2e06d0b9a3c6",
+      "source_files": 77,
+      "earlier_timeouts_reclassified": false,
+      "full_rank7_domain_qualified": false,
+      "performance_qualified": false,
+      "independent_audit_control_failure_preserved": true
+    }
+  },
+  "rank7_ibp_n2_postfix_manifest": {
+    "source": "validation/public-rank7-ibp-n2-postfix/manifest.json",
+    "sha256": "a53da3c6f8af203c3bf486a7313f26ed0a0e547dad061d35d7c41cfd3d25dceb"
+  },
+  "cli_shared_facade_manifest": {
+    "source": "validation/cli-shared-facade/manifest.json",
+    "sha256": "a41c45df04c5950e9bd72088a3b1e835a36881207153837b943bf214cb7eb79b"
+  },
+  "cli_shared_facade_copy_review": {
+    "source": "validation/cli-shared-facade-independent-copy-review.json",
+    "sha256": "246670131a17f32077a14915b483f719b751e4d0c18e09923fb243e0089d2541",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "passed",
+      "findings": [],
+      "reviewer": "/root/dual_sensitivity_research/component_review",
+      "scope": "Independent copy/source review plus two stdlib-only saved checker replays. No compiler,RustCLI,Symbolica,Fortran,integralbackend or historicaldependency/objecttree walk. Capsule files nevermodified.",
+      "audit_utc": "2026-10-25T20:29:38.492379+00:00",
+      "source_bindings": {
+        "validation/cli-shared-facade/manifest.json": "a41c45df04c5950e9bd72088a3b1e835a36881207153837b943bf214cb7eb79b",
+        "validation/cli-shared-facade/check.py": "b0bccddb9b2689f9c78e6b64756c7be41a12ba96a70b9236c99b6528a3ef8493",
+        "validation/cli-shared-facade/evidence.tar.gz": "afadb1b25185f8f3141eb5a172882f7ab857f3fc4ec4777e7e96817e35877b38",
+        "validation/public-rank7-ibp-n2-postfix/manifest.json": "a53da3c6f8af203c3bf486a7313f26ed0a0e547dad061d35d7c41cfd3d25dceb",
+        "validation/public-rank7-ibp-n2-postfix/check.py": "26210c0f3f7c4c88c4a363a318688ba4fbcafc0e7da7d594575854e014191e5e",
+        "validation/cli-shared-facade/README.md": "3b6925156f4ee9bcad4b6490d2f865e0a2365af53b49575132b6375b205922e0",
+        "validation/cli-shared-facade/independent-build-low-n6-review.json": "74f40cba6b310a7892e77fef356007c94da2a56aeebaa400a28904c249d79f41",
+        "validation/cli-shared-facade/independent-n7-review.json": "991c0ec93c5a815e92c1bf7091bb24963585ac8429d01c22a0d26b2a5d3c0a11",
+        "validation/cli-shared-facade/independent-final-tests-review.json": "e6828a32202e05f0e9ac061ca07cbda15f7af4aa487ca3f9a338bae008ebd7c3",
+        "validation/public-rank7-ibp-n2-postfix/README.md": "89d89e567dbcf9a3929751e03f354889592d8d8fdc87cd37bfa420e6dd58ebdd",
+        "validation/public-rank7-ibp-n2-postfix/qualification.json": "0ad9edcfd0b96bf0cc71984ccf01c151343a6dd395d61a5680b95d5acbb765bb",
+        "validation/public-rank7-ibp-n2-postfix/sources.tar.gz": "20da327a6a87a60108f665b3a3802b52e6d0388da3d7d848ca9c25b990764df7",
+        "validation/public-rank7-ibp-n2-postfix/evidence.tar.gz": "d13e7cc85efeb2d1e619895d1006302481f014cf2df40fec7b0cf7749ddc0e95"
+      },
+      "independent_checks": 506,
+      "archive_objects": 78,
+      "private_origin_aliases_compared": 149,
+      "inherited_source_snapshots_perbuild": 77,
+      "repository_replay": {
+        "status": "passed_portable_focused_CLI_facade",
+        "checks": 2652,
+        "strict_tests": 13,
+        "complex_comparisons": {
+          "low_complex_slots": 180,
+          "n6_complex_slots": 140,
+          "n7_complex_slots": 4
+        },
+        "maximum_errors_exact": {
+          "low_complex_slots": "273302021744630384627/18274070405578276555000000000000000",
+          "n6_complex_slots": "1157788138536742490242784480468357051722772137859478326139/34521317875240954935666792633262442622791884479509401384422773162441444583237171173095703125",
+          "n7_complex_slots": "24551914413020023414471660055802214468291706388540633/3355006354718558110890765021597327685969808412102025584056175233627072884701192378997802734375"
+        },
+        "preserved_failed_phases": [
+          "build-001",
+          "tests-001",
+          "n7-001"
+        ],
+        "native_jobs": 0,
+        "compiler_jobs": 0,
+        "performance_qualified": false,
+        "blanket_reduction_domain_qualified": false
+      },
+      "minimal_sibling_replay": {
+        "directory": "target/cli-facade-integration/portable-copy-replay-001",
+        "result": {
+          "status": "passed_portable_focused_CLI_facade",
+          "checks": 2652,
+          "strict_tests": 13,
+          "complex_comparisons": {
+            "low_complex_slots": 180,
+            "n6_complex_slots": 140,
+            "n7_complex_slots": 4
+          },
+          "maximum_errors_exact": {
+            "low_complex_slots": "273302021744630384627/18274070405578276555000000000000000",
+            "n6_complex_slots": "1157788138536742490242784480468357051722772137859478326139/34521317875240954935666792633262442622791884479509401384422773162441444583237171173095703125",
+            "n7_complex_slots": "24551914413020023414471660055802214468291706388540633/3355006354718558110890765021597327685969808412102025584056175233627072884701192378997802734375"
+          },
+          "preserved_failed_phases": [
+            "build-001",
+            "tests-001",
+            "n7-001"
+          ],
+          "native_jobs": 0,
+          "compiler_jobs": 0,
+          "performance_qualified": false,
+          "blanket_reduction_domain_qualified": false
+        },
+        "copied_capsule_directories": [
+          "cli-shared-facade",
+          "public-rank7-ibp-n2-postfix"
+        ],
+        "no_projectsource_checkout_or_compiled_binaries_required": true
+      },
+      "preservation": {
+        "three_independent_reviews_byteidentical": true,
+        "original_preflight_testwording_timeout_failures_retained": true,
+        "one_test_only_assertion_fix": true,
+        "compiled_artifacts_deliberately_omitted_with_exacthashes": true,
+        "no_frozenmanifest_orchecker_edit": true
+      },
+      "checker_source_observations": [
+        "Restoration imports only hash-bound parent stdlib checker and reads safe data-only archive members, with exact object/hash/size inventory and source aliasbindings.",
+        "The only exceptional changed source path is CLI main.rs across the two actualbuilds; replay separately enforces exactone test-only assertion substitution.",
+        "Receipt replay preserves actualpass/failstatuses, unchangedguardreceipts,ownedgroupterminalrecords,compiledomissionhashes,all13correctedtestlogs andcomplete180+140+4complexcomparisons.",
+        "Portable N7 execution checks packed21/summary composition; explicit105masters/1family/0parent condition also verified independently here from restored rawoutput and in copied originalN7review."
+      ],
+      "limits": [
+        "Archived source/evidence verification cannot independently execute or rehash deliberatelyomitted compiledartifacts; actualfrozenbinary hashes were independently checked in the copied savedreviews.",
+        "No complete dependency/compiler-wrapper/environment/OS closureclaim.",
+        "Existing retainedcapture comparisons qualifyfrontendintegration only, notblanketmathematicalcoverage,publichighpointDuals orperformanceparity.",
+        "Currentprocessgroups were checked in the originalindependentsavedreviews; portablecopy replay reads their savedterminalrecords and doesnot start or kill processes."
+      ]
+    }
+  },
+  "generalized_rank7_quad_qualification": {
+    "source": "validation/quad-original-iregi-generalized-rank7/qualification.json",
+    "sha256": "b4b9fff2f276795925aa3887496d9840eac2b8a5a03341dd1694d3804ca5b9b5",
+    "snapshot": {
+      "status": "independently_audited_restricted_original_quad_generalized_rank7_anchors",
+      "protocol_sha256": "f9da4d00dd8aa7d85377082da89e6c38dcc771f2115f15d1203699940efe8899",
+      "source_review_sha256": "9d26b8542e16a1091caf7ab46a40229e7eeae5d9b506a03e153176513e640e02",
+      "saved_review_sha256": "4a18ad1cb2184d46f51b40d7b7020fcc6b590e905e2f666a1a344acb8a1c1137",
+      "comparison_sha256": "b947a45f383b82c97c145e78301235919ad0f096e08761f53e8ac462a9eed05a",
+      "numerical_release_sha256": "b6795bcca23a770878cdf1832da45b628b07fb7d713585323bee209b50a74887",
+      "complete_arrays": 12,
+      "complex_slots": 15840,
+      "independent_exact_records": 22321,
+      "math_failures": 0,
+      "new_generalized_point_anchors": 10,
+      "control_arrays": 2,
+      "both_unit_controls_exact_to_old_ordinary_and_each_other": true,
+      "source_change_only": "Existing reviewed calc_factorial_pair binomial recurrence repair; new funlib compilation and exact object substitution only. Originalsource/binary untouched.",
+      "source_precision_caveat": "Uniformkind16/113binarybits/33decimaldigits storage witnesses; original approximately16digit constants/stoppingcriteria retained; no attained33digit accuracy claim.",
+      "scope": "Fixed conditioned-mass base firstN2/N3,rank7,first/last dots,firsttriple,unitD2/D6. Positive-mass IR,UVpower-counting,reflection,unit-control gates. ExistingN2D2scalaridentity diagnostic separate.",
+      "broad_generalized_finite_correctness_proved": false,
+      "Rust_currentCargo_Dual_or_performance_qualified": false,
+      "no_Rust_or_main_changes": true,
+      "no_automatic_retry_or_budget_extension": true
+    }
+  },
+  "generalized_rank7_quad_manifest": {
+    "source": "validation/quad-original-iregi-generalized-rank7/manifest.json",
+    "sha256": "ccda92bdd0be40484b2d8762d479658ada0beb98eb610df7c96b44f7f521a0b0"
+  },
+  "generalized_rank7_quad_copy_review": {
+    "source": "validation/quad-original-iregi-generalized-rank7-independent-copy-review.json",
+    "sha256": "1d804b0e13eff3136f1c7fac6733e5a5512a3eb655e70a9eee4bb4764424ccc4",
+    "snapshot": {
+      "status": "passed_independent_compact_copy_source_and_portable_saved_reference_review",
+      "reviewer": "/root/dual_pilot_finish/generalized_capsule_copy_review",
+      "review_source": {
+        "path": "target/generalized-capsule-independent-copy-review/review.py",
+        "sha256": "0009470250de83988426614c6463deb38c2e7e7305df629225d30106f264fbc6",
+        "bytes": 16444
+      },
+      "manifest_sha256": "ccda92bdd0be40484b2d8762d479658ada0beb98eb610df7c96b44f7f521a0b0",
+      "checker_sha256": "8bd9efc8ee6f95f9a0387c3510f105b9bceda416aade16c2e3bee2ef445cee7e",
+      "payload_sha256": "3f212bc43977e9dc815155adbf3d0fb728212eb8fe7bb092decd4b215f3f7b1d",
+      "payload_bytes": 246618,
+      "check_count": 6346,
+      "findings": [],
+      "reviewed_independent_checker_sources": [
+        {
+          "source": "validation/quad-original-iregi-generalized-rank7/check.py",
+          "sha256": "8bd9efc8ee6f95f9a0387c3510f105b9bceda416aade16c2e3bee2ef445cee7e",
+          "bytes": 27043,
+          "imports": [
+            "argparse",
+            "decimal",
+            "fractions",
+            "hashlib",
+            "importlib.util",
+            "json",
+            "pathlib",
+            "re",
+            "sys"
+          ],
+          "manual_review": "Source inspected: only fixed hash-pinned independent parent imports; no producer import, native execution/hash or PID probe. Reconstruction writes archived aliases only."
+        },
+        {
+          "source": "validation/quad-original-iregi-positive-rank-anchors/check.py",
+          "sha256": "573cb307406b20c787fea76372cc9ddaffb682e3c1661d639b2c573e3ebe47f9",
+          "bytes": 19507,
+          "imports": [
+            "pathlib",
+            "fractions",
+            "decimal",
+            "argparse",
+            "hashlib",
+            "importlib.util",
+            "json",
+            "sys"
+          ],
+          "manual_review": "Source inspected: only fixed hash-pinned independent parent imports; no producer import, native execution/hash or PID probe. Reconstruction writes archived aliases only."
+        },
+        {
+          "source": "validation/quad-original-iregi-rank7-adjudication/check.py",
+          "sha256": "4e470143340740ff736087ca542d2ea2dc76723073ba9995b10eca3bd1880c28",
+          "bytes": 32770,
+          "imports": [
+            "pathlib",
+            "fractions",
+            "decimal",
+            "argparse",
+            "hashlib",
+            "io",
+            "json",
+            "re",
+            "sys",
+            "tarfile"
+          ],
+          "manual_review": "Source inspected: only fixed hash-pinned independent parent imports; no producer import, native execution/hash or PID probe. Reconstruction writes archived aliases only."
+        },
+        {
+          "source": "validation/quad-original-iregi-small-n-rank7/check.py",
+          "sha256": "a202925e87ab6aef866563c42c3c39eda73f081b47d2ca72214013af8f12850b",
+          "bytes": 19783,
+          "imports": [
+            "pathlib",
+            "fractions",
+            "decimal",
+            "argparse",
+            "hashlib",
+            "importlib.util",
+            "json",
+            "sys"
+          ],
+          "manual_review": "Source inspected: only fixed hash-pinned independent parent imports; no producer import, native execution/hash or PID probe. Reconstruction writes archived aliases only."
+        }
+      ],
+      "seven_own_files_and_thirty_seven_parent_files": {
+        "validation/quad-original-iregi-positive-rank-anchors/manifest.json": {
+          "sha256": "6fbc3465f3e2ee54a789b0ea556a51616744437e18d53bff29cec177755d9ddb",
+          "bytes": 22859
+        },
+        "validation/quad-original-iregi-positive-rank-anchors/payload.tar.gz": {
+          "sha256": "14aa7524bbf8ccb2f3295e8ea79282a4be59acc60efa32df49b17e878c1327dd",
+          "bytes": 161493
+        },
+        "validation/quad-original-iregi-positive-rank-anchors/check.py": {
+          "sha256": "573cb307406b20c787fea76372cc9ddaffb682e3c1661d639b2c573e3ebe47f9",
+          "bytes": 19507
+        },
+        "validation/quad-original-iregi-positive-rank-anchors/README.md": {
+          "sha256": "4da3a4045924dd86d46fb89195c170713a8a56a71df75937b1add0ccb69bc35f",
+          "bytes": 4318
+        },
+        "validation/quad-original-iregi-positive-rank-anchors/qualification.json": {
+          "sha256": "eaf46b3a3511c89ff5051c781b2e0e254a5d8418a485256295af9aabe3a5e961",
+          "bytes": 4048
+        },
+        "validation/quad-original-iregi-positive-rank-anchors/payload-origins.json": {
+          "sha256": "4bb839e4e04bf3233c8a39588fe332b1d59581160d53df4bb79b31eb878fd00c",
+          "bytes": 12147
+        },
+        "validation/quad-original-iregi-rank7-adjudication/manifest.json": {
+          "sha256": "7c27b1eded867c4373ee6111b54a1f88a1d944c61cd1a871c1403947c008fe07",
+          "bytes": 157511
+        },
+        "validation/quad-original-iregi-rank7-adjudication/payload.tar.gz": {
+          "sha256": "4b39576c7d07960cc4a22cd9d1c888fe5a79be967c8fa1210eb6067154ac08e9",
+          "bytes": 901002
+        },
+        "validation/quad-original-iregi-rank7-adjudication/check.py": {
+          "sha256": "4e470143340740ff736087ca542d2ea2dc76723073ba9995b10eca3bd1880c28",
+          "bytes": 32770
+        },
+        "validation/quad-original-iregi-rank7-adjudication/qualification.json": {
+          "sha256": "a2fb901b003e863cdeb7f379d022e5eba58be20cd3c4ad01043b6cb5b2aba456",
+          "bytes": 6540
+        },
+        "validation/quad-original-iregi-rank7-adjudication/README.md": {
+          "sha256": "13bb407df79f75822a9cb8c120ad138034c0047427412923f5118e4ce6088021",
+          "bytes": 5162
+        },
+        "validation/quad-original-iregi-rank7-adjudication/payload-origins.json": {
+          "sha256": "146228e9333fd8f4d292d146394892d79a4a48a62ca274bf832727fe29e26c34",
+          "bytes": 85298
+        },
+        "validation/highpoint-thin-n6-rank7-phase/sources.tar.gz": {
+          "sha256": "54ca8b806e8960d96f265919a5bca661a5336e2812afabcd37ac6facc81ce41d",
+          "bytes": 635459
+        },
+        "validation/highpoint-thin-n6-rank7-phase/archive-manifest.json": {
+          "sha256": "d235b7e2152eb3d965eb977d02a93e0ac821610a6408cf5d0ce041b810dcb2d4",
+          "bytes": 13065
+        },
+        "validation/highpoint-thin-n6-rank7-phase/qualification.json": {
+          "sha256": "e7901c824d8e32c1c9baa7664c381c02f94dc0214ddeb90f75cfc14ef3b8e917",
+          "bytes": 14366
+        },
+        "validation/highpoint-thin-n6-rank7-phase/payload-origins.json": {
+          "sha256": "752265cf860cb84ba0ae30fa0d3a9bdfc94ab46db273f4327dbfff066b1e27fd",
+          "bytes": 12591
+        },
+        "validation/highpoint-thin-n6-rank7-phase/external-artifact-hashes.json": {
+          "sha256": "48990584905a36a32a30b4085c9799a641645dc60573ef40336753423e5255f0",
+          "bytes": 38715
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/protocol.json": {
+          "sha256": "289e73fc1ade605cb5642cb443843f1ae6303d97f44edce07d1fc76d420aac0a",
+          "bytes": 34442
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/diagnostic-protocol.json": {
+          "sha256": "3328f45c2e5f47eed881faea2dd1a2b9be4c66d5ed7c37debc1d5b8ed85bdaaa",
+          "bytes": 44509
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/instrumentation-manifest.json": {
+          "sha256": "896a4b323b459efd120332d86edf869a939c226e7cae1e1af64f1b6245c1d869",
+          "bytes": 18283
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/n6-rank7-128-001/result.json": {
+          "sha256": "717ec3e0e634add1975bd969291aab0b23c640fb0d6c41cd3307d23f96b00982",
+          "bytes": 265845
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/n6-rank7-128-001/run.json": {
+          "sha256": "dfdbd263b9a28a5b5fb29627f67f3fd4bda21d8c4f43c1d2637bb6dc527b2aa7",
+          "bytes": 41429
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/n6-rank7-256-diagnostic-001/result.json": {
+          "sha256": "593232f7aa8403d9f713a6ac1c8a7db8ce73bccd72cb8ba385ee995a0a1b599f",
+          "bytes": 303920
+        },
+        "validation/highpoint-thin-n6-rank7-phase/phase/n6-rank7-256-diagnostic-001/run.json": {
+          "sha256": "ae8c57f5729a1b4991021a5056698d4db6c26bdbdeda5433a1756cc1c085e59d",
+          "bytes": 49425
+        },
+        "validation/highpoint-thin-n6-rank7-phase/reference/fixture-conditioned_masses.json": {
+          "sha256": "ec27f2c5774a18d3d84d2d733e634dae93e9bd4c74523d6f77e8784d13421ada",
+          "bytes": 5190
+        },
+        "validation/highpoint-thin-n6-rank7-phase/reference/reference-conditioned_masses.json": {
+          "sha256": "9bc3f10ad27615f23ddb3c2f62169575378d32e6c35c9d2a9dd51223f9b39ec4",
+          "bytes": 4150870
+        },
+        "validation/highpoint-thin-n6-rank7-phase/reference/qualification.json": {
+          "sha256": "b1d907c08cd73708404a8ee18a239f2863316b4d4fbe110ee48aa3863acd8ca1",
+          "bytes": 5392
+        },
+        "validation/reference/fixtures.json": {
+          "sha256": "cc33069dda9f91c6a19d6a0d4d1610b1ced3407b60880a76d0663e06d3e825ef",
+          "bytes": 161965
+        },
+        "validation/reference/driver.f90": {
+          "sha256": "99e8201f5687c2106b1b3b2c8e65bd1fbda4d1722b258db6e7298f889d31d3c2",
+          "bytes": 5577
+        },
+        "validation/highpoint-seven-point-current-cargo/fixture.json": {
+          "sha256": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+          "bytes": 2432
+        },
+        "validation/quad-original-iregi-small-n-rank7/payload.tar.gz": {
+          "sha256": "4f6dabe64a9ca37f08a00257f9688777475ac1d9963861e85808e81edb28cecc",
+          "bytes": 729356
+        },
+        "validation/quad-original-iregi-small-n-rank7/check.py": {
+          "sha256": "a202925e87ab6aef866563c42c3c39eda73f081b47d2ca72214013af8f12850b",
+          "bytes": 19783
+        },
+        "validation/quad-original-iregi-small-n-rank7/README.md": {
+          "sha256": "21135e69e050922e6482efeae92978809adc68f817f65d57fa5d0c907c3444d8",
+          "bytes": 5603
+        },
+        "validation/quad-original-iregi-small-n-rank7/qualification.json": {
+          "sha256": "8148a0d7def644a722434e19c556d542b3ca33c547f8d1b3ad6afd2fd970bcbf",
+          "bytes": 3217
+        },
+        "validation/quad-original-iregi-small-n-rank7/payload-origins.json": {
+          "sha256": "aed55a26cdb596d0b28c074c472e7aabec0bd3e7daf9f4d1a4f53478014f15f1",
+          "bytes": 45945
+        },
+        "validation/quad-original-iregi-small-n-rank7/copy-receipt.json": {
+          "sha256": "12cf3cc4028820a949e50752f187709010dcea50d3a2ba86684743c516330d51",
+          "bytes": 2196
+        },
+        "validation/quad-original-iregi-small-n-rank7/manifest.json": {
+          "sha256": "9b614c6567c28d23039053de390a7da5c665f4a57a978d54cd3148519fb3cb62",
+          "bytes": 66922
+        },
+        "validation/quad-original-iregi-generalized-rank7/qualification.json": {
+          "sha256": "b4b9fff2f276795925aa3887496d9840eac2b8a5a03341dd1694d3804ca5b9b5",
+          "bytes": 1590
+        },
+        "validation/quad-original-iregi-generalized-rank7/package.py": {
+          "sha256": "57a85fc823eb109619aa7e7f0f813094236f2d9c2ed7db8a1bdff08f46ede6d8",
+          "bytes": 13469
+        },
+        "validation/quad-original-iregi-generalized-rank7/check.py": {
+          "sha256": "8bd9efc8ee6f95f9a0387c3510f105b9bceda416aade16c2e3bee2ef445cee7e",
+          "bytes": 27043
+        },
+        "validation/quad-original-iregi-generalized-rank7/manifest.json": {
+          "sha256": "ccda92bdd0be40484b2d8762d479658ada0beb98eb610df7c96b44f7f521a0b0",
+          "bytes": 69422
+        },
+        "validation/quad-original-iregi-generalized-rank7/payload-origins.json": {
+          "sha256": "3e71c8204cc28a5b872cd4294e265d7e8c50295f888547f5feed58a90de29fe1",
+          "bytes": 40519
+        },
+        "validation/quad-original-iregi-generalized-rank7/payload.tar.gz": {
+          "sha256": "3f212bc43977e9dc815155adbf3d0fb728212eb8fe7bb092decd4b215f3f7b1d",
+          "bytes": 246618
+        },
+        "validation/quad-original-iregi-generalized-rank7/README.md": {
+          "sha256": "33c0b0d9c48afc6754490cdcf331059f57339f5674c4b6fec0049d6334d00089",
+          "bytes": 4140
+        }
+      },
+      "unique_payload_members": 64,
+      "new_aliases_checked_against_original_bytes": 122,
+      "terminal_inventory_files": 95,
+      "restored_aliases_rehashed": 574,
+      "restored_descriptors": {
+        "path": "target/generalized-capsule-independent-copy-review/restored-descriptors.json",
+        "sha256": "04cfd177dbd98415b34b3467602483e21d8b5dd7c610dd5008ff514f9db46f47",
+        "bytes": 105888
+      },
+      "raw_full_arrays": [
+        {
+          "ordinal": 0,
+          "id": "ordinary_control",
+          "sha256": "ed5c6d3f8cf602fd091999e57d4e847be78406c0b59ccdcd9029d6755a95d353",
+          "bytes": 131484,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 1,
+          "id": "general_unit_control",
+          "sha256": "c213d641c2f0d18fda3acbfa05b31252b687290d789b939808ed30bfa9bda062",
+          "bytes": 131488,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 2,
+          "id": "n2_first_dot2",
+          "sha256": "30a5b60827f57751516fd2b4a21cffc2676b4401ab8739640e6b4d81b0b44cdb",
+          "bytes": 131481,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 3,
+          "id": "n2_last_dot2",
+          "sha256": "cbbfce0fc76e47fbda7cffa828d766b2ad164d4dd6cba85b89348b580a598c0a",
+          "bytes": 131480,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 4,
+          "id": "n2_first_power3",
+          "sha256": "d8748dad87c013eb97b54ecaaeccdfde5474f4570a8d1c9f6c4d6b1500ec7ab3",
+          "bytes": 131483,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 5,
+          "id": "n2_D2",
+          "sha256": "c2376a9b96d73ee1524b492c107a08a30b6793de1940836e2d89a35119276c73",
+          "bytes": 131473,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 6,
+          "id": "n2_D6",
+          "sha256": "eb4e979a2dbcbeb985f5e93f5f331f032beec50736a60c8319735ecf08fab9ef",
+          "bytes": 131473,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 7,
+          "id": "n3_first_dot2",
+          "sha256": "bca4c5d0487b3d11c44b57aadf008ec3cac0ea0acf1fe8f9e287d096e7d446bd",
+          "bytes": 131481,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 8,
+          "id": "n3_last_dot2",
+          "sha256": "8b6351818fd5b97a6789e93b05634ef7f37b3e97a07ea400c1a8bfd126ee7215",
+          "bytes": 131480,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 9,
+          "id": "n3_first_power3",
+          "sha256": "9465fb5389a942e151d48b1eab16ce5fb6f26395c557da042db6c1be77696abc",
+          "bytes": 131483,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 10,
+          "id": "n3_D2",
+          "sha256": "7f069bf6744696579618d73bc06b1e4551ed1dc9230ae656eec73b443732ec73",
+          "bytes": 131473,
+          "complex_slots": 1320
+        },
+        {
+          "ordinal": 11,
+          "id": "n3_D6",
+          "sha256": "54e1cd4162f23a90e082ae2d22fe42786b09c14285ee93560c64fb855cd709e4",
+          "bytes": 131473,
+          "complex_slots": 1320
+        }
+      ],
+      "complete_raw_complex_slots": 15840,
+      "independent_saved_math_audit_sha256": "4a18ad1cb2184d46f51b40d7b7020fcc6b590e905e2f666a1a344acb8a1c1137",
+      "saved_records_replayed": 22321,
+      "failed_saved_records": 0,
+      "portable_replays": {
+        "default": {
+          "argv": [
+            "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+            "-B",
+            "/shared/external/iregi/iregi-rust/validation/quad-original-iregi-generalized-rank7/check.py"
+          ],
+          "returncode": 0,
+          "stdout": {
+            "sha256": "d2ea84259b374c0eef1ca2a0e25c69bc8b1556b7eb4291a5b036e2b30e1ca457",
+            "bytes": 1990
+          },
+          "stderr": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "summary": {
+            "status": "passed_portable_generalized_source_and_saved_reference_replay",
+            "manifest_sha256": "ccda92bdd0be40484b2d8762d479658ada0beb98eb610df7c96b44f7f521a0b0",
+            "restored_files": 574,
+            "inherited": {
+              "N6_records_replayed": 18826,
+              "N6_old_binary64_gate": "failed_unchanged",
+              "N6_saved_group_attestations_replayed": 27,
+              "N6_full_rank7_or_current_cargo_or_performance_qualified": false,
+              "positive_rank_reference_slots_replayed": 2720,
+              "positive_rank_N7_pole_gates_replayed": 1050,
+              "smallN_saved_replay": {
+                "requested_arrays": 26,
+                "requested_complex_slots": 34320,
+                "complete_arrays": 23,
+                "complete_complex_slots": 30360,
+                "missing_N2_PV_arrays": 3,
+                "missing_complex_slots": 3960,
+                "exact_saved_records_replayed": 42018,
+                "new_IBP_anchors": 14,
+                "archived_N5_base_anchors": 1,
+                "accepted_N1_PV_controls": 3,
+                "stable_but_rejected_N3_N4_PV_arrays": 6,
+                "PV_failing_finite_slots": 486,
+                "available_source_data_guards_checked": 184,
+                "omitted_native_external_guards_historical_only": 120,
+                "fresh_native_hash_or_process_probe": false,
+                "TIRust_or_currentCargo_qualification": false
+              }
+            },
+            "generalized_reference_replay": {
+              "requested_arrays": 12,
+              "requested_complex_slots": 15840,
+              "complete_arrays": 12,
+              "eligible_reference_arrays": 12,
+              "exact_saved_records_replayed": 22321,
+              "failed_records": 0,
+              "exact_records_by_kind": {
+                "positive_mass_IR_zero": 7920,
+                "UV_power_counting_zero": 281,
+                "absent_coordinate_reflection_zero": 11480,
+                "ordinary_original_quad_control": 2640
+              },
+              "available_source_data_guards_checked": 40,
+              "historical_native_external_guards": 28,
+              "TIRust_or_currentCargo_qualified": false,
+              "fresh_native_hash_or_process_probe": false,
+              "finite_coefficients_independently_certified": false,
+              "performance_qualified": false
+            },
+            "new_native_compiler_integral_or_PID_work": false
+          }
+        },
+        "minimal_default": {
+          "argv": [
+            "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+            "-B",
+            "/shared/external/iregi/iregi-rust/target/generalized-capsule-independent-copy-review/minimal/validation/quad-original-iregi-generalized-rank7/check.py"
+          ],
+          "returncode": 0,
+          "stdout": {
+            "sha256": "d2ea84259b374c0eef1ca2a0e25c69bc8b1556b7eb4291a5b036e2b30e1ca457",
+            "bytes": 1990
+          },
+          "stderr": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "summary": {
+            "status": "passed_portable_generalized_source_and_saved_reference_replay",
+            "manifest_sha256": "ccda92bdd0be40484b2d8762d479658ada0beb98eb610df7c96b44f7f521a0b0",
+            "restored_files": 574,
+            "inherited": {
+              "N6_records_replayed": 18826,
+              "N6_old_binary64_gate": "failed_unchanged",
+              "N6_saved_group_attestations_replayed": 27,
+              "N6_full_rank7_or_current_cargo_or_performance_qualified": false,
+              "positive_rank_reference_slots_replayed": 2720,
+              "positive_rank_N7_pole_gates_replayed": 1050,
+              "smallN_saved_replay": {
+                "requested_arrays": 26,
+                "requested_complex_slots": 34320,
+                "complete_arrays": 23,
+                "complete_complex_slots": 30360,
+                "missing_N2_PV_arrays": 3,
+                "missing_complex_slots": 3960,
+                "exact_saved_records_replayed": 42018,
+                "new_IBP_anchors": 14,
+                "archived_N5_base_anchors": 1,
+                "accepted_N1_PV_controls": 3,
+                "stable_but_rejected_N3_N4_PV_arrays": 6,
+                "PV_failing_finite_slots": 486,
+                "available_source_data_guards_checked": 184,
+                "omitted_native_external_guards_historical_only": 120,
+                "fresh_native_hash_or_process_probe": false,
+                "TIRust_or_currentCargo_qualification": false
+              }
+            },
+            "generalized_reference_replay": {
+              "requested_arrays": 12,
+              "requested_complex_slots": 15840,
+              "complete_arrays": 12,
+              "eligible_reference_arrays": 12,
+              "exact_saved_records_replayed": 22321,
+              "failed_records": 0,
+              "exact_records_by_kind": {
+                "positive_mass_IR_zero": 7920,
+                "UV_power_counting_zero": 281,
+                "absent_coordinate_reflection_zero": 11480,
+                "ordinary_original_quad_control": 2640
+              },
+              "available_source_data_guards_checked": 40,
+              "historical_native_external_guards": 28,
+              "TIRust_or_currentCargo_qualified": false,
+              "fresh_native_hash_or_process_probe": false,
+              "finite_coefficients_independently_certified": false,
+              "performance_qualified": false
+            },
+            "new_native_compiler_integral_or_PID_work": false
+          }
+        },
+        "minimal_reconstruct": {
+          "argv": [
+            "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+            "-B",
+            "/shared/external/iregi/iregi-rust/target/generalized-capsule-independent-copy-review/minimal/validation/quad-original-iregi-generalized-rank7/check.py",
+            "--reconstruct",
+            "/shared/external/iregi/iregi-rust/target/generalized-capsule-independent-copy-review/reconstructed"
+          ],
+          "returncode": 0,
+          "stdout": {
+            "sha256": "d2ea84259b374c0eef1ca2a0e25c69bc8b1556b7eb4291a5b036e2b30e1ca457",
+            "bytes": 1990
+          },
+          "stderr": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          },
+          "summary": {
+            "status": "passed_portable_generalized_source_and_saved_reference_replay",
+            "manifest_sha256": "ccda92bdd0be40484b2d8762d479658ada0beb98eb610df7c96b44f7f521a0b0",
+            "restored_files": 574,
+            "inherited": {
+              "N6_records_replayed": 18826,
+              "N6_old_binary64_gate": "failed_unchanged",
+              "N6_saved_group_attestations_replayed": 27,
+              "N6_full_rank7_or_current_cargo_or_performance_qualified": false,
+              "positive_rank_reference_slots_replayed": 2720,
+              "positive_rank_N7_pole_gates_replayed": 1050,
+              "smallN_saved_replay": {
+                "requested_arrays": 26,
+                "requested_complex_slots": 34320,
+                "complete_arrays": 23,
+                "complete_complex_slots": 30360,
+                "missing_N2_PV_arrays": 3,
+                "missing_complex_slots": 3960,
+                "exact_saved_records_replayed": 42018,
+                "new_IBP_anchors": 14,
+                "archived_N5_base_anchors": 1,
+                "accepted_N1_PV_controls": 3,
+                "stable_but_rejected_N3_N4_PV_arrays": 6,
+                "PV_failing_finite_slots": 486,
+                "available_source_data_guards_checked": 184,
+                "omitted_native_external_guards_historical_only": 120,
+                "fresh_native_hash_or_process_probe": false,
+                "TIRust_or_currentCargo_qualification": false
+              }
+            },
+            "generalized_reference_replay": {
+              "requested_arrays": 12,
+              "requested_complex_slots": 15840,
+              "complete_arrays": 12,
+              "eligible_reference_arrays": 12,
+              "exact_saved_records_replayed": 22321,
+              "failed_records": 0,
+              "exact_records_by_kind": {
+                "positive_mass_IR_zero": 7920,
+                "UV_power_counting_zero": 281,
+                "absent_coordinate_reflection_zero": 11480,
+                "ordinary_original_quad_control": 2640
+              },
+              "available_source_data_guards_checked": 40,
+              "historical_native_external_guards": 28,
+              "TIRust_or_currentCargo_qualified": false,
+              "fresh_native_hash_or_process_probe": false,
+              "finite_coefficients_independently_certified": false,
+              "performance_qualified": false
+            },
+            "new_native_compiler_integral_or_PID_work": false
+          }
+        }
+      },
+      "activity": {
+        "native_hashes_or_execution": false,
+        "PID_probes": false,
+        "compiler_or_tests": false,
+        "producer_imports": false,
+        "Symbolica_or_integral_evaluation": false,
+        "Git_operations": false,
+        "frozen_capsule_changes": false
+      },
+      "limitations": [
+        "Fixed external original-IREGI reference anchors only; no TIRust/current-Cargo qualification.",
+        "Complete finite values retained; the pole/reflection gates do not certify all generalized finite coefficients.",
+        "Native/toolchain hashes and process absence are historical attestations, not portable fresh guards.",
+        "33 output decimal digits and 113-bit kind storage do not establish achieved accuracy; no convergence, Dual, physical or performance claim.",
+        "No second full numerical audit: the reviewed portable checker independently replayed the 22321 published saved records; extra scalar dimension diagnostics remain separately archived."
+      ]
+    }
+  },
+  "seven_point_main_rank7_resource_failure": {
+    "source": "validation/highpoint-seven-point-main-rank7-resource-failure/qualification.json",
+    "sha256": "aee7c786bbb4678a6daa8c47c9d32f4c3ca46752d6e712a33ce60e6e125fbab3",
+    "snapshot": {
+      "status": "FAILED_ACTUAL_MAIN_PRIVATE_N7_RANK7_RESOURCE_ATTEMPT",
+      "build_passed": true,
+      "actual_cargo_default_test_executable_sha256": "c057cb921a0485815c4111b6c3f3ab1f1f828f6bede12781126656208a376690",
+      "source_archive_members": 333,
+      "source_scope": "Actual current core/master/oneloop and compact202Symbolica context, no complete native/systemlinkclosure",
+      "rank": 7,
+      "propagators": 7,
+      "working_bits": 128,
+      "requested_bits": 53,
+      "algorithm": "PassarinoVeltman",
+      "powers": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "fixture_sha256": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+      "address_space_limit_bytes": 34359738368,
+      "result": "allocator failure/SIGABRT during workspace preparation, before arrays",
+      "child_elapsed_seconds": 611.5843762840377,
+      "aggregate_elapsed_seconds": 615.9553805959877,
+      "child_timeout": false,
+      "child_returncode": -6,
+      "complete_moments": 0,
+      "complete_complex_slots": 0,
+      "all_active_guards_unchanged": true,
+      "original_cleanup_errors": [],
+      "original_owned_group_gone": true,
+      "Float256_and_single_and_pair_gates": "UNRUN; prerequisite failed",
+      "public_rank_guard": "rank0 unchanged",
+      "public_positive_rank_support_claimed": false,
+      "generalized_Dual_physical_or_performance_qualified": false,
+      "gdb_sample": "One authorized readonly attempt denied by ptrace; no retry/escalation",
+      "memory_observation": "One timestamped RSS/HWM snapshot, not complete lifetime peak/profile",
+      "reference_quad_array": "Retained original quad reference only, not a TIRust result",
+      "provenance_only_preflight_failure": "Original build preflight failed before Cargo because two metadata docs changed; v2 exact narrow rebind and unchanged Rust/Cargo source are additive evidence",
+      "binaries_caches_credentials_included": false,
+      "producer_receipts_rewritten": false
+    }
+  },
+  "seven_point_main_rank7_resource_failure_copy_review": {
+    "source": "validation/highpoint-seven-point-main-rank7-resource-failure-copy-audit.json",
+    "sha256": "e3de3122797b4161e40057b64405247b4db80a40b72ce63ebece177566c760ba",
+    "snapshot": {
+      "schema_version": 1,
+      "status": "passed_independent_actual_main_rank7_resource_failure_copy_audit",
+      "reviewer": "/root/seven_point_api/seven_protocol",
+      "recorded_utc": "2026-10-25T20:27:48.089068+00:00",
+      "findings": [],
+      "bound_seconds": 180,
+      "postwork_reserve_seconds": 30,
+      "no_subprocesses_started": true,
+      "no_Cargo_or_evaluator_imports": true,
+      "no_executable_or_cache_hashing": true,
+      "no_archive_expansion": true,
+      "no_transitive_provenance_walk": true,
+      "manifest_sha256": "ae5764db11a318799771526cd7e3a8de77a357f0c7e0265f972c9a2bf3b2940e",
+      "qualification_sha256": "aee7c786bbb4678a6daa8c47c9d32f4c3ca46752d6e712a33ce60e6e125fbab3",
+      "independent_failure_review_sha256": "3d2db580ae9d802c9515f59ce2aefd6c2549f69f15865537ec021f1cf0e9abfd",
+      "payload_files": 32,
+      "payload_bytes": 5756016,
+      "payload_origin_pairs_verified": 32,
+      "closed_capsule_files": 36,
+      "actual_main_build_and_public_rankzero_guard_passed": true,
+      "Float128": {
+        "outcome": "allocator_SIGABRT_resource_preparation_failure",
+        "returncode": -6,
+        "child_seconds": "611.5843762840377",
+        "address_space_limit_bytes": 34359738368,
+        "timeout": false,
+        "completed_arrays": 0,
+        "cleanup_success_preserved": true
+      },
+      "Float256_single_and_pair_gates_unrun": true,
+      "public_rankzero_guard_unchanged": true,
+      "resource_snapshots": 1,
+      "gdb_ptrace_denial_not_stack_profile": true,
+      "inherited_independent_failure_review_not_rerun": true,
+      "mathematical_or_performance_qualification": false,
+      "scope": "Compact32payload/origin copy audit only; archive bytes hashed without expansion. Existing independent failure/provenance review is inherited unchanged. No new arithmetic, cause isolation, numerical array or public tensor qualification.",
+      "checks": 149,
+      "fresh_file_hashes": 66,
+      "fresh_bytes_hashed": 11522348,
+      "elapsed_seconds": 0.03332749998662621,
+      "checker_sha256": "d8c43ff99d9be4218ff3dddb84dc1e3bd31e00aee746ac3789873a779fa3bfe4"
+    }
   }
 }

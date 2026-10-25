@@ -1,0 +1,58 @@
+{
+  "status": "readonly_sample_unavailable_ptrace_denied",
+  "authority": "Root one readonly gdb native stack sample,8s child, no retry/escalation/inferiorcalls/variables/envdump; sampledprocess may brieflypause, correctness notperformance",
+  "started_utc": "2026-10-25T20:14:55.869783+00:00",
+  "steps": [
+    {
+      "command": [
+        "/nix/store/2xrxnqpkwlr4smxwhg5x34s2nbs2rpi6-gdb-17.2/bin/gdb",
+        "-nx",
+        "-nh",
+        "-batch",
+        "-iex",
+        "set auto-load off",
+        "-iex",
+        "set debuginfod enabled off",
+        "-iex",
+        "set pagination off",
+        "-iex",
+        "set print frame-arguments none",
+        "-p",
+        "493197",
+        "-ex",
+        "thread apply all bt 12",
+        "-ex",
+        "detach"
+      ],
+      "status": "failed",
+      "timeout_seconds": 8,
+      "owned_process_group": 839413,
+      "kernel_start_identity": {
+        "pid": 839413,
+        "starttime_ticks": 99299699,
+        "process_group": 839413,
+        "session": 839413
+      },
+      "returncode": 1,
+      "group_existed_at_cleanup": false,
+      "owned_group_gone": true,
+      "elapsed_seconds": 0.4167734410148114
+    }
+  ],
+  "cleanup_errors": [],
+  "native_evaluation_qualification": false,
+  "performance_qualified": false,
+  "verified_kernel_identity": {
+    "pid": 493197,
+    "starttime_ticks": 99239316,
+    "process_group": 493197,
+    "session": 493197
+  },
+  "verified_executable": "/shared/external/iregi/iregi-rust/target/main-private-seven-probe-proposal/build-002/main-private-n7-library-tests",
+  "ptrace_denied": true,
+  "elapsed_seconds": 0.4183141259709373,
+  "cancellation": null,
+  "gdb_log_sha256": "b446ca39dbd9f2e3b8e3687d8f86c7418425032cecda5ea3970030accc930db0",
+  "sampled_process_may_have_been_briefly_paused": true,
+  "retry_or_escalation": false
+}

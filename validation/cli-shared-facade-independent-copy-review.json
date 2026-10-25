@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "findings": [],
+  "reviewer": "/root/dual_sensitivity_research/component_review",
+  "scope": "Independent copy/source review plus two stdlib-only saved checker replays. No compiler,RustCLI,Symbolica,Fortran,integralbackend or historicaldependency/objecttree walk. Capsule files nevermodified.",
+  "audit_utc": "2026-10-25T20:29:38.492379+00:00",
+  "source_bindings": {
+    "validation/cli-shared-facade/manifest.json": "a41c45df04c5950e9bd72088a3b1e835a36881207153837b943bf214cb7eb79b",
+    "validation/cli-shared-facade/check.py": "b0bccddb9b2689f9c78e6b64756c7be41a12ba96a70b9236c99b6528a3ef8493",
+    "validation/cli-shared-facade/evidence.tar.gz": "afadb1b25185f8f3141eb5a172882f7ab857f3fc4ec4777e7e96817e35877b38",
+    "validation/public-rank7-ibp-n2-postfix/manifest.json": "a53da3c6f8af203c3bf486a7313f26ed0a0e547dad061d35d7c41cfd3d25dceb",
+    "validation/public-rank7-ibp-n2-postfix/check.py": "26210c0f3f7c4c88c4a363a318688ba4fbcafc0e7da7d594575854e014191e5e",
+    "validation/cli-shared-facade/README.md": "3b6925156f4ee9bcad4b6490d2f865e0a2365af53b49575132b6375b205922e0",
+    "validation/cli-shared-facade/independent-build-low-n6-review.json": "74f40cba6b310a7892e77fef356007c94da2a56aeebaa400a28904c249d79f41",
+    "validation/cli-shared-facade/independent-n7-review.json": "991c0ec93c5a815e92c1bf7091bb24963585ac8429d01c22a0d26b2a5d3c0a11",
+    "validation/cli-shared-facade/independent-final-tests-review.json": "e6828a32202e05f0e9ac061ca07cbda15f7af4aa487ca3f9a338bae008ebd7c3",
+    "validation/public-rank7-ibp-n2-postfix/README.md": "89d89e567dbcf9a3929751e03f354889592d8d8fdc87cd37bfa420e6dd58ebdd",
+    "validation/public-rank7-ibp-n2-postfix/qualification.json": "0ad9edcfd0b96bf0cc71984ccf01c151343a6dd395d61a5680b95d5acbb765bb",
+    "validation/public-rank7-ibp-n2-postfix/sources.tar.gz": "20da327a6a87a60108f665b3a3802b52e6d0388da3d7d848ca9c25b990764df7",
+    "validation/public-rank7-ibp-n2-postfix/evidence.tar.gz": "d13e7cc85efeb2d1e619895d1006302481f014cf2df40fec7b0cf7749ddc0e95"
+  },
+  "independent_checks": 506,
+  "archive_objects": 78,
+  "private_origin_aliases_compared": 149,
+  "inherited_source_snapshots_perbuild": 77,
+  "repository_replay": {
+    "status": "passed_portable_focused_CLI_facade",
+    "checks": 2652,
+    "strict_tests": 13,
+    "complex_comparisons": {
+      "low_complex_slots": 180,
+      "n6_complex_slots": 140,
+      "n7_complex_slots": 4
+    },
+    "maximum_errors_exact": {
+      "low_complex_slots": "273302021744630384627/18274070405578276555000000000000000",
+      "n6_complex_slots": "1157788138536742490242784480468357051722772137859478326139/34521317875240954935666792633262442622791884479509401384422773162441444583237171173095703125",
+      "n7_complex_slots": "24551914413020023414471660055802214468291706388540633/3355006354718558110890765021597327685969808412102025584056175233627072884701192378997802734375"
+    },
+    "preserved_failed_phases": [
+      "build-001",
+      "tests-001",
+      "n7-001"
+    ],
+    "native_jobs": 0,
+    "compiler_jobs": 0,
+    "performance_qualified": false,
+    "blanket_reduction_domain_qualified": false
+  },
+  "minimal_sibling_replay": {
+    "directory": "target/cli-facade-integration/portable-copy-replay-001",
+    "result": {
+      "status": "passed_portable_focused_CLI_facade",
+      "checks": 2652,
+      "strict_tests": 13,
+      "complex_comparisons": {
+        "low_complex_slots": 180,
+        "n6_complex_slots": 140,
+        "n7_complex_slots": 4
+      },
+      "maximum_errors_exact": {
+        "low_complex_slots": "273302021744630384627/18274070405578276555000000000000000",
+        "n6_complex_slots": "1157788138536742490242784480468357051722772137859478326139/34521317875240954935666792633262442622791884479509401384422773162441444583237171173095703125",
+        "n7_complex_slots": "24551914413020023414471660055802214468291706388540633/3355006354718558110890765021597327685969808412102025584056175233627072884701192378997802734375"
+      },
+      "preserved_failed_phases": [
+        "build-001",
+        "tests-001",
+        "n7-001"
+      ],
+      "native_jobs": 0,
+      "compiler_jobs": 0,
+      "performance_qualified": false,
+      "blanket_reduction_domain_qualified": false
+    },
+    "copied_capsule_directories": [
+      "cli-shared-facade",
+      "public-rank7-ibp-n2-postfix"
+    ],
+    "no_projectsource_checkout_or_compiled_binaries_required": true
+  },
+  "preservation": {
+    "three_independent_reviews_byteidentical": true,
+    "original_preflight_testwording_timeout_failures_retained": true,
+    "one_test_only_assertion_fix": true,
+    "compiled_artifacts_deliberately_omitted_with_exacthashes": true,
+    "no_frozenmanifest_orchecker_edit": true
+  },
+  "checker_source_observations": [
+    "Restoration imports only hash-bound parent stdlib checker and reads safe data-only archive members, with exact object/hash/size inventory and source aliasbindings.",
+    "The only exceptional changed source path is CLI main.rs across the two actualbuilds; replay separately enforces exactone test-only assertion substitution.",
+    "Receipt replay preserves actualpass/failstatuses, unchangedguardreceipts,ownedgroupterminalrecords,compiledomissionhashes,all13correctedtestlogs andcomplete180+140+4complexcomparisons.",
+    "Portable N7 execution checks packed21/summary composition; explicit105masters/1family/0parent condition also verified independently here from restored rawoutput and in copied originalN7review."
+  ],
+  "limits": [
+    "Archived source/evidence verification cannot independently execute or rehash deliberatelyomitted compiledartifacts; actualfrozenbinary hashes were independently checked in the copied savedreviews.",
+    "No complete dependency/compiler-wrapper/environment/OS closureclaim.",
+    "Existing retainedcapture comparisons qualifyfrontendintegration only, notblanketmathematicalcoverage,publichighpointDuals orperformanceparity.",
+    "Currentprocessgroups were checked in the originalindependentsavedreviews; portablecopy replay reads their savedterminalrecords and doesnot start or kill processes."
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "status": "source_review_passed",
+  "reviewer": "/root/seven_point_api/seven_protocol",
+  "recorded_utc": "2026-10-25T17:16:58.316258+00:00",
+  "findings": [],
+  "source_only": true,
+  "sources": {
+    "target/main-private-seven-probe-proposal/numeric_probe.rs": "f576dd5e6290dd85d32d891e94bd63d32bdbd8b3a462eca147521d12057d10e1",
+    "target/main-private-seven-probe-proposal/probe.patch": "87258f6c18af3448a95f309950c1d06b0b0bed9c36927737f1169a9eda84bb6f",
+    "target/main-private-seven-probe-proposal/compare_main_private_saved.py": "a453b3bd56bca51f49043f09b4f30534049f8afc28517681a5a1bb71d70c5956",
+    "crates/iregi-rust/src/thin_n7.rs": "48dd1a024c0fd7fbc473c2e3722b234ef6fd3ad26e2185bab8a516e3e495cb88",
+    "target/public-seven-point-positive-rank-proposal/source/crates/iregi-rust/examples/seven_point_public_probe/main.rs": "9cc1860aaac2649db4eae850c7ecca4ea25e7013da4db168aa824dd0f2dbc9a1",
+    "crates/iregi-rust/examples/seven_point_public_probe/domain.rs": "32699f2f249932303cf426e11c3839f7138b76f7084794b1b304db675936052c",
+    "target/public-seven-point-positive-rank-proposal/finite/compare_positive_saved.py": "8d921a6210b6f763e1fe953f22a99dfcfb28b46a69284eae7954a69e4cb4fc46",
+    "crates/iregi-rust/src/plan/thin_seven.rs": "97e9468fca0823dd7ba00d6b8091a7ce461caa517b22e3612471aec1976900b4",
+    "crates/iregi-rust/src/seven_point.rs": "2c325ce4eca3b2846718a7ff2f67e68c959b3b14d034f09d9e09323eb415d740"
+  },
+  "checks": {
+    "draft_source_identities_match": true,
+    "patch_payload_equals_candidate": true,
+    "git_apply_check": {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "target/main-private-seven-probe-proposal/probe.patch"
+      ],
+      "returncode": 0,
+      "production_mutation": false
+    },
+    "relative_domain_path_correct": true,
+    "domain_super_number_binding_correct": true,
+    "direct_private_current_api_conformity": "source-inspected; not compiled",
+    "ignored_single_libtest": true,
+    "mandatory_three_profile_flags": true,
+    "output_freshness_guard": true,
+    "public_seven_point_rank_guard_remains_zero": true,
+    "complete_canonical_basis_and_four_finite_complex_slots": true,
+    "complete_result_metadata_and_packed_child_counters": true,
+    "comparator_reference_function_ast_equal": true,
+    "comparator_capture_math_tail_ast_equal": true,
+    "comparator_main_numerical_block_ast_equal": true
+  },
+  "pending_execution_requirements": [
+    "Fresh actual Cargo libtest artifact/package/features/profile and owned-copy hashes; never substitute the copied private-workspace binary.",
+    "Freeze new probe, current ThinSeven sources, relative domain, fixture, saved comparator/helper and all reference dependencies.",
+    "Bind four IREGI_N7_PROBE_* values and the three required profile flags in the runtime environment.",
+    "Select only thin_n7::numeric_probe::capture_complete_moments_from_fixture with --ignored --exact --nocapture --test-threads=1; require strict one-case PASS and complete raw JSON.",
+    "Finite root-approved supervision, source/artifact/environment guards, pending N2 prerequisite and explicit execution grant remain separate."
+  ],
+  "production_edits": false,
+  "compiler_execution": false,
+  "cargo_execution": false,
+  "evaluator_execution": false,
+  "binary_or_bulk_hashing": false,
+  "numerical_qualification": false,
+  "performance_qualified": false,
+  "execution_grant": false,
+  "recipe_execution_frozen": false,
+  "scope": "Source-only review of an additive cfg(test) ignored main-private numerical probe and saved-comparator metadata adapter. No public positive-rank support or numerical result is qualified. The draft finite recipe and runtime address-space proposal are not execution-approved by this review."
+}
