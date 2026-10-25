@@ -4,9 +4,9 @@
   "patch": "0001-journal-conditional-cache.patch",
   "patch_sha256": "0a62c2ddc0c15376ab2a79eb89428f07a72c2ebf318addae75e60928c431b328",
   "upstream_file_sha256": "7dd830823be3196558d45c65f5db3705c6b43ec461123e1eaf3714ae02215cfe",
-  "patched_file_sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
-  "status": "Root workspace selects the coherent vendored tree. Earlier workspace, scope, and core runtime qualification is recorded separately; metadata-only patch3 has standalone build-script and exact-inventory validation without rebuilding the Symbolica library.",
-  "scope": "Direct-evaluator branch-cache bookkeeping, optional preparation counters, and direct semantic tests. No algebra rules, arithmetic, license handling, public numeric API, or instructions changed.",
+  "patched_file_sha256": "a1b43f612a990295bb94ef48637e5f100e4527b30d81f202337a0f75286ac990",
+  "status": "Pinned vendored source selected by root Cargo. Patch5 passed seven new plus eleven relevant legacy evaluator tests in an actual current-Cargo test artifact with the same coherent features; the original opt2/debug2 test build timed out and is preserved. Test-only opt0/debug0 build succeeded. Integral-array and performance qualification remain separate.",
+  "scope": "Symbolica direct-evaluator scoped expression caches and dominating same-SSA-condition facts, optional preparation counters, build metadata, exponent acceptance guard and focused tests. Scalar formulas, arithmetic operations, numeric APIs and license handling are unchanged. Patch5 intentionally prunes unreachable repeated control-flow branches in the emitted graph.",
   "compile_attempt": "Successful isolated optimized build (10m04s), using target/symbolica-scope-build and target/symbolica-scope-cargo-build, jobs=2. Separate Cargo.lock recorded in target/symbolica-scoped-probe/build-manifest.json.",
   "runtime_evidence": "validation/symbolica-scoped-cache.json",
   "embedded_version_note": "Upstream build.rs inherits the outer project git describe when run from the generated source directory, embedding display version symbolica-b01a72f. This display label is not the upstream revision. The precise library source is 9cdc2949cdb153478c1eca0d40690dc0abfc616e plus the recorded patch/file hashes; no source revision is inferred from the display string.",
@@ -27,10 +27,14 @@
     {
       "path": "0004-check-polynomial-exponent-conversion.patch",
       "sha256": "6834ad46cc3e0959cc0fe179862d937522f24cc814c3b565cc9f36166765cd74"
+    },
+    {
+      "path": "0005-reuse-dominating-condition-facts.patch",
+      "sha256": "5582e023c8d293a9e17310637aeee7009a3104a4024b9253c3e108c1ecabf5c5"
     }
   ],
   "patched_files": {
-    "src/evaluate/tree.rs": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
+    "src/evaluate/tree.rs": "a1b43f612a990295bb94ef48637e5f100e4527b30d81f202337a0f75286ac990",
     "build.rs": "2cc8e7add392754cded51f882704f5e33c0d2ca9dd3b3cccff091325692109ce",
     "IREGI_UPSTREAM_VERSION": "9789fecdea50e43f2203df34a1cea9ad989aee6d6527b599d93dc11628fd84e8",
     "src/poly.rs": "0f246ceca41a50213458c51d0c103e36f85d023616120d5789482fd35a65d6d2",
@@ -40,5 +44,9 @@
   "production_evidence": "validation/symbolica-production-qualification.json",
   "build_watch_patch_scope": "Metadata-only: Git metadata is watched only when the explicit vendored version is missing, empty, or unreadable. The explicit version and build.rs remain watched; no arithmetic, license handling, or displayed vendored version changes.",
   "build_watch_patch_evidence": "validation/symbolica-build-metadata/results.json",
-  "exponent_guard_scope": "Fast-path compact polynomial exponent acceptance is capped at i32::MAX, matching the existing subsequent conversion; no algebra rules, arithmetic or precision conversion changes. Compact regression source is included. Python-build qualification pending."
+  "exponent_guard_scope": "Fast-path compact polynomial exponent acceptance is capped at i32::MAX, matching the existing subsequent conversion; no algebra rules, arithmetic or precision conversion changes. Compact regression source is included. Python-build qualification pending.",
+  "legacy_first_patch_note": "patch/patch_sha256 retain historical firstpatch metadata; patches is the authoritative ordered cumulative series, including dependent patch5.",
+  "condition_fact_scope": "Compiler path metadata records zero/nonzero only for the exact immutable SSA condition slot inside its selected arm, journals sibling/error restoration, and keeps aliases/function scopes and numeric/Dual payloads unchanged. No new symbolic algebra or numerical branch heuristic.",
+  "condition_fact_evidence": "validation/symbolica-scoped-condition-facts/qualification.json",
+  "condition_fact_runtime_tests": 18
 }

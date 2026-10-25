@@ -1,0 +1,64 @@
+{
+  "status": "passed_independent_saved_build_test_and_source_review",
+  "reviewer": "/root",
+  "recorded_utc": "2026-10-25T17:40:54.219127+00:00",
+  "manifest_sha256": "43a3d02aea3b1fa49041673ce7a9c5a80462979464a8e22155590297c5304aaf",
+  "qualification_sha256": "0e994d4c1bf0ab7d6063327da823994ef8710abaa084c95e3b86ddeb168b49d1",
+  "lowerer_sha256": "a1b43f612a990295bb94ef48637e5f100e4527b30d81f202337a0f75286ac990",
+  "check_count": 30,
+  "checks": [
+    "Original timeout retained as failure",
+    "Corrected build and selected tests passed",
+    "All saved guards unchanged and terminal groups absent without cleanup errors",
+    "Build uses frozen source context",
+    "Tests bind successful build receipt",
+    "Tests use successful frozen executable identity",
+    "Exactly18 completed tests plus separate listing",
+    "Test1: exact successful command and saved one-pass log including permitted profiler output",
+    "Test2: exact successful command and saved one-pass log including permitted profiler output",
+    "Test3: exact successful command and saved one-pass log including permitted profiler output",
+    "Test4: exact successful command and saved one-pass log including permitted profiler output",
+    "Test5: exact successful command and saved one-pass log including permitted profiler output",
+    "Test6: exact successful command and saved one-pass log including permitted profiler output",
+    "Test7: exact successful command and saved one-pass log including permitted profiler output",
+    "Test8: exact successful command and saved one-pass log including permitted profiler output",
+    "Test9: exact successful command and saved one-pass log including permitted profiler output",
+    "Test10: exact successful command and saved one-pass log including permitted profiler output",
+    "Test11: exact successful command and saved one-pass log including permitted profiler output",
+    "Test12: exact successful command and saved one-pass log including permitted profiler output",
+    "Test13: exact successful command and saved one-pass log including permitted profiler output",
+    "Test14: exact successful command and saved one-pass log including permitted profiler output",
+    "Test15: exact successful command and saved one-pass log including permitted profiler output",
+    "Test16: exact successful command and saved one-pass log including permitted profiler output",
+    "Test17: exact successful command and saved one-pass log including permitted profiler output",
+    "Test18: exact successful command and saved one-pass log including permitted profiler output",
+    "Actual Cargo artifact confirms test-only opt0/debug0",
+    "Actual Cargo feature set unchanged",
+    "Single patched lowerer in snapshot",
+    "Captured lowerer equals current candidate",
+    "Integral/domain/performance claims explicitly excluded"
+  ],
+  "source_semantics_review": [
+    "Exact immutable SSA Slot truth scoped to dominating branch",
+    "Facts restored before siblings and independent function scopes",
+    "Numeric complex/Dual condition payloads retained",
+    "Seven new tests cover alias DAG, unreachable poles, roots/functions and higher mixed Dual batching"
+  ],
+  "portable_checker_replayed": {
+    "status": "passed_saved_source_and_records",
+    "checks": 1701,
+    "source_files": 202,
+    "record_files": 54
+  },
+  "reviewer_schema_corrections": [
+    "artifact_sha256 identifies Cargo event; frozen_binary.sha256 identifies executable.",
+    "completed_selected_tests is integer18.",
+    "Profiler can print between test name and ok; require exact name, one-test pass footer, exit0 and log hash."
+  ],
+  "no_compiler_or_integral_run": true,
+  "no_binary_rehash_or_fresh_process_absence_claim": true,
+  "limitations": [
+    "Test-only executable is unoptimized; production builds retain ordinary optimized profile.",
+    "No N2/N7 array or performance qualification."
+  ]
+}

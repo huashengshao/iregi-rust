@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "status": "source_only_unexecuted_capture_adapter_proposal",
+  "context": "private_N7_rank2_then_rank7_same_generic_Cargo_probe_v1",
+  "execution_attempted": false,
+  "compiler_or_evaluator_invoked": false,
+  "rebuild": false,
+  "new_cache_copy": false,
+  "new_source_or_artifact_closure": false,
+  "public_rank_guard_changed": false,
+  "correctness_only": true,
+  "future_protocol_fields": {
+    "schema_version": 1,
+    "status": "capture_only_next_ranks_frozen_awaiting_root_grants",
+    "context": "private_N7_rank2_then_rank7_same_generic_Cargo_probe_v1",
+    "ranks": [
+      2,
+      7
+    ],
+    "warm_build_receipt_sha256": "688a0a0d269a38996075044721321f2aeafe0ab15e549c406c45af19ba1916c6",
+    "owned_generic_probe_sha256": "213ea01fd30a8acf2a794474db09ad9fc367fb9561667c23f73c76c4953a7e19",
+    "warm_protocol_sha256": "256ba15b891df1ac70e676a74d1817429db978150a5926b6e24c059da22143a0",
+    "quad_review_sha256": "f0b8f0774d901957fac3369165212b0efac3bf6921cea3c940269f191af373fd",
+    "rank1_gate_sha256": "1d65ca0fd43ea574e1b5b04e5766483ee376e5239b7d04f7901cb1a3db2553a1",
+    "rank1_math_sha256": "a6e1a41c364423e10ecbe2f11394fdd0952d643cf7c69034dc4316a3604fa935"
+  },
+  "fixture": {
+    "path": "target/public-seven-point-positive-rank-proposal/fixture.json",
+    "sha256": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+    "propagators": 7,
+    "sample": 0,
+    "mu": "3"
+  },
+  "reuse": {
+    "warm_protocol": "target/public-seven-point-positive-rank-proposal/finite/probe-fix-v2/protocol.json",
+    "build_receipt": "target/public-seven-point-positive-rank-proposal/finite/probe-fix-v2/runs/build-002/run.json",
+    "owned_generic_probe": "target/public-seven-point-positive-rank-proposal/finite/probe-fix-v2/runs/build-002/positive-rank-probe",
+    "comparator": "target/public-seven-point-positive-rank-proposal/finite/compare_positive_saved.py",
+    "canonical_basis_and_numeric_helpers": "validation/highpoint-thin-n6-rank7-phase/reference/compare_public.py",
+    "lifecycle": "target/public-seven-point-positive-rank-proposal/finite/lifecycle.py",
+    "lifecycle_sha256": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "runtime_guard": "compact active files and immutable exact128 source snapshot only",
+    "shared_executable_direct_execution": true,
+    "per_capture_executable_copy": false
+  },
+  "required_source_inputs": [
+    "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/rank_adapter.py",
+    "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/run.py",
+    "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/prepare.py",
+    "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/recipe.json",
+    "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/source-manifest.json",
+    "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/source-snapshot.tar.gz",
+    "target/public-seven-point-positive-rank-proposal/finite/common.py",
+    "target/public-seven-point-positive-rank-proposal/finite/lifecycle.py",
+    "target/public-seven-point-positive-rank-proposal/finite/compare_positive_saved.py",
+    "validation/highpoint-thin-n6-rank7-phase/reference/compare_public.py"
+  ],
+  "rank_order": [
+    2,
+    7
+  ],
+  "rank2_prerequisite": "target/public-seven-point-positive-rank-proposal/finite/probe-fix-v2/runs/compare-001/run.json",
+  "rank7_prerequisite": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank2/compare-001/run.json",
+  "capture_cpu_affinity": {
+    "128": [
+      6
+    ],
+    "256": [
+      7
+    ]
+  },
+  "comparison_cpu_affinity": [
+    20,
+    21
+  ],
+  "max_concurrent_numerical_processes": 2,
+  "concurrency_requires_root_correctness_grants": true,
+  "one_attempt_per_rank_precision": true,
+  "retries": 0,
+  "stages": {
+    "2": {
+      "moments": 15,
+      "complex_Laurent_slots": 60,
+      "quad_request": "target/quad-iregi-source-audit/future-positive-rank-requests/quad_n7_seventh_time_quarter_rank2.txt",
+      "quad_stdout": "target/quad-iregi-source-audit/future-positive-rank-requests/capture-001/request-1.stdout",
+      "quad_independent_review": "target/quad-iregi-source-audit/future-positive-rank-requests/independent-saved-review.json",
+      "capture128": {
+        "bound_seconds": 900,
+        "postwork_reserve_seconds": 120,
+        "per_child_cap_seconds": 600,
+        "cpu_affinity": [
+          6
+        ],
+        "output_directory": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank2/capture128-001"
+      },
+      "capture256": {
+        "bound_seconds": 1200,
+        "postwork_reserve_seconds": 150,
+        "per_child_cap_seconds": 960,
+        "cpu_affinity": [
+          7
+        ],
+        "output_directory": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank2/capture256-001"
+      },
+      "compare": {
+        "bound_seconds": 120,
+        "postwork_reserve_seconds": 15,
+        "per_child_cap_seconds": 0,
+        "cpu_affinity": [
+          20,
+          21
+        ],
+        "output_directory": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank2/compare-001"
+      }
+    },
+    "7": {
+      "moments": 330,
+      "complex_Laurent_slots": 1320,
+      "quad_request": "target/quad-iregi-source-audit/future-positive-rank-requests/quad_n7_seventh_time_quarter_rank7.txt",
+      "quad_stdout": "target/quad-iregi-source-audit/future-positive-rank-requests/capture-001/request-2.stdout",
+      "quad_independent_review": "target/quad-iregi-source-audit/future-positive-rank-requests/independent-saved-review.json",
+      "capture128": {
+        "bound_seconds": 1680,
+        "postwork_reserve_seconds": 120,
+        "per_child_cap_seconds": 1500,
+        "cpu_affinity": [
+          6
+        ],
+        "output_directory": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank7/capture128-001"
+      },
+      "capture256": {
+        "bound_seconds": 1980,
+        "postwork_reserve_seconds": 120,
+        "per_child_cap_seconds": 1800,
+        "cpu_affinity": [
+          7
+        ],
+        "output_directory": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank7/capture256-001"
+      },
+      "compare": {
+        "bound_seconds": 120,
+        "postwork_reserve_seconds": 15,
+        "per_child_cap_seconds": 0,
+        "cpu_affinity": [
+          20,
+          21
+        ],
+        "output_directory": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank7/compare-001"
+      }
+    }
+  },
+  "saved_math": {
+    "reference_tolerance": "1e-10",
+    "paired_convergence_tolerance": "2^-80",
+    "all_four_complex_Laurent_slots": true,
+    "normalization": "retained rank-dependent natural scale",
+    "native_poles_retained": true,
+    "failed_native_arrays_retained": true,
+    "generic_comparator_unchanged": true
+  },
+  "dynamic_root_requirements": {
+    "protocol": "protocol.json",
+    "independent_review": "source-review.json",
+    "per_stage_grants": "grants/rank{rank}-{operation}.json",
+    "review_status": "source_review_passed",
+    "grant_status": "root_execution_granted",
+    "grantor": "/root",
+    "previous_rank_math_status": "passed_saved_math",
+    "preparation_receipt": "prepare-001/run.json; successful status; source-review.preparation_receipt_sha256"
+  },
+  "compact_snapshot_generation": {
+    "helper": "target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/prepare.py",
+    "bound_seconds": 180,
+    "postwork_reserve_seconds": 30,
+    "per_child_cap_seconds": 0,
+    "cpu_affinity": [
+      20,
+      21
+    ],
+    "source_members": 128,
+    "members_from": "admitted base protocol explicit inventory",
+    "hashes_from": "admitted build002 input identities, corrected probe already bound",
+    "source_directory_walks": 0,
+    "transitive_dependency_hashes": 0,
+    "snapshot": "source-snapshot.tar.gz",
+    "manifest": "source-manifest.json"
+  },
+  "historical_evidence_policy": "Flat small-file attestation digests; never merge embedded old input/artifact maps or walk old source/product trees at runtime.",
+  "runtime_guard_includes": [
+    "one shared read-only executable",
+    "immutable exact corrected private128 source archive and manifest",
+    "active helper/comparator source files",
+    "fixture and exact rank2/rank7 quad requests/raw arrays/independent audit",
+    "required runtime environment only",
+    "flat historical attestation files",
+    "preceding passed pair gate",
+    "current pair result/log/receipt files for comparison"
+  ]
+}

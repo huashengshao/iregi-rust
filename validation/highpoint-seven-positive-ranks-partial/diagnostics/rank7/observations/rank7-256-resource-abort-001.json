@@ -1,0 +1,51 @@
+{
+  "status": "deliberate_resource_preparation_abort_requested",
+  "utc": "2026-10-25T17:06:59.078880+00:00",
+  "authority": "/root",
+  "reason": "Root authorized stopping old Float256 after paired128 workspace timeout and historical cleanup failure; huge observed workspace heap, no array or numerical mismatch.",
+  "operation": "capture256",
+  "tensor_rank": 7,
+  "elapsed_since_stage_start_seconds": 1779.8187800400192,
+  "original_child_cap_seconds": 1800,
+  "original_aggregate_bound_seconds": 1980,
+  "original_caps_unchanged": true,
+  "controller_identity": {
+    "pid": 244053,
+    "state": "S",
+    "ppid": 244048,
+    "pgrp": 244048,
+    "session": 244048,
+    "start_ticks": 97994028,
+    "command": [
+      "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3.13",
+      "-B",
+      "/shared/external/iregi/iregi-rust/target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/run.py",
+      "7",
+      "capture256"
+    ],
+    "exe": "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3.13"
+  },
+  "owned_child_identity": {
+    "pid": 244884,
+    "state": "R",
+    "ppid": 244053,
+    "pgrp": 244884,
+    "session": 244884,
+    "start_ticks": 97994169,
+    "command": [
+      "/shared/external/iregi/iregi-rust/target/public-seven-point-positive-rank-proposal/finite/probe-fix-v2/runs/build-002/positive-rank-probe",
+      "/shared/external/iregi/iregi-rust/target/public-seven-point-positive-rank-proposal/fixture.json",
+      "7",
+      "7",
+      "pv",
+      "256",
+      "53",
+      "1",
+      "/shared/external/iregi/iregi-rust/target/public-seven-point-positive-rank-proposal/finite/next-ranks-proposal/runs/rank7/capture256-001/result.json"
+    ],
+    "exe": "/shared/external/iregi/iregi-rust/target/public-seven-point-positive-rank-proposal/finite/probe-fix-v2/runs/build-002/positive-rank-probe"
+  },
+  "verified_old_owned_group_absent": 244885,
+  "planned_action": "SIGTERM verified controller via pidfd to invoke existing c193 owned-group cleanup; no source/env mutation or retry.",
+  "source_or_numerical_threshold_changed": false
+}

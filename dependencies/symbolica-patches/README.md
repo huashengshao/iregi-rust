@@ -1,7 +1,7 @@
 # Symbolica evaluator patch series
 
 The series applies to `alphal00p/symbolica` revision
-`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all four patches
+`9cdc2949cdb153478c1eca0d40690dc0abfc616e`. `provenance.json` records all five patches
 and their source hashes. The retained source is in `dependencies/symbolica`;
 its `IREGI_PROVENANCE.json` inventories every upstream or patched file.
 
@@ -88,3 +88,25 @@ residual loop dependence. Compact regression tests cover the conversion boundary
 without expanding powers of sums. This validation repair changes no algebra
 rule, numerical operation, precision conversion, or license handling. Its new
 Python-build qualification is recorded separately when run.
+
+`0005-reuse-dominating-condition-facts.patch` extends the direct lowerer's existing
+scoped cache with zero/nonzero facts about exact immutable SSA condition slots.
+Within a branch, testing that same slot again compiles only its already selected
+arm. Facts are restored before siblings and errors, aliases inherit caller scope,
+and ordinary functions retain their fresh scope. Numeric condition values and
+Dual components are never replaced by boolean constants. This changes generated
+control flow while preserving its semantics; scalar formulas, arithmetic and
+license handling are unchanged. The ordered patch series is authoritative; the
+legacy singular patch fields retain historical first-patch metadata.
+
+Seven new and eleven relevant legacy evaluator tests passed in an actual current
+Cargo artifact with the coherent project features. They cover exact aliased
+conditional diamonds, unreachable poles, independent roots/conditions, function
+scopes, imaginary conditions, higher/mixed Dual components and batched execution.
+The first opt2/debug2 test build reached its 1,080-second child limit without a
+compiler diagnostic. Its failure is retained. The same source/features built
+with test-only package opt0/debug0 and all 18 selected tests passed. Production
+core/frontend builds retain their normal optimization profile. Evidence and
+limits are in `validation/symbolica-scoped-condition-facts/qualification.json`.
+These compiler tests alone qualify no new tensor arrays, generalized domains,
+N7 rank-seven results or performance ratios.

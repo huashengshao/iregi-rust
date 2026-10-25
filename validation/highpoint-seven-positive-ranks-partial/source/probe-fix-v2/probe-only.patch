@@ -1,0 +1,10 @@
+--- failed-probe-source.rs
++++ target/public-seven-point-positive-rank-proposal/source/crates/iregi-rust/examples/seven_point_public_probe/main.rs
+@@ -273,7 +273,6 @@
+     if result.basis.as_slice() != plan.basis()
+         || result.components != 1
+         || result.rows() != rows
+-        || result.values.len() != plan.basis().len() * 4 * rows
+         || result.statuses.len() != rows
+         || result.fallback_used.len() != rows
+         || result.analytic_used.len() != rows

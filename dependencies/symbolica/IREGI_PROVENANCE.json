@@ -17,6 +17,10 @@
     {
       "path": "0004-check-polynomial-exponent-conversion.patch",
       "sha256": "6834ad46cc3e0959cc0fe179862d937522f24cc814c3b565cc9f36166765cd74"
+    },
+    {
+      "path": "0005-reuse-dominating-condition-facts.patch",
+      "sha256": "5582e023c8d293a9e17310637aeee7009a3104a4024b9253c3e108c1ecabf5c5"
     }
   ],
   "included_paths": [
@@ -896,8 +900,8 @@
     },
     {
       "path": "src/evaluate/tree.rs",
-      "sha256": "29d3263c414fd2d5b82eceeb7fe9f31cf0513f771307d2e5f90d7f9c4703e6fa",
-      "bytes": 183073
+      "sha256": "a1b43f612a990295bb94ef48637e5f100e4527b30d81f202337a0f75286ac990",
+      "bytes": 194816
     },
     {
       "path": "src/expand.rs",
@@ -1126,7 +1130,7 @@
     }
   ],
   "file_count": 218,
-  "total_bytes": 9587310,
+  "total_bytes": 9599053,
   "original_license_sha256": "95576170a17bc8996fb8a94473745545048b6edc5d91e3867f091f7fc6b26981",
   "license_code_sha256": "54333a35e60a70bbd91e2952c8daa5d24f817a4eb26239820cc59d1c45abcd2b",
   "metadata": "IREGI_UPSTREAM_VERSION is read by the build.rs metadata-only patch; displayed version9cdc2949-iregi-scope-cache cannot inherit the embedding repository Git label. Git metadata is watched only when the explicit version cannot be used.",
@@ -1134,7 +1138,8 @@
     "validation/symbolica-scoped-cache.json",
     "validation/rescue-pentagon-rank7.json",
     "validation/symbolica-production-qualification.json",
-    "validation/symbolica-build-metadata/results.json"
+    "validation/symbolica-build-metadata/results.json",
+    "validation/symbolica-scoped-condition-facts/qualification.json"
   ],
-  "status": "Pinned source prepared and selected by root Cargo; qualification progress is recorded separately in validation/symbolica-production-qualification.json."
+  "status": "Pinned patched source selected by root Cargo; patch5 has 18 focused actual-Cargo evaluator runtime tests. Integral-array and performance qualification are recorded separately and are not implied by evaluator tests."
 }

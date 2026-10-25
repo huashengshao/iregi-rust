@@ -1,7 +1,7 @@
 # Pinned Symbolica source for iregi-rust
 
 This directory retains Symbolica, Numerica, and Graphica from upstream revision
-`9cdc2949cdb153478c1eca0d40690dc0abfc616e`, with the four patches recorded in
+`9cdc2949cdb153478c1eca0d40690dc0abfc616e`, with the five patches recorded in
 `../symbolica-patches/provenance.json`. `IREGI_PROVENANCE.json` lists all retained
 upstream/patched files, their hashes, and omitted assets. Upstream `License.md`,
 `Readme.md`, and license implementation are unchanged.
@@ -11,8 +11,13 @@ branch-local insertions. The second patch sets an explicit source-version
 display label. The third avoids Git-metadata rebuild triggers when that explicit
 label is used. The fourth validates polynomial exponent bounds against the
 existing signed conversion, avoiding wraparound for compact oversized powers.
-These patches do not change algebra rules, numerical operations,
-precision types, or license checks. Patch rationale and validation limits are documented
+The fifth retains dominating zero/nonzero facts for the exact same SSA condition
+inside its selected branch, pruning unreachable repeated conditional arms.
+Numeric condition values, sibling/function scopes and lazy singular branches are
+preserved. These patches do not change algebra rules, arithmetic operations,
+precision types, or license checks; the fifth changes generated control flow.
+Its 18 focused evaluator tests do not by themselves qualify integral arrays or
+performance. Patch rationale and validation limits are documented
 in `../symbolica-patches/README.md`.
 
 All Rust test, example, and benchmark source targets are retained. Large
