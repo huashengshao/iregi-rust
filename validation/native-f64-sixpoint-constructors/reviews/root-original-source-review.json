@@ -1,0 +1,108 @@
+{
+  "status": "source-review-passed",
+  "created_utc": "2026-10-25T10:36:03.647222+00:00",
+  "reviewer": "/root/resume_auditor",
+  "scope": "Independent saved/source-only rehash, exact constructor inventory and command reconstruction; no producer modules, binaries, numerical code, Cargo, compilers or performance executed.",
+  "input_bindings_rehashed": 558,
+  "input_hash_mismatches": [],
+  "compiled_sources_rehashed": 85,
+  "compiled_source_mismatches": [],
+  "base_current_differences": [],
+  "constructor_inventory": [
+    {
+      "group": "constructors",
+      "configuration": "default",
+      "name": "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_explicit_symbolica",
+      "source": "crates/iregi-rust/src/certified_planar/policy_composition_tests.rs"
+    },
+    {
+      "group": "constructors",
+      "configuration": "default",
+      "name": "execution::planar_fallback::policy_composition_tests::composition_planar_retry_forwards_policies_to_lazy_masked_charts",
+      "source": "crates/iregi-rust/src/execution/planar_fallback.rs"
+    },
+    {
+      "group": "constructors",
+      "configuration": "default",
+      "name": "thin_n6::policy_composition_tests::composition_six_point_constructors_pin_symbolica_with_no_backend_option",
+      "source": "crates/iregi-rust/src/thin_n6/policy_composition_tests.rs"
+    },
+    {
+      "group": "constructors",
+      "configuration": "selective",
+      "name": "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_explicit_symbolica",
+      "source": "crates/iregi-rust/src/certified_planar/policy_composition_tests.rs"
+    },
+    {
+      "group": "constructors",
+      "configuration": "selective",
+      "name": "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_selected_policy_for_both_shapes",
+      "source": "crates/iregi-rust/src/certified_planar/policy_composition_tests.rs"
+    },
+    {
+      "group": "constructors",
+      "configuration": "selective",
+      "name": "execution::planar_fallback::policy_composition_tests::composition_planar_retry_forwards_policies_to_lazy_masked_charts",
+      "source": "crates/iregi-rust/src/execution/planar_fallback.rs"
+    },
+    {
+      "group": "constructors",
+      "configuration": "selective",
+      "name": "thin_n6::policy_composition_tests::composition_six_point_constructors_pin_symbolica_with_no_backend_option",
+      "source": "crates/iregi-rust/src/thin_n6/policy_composition_tests.rs"
+    }
+  ],
+  "constructor_count": 7,
+  "constructor_configuration_counts": {
+    "default": 3,
+    "selective": 4
+  },
+  "two_frozen_binary_bindings": {
+    "default": {
+      "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+      "sha256": "de42e7e40afd4cc10acdad07564910a57749e3229e10ff658c18799ab39ec8cf",
+      "bytes": 79039384,
+      "actual_sha256": "de42e7e40afd4cc10acdad07564910a57749e3229e10ff658c18799ab39ec8cf",
+      "actual_bytes": 79039384
+    },
+    "selective": {
+      "path": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+      "sha256": "d0a810ae36490d1d1fe38d689a9f8a4104fd7eb02320ff69fda18695a1e646e2",
+      "bytes": 93683624,
+      "actual_sha256": "d0a810ae36490d1d1fe38d689a9f8a4104fd7eb02320ff69fda18695a1e646e2",
+      "actual_bytes": 93683624
+    }
+  },
+  "fixed_limits": {
+    "aggregate_seconds": 300,
+    "cleanup_reserve_seconds": 8,
+    "work_seconds": 292,
+    "per_test_seconds": 120,
+    "per_listing_seconds": 15,
+    "runtime_cpu": 22
+  },
+  "module_registration_and_cfg_review": "Manual review of execution.rs, certified_planar.rs, thin_n6.rs, planar_fallback.rs registration and selected-policy cfg. Three common constructors compile in both tracks; selected-policy masked chart test only selective.",
+  "lifecycle_review": "c193 whole-owned-group cleanup; terminal event persisted before post hashes; fixed alarm reserves8seconds; first timeout/process/parser/guard failure stops later cases; fresh exact copies; two complete tracked listings precede all exact calls. Distinct constructor grant remains required by runner.",
+  "unexecuted_at_review": {
+    "constructor_attempt_exists": false,
+    "constructor_grant_exists": false
+  },
+  "bindings_sha256": {
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/runtime-preparation.json": "0ac08b95372ec586b0e5ca3e25789040ce88d7c5ff3c21ea1fb7e1a553d39b55",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/runtime-command-plan.json": "abacec3f1532fad1afbbc9663c4f57af2c87a09826ebf781237cac1eefa9e843",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/runtime-inventory.json": "8c7d688950f961cdce8acb18b7193767a567ca84b3be2fb1826308d56fe0c737",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/runtime_inventory.py": "bab67e60775ea5f0d709b9f9e56464e433c7e6b3a220ad1b99e41e1ab1e43fb3",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/runtime-protocol.md": "169886c7620ffc4a87bad2ca45f58f79af6bc86228f9f0ed56d20b551007dbff",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/run_policy_tests.py": "a032b18c7a029f13226517974dcfc25d9b208acc800d35f29ff0c9daa76a8b51",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/lifecycle.py": "c193cd7282d63b63a8f627612df684242a2a8941d1d0a35588514d0415ab8824",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/build.json": "d7a6d201da1cc3237b15eebb92c170782a4f73a82832869a87fd6943f2e91e32",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/reviews/runtime-source-command-review.json": "ef931b48a08588f03a7432647bb5874ada02234d475053512fc057bdf77eda7c",
+    "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/results.json": "b714af2e9f493b0170a5636ccbedd86381644a1b006f229c47bed19e7efab98e"
+  },
+  "limitations": [
+    "Source review only, not an execution grant or passing runtime result. Root owns numerical scheduling.",
+    "Constructor cases exercise policy preparation, cache/context, invalid/empty resets and primal-only Dual shapes; they do not establish successful numerically triggered retry/scatter, public SixPoint Dual, whole arrays, reference agreement, broad-native runtime or performance.",
+    "The old runtime-protocol Python-owner lease sentence is historical. A fresh root grant must assign current ownership explicitly without rewriting its sealed source.",
+    "Current-base source differences are separately exposed; compatibility with current main requires review of each difference, not treating whole snapshot identity as proved."
+  ]
+}

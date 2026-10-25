@@ -1,0 +1,564 @@
+{
+  "ordinary": {
+    "stage": "ordinary",
+    "limits": {
+      "count": 20,
+      "aggregate_seconds": 180,
+      "per_test_seconds": 60
+    },
+    "listings": [
+      {
+        "configuration": "default",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--list",
+          "--format",
+          "terse"
+        ],
+        "timeout_seconds": 15
+      },
+      {
+        "configuration": "selective",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--list",
+          "--format",
+          "terse"
+        ],
+        "timeout_seconds": 15
+      }
+    ],
+    "cases": [
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::master_policy_tests::explicit_symbolica_overrides_the_legacy_feature_and_preserves_default_cache",
+        "source": "crates/iregi-rust/src/master_policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::master_policy_tests::explicit_symbolica_overrides_the_legacy_feature_and_preserves_default_cache",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::master_policy_tests::unavailable_selective_policy_fails_before_exact_preparation",
+        "source": "crates/iregi-rust/src/master_policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::master_policy_tests::unavailable_selective_policy_fails_before_exact_preparation",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::tests::workspace_policy_default_preserves_values_without_sidecar_allocation",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_default_preserves_values_without_sidecar_allocation",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::tests::workspace_policy_isolates_retry_while_sharing_exact_arithmetic_cache",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_isolates_retry_while_sharing_exact_arithmetic_cache",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::tests::workspace_policy_survives_dual_specialization_eager_and_lazy_children",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_survives_dual_specialization_eager_and_lazy_children",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::tests::workspace_policy_certificate_totals_reset_before_empty_and_invalid_calls",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_certificate_totals_reset_before_empty_and_invalid_calls",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::tests::workspace_policy_counts_nested_analytic_work_without_changing_ordinary_counts",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_counts_nested_analytic_work_without_changing_ordinary_counts",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::policy_composition_tests::composition_sidecars_share_exact_cache_but_master_policies_do_not",
+        "source": "crates/iregi-rust/src/execution/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::policy_composition_tests::composition_sidecars_share_exact_cache_but_master_policies_do_not",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "default",
+        "name": "execution::policy_composition_tests::composition_ordered_dual_shapes_and_master_policy_separate_exact_entries",
+        "source": "crates/iregi-rust/src/execution/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::policy_composition_tests::composition_ordered_dual_shapes_and_master_policy_separate_exact_entries",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::master_policy_tests::explicit_symbolica_overrides_the_legacy_feature_and_preserves_default_cache",
+        "source": "crates/iregi-rust/src/master_policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::master_policy_tests::explicit_symbolica_overrides_the_legacy_feature_and_preserves_default_cache",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::master_policy_tests::selective_workspaces_keep_cache_policy_and_recursive_lane_semantics",
+        "source": "crates/iregi-rust/src/master_policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::master_policy_tests::selective_workspaces_keep_cache_policy_and_recursive_lane_semantics",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::master_policy_tests::selective_policy_keeps_high_precision_and_component_one_duals_on_symbolica",
+        "source": "crates/iregi-rust/src/master_policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::master_policy_tests::selective_policy_keeps_high_precision_and_component_one_duals_on_symbolica",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::tests::workspace_policy_default_preserves_values_without_sidecar_allocation",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_default_preserves_values_without_sidecar_allocation",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::tests::workspace_policy_isolates_retry_while_sharing_exact_arithmetic_cache",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_isolates_retry_while_sharing_exact_arithmetic_cache",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::tests::workspace_policy_survives_dual_specialization_eager_and_lazy_children",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_survives_dual_specialization_eager_and_lazy_children",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::tests::workspace_policy_certificate_totals_reset_before_empty_and_invalid_calls",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_certificate_totals_reset_before_empty_and_invalid_calls",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::tests::workspace_policy_counts_nested_analytic_work_without_changing_ordinary_counts",
+        "source": "crates/iregi-rust/src/execution/policy_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::tests::workspace_policy_counts_nested_analytic_work_without_changing_ordinary_counts",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::policy_composition_tests::composition_sidecars_share_exact_cache_but_master_policies_do_not",
+        "source": "crates/iregi-rust/src/execution/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::policy_composition_tests::composition_sidecars_share_exact_cache_but_master_policies_do_not",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::policy_composition_tests::composition_ordered_dual_shapes_and_master_policy_separate_exact_entries",
+        "source": "crates/iregi-rust/src/execution/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::policy_composition_tests::composition_ordered_dual_shapes_and_master_policy_separate_exact_entries",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      },
+      {
+        "group": "ordinary",
+        "configuration": "selective",
+        "name": "execution::policy_composition_tests::composition_selected_policy_survives_eager_dual_and_lazy_children",
+        "source": "crates/iregi-rust/src/execution/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/ordinary-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::policy_composition_tests::composition_selected_policy_survives_eager_dual_and_lazy_children",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 60
+      }
+    ]
+  },
+  "constructors": {
+    "stage": "constructors",
+    "limits": {
+      "count": 7,
+      "aggregate_seconds": 300,
+      "per_test_seconds": 120
+    },
+    "listings": [
+      {
+        "configuration": "default",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/default-core-tests-frozen",
+          "--list",
+          "--format",
+          "terse"
+        ],
+        "timeout_seconds": 15
+      },
+      {
+        "configuration": "selective",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/selective-core-tests-frozen",
+          "--list",
+          "--format",
+          "terse"
+        ],
+        "timeout_seconds": 15
+      }
+    ],
+    "cases": [
+      {
+        "group": "constructors",
+        "configuration": "default",
+        "name": "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_explicit_symbolica",
+        "source": "crates/iregi-rust/src/certified_planar/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/default-core-tests-frozen",
+          "--exact",
+          "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_explicit_symbolica",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      },
+      {
+        "group": "constructors",
+        "configuration": "default",
+        "name": "execution::planar_fallback::policy_composition_tests::composition_planar_retry_forwards_policies_to_lazy_masked_charts",
+        "source": "crates/iregi-rust/src/execution/planar_fallback.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/default-core-tests-frozen",
+          "--exact",
+          "execution::planar_fallback::policy_composition_tests::composition_planar_retry_forwards_policies_to_lazy_masked_charts",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      },
+      {
+        "group": "constructors",
+        "configuration": "default",
+        "name": "thin_n6::policy_composition_tests::composition_six_point_constructors_pin_symbolica_with_no_backend_option",
+        "source": "crates/iregi-rust/src/thin_n6/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/default/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/default-core-tests-frozen",
+          "--exact",
+          "thin_n6::policy_composition_tests::composition_six_point_constructors_pin_symbolica_with_no_backend_option",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      },
+      {
+        "group": "constructors",
+        "configuration": "selective",
+        "name": "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_explicit_symbolica",
+        "source": "crates/iregi-rust/src/certified_planar/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_explicit_symbolica",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      },
+      {
+        "group": "constructors",
+        "configuration": "selective",
+        "name": "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_selected_policy_for_both_shapes",
+        "source": "crates/iregi-rust/src/certified_planar/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "certified_planar::policy_composition_tests::composition_masked_planar_chart_preserves_selected_policy_for_both_shapes",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      },
+      {
+        "group": "constructors",
+        "configuration": "selective",
+        "name": "execution::planar_fallback::policy_composition_tests::composition_planar_retry_forwards_policies_to_lazy_masked_charts",
+        "source": "crates/iregi-rust/src/execution/planar_fallback.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "execution::planar_fallback::policy_composition_tests::composition_planar_retry_forwards_policies_to_lazy_masked_charts",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      },
+      {
+        "group": "constructors",
+        "configuration": "selective",
+        "name": "thin_n6::policy_composition_tests::composition_six_point_constructors_pin_symbolica_with_no_backend_option",
+        "source": "crates/iregi-rust/src/thin_n6/policy_composition_tests.rs",
+        "binary": "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/codegen-build-001/selective/core-tests",
+        "command": [
+          "/nix/store/156fzvaz2nsq2hk0fkzn9jwk90bnzyn9-util-linux-2.42.2-bin/bin/taskset",
+          "-c",
+          "22",
+          "/shared/external/iregi/iregi-rust/target/native-f64-sixpoint-port/qualification/constructors-tests-001/selective-core-tests-frozen",
+          "--exact",
+          "thin_n6::policy_composition_tests::composition_six_point_constructors_pin_symbolica_with_no_backend_option",
+          "--test-threads=1",
+          "--nocapture"
+        ],
+        "timeout_seconds": 120
+      }
+    ]
+  }
+}

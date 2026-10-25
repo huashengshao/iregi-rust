@@ -1,0 +1,29 @@
+--- reviewed/run_policy_tests.py
++++ resumed/run_constructor_resume.py
+@@ -1,4 +1,4 @@
+-"""One separately granted cohort of exact tests; no build or automatic next stage."""
++"""Fresh resumed seven-constructor cohort; same bounded lifecycle, no next stage."""
+ from pathlib import Path
+ import datetime
+ import os
+@@ -22,7 +22,7 @@
+     assert re.findall(r"test result: ok\. (\d+) passed; (\d+) failed; (\d+) ignored; (\d+) measured;", text) == [("1", "0", "0", "0")], "test failed, ignored, absent, or repeated"
+ 
+ def main():
+-    assert len(sys.argv) == 3 and sys.argv[1] in inventory.GROUPS and sys.argv[2] == "001"
++    assert len(sys.argv) == 3 and sys.argv[1] == "constructors" and sys.argv[2] == "001"
+     stage = sys.argv[1]
+     cap = inventory.GROUPS[stage]["aggregate_seconds"]
+     attempt = HERE / (stage + "-tests-001")
+@@ -49,9 +49,9 @@
+ 
+     budget.arm()
+     try:
+-        prep_path = HERE / "runtime-preparation.json"
++        prep_path = HERE / "resume-20261025-constructors-001/runtime-preparation.json"
+         plan_path = HERE / "runtime-command-plan.json"
+-        grant_path = HERE / (stage + "-runtime-grant-001.json")
++        grant_path = HERE / "resume-20261025-constructors-001/constructors-runtime-grant-001.json"
+         manifest = read(prep_path)
+         grant = read(grant_path)
+         assert grant["preparation_sha256"] == sha(prep_path)
