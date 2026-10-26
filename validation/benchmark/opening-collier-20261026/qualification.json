@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "status": "nine_accepted_three_explicitly_rejected",
+  "scope": "All twelve original ordinary rows attempted once with fixed COLI mode1; no retries or mode retuning",
+  "distinct_complex_fields": 6048,
+  "qualified_distinct_complex_fields": 3864,
+  "nonfinite_complex_fields": 195,
+  "mismatched_finite_complex_fields": 74,
+  "accepted_rows": [
+    "ordinary-n1-r0",
+    "ordinary-n1-r6",
+    "ordinary-n2-r1",
+    "ordinary-n2-r6",
+    "ordinary-n3-r2",
+    "ordinary-n3-r3",
+    "ordinary-n3-r6",
+    "ordinary-n4-r4",
+    "ordinary-n4-r6"
+  ],
+  "rejected_rows": [
+    {
+      "id": "ordinary-n5-r5",
+      "failure_label": "acc -1 \u00b7 11 mismatches",
+      "nonfinite_complex_fields": 0,
+      "mismatched_finite_complex_fields": 11
+    },
+    {
+      "id": "ordinary-n5-r6",
+      "failure_label": "acc -1 \u00b7 62 mismatches",
+      "nonfinite_complex_fields": 0,
+      "mismatched_finite_complex_fields": 62
+    },
+    {
+      "id": "ordinary-n6-r6",
+      "failure_label": "acc -2 \u00b7 nonfinite",
+      "nonfinite_complex_fields": 195,
+      "mismatched_finite_complex_fields": 1
+    }
+  ],
+  "independent_review": {
+    "source": "validation/benchmark/opening-collier-20261026/independent-review.json",
+    "sha256": "223dd2e7676306fe5dd26649d2a367913324c859f98a7c65e41ee7a2bfec85c3"
+  },
+  "tolerance": "1e-10 dimensionally normalized mixed tolerance",
+  "no_aggregate_speed_or_ratio_gate": true
+}
