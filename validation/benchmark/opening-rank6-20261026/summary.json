@@ -1,0 +1,1275 @@
+{
+  "schema_version": 1,
+  "suite_id": "opening-rank6-20261026",
+  "measurement_date": "2026-10-26",
+  "timing_contract": {
+    "api": "TensorReductionPlan / TensorWorkspace, explicit Symbolica master policy, profiling enabled",
+    "exclusive": "Per-call outer wall time minus the aggregate nested scalar-master wall time",
+    "inclusive": "Per-call wall time around reduce_batch only; does not include subsequent output checks or I/O",
+    "phase_additivity": "Arithmetic means of the same calls; exclusive plus masters equals total",
+    "excluded": [
+      "plan preparation",
+      "workspace construction",
+      "first call/lazy specialization",
+      "warmup",
+      "full-array equality and finite checks",
+      "JSON I/O",
+      "process startup"
+    ],
+    "selection": "The profiler changes eligible thin high-point workspace dispatch to the existing AffinePower path; actual engine is always retained",
+    "blocks": "N<=4: three warmup calls, then 11 fixed blocks, loop count chosen once from final warmup, target 100 ms capped at 10000 calls. N>=5: one warmup, then five one-call blocks fixed in advance.",
+    "precision": "Per-row working precision and requested accuracy parameter retained; no achieved-bits certificate inferred",
+    "failure_policy": "Keep failed, refused, killed and unmeasured rows visible; do not replace them with zero timing"
+  },
+  "input_family": {
+    "name": "E",
+    "fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+    "fixture_sha256": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+    "metric": "+---",
+    "shifts_time_first": [
+      [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1"
+      ],
+      [
+        "1/2",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "1",
+        "0"
+      ]
+    ],
+    "masses_squared": [
+      [
+        "1",
+        "0"
+      ],
+      [
+        "2",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ],
+      [
+        "4",
+        "0"
+      ],
+      [
+        "2",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ]
+    ],
+    "scale_mu": "3",
+    "preserve_inputs": true,
+    "embedding": "Exact rational strings, exactly representable in all selected binary domains"
+  },
+  "rows": [
+    {
+      "id": "ordinary-n1-r0",
+      "table": "ordinary",
+      "label": "N=1, R=0",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 1 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 1,
+      "rank": 0,
+      "powers": [
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 1,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 6925848,
+      "workspace_ns": 1087181343,
+      "first_call_ns": 411842,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 1.2826319727272728,
+          "median": 1.2695968,
+          "minimum": 1.1572612,
+          "maximum": 1.3851122,
+          "stdev": 0.061096329934049114,
+          "standard_error": 0.018421236587181818
+        },
+        "scalar_masters_us": {
+          "mean": 0.4678085727272727,
+          "median": 0.4777386,
+          "minimum": 0.4126246,
+          "maximum": 0.4927316,
+          "stdev": 0.023901399205991727,
+          "standard_error": 0.007206543011888457
+        },
+        "outer_total_us": {
+          "mean": 1.7504405454545455,
+          "median": 1.733073,
+          "minimum": 1.5698858,
+          "maximum": 1.8642774,
+          "stdev": 0.08192283732235309,
+          "standard_error": 0.024700664832688075
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 10000,
+      "total_timed_calls": 110000,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n1-r6",
+      "table": "ordinary",
+      "label": "N=1, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 1 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 1,
+      "rank": 6,
+      "powers": [
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 44320608,
+      "workspace_ns": 991682311,
+      "first_call_ns": 206631,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 94.16324881343556,
+          "median": 94.05996285140563,
+          "minimum": 92.98765963855422,
+          "maximum": 95.80615562248995,
+          "stdev": 0.9007434308608755,
+          "standard_error": 0.27158436295845045
+        },
+        "scalar_masters_us": {
+          "mean": 0.7858105147864184,
+          "median": 0.7859678714859437,
+          "minimum": 0.7580140562248996,
+          "maximum": 0.8374638554216868,
+          "stdev": 0.02145388709492273,
+          "standard_error": 0.006468590344409684
+        },
+        "outer_total_us": {
+          "mean": 94.94905932822198,
+          "median": 94.84613052208834,
+          "minimum": 93.75586646586345,
+          "maximum": 96.60022590361446,
+          "stdev": 0.9036842378174489,
+          "standard_error": 0.2724710496180705
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 996,
+      "total_timed_calls": 10956,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n2-r1",
+      "table": "ordinary",
+      "label": "N=2, R=1",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 2 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 2,
+      "rank": 1,
+      "powers": [
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 5,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 7196069,
+      "workspace_ns": 1287241964,
+      "first_call_ns": 167161,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 8.559876849333564,
+          "median": 8.548089751750478,
+          "minimum": 8.45329206450244,
+          "maximum": 8.67523042647995,
+          "stdev": 0.058556335879547186,
+          "standard_error": 0.017655399564589416
+        },
+        "scalar_masters_us": {
+          "mean": 2.307300358775534,
+          "median": 2.3002167409293444,
+          "minimum": 2.2799496074687036,
+          "maximum": 2.351469234033524,
+          "stdev": 0.02271696099965557,
+          "standard_error": 0.0068494214557267685
+        },
+        "outer_total_us": {
+          "mean": 10.8671772081091,
+          "median": 10.845708147676639,
+          "minimum": 10.734199554423935,
+          "maximum": 11.026699660513474,
+          "stdev": 0.07713582156265718,
+          "standard_error": 0.02325732527446722
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 9426,
+      "total_timed_calls": 103686,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n2-r6",
+      "table": "ordinary",
+      "label": "N=2, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 2 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 2,
+      "rank": 6,
+      "powers": [
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 433529856,
+      "workspace_ns": 5263978906,
+      "first_call_ns": 3353064,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 2428.405975,
+          "median": 2394.2115750000003,
+          "minimum": 2333.938525,
+          "maximum": 2529.203625,
+          "stdev": 79.06651931595083,
+          "standard_error": 23.839452550036054
+        },
+        "scalar_masters_us": {
+          "mean": 8.583268181818182,
+          "median": 8.31105,
+          "minimum": 7.85905,
+          "maximum": 9.817775,
+          "stdev": 0.6619150837806639,
+          "standard_error": 0.19957490690701102
+        },
+        "outer_total_us": {
+          "mean": 2436.989243181818,
+          "median": 2402.86965,
+          "minimum": 2341.797575,
+          "maximum": 2539.0214,
+          "stdev": 79.68051785114183,
+          "standard_error": 24.02458007395027
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 40,
+      "total_timed_calls": 440,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n3-r2",
+      "table": "ordinary",
+      "label": "N=3, R=2",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 3,
+      "rank": 2,
+      "powers": [
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 15,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 26646826,
+      "workspace_ns": 1233066377,
+      "first_call_ns": 5338162,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 1694.2628307210032,
+          "median": 1728.3042413793103,
+          "minimum": 1522.0820689655172,
+          "maximum": 1756.3180862068964,
+          "stdev": 83.79616733073725,
+          "standard_error": 25.26549508235386
+        },
+        "scalar_masters_us": {
+          "mean": 38.54499059561129,
+          "median": 39.69318965517241,
+          "minimum": 34.0256724137931,
+          "maximum": 40.448224137931035,
+          "stdev": 2.4477719111783274,
+          "standard_error": 0.7380310001590596
+        },
+        "outer_total_us": {
+          "mean": 1732.8078213166145,
+          "median": 1768.1786379310345,
+          "minimum": 1556.2705172413791,
+          "maximum": 1796.7663103448276,
+          "stdev": 86.02774734405516,
+          "standard_error": 25.938341772702206
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 58,
+      "total_timed_calls": 638,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n3-r3",
+      "table": "ordinary",
+      "label": "N=3, R=3",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 3,
+      "rank": 3,
+      "powers": [
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 35,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 57763581,
+      "workspace_ns": 1420317596,
+      "first_call_ns": 5367901,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 1951.8798060606061,
+          "median": 2001.1990444444443,
+          "minimum": 1827.8788444444444,
+          "maximum": 2032.9363777777778,
+          "stdev": 85.34474208451911,
+          "standard_error": 25.73240793854581
+        },
+        "scalar_masters_us": {
+          "mean": 43.24220808080808,
+          "median": 42.86793333333333,
+          "minimum": 39.589911111111114,
+          "maximum": 51.40262222222222,
+          "stdev": 3.1646746889282293,
+          "standard_error": 0.9541853206099663
+        },
+        "outer_total_us": {
+          "mean": 1995.1220141414142,
+          "median": 2050.4121777777777,
+          "minimum": 1867.4687555555554,
+          "maximum": 2077.046333333333,
+          "stdev": 87.06000624022141,
+          "standard_error": 26.24957954043765
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 45,
+      "total_timed_calls": 495,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n3-r6",
+      "table": "ordinary",
+      "label": "N=3, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 3,
+      "rank": 6,
+      "powers": [
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 2364506696,
+      "workspace_ns": 8640666869,
+      "first_call_ns": 11237754,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 8502.00159090909,
+          "median": 8516.354333333335,
+          "minimum": 8344.263333333332,
+          "maximum": 8606.168666666666,
+          "stdev": 67.34123444442697,
+          "standard_error": 20.304146142865587
+        },
+        "scalar_masters_us": {
+          "mean": 82.84237878787879,
+          "median": 82.34058333333333,
+          "minimum": 80.39125,
+          "maximum": 87.89633333333333,
+          "stdev": 2.0436306748596413,
+          "standard_error": 0.616177832597293
+        },
+        "outer_total_us": {
+          "mean": 8584.84396969697,
+          "median": 8598.067833333334,
+          "minimum": 8424.654583333335,
+          "maximum": 8690.142416666666,
+          "stdev": 68.30051349808213,
+          "standard_error": 20.593379660158437
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 12,
+      "total_timed_calls": 132,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n4-r4",
+      "table": "ordinary",
+      "label": "N=4, R=4",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 4,
+      "rank": 4,
+      "powers": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 70,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 803156795,
+      "workspace_ns": 8701700181,
+      "first_call_ns": 3327273,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 2368.830651948052,
+          "median": 2324.829942857143,
+          "minimum": 2271.0868285714287,
+          "maximum": 2486.907142857143,
+          "stdev": 80.03205084602791,
+          "standard_error": 24.13057125990182
+        },
+        "scalar_masters_us": {
+          "mean": 239.05945454545454,
+          "median": 236.9152,
+          "minimum": 228.69917142857142,
+          "maximum": 249.75979999999998,
+          "stdev": 8.787182853916033,
+          "standard_error": 2.6494353173348935
+        },
+        "outer_total_us": {
+          "mean": 2607.8901064935067,
+          "median": 2555.945285714286,
+          "minimum": 2499.786,
+          "maximum": 2736.666942857143,
+          "stdev": 88.38054046490983,
+          "standard_error": 26.64773559008441
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 35,
+      "total_timed_calls": 385,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n4-r6",
+      "table": "ordinary",
+      "label": "N=4, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 4,
+      "rank": 6,
+      "powers": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "f64",
+      "working_bits": 53,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 12215758540,
+      "workspace_ns": 52261611805,
+      "first_call_ns": 17316679,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 16531.224045454546,
+          "median": 16572.108,
+          "minimum": 15995.110333333334,
+          "maximum": 16901.788666666667,
+          "stdev": 230.25575177321966,
+          "standard_error": 69.42472131390724
+        },
+        "scalar_masters_us": {
+          "mean": 295.91225757575756,
+          "median": 297.28766666666667,
+          "minimum": 284.8396666666667,
+          "maximum": 309.7513333333333,
+          "stdev": 7.854362738972109,
+          "standard_error": 2.368179470228967
+        },
+        "outer_total_us": {
+          "mean": 16827.136303030304,
+          "median": 16872.179333333333,
+          "minimum": 16279.95,
+          "maximum": 17203.495333333332,
+          "stdev": 234.74885864415228,
+          "standard_error": 70.77944400789373
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 6,
+      "total_timed_calls": 66,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n5-r5",
+      "table": "ordinary",
+      "label": "N=5, R=5",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 5 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 5,
+      "rank": 5,
+      "powers": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 126,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 14256587941,
+      "workspace_ns": 10015639984,
+      "first_call_ns": 420669732,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 301690.4702,
+          "median": 301881.607,
+          "minimum": 294281.837,
+          "maximum": 313125.573,
+          "stdev": 7175.909807060121,
+          "standard_error": 3209.164425798766
+        },
+        "scalar_masters_us": {
+          "mean": 102657.993,
+          "median": 103373.223,
+          "minimum": 95079.621,
+          "maximum": 108457.665,
+          "stdev": 4819.611406849517,
+          "standard_error": 2155.3957461697833
+        },
+        "outer_total_us": {
+          "mean": 404348.4632,
+          "median": 404537.957,
+          "minimum": 396961.228,
+          "maximum": 416935.648,
+          "stdev": 8055.220831043282,
+          "standard_error": 3602.404270397025
+        }
+      },
+      "repeats": 5,
+      "calls_per_repeat": 1,
+      "total_timed_calls": 5,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n5-r6",
+      "table": "ordinary",
+      "label": "N=5, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 5 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 5,
+      "rank": 6,
+      "powers": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 17033560170,
+      "workspace_ns": 22587866114,
+      "first_call_ns": 997360537,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 900567.012,
+          "median": 892267.248,
+          "minimum": 885380.067,
+          "maximum": 932470.228,
+          "stdev": 19497.716803127743,
+          "standard_error": 8719.644035566704
+        },
+        "scalar_masters_us": {
+          "mean": 103886.1428,
+          "median": 102991.671,
+          "minimum": 99997.689,
+          "maximum": 110411.841,
+          "stdev": 3908.0845279539694,
+          "standard_error": 1747.7485332640504
+        },
+        "outer_total_us": {
+          "mean": 1004453.1548,
+          "median": 994550.916,
+          "minimum": 985377.756,
+          "maximum": 1042882.069,
+          "stdev": 23266.682817916346,
+          "standard_error": 10405.176878357463
+        }
+      },
+      "repeats": 5,
+      "calls_per_repeat": 1,
+      "total_timed_calls": 5,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "ordinary-n6-r6",
+      "table": "ordinary",
+      "label": "N=6, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 6 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "n": 6,
+      "rank": 6,
+      "powers": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Hybrid",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "AffinePower",
+      "plan_engine": "SixPointHybrid",
+      "plan_ns": 31339461200,
+      "workspace_ns": 89102557244,
+      "first_call_ns": 130168967094,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 3322542.1358,
+          "median": 3267032.129,
+          "minimum": 3063482.409,
+          "maximum": 3781902.318,
+          "stdev": 271923.62612305075,
+          "standard_error": 121607.9425398758
+        },
+        "scalar_masters_us": {
+          "mean": 346888.7384,
+          "median": 308117.86,
+          "minimum": 297186.659,
+          "maximum": 493582.337,
+          "stdev": 83081.19836857912,
+          "standard_error": 37155.04144085751
+        },
+        "outer_total_us": {
+          "mean": 3669430.8742,
+          "median": 3598569.476,
+          "minimum": 3360669.068,
+          "maximum": 4275484.655,
+          "stdev": 352495.5525988033,
+          "standard_error": 157640.80347545535
+        }
+      },
+      "repeats": 5,
+      "calls_per_repeat": 1,
+      "total_timed_calls": 5,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "extended-n1-r6-dot2",
+      "table": "extended",
+      "label": "N=1, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 1 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "n": 1,
+      "rank": 6,
+      "powers": [
+        2
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Ibp",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 29211526,
+      "workspace_ns": 939794405,
+      "first_call_ns": 5599328,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 5775.955234449761,
+          "median": 5617.715105263158,
+          "minimum": 5513.7542631578945,
+          "maximum": 7236.6680526315795,
+          "stdev": 489.8505102325608,
+          "standard_error": 147.69548598232296
+        },
+        "scalar_masters_us": {
+          "mean": 16.584296650717704,
+          "median": 16.50226315789474,
+          "minimum": 12.770473684210527,
+          "maximum": 22.753842105263157,
+          "stdev": 2.7008943005726405,
+          "standard_error": 0.8143502721280753
+        },
+        "outer_total_us": {
+          "mean": 5792.539531100479,
+          "median": 5634.217368421053,
+          "minimum": 5528.2649473684205,
+          "maximum": 7259.421894736843,
+          "stdev": 492.0449726874188,
+          "standard_error": 148.35714130771262
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 19,
+      "total_timed_calls": 209,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "extended-n2-r2-dot2",
+      "table": "extended",
+      "label": "N=2, R=2",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 2 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "n": 2,
+      "rank": 2,
+      "powers": [
+        2,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Ibp",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 15,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 8538822,
+      "workspace_ns": 1102681103,
+      "first_call_ns": 4165590,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 4386.7813670033665,
+          "median": 3828.3165185185185,
+          "minimum": 3693.8349259259257,
+          "maximum": 6516.365851851851,
+          "stdev": 1062.4201743604413,
+          "standard_error": 320.3317352779587
+        },
+        "scalar_masters_us": {
+          "mean": 78.79343434343434,
+          "median": 65.08255555555556,
+          "minimum": 60.148555555555554,
+          "maximum": 127.89462962962963,
+          "stdev": 25.6724012076127,
+          "standard_error": 7.740520206647108
+        },
+        "outer_total_us": {
+          "mean": 4465.574801346801,
+          "median": 3893.399074074074,
+          "minimum": 3753.9834814814812,
+          "maximum": 6641.91674074074,
+          "stdev": 1087.9433638431854,
+          "standard_error": 328.02726645681395
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 27,
+      "total_timed_calls": 297,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "extended-n3-r4-dot2",
+      "table": "extended",
+      "label": "N=3, R=4",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "n": 3,
+      "rank": 4,
+      "powers": [
+        2,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Ibp",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 70,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 124152498,
+      "workspace_ns": 1641888871,
+      "first_call_ns": 83557316,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 75971.33913636363,
+          "median": 73424.3305,
+          "minimum": 71453.2805,
+          "maximum": 86718.296,
+          "stdev": 5865.790490384015,
+          "standard_error": 1768.602377767144
+        },
+        "scalar_masters_us": {
+          "mean": 6330.358681818182,
+          "median": 5961.795,
+          "minimum": 5857.4885,
+          "maximum": 7646.938,
+          "stdev": 631.3947572990401,
+          "standard_error": 190.3726822325843
+        },
+        "outer_total_us": {
+          "mean": 82301.69781818181,
+          "median": 79855.357,
+          "minimum": 77310.769,
+          "maximum": 93955.637,
+          "stdev": 6248.6110846913225,
+          "standard_error": 1884.0271298887988
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 2,
+      "total_timed_calls": 22,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "extended-n4-r6-dot2",
+      "table": "extended",
+      "label": "N=4, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "n": 4,
+      "rank": 6,
+      "powers": [
+        2,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Ibp",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 10022451642,
+      "workspace_ns": 41563342801,
+      "first_call_ns": 1602724460,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 1576770.3276363637,
+          "median": 1574235.986,
+          "minimum": 1548843.954,
+          "maximum": 1603280.946,
+          "stdev": 15131.884683897377,
+          "standard_error": 4562.434897037566
+        },
+        "scalar_masters_us": {
+          "mean": 29516.387272727272,
+          "median": 29233.442,
+          "minimum": 28592.229,
+          "maximum": 30989.102,
+          "stdev": 771.3167155870651,
+          "standard_error": 232.5607400119605
+        },
+        "outer_total_us": {
+          "mean": 1606286.714909091,
+          "median": 1605225.088,
+          "minimum": 1578361.708,
+          "maximum": 1633337.712,
+          "stdev": 15024.850033197592,
+          "standard_error": 4530.162735588662
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 1,
+      "total_timed_calls": 11,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "extended-n4-r6-dot3",
+      "table": "extended",
+      "label": "N=4, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "n": 4,
+      "rank": 6,
+      "powers": [
+        3,
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 0,
+      "algorithm": "Ibp",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 210,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 7724208536,
+      "workspace_ns": 46572610503,
+      "first_call_ns": 1766770204,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 1768280.3134545453,
+          "median": 1765778.656,
+          "minimum": 1725954.196,
+          "maximum": 1794552.366,
+          "stdev": 21078.317156050503,
+          "standard_error": 6355.35174715733
+        },
+        "scalar_masters_us": {
+          "mean": 29042.86118181818,
+          "median": 28855.258,
+          "minimum": 28347.255,
+          "maximum": 30187.093,
+          "stdev": 562.1010773942381,
+          "standard_error": 169.4798516337463
+        },
+        "outer_total_us": {
+          "mean": 1797323.1746363638,
+          "median": 1795288.487,
+          "minimum": 1754809.454,
+          "maximum": 1824073.577,
+          "stdev": 20996.259891080215,
+          "standard_error": 6330.610550863765
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 1,
+      "total_timed_calls": 11,
+      "maximum_additive_error_us": 0.0
+    },
+    {
+      "id": "extended-n3-r2-h1",
+      "table": "extended",
+      "label": "N=3, R=2",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "independent dimension shift D=4+2h-2epsilon with h nonzero",
+      "n": 3,
+      "rank": 2,
+      "powers": [
+        1,
+        1,
+        1
+      ],
+      "dimension_shift": 1,
+      "algorithm": "Ibp",
+      "numeric_type": "float",
+      "working_bits": 128,
+      "requested_bits": 53,
+      "batch_size": 1,
+      "moments": 15,
+      "laurent_slots": 4,
+      "source_revision": "d2762f5547caac666866db3a383434df737007c7",
+      "result_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/result.json",
+      "status": "measured",
+      "timing_qualified": true,
+      "engine": "Generic",
+      "plan_engine": "Generic",
+      "plan_ns": 14963541,
+      "workspace_ns": 1232768275,
+      "first_call_ns": 13529524,
+      "supervision_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/supervision.json",
+      "timing": {
+        "tirust_exclusive_us": {
+          "mean": 7639.104863636364,
+          "median": 7657.68875,
+          "minimum": 7530.72675,
+          "maximum": 7717.19,
+          "stdev": 63.86700051169461,
+          "standard_error": 19.25662519842976
+        },
+        "scalar_masters_us": {
+          "mean": 5859.15475,
+          "median": 5857.5965,
+          "minimum": 5774.676125,
+          "maximum": 5955.927,
+          "stdev": 54.198905594174555,
+          "standard_error": 16.341584900342845
+        },
+        "outer_total_us": {
+          "mean": 13498.259613636365,
+          "median": 13483.262875,
+          "minimum": 13374.3235,
+          "maximum": 13660.396,
+          "stdev": 102.00865883951123,
+          "standard_error": 30.7567678852754
+        }
+      },
+      "repeats": 11,
+      "calls_per_repeat": 8,
+      "total_timed_calls": 88,
+      "maximum_additive_error_us": 0.0
+    }
+  ],
+  "statistics": "Arithmetic mean of equal-size block means; standard error across blocks is descriptive, not a controlled-host confidence guarantee. Additive same-call phases. Raw calls and medians/spread retained.",
+  "selection_notice": "12ordinary+6generalized inputs fixed before evaluation; failures remain visible. Singleton absolute timings, mixed explicit precisions, profiled public facade, no reference-speed gate.",
+  "measured_rows": 18,
+  "unqualified_rows": 0
+}

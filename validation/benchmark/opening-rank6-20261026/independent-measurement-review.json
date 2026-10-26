@@ -1,0 +1,969 @@
+{
+  "schema_version": 1,
+  "status": "passed",
+  "reviewed_utc": "2026-10-26T17:02:08.807271+00:00",
+  "review_scope": "Independent saved-artifact recomputation and source/profile inspection; no build or native numerical execution. This does not independently rederive integral values.",
+  "checks": 737774,
+  "errors": [],
+  "case_count": 18,
+  "qualified_case_count": 18,
+  "timed_call_count": 227451,
+  "maximum_relative_statistic_difference": 7.490291705663879e-15,
+  "computation": "Exact Fraction block means in microseconds; manual arithmetic mean, sorted median/min/max, unbiased sample variance, sqrt standard deviation and SEM across equally sized blocks. Compared against saved summary at 2e-14 relative/absolute floating tolerance.",
+  "same_call_additivity": "Every integer-nanosecond call checked exactly: exclusive+masters=outer; every profile stage sum<=profile total<=outer.",
+  "full_array_scope": "Both retained first and final successful complete outputs checked finite with recorded per-operand precision, exact rational representation and complete basis. Symbolica Float loosely tracks cancellation precision; per-operand bits need not equal the initial workspace precision. Every intermediate driver call is attested by its saved all_successful block flag; intermediate arrays are not separately retained. Numeric equality checks are not a driver bitwise/route identity guarantee.",
+  "source_scope": "216 selected source/protocol hashes match receipt and current files; selected context is explicitly not a hermetic build closure. Core/master/dependency/Cargo paths unchanged from d2762f5.",
+  "build_notice": {
+    "refresh_seconds": 0.315683213993907,
+    "refresh_cargo_artifact_fresh": true,
+    "initial_compile_seconds": 810.1368010279257,
+    "initial_binary_same": true,
+    "frozen_binary_sha256": "0d3c5c37abfede1b10fb7ff99e55abc2a395bdfc9b0d4bac4ea3d966ed488c37",
+    "all_owned_case_process_groups_absent": true
+  },
+  "profiling_scope": "Explicit Symbolica policy and profiling. N6 actual AffinePower vs plan SixPointHybrid retained; no claim about unprofiled thin-engine speed. Result construction included; destruction/output checks/serialization excluded.",
+  "review_assumption_correction": {
+    "rejected_draft_source": "target/opening-tensor-timings-20261026/independent-measurement-review-rejected-uniform-operand-precision.json",
+    "rejected_draft_sha256": "4f91f71f7bcb92e74d46f50eda07d306b314546db483e3cae208ccd2ddf88253",
+    "reason": "The first reviewer draft incorrectly required every Float output operand to retain128 bits. Numerica Float intentionally reduces tracked relative precision after cancellation; requested/workspace bits are not an achieved-precision certificate. Corrected review retains finite/exact-value checks and records operand precision distributions instead. No implementation or measurement was changed."
+  },
+  "files": {
+    "validation/benchmark/opening-rank6-20261026/inputs.json": "a065511103c41ad04d14a01b3189c5180aa4d02af0c308ce2438fa3bf6cca43a",
+    "validation/benchmark/opening-rank6-20261026/summary.json": "81132259f7bf9fe705b6e67b9da791ccd271973afa5bf988570011ef79de348e",
+    "validation/benchmark/opening-rank6-20261026/build.json": "274cb167ba5ec8b3184aab184f6aff3e7736994393811048730b93b1722e87ef",
+    "validation/benchmark/opening-rank6-20261026/source-files.json": "6ed9091bf8d5eafeade369b79f88a1b17f8a8bd603cd9838592c6955571e7ada",
+    "validation/benchmark/opening-rank6-20261026/profiling-boundary-source-audit.json": "83a50c155c3de14e67f996b1fd968a4a3636355d4d1610d4d143e6ae308fd3b5",
+    "target/opening-tensor-timings-20261026/initial-build.json": "acb011941c3e60b47f1a499b8c9a46c9f01a0dc2f7338f250e1ee58bb069a64f",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/request.json": "359970569029e213dc2e9edb937d40a8d0465fc63ed59320707bdabbfe5b263f",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/result.json": "cb815594a666b872c719d3d5ba17f884b1c1164f0b63fb4de521166ce6489948",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/supervision.json": "d4583afe20015bfc5d5168295a26e23ebd31bca21d524d22cac6b890d534738e",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/request.json": "fa4cdc367741dbf1f2b41b2d5d20f575686dd94055977598e50469bbab5bb54e",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/result.json": "f9071c9ce07895549e24b47db5e87df33909efb1f23a50e9a36ba80d531fa5d1",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/supervision.json": "98c0e5e8a60adcd6ca2cd52d37f52538d5616ae9cbdefb9cac91e5962ad51c03",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/request.json": "c47b6e3565b02bd61c0853862971556305d0b9f99b1fdcd3d51a49cdb80efb54",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/result.json": "244492524f776b0a5ade01a82f8cc56f44e799a162970978ed6fe0c9c726ba71",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/supervision.json": "37ed3a0542702483692e0c53d8c73d097890c02daaa5faacc1201bbf911ec067",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/request.json": "bdbfce438d28bfd82002ec5ae11660464a77b6876d090dc527acdd0345f90579",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/result.json": "b9bf41d312867c95683b8845e27b9e8bc7c7a7f4427009cb109a5cbe3c31bd26",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/supervision.json": "6ad4012fbba10a35ad5cfe2aaa3b78e4ce99ba0ad0f58200b1c352a0f64cfcf5",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/request.json": "d792e2d718f67a1040c73075f43f3a8b9f33683884eea0f088ea4e8b2b15adc3",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/result.json": "77da016ed393730401e24e847e806afb2a24835567fde8836517f89c9c8ddadb",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/supervision.json": "5124746d55553714f6424bcc6e0c7db8ae18c66dadafd3a422fc903fbd3ce97b",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/request.json": "7a76922c51c039a10fe2759907f18020fabb123bce11092de5c43c2f04a60ed1",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/result.json": "032575699f41eacb1720179b8e28aed93c34c8a729aa317962572f1a5567239c",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/supervision.json": "4fe8f913b97e703cad12b3e74acd2884abf57aad70e4c424dcc1b7d6777e1ea5",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/request.json": "f7c2095cbe5c3d33dd6028b871b7cee3636c948a1e20a3074fd145743da714b6",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/result.json": "3f6f76e85548161e2e73f20ba76377527bb077500af164fc8630ba75eb206ba6",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/supervision.json": "050da378ab0e429fa92c666dcf4d2579c0180cbb31a276245ab541df8e1e2190",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/request.json": "24e8ab36bfc953983fdba40412cc5a5f04c56b7ae40e1ad79bac1e392002be32",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/result.json": "bce81f2d27f1d55fc10d84883da42176c69bc5931fc17d9e2e964d7cb48c0547",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/supervision.json": "33f77a5a20e8455fec58718a9785ab2607401cb0fa6df24b0eaefeba69d774f7",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/request.json": "6b13b85ccfe88933e1a4ddc436ed79ec5028c3a759f53ce3f5ddcde0fbf4a3e2",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/result.json": "485e8500217ea2ce0b3336281f17745c4e6e6045a9581dcae61ce073142144d2",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/supervision.json": "6ba6b1509c473d832b328fd0a778faa1ca43dea16e928fef101e1c4b0a4f01b2",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/request.json": "5a811d1bfacec4f0736c91672f1fe0e9efa21304463452c3e7880a4fc78f9a02",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/result.json": "0ee771f2a75792203fa4c76297fd64bbb8a0477a32444c4a3f06acffe68a8a2e",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/supervision.json": "54df5af27fd3a60a56221934c63eee992e96542864650e1f90ba906081db0be4",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/request.json": "4a30749e5bccd8df15b88d2fe667fa158fe1e6613987737040a2ca351d0618c2",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/result.json": "7a37c32dedd07150c256aa09a1161fd54b6e8b7ff03669010e76a366039dfe43",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/supervision.json": "3565cae4b81006fd0400a40157f7689274147ca7d6e465ddb7a6674246ee4330",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/request.json": "d33d63fac82d93f4592be671f2cba433950d5caba14f2bd89368c0a809dca322",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/result.json": "9393832e6a6bbf6756babd501afeba991c5586ad8bf77f8fa6525edf1f4b7804",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/supervision.json": "55d526cd9fdaf953a6ac9dae42210a8387a5bd08c925c7723d8ee5f2ec52fabd",
+    "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/request.json": "1cad4cb217e70c0b50a0dccb324742699a708f0623f5d5a34ddb4271c41d7e8c",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/result.json": "b1cb490f7eb636f7a5c872bc8ac271b66a602a8b1502268e8dbf4471ebd89cb6",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/supervision.json": "b94b69a450a5f6b3b93677a08eea7957e35c1711f0f2e9ea001609da003cdf46",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/request.json": "0095157295bf67e37fa29b0a73774b39103d536c01b69e1d261855519deeda25",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/result.json": "d0b07a9765eb2875494d287376c8a329a9fa98c88488243fc209c1668a60a1e1",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/supervision.json": "bb9d9da44d518b861f58863a6c2693da40faf7a9553358d09f2c846296ca640d",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/request.json": "212cfaaf75b4a69aa8f3056626623909ea50d9a80ca34e0359cd038ee9064b43",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/result.json": "204a4f36606ff05ab3c13806f43a62768ec82761b90ff0ff440c445834953e4a",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/supervision.json": "eb5906257c122f752fa7c31a697430d6fa2e5b81bf024279e7b1043c6d9d1988",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/request.json": "47f735f6ae9607bed23af53eb40468744f9a4f3aac431ef722799d400ddbf9cd",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/result.json": "b4a48b394ccea7503b42b1738e24eee5dc2c439544e17b3b388db7190e06331a",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/supervision.json": "85e63192b6428e5bc002aa99cde98e8b6d5bce8119a48c0dc60009b1f1bad98d",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/request.json": "00bbd7b2372de387a9c6c7cf2bb1d5914687654674ac174c52a61e453db5b72b",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/result.json": "dcbe9110d925be8a62ef2539425c5985a54aa8c24471cd28362e3a0fe010bf65",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/supervision.json": "a2d1979d5b5d9436b63d705ac891d99e14b2eae68d2ad4b456e9a4a31b294469",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/request.json": "ec40935ba692aff8f4044bb5e7c990da2f0dbdd8e4b098347fb64718797493ac",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/result.json": "b62b39c40958ccff95fd74113c514c92d698f7013c52e8d1226aa9167b5a8feb",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/supervision.json": "e3b4feadd1a47f7f7141dbe89f67c37b94c5caef851c14f22aa6a5c104f66089",
+    "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/native.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "rows": [
+    {
+      "id": "ordinary-n1-r0",
+      "blocks": 11,
+      "calls_per_block": 10000,
+      "timed_calls": 110000,
+      "moments": 1,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 1.2826319727272728,
+          "median": 1.2695968,
+          "minimum": 1.1572612,
+          "maximum": 1.3851122,
+          "stdev": 0.06109632993404908,
+          "standard_error": 0.018421236587181807
+        },
+        "scalar_masters_us": {
+          "mean": 0.4678085727272727,
+          "median": 0.4777386,
+          "minimum": 0.4126246,
+          "maximum": 0.4927316,
+          "stdev": 0.023901399205991724,
+          "standard_error": 0.0072065430118884565
+        },
+        "outer_total_us": {
+          "mean": 1.7504405454545455,
+          "median": 1.733073,
+          "minimum": 1.5698858,
+          "maximum": 1.8642774,
+          "stdev": 0.08192283732235309,
+          "standard_error": 0.024700664832688075
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 8
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n1-r6",
+      "blocks": 11,
+      "calls_per_block": 996,
+      "timed_calls": 10956,
+      "moments": 210,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 94.16324881343556,
+          "median": 94.05996285140563,
+          "minimum": 92.98765963855422,
+          "maximum": 95.80615562248995,
+          "stdev": 0.9007434308608773,
+          "standard_error": 0.27158436295845095
+        },
+        "scalar_masters_us": {
+          "mean": 0.7858105147864184,
+          "median": 0.7859678714859438,
+          "minimum": 0.7580140562248996,
+          "maximum": 0.8374638554216868,
+          "stdev": 0.02145388709492272,
+          "standard_error": 0.00646859034440968
+        },
+        "outer_total_us": {
+          "mean": 94.94905932822198,
+          "median": 94.84613052208836,
+          "minimum": 93.75586646586345,
+          "maximum": 96.60022590361446,
+          "stdev": 0.9036842378174479,
+          "standard_error": 0.2724710496180702
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 1680
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n2-r1",
+      "blocks": 11,
+      "calls_per_block": 9426,
+      "timed_calls": 103686,
+      "moments": 5,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 8.559876849333564,
+          "median": 8.548089751750478,
+          "minimum": 8.45329206450244,
+          "maximum": 8.67523042647995,
+          "stdev": 0.058556335879547165,
+          "standard_error": 0.01765539956458941
+        },
+        "scalar_masters_us": {
+          "mean": 2.307300358775534,
+          "median": 2.3002167409293444,
+          "minimum": 2.2799496074687036,
+          "maximum": 2.3514692340335244,
+          "stdev": 0.022716960999655603,
+          "standard_error": 0.006849421455726778
+        },
+        "outer_total_us": {
+          "mean": 10.867177208109098,
+          "median": 10.845708147676639,
+          "minimum": 10.734199554423935,
+          "maximum": 11.026699660513474,
+          "stdev": 0.07713582156265703,
+          "standard_error": 0.023257325274467174
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 40
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n2-r6",
+      "blocks": 11,
+      "calls_per_block": 40,
+      "timed_calls": 440,
+      "moments": 210,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 2428.405975,
+          "median": 2394.211575,
+          "minimum": 2333.938525,
+          "maximum": 2529.203625,
+          "stdev": 79.06651931595083,
+          "standard_error": 23.839452550036054
+        },
+        "scalar_masters_us": {
+          "mean": 8.583268181818182,
+          "median": 8.31105,
+          "minimum": 7.85905,
+          "maximum": 9.817775,
+          "stdev": 0.6619150837806642,
+          "standard_error": 0.19957490690701113
+        },
+        "outer_total_us": {
+          "mean": 2436.989243181818,
+          "median": 2402.86965,
+          "minimum": 2341.797575,
+          "maximum": 2539.0214,
+          "stdev": 79.68051785114186,
+          "standard_error": 24.02458007395028
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 1680
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n3-r2",
+      "blocks": 11,
+      "calls_per_block": 58,
+      "timed_calls": 638,
+      "moments": 15,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 1694.2628307210032,
+          "median": 1728.3042413793103,
+          "minimum": 1522.0820689655172,
+          "maximum": 1756.3180862068966,
+          "stdev": 83.79616733073725,
+          "standard_error": 25.26549508235386
+        },
+        "scalar_masters_us": {
+          "mean": 38.54499059561129,
+          "median": 39.69318965517241,
+          "minimum": 34.0256724137931,
+          "maximum": 40.448224137931035,
+          "stdev": 2.4477719111783283,
+          "standard_error": 0.73803100015906
+        },
+        "outer_total_us": {
+          "mean": 1732.8078213166143,
+          "median": 1768.1786379310345,
+          "minimum": 1556.2705172413794,
+          "maximum": 1796.7663103448276,
+          "stdev": 86.02774734405513,
+          "standard_error": 25.938341772702195
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 120
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n3-r3",
+      "blocks": 11,
+      "calls_per_block": 45,
+      "timed_calls": 495,
+      "moments": 35,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 1951.8798060606061,
+          "median": 2001.1990444444446,
+          "minimum": 1827.8788444444444,
+          "maximum": 2032.9363777777778,
+          "stdev": 85.34474208451915,
+          "standard_error": 25.73240793854582
+        },
+        "scalar_masters_us": {
+          "mean": 43.24220808080808,
+          "median": 42.86793333333333,
+          "minimum": 39.589911111111114,
+          "maximum": 51.40262222222222,
+          "stdev": 3.1646746889282293,
+          "standard_error": 0.9541853206099663
+        },
+        "outer_total_us": {
+          "mean": 1995.1220141414142,
+          "median": 2050.4121777777777,
+          "minimum": 1867.4687555555556,
+          "maximum": 2077.046333333333,
+          "stdev": 87.06000624022137,
+          "standard_error": 26.249579540437637
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 280
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n3-r6",
+      "blocks": 11,
+      "calls_per_block": 12,
+      "timed_calls": 132,
+      "moments": 210,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 8502.00159090909,
+          "median": 8516.354333333333,
+          "minimum": 8344.263333333334,
+          "maximum": 8606.168666666666,
+          "stdev": 67.34123444442672,
+          "standard_error": 20.30414614286551
+        },
+        "scalar_masters_us": {
+          "mean": 82.84237878787879,
+          "median": 82.34058333333333,
+          "minimum": 80.39125,
+          "maximum": 87.89633333333333,
+          "stdev": 2.0436306748596413,
+          "standard_error": 0.616177832597293
+        },
+        "outer_total_us": {
+          "mean": 8584.843969696969,
+          "median": 8598.067833333333,
+          "minimum": 8424.654583333333,
+          "maximum": 8690.142416666667,
+          "stdev": 68.30051349808264,
+          "standard_error": 20.59337966015859
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 1680
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n4-r4",
+      "blocks": 11,
+      "calls_per_block": 35,
+      "timed_calls": 385,
+      "moments": 70,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 2368.830651948052,
+          "median": 2324.8299428571427,
+          "minimum": 2271.0868285714287,
+          "maximum": 2486.907142857143,
+          "stdev": 80.0320508460279,
+          "standard_error": 24.130571259901817
+        },
+        "scalar_masters_us": {
+          "mean": 239.05945454545454,
+          "median": 236.9152,
+          "minimum": 228.69917142857142,
+          "maximum": 249.7598,
+          "stdev": 8.787182853916029,
+          "standard_error": 2.649435317334892
+        },
+        "outer_total_us": {
+          "mean": 2607.8901064935067,
+          "median": 2555.9452857142855,
+          "minimum": 2499.786,
+          "maximum": 2736.6669428571427,
+          "stdev": 88.38054046490984,
+          "standard_error": 26.647735590084412
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 560
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n4-r6",
+      "blocks": 11,
+      "calls_per_block": 6,
+      "timed_calls": 66,
+      "moments": 210,
+      "working_bits": 53,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 16531.224045454546,
+          "median": 16572.108,
+          "minimum": 15995.110333333334,
+          "maximum": 16901.788666666667,
+          "stdev": 230.25575177321957,
+          "standard_error": 69.42472131390721
+        },
+        "scalar_masters_us": {
+          "mean": 295.91225757575756,
+          "median": 297.28766666666667,
+          "minimum": 284.8396666666667,
+          "maximum": 309.7513333333333,
+          "stdev": 7.854362738972115,
+          "standard_error": 2.3681794702289687
+        },
+        "outer_total_us": {
+          "mean": 16827.136303030304,
+          "median": 16872.179333333333,
+          "minimum": 16279.95,
+          "maximum": 17203.495333333332,
+          "stdev": 234.74885864415256,
+          "standard_error": 70.77944400789382
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "53": 1680
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "ordinary-n5-r5",
+      "blocks": 5,
+      "calls_per_block": 1,
+      "timed_calls": 5,
+      "moments": 126,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 301690.4702,
+          "median": 301881.607,
+          "minimum": 294281.837,
+          "maximum": 313125.573,
+          "stdev": 7175.909807060127,
+          "standard_error": 3209.1644257987687
+        },
+        "scalar_masters_us": {
+          "mean": 102657.993,
+          "median": 103373.223,
+          "minimum": 95079.621,
+          "maximum": 108457.665,
+          "stdev": 4819.611406849519,
+          "standard_error": 2155.3957461697837
+        },
+        "outer_total_us": {
+          "mean": 404348.4632,
+          "median": 404537.957,
+          "minimum": 396961.228,
+          "maximum": 416935.648,
+          "stdev": 8055.220831043287,
+          "standard_error": 3602.4042703970276
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "2": 3,
+        "3": 3,
+        "4": 9,
+        "5": 106,
+        "111": 1,
+        "113": 4,
+        "114": 4,
+        "115": 5,
+        "116": 13,
+        "117": 12,
+        "118": 8,
+        "119": 17,
+        "120": 17,
+        "121": 12,
+        "122": 20,
+        "123": 10,
+        "124": 2,
+        "125": 1,
+        "128": 761
+      },
+      "output_real_components_below_requested_bits": 121,
+      "largest_magnitude_below_requested_bits_exact": "19/20769187434139310514121985316880384"
+    },
+    {
+      "id": "ordinary-n5-r6",
+      "blocks": 5,
+      "calls_per_block": 1,
+      "timed_calls": 5,
+      "moments": 210,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 900567.012,
+          "median": 892267.248,
+          "minimum": 885380.067,
+          "maximum": 932470.228,
+          "stdev": 19497.716803127758,
+          "standard_error": 8719.64403556671
+        },
+        "scalar_masters_us": {
+          "mean": 103886.1428,
+          "median": 102991.671,
+          "minimum": 99997.689,
+          "maximum": 110411.841,
+          "stdev": 3908.0845279539694,
+          "standard_error": 1747.7485332640504
+        },
+        "outer_total_us": {
+          "mean": 1004453.1548,
+          "median": 994550.916,
+          "minimum": 985377.756,
+          "maximum": 1042882.069,
+          "stdev": 23266.682817916346,
+          "standard_error": 10405.176878357463
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "1": 5,
+        "2": 21,
+        "3": 33,
+        "4": 27,
+        "5": 182,
+        "106": 1,
+        "110": 1,
+        "111": 1,
+        "112": 4,
+        "113": 7,
+        "114": 8,
+        "115": 8,
+        "116": 22,
+        "117": 17,
+        "118": 15,
+        "119": 38,
+        "120": 29,
+        "121": 17,
+        "122": 29,
+        "123": 15,
+        "124": 10,
+        "125": 4,
+        "126": 1,
+        "127": 2,
+        "128": 1183
+      },
+      "output_real_components_below_requested_bits": 268,
+      "largest_magnitude_below_requested_bits_exact": "27/2596148429267413814265248164610048"
+    },
+    {
+      "id": "ordinary-n6-r6",
+      "blocks": 5,
+      "calls_per_block": 1,
+      "timed_calls": 5,
+      "moments": 210,
+      "working_bits": 128,
+      "actual_engine": "AffinePower",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 3322542.1358,
+          "median": 3267032.129,
+          "minimum": 3063482.409,
+          "maximum": 3781902.318,
+          "stdev": 271923.62612305075,
+          "standard_error": 121607.9425398758
+        },
+        "scalar_masters_us": {
+          "mean": 346888.7384,
+          "median": 308117.86,
+          "minimum": 297186.659,
+          "maximum": 493582.337,
+          "stdev": 83081.19836857912,
+          "standard_error": 37155.04144085751
+        },
+        "outer_total_us": {
+          "mean": 3669430.8742,
+          "median": 3598569.476,
+          "minimum": 3360669.068,
+          "maximum": 4275484.655,
+          "stdev": 352495.5525988032,
+          "standard_error": 157640.80347545532
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "1": 18,
+        "2": 51,
+        "3": 47,
+        "4": 32,
+        "5": 33,
+        "6": 29,
+        "106": 1,
+        "108": 1,
+        "109": 1,
+        "110": 2,
+        "111": 5,
+        "112": 6,
+        "113": 18,
+        "114": 17,
+        "115": 14,
+        "116": 30,
+        "117": 26,
+        "118": 29,
+        "119": 26,
+        "120": 23,
+        "121": 3,
+        "122": 5,
+        "123": 3,
+        "128": 1260
+      },
+      "output_real_components_below_requested_bits": 210,
+      "largest_magnitude_below_requested_bits_exact": "1/40564819207303340847894502572032"
+    },
+    {
+      "id": "extended-n1-r6-dot2",
+      "blocks": 11,
+      "calls_per_block": 19,
+      "timed_calls": 209,
+      "moments": 210,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 5775.955234449761,
+          "median": 5617.715105263158,
+          "minimum": 5513.7542631578945,
+          "maximum": 7236.668052631579,
+          "stdev": 489.85051023256057,
+          "standard_error": 147.6954859823229
+        },
+        "scalar_masters_us": {
+          "mean": 16.584296650717704,
+          "median": 16.50226315789474,
+          "minimum": 12.770473684210526,
+          "maximum": 22.753842105263157,
+          "stdev": 2.7008943005726413,
+          "standard_error": 0.8143502721280755
+        },
+        "outer_total_us": {
+          "mean": 5792.539531100479,
+          "median": 5634.217368421053,
+          "minimum": 5528.264947368421,
+          "maximum": 7259.421894736842,
+          "stdev": 492.0449726874187,
+          "standard_error": 148.3571413077126
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "126": 1,
+        "128": 1679
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "extended-n2-r2-dot2",
+      "blocks": 11,
+      "calls_per_block": 27,
+      "timed_calls": 297,
+      "moments": 15,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 4386.781367003367,
+          "median": 3828.3165185185185,
+          "minimum": 3693.8349259259257,
+          "maximum": 6516.365851851851,
+          "stdev": 1062.4201743604415,
+          "standard_error": 320.3317352779588
+        },
+        "scalar_masters_us": {
+          "mean": 78.79343434343434,
+          "median": 65.08255555555556,
+          "minimum": 60.148555555555554,
+          "maximum": 127.89462962962963,
+          "stdev": 25.6724012076127,
+          "standard_error": 7.740520206647108
+        },
+        "outer_total_us": {
+          "mean": 4465.574801346801,
+          "median": 3893.399074074074,
+          "minimum": 3753.9834814814817,
+          "maximum": 6641.91674074074,
+          "stdev": 1087.9433638431854,
+          "standard_error": 328.02726645681395
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "124": 4,
+        "126": 1,
+        "127": 5,
+        "128": 110
+      },
+      "output_real_components_below_requested_bits": 0,
+      "largest_magnitude_below_requested_bits_exact": null
+    },
+    {
+      "id": "extended-n3-r4-dot2",
+      "blocks": 11,
+      "calls_per_block": 2,
+      "timed_calls": 22,
+      "moments": 70,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 75971.33913636363,
+          "median": 73424.3305,
+          "minimum": 71453.2805,
+          "maximum": 86718.296,
+          "stdev": 5865.790490384016,
+          "standard_error": 1768.6023777671442
+        },
+        "scalar_masters_us": {
+          "mean": 6330.358681818182,
+          "median": 5961.795,
+          "minimum": 5857.4885,
+          "maximum": 7646.938,
+          "stdev": 631.39475729904,
+          "standard_error": 190.37268223258428
+        },
+        "outer_total_us": {
+          "mean": 82301.69781818181,
+          "median": 79855.357,
+          "minimum": 77310.769,
+          "maximum": 93955.637,
+          "stdev": 6248.6110846913225,
+          "standard_error": 1884.0271298887988
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "2": 1,
+        "3": 8,
+        "4": 23,
+        "120": 1,
+        "121": 2,
+        "122": 5,
+        "123": 3,
+        "124": 2,
+        "125": 12,
+        "126": 8,
+        "127": 8,
+        "128": 487
+      },
+      "output_real_components_below_requested_bits": 32,
+      "largest_magnitude_below_requested_bits_exact": "5/5316911983139663491615228241121378304"
+    },
+    {
+      "id": "extended-n4-r6-dot2",
+      "blocks": 11,
+      "calls_per_block": 1,
+      "timed_calls": 11,
+      "moments": 210,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 1576770.3276363637,
+          "median": 1574235.986,
+          "minimum": 1548843.954,
+          "maximum": 1603280.946,
+          "stdev": 15131.884683897371,
+          "standard_error": 4562.434897037564
+        },
+        "scalar_masters_us": {
+          "mean": 29516.387272727272,
+          "median": 29233.442,
+          "minimum": 28592.229,
+          "maximum": 30989.102,
+          "stdev": 771.3167155870656,
+          "standard_error": 232.56074001196063
+        },
+        "outer_total_us": {
+          "mean": 1606286.714909091,
+          "median": 1605225.088,
+          "minimum": 1578361.708,
+          "maximum": 1633337.712,
+          "stdev": 15024.850033197592,
+          "standard_error": 4530.162735588662
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "2": 24,
+        "3": 25,
+        "4": 26,
+        "5": 45,
+        "6": 4,
+        "7": 9,
+        "8": 4,
+        "9": 1,
+        "117": 4,
+        "119": 1,
+        "120": 5,
+        "121": 19,
+        "122": 15,
+        "123": 25,
+        "124": 38,
+        "125": 32,
+        "126": 12,
+        "127": 1,
+        "128": 1390
+      },
+      "output_real_components_below_requested_bits": 138,
+      "largest_magnitude_below_requested_bits_exact": "5/41538374868278621028243970633760768"
+    },
+    {
+      "id": "extended-n4-r6-dot3",
+      "blocks": 11,
+      "calls_per_block": 1,
+      "timed_calls": 11,
+      "moments": 210,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 1768280.3134545456,
+          "median": 1765778.656,
+          "minimum": 1725954.196,
+          "maximum": 1794552.366,
+          "stdev": 21078.317156050514,
+          "standard_error": 6355.351747157333
+        },
+        "scalar_masters_us": {
+          "mean": 29042.86118181818,
+          "median": 28855.258,
+          "minimum": 28347.255,
+          "maximum": 30187.093,
+          "stdev": 562.1010773942385,
+          "standard_error": 169.47985163374642
+        },
+        "outer_total_us": {
+          "mean": 1797323.1746363638,
+          "median": 1795288.487,
+          "minimum": 1754809.454,
+          "maximum": 1824073.577,
+          "stdev": 20996.25989108019,
+          "standard_error": 6330.6105508637565
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "1": 1,
+        "2": 24,
+        "3": 26,
+        "4": 17,
+        "5": 36,
+        "117": 5,
+        "118": 3,
+        "119": 11,
+        "120": 9,
+        "121": 6,
+        "122": 36,
+        "123": 14,
+        "124": 29,
+        "125": 15,
+        "126": 1,
+        "127": 1,
+        "128": 1446
+      },
+      "output_real_components_below_requested_bits": 104,
+      "largest_magnitude_below_requested_bits_exact": "5/166153499473114484112975882535043072"
+    },
+    {
+      "id": "extended-n3-r2-h1",
+      "blocks": 11,
+      "calls_per_block": 8,
+      "timed_calls": 88,
+      "moments": 15,
+      "working_bits": 128,
+      "actual_engine": "Generic",
+      "computed_timing_us": {
+        "tirust_exclusive_us": {
+          "mean": 7639.104863636364,
+          "median": 7657.68875,
+          "minimum": 7530.72675,
+          "maximum": 7717.19,
+          "stdev": 63.86700051169458,
+          "standard_error": 19.25662519842975
+        },
+        "scalar_masters_us": {
+          "mean": 5859.15475,
+          "median": 5857.5965,
+          "minimum": 5774.676125,
+          "maximum": 5955.927,
+          "stdev": 54.19890559417459,
+          "standard_error": 16.341584900342855
+        },
+        "outer_total_us": {
+          "mean": 13498.259613636365,
+          "median": 13483.262875,
+          "minimum": 13374.3235,
+          "maximum": 13660.396,
+          "stdev": 102.00865883951124,
+          "standard_error": 30.75676788527541
+        }
+      },
+      "first_final_serialized_outputs_equal": true,
+      "output_real_component_operand_precision_counts": {
+        "4": 8,
+        "123": 1,
+        "125": 2,
+        "126": 2,
+        "127": 7,
+        "128": 100
+      },
+      "output_real_components_below_requested_bits": 8,
+      "largest_magnitude_below_requested_bits_exact": "5/1329227995784915872903807060280344576"
+    }
+  ]
+}

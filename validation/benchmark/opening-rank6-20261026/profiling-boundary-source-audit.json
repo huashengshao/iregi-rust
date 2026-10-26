@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "status": "source_inspected_not_compiled_or_measured",
+  "source_commit": "d2762f5547caac666866db3a383434df737007c7",
+  "files": {
+    "crates/iregi-rust/examples/opening_timing.rs": "387ad70552cfbf29b69e88d1b51566d05577087d52d9c9af14c357901ab5dc51",
+    "crates/iregi-rust/src/dispatch.rs": "3a3c4533a9610c5f781adbaef195e2924d7be5802a444acb9d3b8b086247e7c8",
+    "crates/iregi-rust/src/execution.rs": "4f673f8c89f46445ce62998eedd86729185c69f74c139d4dbdb172e2e716051b",
+    "crates/iregi-rust/src/affine_power.rs": "e8480899a2f03bf4358db613ab37a55ab77edfb0309d8f1db78a61a3204418fc",
+    "crates/iregi-rust/src/mass_taylor.rs": "8e344a6bd475c050aa227451f1a2f173081cb72e498ae028f145c02fc51e2e37",
+    "crates/iregi-rust/src/stability/quadrature/imported_affine.rs": "90e6f0afbeb2bc27c2e622335a5274dd78c16bbb20562dd8002d36b5fd2f1132",
+    "crates/iregi-masters/src/pentagon6.rs": "c892fc2350ab884093e1eef9ec87864e01fee65fbc071fcd266d9958979d15d8",
+    "validation/benchmark/opening-rank6-20261026/make-inputs.py": "90d3e352b09ddcbef864b0a53753d64af7ed4d1240525f0b160ac511c138721f",
+    "validation/benchmark/opening-rank6-20261026/inputs.json": "a065511103c41ad04d14a01b3189c5180aa4d02af0c308ce2438fa3bf6cca43a",
+    "validation/highpoint-seven-point-current-cargo/fixture.json": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2"
+  },
+  "conclusions": [
+    {
+      "source": "crates/iregi-rust/src/execution.rs:151",
+      "finding": "ExecutionProfile documents aggregate nested stages and a non-recursively-added outer total."
+    },
+    {
+      "source": "crates/iregi-rust/src/execution.rs:2022",
+      "finding": "Actual OneLoop evaluate_batch invocation is enclosed in scalar_masters timing; scatter/result inspections follow the stopped stage."
+    },
+    {
+      "source": "crates/iregi-rust/src/execution.rs:2081",
+      "finding": "Actual E6 evaluate_batch including internal quadrature/D0 invokes the same scalar_masters timer."
+    },
+    {
+      "source": "crates/iregi-rust/src/affine_power.rs:866",
+      "finding": "Checked-regular lowpoint/MassTaylor child profiles are summed after actual child reduction."
+    },
+    {
+      "source": "crates/iregi-rust/src/affine_power.rs:1047",
+      "finding": "Packed lowpoint, MassTaylor and recursive AffinePower child profiles are summed exactly once after actual reductions."
+    },
+    {
+      "source": "crates/iregi-rust/src/affine_power.rs:1302",
+      "finding": "Imported parent Workspace profile is summed; its imported master leaves do not trigger new E6 work."
+    },
+    {
+      "source": "crates/iregi-rust/src/affine_power.rs:1332",
+      "finding": "ImportedAffineQuadrature::evaluate propagates already-computed errors; source at stability/quadrature/imported_affine.rs:123 contains coefficient and positive Symbolica evaluator calls, no scalar-master evaluator. Its time belongs in TIRust-exclusive overhead."
+    },
+    {
+      "source": "crates/iregi-rust/src/mass_taylor.rs:611",
+      "finding": "MassTaylor adds unit and projection profile stages rather than entire recursively overlapping totals."
+    },
+    {
+      "source": "crates/iregi-rust/src/dispatch.rs:358",
+      "finding": "Profiling disallows eligible thin wrappers and selects the existing AffinePower workspace for coordinate positive-power N>=6 requests. Report must name actual profiled path; no default-thin timing claim."
+    }
+  ],
+  "formula": "exclusive_ns = outer_reduce_batch_wall_ns - aggregate_nested_scalar_masters_ns; same-call arithmetic means additive",
+  "core_source_changed": false,
+  "mathematical_operations_added": false,
+  "native_execution_performed_for_this_audit": false,
+  "independent_reviewer_status": "pending"
+}
