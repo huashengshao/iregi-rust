@@ -1,0 +1,430 @@
+{
+  "status": "complete128256_DD_context_lifecycle_pass_strict128256_failed_384_active_goal_open",
+  "date": "2026-10-26",
+  "base_commit": "a7ccffb44c706d59e1583a653b562b28f65349d0",
+  "full_goal_complete": false,
+  "new_performance_measurements": 0,
+  "timing_ratio_numerator": "TIRust",
+  "capsule": {
+    "manifest": "validation/e6-dual-rank6-precision-boundary/manifest.json",
+    "sha256": "cd656689a9c02dd92c401a0ad9009be7e7f7e655d1f62d337b44fd66555777fa",
+    "state": "immutable_saved_default_minimal36file_sealedpath_and_payloadscan_PASS",
+    "owner_portable_replay_sha256": "55d022334d59b250053e73ee78b361a55601ff5c77a6418a827003ca8176414f",
+    "owner_payload_scan_sha256": "149927c42bd47f3e4b110134a47d39961b8c07528c2ebef7f28112a0cf467a7a",
+    "independent_source_review_sha256": "44a66d049b28c775c3f0f6be195fa54465cbe8bc72a202d5cda1e8567933794a",
+    "future_final_capsule_inherits_once": true,
+    "source_and_DD_body_duplication": 0
+  },
+  "strict128256_failure": {
+    "state": "actual_complete128256_joint_strict_gate_failed_retained",
+    "working_bits": [
+      128,
+      256
+    ],
+    "same_artifact": true,
+    "artifact_sha256_prefix": "749b2ae3",
+    "requested_bits": 53,
+    "compared_complex_slots": 2520,
+    "failed_complex_slots": 628,
+    "threshold": "2^-80",
+    "exact_threshold": "1/1208925819614629174706176",
+    "threshold_decimal_approx": "8.27180612553e-25",
+    "maximum_normalized_error": "2.921622927722126067454342893505779044647026062107284929198874874180430466144606431044739409107695330E-21",
+    "threshold_unchanged": true,
+    "failed_rows_must_not_be_excluded_or_relabeled": true,
+    "diagnostic_target_path": "target/e6-dual-restored-first-call-precision-pair-diagnostic/comparison.json",
+    "diagnostic_sha256": "dc8510a811e5f68478ca490051c53634382c523ba77f518fabebb894610e1c24",
+    "independent_replay_sha256": "bfe32a752fff61e2372d64e9c056b14c096345e0fecc66f8b82d1053c9f83a72",
+    "target_metadata_only_until_capsule_seal": false,
+    "native_producer_failure": false,
+    "full_objective_met": false,
+    "complete_joint_report_alias": "target/e6-dual-restored-zero-profile-opt3-128-256-joint-comparison.json",
+    "complete_joint_report_sha256": "2472628367171ba81589e18c949a3e2681489d76d2395693a7c23610b1be0b7a",
+    "preliminary_dc851_bfe32_failure_preserved_separate": true,
+    "durable_capsule_manifest": "validation/e6-dual-rank6-precision-boundary/manifest.json",
+    "durable_capsule_sha256": "cd656689a9c02dd92c401a0ad9009be7e7f7e655d1f62d337b44fd66555777fa"
+  },
+  "actual_single_precision_reference_gates": {
+    "Float128": {
+      "state": "actual_complete_DD_mechanism_context_lifecycle_terminalPASS",
+      "DD_rules": 2,
+      "fields_per_rule": 2520,
+      "comparisons": [
+        {
+          "dataset": "PV128_vs_DD_rule0",
+          "complex_slots": 2520,
+          "threshold": "1/10000000000",
+          "failures": 0,
+          "maximum_normalized_error": "1.524358890183329083010755436094326473768311928025089937495639834316562314463955892584571546216487355E-15"
+        },
+        {
+          "dataset": "PV128_vs_DD_rule1",
+          "complex_slots": 2520,
+          "threshold": "1/10000000000",
+          "failures": 0,
+          "maximum_normalized_error": "3.974328662833150491432073656145434571829841351703765473250344338327725325202855575873966657390317666E-15"
+        }
+      ],
+      "raw_controls": [
+        {
+          "dataset": "PV128",
+          "controls": 1806,
+          "failures": 0,
+          "maximum_normalized_raw_residue": "6.541721982665057080506669078543234532308183826546099659537958359578624367713928222656250000000000000E-30",
+          "raw_values_projected": false
+        }
+      ],
+      "mechanism": {
+        "successful_parent_rows": 3,
+        "successful_child_rows": 6,
+        "parent_owning_contexts": 3,
+        "child_owning_contexts": 6,
+        "positive_higher_component_error_indices": [
+          0,
+          1,
+          2
+        ],
+        "actual_specialized_child_rows": 6,
+        "derived_expected_profile_geometry_masks": {
+          "0": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "1": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        "profile_cache_keys_directly_exported": false,
+        "profile_geometry_evidence": "exact captured full-Taylor child inputs + unchanged source-checked classifier + actual analytic flags/counters/owned route histories; no cache-key observation fabricated",
+        "actual_child_algorithm": "Ibp",
+        "requested_child_algorithm": "PassarinoVeltman",
+        "canonical_PV_requests": 0,
+        "IBP_requests": 610
+      },
+      "successful_parent_rows": 3,
+      "successful_child_rows": 6,
+      "fixed_three_calls_complete": true,
+      "duplicate_and_recovery_bit_identical": true,
+      "empty_reset_and_actual_empty_owning_context": true,
+      "invalid_neighbor_null_and_context_refusal": true,
+      "source_artifact": "1f/b069/749b",
+      "native_seconds": 3958.211658039945,
+      "total_seconds": 3959.5950310969492,
+      "native_returncode": 0,
+      "input_pins_root_verified": 237,
+      "owned_group_gone": true,
+      "cleanup_errors": [],
+      "root_review_alias": "target/e6-dual-restored-zero-profile-opt3-128-192g/root-terminal-review.json",
+      "root_review_sha256": "bd3414a25220091358c846e267440e7a705de7dca809cf5f033704bfc5e89631",
+      "durable_capsule_manifest": "validation/e6-dual-rank6-precision-boundary/manifest.json",
+      "validation_duration_not_benchmark": true
+    },
+    "Float256": {
+      "state": "actual_complete_DD_mechanism_context_lifecycle_terminalPASS",
+      "DD_rules": 2,
+      "fields_per_rule": 2520,
+      "comparisons": [
+        {
+          "dataset": "PV256_vs_DD_rule0",
+          "complex_slots": 2520,
+          "threshold": "1/10000000000",
+          "failures": 0,
+          "maximum_normalized_error": "1.524359258264912957293651178371001468230430468168089492392900581554510187641869944122366404926556530E-15"
+        },
+        {
+          "dataset": "PV256_vs_DD_rule1",
+          "complex_slots": 2520,
+          "threshold": "1/10000000000",
+          "failures": 0,
+          "maximum_normalized_error": "3.974329030914739173284225357735412926865698406978390230355134205767933287888278464397026000592550755E-15"
+        }
+      ],
+      "raw_controls": [
+        {
+          "dataset": "PV256",
+          "controls": 1806,
+          "failures": 0,
+          "maximum_normalized_raw_residue": "3.533455229065379832111687182309956291949037091238906259558030215874004993410876657168906269965697405E-68",
+          "raw_values_projected": false
+        }
+      ],
+      "mechanism": {
+        "successful_parent_rows": 3,
+        "successful_child_rows": 6,
+        "parent_owning_contexts": 3,
+        "child_owning_contexts": 6,
+        "positive_higher_component_error_indices": [
+          0,
+          1,
+          2
+        ],
+        "actual_specialized_child_rows": 6,
+        "derived_expected_profile_geometry_masks": {
+          "0": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              0,
+              3
+            ]
+          ],
+          "1": [
+            [
+              1,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            [
+              1,
+              4
+            ]
+          ]
+        },
+        "profile_cache_keys_directly_exported": false,
+        "profile_geometry_evidence": "exact captured full-Taylor child inputs + unchanged source-checked classifier + actual analytic flags/counters/owned route histories; no cache-key observation fabricated",
+        "actual_child_algorithm": "Ibp",
+        "requested_child_algorithm": "PassarinoVeltman",
+        "canonical_PV_requests": 0,
+        "IBP_requests": 610
+      },
+      "successful_parent_rows": 3,
+      "successful_child_rows": 6,
+      "fixed_three_calls_complete": true,
+      "duplicate_and_recovery_bit_identical": true,
+      "empty_reset_and_actual_empty_owning_context": true,
+      "invalid_neighbor_null_and_context_refusal": true,
+      "source_artifact": "1f/b069/749b",
+      "native_seconds": 4490.156807800056,
+      "total_seconds": 4491.542081073974,
+      "native_returncode": 0,
+      "input_pins_root_verified": 248,
+      "owned_group_gone": true,
+      "cleanup_errors": [],
+      "root_review_alias": "target/e6-dual-restored-zero-profile-opt3-256-256g/root-terminal-review.json",
+      "root_review_sha256": "3d3ac05a7868fb4192f795a4bed317edf28ca65e880e90651892dc086fbb1014",
+      "durable_capsule_manifest": "validation/e6-dual-rank6-precision-boundary/manifest.json",
+      "validation_duration_not_benchmark": true
+    }
+  },
+  "future_qualifying_convergence": {
+    "working_bits": [
+      256,
+      384
+    ],
+    "state": "actual384_fullproducer_active_no_result_admitted",
+    "strict_threshold_unchanged": "2^-80",
+    "same_artifact_source_required": "749b/source210/current1f",
+    "requested_bits": 53,
+    "same_original_fixture_and_math": true,
+    "no_core_change_or_new_build": true,
+    "mode384_is_existing_observer_supported": true,
+    "mode192_not_admitted_by_frozen_observer": true,
+    "Float384_launched": true,
+    "actual256384_pair": null,
+    "full384_DD_context_lifecycle_and_terminal_gates": null,
+    "observer_mode_scope": "frozen validation observer restriction, not a limit of arbitrary-precision library APIs",
+    "protocol_sha256_prefix": "3e0f5544",
+    "root_release_sha256_prefix": "1fcbf079",
+    "session_id": 27549,
+    "CPU": 30,
+    "address_space_limit_GiB": 256,
+    "native_cap_seconds": 7200,
+    "target_run_directory": "target/e6-dual-restored-zero-profile-opt3-384-256g",
+    "mutable384_bodies_not_read_or_bound": true,
+    "active_working_bits": 384,
+    "root_cutoff_observation": {
+      "elapsed_seconds_approx": 1443.6,
+      "stage": "first_mapping_done_second_preparing",
+      "outer_tensor_array_returned": false,
+      "observation_not_benchmark_or_qualification": true,
+      "mutable384_bodies_not_read_or_bound": true,
+      "root_verified_active_input_pins": 260
+    }
+  },
+  "retained_history": {
+    "unsuccessful_native_full_witnesses": 10,
+    "b2_de3c_saved_schema_failure_separate": true,
+    "new128256_strict_gate_failure_separate": true,
+    "source403_and_ccee_historical": true,
+    "current1f_source24_c65_wheel10_and_old_ordinary_DD_reference_counts_not_duplicated": true
+  },
+  "qualification_limits": [
+    "API_has_no_fixed_N_ceiling_documented_N<=6_R<=6_families_only",
+    "precision_convergence_is_numerical_not_rigorous_error_or_workingbit_certificate",
+    "unsupported_scalar_Dual_charts_and_historical_physical_R4_scope_retained",
+    "actual_PV_request_IBP_recipe_is_not_new_default_Hybrid_h1_invocation",
+    "performance_optimization_deferred"
+  ],
+  "root_independent_report_review": null,
+  "root_independent_rebuild": null,
+  "report_owner_native_integral_build_or_benchmark_execution": false,
+  "readable_checkpoint": "docs/checkpoints/rank6-dual-precision-boundary-20261026.md",
+  "machine_readable_checkpoint": "docs/data/rank6-dual-precision-boundary-20261026.json",
+  "joint_saved_array_evidence": {
+    "unique_comparisons": [
+      {
+        "dataset": "PV128_vs_DD_rule0",
+        "complex_slots": 2520,
+        "threshold": "1/10000000000",
+        "failures": 0,
+        "maximum_normalized_error": "1.524358890183329083010755436094326473768311928025089937495639834316562314463955892584571546216487355E-15"
+      },
+      {
+        "dataset": "PV128_vs_DD_rule1",
+        "complex_slots": 2520,
+        "threshold": "1/10000000000",
+        "failures": 0,
+        "maximum_normalized_error": "3.974328662833150491432073656145434571829841351703765473250344338327725325202855575873966657390317666E-15"
+      },
+      {
+        "dataset": "PV256_vs_DD_rule0",
+        "complex_slots": 2520,
+        "threshold": "1/10000000000",
+        "failures": 0,
+        "maximum_normalized_error": "1.524359258264912957293651178371001468230430468168089492392900581554510187641869944122366404926556530E-15"
+      },
+      {
+        "dataset": "PV256_vs_DD_rule1",
+        "complex_slots": 2520,
+        "threshold": "1/10000000000",
+        "failures": 0,
+        "maximum_normalized_error": "3.974329030914739173284225357735412926865698406978390230355134205767933287888278464397026000592550755E-15"
+      },
+      {
+        "dataset": "two_rule_difference",
+        "complex_slots": 2520,
+        "threshold": "1/10000000000",
+        "failures": 0,
+        "maximum_normalized_error": "2.449969772649816479004581873615430373305344938448859918571963686927058903599455630450090351740502733E-15"
+      },
+      {
+        "dataset": "PV128_vs_PV256",
+        "complex_slots": 2520,
+        "threshold": "1/1208925819614629174706176",
+        "failures": 628,
+        "maximum_normalized_error": "2.921622927722126067454342893505779044647026062107284929198874874180430466144606431044739409107695330E-21"
+      }
+    ],
+    "comparison_count": 6,
+    "fields_per_comparison": 2520,
+    "passed_comparisons": 5,
+    "failed_comparisons": 1,
+    "raw_control_sets": [
+      {
+        "dataset": "PV128",
+        "controls": 1806,
+        "failures": 0,
+        "maximum_normalized_raw_residue": "6.541721982665057080506669078543234532308183826546099659537958359578624367713928222656250000000000000E-30",
+        "raw_values_projected": false
+      },
+      {
+        "dataset": "PV256",
+        "controls": 1806,
+        "failures": 0,
+        "maximum_normalized_raw_residue": "3.533455229065379832111687182309956291949037091238906259558030215874004993410876657168906269965697405E-68",
+        "raw_values_projected": false
+      },
+      {
+        "dataset": "DD_rule0",
+        "controls": 1806,
+        "failures": 0,
+        "maximum_normalized_raw_residue": "7.429590208310629217706925618912712563530497793312372213796513551783402653255043640871280981081325242E-34",
+        "raw_values_projected": false
+      },
+      {
+        "dataset": "DD_rule1",
+        "controls": 1806,
+        "failures": 0,
+        "maximum_normalized_raw_residue": "5.877901679558088419331416285698389590025574527993972368140052879816188876101003811113847604302094640E-34",
+        "raw_values_projected": false
+      }
+    ],
+    "raw_control_sets_count": 4,
+    "raw_controls_per_set": 1806,
+    "raw_values_projected": false,
+    "strict_failure_is_not_an_additional_native_failure": true
+  },
+  "sealed_source_diagnosis": {
+    "scope": "consistent with precision-dependent cancellation/E6 numerical noise; heuristic consistency, not a causal proof, rigorous bound or achieved-bit certificate; systematic error not excluded",
+    "requested_accuracy_bits": 53,
+    "requested53_does_not_promote_to80bit_consistency": true,
+    "E6_order_both_precisions": 64,
+    "total_box_rows_both_precisions": 2400,
+    "saved128_Q_estimate_approx": "9.99e-21",
+    "strict_difference_approx": "2.9216e-21",
+    "source_amplitude_approx": "1.62e12",
+    "difference_below_reported128_heuristic_estimate": true,
+    "rigorous_remainder_or_achieved_precision_certificate": false,
+    "source_or_formula_change": false,
+    "source_alias": "target/e6-dual-first-pair-precision-diagnosis/analysis.json",
+    "sha256": "1e6845088ebe502cefc0f4d2dedcdf6c4665683097ffb070d15286479aa46284",
+    "all_finite_differences_consistent_with_combined_heuristics": 630,
+    "meaningful_tracked_imaginary_bits": [
+      94,
+      222
+    ],
+    "requested53_heuristic_admission": "2^-34",
+    "E6_relative_target": "2^-36",
+    "interpretation": "consistent with precision-dependent cancellation/E6 numerical noise; not a rigorous bound or guaranteed achieved precision",
+    "original_strict_failure_status_unchanged": true,
+    "durable_capsule_manifest": "validation/e6-dual-rank6-precision-boundary/manifest.json",
+    "durable_report_alias": "target/e6-dual-first-pair-precision-diagnosis/analysis.json",
+    "durable_report_sha256": "1e6845088ebe502cefc0f4d2dedcdf6c4665683097ffb070d15286479aa46284",
+    "systematic_error_excluded": false,
+    "worst_pair_field_tracked_imaginary_bits": [
+      94,
+      222
+    ],
+    "amplitude_is_maximum_relative_to_pair_normalization": true
+  },
+  "capsule_archival_checks_not_new_numeric_comparisons": {
+    "actual_current_sources": 210,
+    "nonbinary_guard_inputs": 483,
+    "outputs_checked": 4,
+    "new_content_objects": 71,
+    "source_and_DD_bodies_duplicated": 0
+  },
+  "historical_top_level_raw_records_preserved": 451,
+  "all_previous_raw_values_timings_and_nested_history_preserved": true,
+  "materialization_cutoff": "root explicit after immutable capsule cd656689 and independent36-file saved replay073e5a55;384 active without qualified arrays",
+  "root_capsule_saved_replay_packet": {
+    "source": "docs/data/rank6-dual-precision-boundary-saved-replays-20261026.json",
+    "sha256": "344c28f66c55dbd7c7b7893a24e3ee3ced620639948b96c271c8f0f464cd6baa",
+    "root_minimal_replay_sha256": "073e5a554dff30be62ae0da43a92341022fe5ff6a34939dffbf3dd43c92370f4",
+    "root_minimal_files": 36,
+    "replay_pass_means_faithful_reproduction_of_failed_strict_gate": true,
+    "new_unique_numeric_passes_from_archival_record": 0,
+    "retained_root_only_scratch_override_harness_failure": true,
+    "scratch_override_failure_is_not_native_math_or_additional_witness_failure": true
+  }
+}
