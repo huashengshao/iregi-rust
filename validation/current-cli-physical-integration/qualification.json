@@ -1,0 +1,195 @@
+{
+  "status": "passed_saved_cli_physical_replay",
+  "source_context_sha256": "e873a0bec5cdb087caa812c6f2b1c668323f3670daed8438d3f538686da0c29c",
+  "cli_tests": 14,
+  "successful_physical_recomputations": 4,
+  "failed_physical_recomputations": 1,
+  "external_tensor_complex_checks": 2800,
+  "madloop_merged_complex_checks": 12,
+  "exact_precision_pair_complex_checks": 568,
+  "cases": [
+    {
+      "case": "gghh",
+      "working_bits": 128,
+      "propagators": 4,
+      "rank": 4,
+      "tensor_moments": 70,
+      "complex_slots_per_reference": 280,
+      "original_modes": [
+        0,
+        1,
+        2
+      ],
+      "tensor_max_normalized_errors": [
+        1.1437190035020692e-13,
+        1.0753967259490199e-13,
+        1.0753967259490199e-13
+      ],
+      "madloop_errors": [
+        4.76539072884342e-15,
+        3.3306690738754696e-16,
+        0.0
+      ],
+      "madloop_group": 2,
+      "graph_factor": "-1/2",
+      "algorithm_requested": "Hybrid",
+      "algorithm_used": "PassarinoVeltman"
+    },
+    {
+      "case": "gghh",
+      "working_bits": 256,
+      "propagators": 4,
+      "rank": 4,
+      "tensor_moments": 70,
+      "complex_slots_per_reference": 280,
+      "original_modes": [
+        0,
+        1,
+        2
+      ],
+      "tensor_max_normalized_errors": [
+        1.1437190035020692e-13,
+        1.0753967259490199e-13,
+        1.0753967259490199e-13
+      ],
+      "madloop_errors": [
+        4.76539072884342e-15,
+        3.3306690738754696e-16,
+        0.0
+      ],
+      "madloop_group": 2,
+      "graph_factor": "-1/2",
+      "algorithm_requested": "Hybrid",
+      "algorithm_used": "PassarinoVeltman"
+    },
+    {
+      "case": "gghhh",
+      "working_bits": 256,
+      "propagators": 5,
+      "rank": 4,
+      "tensor_moments": 70,
+      "complex_slots_per_reference": 280,
+      "original_modes": [
+        1,
+        2
+      ],
+      "tensor_max_normalized_errors": [
+        4.615511659022752e-14,
+        4.615511659022752e-14
+      ],
+      "madloop_errors": [
+        9.290165668833971e-14,
+        5.408870102001824e-18,
+        0.0
+      ],
+      "madloop_group": 5,
+      "graph_factor": "-1/2",
+      "algorithm_requested": "Hybrid",
+      "algorithm_used": "PassarinoVeltman"
+    },
+    {
+      "case": "gghhh",
+      "working_bits": 384,
+      "propagators": 5,
+      "rank": 4,
+      "tensor_moments": 70,
+      "complex_slots_per_reference": 280,
+      "original_modes": [
+        1,
+        2
+      ],
+      "tensor_max_normalized_errors": [
+        4.615511659022752e-14,
+        4.615511659022752e-14
+      ],
+      "madloop_errors": [
+        9.290165668833971e-14,
+        5.408870102001824e-18,
+        0.0
+      ],
+      "madloop_group": 5,
+      "graph_factor": "-1/2",
+      "algorithm_requested": "Hybrid",
+      "algorithm_used": "PassarinoVeltman"
+    }
+  ],
+  "precision_pairs": [
+    {
+      "case": "gghh",
+      "passed": true,
+      "working_bits": [
+        128,
+        256
+      ],
+      "propagators": 4,
+      "max_rank": 4,
+      "moments": 70,
+      "tensor_complex_checks": 280,
+      "physical_complex_checks": 4,
+      "Q": "600",
+      "tolerance": "2^-80",
+      "metric": "L1 complex delta / max(Q^dimension, abs(higher.real), abs(higher.imag))",
+      "tensor_dimension": "4+rank-2N",
+      "physical_dimension": 0,
+      "worst": {
+        "kind": "tensor",
+        "moment": 65,
+        "slot": 3,
+        "dimension": 0,
+        "normalized_difference": {
+          "numerator": "1590306353196066391043830099114260313310211769",
+          "denominator": "200000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "decimal_display": "7.951531766e-36"
+        }
+      },
+      "qualification": "Agreement of independently recomputed represented-input values, not a certified achieved 80-bit accuracy bound. Exact Fraction arithmetic on saved decimal strings."
+    },
+    {
+      "case": "gghhh",
+      "passed": true,
+      "working_bits": [
+        256,
+        384
+      ],
+      "propagators": 5,
+      "max_rank": 4,
+      "moments": 70,
+      "tensor_complex_checks": 280,
+      "physical_complex_checks": 4,
+      "Q": "750",
+      "tolerance": "2^-80",
+      "metric": "L1 complex delta / max(Q^dimension, abs(higher.real), abs(higher.imag))",
+      "tensor_dimension": "4+rank-2N",
+      "physical_dimension": -1,
+      "worst": {
+        "kind": "tensor",
+        "moment": 24,
+        "slot": 3,
+        "dimension": -3,
+        "normalized_difference": {
+          "numerator": "393277619863662552209908378450634077557165069757623317156030792481798087",
+          "denominator": "640000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+          "decimal_display": "6.144962810e-55"
+        }
+      },
+      "qualification": "Agreement of independently recomputed represented-input values, not a certified achieved 80-bit accuracy bound. Exact Fraction arithmetic on saved decimal strings."
+    }
+  ],
+  "preserved_failure": {
+    "case": "gghhh",
+    "working_bits": 128,
+    "requested_accuracy_bits": 53,
+    "reason": "Unstable(\"estimated cancellation exceeds 2^(19-53) with operand-dependent roundoff at configured precision 128 in recurrence pv_node_852, Taylor component 0; this estimate is not a certified error bound\")",
+    "returned_tensor_array": false,
+    "new_original_reference_modes": [],
+    "madloop_comparison": "not_run"
+  },
+  "not_run_in_initial_controller": [
+    "gghhh256 after failed128",
+    "gghhh128/256 pair"
+  ],
+  "not_requested": [
+    "gghhh original IREGI IBP mode0 (historical disagreement retained elsewhere)"
+  ],
+  "scope": "Physical graph spot checks at rank4; agreement is not a certified achieved precision bound; no new native execution or performance measurement."
+}

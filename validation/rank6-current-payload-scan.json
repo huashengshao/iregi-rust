@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "recorded_utc": "2026-10-26T01:10:23.128912+00:00",
+  "status": "passed",
+  "staged_files": 109,
+  "files_and_archive_members": 935,
+  "decoded_bytes": 296845471,
+  "archives": [
+    "validation/affine-power-generalized-current-core/payload.tar.gz",
+    "validation/affine-power-generalized-current-core/sources.tar.gz",
+    "validation/checked-supplied-g-unit-rank6/payload.tar.gz",
+    "validation/current-cli-physical-integration/evidence.tar.gz",
+    "validation/current-cli-physical-integration/sources.tar.gz",
+    "validation/low-n-generalized-rank6-current-cli/payload.tar.gz",
+    "validation/primal-amplitude-memo-current-core/payload.tar.gz",
+    "validation/python-interface/facade-wheel-003/evidence.tar.gz",
+    "validation/python-interface/facade-wheel-003/sources.tar.gz"
+  ],
+  "checks": [
+    "exact local credential bytes absent",
+    "ELF and ar native products absent",
+    "compiled artifact suffixes absent",
+    "archive members regular and safe"
+  ],
+  "failures": [],
+  "scope": "Git index pending current rank-six implementation/report milestone. Scanner receipt itself is added afterward.",
+  "post_scan_additions": [
+    {
+      "path": "crates/iregi-rust/examples/rank7_numeric_jets/jets.rs",
+      "sha256": "c882c76359da295fbba961ca844ba6e366025269afd8ab73991e2bb44b1ba122",
+      "reason": "Example helper-only checked input-size fix staged after archive scan; credential/native checks passed."
+    }
+  ],
+  "receipt_excluded_from_own_scan": "validation/rank6-current-payload-scan.json"
+}
