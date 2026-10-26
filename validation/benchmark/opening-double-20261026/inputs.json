@@ -1,0 +1,3948 @@
+{
+  "schema_version": 2,
+  "suite_id": "opening-double-20261026",
+  "purpose": "Optimistic binary64 timings, with measured accuracy shown independently",
+  "output_scope": "Every cumulative Cartesian tensor through rank R and all native UV/IR/finite slots",
+  "sample_lanes": 1,
+  "input_family": {
+    "name": "E",
+    "fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+    "fixture_sha256": "6c78096e83a399acd111137115505eae10da620b9dd68b6ead56eb2fa06489d2",
+    "metric": "+---",
+    "shifts_time_first": [
+      [
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "1",
+        "0"
+      ],
+      [
+        "0",
+        "0",
+        "0",
+        "1"
+      ],
+      [
+        "1/2",
+        "0",
+        "0",
+        "0"
+      ],
+      [
+        "0",
+        "1",
+        "1",
+        "0"
+      ]
+    ],
+    "masses_squared": [
+      [
+        "1",
+        "0"
+      ],
+      [
+        "2",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ],
+      [
+        "4",
+        "0"
+      ],
+      [
+        "2",
+        "0"
+      ],
+      [
+        "3",
+        "0"
+      ]
+    ],
+    "scale_mu": "3",
+    "preserve_inputs": true,
+    "embedding": "Exact rational strings, exactly representable in all selected binary domains"
+  },
+  "timing_contract": {
+    "api": "Public TensorReductionPlan / TensorWorkspace, explicitly selected algorithm and master policy; all arithmetic f64",
+    "exclusive": "Per-call outer wall time minus the aggregate nested scalar-master wall time",
+    "inclusive": "Per-call wall time around reduce_batch only; does not include subsequent output checks or I/O",
+    "phase_additivity": "Arithmetic means of the same calls; exclusive plus masters equals total",
+    "excluded": [
+      "plan preparation",
+      "workspace construction",
+      "first call/lazy specialization",
+      "warmup",
+      "full-array equality and finite checks",
+      "JSON I/O",
+      "process startup"
+    ],
+    "selection": "Fastest arithmetic mean among the fixed candidate list producing complete finite tensors with measured array-relative error <=1e-3; if none, retain fastest observed timing with a warning and explicit failure/accuracy status",
+    "blocks": "N<=4: three warmup calls, 11 fixed blocks, loop count calibrated once from final warmup for target30ms capped10000 calls. N>=5: one warmup then five one-call blocks fixed in advance.",
+    "precision": "All rows ordinary Rust f64: 53 significant bits. Ordinary N5R5/N5R6/N6R6 requested bits39 (internal 2^(19-bits) target approximately1e-6); remaining rows bits53. No higher-precision fallback or promotion.",
+    "failure_policy": "Successful finite full arrays, internal refusal/Unstable statuses, nonfinite and missing results remain distinct. Refused guarded lanes are null, never unchecked or fabricated zero arrays.",
+    "accuracy": "Array-relative discrepancy E/A: E=max_j |computed_j-reference_j|/mu^(degree_j+4+2h-2sum(powers)), A=max_j |reference_j|/the same weight. All cumulative tensor moments and four Laurent slots. Also retain historical componentwise mixed normalized error."
+  },
+  "validation_notice": "The driver verifies complete finite successful arrays, exact repeated-output equality and input preservation. Independent reference qualification remains separate and is not inferred from repetition.",
+  "cases": [
+    {
+      "id": "ordinary-n1-r0",
+      "table": "ordinary",
+      "label": "N=1, R=0",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 1 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n1-r0",
+        "n": 1,
+        "rank": 0,
+        "powers": [
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n1-r0--native-abc",
+            "n": 1,
+            "rank": 0,
+            "powers": [
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n1-r0--symbolica",
+            "n": 1,
+            "rank": 0,
+            "powers": [
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n1-r6",
+      "table": "ordinary",
+      "label": "N=1, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 1 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n1-r6",
+        "n": 1,
+        "rank": 6,
+        "powers": [
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n1-r6--native-abc",
+            "n": 1,
+            "rank": 6,
+            "powers": [
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n1-r6--symbolica",
+            "n": 1,
+            "rank": 6,
+            "powers": [
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n2-r1",
+      "table": "ordinary",
+      "label": "N=2, R=1",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 2 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n2-r1",
+        "n": 2,
+        "rank": 1,
+        "powers": [
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n2-r1--native-abc",
+            "n": 2,
+            "rank": 1,
+            "powers": [
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n2-r1--symbolica",
+            "n": 2,
+            "rank": 1,
+            "powers": [
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n2-r6",
+      "table": "ordinary",
+      "label": "N=2, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 2 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n2-r6",
+        "n": 2,
+        "rank": 6,
+        "powers": [
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n2-r6--native-abc",
+            "n": 2,
+            "rank": 6,
+            "powers": [
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n2-r6--symbolica",
+            "n": 2,
+            "rank": 6,
+            "powers": [
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n3-r2",
+      "table": "ordinary",
+      "label": "N=3, R=2",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n3-r2",
+        "n": 3,
+        "rank": 2,
+        "powers": [
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n3-r2--native-abc",
+            "n": 3,
+            "rank": 2,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n3-r2--symbolica",
+            "n": 3,
+            "rank": 2,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n3-r3",
+      "table": "ordinary",
+      "label": "N=3, R=3",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n3-r3",
+        "n": 3,
+        "rank": 3,
+        "powers": [
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n3-r3--native-abc",
+            "n": 3,
+            "rank": 3,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n3-r3--symbolica",
+            "n": 3,
+            "rank": 3,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n3-r6",
+      "table": "ordinary",
+      "label": "N=3, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n3-r6",
+        "n": 3,
+        "rank": 6,
+        "powers": [
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n3-r6--native-abc",
+            "n": 3,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n3-r6--symbolica",
+            "n": 3,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n4-r4",
+      "table": "ordinary",
+      "label": "N=4, R=4",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n4-r4",
+        "n": 4,
+        "rank": 4,
+        "powers": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n4-r4--native-abc",
+            "n": 4,
+            "rank": 4,
+            "powers": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n4-r4--symbolica",
+            "n": 4,
+            "rank": 4,
+            "powers": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n4-r6",
+      "table": "ordinary",
+      "label": "N=4, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n4-r6",
+        "n": 4,
+        "rank": 6,
+        "powers": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n4-r6--native-abc",
+            "n": 4,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n4-r6--symbolica",
+            "n": 4,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n5-r5",
+      "table": "ordinary",
+      "label": "N=5, R=5",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 5 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n5-r5",
+        "n": 5,
+        "rank": 5,
+        "powers": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 39,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 1,
+        "repeats": 5,
+        "iterations": 1,
+        "target_block_ns": null,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n5-r5--native-abc",
+            "n": 5,
+            "rank": 5,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n5-r5--symbolica",
+            "n": 5,
+            "rank": 5,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n5-r6",
+      "table": "ordinary",
+      "label": "N=5, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 5 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n5-r6",
+        "n": 5,
+        "rank": 6,
+        "powers": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 39,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 1,
+        "repeats": 5,
+        "iterations": 1,
+        "target_block_ns": null,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n5-r6--native-abc",
+            "n": 5,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n5-r6--symbolica",
+            "n": 5,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "ordinary-n6-r6",
+      "table": "ordinary",
+      "label": "N=6, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 6 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": null,
+      "driver_request": {
+        "id": "ordinary-n6-r6",
+        "n": 6,
+        "rank": 6,
+        "powers": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Hybrid",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 39,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ],
+              [
+                "1/2",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "1",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 1,
+        "repeats": 5,
+        "iterations": 1,
+        "target_block_ns": null,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "ordinary-n6-r6--native-abc",
+            "n": 6,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "ordinary-n6-r6--symbolica",
+            "n": 6,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "thin-hybrid",
+          "request": {
+            "id": "ordinary-n6-r6--thin-hybrid",
+            "n": 6,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Hybrid",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": true
+          }
+        },
+        {
+          "id": "thin-pv",
+          "request": {
+            "id": "ordinary-n6-r6--thin-pv",
+            "n": 6,
+            "rank": 6,
+            "powers": [
+              1,
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "PassarinoVeltman",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 39,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ],
+                  [
+                    "1/2",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 1,
+            "repeats": 5,
+            "iterations": 1,
+            "target_block_ns": null,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "extended-n1-r6-dot2",
+      "table": "extended",
+      "label": "N=1, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 1 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "driver_request": {
+        "id": "extended-n1-r6-dot2",
+        "n": 1,
+        "rank": 6,
+        "powers": [
+          2
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Ibp",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "extended-n1-r6-dot2--native-abc",
+            "n": 1,
+            "rank": 6,
+            "powers": [
+              2
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "extended-n1-r6-dot2--symbolica",
+            "n": 1,
+            "rank": 6,
+            "powers": [
+              2
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "extended-n2-r2-dot2",
+      "table": "extended",
+      "label": "N=2, R=2",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 2 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "driver_request": {
+        "id": "extended-n2-r2-dot2",
+        "n": 2,
+        "rank": 2,
+        "powers": [
+          2,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Ibp",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "extended-n2-r2-dot2--native-abc",
+            "n": 2,
+            "rank": 2,
+            "powers": [
+              2,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "extended-n2-r2-dot2--symbolica",
+            "n": 2,
+            "rank": 2,
+            "powers": [
+              2,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "extended-n3-r4-dot2",
+      "table": "extended",
+      "label": "N=3, R=4",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "driver_request": {
+        "id": "extended-n3-r4-dot2",
+        "n": 3,
+        "rank": 4,
+        "powers": [
+          2,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Ibp",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "extended-n3-r4-dot2--native-abc",
+            "n": 3,
+            "rank": 4,
+            "powers": [
+              2,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "extended-n3-r4-dot2--symbolica",
+            "n": 3,
+            "rank": 4,
+            "powers": [
+              2,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "extended-n4-r6-dot2",
+      "table": "extended",
+      "label": "N=4, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "driver_request": {
+        "id": "extended-n4-r6-dot2",
+        "n": 4,
+        "rank": 6,
+        "powers": [
+          2,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Ibp",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "extended-n4-r6-dot2--native-abc",
+            "n": 4,
+            "rank": 6,
+            "powers": [
+              2,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "extended-n4-r6-dot2--symbolica",
+            "n": 4,
+            "rank": 6,
+            "powers": [
+              2,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "extended-n4-r6-dot3",
+      "table": "extended",
+      "label": "N=4, R=6",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 4 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "positive repeated propagator powers (dotted denominators)",
+      "driver_request": {
+        "id": "extended-n4-r6-dot3",
+        "n": 4,
+        "rank": 6,
+        "powers": [
+          3,
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 0,
+        "algorithm": "Ibp",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ],
+              [
+                "4",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "extended-n4-r6-dot3--native-abc",
+            "n": 4,
+            "rank": 6,
+            "powers": [
+              3,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "extended-n4-r6-dot3--symbolica",
+            "n": 4,
+            "rank": 6,
+            "powers": [
+              3,
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 0,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "1"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ],
+                  [
+                    "4",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    },
+    {
+      "id": "extended-n3-r2-h1",
+      "table": "extended",
+      "label": "N=3, R=2",
+      "input_family": "conditioned massive Cartesian prefix E",
+      "input_fixture": "validation/highpoint-seven-point-current-cargo/fixture.json",
+      "input_sample": "seventh_time_quarter",
+      "input_selection": "first 3 propagators, unchanged shifts/masses/scale",
+      "collier_unsupported_reason": "independent dimension shift D=4+2h-2epsilon with h nonzero",
+      "driver_request": {
+        "id": "extended-n3-r2-h1",
+        "n": 3,
+        "rank": 2,
+        "powers": [
+          1,
+          1,
+          1
+        ],
+        "dimension_shift": 1,
+        "algorithm": "Ibp",
+        "numeric_type": "f64",
+        "working_bits": 53,
+        "requested_bits": 53,
+        "samples": [
+          {
+            "shifts": [
+              [
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1",
+                "0"
+              ]
+            ],
+            "masses_squared": [
+              [
+                "1",
+                "0"
+              ],
+              [
+                "2",
+                "0"
+              ],
+              [
+                "3",
+                "0"
+              ]
+            ],
+            "mu": "3"
+          }
+        ],
+        "warmup": 3,
+        "repeats": 11,
+        "iterations": 1,
+        "target_block_ns": 30000000,
+        "maximum_iterations": 10000
+      },
+      "candidates": [
+        {
+          "id": "native-abc",
+          "request": {
+            "id": "extended-n3-r2-h1--native-abc",
+            "n": 3,
+            "rank": 2,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 1,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "NativeF64Abc",
+            "postconstruction_profiling": false
+          }
+        },
+        {
+          "id": "symbolica",
+          "request": {
+            "id": "extended-n3-r2-h1--symbolica",
+            "n": 3,
+            "rank": 2,
+            "powers": [
+              1,
+              1,
+              1
+            ],
+            "dimension_shift": 1,
+            "algorithm": "Ibp",
+            "numeric_type": "f64",
+            "working_bits": 53,
+            "requested_bits": 53,
+            "samples": [
+              {
+                "shifts": [
+                  [
+                    "0",
+                    "0",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "1",
+                    "0",
+                    "0"
+                  ],
+                  [
+                    "0",
+                    "0",
+                    "1",
+                    "0"
+                  ]
+                ],
+                "masses_squared": [
+                  [
+                    "1",
+                    "0"
+                  ],
+                  [
+                    "2",
+                    "0"
+                  ],
+                  [
+                    "3",
+                    "0"
+                  ]
+                ],
+                "mu": "3"
+              }
+            ],
+            "warmup": 3,
+            "repeats": 11,
+            "iterations": 1,
+            "target_block_ns": 30000000,
+            "maximum_iterations": 10000,
+            "master_policy": "Symbolica",
+            "postconstruction_profiling": false
+          }
+        }
+      ]
+    }
+  ],
+  "prior_input_suite": "validation/benchmark/opening-rank6-20261026/inputs.json",
+  "prior_input_suite_sha256": "a065511103c41ad04d14a01b3189c5180aa4d02af0c308ce2438fa3bf6cca43a",
+  "candidate_policy": "Fixed before running: each row explicit NativeF64Abc and Symbolica master policies under its original algorithm; ordinary N6R6 additionally existing Symbolica thin Hybrid/PV with profiling enabled after construction. NativeF64Abc only selects supported A/B/C masters and retains existing Rust/Symbolica fallback for unsupported scalar families. All candidate attempts retained."
+}

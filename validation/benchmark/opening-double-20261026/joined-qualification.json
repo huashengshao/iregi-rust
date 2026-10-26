@@ -1,0 +1,380 @@
+{
+  "schema_version": 1,
+  "status": "passed_joined_saved_data_selection_and_precision_review",
+  "summary": {
+    "source": "validation/benchmark/opening-double-20261026/summary.json",
+    "sha256": "b8c85fdd8205d9ad2df74b2da739668e02d687b564d7ad7dec57a52256c4b918"
+  },
+  "initial_review": {
+    "source": "validation/benchmark/opening-double-20261026/independent-review.json",
+    "sha256": "6e72d5bc775d1207f6e4221c1f391fbfae2b5ff37fa8fe01728b22aba5af9d03"
+  },
+  "supplemental_review": {
+    "source": "validation/benchmark/opening-double-20261026/supplemental/independent-review.json",
+    "sha256": "17936278ae26c16cd153c08d48da3834fd6ec5b0b55f59dd9395e82dfd5f19e5"
+  },
+  "collier_review": {
+    "source": "validation/benchmark/opening-double-20261026/collier/independent-review.json",
+    "sha256": "76212a6aefa9ac904b87db1ed8fb8c70c373901e8be495c82947dfbf39ebdee9"
+  },
+  "all_tirust_working_types": "f64/53 significant bits",
+  "initial_candidates": 38,
+  "post_hoc_public_permutation_PV_candidates": 4,
+  "tirust_rows": 18,
+  "tirust_three_digit_rows": 16,
+  "collier_rows": 12,
+  "collier_three_digit_rows": 11,
+  "selection": "Fastest observed mean over all independently audited available configurations, preferring complete finite tensors within three relative digits; preserve diagnostic durations if none",
+  "post_hoc_reason": "Added after the fixed IBP portfolio refused N4 rank-six dotted requests at binary64/request53; all original attempts remain retained",
+  "new_comparative_speed_gate": false,
+  "selected_rows": [
+    {
+      "id": "ordinary-n1-r0",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r0/result.json",
+        "reference_sha256": "cb815594a666b872c719d3d5ba17f884b1c1164f0b63fb4de521166ce6489948",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 4,
+        "maximum_componentwise_mixed_error": 0.0,
+        "relative_error": 0.0,
+        "relative_error_squared_exact": "0",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n1-r0/native-abc/result.json"
+    },
+    {
+      "id": "ordinary-n1-r6",
+      "candidate": "symbolica",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n1-r6/result.json",
+        "reference_sha256": "f9071c9ce07895549e24b47db5e87df33909efb1f23a50e9a36ba80d531fa5d1",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 0.0,
+        "relative_error": 0.0,
+        "relative_error_squared_exact": "0",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n1-r6/symbolica/result.json"
+    },
+    {
+      "id": "ordinary-n2-r1",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r1/result.json",
+        "reference_sha256": "244492524f776b0a5ade01a82f8cc56f44e799a162970978ed6fe0c9c726ba71",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 20,
+        "maximum_componentwise_mixed_error": 4.3576253716537394e-15,
+        "relative_error": 4.415197605258389e-16,
+        "relative_error_squared_exact": "24649/126444229342145958741994179792486400",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n2-r1/native-abc/result.json"
+    },
+    {
+      "id": "ordinary-n2-r6",
+      "candidate": "symbolica",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n2-r6/result.json",
+        "reference_sha256": "b9bf41d312867c95683b8845e27b9e8bc7c7a7f4427009cb109a5cbe3c31bd26",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 0.0,
+        "relative_error": 0.0,
+        "relative_error_squared_exact": "0",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n2-r6/symbolica/result.json"
+    },
+    {
+      "id": "ordinary-n3-r2",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r2/result.json",
+        "reference_sha256": "77da016ed393730401e24e847e806afb2a24835567fde8836517f89c9c8ddadb",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 60,
+        "maximum_componentwise_mixed_error": 1.866082841878274e-14,
+        "relative_error": 4.01464726520863e-15,
+        "relative_error_squared_exact": "7930352914800270312050414174225/492036961567016435567146988079472324096550186314925334905521",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n3-r2/native-abc/result.json"
+    },
+    {
+      "id": "ordinary-n3-r3",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r3/result.json",
+        "reference_sha256": "032575699f41eacb1720179b8e28aed93c34c8a729aa317962572f1a5567239c",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 140,
+        "maximum_componentwise_mixed_error": 1.866082841878274e-14,
+        "relative_error": 4.01464726520863e-15,
+        "relative_error_squared_exact": "7930352914800270312050414174225/492036961567016435567146988079472324096550186314925334905521",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n3-r3/native-abc/result.json"
+    },
+    {
+      "id": "ordinary-n3-r6",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n3-r6/result.json",
+        "reference_sha256": "3f6f76e85548161e2e73f20ba76377527bb077500af164fc8630ba75eb206ba6",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 1.866082841878274e-14,
+        "relative_error": 4.01464726520863e-15,
+        "relative_error_squared_exact": "7930352914800270312050414174225/492036961567016435567146988079472324096550186314925334905521",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n3-r6/native-abc/result.json"
+    },
+    {
+      "id": "ordinary-n4-r4",
+      "candidate": "symbolica",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r4/result.json",
+        "reference_sha256": "bce81f2d27f1d55fc10d84883da42176c69bc5931fc17d9e2e964d7cb48c0547",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 280,
+        "maximum_componentwise_mixed_error": 0.0,
+        "relative_error": 0.0,
+        "relative_error_squared_exact": "0",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n4-r4/symbolica/result.json"
+    },
+    {
+      "id": "ordinary-n4-r6",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n4-r6/result.json",
+        "reference_sha256": "485e8500217ea2ce0b3336281f17745c4e6e6045a9581dcae61ce073142144d2",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 2.9120567380631007e-13,
+        "relative_error": 1.6865711583280725e-14,
+        "relative_error_squared_exact": "187210413324345598294992282089/658143601687695169370087575864866110132542237089869070336",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n4-r6/native-abc/result.json"
+    },
+    {
+      "id": "ordinary-n5-r5",
+      "candidate": "symbolica",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r5/result.json",
+        "reference_sha256": "0ee771f2a75792203fa4c76297fd64bbb8a0477a32444c4a3f06acffe68a8a2e",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 504,
+        "maximum_componentwise_mixed_error": 2.228399796005726e-10,
+        "relative_error": 6.317306590338511e-12,
+        "relative_error_squared_exact": "159721216492631954369677878138488108165589894442637000761/4002199194897323322450784265865524671003738950954037917209871643896871478251641",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n5-r5/symbolica/result.json"
+    },
+    {
+      "id": "ordinary-n5-r6",
+      "candidate": "symbolica",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n5-r6/result.json",
+        "reference_sha256": "7a37c32dedd07150c256aa09a1161fd54b6e8b7ff03669010e76a366039dfe43",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 8.675383373969695e-10,
+        "relative_error": 2.4593906650111305e-11,
+        "relative_error_squared_exact": "21786940645384016306298824492735383526013330129811576094608/36019792754075909902057058392789722039033650558586341254888844795071843304264769",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n5-r6/symbolica/result.json"
+    },
+    {
+      "id": "ordinary-n6-r6",
+      "candidate": "symbolica",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/ordinary-n6-r6/result.json",
+        "reference_sha256": "9393832e6a6bbf6756babd501afeba991c5586ad8bf77f8fa6525edf1f4b7804",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 6.671511788690583e-10,
+        "relative_error": 1.230232120771984e-11,
+        "relative_error_squared_exact": "17674204913628782318886002478879585051152089013274958400/116779271520495816048822935878166551788665804232378042236976773997826335806217",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/ordinary-n6-r6/symbolica/result.json"
+    },
+    {
+      "id": "extended-n1-r6-dot2",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n1-r6-dot2/result.json",
+        "reference_sha256": "b1cb490f7eb636f7a5c872bc8ac271b66a602a8b1502268e8dbf4471ebd89cb6",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 840,
+        "maximum_componentwise_mixed_error": 8.747638497368072e-16,
+        "relative_error": 4.157569109949074e-16,
+        "relative_error_squared_exact": "7615832252163462630219364978275105214243897600/44059383443496355947486530115749408884419470230990155409800412841170080958129",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/extended-n1-r6-dot2/native-abc/result.json"
+    },
+    {
+      "id": "extended-n2-r2-dot2",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n2-r2-dot2/result.json",
+        "reference_sha256": "d0b07a9765eb2875494d287376c8a329a9fa98c88488243fc209c1668a60a1e1",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 60,
+        "maximum_componentwise_mixed_error": 9.993391953918394e-15,
+        "relative_error": 5.506146781535963e-16,
+        "relative_error_squared_exact": "6417781198332702032027794950796991895182928889/21168463566805528117262876744371697996175824531261398560784874034335338359801",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/extended-n2-r2-dot2/native-abc/result.json"
+    },
+    {
+      "id": "extended-n3-r4-dot2",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r4-dot2/result.json",
+        "reference_sha256": "204a4f36606ff05ab3c13806f43a62768ec82761b90ff0ff440c445834953e4a",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 280,
+        "maximum_componentwise_mixed_error": 2.172915908715863e-13,
+        "relative_error": 7.011933756075611e-15,
+        "relative_error_squared_exact": "96916133722957913819275125297212093881764075003200/1971153617786993267853915447526258272252736894391007897146303975021966275346961",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/extended-n3-r4-dot2/native-abc/result.json"
+    },
+    {
+      "id": "extended-n4-r6-dot2",
+      "candidate": "pv-permuted-symbolica",
+      "eligible": false,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot2/result.json",
+        "reference_sha256": "b4a48b394ccea7503b42b1738e24eee5dc2c439544e17b3b388db7190e06331a",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": false,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight"
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/supplemental/cases/extended-n4-r6-dot2/pv-permuted-symbolica/result.json"
+    },
+    {
+      "id": "extended-n4-r6-dot3",
+      "candidate": "pv-permuted-symbolica",
+      "eligible": false,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n4-r6-dot3/result.json",
+        "reference_sha256": "dcbe9110d925be8a62ef2539425c5985a54aa8c24471cd28362e3a0fe010bf65",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": false,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight"
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/supplemental/cases/extended-n4-r6-dot3/pv-permuted-symbolica/result.json"
+    },
+    {
+      "id": "extended-n3-r2-h1",
+      "candidate": "native-abc",
+      "eligible": true,
+      "accuracy": {
+        "reference_source": "validation/benchmark/opening-rank6-20261026/cases/extended-n3-r2-h1/result.json",
+        "reference_sha256": "b62b39c40958ccff95fd74113c514c92d698f7013c52e8d1226aa9167b5a8feb",
+        "reference_qualification": "Previously admitted complete TIRust tensor (all18 independently agreed with original IREGI at1e-10); reference is finite-precision, not an exact integral oracle",
+        "reference_comparison_sha256": "5d72855e1ad01690c534672d39c7a12e4e2bbbf043b4215a1b163375c95cae8e",
+        "measured": true,
+        "formula": "E/A with E=max_j |computed-reference|/mu^(degree+4+2h-2sum powers), A=max_j |reference|/same weight",
+        "compared_complex_fields": 60,
+        "maximum_componentwise_mixed_error": 1.2934234646998568e-13,
+        "relative_error": 1.6799242221515657e-14,
+        "relative_error_squared_exact": "7670038824624506509794157412936272288972678627821/27178042796450953446124103557363305949512341097654646497984785368872485376784",
+        "relative_error_at_most_1e6": true,
+        "relative_error_at_most_1e3": true
+      },
+      "result_source": "validation/benchmark/opening-double-20261026/cases/extended-n3-r2-h1/native-abc/result.json"
+    }
+  ]
+}
