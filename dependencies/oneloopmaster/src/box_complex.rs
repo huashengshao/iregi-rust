@@ -2551,6 +2551,31 @@ fn zero_external_tfun_arguments(p: [&Atom; 6], m: [&Atom; 4]) -> [[Atom; 26]; 2]
 }
 
 fn ordered(p: [&Atom; 6], m: [&Atom; 4]) -> Atom {
+    ordered_with_line_sum_policy(p, m, true)
+}
+
+// Keep the original body available for the existing Dual compiler. The
+// ordinary identity below does not supply transverse derivatives of the
+// constant-line branch, so Dual programs retain their prior formula/guards.
+pub(crate) fn with_legacy_ordered_for_dual(map: &FunctionMap) -> Result<FunctionMap, String> {
+    let arguments: Vec<_> = (0..10)
+        .map(|idx| symbolica::symbol!(format!("__olo_boxc_arg_{idx}")).to_atom())
+        .collect();
+    map.with_replaced_body(
+        function("ordered"),
+        ordered_with_line_sum_policy(
+            core::array::from_fn(|idx| &arguments[idx]),
+            core::array::from_fn(|idx| &arguments[idx + 6]),
+            false,
+        ),
+    )
+}
+
+fn ordered_with_line_sum_policy(
+    p: [&Atom; 6],
+    m: [&Atom; 4],
+    preserve_shared_line_sum: bool,
+) -> Atom {
     let dm = mass_directions(m);
     let a = p[2];
     let b = p[1];
@@ -2592,7 +2617,22 @@ fn ordered(p: [&Atom; 6], m: [&Atom; 4]) -> Atom {
     let line1 = [&c + Atom::num(2) * b + (&h + &j) * &alpha, j1.clone(), e1.clone()];
     let line2 = [&c + &h * &alpha, &o1 * &j1, e1.clone()];
     let line3 = [&c + &h * &alpha, -&j1 * &alpha, e1.clone()];
-    let [sums1, sums2, sums3] = [&line1, &line2, &line3].map(sums);
+    let [mut sums1, mut sums2, sums3] = [&line1, &line2, &line3].map(sums);
+    if preserve_shared_line_sum {
+        // Both first lines have the same g+h. For line2 this uses alpha's
+        // defining equation g*alpha^2+j*alpha+b=0. Form its coefficients
+        // from invariants before multiplying alpha: an exactly zero edge
+        // coefficient must keep the constant branch rather than acquire a
+        // rounding residue and a spurious far root. The existing coefficient_sum
+        // retains the original grouped direct sum away from cancellation.
+        let constant = in_order(&[p[5].clone(), -p[2], p[4].clone(), -p[0]]);
+        let slope = in_order(&[p[3].clone(), -p[5], p[0].clone()]);
+        let shared_gh = in_order(&[constant, slope * &alpha]);
+        let first = grouped(&line1[0]);
+        let second = grouped(&line2[0]);
+        sums1[0] = coefficient_sum(&[&first, &line1[1]], &shared_gh);
+        sums2[0] = coefficient_sum(&[&second, &line2[1]], &shared_gh);
+    }
     -call(
         "tfun",
         [
@@ -3022,6 +3062,193 @@ pub(crate) fn supported_kinematics(p: [&Atom; 6]) -> Atom {
 mod tests {
     use super::*;
     use symbolica::prelude::{Complex, Float, RealLike};
+
+
+    #[test]
+    fn ordered_shared_line_sum_matches_root_relation_exactly() {
+        let [g, h, j, b, c, alpha] = ["g", "h", "j", "b", "c", "alpha"]
+            .map(|name| symbolica::symbol!(format!("ordered_gh_proof_{name}")).to_atom());
+        let first = &c + Atom::num(2) * &b + (&h + &j) * &alpha;
+        let first_h = &j + Atom::num(2) * &g * &alpha;
+        let second = &c + &h * &alpha;
+        let second_h: Atom = (Atom::num(1) - &alpha) * &first_h;
+        let shared = &c + Atom::num(2) * &b + &j
+            + (&h + &j + Atom::num(2) * &g) * &alpha;
+        let relation = &g * alpha.pow(2) + &j * &alpha + &b;
+        // Symbolica proves these exact polynomial identities. No numeric
+        // alpha, factorization, handwritten polynomial division or tolerance.
+        assert!((&first + &first_h - &shared).together().is_zero());
+        assert!((&second + &second_h - &shared + Atom::num(2) * relation).together().is_zero());
+
+        let p: [Atom; 6] = core::array::from_fn(|idx|
+            symbolica::symbol!(format!("ordered_gh_invariant_{idx}")).to_atom());
+        let c = &p[5] - &p[1] - &p[2];
+        let h = &p[3] - &p[4] - &p[5] + &p[1];
+        let j = &p[4] - &p[0] - &p[1];
+        let from_coefficients = &c + Atom::num(2) * &p[1] + &j
+            + (&h + &j + Atom::num(2) * &p[0]) * &alpha;
+        let from_invariants = &p[5] - &p[2] + &p[4] - &p[0]
+            + (&p[3] - &p[5] + &p[0]) * &alpha;
+        assert!((from_coefficients - from_invariants).together().is_zero());
+    }
+
+    #[test]
+    fn orthogonal_box_line_sum_coefficients_vanish_exactly() {
+        // Ordered permutation 8 of the retained early failing D0 row.
+        let p: [Atom; 6] = [(1,4),(-7,4),(-3,1),(-1,1),(-2,1),(-3,4)]
+            .map(|q| Atom::num(symbolica::domains::rational::Rational::from(q)));
+        let constant = &p[5] - &p[2] + &p[4] - &p[0];
+        let slope = &p[3] - &p[5] + &p[0];
+        assert!(constant.together().is_zero());
+        assert!(slope.together().is_zero());
+    }
+
+    #[test]
+    fn dual_compiler_keeps_legacy_ordered_body() {
+        let context=crate::OneLoopExpressions::new();
+        let original=context.into_definitions();
+        let remapped=with_legacy_ordered_for_dual(original).unwrap();
+        let arguments: Vec<_>=(0..10)
+            .map(|idx|symbolica::symbol!(format!("__olo_boxc_arg_{idx}")).to_atom()).collect();
+        let call=function("ordered").call(&arguments);
+        let (_,_,body)=remapped.get_definition(call.as_view()).unwrap();
+        let legacy=ordered_with_line_sum_policy(
+            core::array::from_fn(|idx|&arguments[idx]),
+            core::array::from_fn(|idx|&arguments[idx+6]),false);
+        assert_eq!(body,&legacy,"the Dual compiler must retain its previous expression body");
+    }
+
+    /// Capture only: this one copied row is not an independent integral oracle.
+    #[test]
+    #[ignore = "one retained D0 row; requires captured-input and fresh trace TSV paths"]
+    fn trace_captured_orthogonal_line_sums_float256_minimal_diagnostic_only() {
+        use crate::NativeFloat;
+        use std::{fs::OpenOptions, io::Write};
+        use symbolica::{atom::AtomView, domains::{float::{FloatLike, SingleFloat}, rational::Rational}};
+
+        fn calls(root: &Atom, target: Symbol) -> Vec<Atom> {
+            let mut pending = vec![root.as_view()];
+            let mut found = Vec::new();
+            while let Some(view) = pending.pop() {
+                match view {
+                    AtomView::Fun(fun) if fun.get_symbol() == target => {
+                        let value = view.to_owned();
+                        if !found.contains(&value) { found.push(value); }
+                    }
+                    AtomView::Fun(fun) => pending.extend(fun.iter()),
+                    AtomView::Add(add) => pending.extend(add.iter()),
+                    AtomView::Mul(mul) => pending.extend(mul.iter()),
+                    AtomView::Pow(pow) => { let (a,b)=pow.get_base_exp(); pending.extend([a,b]); }
+                    _ => {}
+                }
+            }
+            found
+        }
+        fn arguments(call: &Atom) -> Vec<Atom> {
+            call.as_fun_view().expect("registered helper call").iter().map(|v|v.to_owned()).collect()
+        }
+        fn emit(writer: &mut std::fs::File, label: &str, values: &[Complex<Float>]) {
+            for (index, value) in values.iter().enumerate() {
+                for (part, value) in [("re",&value.re),("im",&value.im)] {
+                    let rational=value.exact_rational().map_or_else(|| "NONFINITE".into(),|r|r.to_string());
+                    writeln!(writer,"VALUE\t{label}\t{index}\t{part}\t{rational}\t{}\t{}\t{}",
+                        value.get_precision(),value.negative_sign(),value.is_finite()).unwrap();
+                }
+            }
+        }
+        // Register the existing definitions before diagnostic symbols so their
+        // relative symbol ordering is not changed by new probe parameter names.
+        let context = crate::OneLoopExpressions::new();
+        let input_path=std::env::var_os("TIRUST_D0_GH_CAPTURED_INPUT_TSV").expect("explicit captured input TSV");
+        let text=std::fs::read_to_string(input_path).unwrap();
+        let mut components=Vec::new();
+        for line in text.lines().filter(|line| !line.trim().is_empty() && !line.starts_with('#')) {
+            let fields: Vec<_>=line.split('\t').collect();
+            assert_eq!(fields.len(),3);
+            let (numerator,denominator)=fields[0].split_once('/').unwrap_or((fields[0],"1"));
+            let rational=Rational::from((
+                numerator.parse::<symbolica::domains::integer::Integer>().unwrap(),
+                denominator.parse::<symbolica::domains::integer::Integer>().unwrap(),
+            ));
+            let bits: u32=fields[1].parse().unwrap();
+            let negative: bool=fields[2].parse().unwrap();
+            let mut value=Float::new(bits).from_rational(&rational);
+            if value.is_zero() && negative { value=-value; }
+            assert_eq!(value.exact_rational(),Some(rational));
+            assert_eq!(value.get_precision(),bits);
+            assert_eq!(value.negative_sign(),negative);
+            components.push(value);
+        }
+        assert_eq!(components.len(),22,"one eleven-argument row, exact re/im components");
+        let input: Vec<_>=components.chunks_exact(2).map(|v|Complex::new(v[0].clone(),v[1].clone())).collect();
+        let output_path=std::env::var_os("TIRUST_D0_GH_TRACE_TSV").expect("explicit fresh output TSV");
+        let mut output=OpenOptions::new().write(true).create_new(true).open(output_path).unwrap();
+        writeln!(output,"META\tpurpose\tone copied early D0 row; no independent numeric agreement claim").unwrap();
+        writeln!(output,"META\ttransverse_Dual_qualified\tfalse; legacy ordered body preserved in compile_dual").unwrap();
+        emit(&mut output,"captured_input",&input);
+        let prototype=Float::new(256);
+        let evaluate = |expressions: &[Atom], parameters: &[Atom], inputs: &[Complex<Float>]| {
+            let exact=context.evaluator(expressions,parameters).unwrap();
+            let mut evaluator=exact.map_coeff_with_prec(&|r|Complex::new(
+                prototype.from_rational(&r.re),prototype.from_rational(&r.im)),256);
+            let mut result=vec![Complex::new(prototype.zero(),prototype.zero());expressions.len()];
+            evaluator.evaluate(inputs,&mut result);
+            result
+        };
+        let parameters: [Atom;11]=core::array::from_fn(|idx|
+            symbolica::symbol!(format!("d0_gh_minimal_parameter_{idx}")).to_atom());
+        let selected=arguments(&general(
+            core::array::from_fn(|idx|&parameters[idx]),
+            core::array::from_fn(|idx|&parameters[idx+6])));
+        assert_eq!(selected.len(),10);
+        // The original source general() calls ordered() with these evaluated
+        // arguments. Materialize that existing function boundary once rather
+        // than substitute its 24-way permutation into every observer output.
+        let selected_values=evaluate(&selected,&parameters,&input);
+        emit(&mut output,"ordered_arguments",&selected_values);
+        writeln!(output,"META\tselected_arguments_complete\ttrue").unwrap();
+        output.flush().unwrap();
+        let ordered_parameters: [Atom;10]=core::array::from_fn(|idx|
+            symbolica::symbol!(format!("d0_gh_minimal_ordered_parameter_{idx}")).to_atom());
+        let p=core::array::from_fn(|idx|&ordered_parameters[idx]);
+        let m=core::array::from_fn(|idx|&ordered_parameters[idx+6]);
+        for (route,preserve) in [("old",false),("fixed",true)] {
+            let ordered=ordered_with_line_sum_policy(p,m,preserve);
+            let tfuns=calls(&ordered,function("tfun"));
+            assert_eq!(tfuns.len(),3);
+            let mut observations=Vec::new();
+            for call in &tfuns {
+                let args=arguments(call);assert_eq!(args.len(),26);
+                // Conic a,b identify the source line; gh is its coefficient
+                // whose exact zero selects the existing constant-line chart.
+                observations.extend([args[0].clone(),args[1].clone(),args[23].clone()]);
+            }
+            let observed=evaluate(&observations,&ordered_parameters,&selected_values);
+            emit(&mut output,&format!("{route}_line_a_b_gh"),&observed);
+        }
+        writeln!(output,"META\tline_sums_complete\ttrue").unwrap();
+        output.flush().unwrap();
+        let full=context.d0(
+            core::array::from_fn(|idx|&parameters[idx]),
+            core::array::from_fn(|idx|&parameters[idx+6]),&parameters[10]);
+        let fixed=evaluate(full.coefficients(),&parameters,&input);
+        emit(&mut output,"full_fixed_D0_finite_single_double",&fixed);
+        writeln!(output,"META\tfull_fixed_complete\ttrue").unwrap();
+        output.flush().unwrap();
+        // The legacy map restores only the previous ordered body, without
+        // vectorization or new neighborhoods: this is an ordinary old-source
+        // diagnostic at the same captured point, not a Dual claim.
+        let legacy=with_legacy_ordered_for_dual(context.into_definitions()).unwrap();
+        let exact=Atom::evaluator_multiple(&full.coefficients().each_ref().map(Atom::as_view),&parameters)
+            .function_map(legacy.into()).direct_translation(true).horner_iterations(0).build().unwrap();
+        let mut evaluator=exact.map_coeff_with_prec(&|r|Complex::new(
+            prototype.from_rational(&r.re),prototype.from_rational(&r.im)),256);
+        let mut old=vec![Complex::new(prototype.zero(),prototype.zero());3];
+        evaluator.evaluate(&input,&mut old);
+        emit(&mut output,"full_legacy_D0_finite_single_double",&old);
+        writeln!(output,"META\tcapture_complete\ttrue; numerical qualification remains separate").unwrap();
+        output.flush().unwrap();
+    }
 
     #[test]
     fn composite_norms_keep_real_comparisons() {

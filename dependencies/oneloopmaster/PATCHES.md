@@ -130,3 +130,52 @@ The frozen pair predates the latest low-relative-precision guard correction,
 so current-source Float/stability checks remain required. Generated native
 kernels and Dual preparation are unchanged; native regeneration and parity
 remain separate qualification steps.
+
+
+## Preserving correlated complex-box line sums
+
+`src/box_complex.rs` now reuses the existing `coefficient_sum` helper for the
+shared `g+h` coefficient of the first two lines in `ordered`. Symbolica proves
+that the two original expressions equal
+`(p5-p2+p4-p0) + (p3-p5+p0)*alpha` using the already imposed alpha quadratic.
+The invariant form retains exact zeros which otherwise arise from cancelling
+irrational expressions. It prevents a spurious far-root branch when a common
+complex mass shift leaves this coefficient identically zero. The existing
+severe-cancellation threshold, root selection, sheets and continuation remain
+unchanged; no new algebra implementation or precision adjustment is introduced.
+
+The first qualification point was copied from an actual failed Float256 E6
+contour row, preserving all 22 real components, tracked precisions and signs.
+The prior result retained only eight and six bits in its real and imaginary
+parts, respectively; the repaired ordinary Symbolica result retains 254 and
+251 bits. Independent fixed order-20 and order-32 positive-F parameter rules
+agree with all three raw OneLOop coefficients at `1e-10`, and with each other
+at `1e-12`. The maximum combined normalized difference is `3.553e-15`.
+The native IREGI phase is divided out symbolically once. Its negative common
+width and positive real F also require a positive raw imaginary part; the
+legacy result violates that sign while the repaired result satisfies it.
+The evidence is recorded in
+`../../target/e6-exact-d0-parameter-anchor/capture-001/receipt.json`
+(`c62b112f917322a3bcd144672dca24b9e8614605d2b11e32fd948a4eef98d041`).
+Ten exact-identity, policy and existing scalar/Dual regression tests also pass.
+
+The unchanged Float256 E6 scalar contour then converges at order 64 with
+600 D0 evaluations and an observed successive-rule estimate of `7.391e-27`.
+All 13,200 represented real input components of the 600 common old/new D0
+rows are identical. Only the 120 formerly unstable pinch-1 finite values
+change; the other 480 finite records and all pole records remain identical.
+This is an actual kernel convergence result, separately from the independent
+one-point value check. It does not certify a quadrature remainder or complete
+parent tensor arrays. The scalar receipt is
+`../../target/ordinary-gh-parent-requalification/e6-proposal/capture-001/receipt.json`
+(`234ec3a42f787d5aab7a355f583ab3b351eb40b7734c4edec3db48319c1787ce`).
+
+`src/expressions.rs` explicitly restores the previous `ordered` helper body
+before all existing Dual preparation. Thus this repair changes the ordinary
+Symbolica evaluator only. A primal zero of the shared coefficient is not a
+certificate that every transverse Taylor component vanishes, so the repair
+must not silently change those Dual germs. Existing seeded-Dual behavior is
+preserved rather than newly certified. Handwritten native and generated
+kernels are unchanged and are not covered by this ordinary Symbolica result.
+The fixed rules provide numerical evidence, not a rigorous quadrature error
+bound or a claim of 256 accurate output bits.

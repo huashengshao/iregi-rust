@@ -1,0 +1,76 @@
+{
+  "status": "passed_independent_capsule_copy_and_minimal_stdlib_replay",
+  "reviewer": "/root/highpoint_generalized_research",
+  "manifest_sha256": "aec684253e59a73944b1e5a8e58c6b385bf9a81d5acf17f81643f6eec3aed2e0",
+  "capsule_files": 5,
+  "archived_aliases": 217,
+  "unique_content_addressed_bodies": 149,
+  "omitted_compiled_identities": 7,
+  "commands": [
+    {
+      "command": [
+        "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+        "-I",
+        "-S",
+        "/shared/external/iregi/iregi-rust/validation/ordinary-complex-box-correlation/check.py"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "c89e6608ad8eef4c7a6411b42bc16b3cdc7e41dfd31d1c70b25d902e8bfaff0a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "command": [
+        "/nix/store/0r6k8xa2kgqyp3r4v2w7yrb80ma2iawm-python3-3.13.12/bin/python3",
+        "-I",
+        "-S",
+        "/shared/external/iregi/iregi-rust/target/ordinary-complex-box-capsule-independent-copy-review/minimal-checkout/validation/ordinary-complex-box-correlation/check.py"
+      ],
+      "returncode": 0,
+      "stdout_sha256": "c89e6608ad8eef4c7a6411b42bc16b3cdc7e41dfd31d1c70b25d902e8bfaff0a",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "replayed_result": {
+    "status": "passed_portable_ordinary_box_and_E6_convergence_saved_evidence",
+    "restored_aliases": 222,
+    "strict_regressions": 10,
+    "copied_input_components": 22,
+    "raw_D0_coefficients_against_anchor": 6,
+    "raw_rule_pairs": 4,
+    "native_and_raw_complex_pole_controls": 12,
+    "maximum_normalized_error": "3.552393062795284766573729228873977884157431977239492411305977829232351354469315905857943523777703865E-15",
+    "old_E6_kernel_returned_success": false,
+    "old_E6_D0_rows": 1240,
+    "new_E6_kernel_returned_success": true,
+    "new_E6_D0_rows": 600,
+    "new_E6_orders": [
+      8,
+      16,
+      32,
+      64
+    ],
+    "new_E6_error_estimate": "7.390538338014988245586011922949218568108930093e-27",
+    "identical_old_new_D0_input_components": 13200,
+    "unchanged_finite_D0_records": 480,
+    "changed_finite_D0_records": 120,
+    "independent_saved_arithmetic_helpers_replayed": true,
+    "independent_top_level_script_reexecuted": false,
+    "preserved_failures": [
+      "initial exact-test E0282 compiler failure",
+      "preflight-only missing file",
+      "447-output observer preparation timeout",
+      "original E6 NonConvergent"
+    ],
+    "E6_or_parent_tensor_qualified": false,
+    "new_Dual_domain_qualified": false,
+    "native_or_generated_backend_qualified": false,
+    "Float256_accuracy_certified": false,
+    "quadrature_error_bound_certified": false,
+    "performance_qualified": false,
+    "compiler_or_integral_producer_or_live_process_probe_executed": false,
+    "manifest_sha256": "aec684253e59a73944b1e5a8e58c6b385bf9a81d5acf17f81643f6eec3aed2e0"
+  },
+  "source_review": "Checker executes preserved stdlib saved arithmetic/parser functions in a disposable tree; independent checker top-level path assumptions are explicitly replaced by unchanged pure helper AST nodes, retaining original full program and failed packaging context. No controllers/native artifacts/compilers/process probes run. Exact test footers and actual artifact hashes are historical receipt evidence only.",
+  "scope": "one ordinary Symbolica D0 correlation repair, independently anchored copied point, and actual E6 convergence; parent tensors/seededDual/native/performance outside scope",
+  "source_sha256": "5b07ddcfcc0f7489a80e2ba3933d83929cf76ba8a3147e988378807b5f936f93"
+}

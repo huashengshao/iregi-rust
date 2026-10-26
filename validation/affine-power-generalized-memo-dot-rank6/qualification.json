@@ -1,0 +1,52 @@
+{
+  "status": "sealed_partial_cohort_Float128_pass_Float256_nonconvergent",
+  "Float128_native_reference_slots_qualified": 840,
+  "Float128_independent_pole_controls": 630,
+  "Float128_maximum_normalized_reference_error": "9.114199742822458673422162967934523158307581665515727329990088389771357224520847087832508668898580840E-16",
+  "Float128_independent_audit_sha256": "90a2a251603209769fb698f1d7c6a167003fcb9eba9b0a40587d4016bcada7a6",
+  "Float256_native_reference_slots_qualified": 0,
+  "precision_pairs_qualified": 0,
+  "full_precision_cohort_qualified": false,
+  "Float256_failure": "E6 terminal0 leaf30 NonConvergent at order128,1240boxrows,error2.3794e-4; no parent tensor moments",
+  "Float256_saved_failure_audit_sha256": "13ea354351af5c0719a1d50e3d398855440407d8174ba476b0ed46a28b497cdc",
+  "actual_child_methods": [
+    {
+      "actual": "Ibp",
+      "notes": [],
+      "powers": [
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "propagators": 5,
+      "requested": "Ibp",
+      "rows": 3
+    },
+    {
+      "actual": "PassarinoVeltman",
+      "notes": [
+        "IBP tensor completion uses PV: reduction preparation: IBP dimension recurrence has a zero epsilon-independent divisor for 5 propagators at shift 1; ordinary four-dimensional tensors may use PV completion, but a standalone shifted scalar is not determined by the available A0-D0 Laurent orders"
+      ],
+      "powers": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "propagators": 5,
+      "requested": "Ibp",
+      "rows": 4
+    }
+  ],
+  "performance_qualified": false,
+  "D6_or_Dual_qualified_by_this_capsule": false,
+  "runtime_caps_are_engineering_bounds": true,
+  "no_AS_acceptance_cap": true,
+  "previous_810s_failure_retained": "target/affine-power-reduction-proposal/numeric/captures/dot-128-001",
+  "prior_full_milestone_manifest": "validation/affine-power-generalized-current-core/manifest.json",
+  "prior_full_milestone_sha256": "0f9207da517720f4919ab8232fb3ea47dd8c50663e93cdd98b7b928b027dfbf3",
+  "independent_failure_audit_checks": 974
+}
