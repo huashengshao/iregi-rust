@@ -320,6 +320,7 @@ def main():
     parser.add_argument("--batch-rounds", type=int, default=7)
     parser.add_argument("--only", default=None)
     parser.add_argument("--seed", type=int, default=20261030)
+    parser.add_argument("--build-record", default="build.json")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
     inputs = json.loads((HERE / "inputs.json").read_text())
@@ -335,7 +336,7 @@ def main():
                           if l.startswith("model name")),
         "uname": " ".join(os.uname()), "target_ns_per_block": TARGET_NS,
         "rounds": {"batch1": args.rounds, "batch32": args.batch_rounds}, "seed": args.seed,
-        "build": json.loads((HERE / "build.json").read_text()),
+        "build": json.loads((HERE / args.build_record).read_text()),
     }
     rows = []
     with open(args.output / "raw.jsonl", "w") as raw:

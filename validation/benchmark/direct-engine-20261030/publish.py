@@ -29,17 +29,27 @@ RECORDS = {
     "direct_engine_20261030_build": ("build.json", True),
     "direct_engine_20261030_inputs": ("inputs.json", False),
 }
+# Later captures append their own records (results.json is append-only).
+LATER = {
+    "002": {
+        "direct_engine_20261030_capture002": ("summary-002.json", True),
+        "direct_engine_20261030_build002": ("build-002.json", True),
+    },
+}
 
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def bind() -> None:
+def bind(capture=None) -> None:
+    global RECORDS
+    if capture:
+        RECORDS = LATER[capture]
     text = RESULTS.read_text()
     existing = json.loads(text)
     additions = {}
-    if "direct_engine_report_updated_on" not in existing:
+    if "direct_engine_report_updated_on" not in existing and not capture:
         additions["direct_engine_report_updated_on"] = REPORT_DATE
     for key, (name, snapshot) in RECORDS.items():
         if key in existing:
@@ -60,7 +70,10 @@ def bind() -> None:
     print(f"bound {len(additions)} records")
 
 
-def seal(independent: Path, pages: int, base_commit: str) -> None:
+def seal(independent: Path, pages: int, base_commit: str, capture=None) -> None:
+    global RECORDS
+    if capture:
+        RECORDS = {**RECORDS, **LATER[capture]}
     proof = json.loads(PROOF.read_text())
     previous_sha = sha256(PROOF)
     pdf = ROOT / "docs/benchmark.pdf"
@@ -93,10 +106,11 @@ def seal(independent: Path, pages: int, base_commit: str) -> None:
                                             f"{independent.relative_to(ROOT) if independent.is_relative_to(ROOT) else independent}")
     proof["byte_identical_rebuild"] = True
     proof["page_count"] = pages
-    proof["direct_engine_checkpoint_20261030"] = {
+    checkpoint = "direct_engine_checkpoint_20261030" + (f"_capture{capture}" if capture else "")
+    proof[checkpoint] = {
         "base_commit": base_commit,
         "previous_proof_sha256": previous_sha,
-        "new_result_records": new_keys + ["direct_engine_report_updated_on"],
+        "new_result_records": new_keys + ([] if capture else ["direct_engine_report_updated_on"]),
         "campaign": str(HERE.relative_to(ROOT)),
         "note": ("Previous proof was stale for HANDOFF.md at the base commit; all listed artifacts are rehashed "
                  "here. Historical result members are preserved byte-for-byte."),
@@ -111,11 +125,12 @@ def main() -> None:
     parser.add_argument("--independent-pdf", type=Path)
     parser.add_argument("--page-count", type=int)
     parser.add_argument("--base-commit")
+    parser.add_argument("--capture", default=None, help="later capture id, e.g. 002")
     args = parser.parse_args()
     if args.action == "bind":
-        bind()
+        bind(args.capture)
     else:
-        seal(args.independent_pdf.resolve(), args.page_count, args.base_commit)
+        seal(args.independent_pdf.resolve(), args.page_count, args.base_commit, args.capture)
 
 
 if __name__ == "__main__":

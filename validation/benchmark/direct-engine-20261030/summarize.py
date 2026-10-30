@@ -7,7 +7,8 @@ ratios with 99% bootstrap intervals, as recorded by run.py. IREGI selects the
 fastest mode whose complete finite lane-0 array is within 1e-3 of the
 reference (the opening-table rule); every mode's outcome is retained.
 
-usage: summarize.py CAPTURE_DIR OUTPUT_JSON
+usage: summarize.py CAPTURE_DIR OUTPUT_JSON [BUILD_RECORD]
+(BUILD_RECORD adds the recorded TIRust source commit and provenance note.)
 """
 import json
 import math
@@ -85,6 +86,11 @@ def main():
         "accuracy_metric": "E/A: dimensionally rescaled whole-array max discrepancy over all moments and four Laurent slots, versus the archived reference tensors admitted against quadruple-precision original IREGI.",
         "rows": rows,
     }
+    if len(sys.argv) > 3:
+        record = json.loads(Path(sys.argv[3]).read_text())["tirust"]
+        snapshot["tirust_source_commit"] = record.get("source_commit", build["tirust"]["git_head"])
+        if "source_note" in record:
+            snapshot["tirust_source_note"] = record["source_note"]
     output.write_text(json.dumps(snapshot, indent=1) + "\n")
 
 

@@ -7,7 +7,9 @@ objects (target/reference, with the documented factorial_pair repair).
 COLLIER: `drivers/collier_batch.f90` linked against the unmodified COLLIER
 1.2.10 archive used by the opening campaigns. All binaries are copied to
 target/direct-engine-20261030/bin and their SHA-256 recorded in build.json.
-Run from the repository root after `source scripts/env.sh`.
+Run from the repository root after `source scripts/env.sh`; an optional
+argument names the build record (default build.json; later captures use
+build-NNN.json so earlier bound records stay unchanged).
 """
 import hashlib
 import json
@@ -36,6 +38,8 @@ def run(argv, **kwargs):
 
 
 def main() -> None:
+    import sys
+    record_name = sys.argv[1] if len(sys.argv) > 1 else "build.json"
     BIN.mkdir(parents=True, exist_ok=True)
     record = {"host": platform.node(), "machine": platform.machine(), "steps": {}}
     gfortran = subprocess.run(["gfortran", "--version"], capture_output=True, text=True).stdout.splitlines()[0]
@@ -79,7 +83,7 @@ def main() -> None:
     record["tirust"] = {"binary": str(tirust.relative_to(ROOT)), "sha256": sha256(tirust), "cargo": " ".join(cargo),
                         "profile": "release (thin LTO, codegen-units=1)", "git_head": head,
                         "source_tree_dirty": bool(dirty)}
-    (HERE / "build.json").write_text(json.dumps(record, indent=1) + "\n")
+    (HERE / record_name).write_text(json.dumps(record, indent=1) + "\n")
     print(json.dumps({k: record[k]["sha256"] for k in ("tirust", "iregi", "collier")}, indent=1))
 
 

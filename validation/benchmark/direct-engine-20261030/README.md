@@ -1,5 +1,9 @@
 # Direct-engine same-session benchmark (30 October 2026)
 
+Two captures: `capture001` (first direct engine, TIRust c063a78, tables below) and
+`capture002` (after lightlike, C0 and kernel optimizations, TIRust 9979308; shown in
+the report).
+
 TIRust's public binary64 default (`TensorReductionPlan::new` + `TensorWorkspace`,
 which now selects the direct numerical engine) against original IREGI and
 COLLIER 1.2.10 on the fixed 18-row opening corpus, in one session, on one pinned
@@ -79,6 +83,33 @@ Rejected IREGI modes (retained in `summary.json`, `iregi_modes`):
 - ordinary-n5-r6 IREGI PV: rejected, unstable/nonfinite lanes
 - ordinary-n6-r6 IREGI PV: rejected, E/A 5.9e-03
 - ordinary-n6-r6 IREGI Hybrid: rejected, E/A 5.9e-03
+
+## Capture 002 (current engine, TIRust source 9979308)
+
+Same protocol, CPU 199, load average 173.16 / 176.90 / 158.57 at start. Batch 1:
+
+| Input | TIRust | E/A | IREGI (mode) | TIRust/IREGI | COLLIER | TIRust/COLLIER |
+|---|---:|---:|---:|---:|---:|---:|
+| N=1, R=0 | 272 ns | 0.0e+00 | 748 ns (PV) | 0.3632 | 401 ns | 0.678 |
+| N=1, R=6 | 2.80 µs | 1.6e-20 | 23.30 µs (Hybrid) | 0.1204 | 4.58 µs | 0.612 |
+| N=2, R=1 | 720 ns | 4.4e-16 | 3.03 µs (Hybrid) | 0.2378 | 1.17 µs | 0.615 |
+| N=2, R=6 | 4.56 µs | 4.4e-16 | 380.49 µs (IBP) | 0.0120 | 8.45 µs | 0.540 |
+| N=3, R=2 | 3.68 µs | 4.4e-15 | 24.82 µs (PV) | 0.1485 | 8.27 µs | 0.446 |
+| N=3, R=3 | 4.30 µs | 4.4e-15 | 65.81 µs (PV) | 0.0653 | 10.52 µs | 0.409 |
+| N=3, R=6 | 8.82 µs | 4.4e-15 | 2.74 ms (IBP) | 0.0032 | 50.57 µs | 0.174 |
+| N=4, R=4 | 15.73 µs | 1.6e-14 | 533.56 µs (Hybrid) | 0.0295 | 49.72 µs | 0.317 |
+| N=4, R=6 | 23.25 µs | 1.6e-14 | 12.54 ms (IBP) | 0.0019 | 266.50 µs | 0.087 |
+| N=5, R=5 | 50.03 µs | 4.7e-12 | 8.66 ms (Hybrid) | 0.0058 | 301.80 µs | 0.166 |
+| N=5, R=6 | 66.94 µs | 1.8e-11 | 46.08 ms (IBP) | 0.0015 | 1.06 ms | 0.063 |
+| N=6, R=6 | 165.76 µs | 8.6e-12 | 200.56 ms (IBP) | 0.0008 | 1.94 ms nonfinite (diagnostic) | no ratio |
+| N=1, R=6 ν1=2 | 3.41 µs | 4.5e-16 | 35.50 µs (IBP) | 0.0962 | outside API | — |
+| N=2, R=2 ν1=2 | 2.00 µs | 2.6e-16 | 27.57 µs (IBP) | 0.0724 | outside API | — |
+| N=3, R=4 ν1=2 | 9.23 µs | 5.7e-15 | 547.14 µs (IBP) | 0.0168 | outside API | — |
+| N=4, R=6 ν1=2 | 42.03 µs | 6.0e-14 | 15.06 ms (IBP) | 0.0028 | outside API | — |
+| N=4, R=6 ν1=3 | 66.28 µs | 8.1e-14 | 18.44 ms (IBP) | 0.0036 | outside API | — |
+| N=3, R=2 D=6 | 4.09 µs | 1.4e-14 | 78.78 µs (IBP) | 0.0520 | outside API | — |
+
+Batch-32 results, all IREGI modes and per-block data: `summary-002.json`, `capture002/`.
 
 ## Reproduce
 
