@@ -22,6 +22,13 @@ fn resolve_dilog<T: symbolica::evaluate::EvaluationDomain>()
     .expect("Symbolica provides complex polylog evaluation")
 }
 
+/// Symbolica's generic `polylog(2, z)` at the precision of `z`: the reference
+/// for the native arbitrary-precision kernel (`native::dilog`).
+#[doc(hidden)]
+pub fn symbolica_dilog_float(z: &C<Float>) -> C<Float> {
+    dilog_float_callback()(std::slice::from_ref(z))
+}
+
 fn dilog_float_callback() -> &'static dyn symbolica::evaluate::ExternalFunction<C<Float>> {
     static CALLBACK: std::sync::OnceLock<Box<dyn symbolica::evaluate::ExternalFunction<C<Float>>>> =
         std::sync::OnceLock::new();
@@ -261,7 +268,7 @@ impl NativeFloat for DoubleFloat {
         // Conversion retains BOTH compensated components; no binary64
         // intermediate is used for the value passed to the dilogarithm.
         let value = C::new(double_to_float(z.re, 160), double_to_float(z.im, 160));
-        let value = dilog_float_callback()(std::slice::from_ref(&value));
+        let value = <Float as NativeFloat>::dilog(&value);
         C::new(value.re.to_double_float(), value.im.to_double_float())
     }
     fn exact_i64(&self) -> Option<i64> {
@@ -318,7 +325,9 @@ impl NativeFloat for Float {
         .into()
     }
     fn dilog(z: &C<Self>) -> C<Self> {
-        dilog_float_callback()(std::slice::from_ref(z))
+        let bits = z.re.get_precision().max(z.im.get_precision());
+        let coefficients = super::dilog::float_coefficients(bits);
+        super::dilog::dilog(z, &coefficients, bits)
     }
     fn exact_i64(&self) -> Option<i64> {
         let rational = self.try_to_rational()?;

@@ -39,6 +39,8 @@ pub use inspection::{
     select_branch_shared,
 };
 pub use native::{NativeEvaluator, NativeFloat, NativeTensorEvaluator, TensorIntegral};
+#[doc(hidden)]
+pub use native::primitives::symbolica_dilog_float;
 pub use precision::PrecisionEvaluator;
 
 symbolica::initialize!(

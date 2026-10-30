@@ -197,3 +197,27 @@ complex masses) agree with the generated code to at most 2.0e-12 relative;
 against 128-bit generated evaluations on 8,000 points both paths stay within
 3e-12 (hand-written max 2.8e-12, generated 1.2e-12 in the worst class, each
 worse on some points). Hand-written 1.71 µs versus generated 3.23 µs per C0.
+
+## Native arbitrary-precision complex dilogarithm (30 October 2026)
+
+`src/native/dilog.rs` replaces Symbolica's generic `polylog(2, z)` evaluation
+behind `NativeFloat::dilog` for MPFR `Float` (at the argument's precision) and
+for `DoubleFloat` (still through a 160-bit `Float`, both limbs retained). It
+ports the algorithm and branch conventions of Symbolica's binary64 kernel
+`dilog_complex_f64`, which the binary64 path keeps using: the maps to
+`|z| <= 1, Re z <= 1/2` (via `1-z` and `1/z`), `log1p` near the origin and one,
+an exactly real `x > 1` with imaginary part `-pi ln x`, a negative zero at
+`x = -1`, and the Bernoulli series in `u = -ln(1-z)`, here summed to the
+working precision with exact coefficients `B_2k/(2k+1)!` from the tangent
+numbers (Brent and Harvey), rounded once per precision and thread.
+
+Validation (`iregi-rust/crates/iregi-rust/examples/direct_tier_profile.rs`,
+`DILOG_COST=1`): 636 points covering every argument map, the real axis, the
+branch point and the neighbourhoods of 0 and 1 agree with Symbolica's
+`polylog(2, z)` at the same precision to relative 1.5e-31 (106 bits),
+1.0e-47 (160), 5.8e-77 (256) and 1.5e-153 (512), with identical signs of zero
+imaginary parts. Unit tests check the tangent numbers, the first coefficients
+and the binary64 instance against `dilog_complex_f64`. Cost per call:
+15/21/34/73 µs at 106/160/256/512 bits versus 198/292/468/1058 µs for the
+generic evaluation; a four-point box with masses at 256 bits drops from 40 ms
+to 7 ms of master evaluation.
