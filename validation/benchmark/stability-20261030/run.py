@@ -18,7 +18,9 @@ Codes (all binary64 inputs and outputs):
                   COLLIER flags as inaccurate still return values, which are
                   scored, and the flag is counted.
 Reference: quadruple-precision original IREGI, IBP and PV modes on the same
-binary64 inputs. A point's reference is the IBP array when the two quad modes
+binary64 inputs. Reference checks use all printed digits (60-digit decimal
+arithmetic); the binary64 codes are scored against the reference rounded to
+binary64. A point's reference is the IBP array when the two quad modes
 agree to E/A <= 1e-20; otherwise the quad mode that agrees with the TIRust
 256-bit direct evaluation to 1e-20 is used, and points where neither agrees
 are excluded (counted). Only per-point E/A values are kept (deltas.jsonl);
@@ -29,6 +31,7 @@ usage: run.py POINTS_JSON OUTPUT_DIR [--workers N] [--chunk N] [--only ID]
 import argparse
 import json
 import math
+from decimal import Decimal, getcontext
 import os
 import subprocess
 import sys
@@ -79,6 +82,32 @@ def array_error(moments, reference, rank, n, mu):
             error = max(error, math.hypot(a[0] - b[0], a[1] - b[1]) / weight)
             amplitude = max(amplitude, math.hypot(b[0], b[1]) / weight)
     return error / amplitude if amplitude else (0.0 if error == 0 else float("inf"))
+
+
+getcontext().prec = 60
+
+
+def exact_error(moments, reference, rank, n, mu):
+    """E/A in 60-digit decimal arithmetic on the printed digits (quad strings,
+    256-bit strings), for comparing high-precision references."""
+    if moments is None or reference is None:
+        return None
+    base = 4 - 2 * n
+    scale = Decimal(repr(mu))
+    error = amplitude = Decimal(0)
+    for m, monomial in enumerate(basis(rank)):
+        weight = scale ** (sum(monomial) + base)
+        for slot in range(4):
+            a, b = moments[m][slot], reference[m][slot]
+            if a is None or b is None or None in a or None in b:
+                return None
+            a = [Decimal(str(x).strip()) for x in a]
+            b = [Decimal(str(x).strip()) for x in b]
+            if not all(x.is_finite() for x in a + b):
+                return None
+            error = max(error, ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2).sqrt() / weight)
+            amplitude = max(amplitude, (b[0] ** 2 + b[1] ** 2).sqrt() / weight)
+    return float(error / amplitude) if amplitude else (0.0 if error == 0 else float("inf"))
 
 
 def results(argv, text, timeout=7200):
@@ -153,8 +182,9 @@ def chunk_job(integral, start, points):
         record = {"integral": integral["id"], "index": start + k}
         d256 = t[k]["direct256"]["moments"]
         e = lambda a, b: array_error(a, b, rank, n, mu)
-        spread = {"quadIBP_quadPV": e(q_pv[k], q_ibp[k]), "direct256_quadIBP": e(d256, q_ibp[k]),
-                  "direct256_quadPV": e(d256, q_pv[k])}
+        x = lambda a, b: exact_error(a, b, rank, n, mu)
+        spread = {"quadIBP_quadPV": x(q_pv[k], q_ibp[k]), "direct256_quadIBP": x(d256, q_ibp[k]),
+                  "direct256_quadPV": x(d256, q_pv[k])}
         record["reference_checks"] = spread
         ok = lambda x: x is not None and math.isfinite(x) and x <= REFERENCE_AGREEMENT
         if ok(spread["quadIBP_quadPV"]):

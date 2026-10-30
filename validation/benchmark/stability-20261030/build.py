@@ -71,9 +71,12 @@ def main() -> None:
     shutil.copy2(built, tirust)
     head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True, text=True).stdout.strip()
     dirty = subprocess.run(["git", "status", "--porcelain", "--untracked-files=no"], cwd=ROOT, capture_output=True,
-                           text=True).stdout.strip()
+                           text=True).stdout.rstrip("\n")
+    changed = [line[3:] for line in dirty.splitlines()]
     record["tirust"] = {"binary": str(tirust.relative_to(ROOT)), "sha256": sha256(tirust), "git_head": head,
-                        "tracked_changes": bool(dirty), "cargo": " ".join(cargo)}
+                        "tracked_changes": changed,
+                        "source_changes": [c for c in changed if c.startswith(("crates/", "dependencies/", "Cargo"))],
+                        "cargo": " ".join(cargo)}
     (HERE / "build.json").write_text(json.dumps(record, indent=1) + "\n")
     print(json.dumps(record, indent=1))
 
