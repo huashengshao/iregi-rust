@@ -11,20 +11,33 @@ rescaled whole-array max discrepancy, weights mu^(rank+4-2N)).
 Codes (all binary64 inputs and outputs):
   tirust          public TIRust default (direct engine; lanes it refuses are
                   rerun at higher precision automatically)
-  tirust-direct64 TIRust direct engine in binary64 alone (refusals reported)
-  iregi-ibp/-pv   original IREGI, binary64, IBP and PV modes
+  tirust-binary64 TIRust in binary64 alone: the direct engine's array unless
+                  TIRust's checks refused the lane (counted as no array)
+  iregi-ibp/-pv   original IREGI, binary64, IBP and PV modes, with IREGI's
+                  default on-shell snapping (as in MadLoop)
   collier-coli/-dd COLLIER 1.2.10, binary64, COLI and DD branches
-                  (requested accuracy 1e-10, critical 1e-3, TenRed 6); lanes
+                  (requested accuracy 1e-10, critical 1e-3, TenRed 6), with
+                  massless invariants passed as exact zeros; lanes
                   COLLIER flags as inaccurate still return values, which are
                   scored, and the flag is counted.
-Reference: quadruple-precision original IREGI, IBP and PV modes on the same
-binary64 inputs. Reference checks use all printed digits (60-digit decimal
-arithmetic); the binary64 codes are scored against the reference rounded to
-binary64. A point's reference is the IBP array when the two quad modes
-agree to E/A <= 1e-20; otherwise the quad mode that agrees with the TIRust
-256-bit direct evaluation to 1e-20 is used, and points where neither agrees
-are excluded (counted). Only per-point E/A values are kept (deltas.jsonl);
-raw arrays stay under target/.
+Massless legs are lightlike only to binary64 rounding (|p^2| ~ 1e-16 s); every
+code treats them as exactly lightlike: TIRust by its lightlike tolerance,
+IREGI and quad IREGI by on-shell snapping, COLLIER through exact zero
+invariants. Reference: the TIRust direct engine at 256 bits on the same binary64 inputs,
+accepted per point only when an independent quadruple-precision original
+IREGI array (IBP or PV mode, whichever agrees better) confirms it to
+E/A <= 1e-9 (typically 6e-17). Quad IREGI alone is not usable as the
+reference here: its IREGI-native normalization carries a binary64 pi (every
+array is off by a uniform ~6.3e-17), quad PV fails on the rank-6 box (rank
+above N), quad IBP on the hexagon, and quad PV keeps only 1e-12..1e-10 on
+some hexagon points. Per point, COLLIER's binary64 arrays (independent of
+both) are compared with the 256-bit and with the quad array
+(record["arbitration"]). Without a 256-bit array, the quad IBP array is used when both quad
+modes agree to 1e-15. Points with neither are excluded (counted). Every code
+is also scored against the confirming quad array (delta_quad). Reference
+checks use all printed digits (60-digit decimal arithmetic); codes are scored
+against the reference rounded to binary64. Only per-point E/A values are kept
+(deltas-*.jsonl); raw arrays stay under target/.
 
 usage: run.py POINTS_JSON OUTPUT_DIR [--workers N] [--chunk N] [--only ID]
 """
@@ -42,11 +55,12 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[2]
 BIN = ROOT / "target/stability-20261030/bin"
-TIRUST = BIN / "tirust-stability"
+TIRUST = Path(os.environ.get("TIRUST_STABILITY_DRIVER", BIN / "tirust-stability"))
 COLLIER = BIN / "collier-physical"
-IREGI = ROOT / "target/direct-engine-20261030/bin/iregi-general"
+IREGI = BIN / "iregi-physical"
 QUAD = ROOT / "target/quad-iregi-source-audit/build-v6-001/iregi-reference-quad"
-REFERENCE_AGREEMENT = 1e-20
+CONFIRMATION = 1e-9
+QUAD_AGREEMENT = 1e-15
 COLLIER_CONFIG = {"requested_accuracy": "1e-10", "critical_accuracy": "1e-3", "direct_tensor_threshold": 6,
                   "argument_permutation": 0}
 
@@ -138,12 +152,19 @@ def collier(points, integral, mode):
     return res[0]["lanes"] if res else None
 
 
+def exact(x):
+    """The exact decimal expansion of a binary64 value. The quad build reads
+    its inputs directly in quadruple precision, so a shortest round-trip
+    decimal would not be the binary64 value the other codes evaluate."""
+    return format(Decimal(x), "f")
+
+
 def quad(points, integral, mode):
     n, rank, mu = integral["n"], integral["rank"], integral["mu"]
     text = ""
     for point in points:
-        text += f"EVAL q tensor {mode} {n} {rank} 0 {mu!r} 0 1e-12\n" + "".join(
-            " ".join(repr(x) for x in shift) + f" {m!r} 0.0 1\n"
+        text += f"EVAL q tensor {mode} {n} {rank} 0 {exact(mu)} 1 1e-12\n" + "".join(
+            " ".join(exact(x) for x in shift) + f" {exact(m)} 0.0 1\n"
             for shift, m in zip(point, integral["masses_squared"]))
     res, _ = results([str(QUAD)], text + "QUIT\n")
     out = [r.get("moments") for r in res]
@@ -153,7 +174,9 @@ def quad(points, integral, mode):
 def tirust(points, integral):
     with tempfile.TemporaryDirectory() as tmp:
         source, sink = Path(tmp) / "points.json", Path(tmp) / "out.jsonl"
-        chunk = dict(integral, points=points)
+        # Decimal strings: the driver parses them with correct rounding.
+        chunk = dict(integral, mu=repr(integral["mu"]), masses_squared=[repr(m) for m in integral["masses_squared"]],
+                     points=[[[repr(x) for x in shift] for shift in point] for point in points])
         source.write_text(json.dumps({"integrals": [chunk]}))
         subprocess.run([str(TIRUST), str(source), str(sink)], check=True, capture_output=True, timeout=7200)
         return [json.loads(line) for line in sink.read_text().splitlines()]
@@ -186,30 +209,45 @@ def chunk_job(integral, start, points):
         spread = {"quadIBP_quadPV": x(q_pv[k], q_ibp[k]), "direct256_quadIBP": x(d256, q_ibp[k]),
                   "direct256_quadPV": x(d256, q_pv[k])}
         record["reference_checks"] = spread
-        ok = lambda x: x is not None and math.isfinite(x) and x <= REFERENCE_AGREEMENT
-        if ok(spread["quadIBP_quadPV"]):
-            reference, record["reference"] = q_ibp[k], "quad-ibp (quad modes agree)"
-        elif ok(spread["direct256_quadIBP"]):
-            reference, record["reference"] = q_ibp[k], "quad-ibp (agrees with 256-bit)"
-        elif ok(spread["direct256_quadPV"]):
-            reference, record["reference"] = q_pv[k], "quad-pv (agrees with 256-bit)"
+        finite = lambda v: v is not None and math.isfinite(v)
+        confirm = min(((spread[f"direct256_{mode}"], mode, q) for mode, q in (("quadIBP", q_ibp[k]), ("quadPV", q_pv[k]))
+                       if finite(spread[f"direct256_{mode}"])), default=None, key=lambda c: c[0])
+        quad_reference = None
+        if d256 is not None and confirm is not None and confirm[0] <= CONFIRMATION:
+            reference, record["reference"] = d256, f"256-bit, confirmed by {confirm[1]}"
+            quad_reference = confirm[2]
+        elif finite(spread["quadIBP_quadPV"]) and spread["quadIBP_quadPV"] <= QUAD_AGREEMENT:
+            reference, record["reference"] = q_ibp[k], "quadIBP=quadPV (no 256-bit array)"
+            quad_reference = q_ibp[k]
         else:
             record["reference"] = None
             records.append(record)
             continue
         delta, flagged = {}, {}
         default = t[k]["default"]
-        delta["tirust"] = e(default["moments"], reference) if default["status"] == "success" else None
+        arrays = {}
+        arrays["tirust"] = default["moments"] if default["status"] == "success" else None
         flagged["tirust"] = bool(default.get("fallback_used"))
         record["tirust_diagnostics"] = default.get("diagnostics")
+        # Binary64 only: the direct engine's first evaluation, unless TIRust's
+        # own checks (conditioning gates, N>=5 loop-rotation test) sent the
+        # lane to the precision rescue.
         direct = t[k]["direct64"]
-        delta["tirust-direct64"] = e(direct["moments"], reference) if direct["status"] == "success" else None
-        flagged["tirust-direct64"] = direct["status"] != "success"
+        kept = direct["status"] == "success" and not default.get("fallback_used")
+        arrays["tirust-binary64"] = direct["moments"] if kept else None
+        flagged["tirust-binary64"] = not kept
         for name, lanes in codes.items():
-            values, flag = lane_values(lanes[k] if lanes else None)
-            delta[name] = e(values, reference) if values is not None else None
-            flagged[name] = flag
-        record["delta"], record["flagged"] = delta, flagged
+            arrays[name], flagged[name] = lane_values(lanes[k] if lanes else None)
+        delta = {name: e(values, reference) if values is not None else None for name, values in arrays.items()}
+        delta_quad = {name: e(values, quad_reference) if values is not None else None
+                      for name, values in arrays.items()}
+        record["delta"], record["delta_quad"], record["flagged"] = delta, delta_quad, flagged
+        collier_finite = [name for name in ("collier-coli", "collier-dd")
+                          if delta[name] is not None and math.isfinite(delta[name])]
+        record["arbitration"] = {
+            "collier_vs_reference": min((delta[name] for name in collier_finite), default=None),
+            "collier_vs_quad": min((delta_quad[name] for name in collier_finite), default=None),
+        }
         records.append(record)
     return records
 

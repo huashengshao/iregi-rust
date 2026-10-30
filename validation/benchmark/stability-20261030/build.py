@@ -3,9 +3,9 @@
 
 TIRust: release example `stability_driver` (same features as the timing
 driver of direct-engine-20261030). COLLIER: `drivers/collier_physical.f90`
-linked against the unmodified COLLIER 1.2.10 archive. Original IREGI
-(binary64) reuses the frozen timing driver of direct-engine-20261030; the
-reference is the quadruple-precision original IREGI build
+linked against the unmodified COLLIER 1.2.10 archive; original IREGI
+(binary64): `drivers/iregi_physical.f90` linked against the original-IREGI
+objects of the timing campaigns (same repair). The quad reference is the quadruple-precision original IREGI build
 target/quad-iregi-source-audit/build-v6-001. Binaries go to
 target/stability-20261030/bin; SHA-256 sums, toolchains and the TIRust git
 head are recorded in build.json. Run from the repository root after
@@ -25,7 +25,6 @@ ROOT = HERE.parents[2]
 OUT = ROOT / "target/stability-20261030"
 BIN = OUT / "bin"
 FFLAGS = ["-O3", "-std=legacy", "-fallow-argument-mismatch"]
-IREGI = ROOT / "target/direct-engine-20261030/bin/iregi-general"
 QUAD = ROOT / "target/quad-iregi-source-audit/build-v6-001/iregi-reference-quad"
 
 
@@ -57,8 +56,19 @@ def main() -> None:
     record["collier"] = {"binary": str(collier.relative_to(ROOT)), "sha256": sha256(collier),
                          "flags": FFLAGS + ["-Wtabs"], "driver_sha256": sha256(driver),
                          "archive_sha256": sha256(collier_source / "libcollier.a")}
-    record["iregi"] = {"binary": str(IREGI.relative_to(ROOT)), "sha256": sha256(IREGI),
-                       "provenance": "validation/benchmark/direct-engine-20261030/build.json"}
+    reference = ROOT / "target/reference"
+    objects = sorted(p for p in (reference / "objects").glob("*.o")
+                     if p.name not in {"driver.o", "factorial_table.o", "funlib.o"})
+    objects.append(reference / "patched/funlib.o")
+    iregi_dir = OUT / "iregi"
+    iregi_dir.mkdir(exist_ok=True)
+    iregi = BIN / "iregi-physical"
+    iregi_driver = HERE / "drivers/iregi_physical.f90"
+    record["steps"]["iregi_link_s"] = run(["gfortran", *FFLAGS, "-J", str(iregi_dir), "-I", str(reference / "objects"),
+                                           str(iregi_driver), *map(str, objects), "-o", str(iregi)])
+    record["iregi"] = {"binary": str(iregi.relative_to(ROOT)), "sha256": sha256(iregi), "flags": FFLAGS,
+                       "driver_sha256": sha256(iregi_driver),
+                       "objects": {str(p.relative_to(ROOT)): sha256(p) for p in objects}}
     record["quad_reference"] = {"binary": str(QUAD.relative_to(ROOT)), "sha256": sha256(QUAD),
                                 "provenance": "target/quad-iregi-source-audit/build-v6-001/build.json"}
 

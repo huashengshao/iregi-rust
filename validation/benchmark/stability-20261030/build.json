@@ -1,0 +1,44 @@
+{
+ "host": "itphlies",
+ "machine": "x86_64",
+ "steps": {
+  "collier_link_s": 1.068,
+  "tirust_cargo_s": 360.348
+ },
+ "toolchains": {
+  "gfortran": "GNU Fortran (GCC) 15.2.0",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)"
+ },
+ "collier": {
+  "binary": "target/stability-20261030/bin/collier-physical",
+  "sha256": "638b10bf9b9ab6d3ac3fc7a99d47d4549265fb5130b5fcfd166f3f3e5b49b927",
+  "flags": [
+   "-O3",
+   "-std=legacy",
+   "-fallow-argument-mismatch",
+   "-Wtabs"
+  ],
+  "driver_sha256": "9e5f0c89192a2ea967e50828b999f24e60c0cce6431de3f51c0a79801d806e66",
+  "archive_sha256": "4f1e6dc1f2eeb399b0835cdd4244d6e51c72b2fcb7d2e1e7e2980288d6c7fe2f"
+ },
+ "iregi": {
+  "binary": "target/direct-engine-20261030/bin/iregi-general",
+  "sha256": "f63159d71d60ddb120295bbcf4498cd688cb5e9fafe205d614c0026eb337ccd0",
+  "provenance": "validation/benchmark/direct-engine-20261030/build.json"
+ },
+ "quad_reference": {
+  "binary": "target/quad-iregi-source-audit/build-v6-001/iregi-reference-quad",
+  "sha256": "283560d64b6588e944fb641b7ed6f128f5d6667b1f334eae2acdb8bfcc7685c9",
+  "provenance": "target/quad-iregi-source-audit/build-v6-001/build.json"
+ },
+ "tirust": {
+  "binary": "target/stability-20261030/bin/tirust-stability",
+  "sha256": "f388aff3bafcb15783f6f8e51c09022938532fa95187af6f9375afabbe1bb56f",
+  "git_head": "39fb1445c01aaadee8762c62a1c6037944d8bc0d",
+  "tracked_changes": [
+   "docs/benchmark.typ"
+  ],
+  "source_changes": [],
+  "cargo": "cargo build --release --offline -p iregi-rust --example stability_driver --features native-f64-abc"
+ }
+}

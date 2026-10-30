@@ -2,7 +2,8 @@
 ! (validation/benchmark/stability-20261030): identical wire protocol, options,
 ! normalization and output, but physical kinematics above thresholds are
 ! admitted (the timing driver's positive Feynman-polynomial bound is removed;
-! positive real squared masses keep every integral IR finite).
+! positive real squared masses keep every integral IR finite), and invariants
+! below 1e-12 of the largest are passed as exact zeros (see prepare_lane).
 ! Optional external-reference benchmark. Production iregi-rust remains Rust-only.
 ! Opening-table external reference: ordinary unit-power N=1..6, rank<=6.
 ! Source derivative of opening-collier-20261026; public options are wire inputs.
@@ -327,6 +328,7 @@ contains
   subroutine prepare_lane(k)
     integer, intent(in) :: k
     integer :: t,distance,start_index,end_index,series_length,position
+    real(kind(1d0)) :: scale
     do t=1,n-1
       mom(:,t)=cmplx(shifts(t+1,:,k),0d0,kind(1d0))
     end do
@@ -342,6 +344,13 @@ contains
       end do
     end do
     if (position/=size(invariants)) error stop 'Incorrect invariant series length'
+    ! Massless external legs are lightlike only to binary64 rounding here
+    ! (|p^2| ~ 1e-16 s). As an amplitude code passes exact on-shell values,
+    ! invariants below 1e-12 of the largest one are passed as exact zeros.
+    scale=maxval(abs(real(invariants)))
+    do position=1,size(invariants)
+      if (abs(real(invariants(position)))<=1d-12*scale) invariants(position)=(0d0,0d0)
+    end do
     ! Immutable input pairs are checked for finite invariants before timing.
   end subroutine prepare_lane
 

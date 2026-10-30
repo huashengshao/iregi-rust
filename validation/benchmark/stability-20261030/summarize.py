@@ -19,7 +19,7 @@ from pathlib import Path
 
 CODES = [
     ("tirust", "TIRust (default: automatic precision rescue)"),
-    ("tirust-direct64", "TIRust direct engine, binary64 only"),
+    ("tirust-binary64", "TIRust binary64 only (refusals: no array)"),
     ("iregi-ibp", "IREGI IBP"),
     ("iregi-pv", "IREGI PV"),
     ("collier-coli", "COLLIER COLI"),
@@ -37,15 +37,27 @@ def main():
         records = [json.loads(line) for line in (capture / f"deltas-{integral['id']}.jsonl").read_text().splitlines()]
         records.sort(key=lambda r: r["index"])
         usable = [r for r in records if r.get("reference")]
-        checks = {key: max((r["reference_checks"][key] for r in usable
-                            if r["reference_checks"].get(key) is not None), default=None)
-                  for key in ("quadIBP_quadPV", "direct256_quadIBP", "direct256_quadPV")}
+        confirmations = [min(v for v in (r["reference_checks"]["direct256_quadIBP"],
+                                         r["reference_checks"]["direct256_quadPV"]) if v is not None)
+                         for r in usable if r["reference"].startswith("256-bit")]
+        checks = {"confirmation_max": max(confirmations, default=None),
+                  "confirmation_median": statistics.median(confirmations) if confirmations else None,
+                  "quad_modes_disagree_above_1e-12": sum(
+                      1 for r in records if (r["reference_checks"]["quadIBP_quadPV"] or 0) > 1e-12)}
+        weak = [r for r in usable if r["reference"].startswith("256-bit")
+                and min(v for v in (r["reference_checks"]["direct256_quadIBP"],
+                                    r["reference_checks"]["direct256_quadPV"]) if v is not None) > 1e-12]
+        checks["confirmed_above_1e-12"] = len(weak)
+        checks["of_which_collier_closer_to_256bit"] = sum(
+            1 for r in weak if r["arbitration"]["collier_vs_reference"] is not None
+            and r["arbitration"]["collier_vs_quad"] is not None
+            and r["arbitration"]["collier_vs_reference"] < r["arbitration"]["collier_vs_quad"])
         out = {
             "id": integral["id"], "label": integral["label"], "n": integral["n"], "rank": integral["rank"],
             "points": len(integral["points"]), "evaluated": len(records), "with_reference": len(usable),
             "reference_rules": {rule: sum(1 for r in usable if r["reference"] == rule)
                                 for rule in sorted({r["reference"] for r in usable})},
-            "max_reference_disagreement": checks,
+            "reference_checks": checks,
             "codes": [],
         }
         for code, label in CODES:
@@ -53,13 +65,17 @@ def main():
             values = sorted(d for d in deltas if d is not None and math.isfinite(d))
             missing = sum(1 for d in deltas if d is None or not math.isfinite(d))
             total = len(usable)
-            curve = []
-            for x in GRID:
-                threshold = 10.0 ** x
-                worse = missing + sum(1 for d in values if d > threshold)
-                curve.append(round(worse / total, 6) if total else None)
+            def profile(deltas):
+                finite = [d for d in deltas if d is not None and math.isfinite(d)]
+                absent = len(deltas) - len(finite)
+                return [round((absent + sum(1 for d in finite if d > 10.0 ** x)) / total, 6) if total else None
+                        for x in GRID]
+            curve = profile(deltas)
+            curve_quad = profile([r["delta_quad"].get(code) for r in usable])
             q = (lambda p: values[min(len(values) - 1, int(p * len(values)))] if values else None)
+            difference = max((abs(a - b) for x, a, b in zip(GRID, curve, curve_quad) if x >= -14), default=None)
             entry = {"code": code, "label": label, "curve": curve, "no_array": missing,
+                     "curve_difference_vs_quad_reference_above_1e-14": difference,
                      "flagged": sum(1 for r in usable if r["flagged"].get(code)),
                      "median": statistics.median(values) if values else None,
                      "p99": q(0.99), "max": values[-1] if values else None,
