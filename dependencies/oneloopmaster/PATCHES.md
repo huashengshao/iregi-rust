@@ -179,3 +179,21 @@ preserved rather than newly certified. Handwritten native and generated
 kernels are unchanged and are not covered by this ordinary Symbolica result.
 The fixed rules provide numerical evidence, not a rigorous quadrature error
 bound or a claim of 256 accurate output bits.
+
+## Hand-written binary64 C0 for negative Källén functions (30 October 2026)
+
+`src/native/handwritten/triangle.rs` adds `hooft_veltman`, a direct port of
+`triangle_hv::expression` (the 't Hooft--Veltman form the exact expressions
+select for three massive propagators when the Källén function is negative):
+the same edge sorting, `i sqrt(-lambda)` on the upper lip, root lips `-1/+1`,
+`Sheet::with_sign`/`div`/`dilog` continuations and integer eta corrections
+with the `Q::upper((y-1)/y)` logarithm. `three_masses` now returns it instead
+of deferring to the generated code. Sectors with a zero mass, nonnegative
+Källén functions and all non-binary64 kernels are unchanged.
+
+Validation (`iregi-rust/crates/iregi-rust/examples/c0_hv_check.rs`): 80,000
+random points (Euclidean and below-threshold timelike invariants, real and
+complex masses) agree with the generated code to at most 2.0e-12 relative;
+against 128-bit generated evaluations on 8,000 points both paths stay within
+3e-12 (hand-written max 2.8e-12, generated 1.2e-12 in the worst class, each
+worse on some points). Hand-written 1.71 µs versus generated 3.23 µs per C0.
