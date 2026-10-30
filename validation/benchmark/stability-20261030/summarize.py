@@ -34,7 +34,8 @@ def main():
     build = json.loads(build_path.read_text())
     integrals = []
     for integral in points["integrals"]:
-        records = [json.loads(line) for line in (capture / f"deltas-{integral['id']}.jsonl").read_text().splitlines()]
+        deltas_path = capture / f"deltas-{integral['id']}.jsonl"
+        records = [json.loads(line) for line in deltas_path.read_text().splitlines()]
         records.sort(key=lambda r: r["index"])
         usable = [r for r in records if r.get("reference")]
         confirmations = [min(v for v in (r["reference_checks"]["direct256_quadIBP"],
@@ -55,6 +56,7 @@ def main():
         out = {
             "id": integral["id"], "label": integral["label"], "n": integral["n"], "rank": integral["rank"],
             "points": len(integral["points"]), "evaluated": len(records), "with_reference": len(usable),
+            "capture_sha256": hashlib.sha256(deltas_path.read_bytes()).hexdigest(),
             "reference_rules": {rule: sum(1 for r in usable if r["reference"] == rule)
                                 for rule in sorted({r["reference"] for r in usable})},
             "reference_checks": checks,
