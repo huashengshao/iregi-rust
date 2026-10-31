@@ -234,3 +234,28 @@ value and back. The previous route stays available as
 imaginary part of the binary64 convention (the MPFR route lost the sign in the
 conversion back). Cost 1.6 us instead of 20.9 us per call; a 106-bit physical
 gg->Hgg pentagon (direct engine, rank 5) drops from 8.2 to 4.8 ms.
+
+## Small-momentum B0 (31 October 2026)
+
+For `0 < |p²| <= max(|m0²|, |m1²|)/16` the generated B0 expression cancels
+like `max(m²)/p²`: a numerically lightlike gluon leg (binary64 `p² ~ 1e-10`)
+next to a top mass (`m² = 3e4`) kept two digits in binary64 (relative 1.8e-2
+on the grid below), and every triangle and box above that bubble inherited
+the error. `NativeEvaluator` now evaluates B0 there at `p² = 0` exactly (the
+generated zero-momentum branch) and adds the finite-part shift
+`B0(p²) − B0(0) = −∫₀¹ ln(1 − x(1−x)p²/D(x)) dx` from
+`src/native/small_momentum.rs`: from the zeros of `L(x) = D(x) − x(1−x)p²`,
+for comparable masses as a series of power-sum differences generated with an
+explicit factor `p²` in every term, for hierarchical masses in closed form
+through `log1p` of `δ/(x0−1)` and `δ/x0` with the zero shift `δ` taken from a
+quadratic for `δ` itself. Poles do not depend on `p²`. Outside that regime, or
+where neither form converges fast, the general expression is kept. The public
+`b0_momentum_shift` lets batch kernels apply the same repair
+(`iregi-masters` does so for every ordinary B0 lane); `set_small_momentum`
+(hidden) restores the general expression for validation.
+
+Validation (`../../crates/iregi-masters/tests/small_momentum_b0.rs`): 252
+points (equal, comparable, hierarchical, one massless and complex masses; both
+signs of `p²` from 1e-14 to 1/8 of the larger squared mass) against the general
+expression at 1024 bits: worst relative 6.6e-16 in binary64 and 3.1e-33 in
+double-double, where the general expression in binary64 is off by 1.8e-2.

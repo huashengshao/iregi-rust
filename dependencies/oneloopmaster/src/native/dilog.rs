@@ -18,7 +18,7 @@
 use std::{cell::RefCell, rc::Rc, sync::Mutex};
 
 use symbolica::domains::{
-    float::{Complex as C, Float, FloatLike, Real, RealLike, SingleFloat},
+    float::{Complex as C, Float, SingleFloat},
     integer::Integer,
     rational::Rational,
 };
