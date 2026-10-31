@@ -410,11 +410,16 @@ def chunk_job(integral, start, points):
         # gate; from capture 003 on, rotation-tested plans gate at 1e-15.)
         # From capture 005 the facade with the precision rescue disabled.
         if "binary64" in t[k]:
+            record["binary64_best_effort"] = {}
             for name, key in (("tirust-binary64", "binary64"), ("tirust-binary64-r20", "binary64_r20")):
                 only = t[k][key]
                 kept = only["status"] == "success"
-                arrays[name] = only["moments"] if kept else None
+                # From capture 006 a refused lane keeps its best-effort array
+                # (uncertified, flagged), scored like COLLIER's flagged lanes.
+                best = None if kept else only.get("best_effort_moments")
+                arrays[name] = only["moments"] if kept else best
                 flagged[name] = not kept
+                record["binary64_best_effort"][name] = best is not None
             record["tirust_binary64_diagnostics"] = t[k]["binary64"].get("diagnostics")
         else:
             kept = default["status"] == "success" and not default.get("fallback_used")

@@ -73,11 +73,16 @@ def main():
         }
         present = {code for r in usable for code in r["delta"]}
         legacy = "tirust-binary64-r20" not in present
+        scored = any("binary64_best_effort" in r for r in usable)
         for code, label in CODES:
             if code not in present:
                 continue
             if code == "tirust-binary64" and legacy:
                 label = LEGACY_BINARY64_LABEL
+            if code.startswith("tirust-binary64") and scored:
+                label = label.replace("refusals: no array", "refused lanes: best-effort array")
+                if code == "tirust-binary64-r20":
+                    label += " (refused lanes: best-effort array)"
             deltas = [r["delta"].get(code) for r in usable]
             values = sorted(d for d in deltas if d is not None and math.isfinite(d))
             missing = sum(1 for d in deltas if d is None or not math.isfinite(d))
@@ -106,6 +111,8 @@ def main():
                             bits = note.split(" at ")[1].split(" bits")[0]
                             tiers[bits] = tiers.get(bits, 0) + 1
                 entry["rescued_by_bits"] = tiers
+            if code.startswith("tirust-binary64") and scored:
+                entry["best_effort"] = sum(1 for r in usable if (r.get("binary64_best_effort") or {}).get(code))
             # Lanes the checked binary64 retry kept below the a priori gate.
             notes_key = {"tirust": "tirust_diagnostics", "tirust-binary64": "tirust_binary64_diagnostics"}.get(code)
             if notes_key and not legacy:
