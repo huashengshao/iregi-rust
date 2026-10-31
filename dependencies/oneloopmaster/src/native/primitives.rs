@@ -22,6 +22,15 @@ fn resolve_dilog<T: symbolica::evaluate::EvaluationDomain>()
     .expect("Symbolica provides complex polylog evaluation")
 }
 
+/// The double-double dilogarithm through a 160-bit MPFR evaluation (the
+/// previous route), as a reference for the native double-double kernel.
+#[doc(hidden)]
+pub fn double_dilog_via_float(z: &C<DoubleFloat>) -> C<DoubleFloat> {
+    let value = C::new(double_to_float(z.re, 160), double_to_float(z.im, 160));
+    let value = <Float as NativeFloat>::dilog(&value);
+    C::new(value.re.to_double_float(), value.im.to_double_float())
+}
+
 /// Symbolica's generic `polylog(2, z)` at the precision of `z`: the reference
 /// for the native arbitrary-precision kernel (`native::dilog`).
 #[doc(hidden)]
@@ -265,11 +274,10 @@ impl NativeFloat for DoubleFloat {
         large * (large.one() + ratio * ratio).sqrt()
     }
     fn dilog(z: &C<Self>) -> C<Self> {
-        // Conversion retains BOTH compensated components; no binary64
-        // intermediate is used for the value passed to the dilogarithm.
-        let value = C::new(double_to_float(z.re, 160), double_to_float(z.im, 160));
-        let value = <Float as NativeFloat>::dilog(&value);
-        C::new(value.re.to_double_float(), value.im.to_double_float())
+        // Native double-double evaluation (both limbs, no binary64
+        // intermediate): the arbitrary-precision kernel with coefficients
+        // rounded once to double-double.
+        super::dilog::dilog(z, super::dilog::double_coefficients(), 106)
     }
     fn exact_i64(&self) -> Option<i64> {
         double_to_float(*self, 128).exact_i64()

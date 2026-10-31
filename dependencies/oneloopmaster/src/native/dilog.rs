@@ -102,6 +102,18 @@ pub(crate) fn float_coefficients(bits: u32) -> Rc<Vec<Float>> {
     })
 }
 
+/// [`series_coefficients`] rounded once to double-double (via 160 bits).
+pub(crate) fn double_coefficients() -> &'static [symbolica::domains::float::DoubleFloat] {
+    static TABLE: std::sync::OnceLock<Vec<symbolica::domains::float::DoubleFloat>> = std::sync::OnceLock::new();
+    TABLE.get_or_init(|| {
+        let prototype = Float::new(160);
+        series_coefficients(table_length(106))
+            .iter()
+            .map(|c| prototype.from_rational(c).to_double_float())
+            .collect()
+    })
+}
+
 fn mul<T: NativeFloat>(a: &C<T>, b: &C<T>) -> C<T> {
     C::new(
         a.re.clone() * &b.re - a.im.clone() * &b.im,

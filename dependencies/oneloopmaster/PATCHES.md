@@ -221,3 +221,16 @@ and the binary64 instance against `dilog_complex_f64`. Cost per call:
 15/21/34/73 µs at 106/160/256/512 bits versus 198/292/468/1058 µs for the
 generic evaluation; a four-point box with masses at 256 bits drops from 40 ms
 to 7 ms of master evaluation.
+
+## Native double-double dilogarithm (31 October 2026)
+
+`DoubleFloat::dilog` now runs the same kernel (`src/native/dilog.rs`) in
+double-double arithmetic with the coefficients rounded once from 160 bits
+(`double_coefficients`), instead of converting both limbs to a 160-bit MPFR
+value and back. The previous route stays available as
+`double_dilog_via_float` for validation. On the 636-point grid
+(`examples/direct_tier_profile.rs`, `DILOG_COST=1`) the two agree to relative
+6.3e-32; at exactly real `x = -1` the native kernel returns the negative-zero
+imaginary part of the binary64 convention (the MPFR route lost the sign in the
+conversion back). Cost 1.6 us instead of 20.9 us per call; a 106-bit physical
+gg->Hgg pentagon (direct engine, rank 5) drops from 8.2 to 4.8 ms.

@@ -40,7 +40,7 @@ pub use inspection::{
 };
 pub use native::{NativeEvaluator, NativeFloat, NativeTensorEvaluator, TensorIntegral};
 #[doc(hidden)]
-pub use native::primitives::symbolica_dilog_float;
+pub use native::primitives::{double_dilog_via_float, symbolica_dilog_float};
 pub use precision::PrecisionEvaluator;
 
 symbolica::initialize!(
