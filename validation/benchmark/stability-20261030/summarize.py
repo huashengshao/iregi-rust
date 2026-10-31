@@ -112,6 +112,9 @@ def main():
                 entry["checked_kept"] = sum(
                     1 for r in usable
                     if any(note.startswith("binary64 below the conditioning gate: kept") for note in r.get(notes_key) or []))
+                entry["expansion_kept"] = sum(
+                    1 for r in usable
+                    if any(note.startswith("binary64 small-Gram expansion: kept") for note in r.get(notes_key) or []))
             out["codes"].append(entry)
         if any("contracted" in r for r in usable):
             out["contracted_codes"] = []
