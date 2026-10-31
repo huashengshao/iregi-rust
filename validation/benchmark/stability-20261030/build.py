@@ -8,8 +8,9 @@ linked against the unmodified COLLIER 1.2.10 archive; original IREGI
 objects of the timing campaigns (same repair). The quad reference is the quadruple-precision original IREGI build
 target/quad-iregi-source-audit/build-v6-001. Binaries go to
 target/stability-20261030/bin; SHA-256 sums, toolchains and the TIRust git
-head are recorded in build.json. Run from the repository root after
-`source scripts/env.sh`.
+head are recorded in build.json (or the record named by the first argument,
+e.g. build-002.json, so bound records stay unchanged). Run from the
+repository root after `source scripts/env.sh`.
 """
 import hashlib
 import json
@@ -87,7 +88,9 @@ def main() -> None:
                         "tracked_changes": changed,
                         "source_changes": [c for c in changed if c.startswith(("crates/", "dependencies/", "Cargo"))],
                         "cargo": " ".join(cargo)}
-    (HERE / "build.json").write_text(json.dumps(record, indent=1) + "\n")
+    import sys
+    name = sys.argv[1] if len(sys.argv) > 1 else "build.json"
+    (HERE / name).write_text(json.dumps(record, indent=1) + "\n")
     print(json.dumps(record, indent=1))
 
 
