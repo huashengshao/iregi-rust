@@ -48,7 +48,7 @@ def main() -> None:
             "reference": f"validation/benchmark/opening-rank6-20261026/cases/{request['id']}/result.json",
             "lanes": [lane(sample, index) for index in range(LANES)],
         })
-    # Capture 003: an N7R7 row (the six opening shifts and masses plus
+    # Capture 003 (inputs-003.json; inputs.json stays bound unchanged): an N7R7 row (the six opening shifts and masses plus
     # q_6 = (1/4, 3/8, 1/8, 5/8), m_6^2 = 4: the first such dyadic choices
     # (e_t/2 + e_z, ...) made six-point thin systems or null-hyperplane boxes
     # exactly singular; reference from make-n7r7-reference.py).
@@ -69,7 +69,7 @@ def main() -> None:
         "batch_sizes": [1, LANES],
         "cases": cases,
     }
-    (HERE / "inputs.json").write_text(json.dumps(document, indent=1) + "\n")
+    (HERE / "inputs-003.json").write_text(json.dumps(document, indent=1) + "\n")
 
 
 if __name__ == "__main__":

@@ -37,6 +37,7 @@ LATER = {
     },
     "003": {
         "direct_engine_20261030_capture003": ("summary-003.json", True),
+        "direct_engine_20261030_inputs003": ("inputs-003.json", False),
         "direct_engine_20261030_build003": ("build-003.json", True),
     },
 }

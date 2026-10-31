@@ -469,9 +469,10 @@ def main():
     parser.add_argument("--only", default=None)
     parser.add_argument("--seed", type=int, default=20261030)
     parser.add_argument("--build-record", default="build.json")
+    parser.add_argument("--inputs", default="inputs.json", help="inputs-003.json for capture 003 (adds N7R7)")
     args = parser.parse_args()
     args.output.mkdir(parents=True, exist_ok=False)
-    inputs = json.loads((HERE / "inputs.json").read_text())
+    inputs = json.loads((HERE / args.inputs).read_text())
     collier_configs = {}
     for row in json.loads(COLLIER_SUMMARY.read_text())["rows"]:
         collier_configs[row["id"]] = next(a["configuration"] for a in row["all_candidate_attempts"]
