@@ -11,7 +11,7 @@ rescaled whole-array max discrepancy, weights mu^(rank+4-2N)).
 Codes (all binary64 inputs and outputs):
   tirust          public TIRust default (direct engine; lanes it refuses are
                   rerun at higher precision automatically)
-  tirust-binary64 TIRust in binary64 alone: the direct engine's array unless
+  tirust-binary64 TIRust in binary64 alone: the default path's binary64 array unless
                   TIRust's checks refused the lane (counted as no array)
   iregi-ibp/-pv   original IREGI, binary64, IBP and PV modes, with IREGI's
                   default on-shell snapping (as in MadLoop)
@@ -229,12 +229,13 @@ def chunk_job(integral, start, points):
         arrays["tirust"] = default["moments"] if default["status"] == "success" else None
         flagged["tirust"] = bool(default.get("fallback_used"))
         record["tirust_diagnostics"] = default.get("diagnostics")
-        # Binary64 only: the direct engine's first evaluation, unless TIRust's
-        # own checks (conditioning gates, N>=5 loop-rotation test) sent the
-        # lane to the precision rescue.
-        direct = t[k]["direct64"]
-        kept = direct["status"] == "success" and not default.get("fallback_used")
-        arrays["tirust-binary64"] = direct["moments"] if kept else None
+        # Binary64 only: the default path's binary64 pass, i.e. its array
+        # unless TIRust's own checks (conditioning gates, N>=5 loop-rotation
+        # test) sent the lane to the precision rescue. (Captures 001-002 took
+        # the array of a separate direct workspace with the default 1e-12
+        # gate; from capture 003 on, rotation-tested plans gate at 1e-15.)
+        kept = default["status"] == "success" and not default.get("fallback_used")
+        arrays["tirust-binary64"] = default["moments"] if kept else None
         flagged["tirust-binary64"] = not kept
         for name, lanes in codes.items():
             arrays[name], flagged[name] = lane_values(lanes[k] if lanes else None)

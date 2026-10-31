@@ -30,6 +30,8 @@ INTEGRALS = [
     ("box-r6", "gg -> HH kinematics, top-loop box, rank 6", ["H", "H"], 6, 10000),
     ("pentagon-r5", "gg -> Hgg, top-loop pentagon (g g g H g), rank 5", ["g", "H", "g"], 5, 5000),
     ("hexagon-r6", "gg -> gggg, top-loop hexagon, rank 6", ["g", "g", "g", "g"], 6, 2000),
+    # Appended last so the points above keep their random stream (capture 003).
+    ("heptagon-r7", "gg -> ggggg, top-loop heptagon, rank 7", ["g", "g", "g", "g", "g"], 7, 500),
 ]
 
 
