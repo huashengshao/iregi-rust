@@ -8,8 +8,8 @@ seal: after rebuilding docs/benchmark.pdf and an independent byte-identical
       copy, rehash every listed report artifact, add the new records to the
       source ledger and record a checkpoint keeping the previous proof hash.
 
-usage: publish.py bind
-       publish.py seal --independent-pdf PATH --page-count N --base-commit SHA
+usage: publish.py bind [--capture 002]
+       publish.py seal --independent-pdf PATH --page-count N --base-commit SHA [--capture 002]
 Run from the repository root.
 """
 import argparse
@@ -29,17 +29,25 @@ RECORDS = {
     "direct_engine_20261030_rescue_coplanar": (
         ROOT / "validation/benchmark/direct-engine-20261030/rescue-coplanar.jsonl", False),
 }
+# Later captures append their own records (results.json is append-only).
+LATER = {
+    "002": {
+        "stability_20261030_capture002": (HERE / "summary-002.json", True),
+        "stability_20261030_build002": (HERE / "build-002.json", True),
+    },
+}
 
 
 def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def bind() -> None:
+def bind(capture=None) -> None:
+    records = LATER[capture] if capture else RECORDS
     text = RESULTS.read_text()
     existing = json.loads(text)
     additions = {}
-    for key, (path, snapshot) in RECORDS.items():
+    for key, (path, snapshot) in records.items():
         if key in existing:
             raise SystemExit(f"{key} already bound; results.json is append-only")
         record = {"source": str(path.relative_to(ROOT)), "sha256": sha256(path)}
@@ -57,7 +65,8 @@ def bind() -> None:
     print(f"bound {len(additions)} records")
 
 
-def seal(independent: Path, pages: int, base_commit: str) -> None:
+def seal(independent: Path, pages: int, base_commit: str, capture=None) -> None:
+    records = LATER[capture] if capture else RECORDS
     proof = json.loads(PROOF.read_text())
     previous_sha = sha256(PROOF)
     pdf = ROOT / "docs/benchmark.pdf"
@@ -68,7 +77,7 @@ def seal(independent: Path, pages: int, base_commit: str) -> None:
         proof["report_artifacts"][name] = sha256(ROOT / name)
     ledger_keys = {record["key"] for record in proof["source_ledger"]}
     new_keys = []
-    for key in RECORDS:
+    for key in records:
         record = results[key]
         if key not in ledger_keys:
             proof["source_ledger"].append({"key": key, "source": record["source"], "sha256": record["sha256"]})
@@ -86,7 +95,7 @@ def seal(independent: Path, pages: int, base_commit: str) -> None:
     proof["independent_rebuild_command"] = f"typst compile --root . --creation-timestamp {stamp} docs/benchmark.typ {rel}"
     proof["byte_identical_rebuild"] = True
     proof["page_count"] = pages
-    proof["stability_checkpoint_20261030"] = {
+    proof["stability_checkpoint_20261030" + (f"_capture{capture}" if capture else "")] = {
         "base_commit": base_commit,
         "previous_proof_sha256": previous_sha,
         "new_result_records": new_keys,
@@ -103,11 +112,12 @@ def main() -> None:
     parser.add_argument("--independent-pdf", type=Path)
     parser.add_argument("--page-count", type=int)
     parser.add_argument("--base-commit")
+    parser.add_argument("--capture", default=None, help="later capture id, e.g. 002")
     args = parser.parse_args()
     if args.action == "bind":
-        bind()
+        bind(args.capture)
     else:
-        seal(args.independent_pdf.resolve(), args.page_count, args.base_commit)
+        seal(args.independent_pdf.resolve(), args.page_count, args.base_commit, args.capture)
 
 
 if __name__ == "__main__":
