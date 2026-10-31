@@ -35,6 +35,10 @@ LATER = {
         "direct_engine_20261030_capture002": ("summary-002.json", True),
         "direct_engine_20261030_build002": ("build-002.json", True),
     },
+    "003": {
+        "direct_engine_20261030_capture003": ("summary-003.json", True),
+        "direct_engine_20261030_build003": ("build-003.json", True),
+    },
 }
 
 

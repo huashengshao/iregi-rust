@@ -333,6 +333,16 @@ def tirust(points, integral):
         return [json.loads(line) for line in sink.read_text().splitlines()]
 
 
+def collier_spread(codes, k, reference, rank, n, mu):
+    """E/A of COLLIER COLI and DD against `reference` (None when absent)."""
+    out = []
+    for name in ("collier-coli", "collier-dd"):
+        lanes = codes.get(name)
+        values = lane_values(lanes[k])[0] if lanes else None
+        out.append(array_error(values, reference, rank, n, mu) if values is not None else None)
+    return out
+
+
 def lane_values(lane):
     """Returned values (also of flagged lanes) and whether the lane was flagged."""
     if lane is None:
@@ -368,6 +378,14 @@ def chunk_job(integral, start, points):
         if d256 is not None and confirm is not None and confirm[0] <= CONFIRMATION:
             reference, record["reference"] = d256, f"256-bit, confirmed by {confirm[1]}"
             quad_reference = confirm[2]
+        elif d256 is not None and all(finite(x) and x <= CONFIRMATION
+                                      for x in collier_spread(codes, k, d256, rank, n, mu)):
+            # Quad original IREGI fails on the physical heptagons (both modes,
+            # E/A 0.01-1 against 256 bits); there both COLLIER branches,
+            # independent of TIRust, must confirm the 256-bit array instead.
+            # COLLIER's own curves are then conditioned on that agreement.
+            reference, record["reference"] = d256, "256-bit, confirmed by COLLIER COLI and DD"
+            quad_reference = None
         elif finite(spread["quadIBP_quadPV"]) and spread["quadIBP_quadPV"] <= QUAD_AGREEMENT:
             reference, record["reference"] = q_ibp[k], "quadIBP=quadPV (no 256-bit array)"
             quad_reference = q_ibp[k]
@@ -411,7 +429,8 @@ def chunk_job(integral, start, points):
                           if delta[name] is not None and math.isfinite(delta[name])]
         record["arbitration"] = {
             "collier_vs_reference": min((delta[name] for name in collier_finite), default=None),
-            "collier_vs_quad": min((delta_quad[name] for name in collier_finite), default=None),
+            "collier_vs_quad": min((delta_quad[name] for name in collier_finite if delta_quad[name] is not None),
+                                   default=None),
         }
         records.append(record)
     return records

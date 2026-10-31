@@ -78,7 +78,8 @@ def main():
             curve = profile(deltas)
             curve_quad = profile([r["delta_quad"].get(code) for r in usable])
             q = (lambda p: values[min(len(values) - 1, int(p * len(values)))] if values else None)
-            difference = max((abs(a - b) for x, a, b in zip(GRID, curve, curve_quad) if x >= -14), default=None)
+            difference = max((abs(a - b) for x, a, b in zip(GRID, curve, curve_quad)
+                              if x >= -14 and a is not None and b is not None), default=None)
             entry = {"code": code, "label": label, "curve": curve, "no_array": missing,
                      "curve_difference_vs_quad_reference_above_1e-14": difference,
                      "flagged": sum(1 for r in usable if r["flagged"].get(code)),

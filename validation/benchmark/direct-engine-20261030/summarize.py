@@ -24,7 +24,9 @@ def candidate(entry, batch):
     timing = entry.get("timing_ns")
     statuses = entry.get("lane_statuses") or {}
     complete = bool(statuses) and statuses.get("success", 0) == sum(statuses.values())
-    error = entry.get("lane0_relative_error")
+    # NinjaRS returns the integrated numerator, not the array: its error is
+    # the contracted lane-0 value against the reference contracted exactly.
+    error = entry.get("lane0_contracted_error") if entry["engine"] == "NinjaRS" else entry.get("lane0_relative_error")
     if error is not None and isinstance(error, float) and math.isnan(error):
         error = None
     record = {
@@ -44,7 +46,8 @@ def candidate(entry, batch):
         "per_point_us": None if not timing else us(timing) / batch,
         "iterations_per_block": entry.get("iterations"),
     }
-    for key in ("plan_ns", "workspace_ns", "first_call_ns", "plan_engine", "workspace_engine", "fallback_rows"):
+    for key in ("plan_ns", "workspace_ns", "first_call_ns", "plan_engine", "workspace_engine", "fallback_rows",
+                "ninjars_engine", "fast_failed_lanes"):
         if key in entry:
             record[key] = entry[key]
     if entry.get("detail"):
@@ -61,7 +64,7 @@ def main():
         for batch in (1, 32):
             block = row[f"batch{batch}"]
             candidates = [candidate(e, batch) for e in block["candidates"]]
-            tirust = next(c for c in candidates if c["engine"] == "TIRust")
+            tirust = next(c for c in candidates if c["id"] == "tirust")
             iregi = next((c for c in candidates if c["id"] == block["selected_iregi"]), None)
             collier = next((c for c in candidates if c["engine"] == "COLLIER"), None)
             out[f"batch{batch}"] = {
@@ -69,6 +72,8 @@ def main():
                 "iregi": iregi,
                 "iregi_modes": [c for c in candidates if c["engine"] == "IREGI"],
                 "collier": collier,
+                "tirust_contracted": next((c for c in candidates if c["id"] == "tirust-contracted"), None),
+                "ninjars": next((c for c in candidates if c["engine"] == "NinjaRS"), None),
                 "ratios": block["ratios"],
                 "tirust_iregi_cross_error_lanes": block["tirust_iregi_cross_error_lanes"],
                 "cpu_busy_before": block["cpu_busy_before"],
@@ -80,7 +85,8 @@ def main():
         "schema_version": 1,
         "campaign": "direct-engine-20261030",
         "environment": environment,
-        "binaries": {name: {"sha256": build[name]["sha256"]} for name in ("tirust", "iregi", "collier")},
+        "binaries": {name: {"sha256": build[name]["sha256"]} for name in ("tirust", "iregi", "collier", "ninjars")
+                     if name in build},
         "tirust_git_head": build["tirust"]["git_head"],
         "selection_rule": "IREGI: fastest mode with a complete finite lane-0 array within E/A<=1e-3 of the reference; COLLIER: archived opening-double selected public configuration; TIRust: public default facade (Hybrid, binary64).",
         "accuracy_metric": "E/A: dimensionally rescaled whole-array max discrepancy over all moments and four Laurent slots, versus the archived reference tensors admitted against quadruple-precision original IREGI.",
