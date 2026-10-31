@@ -334,8 +334,15 @@ impl NativeFloat for Float {
     }
     fn dilog(z: &C<Self>) -> C<Self> {
         let bits = z.re.get_precision().max(z.im.get_precision());
+        // Lift both parts to the working precision first: binary operations
+        // keep the precision of their left operand, so a part whose tracked
+        // precision dropped (a cancelled, nearly zero real part) would
+        // otherwise degrade the whole series.
+        let (mut re, mut im) = (z.re.clone(), z.im.clone());
+        re.set_prec(bits);
+        im.set_prec(bits);
         let coefficients = super::dilog::float_coefficients(bits);
-        super::dilog::dilog(z, &coefficients, bits)
+        super::dilog::dilog(&C::new(re, im), &coefficients, bits)
     }
     fn exact_i64(&self) -> Option<i64> {
         let rational = self.try_to_rational()?;

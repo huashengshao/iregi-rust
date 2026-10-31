@@ -259,3 +259,13 @@ points (equal, comparable, hierarchical, one massless and complex masses; both
 signs of `p²` from 1e-14 to 1/8 of the larger squared mass) against the general
 expression at 1024 bits: worst relative 6.6e-16 in binary64 and 3.1e-33 in
 double-double, where the general expression in binary64 is off by 1.8e-2.
+
+## Native dilogarithm: lift the argument to the working precision (31 October 2026)
+
+`Float::dilog` now sets both parts of its argument to the working precision
+(`max` of their precisions) before the series. Binary operations keep the
+precision of their left operand, so a part whose tracked precision had dropped
+(a cancelled, nearly zero real part with 2 bits next to a 255-bit imaginary
+part, found by upstream's `native_256_bits_matches_oneloop` C0 rows) degraded
+the whole result to a few bits. Symbolica's own `polylog` converts its
+argument the same way. iregi-rust's direct-engine and regulator tests pass.
