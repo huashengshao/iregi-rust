@@ -269,3 +269,21 @@ precision of their left operand, so a part whose tracked precision had dropped
 part, found by upstream's `native_256_bits_matches_oneloop` C0 rows) degraded
 the whole result to a few bits. Symbolica's own `polylog` converts its
 argument the same way. iregi-rust's direct-engine and regulator tests pass.
+
+## Non-finite C0/D0: retry with tiny invariants at zero (31 October 2026)
+
+Both binary64 D0 kernels (hand-written and generated) returned NaN for a
+top-loop box with two opposite numerically lightlike legs: `p1² = 1.7e-10`,
+`p3² = -2.6e-10` (binary64 rounding of massless momenta given as differences of
+shifts of order 1e3), `p2² = 15625`, `p4² = 1e6`, `s = 4.8e5`, `t = 5.2e5`,
+`m² = 29929`; double-double and 256 bits are finite. `evaluate_row` now
+retries a C0 or D0 point whose result is not finite with every invariant
+within `2^-30` of the largest argument set to exactly zero, and keeps the
+retry when it is finite. The change of the inputs is below `2^-30` of the
+kinematic scale; on this point the retried binary64 value agrees with 256 bits
+to 1e-15. Points with finite results are unchanged.
+
+Validation: `../../crates/iregi-masters/tests/nonfinite_d0_repair.rs` (both
+binary64 kernels against 256 bits, relative <= 1e-12). In iregi-rust this
+removed the last stability-study lanes (heptagon-r7 #10) whose binary64 arrays
+were not finite.
