@@ -32,6 +32,132 @@ TARGET_NS = 20_000_000
 MAX_ITERATIONS = 1_000_000
 MODES = {0: "IBP", 1: "PV", 2: "Hybrid"}
 COLLIER_SUMMARY = ROOT / "validation/benchmark/opening-double-20261026/collier/summary.json"
+# NinjaRS (alphal00p/ninjars) reference build, see the stability study's build.py.
+NINJARS = Path(os.environ.get("NINJARS", ROOT / "target/stability-20261030/bin/ninjars"))
+
+
+def ninja_index(e):
+    """Position of q0^e0 q1^e1 q2^e2 q3^e3 in Ninja's dense tensor layout."""
+    def ncoeff(r):
+        return (r + 1) * (r + 2) * (r + 3) * (r + 4) // 24
+
+    def homogeneous(e):
+        e0, e1, e2, e3 = e
+        r = e0 + e1 + e2 + e3
+        if r == 0:
+            return 0
+        if e3 > 0:
+            return 1 + r + r * (r + 1) // 2 + homogeneous((e0, e1, e2, e3 - 1))
+        if e2 > 0:
+            return 1 + r + homogeneous((e0, e1, e2 - 1, 0))
+        if e1 > 0:
+            return 1 + homogeneous((e0, e1 - 1, 0, 0))
+        return 0
+    r = sum(e)
+    return (ncoeff(r - 1) if r else 0) + homogeneous(e)
+
+
+def numerator(case, lane):
+    """Deterministic dense numerator for (row, lane): (u + i v)/mu^|alpha|."""
+    rng = random.Random(f"{case['id']}:{lane}:numerator")
+    mu = float(Fraction(case["lanes"][0]["mu"]))
+    return [complex(rng.uniform(-1, 1), rng.uniform(-1, 1)) / mu ** sum(e) for e in basis(case["rank"])]
+
+
+def ninja_case(case, lanes):
+    size = (case["rank"] + 1) * (case["rank"] + 2) * (case["rank"] + 3) * (case["rank"] + 4) // 24
+    out = []
+    for index, sample in enumerate(lanes):
+        tensor = [None] * size
+        for e, c in zip(basis(case["rank"]), numerator(case, index)):
+            tensor[ninja_index(e)] = [c.real, c.imag]
+        mu = float(Fraction(sample["mu"]))
+        out.append({"id": f"lane{index}", "shifts": [[float(Fraction(x)) for x in s] for s in sample["shifts"]],
+                    "masses_squared": [[float(Fraction(m[0])), float(Fraction(m[1]))] for m in sample["masses_squared"]],
+                    "mu_squared": mu * mu, "tensor": tensor})
+    return {"format": "ninjars-bench-case-v1", "name": case["id"], "n": case["n"], "rank": case["rank"], "lanes": out}
+
+
+class NinjaEngine:
+    """NinjaRS as a pseudo engine: each request runs `ninjars case-bench`
+    (pinned, fresh process, one ~20 ms block per engine) on the request's
+    lanes with both engines; the fast engine is used when every lane
+    succeeds, else the generic one (the fast engine, like original Ninja,
+    marks cuts in Euclidean planes Unstable). Times are per batch call
+    (NinjaRS's per-point time times the batch size), as for the drivers."""
+
+    def __init__(self, cpu):
+        if not NINJARS.exists():
+            raise RuntimeError(f"{NINJARS} missing")
+        self.cpu, self.tail = cpu, []
+
+    def request(self, payload):
+        case, lanes = payload
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            source, sink = Path(tmp) / "case.json", Path(tmp) / "bench.json"
+            source.write_text(json.dumps(ninja_case(case, lanes)))
+            run = subprocess.run(["taskset", "-c", str(self.cpu), str(NINJARS), "case-bench", str(source),
+                                  "--widths", str(len(lanes)), "--engines", "fast,generic", "--blocks", "1",
+                                  "--min-block-ms", "20", "-o", str(sink)], cwd=ROOT, capture_output=True,
+                                 text=True, timeout=3600)
+            if not sink.exists():
+                self.tail = run.stderr.splitlines()[-5:]
+                return None
+            data = json.loads(sink.read_text())["cases"][0]
+        fast = data["per_point_timing"][0]
+        generic = (data.get("generic_per_point_timing") or [None])[0]
+        use, name = (fast, "fast") if fast.get("failed_lanes", 0) == 0 else (generic, "generic")
+        if use is None:
+            return None
+        failed = use.get("failed_lanes", 0)
+        return {"total_ns": [use["summary_ns_per_point"]["total"] * len(lanes)], "ninjars_engine": name,
+                "fast_failed_lanes": fast.get("failed_lanes", 0), "stable": failed == 0,
+                "lanes": [{"status": "success" if failed == 0 else "unknown"} for _ in lanes]}
+
+    def close(self):
+        pass
+
+
+def ninja_lane0_error(case, lane, engine, reference):
+    """NinjaRS's lane-0 value against the reference array contracted exactly
+    with the same numerator, as max over [finite, single, double] of
+    |I - I_ref| / max |I_ref| (single pole: UV + IR, native normalization)."""
+    import tempfile
+    from decimal import Decimal, getcontext
+    getcontext().prec = 60
+    with tempfile.TemporaryDirectory() as tmp:
+        source, sink = Path(tmp) / "case.json", Path(tmp) / "check.json"
+        source.write_text(json.dumps(ninja_case(case, [lane])))
+        subprocess.run([str(NINJARS), "case-check", str(source), "--engines", engine, "--precision", "f64",
+                        "--no-fail", "-o", str(sink)], cwd=ROOT, capture_output=True, timeout=3600)
+        if not sink.exists():
+            return None
+        runs = json.loads(sink.read_text())["cases"][0]["runs"]
+    values = runs[0]["lanes"][0].get("values") if runs and runs[0].get("lanes") else None
+    if values is None or runs[0]["lanes"][0].get("status") != "Success":
+        return None
+    c = [complex(z) for z in numerator(case, 0)]
+    ref = []
+    for slots in ((3,), (0, 1), (2,)):
+        re = im = Fraction(0)
+        for m, cm in enumerate(c):
+            for slot in slots:
+                a, b = (Fraction(x) for x in reference[4 * m + slot])
+                re += Fraction(cm.real) * a - Fraction(cm.imag) * b
+                im += Fraction(cm.real) * b + Fraction(cm.imag) * a
+        ref.append((re, im))
+    pi = Fraction(Decimal("3.141592653589793238462643383279502884197"))
+    a = Fraction(Decimal("0.5772156649015328606065120900824024310422") + Decimal("3.141592653589793238462643383279502884197").ln())
+    b = pi * pi / 12
+    pair = lambda v: (Fraction(float(v[0])), Fraction(float(v[1])))
+    v3, s1, v2 = (pair(values[k]) for k in ("eps0", "eps_m1", "eps_m2"))
+    mix = lambda *terms: (sum(k * x[0] for k, x in terms), sum(k * x[1] for k, x in terms))
+    native = [mix((1, v3), (-a, s1), (a * a / 2 - b, v2)), mix((1, s1), (-a, v2)), v2]
+    native = [(-y * pi * pi, x * pi * pi) for x, y in native]
+    error = max(abs(complex(float(x - p), float(y - q))) for (x, y), (p, q) in zip(native, ref))
+    amplitude = max(abs(complex(float(p), float(q))) for p, q in ref)
+    return error / amplitude if amplitude else None
 
 
 class Engine:
@@ -207,21 +333,37 @@ def cpu_busy(cpu, seconds=1.0):
     return round(1 - (idle1 - idle0) / max(total1 - total0, 1), 4)
 
 
+def ninjars_eligible(case):
+    """NinjaRS API: unit powers, D = 4 - 2 eps, numerator rank <= n + 2."""
+    return case["table"] == "ordinary" and case["rank"] <= case["n"] + 2
+
+
 def candidates(case, collier_configs):
-    out = [{"id": "tirust", "engine": "TIRust", "argv": [str(BIN / "tirust-direct-timing")]}]
+    out = [{"id": "tirust", "engine": "TIRust", "argv": [str(BIN / "tirust-direct-timing")]},
+           {"id": "tirust-contracted", "engine": "TIRust", "contract": True,
+            "argv": [str(BIN / "tirust-direct-timing")]}]
+    if ninjars_eligible(case):
+        out.append({"id": "ninjars", "engine": "NinjaRS", "argv": [str(NINJARS)]})
     modes = (0, 1, 2) if case["table"] == "ordinary" else (0,)
     for mode in modes:
         out.append({"id": f"iregi-{MODES[mode].lower()}", "engine": "IREGI", "mode": MODES[mode], "mode_code": mode,
                     "argv": [str(BIN / "iregi-general")]})
     if case["table"] == "ordinary":
-        out.append({"id": "collier", "engine": "COLLIER", "config": collier_configs[case["id"]],
+        out.append({"id": "collier", "engine": "COLLIER",
+                    "config": collier_configs.get(case["id"], collier_configs.get("ordinary-n6-r6")),
                     "argv": [str(BIN / "collier-batch")]})
     return out
 
 
 def wire(candidate, case, lanes, warmup, repeats, iterations):
+    if candidate["engine"] == "NinjaRS":
+        return (case, lanes)
     if candidate["engine"] == "TIRust":
-        return tirust_wire(case, lanes, warmup, repeats, iterations)
+        text = tirust_wire(case, lanes, warmup, repeats, iterations)
+        if candidate.get("contract"):
+            head, _, rest = text.partition("\n")
+            text = head + " contract\n" + rest
+        return text
     if candidate["engine"] == "IREGI":
         return iregi_wire(case, lanes, candidate["mode_code"], warmup, repeats, iterations)
     return collier_wire(case, lanes, candidate["config"], warmup, repeats, iterations)
@@ -234,7 +376,7 @@ def measure(case, batch, cpu, rounds, rng, raw, collier_configs):
     for candidate in candidates(case, collier_configs):
         entry = {key: candidate[key] for key in candidate if key != "argv"}
         try:
-            engine = Engine(candidate["argv"], cpu)
+            engine = NinjaEngine(cpu) if candidate["engine"] == "NinjaRS" else Engine(candidate["argv"], cpu)
         except RuntimeError as error:
             entry.update(status="start_failure", detail=str(error))
             runs.append((entry, None))
@@ -282,7 +424,13 @@ def measure(case, batch, cpu, rounds, rng, raw, collier_configs):
         entry["stable_flag"] = result.get("stable")
         statuses = [lane.get("status") for lane in result["lanes"]]
         entry["lane_statuses"] = {s: statuses.count(s) for s in set(statuses)}
-        entry["lane0_relative_error"] = array_error(case, lane_moments(result, 0), reference)
+        if entry["engine"] == "NinjaRS":
+            entry["ninjars_engine"] = result.get("ninjars_engine")
+            entry["fast_failed_lanes"] = result.get("fast_failed_lanes")
+            entry["lane0_contracted_error"] = ninja_lane0_error(case, lanes[0], result.get("ninjars_engine", "fast"),
+                                                                reference)
+        else:
+            entry["lane0_relative_error"] = array_error(case, lane_moments(result, 0), reference)
         if "fallback_rows" in result:
             entry["fallback_rows"] = result["fallback_rows"]
         entry["timing_ns"] = stats(entry["blocks_ns"])
@@ -356,6 +504,11 @@ def main():
                 iregi = selected(entries, "IREGI")
                 collier = next((e for e in entries if e["engine"] == "COLLIER"), None)
                 ratios = {}
+                ninjars = next((e for e in entries if e["engine"] == "NinjaRS"), None)
+                contracted = next((e for e in entries if e["id"] == "tirust-contracted"), None)
+                if ninjars is not None and ninjars.get("blocks_ns") and contracted and contracted.get("blocks_ns"):
+                    ratios["tirust_contracted_over_ninjars"] = ratio_summary(contracted["blocks_ns"],
+                                                                             ninjars["blocks_ns"], rng)
                 for name, reference in (("tirust_over_iregi", iregi), ("tirust_over_collier", collier)):
                     if reference is not None and reference.get("blocks_ns") and tirust.get("blocks_ns"):
                         ratios[name] = ratio_summary(tirust["blocks_ns"], reference["blocks_ns"], rng)

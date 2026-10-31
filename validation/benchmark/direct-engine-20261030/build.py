@@ -83,6 +83,10 @@ def main() -> None:
     record["tirust"] = {"binary": str(tirust.relative_to(ROOT)), "sha256": sha256(tirust), "cargo": " ".join(cargo),
                         "profile": "release (thin LTO, codegen-units=1)", "git_head": head,
                         "source_tree_dirty": bool(dirty)}
+    ninjars = ROOT / "target/stability-20261030/bin/ninjars"
+    if ninjars.exists():
+        record["ninjars"] = {"binary": str(ninjars.relative_to(ROOT)), "sha256": sha256(ninjars),
+                             "provenance": "validation/benchmark/stability-20261030/build-003.json (ninjars)"}
     (HERE / record_name).write_text(json.dumps(record, indent=1) + "\n")
     print(json.dumps({k: record[k]["sha256"] for k in ("tirust", "iregi", "collier")}, indent=1))
 

@@ -48,6 +48,19 @@ def main() -> None:
             "reference": f"validation/benchmark/opening-rank6-20261026/cases/{request['id']}/result.json",
             "lanes": [lane(sample, index) for index in range(LANES)],
         })
+    # Capture 003: an N7R7 row (the six opening shifts and masses plus
+    # q_6 = (1/4, 3/8, 1/8, 5/8), m_6^2 = 4: the first such dyadic choices
+    # (e_t/2 + e_z, ...) made six-point thin systems or null-hyperplane boxes
+    # exactly singular; reference from make-n7r7-reference.py).
+    seven = {"shifts": [["0", "0", "0", "0"], ["0", "1", "0", "0"], ["0", "0", "1", "0"], ["0", "0", "0", "1"],
+                        ["1/2", "0", "0", "0"], ["0", "1", "1", "0"], ["1/4", "3/8", "1/8", "5/8"]],
+             "masses_squared": [[m, "0"] for m in ("1", "2", "3", "4", "2", "3", "4")], "mu": "3"}
+    cases.insert(next(i for i, c in enumerate(cases) if c["id"] == "ordinary-n6-r6") + 1, {
+        "id": "ordinary-n7-r7", "table": "ordinary", "label": "N=7, R=7", "n": 7, "rank": 7,
+        "powers": [1] * 7, "dimension_shift": 0,
+        "reference": "validation/benchmark/direct-engine-20261030/n7r7/result.json",
+        "lanes": [lane(seven, index) for index in range(LANES)],
+    })
     document = {
         "schema_version": 1,
         "suite_id": "direct-engine-20261030",

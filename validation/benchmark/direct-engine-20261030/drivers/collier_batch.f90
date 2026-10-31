@@ -53,7 +53,7 @@ program collier_opening_double_reference
     if (ios/=0.or.(trim(command)/='BENCH'.and.trim(command)/='CHECK')) error stop 'Invalid header'
     if (verify(trim(request_id),'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_-.')/=0) &
       error stop 'Invalid request ID'
-    if (n<1.or.n>6.or.rank<0.or.rank>6.or.mode<1.or.mode>2) error stop 'Unsupported topology'
+    if (n<1.or.n>7.or.rank<0.or.rank>7.or.mode<1.or.mode>2) error stop 'Unsupported topology'
     if (mode==2.and.n==5.and.rank>5) error stop 'DD supports pentagons only through rank 5'
     if (tenred<6.or.tenred>7.or.argperm<0.or.argperm>1) error stop 'Invalid public configuration'
     if (.not.ieee_is_finite(requested_accuracy).or..not.ieee_is_finite(critical_accuracy)) &
