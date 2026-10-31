@@ -19,12 +19,18 @@ from pathlib import Path
 
 CODES = [
     ("tirust", "TIRust (default: automatic precision rescue)"),
-    ("tirust-binary64", "TIRust binary64 only (refusals: no array)"),
+    ("tirust-binary64", "TIRust binary64 only (rescue disabled; refusals: no array)"),
+    ("tirust-binary64-r20", "TIRust binary64 only, accuracy request 2^-20"),
     ("iregi-ibp", "IREGI IBP"),
     ("iregi-pv", "IREGI PV"),
     ("collier-coli", "COLLIER COLI"),
     ("collier-dd", "COLLIER DD"),
 ]
+# Captures 001-004 derived "binary64 only" from the default path (its array
+# unless rerun at higher precision; capture 004: sub-boxes of such lanes may
+# be double-double from the partial rescue). Capture 005 on: the facade with
+# the precision rescue disabled, at the requests 2^-34 and 2^-20.
+LEGACY_BINARY64_LABEL = "TIRust default without a full rescue (sub-boxes may be double-double)"
 GRID = [round(-17 + 0.1 * k, 1) for k in range(171)]
 # Contracted dense random numerator (capture 003 on): the array codes and
 # NinjaRS, which integrates the numerator directly (integrand reduction).
@@ -65,7 +71,13 @@ def main():
             "reference_checks": checks,
             "codes": [],
         }
+        present = {code for r in usable for code in r["delta"]}
+        legacy = "tirust-binary64-r20" not in present
         for code, label in CODES:
+            if code not in present:
+                continue
+            if code == "tirust-binary64" and legacy:
+                label = LEGACY_BINARY64_LABEL
             deltas = [r["delta"].get(code) for r in usable]
             values = sorted(d for d in deltas if d is not None and math.isfinite(d))
             missing = sum(1 for d in deltas if d is None or not math.isfinite(d))
@@ -94,10 +106,21 @@ def main():
                             bits = note.split(" at ")[1].split(" bits")[0]
                             tiers[bits] = tiers.get(bits, 0) + 1
                 entry["rescued_by_bits"] = tiers
+            # Lanes the checked binary64 retry kept below the a priori gate.
+            notes_key = {"tirust": "tirust_diagnostics", "tirust-binary64": "tirust_binary64_diagnostics"}.get(code)
+            if notes_key and not legacy:
+                entry["checked_kept"] = sum(
+                    1 for r in usable
+                    if any(note.startswith("binary64 below the conditioning gate: kept") for note in r.get(notes_key) or []))
             out["codes"].append(entry)
         if any("contracted" in r for r in usable):
             out["contracted_codes"] = []
+            contracted_present = {code for r in usable for code in (r.get("contracted") or {})}
             for code, label in CONTRACTED_CODES:
+                if code not in contracted_present:
+                    continue
+                if code == "tirust-binary64" and legacy:
+                    label = LEGACY_BINARY64_LABEL
                 deltas = [(r.get("contracted") or {}).get(code) for r in usable]
                 finite = sorted(d for d in deltas if d is not None and math.isfinite(d))
                 absent = len(deltas) - len(finite)

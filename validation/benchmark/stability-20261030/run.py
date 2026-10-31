@@ -11,8 +11,12 @@ rescaled whole-array max discrepancy, weights mu^(rank+4-2N)).
 Codes (all binary64 inputs and outputs):
   tirust          public TIRust default (direct engine; lanes it refuses are
                   rerun at higher precision automatically)
-  tirust-binary64 TIRust in binary64 alone: the default path's binary64 array unless
-                  TIRust's checks refused the lane (counted as no array)
+  tirust-binary64 TIRust in binary64 alone: the public facade with the precision
+                  rescue disabled (from capture 005; lanes its checks refuse count
+                  as no array). Captures 001-004 used the default path's array
+                  unless it was rerun at higher precision (capture 004: including
+                  double-double sub-boxes injected by the partial rescue).
+  tirust-binary64-r20  the same at the accuracy request 2^-20 (from capture 005)
   iregi-ibp/-pv   original IREGI, binary64, IBP and PV modes, with IREGI's
                   default on-shell snapping (as in MadLoop)
   collier-coli/-dd COLLIER 1.2.10, binary64, COLI and DD branches
@@ -404,9 +408,18 @@ def chunk_job(integral, start, points):
         # test) sent the lane to the precision rescue. (Captures 001-002 took
         # the array of a separate direct workspace with the default 1e-12
         # gate; from capture 003 on, rotation-tested plans gate at 1e-15.)
-        kept = default["status"] == "success" and not default.get("fallback_used")
-        arrays["tirust-binary64"] = default["moments"] if kept else None
-        flagged["tirust-binary64"] = not kept
+        # From capture 005 the facade with the precision rescue disabled.
+        if "binary64" in t[k]:
+            for name, key in (("tirust-binary64", "binary64"), ("tirust-binary64-r20", "binary64_r20")):
+                only = t[k][key]
+                kept = only["status"] == "success"
+                arrays[name] = only["moments"] if kept else None
+                flagged[name] = not kept
+            record["tirust_binary64_diagnostics"] = t[k]["binary64"].get("diagnostics")
+        else:
+            kept = default["status"] == "success" and not default.get("fallback_used")
+            arrays["tirust-binary64"] = default["moments"] if kept else None
+            flagged["tirust-binary64"] = not kept
         for name, lanes in codes.items():
             arrays[name], flagged[name] = lane_values(lanes[k] if lanes else None)
         delta = {name: e(values, reference) if values is not None else None for name, values in arrays.items()}
