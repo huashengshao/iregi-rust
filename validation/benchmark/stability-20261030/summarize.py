@@ -26,6 +26,9 @@ CODES = [
     ("collier-dd", "COLLIER DD"),
 ]
 GRID = [round(-17 + 0.1 * k, 1) for k in range(171)]
+# Contracted dense random numerator (capture 003 on): the array codes and
+# NinjaRS, which integrates the numerator directly (integrand reduction).
+CONTRACTED_CODES = CODES + [("ninjars", "NinjaRS (integrand reduction, binary64 fast engine)")]
 
 
 def main():
@@ -91,13 +94,28 @@ def main():
                             tiers[bits] = tiers.get(bits, 0) + 1
                 entry["rescued_by_bits"] = tiers
             out["codes"].append(entry)
+        if any("contracted" in r for r in usable):
+            out["contracted_codes"] = []
+            for code, label in CONTRACTED_CODES:
+                deltas = [(r.get("contracted") or {}).get(code) for r in usable]
+                finite = sorted(d for d in deltas if d is not None and math.isfinite(d))
+                absent = len(deltas) - len(finite)
+                total = len(usable)
+                curve = [round((absent + sum(1 for d in finite if d > 10.0 ** x)) / total, 6) for x in GRID]
+                q = (lambda p: finite[min(len(finite) - 1, int(p * len(finite)))] if finite else None)
+                out["contracted_codes"].append({
+                    "code": code, "label": label, "curve": curve, "no_value": absent,
+                    "median": statistics.median(finite) if finite else None, "p99": q(0.99),
+                    "max": finite[-1] if finite else None,
+                    "above_1e-3": absent + sum(1 for d in finite if d > 1e-3)})
         integrals.append(out)
     snapshot = {
         "schema_version": 1,
         "campaign": "stability-20261030",
         "setup": {k: points[k] for k in ("seed", "sqrt_s", "mt2", "mh", "mu", "pt_min", "dr_min")},
         "points_sha256": hashlib.sha256(points_path.read_bytes()).hexdigest(),
-        "binaries": {name: build[name]["sha256"] for name in ("tirust", "iregi", "collier", "quad_reference")},
+        "binaries": {name: build[name]["sha256"] for name in ("tirust", "iregi", "collier", "quad_reference", "ninjars")
+                     if name in build},
         "tirust_git_head": build["tirust"]["git_head"],
         "grid_log10": GRID,
         "accuracy_metric": "E/A: dimensionally rescaled whole-array max discrepancy over all Cartesian moments and "

@@ -5,7 +5,8 @@ TIRust: release example `stability_driver` (same features as the timing
 driver of direct-engine-20261030). COLLIER: `drivers/collier_physical.f90`
 linked against the unmodified COLLIER 1.2.10 archive; original IREGI
 (binary64): `drivers/iregi_physical.f90` linked against the original-IREGI
-objects of the timing campaigns (same repair). The quad reference is the quadruple-precision original IREGI build
+objects of the timing campaigns (same repair). NinjaRS: the reference build under target/reference/ninjars (built
+separately), copied and hashed. The quad reference is the quadruple-precision original IREGI build
 target/quad-iregi-source-audit/build-v6-001. Binaries go to
 target/stability-20261030/bin; SHA-256 sums, toolchains and the TIRust git
 head are recorded in build.json (or the record named by the first argument,
@@ -88,6 +89,22 @@ def main() -> None:
                         "tracked_changes": changed,
                         "source_changes": [c for c in changed if c.startswith(("crates/", "dependencies/", "Cargo"))],
                         "cargo": " ".join(cargo)}
+    # NinjaRS reference build (target/reference/ninjars, built separately with
+    # `cargo build --profile perf --locked -p ninjars-cli`): copied and hashed.
+    ninjars_source = ROOT / "target/reference/ninjars/source"
+    ninjars_built = ROOT / "target/reference/ninjars/target/perf/ninjars"
+    if ninjars_built.exists():
+        ninjars = BIN / "ninjars"
+        shutil.copy2(ninjars_built, ninjars)
+        git = lambda *a: subprocess.run(["git", "-C", str(ninjars_source), *a], capture_output=True,
+                                        text=True).stdout.strip()
+        record["ninjars"] = {"binary": str(ninjars.relative_to(ROOT)), "sha256": sha256(ninjars),
+                             "repository": "https://github.com/alphal00p/ninjars",
+                             "git_head": git("rev-parse", "HEAD"), "upstream_base": git("rev-parse", "origin/main"),
+                             "repairs": git("log", "--format=%h %s", "origin/main..HEAD").splitlines(),
+                             "tracked_changes": [line[3:] for line in git("status", "--porcelain",
+                                                                          "--untracked-files=no").splitlines()],
+                             "cargo": "cargo build --profile perf --locked -p ninjars-cli"}
     import sys
     name = sys.argv[1] if len(sys.argv) > 1 else "build.json"
     (HERE / name).write_text(json.dumps(record, indent=1) + "\n")

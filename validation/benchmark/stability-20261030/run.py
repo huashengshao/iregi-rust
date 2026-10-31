@@ -59,6 +59,9 @@ TIRUST = Path(os.environ.get("TIRUST_STABILITY_DRIVER", BIN / "tirust-stability"
 COLLIER = BIN / "collier-physical"
 IREGI = BIN / "iregi-physical"
 QUAD = ROOT / "target/quad-iregi-source-audit/build-v6-001/iregi-reference-quad"
+# NinjaRS (integrand reduction, binary64 fast engine) reference build: upstream
+# 41a4c00 with the serde_json float_roundtrip repair (target/reference/ninjars).
+NINJARS = Path(os.environ.get("NINJARS", BIN / "ninjars"))
 CONFIRMATION = 1e-9
 QUAD_AGREEMENT = 1e-15
 COLLIER_CONFIG = {"requested_accuracy": "1e-10", "critical_accuracy": "1e-3", "direct_tensor_threshold": 6,
@@ -122,6 +125,154 @@ def exact_error(moments, reference, rank, n, mu):
             error = max(error, ((a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2).sqrt() / weight)
             amplitude = max(amplitude, (b[0] ** 2 + b[1] ** 2).sqrt() / weight)
     return float(error / amplitude) if amplitude else (0.0 if error == 0 else float("inf"))
+
+
+# Native IREGI normalization from OneLOop's: a = gamma_E + ln(pi), b = pi^2/12,
+# overall i pi^2 (direct/exec.rs output conversion); 40 digits.
+PI = Decimal("3.141592653589793238462643383279502884197")
+EULER_A = Decimal("0.5772156649015328606065120900824024310422") + PI.ln()
+EULER_B = PI * PI / 12
+
+
+def numerator(integral, index):
+    """Dense random rank-R numerator N(q) = sum_alpha c_alpha q^alpha for one
+    point (deterministic), coefficients (u + i v) / mu^|alpha| with u, v
+    uniform in [-1, 1], in basis(rank) order, rounded to binary64."""
+    import random
+    rng = random.Random(f"{integral['id']}:{index}:numerator")
+    mu = integral["mu"]
+    return [complex(rng.uniform(-1, 1), rng.uniform(-1, 1)) / mu ** sum(e) for e in basis(integral["rank"])]
+
+
+def ninja_index(e):
+    """Position of q0^e0 q1^e1 q2^e2 q3^e3 in Ninja's (and NinjaRS's) dense
+    tensor layout (ninjars::fast::tensor_layout::monomial_index)."""
+    def ncoeff(r):
+        return (r + 1) * (r + 2) * (r + 3) * (r + 4) // 24
+
+    def homogeneous(e):
+        e0, e1, e2, e3 = e
+        r = e0 + e1 + e2 + e3
+        if r == 0:
+            return 0
+        r1, r2 = r, r * (r + 1) // 2
+        if e3 > 0:
+            return 1 + r1 + r2 + homogeneous((e0, e1, e2, e3 - 1))
+        if e2 > 0:
+            return 1 + r1 + homogeneous((e0, e1, e2 - 1, 0))
+        if e1 > 0:
+            return 1 + homogeneous((e0, e1 - 1, 0, 0))
+        return 0
+    r = sum(e)
+    return (ncoeff(r - 1) if r else 0) + homogeneous(e)
+
+
+def contract(moments, coefficients, exact_digits=False):
+    """sum_alpha c_alpha M_alpha in the native slots, combined as
+    [finite, single pole (UV + IR), double pole]; Decimal pairs if
+    exact_digits (high-precision strings), else binary64 with fsum."""
+    if moments is None:
+        return None
+    if exact_digits:
+        out = []
+        for slots in ((3,), (0, 1), (2,)):
+            re = im = Decimal(0)
+            for m, c in zip(moments, coefficients):
+                cr, ci = Decimal(c.real), Decimal(c.imag)
+                for slot in slots:
+                    if m[slot] is None or None in m[slot]:
+                        return None
+                    a, b = Decimal(str(m[slot][0]).strip()), Decimal(str(m[slot][1]).strip())
+                    re += cr * a - ci * b
+                    im += cr * b + ci * a
+            out.append((re, im))
+        return out
+    out = []
+    for slots in ((3,), (0, 1), (2,)):
+        re, im = [], []
+        for m, c in zip(moments, coefficients):
+            for slot in slots:
+                if m[slot] is None or None in m[slot]:
+                    return None
+                a, b = float(m[slot][0]), float(m[slot][1])
+                re += [c.real * a, -c.imag * b]
+                im += [c.real * b, c.imag * a]
+        out.append((math.fsum(re), math.fsum(im)))
+    return out
+
+
+def contracted_error(value, reference):
+    """Max over [finite, single, double] of |I - I_ref| / max |I_ref|; NaN for
+    nonfinite values."""
+    if value is None or reference is None:
+        return None
+    if not all(math.isfinite(float(x)) for pair in value for x in pair):
+        return float("nan")
+    error = amplitude = Decimal(0)
+    for (a, b), (c, d) in zip(value, reference):
+        a, b = Decimal(a), Decimal(b)
+        error = max(error, ((a - c) ** 2 + (b - d) ** 2).sqrt())
+        amplitude = max(amplitude, (c ** 2 + d ** 2).sqrt())
+    return float(error / amplitude) if amplitude else (0.0 if error == 0 else float("inf"))
+
+
+def ninjars_native(values):
+    """NinjaRS's [eps0, eps^-1, eps^-2] (OneLOop normalization, combined
+    single pole) as native [finite, single, double] Decimal pairs."""
+    def pair(v):
+        return complex(float(v[0]), float(v[1])) if isinstance(v, list) else complex(float(v["re"]), float(v["im"]))
+    v3, s1, v2 = (pair(values[k]) for k in ("eps0", "eps_m1", "eps_m2"))
+    d = lambda z: (Decimal(z.real), Decimal(z.imag))
+    def mul(x, k):
+        return (x[0] * k, x[1] * k)
+    def add(*xs):
+        return (sum(x[0] for x in xs), sum(x[1] for x in xs))
+    s1d, v2d, v3d = d(s1), d(v2), d(v3)
+    finite = add(v3d, mul(s1d, -EULER_A), mul(v2d, EULER_A * EULER_A / 2 - EULER_B))
+    single = add(s1d, mul(v2d, -EULER_A))
+    # times i pi^2: (x + i y) i pi^2 = -y pi^2 + i x pi^2
+    p2 = PI * PI
+    return [(-y * p2, x * p2) for (x, y) in (finite, single, v2d)]
+
+
+def exact_invariant(a, b):
+    from fractions import Fraction
+    d = [Fraction(x) - Fraction(y) for x, y in zip(a, b)]
+    return float(d[0] * d[0] - d[1] * d[1] - d[2] * d[2] - d[3] * d[3])
+
+
+def ninjars(points, integral, start):
+    """NinjaRS fast engine (binary64) on the points' contracted numerators.
+    S-matrix: exact invariants of the binary64 shifts, those below 1e-12 of
+    the largest set to zero (as for COLLIER)."""
+    if not NINJARS.exists():
+        return None
+    n, rank, mu = integral["n"], integral["rank"], integral["mu"]
+    size = (rank + 1) * (rank + 2) * (rank + 3) * (rank + 4) // 24
+    lanes = []
+    for k, point in enumerate(points):
+        s = [[exact_invariant(point[i], point[j]) for j in range(n)] for i in range(n)]
+        cut = 1e-12 * max(abs(x) for row in s for x in row)
+        s = [[0.0 if abs(x) <= cut else x for x in row] for row in s]
+        tensor = [None] * size
+        for e, c in zip(basis(rank), numerator(integral, start + k)):
+            tensor[ninja_index(e)] = [c.real, c.imag]
+        lanes.append({"id": f"lane{start + k}", "shifts": point,
+                      "masses_squared": [[m, 0.0] for m in integral["masses_squared"]],
+                      "mu_squared": mu * mu, "s_matrix": s, "tensor": tensor})
+    with tempfile.TemporaryDirectory() as tmp:
+        case, report = Path(tmp) / "case.json", Path(tmp) / "report.json"
+        case.write_text(json.dumps({"format": "ninjars-bench-case-v1", "name": f"{integral['id']}-{start}",
+                                    "n": n, "rank": rank, "lanes": lanes}))
+        subprocess.run([str(NINJARS), "case-check", str(case), "--engines", "fast", "--no-fail",
+                        "-o", str(report)], capture_output=True, timeout=7200, cwd=ROOT)
+        if not report.exists():
+            return None
+        data = json.loads(report.read_text())
+    runs = data["cases"][0]["runs"] if data.get("cases") else []
+    if not runs or "lanes" not in runs[0]:
+        return None
+    return [{"status": lane.get("status"), "values": lane.get("values")} for lane in runs[0]["lanes"]]
 
 
 def results(argv, text, timeout=7200):
@@ -195,6 +346,7 @@ def chunk_job(integral, start, points):
     n, rank, mu = integral["n"], integral["rank"], integral["mu"]
     q_ibp, q_pv = quad(points, integral, 0), quad(points, integral, 1)
     t = tirust(points, integral)
+    ninja = ninjars(points, integral, start)
     codes = {}
     for mode, name in ((0, "iregi-ibp"), (1, "iregi-pv")):
         codes[name] = iregi(points, integral, mode)
@@ -243,6 +395,18 @@ def chunk_job(integral, start, points):
         delta_quad = {name: e(values, quad_reference) if values is not None else None
                       for name, values in arrays.items()}
         record["delta"], record["delta_quad"], record["flagged"] = delta, delta_quad, flagged
+        # Contracted dense random numerator (sum_alpha c_alpha M_alpha): every
+        # array code and NinjaRS, which reduces the numerator directly.
+        coefficients = numerator(integral, start + k)
+        exact_reference = contract(reference, coefficients, exact_digits=True)
+        contracted = {name: contracted_error(contract(values, coefficients), exact_reference)
+                      if values is not None else None for name, values in arrays.items()}
+        lane = ninja[k] if ninja else None
+        ninja_ok = lane is not None and lane.get("values") is not None and str(lane.get("status", "")).lower() in ("success", "ok")
+        contracted["ninjars"] = contracted_error(
+            [(float(x), float(y)) for x, y in ninjars_native(lane["values"])], exact_reference) if ninja_ok else None
+        record["contracted"] = contracted
+        record["ninjars_status"] = None if lane is None else lane.get("status")
         collier_finite = [name for name in ("collier-coli", "collier-dd")
                           if delta[name] is not None and math.isfinite(delta[name])]
         record["arbitration"] = {
